@@ -213,11 +213,11 @@ func (c *WorkloadIdentityFederationFlow) requestToken(clientID, assertion string
 	body.Set("client_id", clientID)
 
 	payload := strings.NewReader(body.Encode())
-	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)
+	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload) //nolint:gosec // G704: Tainted URL is expected here
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	return c.authClient.Do(req)
+	return c.authClient.Do(req) //nolint:gosec // G704: Tainted URL is expected here
 }

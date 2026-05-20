@@ -35,6 +35,7 @@ const (
 )
 
 // Interface needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId, region string) (*mongodbflex.InstanceResponse, error)
@@ -42,6 +43,7 @@ type APIClientInstanceInterface interface {
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
@@ -73,6 +75,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // CloneInstanceWaitHandler will wait for instance clone to be created
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CloneInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return CreateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
@@ -124,6 +127,7 @@ func RestoreInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterfac
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
@@ -154,12 +158,14 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return UpdateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {

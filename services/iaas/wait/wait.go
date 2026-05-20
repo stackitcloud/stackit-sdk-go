@@ -69,6 +69,7 @@ const (
 )
 
 // Interfaces needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetNetworkAreaExecute(ctx context.Context, organizationId, areaId string) (*iaas.NetworkArea, error)
@@ -130,6 +131,7 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // CreateNetworkAreaRegionWaitHandler will wait for network area region creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
@@ -152,6 +154,7 @@ func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 }
 
 // DeleteNetworkAreaRegionWaitHandler will wait for network area region deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
@@ -181,6 +184,7 @@ func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 // When the deletion for a project is triggered, the backend starts a workflow in the background which cleans up all resources
 // within a project and deletes the project in each service. When the project is attached to an SNA, the SNA can't be
 // deleted until the workflow inform the IaaS-API that the project is deleted.
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInterface, r ResourceManagerAPIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.ProjectListResponse] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.ProjectListResponse, err error) {
@@ -245,6 +249,7 @@ func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // CreateNetworkWaitHandler will wait for network creation using network id
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
@@ -267,6 +272,7 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // UpdateNetworkWaitHandler will wait for network update
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
@@ -289,6 +295,7 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // DeleteNetworkWaitHandler will wait for network deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
@@ -310,6 +317,7 @@ func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
@@ -333,6 +341,7 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteVolumeWaitHandler will wait for volume deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
@@ -362,6 +371,7 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // CreateServerWaitHandler will wait for server creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -389,6 +399,7 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 
 // ResizeServerWaitHandler will wait for server resize
 // It checks for an intermediate resizing status and only then waits for the server to become active
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -427,6 +438,7 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteServerWaitHandler will wait for volume deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -456,6 +468,7 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // StartServerWaitHandler will wait for server start
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -482,6 +495,7 @@ func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // StopServerWaitHandler will wait for server stop
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -508,6 +522,7 @@ func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 }
 
 // DeallocateServerWaitHandler will wait for server deallocation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -534,6 +549,7 @@ func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, proj
 }
 
 // RescueServerWaitHandler will wait for server rescue
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -560,6 +576,7 @@ func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // UnrescueServerWaitHandler will wait for server unrescue
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
@@ -649,6 +666,7 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
@@ -678,6 +696,7 @@ func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, pro
 }
 
 // RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
@@ -704,6 +723,7 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 }
 
 // UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
@@ -727,6 +747,7 @@ func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // DeleteImageWaitHandler will wait for image deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
@@ -756,6 +777,7 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // CreateBackupWaitHandler will wait for backup creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
@@ -781,6 +803,7 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteBackupWaitHandler will wait for backup deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
@@ -809,6 +832,7 @@ func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // RestoreBackupWaitHandler will wait for backup restoration
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
@@ -834,6 +858,7 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateSnapshotWaitHandler will wait for snapshot creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
@@ -859,6 +884,7 @@ func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // DeleteSnapshotWaitHandler will wait for snapshot deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
