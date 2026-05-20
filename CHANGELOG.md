@@ -267,6 +267,8 @@
     - **Bugfix**: **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.8.3](services/mongodbflex/CHANGELOG.md#v183)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.9.0](services/mongodbflex/CHANGELOG.md#v190)
+    - **Feature:** Introduce enums for various attributes
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
