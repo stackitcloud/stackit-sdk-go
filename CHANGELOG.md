@@ -391,6 +391,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.6.2](services/serverbackup/CHANGELOG.md#v162)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.7.0](services/serverbackup/CHANGELOG.md#v170)
+    - **Feature:** Introduce enums for various attributes
 - `serverupdate`:
   - [v1.4.3](services/serverupdate/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
