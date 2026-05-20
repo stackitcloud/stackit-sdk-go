@@ -28,13 +28,13 @@ func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAP
 		switch *s.State {
 		default:
 			return true, s, fmt.Errorf("service with id %s has unexpected state %s", serviceId, *s.State)
-		case SERVICESTATUSSTATE_ENABLED:
+		case serviceenablement.SERVICESTATUSSTATE_ENABLED:
 			return true, s, nil
-		case SERVICESTATUSSTATE_ENABLING:
+		case serviceenablement.SERVICESTATUSSTATE_ENABLING:
 			return false, nil, nil
-		case SERVICESTATUSSTATE_DISABLED:
+		case serviceenablement.SERVICESTATUSSTATE_DISABLED:
 			return true, s, fmt.Errorf("enabling failed for service with id %s", serviceId)
-		case SERVICESTATUSSTATE_DISABLING:
+		case serviceenablement.SERVICESTATUSSTATE_DISABLING:
 			return true, s, fmt.Errorf("service with id %s is in state %s", serviceId, *s.State)
 		}
 	})
@@ -55,13 +55,13 @@ func DisableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultA
 		switch *s.State {
 		default:
 			return true, s, fmt.Errorf("service with id %s has unexpected state %s", serviceId, *s.State)
-		case SERVICESTATUSSTATE_DISABLED:
+		case serviceenablement.SERVICESTATUSSTATE_DISABLED:
 			return true, s, nil
-		case SERVICESTATUSSTATE_DISABLING:
+		case serviceenablement.SERVICESTATUSSTATE_DISABLING:
 			return false, nil, nil
-		case SERVICESTATUSSTATE_ENABLED:
+		case serviceenablement.SERVICESTATUSSTATE_ENABLED:
 			return true, s, fmt.Errorf("disabling failed for service with id %s", serviceId)
-		case SERVICESTATUSSTATE_ENABLING:
+		case serviceenablement.SERVICESTATUSSTATE_ENABLING:
 			return true, s, fmt.Errorf("service with id %s is in state %s", serviceId, *s.State)
 		}
 	})

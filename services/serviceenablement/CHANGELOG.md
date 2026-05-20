@@ -1,3 +1,6 @@
+## v1.6.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.5.3
 - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
 
