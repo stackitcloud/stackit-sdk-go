@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -22,45 +23,45 @@ const (
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case logme.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case logme.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *logme.Instance) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case logme.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case logme.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *logme.Instance) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
@@ -73,10 +74,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != logme.INSTANCESTATUS_DELETING {
+			if *s.Status != INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == logme.INSTANCESTATUS_ACTIVE {
+			if *s.Status == INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

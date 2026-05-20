@@ -23,16 +23,15 @@ var _ MappedNullable = &InstanceSensitiveData{}
 type InstanceSensitiveData struct {
 	AlertingUrl         string `json:"alertingUrl"`
 	Cluster             string `json:"cluster"`
-	DashboardUrl        string `json:"dashboardUrl"`
 	GrafanaAdminEnabled bool   `json:"grafanaAdminEnabled"`
 	// Deprecated
-	GrafanaAdminPassword string `json:"grafanaAdminPassword"`
+	GrafanaAdminPassword *string `json:"grafanaAdminPassword,omitempty"`
 	// Deprecated
-	GrafanaAdminUser        string `json:"grafanaAdminUser"`
-	GrafanaPublicReadAccess bool   `json:"grafanaPublicReadAccess"`
-	GrafanaUrl              string `json:"grafanaUrl"`
-	GrafanaUseStackitSso    bool   `json:"grafanaUseStackitSso"`
-	Instance                string `json:"instance"`
+	GrafanaAdminUser        *string `json:"grafanaAdminUser,omitempty"`
+	GrafanaPublicReadAccess bool    `json:"grafanaPublicReadAccess"`
+	GrafanaUrl              string  `json:"grafanaUrl"`
+	GrafanaUseStackitSso    bool    `json:"grafanaUseStackitSso"`
+	Instance                string  `json:"instance"`
 	// Deprecated
 	JaegerHttpTracesUrl     *string   `json:"jaegerHttpTracesUrl,omitempty"`
 	JaegerHttpUrl           string    `json:"jaegerHttpUrl"`
@@ -63,14 +62,11 @@ type _InstanceSensitiveData InstanceSensitiveData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSensitiveData(alertingUrl string, cluster string, dashboardUrl string, grafanaAdminEnabled bool, grafanaAdminPassword string, grafanaAdminUser string, grafanaPublicReadAccess bool, grafanaUrl string, grafanaUseStackitSso bool, instance string, jaegerHttpUrl string, jaegerTracesUrl string, jaegerUiUrl string, logsPushUrl string, logsUrl string, metricsEndpointUrl string, metricsRetentionTime1h int32, metricsRetentionTime5m int32, metricsRetentionTimeRaw int32, metricsUrl string, otlpGrpcTracesUrl string, otlpHttpLogsUrl string, otlpHttpTracesUrl string, otlpTracesUrl string, plan PlanModel, pushMetricsUrl string, targetsUrl string, zipkinSpansUrl string) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl string, cluster string, grafanaAdminEnabled bool, grafanaPublicReadAccess bool, grafanaUrl string, grafanaUseStackitSso bool, instance string, jaegerHttpUrl string, jaegerTracesUrl string, jaegerUiUrl string, logsPushUrl string, logsUrl string, metricsEndpointUrl string, metricsRetentionTime1h int32, metricsRetentionTime5m int32, metricsRetentionTimeRaw int32, metricsUrl string, otlpGrpcTracesUrl string, otlpHttpLogsUrl string, otlpHttpTracesUrl string, otlpTracesUrl string, plan PlanModel, pushMetricsUrl string, targetsUrl string, zipkinSpansUrl string) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	this.AlertingUrl = alertingUrl
 	this.Cluster = cluster
-	this.DashboardUrl = dashboardUrl
 	this.GrafanaAdminEnabled = grafanaAdminEnabled
-	this.GrafanaAdminPassword = grafanaAdminPassword
-	this.GrafanaAdminUser = grafanaAdminUser
 	this.GrafanaPublicReadAccess = grafanaPublicReadAccess
 	this.GrafanaUrl = grafanaUrl
 	this.GrafanaUseStackitSso = grafanaUseStackitSso
@@ -158,30 +154,6 @@ func (o *InstanceSensitiveData) SetCluster(v string) {
 	o.Cluster = v
 }
 
-// GetDashboardUrl returns the DashboardUrl field value
-func (o *InstanceSensitiveData) GetDashboardUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DashboardUrl
-}
-
-// GetDashboardUrlOk returns a tuple with the DashboardUrl field value
-// and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetDashboardUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DashboardUrl, true
-}
-
-// SetDashboardUrl sets field value
-func (o *InstanceSensitiveData) SetDashboardUrl(v string) {
-	o.DashboardUrl = v
-}
-
 // GetGrafanaAdminEnabled returns the GrafanaAdminEnabled field value
 func (o *InstanceSensitiveData) GetGrafanaAdminEnabled() bool {
 	if o == nil {
@@ -206,58 +178,74 @@ func (o *InstanceSensitiveData) SetGrafanaAdminEnabled(v bool) {
 	o.GrafanaAdminEnabled = v
 }
 
-// GetGrafanaAdminPassword returns the GrafanaAdminPassword field value
+// GetGrafanaAdminPassword returns the GrafanaAdminPassword field value if set, zero value otherwise.
 // Deprecated
 func (o *InstanceSensitiveData) GetGrafanaAdminPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminPassword) {
 		var ret string
 		return ret
 	}
-
-	return o.GrafanaAdminPassword
+	return *o.GrafanaAdminPassword
 }
 
-// GetGrafanaAdminPasswordOk returns a tuple with the GrafanaAdminPassword field value
+// GetGrafanaAdminPasswordOk returns a tuple with the GrafanaAdminPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated
 func (o *InstanceSensitiveData) GetGrafanaAdminPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminPassword) {
 		return nil, false
 	}
-	return &o.GrafanaAdminPassword, true
+	return o.GrafanaAdminPassword, true
 }
 
-// SetGrafanaAdminPassword sets field value
+// HasGrafanaAdminPassword returns a boolean if a field has been set.
+func (o *InstanceSensitiveData) HasGrafanaAdminPassword() bool {
+	if o != nil && !IsNil(o.GrafanaAdminPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetGrafanaAdminPassword gets a reference to the given string and assigns it to the GrafanaAdminPassword field.
 // Deprecated
 func (o *InstanceSensitiveData) SetGrafanaAdminPassword(v string) {
-	o.GrafanaAdminPassword = v
+	o.GrafanaAdminPassword = &v
 }
 
-// GetGrafanaAdminUser returns the GrafanaAdminUser field value
+// GetGrafanaAdminUser returns the GrafanaAdminUser field value if set, zero value otherwise.
 // Deprecated
 func (o *InstanceSensitiveData) GetGrafanaAdminUser() string {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminUser) {
 		var ret string
 		return ret
 	}
-
-	return o.GrafanaAdminUser
+	return *o.GrafanaAdminUser
 }
 
-// GetGrafanaAdminUserOk returns a tuple with the GrafanaAdminUser field value
+// GetGrafanaAdminUserOk returns a tuple with the GrafanaAdminUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated
 func (o *InstanceSensitiveData) GetGrafanaAdminUserOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminUser) {
 		return nil, false
 	}
-	return &o.GrafanaAdminUser, true
+	return o.GrafanaAdminUser, true
 }
 
-// SetGrafanaAdminUser sets field value
+// HasGrafanaAdminUser returns a boolean if a field has been set.
+func (o *InstanceSensitiveData) HasGrafanaAdminUser() bool {
+	if o != nil && !IsNil(o.GrafanaAdminUser) {
+		return true
+	}
+
+	return false
+}
+
+// SetGrafanaAdminUser gets a reference to the given string and assigns it to the GrafanaAdminUser field.
 // Deprecated
 func (o *InstanceSensitiveData) SetGrafanaAdminUser(v string) {
-	o.GrafanaAdminUser = v
+	o.GrafanaAdminUser = &v
 }
 
 // GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
@@ -867,10 +855,13 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["alertingUrl"] = o.AlertingUrl
 	toSerialize["cluster"] = o.Cluster
-	toSerialize["dashboardUrl"] = o.DashboardUrl
 	toSerialize["grafanaAdminEnabled"] = o.GrafanaAdminEnabled
-	toSerialize["grafanaAdminPassword"] = o.GrafanaAdminPassword
-	toSerialize["grafanaAdminUser"] = o.GrafanaAdminUser
+	if !IsNil(o.GrafanaAdminPassword) {
+		toSerialize["grafanaAdminPassword"] = o.GrafanaAdminPassword
+	}
+	if !IsNil(o.GrafanaAdminUser) {
+		toSerialize["grafanaAdminUser"] = o.GrafanaAdminUser
+	}
 	toSerialize["grafanaPublicReadAccess"] = o.GrafanaPublicReadAccess
 	toSerialize["grafanaUrl"] = o.GrafanaUrl
 	toSerialize["grafanaUseStackitSso"] = o.GrafanaUseStackitSso
@@ -914,10 +905,7 @@ func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"alertingUrl",
 		"cluster",
-		"dashboardUrl",
 		"grafanaAdminEnabled",
-		"grafanaAdminPassword",
-		"grafanaAdminUser",
 		"grafanaPublicReadAccess",
 		"grafanaUrl",
 		"grafanaUseStackitSso",
@@ -971,7 +959,6 @@ func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "alertingUrl")
 		delete(additionalProperties, "cluster")
-		delete(additionalProperties, "dashboardUrl")
 		delete(additionalProperties, "grafanaAdminEnabled")
 		delete(additionalProperties, "grafanaAdminPassword")
 		delete(additionalProperties, "grafanaAdminUser")

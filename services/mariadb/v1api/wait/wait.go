@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -23,44 +24,38 @@ const (
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *mariadb.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case mariadb.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case mariadb.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[mariadb.Instance, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(s *mariadb.Instance) (string, error) {
+			if s == nil || s.Status == nil {
+				return "", errors.New("response or status is nil")
+			}
+			return *s.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *mariadb.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case mariadb.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case mariadb.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[mariadb.Instance, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(s *mariadb.Instance) (string, error) {
+			if s == nil || s.Status == nil {
+				return "", errors.New("response or status is nil")
+			}
+			return *s.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
@@ -73,10 +68,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projec
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != mariadb.INSTANCESTATUS_DELETING {
+			if *s.Status != INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == mariadb.INSTANCESTATUS_ACTIVE {
+			if *s.Status == INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

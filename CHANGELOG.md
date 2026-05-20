@@ -188,6 +188,8 @@
   - [v1.9.0](services/kms/CHANGELOG.md#v190)
     - **Improvement:** Use new WaitHandler struct for all wait handlers
   - [v1.10.0](services/kms/CHANGELOG.md#v1100)
+    - `v1betaapi`: This API was removed after the announced deprecation period.
+  - [v1.11.0](services/kms/CHANGELOG.md#v1110)
     - Feature: Introduce enums for various attributes
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
@@ -220,6 +222,8 @@
   - [v0.28.2](services/logme/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.29.0](services/logme/CHANGELOG.md#v0290)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
+  - [v0.30.0](services/logme/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
@@ -243,7 +247,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/mariadb/CHANGELOG.md#v282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
-  - [v0.29.0](services/mariadb/CHANGELOG.md#v0290)
+  - [v0.29.0](services/mariadb/CHANGELOG.md#v290)
+    - **Improvement:** Use new WaiterHelper for Logs waiters
+  - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
@@ -292,6 +298,8 @@
   - [v0.21.2](services/observability/CHANGELOG.md#v0212)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.22.0](services/observability/CHANGELOG.md#v0220)
+    - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
+  - [v0.23.0](services/observability/CHANGELOG.md#v0230)
     - **Feature:** Introduce enums for various attributes
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
@@ -372,6 +380,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.8.0](services/scf/CHANGELOG.md#v080)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.9.0](services/scf/CHANGELOG.md#v090)
+    - **Improvement:** Use new WaiterHelper for scf waiters
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -533,6 +543,11 @@
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - `v1api`:
       - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
+  - [v0.9.0](services/vpn/CHANGELOG.md#v090)
+    - `v1api`:
+      - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
