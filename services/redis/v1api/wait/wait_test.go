@@ -99,6 +99,13 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
+			desc:          "wrong state in response",
+			getFails:      false,
+			resourceState: utils.Ptr("wrong state"),
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
@@ -168,6 +175,13 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
+		},
+		{
+			desc:          "wrong state in response",
+			getFails:      false,
+			resourceState: utils.Ptr("wrong state"),
+			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:     "get_fails",
