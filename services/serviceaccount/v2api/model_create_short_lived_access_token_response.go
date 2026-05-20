@@ -26,8 +26,8 @@ type CreateShortLivedAccessTokenResponse struct {
 	// Refresh token that can be used to request a new access token when it expires (and before refresh token expires). Tokens are rotated.
 	RefreshToken string `json:"refresh_token"`
 	// scope field of the self signed token
-	Scope                string `json:"scope"`
-	TokenType            string `json:"token_type"`
+	Scope                string                                       `json:"scope"`
+	TokenType            CreateShortLivedAccessTokenResponseTokenType `json:"token_type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +37,7 @@ type _CreateShortLivedAccessTokenResponse CreateShortLivedAccessTokenResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateShortLivedAccessTokenResponse(accessToken string, expiresIn int32, refreshToken string, scope string, tokenType string) *CreateShortLivedAccessTokenResponse {
+func NewCreateShortLivedAccessTokenResponse(accessToken string, expiresIn int32, refreshToken string, scope string, tokenType CreateShortLivedAccessTokenResponseTokenType) *CreateShortLivedAccessTokenResponse {
 	this := CreateShortLivedAccessTokenResponse{}
 	this.AccessToken = accessToken
 	this.ExpiresIn = expiresIn
@@ -152,9 +152,9 @@ func (o *CreateShortLivedAccessTokenResponse) SetScope(v string) {
 }
 
 // GetTokenType returns the TokenType field value
-func (o *CreateShortLivedAccessTokenResponse) GetTokenType() string {
+func (o *CreateShortLivedAccessTokenResponse) GetTokenType() CreateShortLivedAccessTokenResponseTokenType {
 	if o == nil {
-		var ret string
+		var ret CreateShortLivedAccessTokenResponseTokenType
 		return ret
 	}
 
@@ -163,7 +163,7 @@ func (o *CreateShortLivedAccessTokenResponse) GetTokenType() string {
 
 // GetTokenTypeOk returns a tuple with the TokenType field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetTokenTypeOk() (*string, bool) {
+func (o *CreateShortLivedAccessTokenResponse) GetTokenTypeOk() (*CreateShortLivedAccessTokenResponseTokenType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -171,7 +171,7 @@ func (o *CreateShortLivedAccessTokenResponse) GetTokenTypeOk() (*string, bool) {
 }
 
 // SetTokenType sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetTokenType(v string) {
+func (o *CreateShortLivedAccessTokenResponse) SetTokenType(v CreateShortLivedAccessTokenResponseTokenType) {
 	o.TokenType = v
 }
 
