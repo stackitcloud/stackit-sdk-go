@@ -21,7 +21,7 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 
 // MetricsRelabelConfig struct for MetricsRelabelConfig
 type MetricsRelabelConfig struct {
-	Action               *string  `json:"action,omitempty"`
+	Action               *Action  `json:"action,omitempty"`
 	Modulus              *int32   `json:"modulus,omitempty"`
 	Regex                *string  `json:"regex,omitempty"`
 	Replacement          *string  `json:"replacement,omitempty"`
@@ -39,7 +39,7 @@ type _MetricsRelabelConfig MetricsRelabelConfig
 // will change when the set of required properties is changed
 func NewMetricsRelabelConfig(sourceLabels []string) *MetricsRelabelConfig {
 	this := MetricsRelabelConfig{}
-	var action string = "replace"
+	var action Action = ACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -56,7 +56,7 @@ func NewMetricsRelabelConfig(sourceLabels []string) *MetricsRelabelConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricsRelabelConfigWithDefaults() *MetricsRelabelConfig {
 	this := MetricsRelabelConfig{}
-	var action string = "replace"
+	var action Action = ACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -68,9 +68,9 @@ func NewMetricsRelabelConfigWithDefaults() *MetricsRelabelConfig {
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *MetricsRelabelConfig) GetAction() string {
+func (o *MetricsRelabelConfig) GetAction() Action {
 	if o == nil || IsNil(o.Action) {
-		var ret string
+		var ret Action
 		return ret
 	}
 	return *o.Action
@@ -78,7 +78,7 @@ func (o *MetricsRelabelConfig) GetAction() string {
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsRelabelConfig) GetActionOk() (*string, bool) {
+func (o *MetricsRelabelConfig) GetActionOk() (*Action, bool) {
 	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
@@ -94,8 +94,8 @@ func (o *MetricsRelabelConfig) HasAction() bool {
 	return false
 }
 
-// SetAction gets a reference to the given string and assigns it to the Action field.
-func (o *MetricsRelabelConfig) SetAction(v string) {
+// SetAction gets a reference to the given Action and assigns it to the Action field.
+func (o *MetricsRelabelConfig) SetAction(v Action) {
 	o.Action = &v
 }
 

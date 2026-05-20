@@ -32,7 +32,7 @@ type Job struct {
 	Oauth2                *OAuth2                `json:"oauth2,omitempty"`
 	Params                *map[string][]string   `json:"params,omitempty"`
 	SampleLimit           *int32                 `json:"sampleLimit,omitempty"`
-	Scheme                *string                `json:"scheme,omitempty"`
+	Scheme                *Scheme                `json:"scheme,omitempty"`
 	ScrapeInterval        string                 `json:"scrapeInterval"`
 	ScrapeTimeout         string                 `json:"scrapeTimeout"`
 	StaticConfigs         []StaticConfigs        `json:"staticConfigs"`
@@ -55,7 +55,7 @@ func NewJob(jobName string, scrapeInterval string, scrapeTimeout string, staticC
 	this.JobName = jobName
 	var metricsPath string = "/metrics"
 	this.MetricsPath = &metricsPath
-	var scheme string = "http"
+	var scheme Scheme = SCHEME_HTTP
 	this.Scheme = &scheme
 	this.ScrapeInterval = scrapeInterval
 	this.ScrapeTimeout = scrapeTimeout
@@ -74,7 +74,7 @@ func NewJobWithDefaults() *Job {
 	this.HonorTimeStamps = &honorTimeStamps
 	var metricsPath string = "/metrics"
 	this.MetricsPath = &metricsPath
-	var scheme string = "http"
+	var scheme Scheme = SCHEME_HTTP
 	this.Scheme = &scheme
 	return &this
 }
@@ -424,9 +424,9 @@ func (o *Job) SetSampleLimit(v int32) {
 }
 
 // GetScheme returns the Scheme field value if set, zero value otherwise.
-func (o *Job) GetScheme() string {
+func (o *Job) GetScheme() Scheme {
 	if o == nil || IsNil(o.Scheme) {
-		var ret string
+		var ret Scheme
 		return ret
 	}
 	return *o.Scheme
@@ -434,7 +434,7 @@ func (o *Job) GetScheme() string {
 
 // GetSchemeOk returns a tuple with the Scheme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetSchemeOk() (*string, bool) {
+func (o *Job) GetSchemeOk() (*Scheme, bool) {
 	if o == nil || IsNil(o.Scheme) {
 		return nil, false
 	}
@@ -450,8 +450,8 @@ func (o *Job) HasScheme() bool {
 	return false
 }
 
-// SetScheme gets a reference to the given string and assigns it to the Scheme field.
-func (o *Job) SetScheme(v string) {
+// SetScheme gets a reference to the given Scheme and assigns it to the Scheme field.
+func (o *Job) SetScheme(v Scheme) {
 	o.Scheme = &v
 }
 
