@@ -230,6 +230,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.9.0](services/logs/CHANGELOG.md#v090)
     - **Improvement:** Use new WaiterHelper for Logs waiters
+  - [v0.10.0](services/logs/CHANGELOG.md#v0100)
+    - **Feature:** Introduce enums for various attributes
 - `mariadb`:
   - [v0.27.3](services/mariadb/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

@@ -41,7 +41,7 @@ func newAPIMock(settings mockSettings) logs.DefaultAPI {
 var projectId = uuid.NewString()
 var instanceId = uuid.NewString()
 
-const region = "eu01"
+const region = logs.LISTLOGSINSTANCESREGIONIDPARAMETER_EU01
 
 func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
@@ -60,7 +60,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusActive,
+				Status: logs.LOGSINSTANCESTATUS_ACTIVE,
 			},
 		},
 		{
@@ -71,7 +71,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusActive,
+				Status: logs.LOGSINSTANCESTATUS_ACTIVE,
 			},
 		},
 		{
@@ -92,7 +92,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			returnInstance: false,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusDeleting,
+				Status: logs.LOGSINSTANCESTATUS_DELETING,
 			},
 		},
 	}

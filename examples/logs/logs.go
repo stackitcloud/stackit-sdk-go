@@ -12,7 +12,7 @@ func main() {
 	ctx := context.Background()
 
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
-	regionId := "eu01"
+	regionId := logs.LISTLOGSINSTANCESREGIONIDPARAMETER_EU01
 
 	client, err := logs.NewAPIClient()
 	if err != nil {
@@ -63,7 +63,7 @@ func main() {
 	// Create an Access Token
 	createTokenPayload := logs.CreateAccessTokenPayload{
 		DisplayName: "my-access-token",
-		Permissions: []string{"read"},
+		Permissions: []logs.PermissionsInner{logs.PERMISSIONSINNER_READ},
 	}
 	createTokenResp, err := client.DefaultAPI.CreateAccessToken(ctx, projectId, regionId, createdInstance).
 		CreateAccessTokenPayload(createTokenPayload).
