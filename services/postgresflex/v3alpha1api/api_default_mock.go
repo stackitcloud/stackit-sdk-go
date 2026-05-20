@@ -77,7 +77,7 @@ type DefaultAPIServiceMock struct {
 	UpdateUserRequestExecuteMock *func(r ApiUpdateUserRequestRequest) error
 }
 
-func (a DefaultAPIServiceMock) CloneRequest(ctx context.Context, projectId string, region string, instanceId string) ApiCloneRequestRequest {
+func (a DefaultAPIServiceMock) CloneRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiCloneRequestRequest {
 	return ApiCloneRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -97,7 +97,7 @@ func (a DefaultAPIServiceMock) CloneRequestExecute(r ApiCloneRequestRequest) (*C
 	return (*a.CloneRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateDatabaseRequest(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequestRequest {
+func (a DefaultAPIServiceMock) CreateDatabaseRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiCreateDatabaseRequestRequest {
 	return ApiCreateDatabaseRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -117,7 +117,7 @@ func (a DefaultAPIServiceMock) CreateDatabaseRequestExecute(r ApiCreateDatabaseR
 	return (*a.CreateDatabaseRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateInstanceRequest(ctx context.Context, projectId string, region string) ApiCreateInstanceRequestRequest {
+func (a DefaultAPIServiceMock) CreateInstanceRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter) ApiCreateInstanceRequestRequest {
 	return ApiCreateInstanceRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -136,7 +136,7 @@ func (a DefaultAPIServiceMock) CreateInstanceRequestExecute(r ApiCreateInstanceR
 	return (*a.CreateInstanceRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateUserRequest(ctx context.Context, projectId string, region string, instanceId string) ApiCreateUserRequestRequest {
+func (a DefaultAPIServiceMock) CreateUserRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiCreateUserRequestRequest {
 	return ApiCreateUserRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -156,7 +156,7 @@ func (a DefaultAPIServiceMock) CreateUserRequestExecute(r ApiCreateUserRequestRe
 	return (*a.CreateUserRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteDatabaseRequest(ctx context.Context, projectId string, region string, instanceId string, databaseId int32) ApiDeleteDatabaseRequestRequest {
+func (a DefaultAPIServiceMock) DeleteDatabaseRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, databaseId int32) ApiDeleteDatabaseRequestRequest {
 	return ApiDeleteDatabaseRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -176,7 +176,7 @@ func (a DefaultAPIServiceMock) DeleteDatabaseRequestExecute(r ApiDeleteDatabaseR
 	return (*a.DeleteDatabaseRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteInstanceRequest(ctx context.Context, projectId string, region string, instanceId string) ApiDeleteInstanceRequestRequest {
+func (a DefaultAPIServiceMock) DeleteInstanceRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiDeleteInstanceRequestRequest {
 	return ApiDeleteInstanceRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -195,7 +195,7 @@ func (a DefaultAPIServiceMock) DeleteInstanceRequestExecute(r ApiDeleteInstanceR
 	return (*a.DeleteInstanceRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteUserRequest(ctx context.Context, projectId string, region string, instanceId string, userId int32) ApiDeleteUserRequestRequest {
+func (a DefaultAPIServiceMock) DeleteUserRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, userId int32) ApiDeleteUserRequestRequest {
 	return ApiDeleteUserRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -215,7 +215,7 @@ func (a DefaultAPIServiceMock) DeleteUserRequestExecute(r ApiDeleteUserRequestRe
 	return (*a.DeleteUserRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetBackupRequest(ctx context.Context, projectId string, region string, instanceId string, backupId int32) ApiGetBackupRequestRequest {
+func (a DefaultAPIServiceMock) GetBackupRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, backupId int32) ApiGetBackupRequestRequest {
 	return ApiGetBackupRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -236,7 +236,7 @@ func (a DefaultAPIServiceMock) GetBackupRequestExecute(r ApiGetBackupRequestRequ
 	return (*a.GetBackupRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetCollationsRequest(ctx context.Context, projectId string, region string, instanceId string) ApiGetCollationsRequestRequest {
+func (a DefaultAPIServiceMock) GetCollationsRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiGetCollationsRequestRequest {
 	return ApiGetCollationsRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -256,7 +256,7 @@ func (a DefaultAPIServiceMock) GetCollationsRequestExecute(r ApiGetCollationsReq
 	return (*a.GetCollationsRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetDatabaseRequest(ctx context.Context, projectId string, region string, instanceId string, databaseId int32) ApiGetDatabaseRequestRequest {
+func (a DefaultAPIServiceMock) GetDatabaseRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, databaseId int32) ApiGetDatabaseRequestRequest {
 	return ApiGetDatabaseRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -277,7 +277,7 @@ func (a DefaultAPIServiceMock) GetDatabaseRequestExecute(r ApiGetDatabaseRequest
 	return (*a.GetDatabaseRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetFlavorsRequest(ctx context.Context, projectId string, region string) ApiGetFlavorsRequestRequest {
+func (a DefaultAPIServiceMock) GetFlavorsRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter) ApiGetFlavorsRequestRequest {
 	return ApiGetFlavorsRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -296,7 +296,7 @@ func (a DefaultAPIServiceMock) GetFlavorsRequestExecute(r ApiGetFlavorsRequestRe
 	return (*a.GetFlavorsRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetInstanceRequest(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequestRequest {
+func (a DefaultAPIServiceMock) GetInstanceRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiGetInstanceRequestRequest {
 	return ApiGetInstanceRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -316,7 +316,7 @@ func (a DefaultAPIServiceMock) GetInstanceRequestExecute(r ApiGetInstanceRequest
 	return (*a.GetInstanceRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetUserRequest(ctx context.Context, projectId string, region string, instanceId string, userId int32) ApiGetUserRequestRequest {
+func (a DefaultAPIServiceMock) GetUserRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, userId int32) ApiGetUserRequestRequest {
 	return ApiGetUserRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -337,7 +337,7 @@ func (a DefaultAPIServiceMock) GetUserRequestExecute(r ApiGetUserRequestRequest)
 	return (*a.GetUserRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetVersionsRequest(ctx context.Context, projectId string, region string) ApiGetVersionsRequestRequest {
+func (a DefaultAPIServiceMock) GetVersionsRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter) ApiGetVersionsRequestRequest {
 	return ApiGetVersionsRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -356,7 +356,7 @@ func (a DefaultAPIServiceMock) GetVersionsRequestExecute(r ApiGetVersionsRequest
 	return (*a.GetVersionsRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListBackupsRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequestRequest {
+func (a DefaultAPIServiceMock) ListBackupsRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiListBackupsRequestRequest {
 	return ApiListBackupsRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -376,7 +376,7 @@ func (a DefaultAPIServiceMock) ListBackupsRequestExecute(r ApiListBackupsRequest
 	return (*a.ListBackupsRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListDatabasesRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabasesRequestRequest {
+func (a DefaultAPIServiceMock) ListDatabasesRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiListDatabasesRequestRequest {
 	return ApiListDatabasesRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -396,7 +396,7 @@ func (a DefaultAPIServiceMock) ListDatabasesRequestExecute(r ApiListDatabasesReq
 	return (*a.ListDatabasesRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListInstancesRequest(ctx context.Context, projectId string, region string) ApiListInstancesRequestRequest {
+func (a DefaultAPIServiceMock) ListInstancesRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter) ApiListInstancesRequestRequest {
 	return ApiListInstancesRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -415,7 +415,7 @@ func (a DefaultAPIServiceMock) ListInstancesRequestExecute(r ApiListInstancesReq
 	return (*a.ListInstancesRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListRolesRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListRolesRequestRequest {
+func (a DefaultAPIServiceMock) ListRolesRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiListRolesRequestRequest {
 	return ApiListRolesRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -435,7 +435,7 @@ func (a DefaultAPIServiceMock) ListRolesRequestExecute(r ApiListRolesRequestRequ
 	return (*a.ListRolesRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListUsersRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequestRequest {
+func (a DefaultAPIServiceMock) ListUsersRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiListUsersRequestRequest {
 	return ApiListUsersRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -455,7 +455,7 @@ func (a DefaultAPIServiceMock) ListUsersRequestExecute(r ApiListUsersRequestRequ
 	return (*a.ListUsersRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ProtectInstanceRequest(ctx context.Context, projectId string, region string, instanceId string) ApiProtectInstanceRequestRequest {
+func (a DefaultAPIServiceMock) ProtectInstanceRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiProtectInstanceRequestRequest {
 	return ApiProtectInstanceRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -475,7 +475,7 @@ func (a DefaultAPIServiceMock) ProtectInstanceRequestExecute(r ApiProtectInstanc
 	return (*a.ProtectInstanceRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ResetUserRequest(ctx context.Context, projectId string, region string, instanceId string, userId int32) ApiResetUserRequestRequest {
+func (a DefaultAPIServiceMock) ResetUserRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, userId int32) ApiResetUserRequestRequest {
 	return ApiResetUserRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -496,7 +496,7 @@ func (a DefaultAPIServiceMock) ResetUserRequestExecute(r ApiResetUserRequestRequ
 	return (*a.ResetUserRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateDatabasePartiallyRequest(ctx context.Context, projectId string, region string, instanceId string, databaseId int32) ApiUpdateDatabasePartiallyRequestRequest {
+func (a DefaultAPIServiceMock) UpdateDatabasePartiallyRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, databaseId int32) ApiUpdateDatabasePartiallyRequestRequest {
 	return ApiUpdateDatabasePartiallyRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -516,7 +516,7 @@ func (a DefaultAPIServiceMock) UpdateDatabasePartiallyRequestExecute(r ApiUpdate
 	return (*a.UpdateDatabasePartiallyRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateDatabaseRequest(ctx context.Context, projectId string, region string, instanceId string, databaseId int32) ApiUpdateDatabaseRequestRequest {
+func (a DefaultAPIServiceMock) UpdateDatabaseRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, databaseId int32) ApiUpdateDatabaseRequestRequest {
 	return ApiUpdateDatabaseRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -536,7 +536,7 @@ func (a DefaultAPIServiceMock) UpdateDatabaseRequestExecute(r ApiUpdateDatabaseR
 	return (*a.UpdateDatabaseRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateInstancePartiallyRequest(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstancePartiallyRequestRequest {
+func (a DefaultAPIServiceMock) UpdateInstancePartiallyRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiUpdateInstancePartiallyRequestRequest {
 	return ApiUpdateInstancePartiallyRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -555,7 +555,7 @@ func (a DefaultAPIServiceMock) UpdateInstancePartiallyRequestExecute(r ApiUpdate
 	return (*a.UpdateInstancePartiallyRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateInstanceRequest(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceRequestRequest {
+func (a DefaultAPIServiceMock) UpdateInstanceRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string) ApiUpdateInstanceRequestRequest {
 	return ApiUpdateInstanceRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -574,7 +574,7 @@ func (a DefaultAPIServiceMock) UpdateInstanceRequestExecute(r ApiUpdateInstanceR
 	return (*a.UpdateInstanceRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateUserPartiallyRequest(ctx context.Context, projectId string, region string, instanceId string, userId int32) ApiUpdateUserPartiallyRequestRequest {
+func (a DefaultAPIServiceMock) UpdateUserPartiallyRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, userId int32) ApiUpdateUserPartiallyRequestRequest {
 	return ApiUpdateUserPartiallyRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -594,7 +594,7 @@ func (a DefaultAPIServiceMock) UpdateUserPartiallyRequestExecute(r ApiUpdateUser
 	return (*a.UpdateUserPartiallyRequestExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateUserRequest(ctx context.Context, projectId string, region string, instanceId string, userId int32) ApiUpdateUserRequestRequest {
+func (a DefaultAPIServiceMock) UpdateUserRequest(ctx context.Context, projectId string, region GetFlavorsRequestRegionParameter, instanceId string, userId int32) ApiUpdateUserRequestRequest {
 	return ApiUpdateUserRequestRequest{
 		ApiService: a,
 		ctx:        ctx,
