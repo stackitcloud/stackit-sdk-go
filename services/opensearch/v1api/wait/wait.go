@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -27,46 +28,12 @@ const (
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a opensearch.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *opensearch.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
-	handler.SetTimeout(45 * time.Minute)
-	return handler
+	return createOrUpdateInstanceWaitHandler(ctx, a, projectId, instanceId)
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a opensearch.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *opensearch.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
-	handler.SetTimeout(45 * time.Minute)
-	return handler
+	return createOrUpdateInstanceWaitHandler(ctx, a, projectId, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
@@ -142,5 +109,26 @@ func DeleteCredentialsWaitHandler(ctx context.Context, a opensearch.DefaultAPI, 
 		return true, nil, nil
 	})
 	handler.SetTimeout(1 * time.Minute)
+	return handler
+}
+
+func createOrUpdateInstanceWaitHandler(ctx context.Context, a opensearch.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
+	waitConfig := wait.WaiterHelper[opensearch.Instance, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(s *opensearch.Instance) (string, error) {
+			if s == nil {
+				return "", errors.New("empty response")
+			}
+			if s.Status == nil {
+				return "", errors.New("status is missing")
+			}
+			return *s.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }

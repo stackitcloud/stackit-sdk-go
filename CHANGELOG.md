@@ -276,6 +276,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.27.2](services/opensearch/CHANGELOG.md#v0272)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.28.0](services/opensearch/CHANGELOG.md#v0280)
+    - **Improvement:** Use new WaiterHelper for opensearch waiters
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
