@@ -241,6 +241,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/mariadb/CHANGELOG.md#v282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/mariadb/CHANGELOG.md#v0290)
+    - **Feature:** Introduce enums for various attributes
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

@@ -20,7 +20,7 @@ type mockSettings struct {
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
 	instanceResourceOperation          *string
-	instanceResourceState              *string
+	instanceResourceState              *mariadb.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -81,21 +81,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *mariadb.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -108,7 +108,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_UNKNOWN_DEFAULT_OPEN_API),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -152,21 +152,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *mariadb.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -179,7 +179,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(mariadb.INSTANCESTATUS_UNKNOWN_DEFAULT_OPEN_API),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -223,7 +223,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *mariadb.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -231,20 +231,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(mariadb.INSTANCESTATUS_ACTIVE),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             utils.Ptr(mariadb.INSTANCESTATUS_FAILED),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(mariadb.INSTANCESTATUS_ACTIVE),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
