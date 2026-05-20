@@ -111,6 +111,7 @@ type CreateResourcePoolSnapshotPayload struct {
 	// Name of the Resource Pool Snapshot
 	Name CreateResourcePoolSnapshotPayloadGetNameAttributeType `json:"name,omitempty"`
 	// (optional) Time in hours after which snaplock on the snapshot expires
+	// Can be cast to int32 without loss of precision.
 	SnaplockRetentionHours CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType `json:"snaplockRetentionHours,omitempty"`
 }
 
