@@ -26,7 +26,7 @@ const (
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId string, region mongodbflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
 		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err != nil {
@@ -40,13 +40,13 @@ func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case "":
 			return false, nil, nil
-		case INSTANCESTATUS_PROCESSING:
+		case mongodbflex.INSTANCESTATUS_PROCESSING:
 			return false, nil, nil
-		case INSTANCESTATUS_UNKNOWN:
+		case mongodbflex.INSTANCESTATUS_UNKNOWN:
 			return false, nil, nil
-		case INSTANCESTATUS_READY:
+		case mongodbflex.INSTANCESTATUS_READY:
 			return true, s, nil
-		case INSTANCESTATUS_FAILED:
+		case mongodbflex.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
@@ -56,11 +56,11 @@ func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 }
 
 // CloneInstanceWaitHandler will wait for instance clone to be created
-func CloneInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+func CloneInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId string, region mongodbflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return CreateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 
-func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, backupId, region string) *wait.AsyncActionHandler[mongodbflex.ListRestoreJobsResponse] {
+func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, backupId string, region mongodbflex.ListRestoreJobsRegionParameter) *wait.AsyncActionHandler[mongodbflex.ListRestoreJobsResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.ListRestoreJobsResponse, err error) {
 		s, err := a.ListRestoreJobs(ctx, projectId, instanceId, region).Execute()
 		if err != nil {
@@ -105,7 +105,7 @@ func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, p
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId string, region mongodbflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
 		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err != nil {
@@ -119,13 +119,13 @@ func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case "":
 			return false, nil, nil
-		case INSTANCESTATUS_PROCESSING:
+		case mongodbflex.INSTANCESTATUS_PROCESSING:
 			return false, nil, nil
-		case INSTANCESTATUS_UNKNOWN:
+		case mongodbflex.INSTANCESTATUS_UNKNOWN:
 			return false, nil, nil
-		case INSTANCESTATUS_READY:
+		case mongodbflex.INSTANCESTATUS_READY:
 			return true, s, nil
-		case INSTANCESTATUS_FAILED:
+		case mongodbflex.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
 	})
@@ -134,12 +134,12 @@ func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId string, region mongodbflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return UpdateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[struct{}] {
+func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId string, region mongodbflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err == nil {

@@ -40,9 +40,8 @@ type CreateScrapeConfigPayload struct {
 	// Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
 	Params map[string]interface{} `json:"params,omitempty"`
 	// Per-scrape limit on number of scraped samples that will be accepted. If more than this number of samples are present after metric relabeling the entire scrape will be treated as failed. The total limit depends on the service plan target limits * samples
-	SampleLimit *float32 `json:"sampleLimit,omitempty"`
-	// Configures the protocol scheme used for requests. https or http
-	Scheme string `json:"scheme"`
+	SampleLimit *float32                        `json:"sampleLimit,omitempty"`
+	Scheme      CreateScrapeConfigPayloadScheme `json:"scheme"`
 	// How frequently to scrape targets from this job. E.g. 5m `Additional Validators:` * must be a valid time format* must be >= 60s
 	ScrapeInterval string `json:"scrapeInterval"`
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
@@ -59,7 +58,7 @@ type _CreateScrapeConfigPayload CreateScrapeConfigPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateScrapeConfigPayload(jobName string, scheme string, scrapeInterval string, scrapeTimeout string, staticConfigs []CreateScrapeConfigPayloadStaticConfigsInner) *CreateScrapeConfigPayload {
+func NewCreateScrapeConfigPayload(jobName string, scheme CreateScrapeConfigPayloadScheme, scrapeInterval string, scrapeTimeout string, staticConfigs []CreateScrapeConfigPayloadStaticConfigsInner) *CreateScrapeConfigPayload {
 	this := CreateScrapeConfigPayload{}
 	var honorLabels bool = false
 	this.HonorLabels = &honorLabels
@@ -434,9 +433,9 @@ func (o *CreateScrapeConfigPayload) SetSampleLimit(v float32) {
 }
 
 // GetScheme returns the Scheme field value
-func (o *CreateScrapeConfigPayload) GetScheme() string {
+func (o *CreateScrapeConfigPayload) GetScheme() CreateScrapeConfigPayloadScheme {
 	if o == nil {
-		var ret string
+		var ret CreateScrapeConfigPayloadScheme
 		return ret
 	}
 
@@ -445,7 +444,7 @@ func (o *CreateScrapeConfigPayload) GetScheme() string {
 
 // GetSchemeOk returns a tuple with the Scheme field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetSchemeOk() (*string, bool) {
+func (o *CreateScrapeConfigPayload) GetSchemeOk() (*CreateScrapeConfigPayloadScheme, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -453,7 +452,7 @@ func (o *CreateScrapeConfigPayload) GetSchemeOk() (*string, bool) {
 }
 
 // SetScheme sets field value
-func (o *CreateScrapeConfigPayload) SetScheme(v string) {
+func (o *CreateScrapeConfigPayload) SetScheme(v CreateScrapeConfigPayloadScheme) {
 	o.Scheme = v
 }
 

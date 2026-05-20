@@ -1524,10 +1524,10 @@ type ApiListProviderOptionsRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	region       string
-	versionState *string
+	versionState *ListProviderOptionsVersionStateParameter
 }
 
-func (r ApiListProviderOptionsRequest) VersionState(versionState string) ApiListProviderOptionsRequest {
+func (r ApiListProviderOptionsRequest) VersionState(versionState ListProviderOptionsVersionStateParameter) ApiListProviderOptionsRequest {
 	r.versionState = &versionState
 	return r
 }

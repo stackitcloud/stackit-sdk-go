@@ -14,6 +14,8 @@
   - [v0.14.2](services/alb/CHANGELOG.md#v0142)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
     - `v2api`: **Improvement**: Use new `WaiterHandler` struct in the ALB WaitHandler
+  - [v0.15.0](services/alb/CHANGELOG.md#v0150)
+    - **Feature:** Introduce enums for various attributes
 - `albwaf`:
   - [v0.3.2](services/albwaf/CHANGELOG.md#v032) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -25,6 +27,8 @@
     - `v1alphaapi`: Align package to latest API specification
   - [v0.6.0](services/albwaf/CHANGELOG.md#v060)
     - `v1alphaapi`: Align package to latest API specification
+  - [v0.7.0](services/albwaf/CHANGELOG.md#v070)
+    - **Feature:** Introduce enums for various attributes
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -41,6 +45,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.4.2](services/auditlog/CHANGELOG.md#v042)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.5.0](services/auditlog/CHANGELOG.md#v050)
+    - **Feature:** Introduce enums for various attributes
 - `authorization`:
   - [v0.14.3](services/authorization/CHANGELOG.md#v0143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -66,6 +72,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v1.16.0](services/cdn/CHANGELOG.md#v1160)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.17.0](services/cdn/CHANGELOG.md#v1170)
+    - **Feature:** Introduce enums for various attributes
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -89,6 +97,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.3.2](services/cost/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.4.0](services/cost/CHANGELOG.md#v040)
+    - **Feature:** Introduce enums for various attributes
 - `dns`:
   - [v0.19.3](services/dns/CHANGELOG.md#v0193) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -98,11 +108,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.20.2](services/dns/CHANGELOG.md#v0202)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.21.0](services/dns/CHANGELOG.md#v0210)
+    - **Feature:** Introduce enums for various attributes
 - `dremio`
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - Manage your STACKIT Dremio resources: `DremioInstance`, `DremioUser`
     - Waiters for async operations: `CreateDremioInstanceWaitHandler`, `UpdateDremioInstanceWaitHandler`, `DeleteDremioInstanceWaitHandler`, `CreateDremioUserWaitHandler`, `UpdateDremioUserWaitHandler`, `DeleteDremioUserWaitHandler`
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/dremio)
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Feature:** Introduce enums for various attributes
 - `edge`:
   - [v0.8.2](services/edge/CHANGELOG.md#v082) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -117,6 +131,8 @@
   - [v0.11.0](services/edge/CHANGELOG.md#v0110)
     - **Improvement:** Use new `WaiterHandler` struct in the Edge WaitHandler
     - **Deprecation:** Deprecated `ErrInstanceCreationFailed` and `ErrInstanceIsBeingDeleted` in `wait` package
+  - [v0.12.0](services/edge/CHANGELOG.md#v0120)
+    - **Feature:** Introduce enums for various attributes
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -156,6 +172,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.9.0](services/intake/CHANGELOG.md#v090)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.10.0](services/intake/CHANGELOG.md#v0100)
+    - **Feature:** Introduce enums for various attributes
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -171,6 +189,8 @@
     - **Improvement:** Use new WaitHandler struct for all wait handlers
   - [v1.10.0](services/kms/CHANGELOG.md#v1100)
     - `v1betaapi`: This API was removed after the announced deprecation period.
+  - [v1.11.0](services/kms/CHANGELOG.md#v1110)
+    - Feature: Introduce enums for various attributes
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -190,6 +210,8 @@
   - [v1.13.0](services/loadbalancer/CHANGELOG.md#v1130)
     - **Improvement:** Use new WaiterHelper for LoadBalancer waiters
     - **Breaking Change:** `v2api/wait/DeleteLoadBalancerWaitHandler` now returns a `LoadBalancer` instead of `struct{}`
+  - [v1.14.0](services/loadbalancer/CHANGELOG.md#v1140)
+    - **Feature:** Introduce enums for various attributes
 - `logme`: 
   - [v0.27.3](services/logme/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -201,6 +223,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.29.0](services/logme/CHANGELOG.md#v0290)
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
+  - [v0.30.0](services/logme/CHANGELOG.md#v0300)
+    - **Feature:** Introduce enums for various attributes
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -212,6 +236,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.9.0](services/logs/CHANGELOG.md#v090)
     - **Improvement:** Use new WaiterHelper for Logs waiters
+  - [v0.10.0](services/logs/CHANGELOG.md#v0100)
+    - **Feature:** Introduce enums for various attributes
 - `mariadb`:
   - [v0.27.3](services/mariadb/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -223,6 +249,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.29.0](services/mariadb/CHANGELOG.md#v290)
     - **Improvement:** Use new WaiterHelper for Logs waiters
+  - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
+    - **Feature:** Introduce enums for various attributes
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -234,6 +262,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.10.0](services/modelserving/CHANGELOG.md#v0100)
     - **Improvement:** Use new WaiterHelper for modelserving waiters
+  - [v0.11.0](services/modelserving/CHANGELOG.md#v0110)
+    - **Feature:** Introduce enums for various attributes
 - `mongodbflex`:
   - [v1.7.3](services/mongodbflex/CHANGELOG.md#v173) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -245,6 +275,8 @@
     - **Bugfix**: **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.8.3](services/mongodbflex/CHANGELOG.md#v183)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.9.0](services/mongodbflex/CHANGELOG.md#v190)
+    - **Feature:** Introduce enums for various attributes
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -267,6 +299,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.22.0](services/observability/CHANGELOG.md#v0220)
     - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
+  - [v0.23.0](services/observability/CHANGELOG.md#v0230)
+    - **Feature:** Introduce enums for various attributes
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -276,6 +310,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.27.2](services/opensearch/CHANGELOG.md#v0272)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.28.0](services/opensearch/CHANGELOG.md#v0280)
+    - **Feature:** Introduce enums for various attributes
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -296,6 +332,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.29.2](services/rabbitmq/CHANGELOG.md#v0292)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.30.0](services/rabbitmq/CHANGELOG.md#v0300)
+    - **Feature:** Introduce enums for various attributes
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -305,6 +343,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/redis/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.30.0](services/redis/CHANGELOG.md#v0300)
+    - **Feature:** Introduce enums for various attributes
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -316,6 +356,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.23.0](services/resourcemanager/CHANGELOG.md#v0230)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.24.0](services/resourcemanager/CHANGELOG.md#v0240)
+    - **Feature:** Introduce enums for various attributes
 - `runcommand`:
   - [v1.6.3](services/runcommand/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -325,6 +367,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.7.2](services/runcommand/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.8.0](services/runcommand/CHANGELOG.md#v180)
+    - **Feature:** Introduce enums for various attributes
 - `scf`:
   - [v0.6.3](services/scf/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -357,6 +401,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.6.2](services/serverbackup/CHANGELOG.md#v162)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.7.0](services/serverbackup/CHANGELOG.md#v170)
+    - **Feature:** Introduce enums for various attributes
 - `serverupdate`:
   - [v1.4.3](services/serverupdate/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -387,6 +433,8 @@
       - **Feature:**: New API client method `GetFederatedIdentityProvider`
     - Deprecated SDK layer in root of the module:
       - **Feature:**: New API client method `GetFederatedIdentityProvider`
+  - [v0.20.0](services/serviceaccount/CHANGELOG.md#v0200)
+    - **Feature:** Introduce enums for various attributes
 - `serviceenablement`:
   - [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -398,6 +446,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v1.5.3](services/serviceenablement/CHANGELOG.md#v153)
     - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
+  - [v1.6.0](services/serviceenablement/CHANGELOG.md#v160)
+    - **Feature:** Introduce enums for various attributes
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -436,6 +486,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v1.14.0](services/ske/CHANGELOG.md#v1140)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.`
+  - [v1.15.0](services/ske/CHANGELOG.md#v1150)
+    - **Feature:** Introduce enums for various attributes
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -450,6 +502,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.10.0](services/sqlserverflex/CHANGELOG.md#v1100)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
+    - **Feature:** Introduce enums for various attributes
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

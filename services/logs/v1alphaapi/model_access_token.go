@@ -34,8 +34,8 @@ type AccessToken struct {
 	// An auto generated unique id which identifies the access token.
 	Id string `json:"id"`
 	// The access permissions granted to the access token.
-	Permissions []string `json:"permissions"`
-	Status      string   `json:"status"`
+	Permissions []PermissionsInner `json:"permissions"`
+	Status      AccessTokenStatus  `json:"status"`
 	// The date and time util an access token is valid to (inclusively).
 	ValidUntil           *time.Time `json:"validUntil,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +47,7 @@ type _AccessToken AccessToken
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessToken(creator string, displayName string, expires bool, id string, permissions []string, status string) *AccessToken {
+func NewAccessToken(creator string, displayName string, expires bool, id string, permissions []PermissionsInner, status AccessTokenStatus) *AccessToken {
 	this := AccessToken{}
 	this.Creator = creator
 	this.DisplayName = displayName
@@ -227,9 +227,9 @@ func (o *AccessToken) SetId(v string) {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *AccessToken) GetPermissions() []string {
+func (o *AccessToken) GetPermissions() []PermissionsInner {
 	if o == nil {
-		var ret []string
+		var ret []PermissionsInner
 		return ret
 	}
 
@@ -238,7 +238,7 @@ func (o *AccessToken) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetPermissionsOk() ([]string, bool) {
+func (o *AccessToken) GetPermissionsOk() ([]PermissionsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -246,14 +246,14 @@ func (o *AccessToken) GetPermissionsOk() ([]string, bool) {
 }
 
 // SetPermissions sets field value
-func (o *AccessToken) SetPermissions(v []string) {
+func (o *AccessToken) SetPermissions(v []PermissionsInner) {
 	o.Permissions = v
 }
 
 // GetStatus returns the Status field value
-func (o *AccessToken) GetStatus() string {
+func (o *AccessToken) GetStatus() AccessTokenStatus {
 	if o == nil {
-		var ret string
+		var ret AccessTokenStatus
 		return ret
 	}
 
@@ -262,7 +262,7 @@ func (o *AccessToken) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetStatusOk() (*string, bool) {
+func (o *AccessToken) GetStatusOk() (*AccessTokenStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -270,7 +270,7 @@ func (o *AccessToken) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *AccessToken) SetStatus(v string) {
+func (o *AccessToken) SetStatus(v AccessTokenStatus) {
 	o.Status = v
 }
 

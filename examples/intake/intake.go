@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	region := "eu01"          // Region where the resources will be created
-	projectId := "PROJECT_ID" // Your STACKIT project ID
+	region := intake.LISTINTAKERUNNERSREGIONIDPARAMETER_EU01 // Region where the resources will be created
+	projectId := "PROJECT_ID"                                // Your STACKIT project ID
 
 	dremioCatalogURI := "DREMIO_CATALOG_URI"       //nolint:gosec // E.g., "https://my-dremio-catalog.data-platform.stackit.run/iceberg"
 	dremioTokenEndpoint := "DREMIO_TOKEN_ENDPOINT" //nolint:gosec // E.g., "https://my-dremio.data-platform.stackit.run/oauth/token"
@@ -43,7 +43,7 @@ func main() {
 	fmt.Printf("Triggered creation of Intake Runner with ID: %s. Waiting for it to become active...\n", intakeRunnerId)
 
 	// Create an Intake
-	dremioAuthType := intake.CatalogAuthType("dremio") // can also be set to "none" if the catalog is not authenticated
+	dremioAuthType := intake.CATALOGAUTHTYPE_DREMIO // can also be set to "none" if the catalog is not authenticated
 	createIntakePayload := intake.CreateIntakePayload{
 		DisplayName:    "my-example-intake",
 		IntakeRunnerId: intakeRunnerId,

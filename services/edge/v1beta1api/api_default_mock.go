@@ -50,7 +50,7 @@ type DefaultAPIServiceMock struct {
 	UpdateInstanceByNameExecuteMock *func(r ApiUpdateInstanceByNameRequest) error
 }
 
-func (a DefaultAPIServiceMock) CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest {
+func (a DefaultAPIServiceMock) CreateInstance(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -69,7 +69,7 @@ func (a DefaultAPIServiceMock) CreateInstanceExecute(r ApiCreateInstanceRequest)
 	return (*a.CreateInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteInstanceRequest {
+func (a DefaultAPIServiceMock) DeleteInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -88,7 +88,7 @@ func (a DefaultAPIServiceMock) DeleteInstanceExecute(r ApiDeleteInstanceRequest)
 	return (*a.DeleteInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiDeleteInstanceByNameRequest {
+func (a DefaultAPIServiceMock) DeleteInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiDeleteInstanceByNameRequest {
 	return ApiDeleteInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -107,7 +107,7 @@ func (a DefaultAPIServiceMock) DeleteInstanceByNameExecute(r ApiDeleteInstanceBy
 	return (*a.DeleteInstanceByNameExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetInstanceRequest {
+func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -127,7 +127,7 @@ func (a DefaultAPIServiceMock) GetInstanceExecute(r ApiGetInstanceRequest) (*Ins
 	return (*a.GetInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetInstanceByNameRequest {
+func (a DefaultAPIServiceMock) GetInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiGetInstanceByNameRequest {
 	return ApiGetInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -147,7 +147,7 @@ func (a DefaultAPIServiceMock) GetInstanceByNameExecute(r ApiGetInstanceByNameRe
 	return (*a.GetInstanceByNameExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetKubeconfigByInstanceIdRequest {
+func (a DefaultAPIServiceMock) GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceIdRegionIdParameter, instanceId string) ApiGetKubeconfigByInstanceIdRequest {
 	return ApiGetKubeconfigByInstanceIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -167,7 +167,7 @@ func (a DefaultAPIServiceMock) GetKubeconfigByInstanceIdExecute(r ApiGetKubeconf
 	return (*a.GetKubeconfigByInstanceIdExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetKubeconfigByInstanceNameRequest {
+func (a DefaultAPIServiceMock) GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceNameRegionIdParameter, displayName string) ApiGetKubeconfigByInstanceNameRequest {
 	return ApiGetKubeconfigByInstanceNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -187,7 +187,7 @@ func (a DefaultAPIServiceMock) GetKubeconfigByInstanceNameExecute(r ApiGetKubeco
 	return (*a.GetKubeconfigByInstanceNameExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetTokenByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetTokenByInstanceIdRequest {
+func (a DefaultAPIServiceMock) GetTokenByInstanceId(ctx context.Context, projectId string, regionId GetTokenByInstanceIdRegionIdParameter, instanceId string) ApiGetTokenByInstanceIdRequest {
 	return ApiGetTokenByInstanceIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -207,7 +207,7 @@ func (a DefaultAPIServiceMock) GetTokenByInstanceIdExecute(r ApiGetTokenByInstan
 	return (*a.GetTokenByInstanceIdExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetTokenByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetTokenByInstanceNameRequest {
+func (a DefaultAPIServiceMock) GetTokenByInstanceName(ctx context.Context, projectId string, regionId GetTokenByInstanceNameRegionIdParameter, displayName string) ApiGetTokenByInstanceNameRequest {
 	return ApiGetTokenByInstanceNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -244,7 +244,7 @@ func (a DefaultAPIServiceMock) ListCompatibleKubernetesReleasesExecute(r ApiList
 	return (*a.ListCompatibleKubernetesReleasesExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest {
+func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -281,7 +281,7 @@ func (a DefaultAPIServiceMock) ListPlansProjectExecute(r ApiListPlansProjectRequ
 	return (*a.ListPlansProjectExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateInstanceRequest {
+func (a DefaultAPIServiceMock) UpdateInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -300,7 +300,7 @@ func (a DefaultAPIServiceMock) UpdateInstanceExecute(r ApiUpdateInstanceRequest)
 	return (*a.UpdateInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiUpdateInstanceByNameRequest {
+func (a DefaultAPIServiceMock) UpdateInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiUpdateInstanceByNameRequest {
 	return ApiUpdateInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,

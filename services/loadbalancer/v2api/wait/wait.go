@@ -22,9 +22,9 @@ const (
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation
 func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAPI, projectId, region, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[loadbalancer.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[loadbalancer.LoadBalancer, loadbalancer.LoadBalancerStatus]{
 		FetchInstance: a.GetLoadBalancer(ctx, projectId, region, instanceName).Execute,
-		GetState: func(r *loadbalancer.LoadBalancer) (string, error) {
+		GetState: func(r *loadbalancer.LoadBalancer) (loadbalancer.LoadBalancerStatus, error) {
 			if r == nil || r.Status == nil {
 				return "", errors.New("response or status is nil")
 			}
@@ -37,8 +37,8 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 			}
 			return *r.Status, nil
 		},
-		ActiveState: []string{LOADBALANCERSTATUS_READY},
-		ErrorState:  []string{LOADBALANCERSTATUS_TERMINATING, LOADBALANCERSTATUS_ERROR},
+		ActiveState: []loadbalancer.LoadBalancerStatus{loadbalancer.LOADBALANCERSTATUS_STATUS_READY},
+		ErrorState:  []loadbalancer.LoadBalancerStatus{loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING, loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
@@ -47,15 +47,15 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 
 // DeleteLoadBalancerWaitHandler will wait for load balancer deletion
 func DeleteLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[loadbalancer.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[loadbalancer.LoadBalancer, loadbalancer.LoadBalancerStatus]{
 		FetchInstance: a.GetLoadBalancer(ctx, projectId, region, instanceId).Execute,
-		GetState: func(l *loadbalancer.LoadBalancer) (string, error) {
+		GetState: func(l *loadbalancer.LoadBalancer) (loadbalancer.LoadBalancerStatus, error) {
 			if l == nil || l.Status == nil {
 				return "", errors.New("response or status is nil")
 			}
 			return *l.Status, nil
 		},
-		ErrorState: []string{LOADBALANCERSTATUS_ERROR},
+		ErrorState: []loadbalancer.LoadBalancerStatus{loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)

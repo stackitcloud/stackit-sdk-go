@@ -36,9 +36,9 @@ func CreateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, proje
 			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
 		}
 		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
+		case rabbitmq.INSTANCESTATUS_ACTIVE:
 			return true, s, nil
-		case INSTANCESTATUS_FAILED:
+		case rabbitmq.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
 		}
 		return false, nil, nil
@@ -58,9 +58,9 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI
 			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
 		}
 		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
+		case rabbitmq.INSTANCESTATUS_ACTIVE:
 			return true, s, nil
-		case INSTANCESTATUS_FAILED:
+		case rabbitmq.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
 		}
 		return false, nil, nil
@@ -77,10 +77,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, proje
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != rabbitmq.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == rabbitmq.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

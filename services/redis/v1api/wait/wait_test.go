@@ -17,8 +17,8 @@ type mockSettings struct {
 	instanceGetFails                   bool
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
-	instanceResourceOperation          string
-	instanceResourceState              *string
+	instanceResourceOperation          redis.InstanceLastOperationType
+	instanceResourceState              *redis.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -35,7 +35,7 @@ func newAPIMock(settings *mockSettings) redis.DefaultAPI {
 					StatusCode: 500,
 				}
 			}
-			if settings.instanceResourceOperation == INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation == redis.INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == redis.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &redis.Instance{
 						InstanceId: &settings.instanceResourceId,
@@ -80,21 +80,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *redis.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -107,7 +107,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(redis.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -151,21 +151,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *redis.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -178,7 +178,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(redis.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -222,7 +222,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *redis.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -230,20 +230,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_FAILED),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,

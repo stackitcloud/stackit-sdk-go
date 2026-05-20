@@ -25,10 +25,10 @@ type PartialUpdateServiceAccountKeyResponse struct {
 	// Creation time of the key
 	CreatedAt time.Time `json:"createdAt"`
 	// Unique ID of the key.
-	Id           string `json:"id"`
-	KeyAlgorithm string `json:"keyAlgorithm"`
-	KeyOrigin    string `json:"keyOrigin"`
-	KeyType      string `json:"keyType"`
+	Id           string                                             `json:"id"`
+	KeyAlgorithm PartialUpdateServiceAccountKeyResponseKeyAlgorithm `json:"keyAlgorithm"`
+	KeyOrigin    PartialUpdateServiceAccountKeyResponseKeyOrigin    `json:"keyOrigin"`
+	KeyType      PartialUpdateServiceAccountKeyResponseKeyType      `json:"keyType"`
 	// If specified, the timestamp until the key is active. May be null
 	ValidUntil           *time.Time `json:"validUntil,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +40,7 @@ type _PartialUpdateServiceAccountKeyResponse PartialUpdateServiceAccountKeyRespo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartialUpdateServiceAccountKeyResponse(active bool, createdAt time.Time, id string, keyAlgorithm string, keyOrigin string, keyType string) *PartialUpdateServiceAccountKeyResponse {
+func NewPartialUpdateServiceAccountKeyResponse(active bool, createdAt time.Time, id string, keyAlgorithm PartialUpdateServiceAccountKeyResponseKeyAlgorithm, keyOrigin PartialUpdateServiceAccountKeyResponseKeyOrigin, keyType PartialUpdateServiceAccountKeyResponseKeyType) *PartialUpdateServiceAccountKeyResponse {
 	this := PartialUpdateServiceAccountKeyResponse{}
 	this.Active = active
 	this.CreatedAt = createdAt
@@ -132,9 +132,9 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetId(v string) {
 }
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() string {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() PartialUpdateServiceAccountKeyResponseKeyAlgorithm {
 	if o == nil {
-		var ret string
+		var ret PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 		return ret
 	}
 
@@ -143,7 +143,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() string {
 
 // GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithmOk() (*string, bool) {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithmOk() (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,14 +151,14 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithmOk() (*string, b
 }
 
 // SetKeyAlgorithm sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyAlgorithm(v string) {
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyAlgorithm(v PartialUpdateServiceAccountKeyResponseKeyAlgorithm) {
 	o.KeyAlgorithm = v
 }
 
 // GetKeyOrigin returns the KeyOrigin field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() string {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() PartialUpdateServiceAccountKeyResponseKeyOrigin {
 	if o == nil {
-		var ret string
+		var ret PartialUpdateServiceAccountKeyResponseKeyOrigin
 		return ret
 	}
 
@@ -167,7 +167,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() string {
 
 // GetKeyOriginOk returns a tuple with the KeyOrigin field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOriginOk() (*string, bool) {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOriginOk() (*PartialUpdateServiceAccountKeyResponseKeyOrigin, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,14 +175,14 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOriginOk() (*string, bool
 }
 
 // SetKeyOrigin sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyOrigin(v string) {
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyOrigin(v PartialUpdateServiceAccountKeyResponseKeyOrigin) {
 	o.KeyOrigin = v
 }
 
 // GetKeyType returns the KeyType field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() string {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() PartialUpdateServiceAccountKeyResponseKeyType {
 	if o == nil {
-		var ret string
+		var ret PartialUpdateServiceAccountKeyResponseKeyType
 		return ret
 	}
 
@@ -191,7 +191,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() string {
 
 // GetKeyTypeOk returns a tuple with the KeyType field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyTypeOk() (*string, bool) {
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyTypeOk() (*PartialUpdateServiceAccountKeyResponseKeyType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -199,7 +199,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) GetKeyTypeOk() (*string, bool) 
 }
 
 // SetKeyType sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyType(v string) {
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyType(v PartialUpdateServiceAccountKeyResponseKeyType) {
 	o.KeyType = v
 }
 

@@ -34,16 +34,16 @@ const (
 
 // CreateZoneWaitHandler will wait for zone creation
 func CreateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, dns.ZoneState]{
 		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
-		GetState: func(d *dns.ZoneResponse) (string, error) {
+		GetState: func(d *dns.ZoneResponse) (dns.ZoneState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Zone.State, nil
 		},
-		ActiveState: []string{ZONESTATE_CREATE_SUCCEEDED},
-		ErrorState:  []string{ZONESTATE_CREATE_FAILED},
+		ActiveState: []dns.ZoneState{dns.ZONESTATE_CREATE_SUCCEEDED},
+		ErrorState:  []dns.ZoneState{dns.ZONESTATE_CREATE_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -53,16 +53,16 @@ func CreateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, ins
 
 // PartialUpdateZoneWaitHandler will wait for zone update
 func PartialUpdateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, dns.ZoneState]{
 		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
-		GetState: func(d *dns.ZoneResponse) (string, error) {
+		GetState: func(d *dns.ZoneResponse) (dns.ZoneState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Zone.State, nil
 		},
-		ActiveState: []string{ZONESTATE_UPDATE_SUCCEEDED},
-		ErrorState:  []string{ZONESTATE_UPDATE_FAILED},
+		ActiveState: []dns.ZoneState{dns.ZONESTATE_UPDATE_SUCCEEDED},
+		ErrorState:  []dns.ZoneState{dns.ZONESTATE_UPDATE_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -73,16 +73,16 @@ func PartialUpdateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, project
 // DeleteZoneWaitHandler will wait for zone deletion
 // returned interface is nil or *ZoneResponseZone
 func DeleteZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, dns.ZoneState]{
 		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
-		GetState: func(d *dns.ZoneResponse) (string, error) {
+		GetState: func(d *dns.ZoneResponse) (dns.ZoneState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Zone.State, nil
 		},
-		ActiveState: []string{ZONESTATE_DELETE_SUCCEEDED},
-		ErrorState:  []string{ZONESTATE_DELETE_FAILED},
+		ActiveState: []dns.ZoneState{dns.ZONESTATE_DELETE_SUCCEEDED},
+		ErrorState:  []dns.ZoneState{dns.ZONESTATE_DELETE_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -92,16 +92,16 @@ func DeleteZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, ins
 
 // CreateRecordSetWaitHandler will wait for recordset creation
 func CreateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, dns.RecordSetState]{
 		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
-		GetState: func(d *dns.RecordSetResponse) (string, error) {
+		GetState: func(d *dns.RecordSetResponse) (dns.RecordSetState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Rrset.State, nil
 		},
-		ActiveState: []string{RECORDSETSTATE_CREATE_SUCCEEDED},
-		ErrorState:  []string{RECORDSETSTATE_CREATE_FAILED},
+		ActiveState: []dns.RecordSetState{dns.RECORDSETSTATE_CREATE_SUCCEEDED},
+		ErrorState:  []dns.RecordSetState{dns.RECORDSETSTATE_CREATE_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -111,16 +111,16 @@ func CreateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId
 
 // PartialUpdateRecordSetWaitHandler will wait for recordset update
 func PartialUpdateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, dns.RecordSetState]{
 		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
-		GetState: func(d *dns.RecordSetResponse) (string, error) {
+		GetState: func(d *dns.RecordSetResponse) (dns.RecordSetState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Rrset.State, nil
 		},
-		ActiveState: []string{RECORDSETSTATE_UPDATE_SUCCEEDED},
-		ErrorState:  []string{RECORDSETSTATE_UPDATE_FAILED},
+		ActiveState: []dns.RecordSetState{dns.RECORDSETSTATE_UPDATE_SUCCEEDED},
+		ErrorState:  []dns.RecordSetState{dns.RECORDSETSTATE_UPDATE_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -131,16 +131,16 @@ func PartialUpdateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, pr
 // DeleteRecordSetWaitHandler will wait for deletion
 // returned interface is nil or *RecordSetResponse
 func DeleteRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, dns.RecordSetState]{
 		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
-		GetState: func(d *dns.RecordSetResponse) (string, error) {
+		GetState: func(d *dns.RecordSetResponse) (dns.RecordSetState, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Rrset.State, nil
 		},
-		ActiveState:                []string{RECORDSETSTATE_DELETE_SUCCEEDED},
-		ErrorState:                 []string{RECORDSETSTATE_DELETE_FAILED},
+		ActiveState:                []dns.RecordSetState{dns.RECORDSETSTATE_DELETE_SUCCEEDED},
+		ErrorState:                 []dns.RecordSetState{dns.RECORDSETSTATE_DELETE_FAILED},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 

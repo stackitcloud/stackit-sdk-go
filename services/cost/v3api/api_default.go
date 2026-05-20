@@ -80,10 +80,10 @@ type ApiGetCostsForProjectRequest struct {
 	projectId         string
 	from              *string
 	to                *string
-	depth             *string
-	granularity       *string
+	depth             *ListCostsForCustomerDepthParameter
+	granularity       *ListCostsForCustomerGranularityParameter
 	includeZeroCosts  *bool
-	accept            *string
+	accept            *GetCostsForProjectAcceptParameter
 }
 
 // Inclusive start date of the selection range. Internally, usages are recorded in UTC. This means all usages starting on and after 00:00:00 UTC on the specified date are included.
@@ -99,13 +99,13 @@ func (r ApiGetCostsForProjectRequest) To(to string) ApiGetCostsForProjectRequest
 }
 
 // Depth of desired cost information. \&quot;project\&quot; provides costs grouped by project, without services. \&quot;service\&quot; provides costs separated on service level.
-func (r ApiGetCostsForProjectRequest) Depth(depth string) ApiGetCostsForProjectRequest {
+func (r ApiGetCostsForProjectRequest) Depth(depth ListCostsForCustomerDepthParameter) ApiGetCostsForProjectRequest {
 	r.depth = &depth
 	return r
 }
 
 // Define granularity of costs – Default is \&quot;none\&quot; which does NOT include detailed report data.  If \&quot;monthly\&quot;, \&quot;weekly\&quot; or \&quot;yearly\&quot; is requested, the \&quot;from\&quot; parameter SHOULD be the first day and the \&quot;to\&quot; parameter SHOULD be the last day of that time period. If not, they are normalized accordingly.  If \&quot;daily\&quot; is requested, the date range defined by \&quot;from\&quot; and \&quot;to\&quot; MUST NOT be longer than 92 days.
-func (r ApiGetCostsForProjectRequest) Granularity(granularity string) ApiGetCostsForProjectRequest {
+func (r ApiGetCostsForProjectRequest) Granularity(granularity ListCostsForCustomerGranularityParameter) ApiGetCostsForProjectRequest {
 	r.granularity = &granularity
 	return r
 }
@@ -117,7 +117,7 @@ func (r ApiGetCostsForProjectRequest) IncludeZeroCosts(includeZeroCosts bool) Ap
 }
 
 // Desired content type
-func (r ApiGetCostsForProjectRequest) Accept(accept string) ApiGetCostsForProjectRequest {
+func (r ApiGetCostsForProjectRequest) Accept(accept GetCostsForProjectAcceptParameter) ApiGetCostsForProjectRequest {
 	r.accept = &accept
 	return r
 }
@@ -180,14 +180,14 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 	if r.depth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", r.depth, "form", "")
 	} else {
-		var defaultValue string = "auto"
+		var defaultValue ListCostsForCustomerDepthParameter = "auto"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", defaultValue, "form", "")
 		r.depth = &defaultValue
 	}
 	if r.granularity != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "form", "")
 	} else {
-		var defaultValue string = "none"
+		var defaultValue ListCostsForCustomerGranularityParameter = "none"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", defaultValue, "form", "")
 		r.granularity = &defaultValue
 	}
@@ -315,10 +315,10 @@ type ApiListCostsForCustomerRequest struct {
 	customerAccountId string
 	from              *string
 	to                *string
-	depth             *string
-	granularity       *string
+	depth             *ListCostsForCustomerDepthParameter
+	granularity       *ListCostsForCustomerGranularityParameter
 	includeZeroCosts  *bool
-	accept            *string
+	accept            *ListCostsForCustomerAcceptParameter
 }
 
 // Inclusive start date of the selection range. Internally, usages are recorded in UTC. This means all usages starting on and after 00:00:00 UTC on the specified date are included.
@@ -334,13 +334,13 @@ func (r ApiListCostsForCustomerRequest) To(to string) ApiListCostsForCustomerReq
 }
 
 // Depth of desired cost information. \&quot;project\&quot; provides costs grouped by project, without services. \&quot;service\&quot; provides costs separated on service level.
-func (r ApiListCostsForCustomerRequest) Depth(depth string) ApiListCostsForCustomerRequest {
+func (r ApiListCostsForCustomerRequest) Depth(depth ListCostsForCustomerDepthParameter) ApiListCostsForCustomerRequest {
 	r.depth = &depth
 	return r
 }
 
 // Define granularity of costs – Default is \&quot;none\&quot; which does NOT include detailed report data.  If \&quot;monthly\&quot;, \&quot;weekly\&quot; or \&quot;yearly\&quot; is requested, the \&quot;from\&quot; parameter SHOULD be the first day and the \&quot;to\&quot; parameter SHOULD be the last day of that time period. If not, they are normalized accordingly.  If \&quot;daily\&quot; is requested, the date range defined by \&quot;from\&quot; and \&quot;to\&quot; MUST NOT be longer than 92 days.
-func (r ApiListCostsForCustomerRequest) Granularity(granularity string) ApiListCostsForCustomerRequest {
+func (r ApiListCostsForCustomerRequest) Granularity(granularity ListCostsForCustomerGranularityParameter) ApiListCostsForCustomerRequest {
 	r.granularity = &granularity
 	return r
 }
@@ -352,7 +352,7 @@ func (r ApiListCostsForCustomerRequest) IncludeZeroCosts(includeZeroCosts bool) 
 }
 
 // Desired content type
-func (r ApiListCostsForCustomerRequest) Accept(accept string) ApiListCostsForCustomerRequest {
+func (r ApiListCostsForCustomerRequest) Accept(accept ListCostsForCustomerAcceptParameter) ApiListCostsForCustomerRequest {
 	r.accept = &accept
 	return r
 }
@@ -412,14 +412,14 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 	if r.depth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", r.depth, "form", "")
 	} else {
-		var defaultValue string = "auto"
+		var defaultValue ListCostsForCustomerDepthParameter = "auto"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", defaultValue, "form", "")
 		r.depth = &defaultValue
 	}
 	if r.granularity != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "form", "")
 	} else {
-		var defaultValue string = "none"
+		var defaultValue ListCostsForCustomerGranularityParameter = "none"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", defaultValue, "form", "")
 		r.granularity = &defaultValue
 	}
@@ -547,10 +547,10 @@ type ApiListCostsForResellerRequest struct {
 	customerAccountId string
 	from              *string
 	to                *string
-	depth             *string
-	granularity       *string
+	depth             *ListCostsForCustomerDepthParameter
+	granularity       *ListCostsForCustomerGranularityParameter
 	includeZeroCosts  *bool
-	accept            *string
+	accept            *ListCostsForResellerAcceptParameter
 }
 
 // Inclusive start date of the selection range. Internally, usages are recorded in UTC. This means all usages starting on and after 00:00:00 UTC on the specified date are included.
@@ -566,13 +566,13 @@ func (r ApiListCostsForResellerRequest) To(to string) ApiListCostsForResellerReq
 }
 
 // Depth of desired cost information. \&quot;project\&quot; provides costs grouped by project, without services. \&quot;service\&quot; provides costs separated on service level.
-func (r ApiListCostsForResellerRequest) Depth(depth string) ApiListCostsForResellerRequest {
+func (r ApiListCostsForResellerRequest) Depth(depth ListCostsForCustomerDepthParameter) ApiListCostsForResellerRequest {
 	r.depth = &depth
 	return r
 }
 
 // Define granularity of costs – Default is \&quot;none\&quot; which does NOT include detailed report data.  If \&quot;monthly\&quot;, \&quot;weekly\&quot; or \&quot;yearly\&quot; is requested, the \&quot;from\&quot; parameter SHOULD be the first day and the \&quot;to\&quot; parameter SHOULD be the last day of that time period. If not, they are normalized accordingly.  If \&quot;daily\&quot; is requested, the date range defined by \&quot;from\&quot; and \&quot;to\&quot; MUST NOT be longer than 92 days.
-func (r ApiListCostsForResellerRequest) Granularity(granularity string) ApiListCostsForResellerRequest {
+func (r ApiListCostsForResellerRequest) Granularity(granularity ListCostsForCustomerGranularityParameter) ApiListCostsForResellerRequest {
 	r.granularity = &granularity
 	return r
 }
@@ -584,7 +584,7 @@ func (r ApiListCostsForResellerRequest) IncludeZeroCosts(includeZeroCosts bool) 
 }
 
 // Desired content type
-func (r ApiListCostsForResellerRequest) Accept(accept string) ApiListCostsForResellerRequest {
+func (r ApiListCostsForResellerRequest) Accept(accept ListCostsForResellerAcceptParameter) ApiListCostsForResellerRequest {
 	r.accept = &accept
 	return r
 }
@@ -644,14 +644,14 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 	if r.depth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", r.depth, "form", "")
 	} else {
-		var defaultValue string = "auto"
+		var defaultValue ListCostsForCustomerDepthParameter = "auto"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "depth", defaultValue, "form", "")
 		r.depth = &defaultValue
 	}
 	if r.granularity != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "form", "")
 	} else {
-		var defaultValue string = "none"
+		var defaultValue ListCostsForCustomerGranularityParameter = "none"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", defaultValue, "form", "")
 		r.granularity = &defaultValue
 	}

@@ -17,8 +17,8 @@ type mockSettings struct {
 	instanceGetFails                   bool
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
-	instanceResourceOperation          string
-	instanceResourceState              *string
+	instanceResourceOperation          opensearch.InstanceLastOperationType
+	instanceResourceState              *opensearch.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -36,7 +36,7 @@ func newAPIMock(settings *mockSettings) opensearch.DefaultAPI {
 				}
 			}
 
-			if settings.instanceResourceOperation == INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation == opensearch.INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == opensearch.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &opensearch.Instance{
 						InstanceId: &settings.instanceResourceId,
@@ -81,21 +81,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *opensearch.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: opensearch.INSTANCESTATUS_ACTIVE.Ptr(),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: opensearch.INSTANCESTATUS_FAILED.Ptr(),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -108,7 +108,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: opensearch.InstanceStatus("ANOTHER STATE").Ptr(),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -152,21 +152,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *opensearch.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: opensearch.INSTANCESTATUS_ACTIVE.Ptr(),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: opensearch.INSTANCESTATUS_FAILED.Ptr(),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -179,7 +179,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: opensearch.InstanceStatus("ANOTHER STATE").Ptr(),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -223,7 +223,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *opensearch.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -231,20 +231,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             opensearch.INSTANCESTATUS_ACTIVE.Ptr(),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             opensearch.INSTANCESTATUS_FAILED.Ptr(),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             opensearch.INSTANCESTATUS_ACTIVE.Ptr(),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
@@ -265,7 +265,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 					instanceGetFails:                   tt.getFails,
 					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 					instanceResourceId:                 instanceId,
-					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceOperation:          opensearch.INSTANCELASTOPERATIONTYPE_DELETE,
 					instanceResourceDescription:        tt.resourceDescription,
 					instanceResourceState:              tt.resourceState,
 				})

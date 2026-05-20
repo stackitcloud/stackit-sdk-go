@@ -1008,13 +1008,12 @@ func (a *DefaultAPIService) CreateServiceAccountKeyExecute(r ApiCreateServiceAcc
 type ApiCreateShortLivedAccessTokenRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
-	grantType    *string
+	grantType    *CreateShortLivedAccessTokenPayloadGrantType
 	assertion    *string
 	refreshToken *string
 }
 
-// Always use URL encoded values. E.g. urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-func (r ApiCreateShortLivedAccessTokenRequest) GrantType(grantType string) ApiCreateShortLivedAccessTokenRequest {
+func (r ApiCreateShortLivedAccessTokenRequest) GrantType(grantType CreateShortLivedAccessTokenPayloadGrantType) ApiCreateShortLivedAccessTokenRequest {
 	r.grantType = &grantType
 	return r
 }
@@ -2075,11 +2074,11 @@ type ApiGetServiceAccountKeyRequest struct {
 	projectId           string
 	serviceAccountEmail string
 	keyId               string
-	format              *string
+	format              *GetServiceAccountKeyFormatParameter
 }
 
 // Requested format for the public key
-func (r ApiGetServiceAccountKeyRequest) Format(format string) ApiGetServiceAccountKeyRequest {
+func (r ApiGetServiceAccountKeyRequest) Format(format GetServiceAccountKeyFormatParameter) ApiGetServiceAccountKeyRequest {
 	r.format = &format
 	return r
 }
@@ -2137,7 +2136,7 @@ func (a *DefaultAPIService) GetServiceAccountKeyExecute(r ApiGetServiceAccountKe
 	if r.format != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
 	} else {
-		var defaultValue string = "X509_PEM"
+		var defaultValue GetServiceAccountKeyFormatParameter = "X509_PEM"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "format", defaultValue, "form", "")
 		r.format = &defaultValue
 	}

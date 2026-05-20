@@ -22,9 +22,9 @@ var _ MappedNullable = &GetCacheInfoResponseHistoryEntry{}
 // GetCacheInfoResponseHistoryEntry struct for GetCacheInfoResponseHistoryEntry
 type GetCacheInfoResponseHistoryEntry struct {
 	// Deprecated
-	OccuredAt            time.Time `json:"occuredAt"`
-	OccurredAt           time.Time `json:"occurredAt"`
-	Type                 string    `json:"type"`
+	OccuredAt            time.Time                            `json:"occuredAt"`
+	OccurredAt           time.Time                            `json:"occurredAt"`
+	Type                 GetCacheInfoResponseHistoryEntryType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _GetCacheInfoResponseHistoryEntry GetCacheInfoResponseHistoryEntry
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCacheInfoResponseHistoryEntry(occuredAt time.Time, occurredAt time.Time, types string) *GetCacheInfoResponseHistoryEntry {
+func NewGetCacheInfoResponseHistoryEntry(occuredAt time.Time, occurredAt time.Time, types GetCacheInfoResponseHistoryEntryType) *GetCacheInfoResponseHistoryEntry {
 	this := GetCacheInfoResponseHistoryEntry{}
 	this.OccuredAt = occuredAt
 	this.OccurredAt = occurredAt
@@ -102,9 +102,9 @@ func (o *GetCacheInfoResponseHistoryEntry) SetOccurredAt(v time.Time) {
 }
 
 // GetType returns the Type field value
-func (o *GetCacheInfoResponseHistoryEntry) GetType() string {
+func (o *GetCacheInfoResponseHistoryEntry) GetType() GetCacheInfoResponseHistoryEntryType {
 	if o == nil {
-		var ret string
+		var ret GetCacheInfoResponseHistoryEntryType
 		return ret
 	}
 
@@ -113,7 +113,7 @@ func (o *GetCacheInfoResponseHistoryEntry) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *GetCacheInfoResponseHistoryEntry) GetTypeOk() (*string, bool) {
+func (o *GetCacheInfoResponseHistoryEntry) GetTypeOk() (*GetCacheInfoResponseHistoryEntryType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *GetCacheInfoResponseHistoryEntry) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *GetCacheInfoResponseHistoryEntry) SetType(v string) {
+func (o *GetCacheInfoResponseHistoryEntry) SetType(v GetCacheInfoResponseHistoryEntryType) {
 	o.Type = v
 }
 

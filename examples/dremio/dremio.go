@@ -13,13 +13,13 @@ import (
 )
 
 func main() {
-	region := "eu01"          // Region where the resources will be created
-	projectId := "PROJECT_ID" // Your STACKIT project ID
+	region := dremio.LISTDREMIOINSTANCESREGIONIDPARAMETER_EU01 // Region where the resources will be created
+	projectId := "PROJECT_ID"                                  // Your STACKIT project ID
 
 	ctx := context.Background()
 
 	dremioClient, err := dremio.NewAPIClient(
-		config.WithRegion(region),
+		config.WithRegion(string(region)),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Creating API client: %v\n", err)

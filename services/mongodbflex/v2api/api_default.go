@@ -36,7 +36,7 @@ type DefaultAPI interface {
 			@param region The region which should be addressed
 			@return ApiCloneInstanceRequest
 	*/
-	CloneInstance(ctx context.Context, projectId string, instanceId string, region string) ApiCloneInstanceRequest
+	CloneInstance(ctx context.Context, projectId string, instanceId string, region CloneInstanceRegionParameter) ApiCloneInstanceRequest
 
 	// CloneInstanceExecute executes the request
 	//  @return CloneInstanceResponse
@@ -52,7 +52,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiCreateInstanceRequest
 	*/
-	CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest
+	CreateInstance(ctx context.Context, projectId string, region CreateInstanceRegionParameter) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return CreateInstanceResponse
@@ -69,7 +69,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiCreateUserRequest
 	*/
-	CreateUser(ctx context.Context, projectId string, instanceId string, region string) ApiCreateUserRequest
+	CreateUser(ctx context.Context, projectId string, instanceId string, region CreateUserRegionParameter) ApiCreateUserRequest
 
 	// CreateUserExecute executes the request
 	//  @return CreateUserResponse
@@ -86,7 +86,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiDeleteInstanceRequest
 	*/
-	DeleteInstance(ctx context.Context, projectId string, instanceId string, region string) ApiDeleteInstanceRequest
+	DeleteInstance(ctx context.Context, projectId string, instanceId string, region DeleteInstanceRegionParameter) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
@@ -103,7 +103,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiDeleteUserRequest
 	*/
-	DeleteUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiDeleteUserRequest
+	DeleteUser(ctx context.Context, projectId string, instanceId string, userId string, region DeleteUserRegionParameter) ApiDeleteUserRequest
 
 	// DeleteUserExecute executes the request
 	DeleteUserExecute(r ApiDeleteUserRequest) error
@@ -120,7 +120,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiGetBackupRequest
 	*/
-	GetBackup(ctx context.Context, projectId string, instanceId string, backupId string, region string) ApiGetBackupRequest
+	GetBackup(ctx context.Context, projectId string, instanceId string, backupId string, region GetBackupRegionParameter) ApiGetBackupRequest
 
 	// GetBackupExecute executes the request
 	//  @return GetBackupResponse
@@ -137,7 +137,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiGetInstanceRequest
 	*/
-	GetInstance(ctx context.Context, projectId string, instanceId string, region string) ApiGetInstanceRequest
+	GetInstance(ctx context.Context, projectId string, instanceId string, region GetInstanceRegionParameter) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return InstanceResponse
@@ -155,7 +155,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiGetUserRequest
 	*/
-	GetUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiGetUserRequest
+	GetUser(ctx context.Context, projectId string, instanceId string, userId string, region GetUserRegionParameter) ApiGetUserRequest
 
 	// GetUserExecute executes the request
 	//  @return GetUserResponse
@@ -172,7 +172,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListAdvisorSlowQueriesRequest
 	*/
-	ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string, region string) ApiListAdvisorSlowQueriesRequest
+	ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string, region ListAdvisorSlowQueriesRegionParameter) ApiListAdvisorSlowQueriesRequest
 
 	// ListAdvisorSlowQueriesExecute executes the request
 	//  @return HandlersInstancesSlowQueriesResponse
@@ -189,7 +189,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListBackupsRequest
 	*/
-	ListBackups(ctx context.Context, projectId string, instanceId string, region string) ApiListBackupsRequest
+	ListBackups(ctx context.Context, projectId string, instanceId string, region ListBackupsRegionParameter) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
 	//  @return ListBackupsResponse
@@ -205,7 +205,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListFlavorsRequest
 	*/
-	ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest
+	ListFlavors(ctx context.Context, projectId string, region ListFlavorsRegionParameter) ApiListFlavorsRequest
 
 	// ListFlavorsExecute executes the request
 	//  @return ListFlavorsResponse
@@ -221,7 +221,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListInstancesRequest
 	*/
-	ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest
+	ListInstances(ctx context.Context, projectId string, region ListInstancesRegionParameter) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return ListInstancesResponse
@@ -239,7 +239,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListMetricsRequest
 	*/
-	ListMetrics(ctx context.Context, projectId string, instanceId string, metric string, region string) ApiListMetricsRequest
+	ListMetrics(ctx context.Context, projectId string, instanceId string, metric string, region ListMetricsRegionParameter) ApiListMetricsRequest
 
 	// ListMetricsExecute executes the request
 	//  @return ListMetricsResponse
@@ -256,7 +256,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListRestoreJobsRequest
 	*/
-	ListRestoreJobs(ctx context.Context, projectId string, instanceId string, region string) ApiListRestoreJobsRequest
+	ListRestoreJobs(ctx context.Context, projectId string, instanceId string, region ListRestoreJobsRegionParameter) ApiListRestoreJobsRequest
 
 	// ListRestoreJobsExecute executes the request
 	//  @return ListRestoreJobsResponse
@@ -273,7 +273,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListStoragesRequest
 	*/
-	ListStorages(ctx context.Context, projectId string, flavor string, region string) ApiListStoragesRequest
+	ListStorages(ctx context.Context, projectId string, flavor string, region ListStoragesRegionParameter) ApiListStoragesRequest
 
 	// ListStoragesExecute executes the request
 	//  @return ListStoragesResponse
@@ -290,7 +290,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListSuggestedIndexesRequest
 	*/
-	ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string, region string) ApiListSuggestedIndexesRequest
+	ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string, region ListSuggestedIndexesRegionParameter) ApiListSuggestedIndexesRequest
 
 	// ListSuggestedIndexesExecute executes the request
 	//  @return HandlersInstancesSuggestedIndexesResponse
@@ -307,7 +307,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListUsersRequest
 	*/
-	ListUsers(ctx context.Context, projectId string, instanceId string, region string) ApiListUsersRequest
+	ListUsers(ctx context.Context, projectId string, instanceId string, region ListUsersRegionParameter) ApiListUsersRequest
 
 	// ListUsersExecute executes the request
 	//  @return ListUsersResponse
@@ -323,7 +323,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListVersionsRequest
 	*/
-	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
+	ListVersions(ctx context.Context, projectId string, region ListVersionsRegionParameter) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
 	//  @return ListVersionsResponse
@@ -340,7 +340,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiPartialUpdateInstanceRequest
 	*/
-	PartialUpdateInstance(ctx context.Context, projectId string, instanceId string, region string) ApiPartialUpdateInstanceRequest
+	PartialUpdateInstance(ctx context.Context, projectId string, instanceId string, region PartialUpdateInstanceRegionParameter) ApiPartialUpdateInstanceRequest
 
 	// PartialUpdateInstanceExecute executes the request
 	//  @return UpdateInstanceResponse
@@ -358,7 +358,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiPartialUpdateUserRequest
 	*/
-	PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiPartialUpdateUserRequest
+	PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region PartialUpdateUserRegionParameter) ApiPartialUpdateUserRequest
 
 	// PartialUpdateUserExecute executes the request
 	PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) error
@@ -375,7 +375,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiResetUserRequest
 	*/
-	ResetUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiResetUserRequest
+	ResetUser(ctx context.Context, projectId string, instanceId string, userId string, region ResetUserRegionParameter) ApiResetUserRequest
 
 	// ResetUserExecute executes the request
 	//  @return User
@@ -392,7 +392,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiRestoreInstanceRequest
 	*/
-	RestoreInstance(ctx context.Context, projectId string, instanceId string, region string) ApiRestoreInstanceRequest
+	RestoreInstance(ctx context.Context, projectId string, instanceId string, region RestoreInstanceRegionParameter) ApiRestoreInstanceRequest
 
 	// RestoreInstanceExecute executes the request
 	//  @return RestoreInstanceResponse
@@ -409,7 +409,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiUpdateBackupScheduleRequest
 	*/
-	UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string, region string) ApiUpdateBackupScheduleRequest
+	UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string, region UpdateBackupScheduleRegionParameter) ApiUpdateBackupScheduleRequest
 
 	// UpdateBackupScheduleExecute executes the request
 	//  @return BackupSchedule
@@ -426,7 +426,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiUpdateInstanceRequest
 	*/
-	UpdateInstance(ctx context.Context, projectId string, instanceId string, region string) ApiUpdateInstanceRequest
+	UpdateInstance(ctx context.Context, projectId string, instanceId string, region UpdateInstanceRegionParameter) ApiUpdateInstanceRequest
 
 	// UpdateInstanceExecute executes the request
 	//  @return UpdateInstanceResponse
@@ -444,7 +444,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiUpdateUserRequest
 	*/
-	UpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiUpdateUserRequest
+	UpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region UpdateUserRegionParameter) ApiUpdateUserRequest
 
 	// UpdateUserExecute executes the request
 	UpdateUserExecute(r ApiUpdateUserRequest) error
@@ -458,7 +458,7 @@ type ApiCloneInstanceRequest struct {
 	ApiService           DefaultAPI
 	projectId            string
 	instanceId           string
-	region               string
+	region               CloneInstanceRegionParameter
 	cloneInstancePayload *CloneInstancePayload
 }
 
@@ -484,7 +484,7 @@ As an example a valid timestamp look like "2023-04-20T15:05:15Z"
 	@param region The region which should be addressed
 	@return ApiCloneInstanceRequest
 */
-func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string, instanceId string, region string) ApiCloneInstanceRequest {
+func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string, instanceId string, region CloneInstanceRegionParameter) ApiCloneInstanceRequest {
 	return ApiCloneInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -625,7 +625,7 @@ type ApiCreateInstanceRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	region                string
+	region                CreateInstanceRegionParameter
 	createInstancePayload *CreateInstancePayload
 }
 
@@ -649,7 +649,7 @@ Create and deploys an instance<br/> Note that the time format for the backupSche
 	@param region The region which should be addressed
 	@return ApiCreateInstanceRequest
 */
-func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest {
+func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, region CreateInstanceRegionParameter) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -800,7 +800,7 @@ type ApiCreateUserRequest struct {
 	ApiService        DefaultAPI
 	projectId         string
 	instanceId        string
-	region            string
+	region            CreateUserRegionParameter
 	createUserPayload *CreateUserPayload
 }
 
@@ -825,7 +825,7 @@ create a new user for a mongodb instance
 	@param region The region which should be addressed
 	@return ApiCreateUserRequest
 */
-func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, instanceId string, region string) ApiCreateUserRequest {
+func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, instanceId string, region CreateUserRegionParameter) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -989,7 +989,7 @@ type ApiDeleteInstanceRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     DeleteInstanceRegionParameter
 }
 
 func (r ApiDeleteInstanceRequest) Execute() error {
@@ -1007,7 +1007,7 @@ removes an instance
 	@param region The region which should be addressed
 	@return ApiDeleteInstanceRequest
 */
-func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, instanceId string, region string) ApiDeleteInstanceRequest {
+func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, instanceId string, region DeleteInstanceRegionParameter) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1143,7 +1143,7 @@ type ApiDeleteUserRequest struct {
 	projectId  string
 	instanceId string
 	userId     string
-	region     string
+	region     DeleteUserRegionParameter
 }
 
 func (r ApiDeleteUserRequest) Execute() error {
@@ -1162,7 +1162,7 @@ delete mongodb user
 	@param region The region which should be addressed
 	@return ApiDeleteUserRequest
 */
-func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiDeleteUserRequest {
+func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, instanceId string, userId string, region DeleteUserRegionParameter) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1300,7 +1300,7 @@ type ApiGetBackupRequest struct {
 	projectId  string
 	instanceId string
 	backupId   string
-	region     string
+	region     GetBackupRegionParameter
 }
 
 func (r ApiGetBackupRequest) Execute() (*GetBackupResponse, error) {
@@ -1319,7 +1319,7 @@ Get details about a specific backup
 	@param region The region which should be addressed
 	@return ApiGetBackupRequest
 */
-func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, instanceId string, backupId string, region string) ApiGetBackupRequest {
+func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, instanceId string, backupId string, region GetBackupRegionParameter) ApiGetBackupRequest {
 	return ApiGetBackupRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1458,7 +1458,7 @@ type ApiGetInstanceRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     GetInstanceRegionParameter
 }
 
 func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
@@ -1476,7 +1476,7 @@ gets information of an instance
 	@param region The region which should be addressed
 	@return ApiGetInstanceRequest
 */
-func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, instanceId string, region string) ApiGetInstanceRequest {
+func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, instanceId string, region GetInstanceRegionParameter) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1614,7 +1614,7 @@ type ApiGetUserRequest struct {
 	projectId  string
 	instanceId string
 	userId     string
-	region     string
+	region     GetUserRegionParameter
 }
 
 func (r ApiGetUserRequest) Execute() (*GetUserResponse, error) {
@@ -1633,7 +1633,7 @@ get detailed information of a user of a mongodb instance
 	@param region The region which should be addressed
 	@return ApiGetUserRequest
 */
-func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiGetUserRequest {
+func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, instanceId string, userId string, region GetUserRegionParameter) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1783,7 +1783,7 @@ type ApiListAdvisorSlowQueriesRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     ListAdvisorSlowQueriesRegionParameter
 }
 
 func (r ApiListAdvisorSlowQueriesRequest) Execute() (*HandlersInstancesSlowQueriesResponse, error) {
@@ -1801,7 +1801,7 @@ gets slow queries from the Opsmanager performance advisor
 	@param region The region which should be addressed
 	@return ApiListAdvisorSlowQueriesRequest
 */
-func (a *DefaultAPIService) ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string, region string) ApiListAdvisorSlowQueriesRequest {
+func (a *DefaultAPIService) ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string, region ListAdvisorSlowQueriesRegionParameter) ApiListAdvisorSlowQueriesRequest {
 	return ApiListAdvisorSlowQueriesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1949,7 +1949,7 @@ type ApiListBackupsRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     ListBackupsRegionParameter
 }
 
 func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
@@ -1967,7 +1967,7 @@ List backups of an instance
 	@param region The region which should be addressed
 	@return ApiListBackupsRequest
 */
-func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, instanceId string, region string) ApiListBackupsRequest {
+func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, instanceId string, region ListBackupsRegionParameter) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2103,7 +2103,7 @@ type ApiListFlavorsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     string
+	region     ListFlavorsRegionParameter
 }
 
 func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
@@ -2120,7 +2120,7 @@ returns all possible flavors
 	@param region The region which should be addressed
 	@return ApiListFlavorsRequest
 */
-func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest {
+func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region ListFlavorsRegionParameter) ApiListFlavorsRequest {
 	return ApiListFlavorsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2255,7 +2255,7 @@ type ApiListInstancesRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	tag        *string
-	region     string
+	region     ListInstancesRegionParameter
 }
 
 // instance tag
@@ -2278,7 +2278,7 @@ list all instances for a projectID
 	@param region The region which should be addressed
 	@return ApiListInstancesRequest
 */
-func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest {
+func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, region ListInstancesRegionParameter) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2419,7 +2419,7 @@ type ApiListMetricsRequest struct {
 	instanceId  string
 	metric      string
 	granularity *string
-	region      string
+	region      ListMetricsRegionParameter
 	period      *string
 	start       *string
 	end         *string
@@ -2465,7 +2465,7 @@ returns metrics for an instance
 	@param region The region which should be addressed
 	@return ApiListMetricsRequest
 */
-func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string, region string) ApiListMetricsRequest {
+func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string, region ListMetricsRegionParameter) ApiListMetricsRequest {
 	return ApiListMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2628,7 +2628,7 @@ type ApiListRestoreJobsRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     ListRestoreJobsRegionParameter
 }
 
 func (r ApiListRestoreJobsRequest) Execute() (*ListRestoreJobsResponse, error) {
@@ -2646,7 +2646,7 @@ List restore jobs of an instance
 	@param region The region which should be addressed
 	@return ApiListRestoreJobsRequest
 */
-func (a *DefaultAPIService) ListRestoreJobs(ctx context.Context, projectId string, instanceId string, region string) ApiListRestoreJobsRequest {
+func (a *DefaultAPIService) ListRestoreJobs(ctx context.Context, projectId string, instanceId string, region ListRestoreJobsRegionParameter) ApiListRestoreJobsRequest {
 	return ApiListRestoreJobsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2783,7 +2783,7 @@ type ApiListStoragesRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	flavor     string
-	region     string
+	region     ListStoragesRegionParameter
 }
 
 func (r ApiListStoragesRequest) Execute() (*ListStoragesResponse, error) {
@@ -2801,7 +2801,7 @@ returns the storage for a certain flavor
 	@param region The region which should be addressed
 	@return ApiListStoragesRequest
 */
-func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, flavor string, region string) ApiListStoragesRequest {
+func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, flavor string, region ListStoragesRegionParameter) ApiListStoragesRequest {
 	return ApiListStoragesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2938,7 +2938,7 @@ type ApiListSuggestedIndexesRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     ListSuggestedIndexesRegionParameter
 }
 
 func (r ApiListSuggestedIndexesRequest) Execute() (*HandlersInstancesSuggestedIndexesResponse, error) {
@@ -2956,7 +2956,7 @@ gets suggested indexes from the Opsmanager performance advisor
 	@param region The region which should be addressed
 	@return ApiListSuggestedIndexesRequest
 */
-func (a *DefaultAPIService) ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string, region string) ApiListSuggestedIndexesRequest {
+func (a *DefaultAPIService) ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string, region ListSuggestedIndexesRegionParameter) ApiListSuggestedIndexesRequest {
 	return ApiListSuggestedIndexesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3104,7 +3104,7 @@ type ApiListUsersRequest struct {
 	ApiService DefaultAPI
 	projectId  string
 	instanceId string
-	region     string
+	region     ListUsersRegionParameter
 }
 
 func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
@@ -3122,7 +3122,7 @@ list all users for a mongodb instance
 	@param region The region which should be addressed
 	@return ApiListUsersRequest
 */
-func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, instanceId string, region string) ApiListUsersRequest {
+func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, instanceId string, region ListUsersRegionParameter) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3269,7 +3269,7 @@ type ApiListVersionsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     string
+	region     ListVersionsRegionParameter
 }
 
 func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
@@ -3286,7 +3286,7 @@ returns all available versions for creating endpoint
 	@param region The region which should be addressed
 	@return ApiListVersionsRequest
 */
-func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest {
+func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region ListVersionsRegionParameter) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3410,7 +3410,7 @@ type ApiPartialUpdateInstanceRequest struct {
 	ApiService                   DefaultAPI
 	projectId                    string
 	instanceId                   string
-	region                       string
+	region                       PartialUpdateInstanceRegionParameter
 	partialUpdateInstancePayload *PartialUpdateInstancePayload
 }
 
@@ -3435,7 +3435,7 @@ Updates a deployment plan<br/> Note that the time format for the backupSchedule 
 	@param region The region which should be addressed
 	@return ApiPartialUpdateInstanceRequest
 */
-func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, instanceId string, region string) ApiPartialUpdateInstanceRequest {
+func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, instanceId string, region PartialUpdateInstanceRegionParameter) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3600,7 +3600,7 @@ type ApiPartialUpdateUserRequest struct {
 	projectId                string
 	instanceId               string
 	userId                   string
-	region                   string
+	region                   PartialUpdateUserRegionParameter
 	partialUpdateUserPayload *PartialUpdateUserPayload
 }
 
@@ -3626,7 +3626,7 @@ updates user for a mongodb instance
 	@param region The region which should be addressed
 	@return ApiPartialUpdateUserRequest
 */
-func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiPartialUpdateUserRequest {
+func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region PartialUpdateUserRegionParameter) ApiPartialUpdateUserRequest {
 	return ApiPartialUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3769,7 +3769,7 @@ type ApiResetUserRequest struct {
 	projectId  string
 	instanceId string
 	userId     string
-	region     string
+	region     ResetUserRegionParameter
 }
 
 func (r ApiResetUserRequest) Execute() (*User, error) {
@@ -3788,7 +3788,7 @@ resets mongodb user's password
 	@param region The region which should be addressed
 	@return ApiResetUserRequest
 */
-func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiResetUserRequest {
+func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, instanceId string, userId string, region ResetUserRegionParameter) ApiResetUserRequest {
 	return ApiResetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3938,7 +3938,7 @@ type ApiRestoreInstanceRequest struct {
 	ApiService             DefaultAPI
 	projectId              string
 	instanceId             string
-	region                 string
+	region                 RestoreInstanceRegionParameter
 	restoreInstancePayload *RestoreInstancePayload
 }
 
@@ -3963,7 +3963,7 @@ Restore an instance based on snapshot
 	@param region The region which should be addressed
 	@return ApiRestoreInstanceRequest
 */
-func (a *DefaultAPIService) RestoreInstance(ctx context.Context, projectId string, instanceId string, region string) ApiRestoreInstanceRequest {
+func (a *DefaultAPIService) RestoreInstance(ctx context.Context, projectId string, instanceId string, region RestoreInstanceRegionParameter) ApiRestoreInstanceRequest {
 	return ApiRestoreInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4105,7 +4105,7 @@ type ApiUpdateBackupScheduleRequest struct {
 	ApiService                  DefaultAPI
 	projectId                   string
 	instanceId                  string
-	region                      string
+	region                      UpdateBackupScheduleRegionParameter
 	updateBackupSchedulePayload *UpdateBackupSchedulePayload
 }
 
@@ -4130,7 +4130,7 @@ Updates a backup schedule<br/> Note that the time format is in UTC
 	@param region The region which should be addressed
 	@return ApiUpdateBackupScheduleRequest
 */
-func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string, region string) ApiUpdateBackupScheduleRequest {
+func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string, region UpdateBackupScheduleRegionParameter) ApiUpdateBackupScheduleRequest {
 	return ApiUpdateBackupScheduleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4272,7 +4272,7 @@ type ApiUpdateInstanceRequest struct {
 	ApiService            DefaultAPI
 	projectId             string
 	instanceId            string
-	region                string
+	region                UpdateInstanceRegionParameter
 	updateInstancePayload *UpdateInstancePayload
 }
 
@@ -4297,7 +4297,7 @@ Updates a deployment plan<br/> Note that the time format for the backupSchedule 
 	@param region The region which should be addressed
 	@return ApiUpdateInstanceRequest
 */
-func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, instanceId string, region string) ApiUpdateInstanceRequest {
+func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, instanceId string, region UpdateInstanceRegionParameter) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4462,7 +4462,7 @@ type ApiUpdateUserRequest struct {
 	projectId         string
 	instanceId        string
 	userId            string
-	region            string
+	region            UpdateUserRegionParameter
 	updateUserPayload *UpdateUserPayload
 }
 
@@ -4488,7 +4488,7 @@ updates user for a mongodb instance
 	@param region The region which should be addressed
 	@return ApiUpdateUserRequest
 */
-func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region string) ApiUpdateUserRequest {
+func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, instanceId string, userId string, region UpdateUserRegionParameter) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,

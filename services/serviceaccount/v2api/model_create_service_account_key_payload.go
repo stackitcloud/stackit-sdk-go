@@ -20,8 +20,7 @@ var _ MappedNullable = &CreateServiceAccountKeyPayload{}
 
 // CreateServiceAccountKeyPayload struct for CreateServiceAccountKeyPayload
 type CreateServiceAccountKeyPayload struct {
-	// Optional, key algorithm of the generated key-pair. Used only if publicKey attribute is not specified, otherwise the algorithm is derived from the public key.
-	Algorithm *string `json:"algorithm,omitempty"`
+	Algorithm *CreateServiceAccountKeyPayloadAlgorithm `json:"algorithm,omitempty"`
 	// Optional, public key part of the user generated RSA key-pair wrapped in a [X.509 v3 certificate](https://www.rfc-editor.org/rfc/rfc5280)
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Optional, date of key expiration. When omitted, key is valid until deleted
@@ -49,9 +48,9 @@ func NewCreateServiceAccountKeyPayloadWithDefaults() *CreateServiceAccountKeyPay
 }
 
 // GetAlgorithm returns the Algorithm field value if set, zero value otherwise.
-func (o *CreateServiceAccountKeyPayload) GetAlgorithm() string {
+func (o *CreateServiceAccountKeyPayload) GetAlgorithm() CreateServiceAccountKeyPayloadAlgorithm {
 	if o == nil || IsNil(o.Algorithm) {
-		var ret string
+		var ret CreateServiceAccountKeyPayloadAlgorithm
 		return ret
 	}
 	return *o.Algorithm
@@ -59,7 +58,7 @@ func (o *CreateServiceAccountKeyPayload) GetAlgorithm() string {
 
 // GetAlgorithmOk returns a tuple with the Algorithm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyPayload) GetAlgorithmOk() (*string, bool) {
+func (o *CreateServiceAccountKeyPayload) GetAlgorithmOk() (*CreateServiceAccountKeyPayloadAlgorithm, bool) {
 	if o == nil || IsNil(o.Algorithm) {
 		return nil, false
 	}
@@ -75,8 +74,8 @@ func (o *CreateServiceAccountKeyPayload) HasAlgorithm() bool {
 	return false
 }
 
-// SetAlgorithm gets a reference to the given string and assigns it to the Algorithm field.
-func (o *CreateServiceAccountKeyPayload) SetAlgorithm(v string) {
+// SetAlgorithm gets a reference to the given CreateServiceAccountKeyPayloadAlgorithm and assigns it to the Algorithm field.
+func (o *CreateServiceAccountKeyPayload) SetAlgorithm(v CreateServiceAccountKeyPayloadAlgorithm) {
 	o.Algorithm = &v
 }
 

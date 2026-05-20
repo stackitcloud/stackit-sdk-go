@@ -19,9 +19,9 @@ var _ MappedNullable = &ParametersGeneral{}
 
 // ParametersGeneral struct for ParametersGeneral
 type ParametersGeneral struct {
-	OrganizationId       *string `json:"organizationId,omitempty"`
-	ProjectName          *string `json:"projectName,omitempty"`
-	ProjectScope         *string `json:"projectScope,omitempty"`
+	OrganizationId       *string                        `json:"organizationId,omitempty"`
+	ProjectName          *string                        `json:"projectName,omitempty"`
+	ProjectScope         *ParametersGeneralProjectScope `json:"projectScope,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +33,7 @@ type _ParametersGeneral ParametersGeneral
 // will change when the set of required properties is changed
 func NewParametersGeneral() *ParametersGeneral {
 	this := ParametersGeneral{}
-	var projectScope string = "PUBLIC"
+	var projectScope ParametersGeneralProjectScope = PARAMETERSGENERALPROJECTSCOPE_PUBLIC
 	this.ProjectScope = &projectScope
 	return &this
 }
@@ -43,7 +43,7 @@ func NewParametersGeneral() *ParametersGeneral {
 // but it doesn't guarantee that properties required by API are set
 func NewParametersGeneralWithDefaults() *ParametersGeneral {
 	this := ParametersGeneral{}
-	var projectScope string = "PUBLIC"
+	var projectScope ParametersGeneralProjectScope = PARAMETERSGENERALPROJECTSCOPE_PUBLIC
 	this.ProjectScope = &projectScope
 	return &this
 }
@@ -113,9 +113,9 @@ func (o *ParametersGeneral) SetProjectName(v string) {
 }
 
 // GetProjectScope returns the ProjectScope field value if set, zero value otherwise.
-func (o *ParametersGeneral) GetProjectScope() string {
+func (o *ParametersGeneral) GetProjectScope() ParametersGeneralProjectScope {
 	if o == nil || IsNil(o.ProjectScope) {
-		var ret string
+		var ret ParametersGeneralProjectScope
 		return ret
 	}
 	return *o.ProjectScope
@@ -123,7 +123,7 @@ func (o *ParametersGeneral) GetProjectScope() string {
 
 // GetProjectScopeOk returns a tuple with the ProjectScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ParametersGeneral) GetProjectScopeOk() (*string, bool) {
+func (o *ParametersGeneral) GetProjectScopeOk() (*ParametersGeneralProjectScope, bool) {
 	if o == nil || IsNil(o.ProjectScope) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *ParametersGeneral) HasProjectScope() bool {
 	return false
 }
 
-// SetProjectScope gets a reference to the given string and assigns it to the ProjectScope field.
-func (o *ParametersGeneral) SetProjectScope(v string) {
+// SetProjectScope gets a reference to the given ParametersGeneralProjectScope and assigns it to the ProjectScope field.
+func (o *ParametersGeneral) SetProjectScope(v ParametersGeneralProjectScope) {
 	o.ProjectScope = &v
 }
 

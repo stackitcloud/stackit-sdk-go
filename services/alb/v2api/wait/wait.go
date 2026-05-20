@@ -18,9 +18,9 @@ const (
 )
 
 func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[alb.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[alb.LoadBalancer, alb.LoadBalancerStatus]{
 		FetchInstance: client.GetLoadBalancer(ctx, projectId, region, name).Execute,
-		GetState: func(response *alb.LoadBalancer) (string, error) {
+		GetState: func(response *alb.LoadBalancer) (alb.LoadBalancerStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -29,8 +29,8 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.Defau
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{LOADBALANCERSTATUS_READY},
-		ErrorState:  []string{LOADBALANCERSTATUS_ERROR},
+		ActiveState: []alb.LoadBalancerStatus{alb.LOADBALANCERSTATUS_STATUS_READY},
+		ErrorState:  []alb.LoadBalancerStatus{alb.LOADBALANCERSTATUS_STATUS_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -39,9 +39,9 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.Defau
 }
 
 func DeleteLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[alb.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[alb.LoadBalancer, alb.LoadBalancerStatus]{
 		FetchInstance: client.GetLoadBalancer(ctx, projectId, region, name).Execute,
-		GetState: func(response *alb.LoadBalancer) (string, error) {
+		GetState: func(response *alb.LoadBalancer) (alb.LoadBalancerStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -50,8 +50,8 @@ func DeleteLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, p
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{},
-		ErrorState:  []string{LOADBALANCERSTATUS_ERROR},
+		ActiveState: []alb.LoadBalancerStatus{},
+		ErrorState:  []alb.LoadBalancerStatus{LOADBALANCERSTATUS_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())

@@ -36,9 +36,8 @@ type DremioUserResponse struct {
 	// This is the  admin user's last name.
 	LastName string `json:"lastName"`
 	// This is the username used to login the admin user.
-	Name string `json:"name"`
-	// The current state of the resource.
-	State                string `json:"state"`
+	Name                 string                  `json:"name"`
+	State                DremioUserResponseState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,7 +47,7 @@ type _DremioUserResponse DremioUserResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDremioUserResponse(email string, firstName string, id string, lastName string, name string, state string) *DremioUserResponse {
+func NewDremioUserResponse(email string, firstName string, id string, lastName string, name string, state DremioUserResponseState) *DremioUserResponse {
 	this := DremioUserResponse{}
 	this.Email = email
 	this.FirstName = firstName
@@ -284,9 +283,9 @@ func (o *DremioUserResponse) SetName(v string) {
 }
 
 // GetState returns the State field value
-func (o *DremioUserResponse) GetState() string {
+func (o *DremioUserResponse) GetState() DremioUserResponseState {
 	if o == nil {
-		var ret string
+		var ret DremioUserResponseState
 		return ret
 	}
 
@@ -295,7 +294,7 @@ func (o *DremioUserResponse) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *DremioUserResponse) GetStateOk() (*string, bool) {
+func (o *DremioUserResponse) GetStateOk() (*DremioUserResponseState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -303,7 +302,7 @@ func (o *DremioUserResponse) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *DremioUserResponse) SetState(v string) {
+func (o *DremioUserResponse) SetState(v DremioUserResponseState) {
 	o.State = v
 }
 

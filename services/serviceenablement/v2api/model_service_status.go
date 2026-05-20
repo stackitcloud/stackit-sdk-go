@@ -19,17 +19,16 @@ var _ MappedNullable = &ServiceStatus{}
 
 // ServiceStatus struct for ServiceStatus
 type ServiceStatus struct {
-	Dependencies *Dependencies      `json:"dependencies,omitempty"`
-	Enablement   *string            `json:"enablement,omitempty"`
-	Error        *ActionError       `json:"error,omitempty"`
-	Labels       *map[string]string `json:"labels,omitempty"`
-	Lifecycle    *string            `json:"lifecycle,omitempty"`
-	Parameters   *Parameters        `json:"parameters,omitempty"`
-	Scope        *string            `json:"scope,omitempty"`
+	Dependencies *Dependencies            `json:"dependencies,omitempty"`
+	Enablement   *ServiceStatusEnablement `json:"enablement,omitempty"`
+	Error        *ActionError             `json:"error,omitempty"`
+	Labels       *map[string]string       `json:"labels,omitempty"`
+	Lifecycle    *ServiceStatusLifecycle  `json:"lifecycle,omitempty"`
+	Parameters   *Parameters              `json:"parameters,omitempty"`
+	Scope        *ServiceStatusScope      `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
-	// the state of a service within a project
-	State                *string `json:"state,omitempty"`
+	ServiceId            *string             `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	State                *ServiceStatusState `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,13 +40,13 @@ type _ServiceStatus ServiceStatus
 // will change when the set of required properties is changed
 func NewServiceStatus() *ServiceStatus {
 	this := ServiceStatus{}
-	var enablement string = "REQUEST"
+	var enablement ServiceStatusEnablement = SERVICESTATUSENABLEMENT_REQUEST
 	this.Enablement = &enablement
-	var lifecycle string = "FLEX"
+	var lifecycle ServiceStatusLifecycle = SERVICESTATUSLIFECYCLE_FLEX
 	this.Lifecycle = &lifecycle
-	var scope string = "PUBLIC"
+	var scope ServiceStatusScope = SERVICESTATUSSCOPE_PUBLIC
 	this.Scope = &scope
-	var state string = "ENABLED"
+	var state ServiceStatusState = SERVICESTATUSSTATE_ENABLED
 	this.State = &state
 	return &this
 }
@@ -57,13 +56,13 @@ func NewServiceStatus() *ServiceStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceStatusWithDefaults() *ServiceStatus {
 	this := ServiceStatus{}
-	var enablement string = "REQUEST"
+	var enablement ServiceStatusEnablement = SERVICESTATUSENABLEMENT_REQUEST
 	this.Enablement = &enablement
-	var lifecycle string = "FLEX"
+	var lifecycle ServiceStatusLifecycle = SERVICESTATUSLIFECYCLE_FLEX
 	this.Lifecycle = &lifecycle
-	var scope string = "PUBLIC"
+	var scope ServiceStatusScope = SERVICESTATUSSCOPE_PUBLIC
 	this.Scope = &scope
-	var state string = "ENABLED"
+	var state ServiceStatusState = SERVICESTATUSSTATE_ENABLED
 	this.State = &state
 	return &this
 }
@@ -101,9 +100,9 @@ func (o *ServiceStatus) SetDependencies(v Dependencies) {
 }
 
 // GetEnablement returns the Enablement field value if set, zero value otherwise.
-func (o *ServiceStatus) GetEnablement() string {
+func (o *ServiceStatus) GetEnablement() ServiceStatusEnablement {
 	if o == nil || IsNil(o.Enablement) {
-		var ret string
+		var ret ServiceStatusEnablement
 		return ret
 	}
 	return *o.Enablement
@@ -111,7 +110,7 @@ func (o *ServiceStatus) GetEnablement() string {
 
 // GetEnablementOk returns a tuple with the Enablement field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetEnablementOk() (*string, bool) {
+func (o *ServiceStatus) GetEnablementOk() (*ServiceStatusEnablement, bool) {
 	if o == nil || IsNil(o.Enablement) {
 		return nil, false
 	}
@@ -127,8 +126,8 @@ func (o *ServiceStatus) HasEnablement() bool {
 	return false
 }
 
-// SetEnablement gets a reference to the given string and assigns it to the Enablement field.
-func (o *ServiceStatus) SetEnablement(v string) {
+// SetEnablement gets a reference to the given ServiceStatusEnablement and assigns it to the Enablement field.
+func (o *ServiceStatus) SetEnablement(v ServiceStatusEnablement) {
 	o.Enablement = &v
 }
 
@@ -197,9 +196,9 @@ func (o *ServiceStatus) SetLabels(v map[string]string) {
 }
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
-func (o *ServiceStatus) GetLifecycle() string {
+func (o *ServiceStatus) GetLifecycle() ServiceStatusLifecycle {
 	if o == nil || IsNil(o.Lifecycle) {
-		var ret string
+		var ret ServiceStatusLifecycle
 		return ret
 	}
 	return *o.Lifecycle
@@ -207,7 +206,7 @@ func (o *ServiceStatus) GetLifecycle() string {
 
 // GetLifecycleOk returns a tuple with the Lifecycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetLifecycleOk() (*string, bool) {
+func (o *ServiceStatus) GetLifecycleOk() (*ServiceStatusLifecycle, bool) {
 	if o == nil || IsNil(o.Lifecycle) {
 		return nil, false
 	}
@@ -223,8 +222,8 @@ func (o *ServiceStatus) HasLifecycle() bool {
 	return false
 }
 
-// SetLifecycle gets a reference to the given string and assigns it to the Lifecycle field.
-func (o *ServiceStatus) SetLifecycle(v string) {
+// SetLifecycle gets a reference to the given ServiceStatusLifecycle and assigns it to the Lifecycle field.
+func (o *ServiceStatus) SetLifecycle(v ServiceStatusLifecycle) {
 	o.Lifecycle = &v
 }
 
@@ -261,9 +260,9 @@ func (o *ServiceStatus) SetParameters(v Parameters) {
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *ServiceStatus) GetScope() string {
+func (o *ServiceStatus) GetScope() ServiceStatusScope {
 	if o == nil || IsNil(o.Scope) {
-		var ret string
+		var ret ServiceStatusScope
 		return ret
 	}
 	return *o.Scope
@@ -271,7 +270,7 @@ func (o *ServiceStatus) GetScope() string {
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetScopeOk() (*string, bool) {
+func (o *ServiceStatus) GetScopeOk() (*ServiceStatusScope, bool) {
 	if o == nil || IsNil(o.Scope) {
 		return nil, false
 	}
@@ -287,8 +286,8 @@ func (o *ServiceStatus) HasScope() bool {
 	return false
 }
 
-// SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *ServiceStatus) SetScope(v string) {
+// SetScope gets a reference to the given ServiceStatusScope and assigns it to the Scope field.
+func (o *ServiceStatus) SetScope(v ServiceStatusScope) {
 	o.Scope = &v
 }
 
@@ -325,9 +324,9 @@ func (o *ServiceStatus) SetServiceId(v string) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *ServiceStatus) GetState() string {
+func (o *ServiceStatus) GetState() ServiceStatusState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret ServiceStatusState
 		return ret
 	}
 	return *o.State
@@ -335,7 +334,7 @@ func (o *ServiceStatus) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetStateOk() (*string, bool) {
+func (o *ServiceStatus) GetStateOk() (*ServiceStatusState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -351,8 +350,8 @@ func (o *ServiceStatus) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *ServiceStatus) SetState(v string) {
+// SetState gets a reference to the given ServiceStatusState and assigns it to the State field.
+func (o *ServiceStatus) SetState(v ServiceStatusState) {
 	o.State = &v
 }
 

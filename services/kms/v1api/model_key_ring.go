@@ -28,9 +28,8 @@ type KeyRing struct {
 	// The display name to distinguish multiple key rings.
 	DisplayName string `json:"displayName"`
 	// A auto generated unique id which identifies the key ring.
-	Id string `json:"id"`
-	// The current state of the key ring.
-	State                string `json:"state"`
+	Id                   string       `json:"id"`
+	State                KeyRingState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +39,7 @@ type _KeyRing KeyRing
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKeyRing(createdAt time.Time, displayName string, id string, state string) *KeyRing {
+func NewKeyRing(createdAt time.Time, displayName string, id string, state KeyRingState) *KeyRing {
 	this := KeyRing{}
 	this.CreatedAt = createdAt
 	this.DisplayName = displayName
@@ -162,9 +161,9 @@ func (o *KeyRing) SetId(v string) {
 }
 
 // GetState returns the State field value
-func (o *KeyRing) GetState() string {
+func (o *KeyRing) GetState() KeyRingState {
 	if o == nil {
-		var ret string
+		var ret KeyRingState
 		return ret
 	}
 
@@ -173,7 +172,7 @@ func (o *KeyRing) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *KeyRing) GetStateOk() (*string, bool) {
+func (o *KeyRing) GetStateOk() (*KeyRingState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -181,7 +180,7 @@ func (o *KeyRing) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *KeyRing) SetState(v string) {
+func (o *KeyRing) SetState(v KeyRingState) {
 	o.State = v
 }
 

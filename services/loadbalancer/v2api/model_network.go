@@ -20,9 +20,8 @@ var _ MappedNullable = &Network{}
 // Network struct for Network
 type Network struct {
 	// Openstack network ID
-	NetworkId *string `json:"networkId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
-	// The role defines how the load balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
-	Role                 *string `json:"role,omitempty"`
+	NetworkId            *string      `json:"networkId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
+	Role                 *NetworkRole `json:"role,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,9 +77,9 @@ func (o *Network) SetNetworkId(v string) {
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *Network) GetRole() string {
+func (o *Network) GetRole() NetworkRole {
 	if o == nil || IsNil(o.Role) {
-		var ret string
+		var ret NetworkRole
 		return ret
 	}
 	return *o.Role
@@ -88,7 +87,7 @@ func (o *Network) GetRole() string {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetRoleOk() (*string, bool) {
+func (o *Network) GetRoleOk() (*NetworkRole, bool) {
 	if o == nil || IsNil(o.Role) {
 		return nil, false
 	}
@@ -104,8 +103,8 @@ func (o *Network) HasRole() bool {
 	return false
 }
 
-// SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *Network) SetRole(v string) {
+// SetRole gets a reference to the given NetworkRole and assigns it to the Role field.
+func (o *Network) SetRole(v NetworkRole) {
 	o.Role = &v
 }
 

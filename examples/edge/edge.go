@@ -32,7 +32,7 @@ func main() {
 		ctx      = context.Background()
 	)
 	payload.DisplayName = "example"
-	instance, err = client.DefaultAPI.CreateInstance(ctx, projectId, region).CreateInstancePayload(*payload).Execute()
+	instance, err = client.DefaultAPI.CreateInstance(ctx, projectId, edge.ListInstancesRegionIdParameter(region)).CreateInstancePayload(*payload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed to create Instance: %v\n", err)
 		os.Exit(1)
@@ -95,7 +95,7 @@ func main() {
 	}
 
 	// Delete Edge Instance
-	err = client.DefaultAPI.DeleteInstance(ctx, projectId, region, instance.GetId()).Execute()
+	err = client.DefaultAPI.DeleteInstance(ctx, projectId, edge.GetInstanceRegionIdParameter(region), instance.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed to delete instance: %v\n", err)
 		os.Exit(1)

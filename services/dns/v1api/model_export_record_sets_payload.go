@@ -20,8 +20,8 @@ var _ MappedNullable = &ExportRecordSetsPayload{}
 
 // ExportRecordSetsPayload struct for ExportRecordSetsPayload
 type ExportRecordSetsPayload struct {
-	ExportAsFQDN         *bool   `json:"exportAsFQDN,omitempty"`
-	Format               *string `json:"format,omitempty"`
+	ExportAsFQDN         *bool                          `json:"exportAsFQDN,omitempty"`
+	Format               *ExportRecordSetsPayloadFormat `json:"format,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,7 +35,7 @@ func NewExportRecordSetsPayload() *ExportRecordSetsPayload {
 	this := ExportRecordSetsPayload{}
 	var exportAsFQDN bool = true
 	this.ExportAsFQDN = &exportAsFQDN
-	var format string = "csv"
+	var format ExportRecordSetsPayloadFormat = EXPORTRECORDSETSPAYLOADFORMAT_CSV
 	this.Format = &format
 	return &this
 }
@@ -47,7 +47,7 @@ func NewExportRecordSetsPayloadWithDefaults() *ExportRecordSetsPayload {
 	this := ExportRecordSetsPayload{}
 	var exportAsFQDN bool = true
 	this.ExportAsFQDN = &exportAsFQDN
-	var format string = "csv"
+	var format ExportRecordSetsPayloadFormat = EXPORTRECORDSETSPAYLOADFORMAT_CSV
 	this.Format = &format
 	return &this
 }
@@ -85,9 +85,9 @@ func (o *ExportRecordSetsPayload) SetExportAsFQDN(v bool) {
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
-func (o *ExportRecordSetsPayload) GetFormat() string {
+func (o *ExportRecordSetsPayload) GetFormat() ExportRecordSetsPayloadFormat {
 	if o == nil || IsNil(o.Format) {
-		var ret string
+		var ret ExportRecordSetsPayloadFormat
 		return ret
 	}
 	return *o.Format
@@ -95,7 +95,7 @@ func (o *ExportRecordSetsPayload) GetFormat() string {
 
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportRecordSetsPayload) GetFormatOk() (*string, bool) {
+func (o *ExportRecordSetsPayload) GetFormatOk() (*ExportRecordSetsPayloadFormat, bool) {
 	if o == nil || IsNil(o.Format) {
 		return nil, false
 	}
@@ -111,8 +111,8 @@ func (o *ExportRecordSetsPayload) HasFormat() bool {
 	return false
 }
 
-// SetFormat gets a reference to the given string and assigns it to the Format field.
-func (o *ExportRecordSetsPayload) SetFormat(v string) {
+// SetFormat gets a reference to the given ExportRecordSetsPayloadFormat and assigns it to the Format field.
+func (o *ExportRecordSetsPayload) SetFormat(v ExportRecordSetsPayloadFormat) {
 	o.Format = &v
 }
 
