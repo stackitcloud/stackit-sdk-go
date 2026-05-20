@@ -294,6 +294,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.29.2](services/rabbitmq/CHANGELOG.md#v0292)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.30.0](services/rabbitmq/CHANGELOG.md#v0300)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
