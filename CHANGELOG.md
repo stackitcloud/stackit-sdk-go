@@ -169,6 +169,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.9.0](services/kms/CHANGELOG.md#v190)
     - **Improvement:** Use new WaitHandler struct for all wait handlers
+  - [v1.10.0](services/kms/CHANGELOG.md#v1100)
+    - `v1betaapi`: This API was removed after the announced deprecation period.
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
