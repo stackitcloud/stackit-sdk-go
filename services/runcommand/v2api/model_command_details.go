@@ -20,15 +20,15 @@ var _ MappedNullable = &CommandDetails{}
 
 // CommandDetails struct for CommandDetails
 type CommandDetails struct {
-	CommandTemplateName  *string `json:"commandTemplateName,omitempty"`
-	CommandTemplateTitle *string `json:"commandTemplateTitle,omitempty"`
-	ExitCode             *int32  `json:"exitCode,omitempty"`
-	FinishedAt           *string `json:"finishedAt,omitempty"`
-	Id                   *int32  `json:"id,omitempty"`
-	Output               *string `json:"output,omitempty"`
-	Script               *string `json:"script,omitempty"`
-	StartedAt            *string `json:"startedAt,omitempty"`
-	Status               *string `json:"status,omitempty"`
+	CommandTemplateName  *string               `json:"commandTemplateName,omitempty"`
+	CommandTemplateTitle *string               `json:"commandTemplateTitle,omitempty"`
+	ExitCode             *int32                `json:"exitCode,omitempty"`
+	FinishedAt           *string               `json:"finishedAt,omitempty"`
+	Id                   *int32                `json:"id,omitempty"`
+	Output               *string               `json:"output,omitempty"`
+	Script               *string               `json:"script,omitempty"`
+	StartedAt            *string               `json:"startedAt,omitempty"`
+	Status               *CommandDetailsStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -308,9 +308,9 @@ func (o *CommandDetails) SetStartedAt(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CommandDetails) GetStatus() string {
+func (o *CommandDetails) GetStatus() CommandDetailsStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret CommandDetailsStatus
 		return ret
 	}
 	return *o.Status
@@ -318,7 +318,7 @@ func (o *CommandDetails) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommandDetails) GetStatusOk() (*string, bool) {
+func (o *CommandDetails) GetStatusOk() (*CommandDetailsStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -334,8 +334,8 @@ func (o *CommandDetails) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CommandDetails) SetStatus(v string) {
+// SetStatus gets a reference to the given CommandDetailsStatus and assigns it to the Status field.
+func (o *CommandDetails) SetStatus(v CommandDetailsStatus) {
 	o.Status = &v
 }
 
