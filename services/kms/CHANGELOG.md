@@ -1,3 +1,6 @@
+# v1.10.0
+- `v1betaapi`: This API was removed after the announced deprecation period.
+
 ## v1.9.0
 - **Improvement:** Use new WaitHandler struct for all wait handlers
 
