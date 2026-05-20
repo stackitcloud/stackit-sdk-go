@@ -37,7 +37,7 @@ func newAPIMock(settings *mockSettings) mariadb.DefaultAPI {
 					StatusCode: 500,
 				}
 			}
-			if settings.instanceResourceOperation != nil && *settings.instanceResourceOperation == deleteOperation && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation != nil && *settings.instanceResourceOperation == deleteOperation && settings.instanceResourceState != nil && *settings.instanceResourceState == mariadb.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &mariadb.Instance{
 						InstanceId: &settings.instanceResourceId,

@@ -24,9 +24,9 @@ const (
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+	waitConfig := wait.WaiterHelper[logme.Instance, logme.InstanceStatus]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *logme.Instance) (string, error) {
+		GetState: func(response *logme.Instance) (logme.InstanceStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -35,8 +35,8 @@ func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, pro
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []logme.InstanceStatus{logme.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []logme.InstanceStatus{logme.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -46,9 +46,9 @@ func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, pro
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+	waitConfig := wait.WaiterHelper[logme.Instance, logme.InstanceStatus]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *logme.Instance) (string, error) {
+		GetState: func(response *logme.Instance) (logme.InstanceStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -57,8 +57,8 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultA
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []logme.InstanceStatus{logme.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []logme.InstanceStatus{logme.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -74,10 +74,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != logme.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == logme.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}
