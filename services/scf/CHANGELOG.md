@@ -1,3 +1,6 @@
+## v0.9.0
+- **Improvement:** Use new WaiterHelper for scf waiters
+
 ## v0.8.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

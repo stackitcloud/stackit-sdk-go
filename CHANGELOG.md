@@ -334,6 +334,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.8.0](services/scf/CHANGELOG.md#v080)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.9.0](services/scf/CHANGELOG.md#v090)
+    - **Improvement:** Use new WaiterHelper for scf waiters
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
