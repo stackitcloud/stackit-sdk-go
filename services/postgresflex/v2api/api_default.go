@@ -35,7 +35,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiCloneInstanceRequest
 	*/
-	CloneInstance(ctx context.Context, projectId string, region CloneInstanceRegionParameter, instanceId string) ApiCloneInstanceRequest
+	CloneInstance(ctx context.Context, projectId string, region string, instanceId string) ApiCloneInstanceRequest
 
 	// CloneInstanceExecute executes the request
 	//  @return CloneInstanceResponse
@@ -53,7 +53,7 @@ type DefaultAPI interface {
 			@param instanceId Instance ID
 			@return ApiCreateDatabaseRequest
 	*/
-	CreateDatabase(ctx context.Context, projectId string, region CreateDatabaseRegionParameter, instanceId string) ApiCreateDatabaseRequest
+	CreateDatabase(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequest
 
 	// CreateDatabaseExecute executes the request
 	//  @return InstanceCreateDatabaseResponse
@@ -69,7 +69,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiCreateInstanceRequest
 	*/
-	CreateInstance(ctx context.Context, projectId string, region CreateInstanceRegionParameter) ApiCreateInstanceRequest
+	CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return CreateInstanceResponse
@@ -86,7 +86,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiCreateUserRequest
 	*/
-	CreateUser(ctx context.Context, projectId string, region CreateUserRegionParameter, instanceId string) ApiCreateUserRequest
+	CreateUser(ctx context.Context, projectId string, region string, instanceId string) ApiCreateUserRequest
 
 	// CreateUserExecute executes the request
 	//  @return CreateUserResponse
@@ -104,7 +104,7 @@ type DefaultAPI interface {
 		@param databaseId Database ID
 		@return ApiDeleteDatabaseRequest
 	*/
-	DeleteDatabase(ctx context.Context, projectId string, region DeleteDatabaseRegionParameter, instanceId string, databaseId string) ApiDeleteDatabaseRequest
+	DeleteDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseId string) ApiDeleteDatabaseRequest
 
 	// DeleteDatabaseExecute executes the request
 	DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) error
@@ -120,7 +120,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiDeleteInstanceRequest
 	*/
-	DeleteInstance(ctx context.Context, projectId string, region DeleteInstanceRegionParameter, instanceId string) ApiDeleteInstanceRequest
+	DeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
@@ -137,7 +137,7 @@ type DefaultAPI interface {
 		@param userId User ID
 		@return ApiDeleteUserRequest
 	*/
-	DeleteUser(ctx context.Context, projectId string, region DeleteUserRegionParameter, instanceId string, userId string) ApiDeleteUserRequest
+	DeleteUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiDeleteUserRequest
 
 	// DeleteUserExecute executes the request
 	DeleteUserExecute(r ApiDeleteUserRequest) error
@@ -153,7 +153,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiForceDeleteInstanceRequest
 	*/
-	ForceDeleteInstance(ctx context.Context, projectId string, region ForceDeleteInstanceRegionParameter, instanceId string) ApiForceDeleteInstanceRequest
+	ForceDeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiForceDeleteInstanceRequest
 
 	// ForceDeleteInstanceExecute executes the request
 	ForceDeleteInstanceExecute(r ApiForceDeleteInstanceRequest) error
@@ -170,7 +170,7 @@ type DefaultAPI interface {
 		@param backupId Backup ID
 		@return ApiGetBackupRequest
 	*/
-	GetBackup(ctx context.Context, projectId string, region GetBackupRegionParameter, instanceId string, backupId string) ApiGetBackupRequest
+	GetBackup(ctx context.Context, projectId string, region string, instanceId string, backupId string) ApiGetBackupRequest
 
 	// GetBackupExecute executes the request
 	//  @return GetBackupResponse
@@ -187,7 +187,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiGetInstanceRequest
 	*/
-	GetInstance(ctx context.Context, projectId string, region GetInstanceRegionParameter, instanceId string) ApiGetInstanceRequest
+	GetInstance(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return InstanceResponse
@@ -205,7 +205,7 @@ type DefaultAPI interface {
 		@param userId User ID
 		@return ApiGetUserRequest
 	*/
-	GetUser(ctx context.Context, projectId string, region GetUserRegionParameter, instanceId string, userId string) ApiGetUserRequest
+	GetUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiGetUserRequest
 
 	// GetUserExecute executes the request
 	//  @return GetUserResponse
@@ -222,7 +222,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiListBackupsRequest
 	*/
-	ListBackups(ctx context.Context, projectId string, region ListBackupsRegionParameter, instanceId string) ApiListBackupsRequest
+	ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
 	//  @return ListBackupsResponse
@@ -239,7 +239,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiListDatabaseParametersRequest
 	*/
-	ListDatabaseParameters(ctx context.Context, projectId string, region ListDatabaseParametersRegionParameter, instanceId string) ApiListDatabaseParametersRequest
+	ListDatabaseParameters(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabaseParametersRequest
 
 	// ListDatabaseParametersExecute executes the request
 	//  @return PostgresDatabaseParameterResponse
@@ -256,7 +256,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiListDatabasesRequest
 	*/
-	ListDatabases(ctx context.Context, projectId string, region ListDatabasesRegionParameter, instanceId string) ApiListDatabasesRequest
+	ListDatabases(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabasesRequest
 
 	// ListDatabasesExecute executes the request
 	//  @return InstanceListDatabasesResponse
@@ -272,7 +272,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListFlavorsRequest
 	*/
-	ListFlavors(ctx context.Context, projectId string, region ListFlavorsRegionParameter) ApiListFlavorsRequest
+	ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest
 
 	// ListFlavorsExecute executes the request
 	//  @return ListFlavorsResponse
@@ -288,7 +288,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListInstancesRequest
 	*/
-	ListInstances(ctx context.Context, projectId string, region ListInstancesRegionParameter) ApiListInstancesRequest
+	ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return ListInstancesResponse
@@ -306,7 +306,7 @@ type DefaultAPI interface {
 		@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'.
 		@return ApiListMetricsRequest
 	*/
-	ListMetrics(ctx context.Context, projectId string, region ListMetricsRegionParameter, instanceId string, metric string) ApiListMetricsRequest
+	ListMetrics(ctx context.Context, projectId string, region string, instanceId string, metric string) ApiListMetricsRequest
 
 	// ListMetricsExecute executes the request
 	//  @return InstanceMetricsResponse
@@ -323,7 +323,7 @@ type DefaultAPI interface {
 		@param flavorId Flavor ID
 		@return ApiListStoragesRequest
 	*/
-	ListStorages(ctx context.Context, projectId string, region ListStoragesRegionParameter, flavorId string) ApiListStoragesRequest
+	ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest
 
 	// ListStoragesExecute executes the request
 	//  @return ListStoragesResponse
@@ -340,7 +340,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiListUsersRequest
 	*/
-	ListUsers(ctx context.Context, projectId string, region ListUsersRegionParameter, instanceId string) ApiListUsersRequest
+	ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest
 
 	// ListUsersExecute executes the request
 	//  @return ListUsersResponse
@@ -356,7 +356,7 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@return ApiListVersionsRequest
 	*/
-	ListVersions(ctx context.Context, projectId string, region ListVersionsRegionParameter) ApiListVersionsRequest
+	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
 	//  @return ListVersionsResponse
@@ -373,7 +373,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiPartialUpdateInstanceRequest
 	*/
-	PartialUpdateInstance(ctx context.Context, projectId string, region PartialUpdateInstanceRegionParameter, instanceId string) ApiPartialUpdateInstanceRequest
+	PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest
 
 	// PartialUpdateInstanceExecute executes the request
 	//  @return PartialUpdateInstanceResponse
@@ -391,7 +391,7 @@ type DefaultAPI interface {
 		@param userId The ID of the user in the database
 		@return ApiPartialUpdateUserRequest
 	*/
-	PartialUpdateUser(ctx context.Context, projectId string, region PartialUpdateUserRegionParameter, instanceId string, userId string) ApiPartialUpdateUserRequest
+	PartialUpdateUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiPartialUpdateUserRequest
 
 	// PartialUpdateUserExecute executes the request
 	PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) error
@@ -408,7 +408,7 @@ type DefaultAPI interface {
 		@param userId user ID
 		@return ApiResetUserRequest
 	*/
-	ResetUser(ctx context.Context, projectId string, region ResetUserRegionParameter, instanceId string, userId string) ApiResetUserRequest
+	ResetUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiResetUserRequest
 
 	// ResetUserExecute executes the request
 	//  @return ResetUserResponse
@@ -425,7 +425,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiUpdateBackupScheduleRequest
 	*/
-	UpdateBackupSchedule(ctx context.Context, projectId string, region UpdateBackupScheduleRegionParameter, instanceId string) ApiUpdateBackupScheduleRequest
+	UpdateBackupSchedule(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateBackupScheduleRequest
 
 	// UpdateBackupScheduleExecute executes the request
 	UpdateBackupScheduleExecute(r ApiUpdateBackupScheduleRequest) error
@@ -441,7 +441,7 @@ type DefaultAPI interface {
 		@param instanceId Instance ID
 		@return ApiUpdateInstanceRequest
 	*/
-	UpdateInstance(ctx context.Context, projectId string, region UpdateInstanceRegionParameter, instanceId string) ApiUpdateInstanceRequest
+	UpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceRequest
 
 	// UpdateInstanceExecute executes the request
 	//  @return PartialUpdateInstanceResponse
@@ -459,7 +459,7 @@ type DefaultAPI interface {
 		@param userId The ID of the user in the database
 		@return ApiUpdateUserRequest
 	*/
-	UpdateUser(ctx context.Context, projectId string, region UpdateUserRegionParameter, instanceId string, userId string) ApiUpdateUserRequest
+	UpdateUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiUpdateUserRequest
 
 	// UpdateUserExecute executes the request
 	UpdateUserExecute(r ApiUpdateUserRequest) error
@@ -472,7 +472,7 @@ type ApiCloneInstanceRequest struct {
 	ctx                  context.Context
 	ApiService           DefaultAPI
 	projectId            string
-	region               CloneInstanceRegionParameter
+	region               string
 	instanceId           string
 	cloneInstancePayload *CloneInstancePayload
 }
@@ -498,7 +498,7 @@ Clone an existing instance of a postgres database to a new destination instance
 	@param instanceId Instance ID
 	@return ApiCloneInstanceRequest
 */
-func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string, region CloneInstanceRegionParameter, instanceId string) ApiCloneInstanceRequest {
+func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string, region string, instanceId string) ApiCloneInstanceRequest {
 	return ApiCloneInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -629,7 +629,7 @@ type ApiCreateDatabaseRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	region                CreateDatabaseRegionParameter
+	region                string
 	instanceId            string
 	createDatabasePayload *CreateDatabasePayload
 }
@@ -656,7 +656,7 @@ Note: The name of a valid user must be provided in the "options" map field using
 	@param instanceId Instance ID
 	@return ApiCreateDatabaseRequest
 */
-func (a *DefaultAPIService) CreateDatabase(ctx context.Context, projectId string, region CreateDatabaseRegionParameter, instanceId string) ApiCreateDatabaseRequest {
+func (a *DefaultAPIService) CreateDatabase(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequest {
 	return ApiCreateDatabaseRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -787,7 +787,7 @@ type ApiCreateInstanceRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	region                CreateInstanceRegionParameter
+	region                string
 	createInstancePayload *CreateInstancePayload
 }
 
@@ -811,7 +811,7 @@ Create a new instance of a postgres database
 	@param region The region which should be addressed
 	@return ApiCreateInstanceRequest
 */
-func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, region CreateInstanceRegionParameter) ApiCreateInstanceRequest {
+func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -940,7 +940,7 @@ type ApiCreateUserRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	region            CreateUserRegionParameter
+	region            string
 	instanceId        string
 	createUserPayload *CreateUserPayload
 }
@@ -966,7 +966,7 @@ Create user for an instance
 	@param instanceId Instance ID
 	@return ApiCreateUserRequest
 */
-func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, region CreateUserRegionParameter, instanceId string) ApiCreateUserRequest {
+func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, region string, instanceId string) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1097,7 +1097,7 @@ type ApiDeleteDatabaseRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     DeleteDatabaseRegionParameter
+	region     string
 	instanceId string
 	databaseId string
 }
@@ -1118,7 +1118,7 @@ Delete database for an instance
 	@param databaseId Database ID
 	@return ApiDeleteDatabaseRequest
 */
-func (a *DefaultAPIService) DeleteDatabase(ctx context.Context, projectId string, region DeleteDatabaseRegionParameter, instanceId string, databaseId string) ApiDeleteDatabaseRequest {
+func (a *DefaultAPIService) DeleteDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseId string) ApiDeleteDatabaseRequest {
 	return ApiDeleteDatabaseRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1233,7 +1233,7 @@ type ApiDeleteInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     DeleteInstanceRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -1252,7 +1252,7 @@ Delete available instance
 	@param instanceId Instance ID
 	@return ApiDeleteInstanceRequest
 */
-func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, region DeleteInstanceRegionParameter, instanceId string) ApiDeleteInstanceRequest {
+func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1386,7 +1386,7 @@ type ApiDeleteUserRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     DeleteUserRegionParameter
+	region     string
 	instanceId string
 	userId     string
 }
@@ -1407,7 +1407,7 @@ Delete user for an instance
 	@param userId User ID
 	@return ApiDeleteUserRequest
 */
-func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, region DeleteUserRegionParameter, instanceId string, userId string) ApiDeleteUserRequest {
+func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1522,7 +1522,7 @@ type ApiForceDeleteInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ForceDeleteInstanceRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -1541,7 +1541,7 @@ Forces the deletion of an delayed deleted instance
 	@param instanceId Instance ID
 	@return ApiForceDeleteInstanceRequest
 */
-func (a *DefaultAPIService) ForceDeleteInstance(ctx context.Context, projectId string, region ForceDeleteInstanceRegionParameter, instanceId string) ApiForceDeleteInstanceRequest {
+func (a *DefaultAPIService) ForceDeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiForceDeleteInstanceRequest {
 	return ApiForceDeleteInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1675,7 +1675,7 @@ type ApiGetBackupRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     GetBackupRegionParameter
+	region     string
 	instanceId string
 	backupId   string
 }
@@ -1696,7 +1696,7 @@ Get specific available backup
 	@param backupId Backup ID
 	@return ApiGetBackupRequest
 */
-func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, region GetBackupRegionParameter, instanceId string, backupId string) ApiGetBackupRequest {
+func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, region string, instanceId string, backupId string) ApiGetBackupRequest {
 	return ApiGetBackupRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1824,7 +1824,7 @@ type ApiGetInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     GetInstanceRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -1843,7 +1843,7 @@ Get specific available instances
 	@param instanceId Instance ID
 	@return ApiGetInstanceRequest
 */
-func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, region GetInstanceRegionParameter, instanceId string) ApiGetInstanceRequest {
+func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1969,7 +1969,7 @@ type ApiGetUserRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     GetUserRegionParameter
+	region     string
 	instanceId string
 	userId     string
 }
@@ -1990,7 +1990,7 @@ Get specific available user for an instance
 	@param userId User ID
 	@return ApiGetUserRequest
 */
-func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, region GetUserRegionParameter, instanceId string, userId string) ApiGetUserRequest {
+func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2118,7 +2118,7 @@ type ApiListBackupsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListBackupsRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -2137,7 +2137,7 @@ List all backups which are available for a specific instance
 	@param instanceId Instance ID
 	@return ApiListBackupsRequest
 */
-func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, region ListBackupsRegionParameter, instanceId string) ApiListBackupsRequest {
+func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2263,7 +2263,7 @@ type ApiListDatabaseParametersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListDatabaseParametersRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -2282,7 +2282,7 @@ List available databases parameter
 	@param instanceId Instance ID
 	@return ApiListDatabaseParametersRequest
 */
-func (a *DefaultAPIService) ListDatabaseParameters(ctx context.Context, projectId string, region ListDatabaseParametersRegionParameter, instanceId string) ApiListDatabaseParametersRequest {
+func (a *DefaultAPIService) ListDatabaseParameters(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabaseParametersRequest {
 	return ApiListDatabaseParametersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2408,7 +2408,7 @@ type ApiListDatabasesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListDatabasesRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -2427,7 +2427,7 @@ List available databases for an instance
 	@param instanceId Instance ID
 	@return ApiListDatabasesRequest
 */
-func (a *DefaultAPIService) ListDatabases(ctx context.Context, projectId string, region ListDatabasesRegionParameter, instanceId string) ApiListDatabasesRequest {
+func (a *DefaultAPIService) ListDatabases(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabasesRequest {
 	return ApiListDatabasesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2553,7 +2553,7 @@ type ApiListFlavorsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListFlavorsRegionParameter
+	region     string
 }
 
 func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
@@ -2570,7 +2570,7 @@ Get available flavors for a specific projectID
 	@param region The region which should be addressed
 	@return ApiListFlavorsRequest
 */
-func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region ListFlavorsRegionParameter) ApiListFlavorsRequest {
+func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest {
 	return ApiListFlavorsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2694,7 +2694,7 @@ type ApiListInstancesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListInstancesRegionParameter
+	region     string
 }
 
 func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
@@ -2711,7 +2711,7 @@ List available instances
 	@param region The region which should be addressed
 	@return ApiListInstancesRequest
 */
-func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, region ListInstancesRegionParameter) ApiListInstancesRequest {
+func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2835,7 +2835,7 @@ type ApiListMetricsRequest struct {
 	ctx         context.Context
 	ApiService  DefaultAPI
 	projectId   string
-	region      ListMetricsRegionParameter
+	region      string
 	instanceId  string
 	metric      string
 	granularity *string
@@ -2884,7 +2884,7 @@ Returns a metric for an instance. The metric will only be for the master pod if 
 	@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'.
 	@return ApiListMetricsRequest
 */
-func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, region ListMetricsRegionParameter, instanceId string, metric string) ApiListMetricsRequest {
+func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, region string, instanceId string, metric string) ApiListMetricsRequest {
 	return ApiListMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3046,7 +3046,7 @@ type ApiListStoragesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListStoragesRegionParameter
+	region     string
 	flavorId   string
 }
 
@@ -3065,7 +3065,7 @@ Get available storages for a specific flavor
 	@param flavorId Flavor ID
 	@return ApiListStoragesRequest
 */
-func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, region ListStoragesRegionParameter, flavorId string) ApiListStoragesRequest {
+func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest {
 	return ApiListStoragesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3191,7 +3191,7 @@ type ApiListUsersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListUsersRegionParameter
+	region     string
 	instanceId string
 }
 
@@ -3210,7 +3210,7 @@ List available users for an instance
 	@param instanceId Instance ID
 	@return ApiListUsersRequest
 */
-func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, region ListUsersRegionParameter, instanceId string) ApiListUsersRequest {
+func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3336,7 +3336,7 @@ type ApiListVersionsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ListVersionsRegionParameter
+	region     string
 	instanceId *string
 }
 
@@ -3360,7 +3360,7 @@ Get available versions for postgres database
 	@param region The region which should be addressed
 	@return ApiListVersionsRequest
 */
-func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region ListVersionsRegionParameter) ApiListVersionsRequest {
+func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3487,7 +3487,7 @@ type ApiPartialUpdateInstanceRequest struct {
 	ctx                          context.Context
 	ApiService                   DefaultAPI
 	projectId                    string
-	region                       PartialUpdateInstanceRegionParameter
+	region                       string
 	instanceId                   string
 	partialUpdateInstancePayload *PartialUpdateInstancePayload
 }
@@ -3513,7 +3513,7 @@ Update available instance of a postgres database. Supported Versions are 12, 13,
 	@param instanceId Instance ID
 	@return ApiPartialUpdateInstanceRequest
 */
-func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, region PartialUpdateInstanceRegionParameter, instanceId string) ApiPartialUpdateInstanceRequest {
+func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3644,7 +3644,7 @@ type ApiPartialUpdateUserRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	region                   PartialUpdateUserRegionParameter
+	region                   string
 	instanceId               string
 	userId                   string
 	partialUpdateUserPayload *PartialUpdateUserPayload
@@ -3672,7 +3672,7 @@ Update user for an instance. Only the roles are updatable.
 	@param userId The ID of the user in the database
 	@return ApiPartialUpdateUserRequest
 */
-func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId string, region PartialUpdateUserRegionParameter, instanceId string, userId string) ApiPartialUpdateUserRequest {
+func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiPartialUpdateUserRequest {
 	return ApiPartialUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3799,7 +3799,7 @@ type ApiResetUserRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     ResetUserRegionParameter
+	region     string
 	instanceId string
 	userId     string
 }
@@ -3820,7 +3820,7 @@ Reset user password for a postgres instance
 	@param userId user ID
 	@return ApiResetUserRequest
 */
-func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, region ResetUserRegionParameter, instanceId string, userId string) ApiResetUserRequest {
+func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiResetUserRequest {
 	return ApiResetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3969,7 +3969,7 @@ type ApiUpdateBackupScheduleRequest struct {
 	ctx                         context.Context
 	ApiService                  DefaultAPI
 	projectId                   string
-	region                      UpdateBackupScheduleRegionParameter
+	region                      string
 	instanceId                  string
 	updateBackupSchedulePayload *UpdateBackupSchedulePayload
 }
@@ -3995,7 +3995,7 @@ Update backup schedule
 	@param instanceId Instance ID
 	@return ApiUpdateBackupScheduleRequest
 */
-func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId string, region UpdateBackupScheduleRegionParameter, instanceId string) ApiUpdateBackupScheduleRequest {
+func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateBackupScheduleRequest {
 	return ApiUpdateBackupScheduleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4113,7 +4113,7 @@ type ApiUpdateInstanceRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	region                UpdateInstanceRegionParameter
+	region                string
 	instanceId            string
 	updateInstancePayload *UpdateInstancePayload
 }
@@ -4139,7 +4139,7 @@ Update available instance of a postgres database. Supported Versions are 12, 13,
 	@param instanceId Instance ID
 	@return ApiUpdateInstanceRequest
 */
-func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, region UpdateInstanceRegionParameter, instanceId string) ApiUpdateInstanceRequest {
+func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4270,7 +4270,7 @@ type ApiUpdateUserRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	region            UpdateUserRegionParameter
+	region            string
 	instanceId        string
 	userId            string
 	updateUserPayload *UpdateUserPayload
@@ -4298,7 +4298,7 @@ Update user for an instance. Only the roles are updatable.
 	@param userId The ID of the user in the database
 	@return ApiUpdateUserRequest
 */
-func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, region UpdateUserRegionParameter, instanceId string, userId string) ApiUpdateUserRequest {
+func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, region string, instanceId string, userId string) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
