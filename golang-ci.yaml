@@ -49,6 +49,8 @@ linters:
         - G102 # "Bind to all interfaces" -> since this is normal in k8s
         - G304 # "File path provided as taint input" -> too many false positives
         - G307 # "Deferring unsafe method "Close" on type "io.ReadCloser" -> false positive when calling defer resp.Body.Close()
+        - G117 # "Marshaled struct field xxx (JSON key xxx) matches secret pattern" -> too many false positives, no true positives expected in our code
+        - G704 # "SSRF via taint analysis" -> too many false positives
     misspell:
       # Correct spellings using locale preferences for US or UK.
       # Default is to use a neutral variety of English.
@@ -79,9 +81,6 @@ linters:
         # This ignores all deprecation warnings in the old wait packages while we have the compatibilty layer in place
         path: wait/[^/]+\.go$
         text: "SA1019:"
-    paths:
-      - third_party$
-      - builtin$
 formatters:
   enable:
     - gofmt
@@ -94,6 +93,3 @@ formatters:
         - github.com/stackitcloud/stackit-sdk-go
   exclusions:
     generated: lax
-    paths:
-      - third_party$
-      - builtin$

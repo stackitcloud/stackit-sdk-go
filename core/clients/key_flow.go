@@ -392,11 +392,11 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 	}
 
 	payload := strings.NewReader(body.Encode())
-	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload) //nolint:gosec // G704: Tainted URL is expected here
+	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	return c.authClient.Do(req) //nolint:gosec // G704: Tainted URL is expected here
+	return c.authClient.Do(req)
 }

@@ -217,7 +217,7 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 					TokenType:   "Bearer",
 				}
 
-				payload, err := json.Marshal(tokenResponse) //nolint:gosec // G117: access_token is a standard field name
+				payload, err := json.Marshal(tokenResponse)
 				if err != nil {
 					t.Fatalf("failed to create token payload: %v", err)
 				}
