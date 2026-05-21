@@ -111,6 +111,8 @@
   - [v0.21.0](services/dns/CHANGELOG.md#v0210)
     - **Feature:** Introduce enums for various attributes
 - `dremio`
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Breaking change**: move waiters from `v1alphaapi/wait/wait` to `v1alphaapi/wait`
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - Manage your STACKIT Dremio resources: `DremioInstance`, `DremioUser`
     - Waiters for async operations: `CreateDremioInstanceWaitHandler`, `UpdateDremioInstanceWaitHandler`, `DeleteDremioInstanceWaitHandler`, `CreateDremioUserWaitHandler`, `UpdateDremioUserWaitHandler`, `DeleteDremioUserWaitHandler`
@@ -161,6 +163,11 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.11.1](services/iaas/CHANGELOG.md#v1111)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
+  - [v1.12.0](services/iaas/CHANGELOG.md#v1120)
+    - Removal of deprecated WaitHandler: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+    - `v2api`
+      - **Improvement**: Use new `WaiterHandler` struct in the IaaS WaitHandler
+      - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -311,6 +318,8 @@
   - [v0.27.2](services/opensearch/CHANGELOG.md#v0272)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.28.0](services/opensearch/CHANGELOG.md#v0280)
+    - **Improvement:** Use new WaiterHelper for opensearch waiters
+  - [v0.29.0](services/opensearch/CHANGELOG.md#v0290)
     - **Feature:** Introduce enums for various attributes
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
@@ -469,6 +478,8 @@
     - **Feature:** new model `SnapshotPolicySnapshotPolicySchedule`
   - [v0.10.0](services/sfs/CHANGELOG.md#v0100)
     - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
+  - [v0.10.1](services/sfs/CHANGELOG.md#v0101)
+    - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -503,6 +514,8 @@
   - [v1.10.0](services/sqlserverflex/CHANGELOG.md#v1100)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
+    - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
+  - [v1.12.0](services/sqlserverflex/CHANGELOG.md#v1120)
     - **Feature:** Introduce enums for various attributes
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 

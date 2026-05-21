@@ -1,3 +1,6 @@
+## v0.10.1
+- **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
+
 ## v0.10.0
 - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
 

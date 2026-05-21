@@ -1,3 +1,9 @@
+## v1.12.0
+- Removal of deprecated WaitHandler: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+- `v2api`
+    - **Improvement**: Use new `WaiterHandler` struct in the IaaS WaitHandler
+    - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
+
 ## v1.11.1
 - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
 
