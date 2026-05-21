@@ -147,6 +147,11 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.11.1](services/iaas/CHANGELOG.md#v1111)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
+  - [v1.12.0](services/iaas/CHANGELOG.md#v1120)
+    - Removal of deprecated WaitHandler: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+    - `v2api`
+      - **Improvement**: Use new `WaiterHandler` struct in the IaaS WaitHandler
+      - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -171,6 +176,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.9.0](services/kms/CHANGELOG.md#v190)
     - **Improvement:** Use new WaitHandler struct for all wait handlers
+  - [v1.10.0](services/kms/CHANGELOG.md#v1100)
+    - `v1betaapi`: This API was removed after the announced deprecation period.
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -199,6 +206,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/logme/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/logme/CHANGELOG.md#v0290)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -219,6 +228,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/mariadb/CHANGELOG.md#v282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/mariadb/CHANGELOG.md#v290)
+    - **Improvement:** Use new WaiterHelper for Logs waiters
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -261,6 +272,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.21.2](services/observability/CHANGELOG.md#v0212)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.22.0](services/observability/CHANGELOG.md#v0220)
+    - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -270,6 +283,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.27.2](services/opensearch/CHANGELOG.md#v0272)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.28.0](services/opensearch/CHANGELOG.md#v0280)
+    - **Improvement:** Use new WaiterHelper for opensearch waiters
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -330,6 +345,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.8.0](services/scf/CHANGELOG.md#v080)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.9.0](services/scf/CHANGELOG.md#v090)
+    - **Improvement:** Use new WaiterHelper for scf waiters
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -411,6 +428,8 @@
     - **Feature:** new model `SnapshotPolicySnapshotPolicySchedule`
   - [v0.10.0](services/sfs/CHANGELOG.md#v0100)
     - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
+  - [v0.10.1](services/sfs/CHANGELOG.md#v0101)
+    - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -442,6 +461,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.10.0](services/sqlserverflex/CHANGELOG.md#v1100)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
+    - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -481,6 +502,11 @@
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - `v1api`:
       - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
+  - [v0.9.0](services/vpn/CHANGELOG.md#v090)
+    - `v1api`:
+      - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1api"
 )
 
@@ -23,9 +22,7 @@ func main() {
 	psk := "Super.$ecret_Shared3Key12345"
 
 	// Create a new API client, that uses default authentication and configuration
-	vpnClient, err := vpn.NewAPIClient(
-		config.WithRegion(region),
-	)
+	vpnClient, err := vpn.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)

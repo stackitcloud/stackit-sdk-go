@@ -306,7 +306,7 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -367,7 +367,7 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -430,7 +430,7 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -498,7 +498,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -561,7 +561,7 @@ func TestDeleteVolumeWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -629,7 +629,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -692,7 +692,7 @@ func TestDeleteServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -772,7 +772,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -840,7 +840,7 @@ func TestStartServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -908,7 +908,7 @@ func TestStopServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -976,7 +976,7 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1044,7 +1044,7 @@ func TestRescueServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1112,7 +1112,7 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1209,7 +1209,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1269,7 +1269,7 @@ func TestAddVolumeToServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1329,7 +1329,7 @@ func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1397,7 +1397,7 @@ func TestUploadImageWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1512,7 +1512,7 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1633,7 +1633,7 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1700,7 +1700,7 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1712,16 +1712,17 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
+		isDeleted     bool
 		resourceState string
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
-			desc:          "delete_succeeded",
-			getFails:      false,
-			resourceState: DeleteSuccess,
-			wantErr:       false,
-			wantResp:      true,
+			desc:      "delete_succeeded",
+			getFails:  false,
+			isDeleted: true,
+			wantErr:   false,
+			wantResp:  false,
 		},
 		{
 			desc:          "error_status",
@@ -1750,6 +1751,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newIaaSAPIMock(&iaasMockSettings{
 					getSnapshotFails: tt.getFails,
+					isDeleted:        tt.isDeleted,
 					resourceState:    tt.resourceState,
 				})
 
@@ -1767,7 +1769,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1918,7 +1920,7 @@ func TestReadyForNetworkAreaDeletionWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -1978,7 +1980,7 @@ func TestCreateNetworkAreaRegionWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
@@ -2040,7 +2042,7 @@ func TestDeleteNetworkAreaRegionWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes) {
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})

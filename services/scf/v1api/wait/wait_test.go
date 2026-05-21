@@ -68,7 +68,7 @@ func TestDeleteOrganizationWaitHandler(t *testing.T) {
 		{
 			desc:           "Instance is in error state",
 			wantErr:        true,
-			returnInstance: true,
+			returnInstance: false,
 			getOrgResponse: &scf.Organization{
 				Status: statusDeletingFailed,
 			},
