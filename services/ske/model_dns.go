@@ -46,6 +46,33 @@ func setDNSgetEnabledAttributeType(arg *DNSgetEnabledAttributeType, val DNSgetEn
 }
 
 /*
+	types and functions for gatewayApi
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DNSgetGatewayApiAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DNSgetGatewayApiArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DNSgetGatewayApiRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getDNSgetGatewayApiAttributeTypeOk(arg DNSgetGatewayApiAttributeType) (ret DNSgetGatewayApiRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setDNSgetGatewayApiAttributeType(arg *DNSgetGatewayApiAttributeType, val DNSgetGatewayApiRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for zones
 */
 
@@ -78,7 +105,9 @@ type DNS struct {
 	// Enables the dns extension.
 	// REQUIRED
 	Enabled DNSgetEnabledAttributeType `json:"enabled" required:"true"`
-	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
+	// Enables Gateway API support for ExternalDNS. The CRDs must be installed by the user. Once installed, ExternalDNS will be configured at the next cluster reconcile.
+	GatewayApi DNSgetGatewayApiAttributeType `json:"gatewayApi,omitempty"`
+	// Array of domain filters for ExternalDNS, e.g., *.runs.onstackit.cloud.
 	Zones DNSGetZonesAttributeType `json:"zones,omitempty"`
 }
 
@@ -125,6 +154,33 @@ func (o *DNS) SetEnabled(v DNSgetEnabledRetType) {
 	setDNSgetEnabledAttributeType(&o.Enabled, v)
 }
 
+// GetGatewayApi returns the GatewayApi field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *DNS) GetGatewayApi() (res DNSgetGatewayApiRetType) {
+	res, _ = o.GetGatewayApiOk()
+	return
+}
+
+// GetGatewayApiOk returns a tuple with the GatewayApi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *DNS) GetGatewayApiOk() (ret DNSgetGatewayApiRetType, ok bool) {
+	return getDNSgetGatewayApiAttributeTypeOk(o.GatewayApi)
+}
+
+// HasGatewayApi returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *DNS) HasGatewayApi() bool {
+	_, ok := o.GetGatewayApiOk()
+	return ok
+}
+
+// SetGatewayApi gets a reference to the given bool and assigns it to the GatewayApi field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *DNS) SetGatewayApi(v DNSgetGatewayApiRetType) {
+	setDNSgetGatewayApiAttributeType(&o.GatewayApi, v)
+}
+
 // GetZones returns the Zones field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *DNS) GetZones() (res DNSGetZonesRetType) {
@@ -157,6 +213,9 @@ func (o DNS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDNSgetEnabledAttributeTypeOk(o.Enabled); ok {
 		toSerialize["Enabled"] = val
+	}
+	if val, ok := getDNSgetGatewayApiAttributeTypeOk(o.GatewayApi); ok {
+		toSerialize["GatewayApi"] = val
 	}
 	if val, ok := getDNSGetZonesAttributeTypeOk(o.Zones); ok {
 		toSerialize["Zones"] = val
