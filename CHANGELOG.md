@@ -454,6 +454,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.10.0](services/sqlserverflex/CHANGELOG.md#v1100)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
+    - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
