@@ -221,6 +221,7 @@ type SnapshotPolicySnapshotPolicySchedule struct {
 	// Prefix used for the snapshots created by this policy
 	Prefix SnapshotPolicySnapshotPolicyScheduleGetPrefixAttributeType `json:"prefix,omitempty"`
 	// Retention Count
+	// Can be cast to int32 without loss of precision.
 	RetentionCount SnapshotPolicySnapshotPolicyScheduleGetRetentionCountAttributeType `json:"retentionCount,omitempty"`
 	// Retention Period (ISO 8601 format or \"infinite\")
 	RetentionPeriod SnapshotPolicySnapshotPolicyScheduleGetRetentionPeriodAttributeType `json:"retentionPeriod,omitempty"`
