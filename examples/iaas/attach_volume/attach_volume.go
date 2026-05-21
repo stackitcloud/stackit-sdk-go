@@ -14,9 +14,9 @@ import (
 
 func main() {
 	// Specify the project ID, server ID, volume ID and region
-	projectId := "66b03760-125b-4c63-9624-741e8a418c02" // the uuid of your STACKIT project
-	serverId := "cd5db3c9-c558-4147-9a27-1d5b2f0c6cc5"
-	volumeId := "2d604eb7-1444-4420-b0c9-6f5774c09d16"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+	serverId := "SERVER_ID"
+	volumeId := "VOLUME_ID"
 	region := "eu01"
 
 	// Create a new API client, that uses default authentication and configuration
