@@ -14,12 +14,24 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = logme.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = logme.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = logme.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = logme.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = logme.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = logme.INSTANCESTATUS_UPDATING
 )
 
 // CreateInstanceWaitHandler will wait for instance creation

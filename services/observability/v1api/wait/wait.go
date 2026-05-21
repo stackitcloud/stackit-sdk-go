@@ -10,15 +10,33 @@ import (
 )
 
 const (
-	GETINSTANCERESPONSESTATUS_CREATING         = "CREATING"
-	GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED = "CREATE_SUCCEEDED"
-	GETINSTANCERESPONSESTATUS_CREATE_FAILED    = "CREATE_FAILED"
-	GETINSTANCERESPONSESTATUS_DELETING         = "DELETING"
-	GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED = "DELETE_SUCCEEDED"
-	GETINSTANCERESPONSESTATUS_DELETE_FAILED    = "DELETE_FAILED"
-	GETINSTANCERESPONSESTATUS_UPDATING         = "UPDATING"
-	GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED = "UPDATE_SUCCEEDED"
-	GETINSTANCERESPONSESTATUS_UPDATE_FAILED    = "UPDATE_FAILED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_CREATING = observability.STATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED = observability.STATUS_CREATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_CREATE_FAILED = observability.STATUS_CREATE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_DELETING = observability.STATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED = observability.STATUS_DELETE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_DELETE_FAILED = observability.STATUS_DELETE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_UPDATING = observability.STATUS_UPDATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED = observability.STATUS_UPDATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	GETINSTANCERESPONSESTATUS_UPDATE_FAILED = observability.STATUS_UPDATE_FAILED
 )
 
 // CreateInstanceWaitHandler will wait for instance creation

@@ -10,10 +10,18 @@ import (
 )
 
 const (
-	TOKENSTATE_CREATING = "creating"
-	TOKENSTATE_ACTIVE   = "active"
-	TOKENSTATE_DELETING = "deleting"
-	TOKENSTATE_INACTIVE = "inactive"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_CREATING = modelserving.TOKENSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_ACTIVE = modelserving.TOKENSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_DELETING = modelserving.TOKENSTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_INACTIVE = modelserving.TOKENSTATE_INACTIVE
 )
 
 func CreateModelServingWaitHandler(ctx context.Context, a modelserving.DefaultAPI, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {

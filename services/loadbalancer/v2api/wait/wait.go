@@ -13,11 +13,21 @@ import (
 
 // Load balancer instance status
 const (
-	LOADBALANCERSTATUS_UNSPECIFIED = "STATUS_UNSPECIFIED"
-	LOADBALANCERSTATUS_PENDING     = "STATUS_PENDING"
-	LOADBALANCERSTATUS_READY       = "STATUS_READY"
-	LOADBALANCERSTATUS_ERROR       = "STATUS_ERROR"
-	LOADBALANCERSTATUS_TERMINATING = "STATUS_TERMINATING"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_UNSPECIFIED = loadbalancer.LOADBALANCERSTATUS_STATUS_UNSPECIFIED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_PENDING = loadbalancer.LOADBALANCERSTATUS_STATUS_PENDING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_READY = loadbalancer.LOADBALANCERSTATUS_STATUS_READY
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_ERROR = loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_TERMINATING = loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING
 )
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation

@@ -11,29 +11,69 @@ import (
 )
 
 const (
-	VERSIONSTATE_ACTIVE                   = "active"
-	VERSIONSTATE_CREATING                 = "creating"
-	VERSIONSTATE_KEY_MATERIAL_INVALID     = "key_material_invalid"
-	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE = "key_material_unavailable"
-	VERSIONSTATE_DISABLED                 = "disabled"
-	VERSIONSTATE_DESTROYED                = "destroyed"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_ACTIVE = kms.VERSIONSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_CREATING = kms.VERSIONSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_KEY_MATERIAL_INVALID = kms.VERSIONSTATE_KEY_MATERIAL_INVALID
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE = kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_DISABLED = kms.VERSIONSTATE_DISABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_DESTROYED = kms.VERSIONSTATE_DESTROYED
 
-	KEYRINGSTATE_CREATING = "creating"
-	KEYRINGSTATE_ACTIVE   = "active"
-	KEYRINGSTATE_DELETED  = "deleted"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_CREATING = kms.KEYRINGSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_ACTIVE = kms.KEYRINGSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_DELETED = kms.KEYRINGSTATE_DELETED
 
-	WRAPPINGKEYSTATE_ACTIVE                   = "active"
-	WRAPPINGKEYSTATE_CREATING                 = "creating"
-	WRAPPINGKEYSTATE_EXPIRED                  = "expired"
-	WRAPPINGKEYSTATE_DELETED                  = "deleted"
-	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE = "key_material_unavailable"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_ACTIVE = kms.WRAPPINGKEYSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_CREATING = kms.WRAPPINGKEYSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_EXPIRED = kms.WRAPPINGKEYSTATE_EXPIRED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_DELETED = kms.WRAPPINGKEYSTATE_DELETED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE = kms.WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE
 
-	KEYSTATE_ACTIVE        = "active"
-	KEYSTATE_DELETED       = "deleted"
-	KEYSTATE_NOT_AVAILABLE = "not_available"
-	KEYSTATE_ERRORS_EXIST  = "errors_exist"
-	KEYSTATE_CREATING      = "creating"
-	KEYSTATE_NO_VERSION    = "no_version"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_ACTIVE = kms.KEYSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_DELETED = kms.KEYSTATE_DELETED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_NOT_AVAILABLE = kms.KEYSTATE_NOT_AVAILABLE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_ERRORS_EXIST = kms.KEYSTATE_ERRORS_EXIST
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_CREATING = kms.KEYSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_NO_VERSION = kms.KEYSTATE_NO_VERSION
 )
 
 func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region kms.ListKeyRingsRegionIdParameter, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {

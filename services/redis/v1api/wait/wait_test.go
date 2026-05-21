@@ -264,7 +264,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 					instanceGetFails:                   tt.getFails,
 					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 					instanceResourceId:                 instanceId,
-					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceOperation:          redis.INSTANCELASTOPERATIONTYPE_DELETE,
 					instanceResourceDescription:        tt.resourceDescription,
 					instanceResourceState:              tt.resourceState,
 				})

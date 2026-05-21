@@ -15,10 +15,18 @@ import (
 const timeoutMinutes time.Duration = 10
 
 const (
-	INSTANCESTATUS_ERROR       = "error"
-	INSTANCESTATUS_RECONCILING = "reconciling"
-	INSTANCESTATUS_ACTIVE      = "active"
-	INSTANCESTATUS_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ERROR = edge.INSTANCESTATUS_ERROR
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_RECONCILING = edge.INSTANCESTATUS_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = edge.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = edge.INSTANCESTATUS_DELETING
 )
 
 var (

@@ -13,16 +13,34 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = rabbitmq.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = rabbitmq.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = rabbitmq.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = rabbitmq.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = rabbitmq.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = rabbitmq.INSTANCESTATUS_UPDATING
 
-	INSTANCELASTOPERATIONTYPE_CREATE = "create"
-	INSTANCELASTOPERATIONTYPE_UPDATE = "update"
-	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_CREATE = rabbitmq.INSTANCELASTOPERATIONTYPE_CREATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_UPDATE = rabbitmq.INSTANCELASTOPERATIONTYPE_UPDATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_DELETE = rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
 // CreateInstanceWaitHandler will wait for instance creation

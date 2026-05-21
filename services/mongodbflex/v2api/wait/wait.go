@@ -13,11 +13,21 @@ import (
 )
 
 const (
-	INSTANCESTATUS_READY      = "READY"
-	INSTANCESTATUS_PENDING    = "PENDING"
-	INSTANCESTATUS_PROCESSING = "PROCESSING"
-	INSTANCESTATUS_FAILED     = "FAILED"
-	INSTANCESTATUS_UNKNOWN    = "UNKNOWN"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_READY = mongodbflex.INSTANCESTATUS_READY
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_PENDING = mongodbflex.INSTANCESTATUS_PENDING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_PROCESSING = mongodbflex.INSTANCESTATUS_PROCESSING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = mongodbflex.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UNKNOWN = mongodbflex.INSTANCESTATUS_UNKNOWN
 
 	RestoreJobProcessing = "IN_PROGRESS"
 	RestoreJobFinished   = "FINISHED"

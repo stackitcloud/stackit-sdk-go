@@ -10,10 +10,18 @@ import (
 )
 
 const (
-	SERVICESTATUSSTATE_ENABLED   = "ENABLED"
-	SERVICESTATUSSTATE_ENABLING  = "ENABLING"
-	SERVICESTATUSSTATE_DISABLED  = "DISABLED"
-	SERVICESTATUSSTATE_DISABLING = "DISABLING"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_ENABLED = serviceenablement.SERVICESTATUSSTATE_ENABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_ENABLING = serviceenablement.SERVICESTATUSSTATE_ENABLING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_DISABLED = serviceenablement.SERVICESTATUSSTATE_DISABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_DISABLING = serviceenablement.SERVICESTATUSSTATE_DISABLING
 )
 
 func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAPI, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {

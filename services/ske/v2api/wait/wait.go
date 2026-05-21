@@ -10,13 +10,25 @@ import (
 )
 
 const (
-	CREDENTIALSROTATIONSTATEPHASE_NEVER      = "NEVER"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARING  = "PREPARING"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARED   = "PREPARED"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = "COMPLETING"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETED  = "COMPLETED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_NEVER = ske.CREDENTIALSROTATIONSTATEPHASE_NEVER
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARING = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARED = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETED = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED
 
-	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND
 )
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update

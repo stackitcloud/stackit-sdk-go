@@ -11,25 +11,61 @@ import (
 )
 
 const (
-	ZONESTATE_CREATING         = "CREATING"
-	ZONESTATE_CREATE_SUCCEEDED = "CREATE_SUCCEEDED"
-	ZONESTATE_CREATE_FAILED    = "CREATE_FAILED"
-	ZONESTATE_DELETING         = "DELETING"
-	ZONESTATE_DELETE_SUCCEEDED = "DELETE_SUCCEEDED"
-	ZONESTATE_DELETE_FAILED    = "DELETE_FAILED"
-	ZONESTATE_UPDATING         = "UPDATING"
-	ZONESTATE_UPDATE_SUCCEEDED = "UPDATE_SUCCEEDED"
-	ZONESTATE_UPDATE_FAILED    = "UPDATE_FAILED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_CREATING = dns.ZONESTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_CREATE_SUCCEEDED = dns.ZONESTATE_CREATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_CREATE_FAILED = dns.ZONESTATE_CREATE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_DELETING = dns.ZONESTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_DELETE_SUCCEEDED = dns.ZONESTATE_DELETE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_DELETE_FAILED = dns.ZONESTATE_DELETE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_UPDATING = dns.ZONESTATE_UPDATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_UPDATE_SUCCEEDED = dns.ZONESTATE_UPDATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	ZONESTATE_UPDATE_FAILED = dns.ZONESTATE_UPDATE_FAILED
 
-	RECORDSETSTATE_CREATING         = "CREATING"
-	RECORDSETSTATE_CREATE_SUCCEEDED = "CREATE_SUCCEEDED"
-	RECORDSETSTATE_CREATE_FAILED    = "CREATE_FAILED"
-	RECORDSETSTATE_DELETING         = "DELETING"
-	RECORDSETSTATE_DELETE_SUCCEEDED = "DELETE_SUCCEEDED"
-	RECORDSETSTATE_DELETE_FAILED    = "DELETE_FAILED"
-	RECORDSETSTATE_UPDATING         = "UPDATING"
-	RECORDSETSTATE_UPDATE_SUCCEEDED = "UPDATE_SUCCEEDED"
-	RECORDSETSTATE_UPDATE_FAILED    = "UPDATE_FAILED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_CREATING = dns.RECORDSETSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_CREATE_SUCCEEDED = dns.RECORDSETSTATE_CREATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_CREATE_FAILED = dns.RECORDSETSTATE_CREATE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_DELETING = dns.RECORDSETSTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_DELETE_SUCCEEDED = dns.RECORDSETSTATE_DELETE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_DELETE_FAILED = dns.RECORDSETSTATE_DELETE_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_UPDATING = dns.RECORDSETSTATE_UPDATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_UPDATE_SUCCEEDED = dns.RECORDSETSTATE_UPDATE_SUCCEEDED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RECORDSETSTATE_UPDATE_FAILED = dns.RECORDSETSTATE_CREATE_FAILED
 )
 
 // CreateZoneWaitHandler will wait for zone creation

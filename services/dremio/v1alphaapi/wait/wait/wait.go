@@ -11,11 +11,19 @@ import (
 )
 
 const (
-	DREMIOSTATE_ACTIVE = "active"
-	DREMIOSTATE_ERROR  = "error"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	DREMIOSTATE_ACTIVE = dremio.DREMIORESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	DREMIOSTATE_ERROR = dremio.DREMIORESPONSESTATE_ERROR
 
-	DREMIOUSERSTATE_ACTIVE = "active"
-	DREMIOUSERSTATE_ERROR  = "error"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	DREMIOUSERSTATE_ACTIVE = dremio.DREMIOUSERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	DREMIOUSERSTATE_ERROR = dremio.DREMIOUSERRESPONSESTATE_ERROR
 )
 
 // CreateDremioWaitHandler will wait for the creation of a Dremio instance
