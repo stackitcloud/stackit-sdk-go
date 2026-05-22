@@ -21,7 +21,7 @@ var _ MappedNullable = &VPNTunnels{}
 type VPNTunnels struct {
 	BgpStatus     NullableBGPStatus `json:"bgpStatus,omitempty"`
 	InstanceState *GatewayStatus    `json:"instanceState,omitempty"`
-	Name          *string           `json:"name,omitempty"`
+	Name          *VPNTunnelsName   `json:"name,omitempty"`
 	// The public IPv4 address of this endpoint.
 	PublicIP             *string `json:"publicIP,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -122,9 +122,9 @@ func (o *VPNTunnels) SetInstanceState(v GatewayStatus) {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *VPNTunnels) GetName() string {
+func (o *VPNTunnels) GetName() VPNTunnelsName {
 	if o == nil || IsNil(o.Name) {
-		var ret string
+		var ret VPNTunnelsName
 		return ret
 	}
 	return *o.Name
@@ -132,7 +132,7 @@ func (o *VPNTunnels) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VPNTunnels) GetNameOk() (*string, bool) {
+func (o *VPNTunnels) GetNameOk() (*VPNTunnelsName, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -148,8 +148,8 @@ func (o *VPNTunnels) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VPNTunnels) SetName(v string) {
+// SetName gets a reference to the given VPNTunnelsName and assigns it to the Name field.
+func (o *VPNTunnels) SetName(v VPNTunnelsName) {
 	o.Name = &v
 }
 
