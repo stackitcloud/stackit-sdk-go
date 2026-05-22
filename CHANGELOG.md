@@ -540,6 +540,8 @@
     - **New**: API for STACKIT Telemetry Link
   - [v0.1.1](services/telemetrylink/CHANGELOG.md#v011)
     - **Improvement**: Use new `WaiterHandler` struct in the TelemetryLink WaitHandler
+  - [v0.2.0](services/telemetrylink/CHANGELOG.md#v020)
+    - **Feature:** Introduce enums for various attributes
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
