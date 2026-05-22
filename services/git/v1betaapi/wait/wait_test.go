@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/google/uuid"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -68,7 +69,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				Created: time.Now(),
 				Id:      INSTANCE_ID,
 				Name:    "instance-test",
-				State:   INSTANCESTATE_READY,
+				State:   git.INSTANCESTATE_READY,
 				Url:     "https://testing.git.onstackit.cloud",
 				Version: "v1.6.0",
 			},
@@ -85,7 +86,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				Created: time.Now(),
 				Id:      INSTANCE_ID,
 				Name:    "instance-test",
-				State:   INSTANCESTATE_READY,
+				State:   git.INSTANCESTATE_READY,
 				Url:     "https://testing.git.onstackit.cloud",
 				Version: "v1.6.0",
 			},
@@ -102,7 +103,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				Created: time.Now(),
 				Id:      INSTANCE_ID,
 				Name:    "instance-test",
-				State:   INSTANCESTATE_ERROR,
+				State:   git.INSTANCESTATE_ERROR,
 				Url:     "https://testing.git.onstackit.cloud",
 				Version: "v1.6.0",
 			},
@@ -175,7 +176,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
 
-				if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{})) {
+				if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{}), cmpopts.EquateComparable(git.NullableFeatureToggleDefaultEmailNotifications{})) {
 					t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
 				}
 			})
@@ -208,7 +209,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 				Created: time.Now(),
 				Id:      INSTANCE_ID,
 				Name:    "instance-test",
-				State:   INSTANCESTATE_READY,
+				State:   git.INSTANCESTATE_READY,
 				Url:     "https://testing.git.onstackit.cloud",
 				Version: "v1.6.0",
 			},

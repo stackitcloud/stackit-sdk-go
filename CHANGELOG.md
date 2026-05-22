@@ -146,6 +146,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.13.0](services/git/CHANGELOG.md#v0130)    
     - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Git WaitHandler
+  - [v0.14.0](services/git/CHANGELOG.md#v0140)
+    - **Feature:** Introduce enums for various attributes
 - `iaas`:
   - [v1.9.1](services/iaas/CHANGELOG.md#v191)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

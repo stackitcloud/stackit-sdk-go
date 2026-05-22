@@ -1,3 +1,6 @@
+## v0.14.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.13.0
 - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Git WaitHandler
 
