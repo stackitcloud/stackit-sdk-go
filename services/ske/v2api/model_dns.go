@@ -22,9 +22,7 @@ var _ MappedNullable = &DNS{}
 type DNS struct {
 	// Enables the dns extension.
 	Enabled bool `json:"enabled"`
-	// Enables Gateway API support for ExternalDNS. The CRDs must be installed by the user. Once installed, ExternalDNS will be configured at the next cluster reconcile.
-	GatewayApi *bool `json:"gatewayApi,omitempty"`
-	// Array of domain filters for ExternalDNS, e.g., *.runs.onstackit.cloud.
+	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
 	Zones                []string `json:"zones,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -73,38 +71,6 @@ func (o *DNS) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetGatewayApi returns the GatewayApi field value if set, zero value otherwise.
-func (o *DNS) GetGatewayApi() bool {
-	if o == nil || IsNil(o.GatewayApi) {
-		var ret bool
-		return ret
-	}
-	return *o.GatewayApi
-}
-
-// GetGatewayApiOk returns a tuple with the GatewayApi field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DNS) GetGatewayApiOk() (*bool, bool) {
-	if o == nil || IsNil(o.GatewayApi) {
-		return nil, false
-	}
-	return o.GatewayApi, true
-}
-
-// HasGatewayApi returns a boolean if a field has been set.
-func (o *DNS) HasGatewayApi() bool {
-	if o != nil && !IsNil(o.GatewayApi) {
-		return true
-	}
-
-	return false
-}
-
-// SetGatewayApi gets a reference to the given bool and assigns it to the GatewayApi field.
-func (o *DNS) SetGatewayApi(v bool) {
-	o.GatewayApi = &v
-}
-
 // GetZones returns the Zones field value if set, zero value otherwise.
 func (o *DNS) GetZones() []string {
 	if o == nil || IsNil(o.Zones) {
@@ -148,9 +114,6 @@ func (o DNS) MarshalJSON() ([]byte, error) {
 func (o DNS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
-	if !IsNil(o.GatewayApi) {
-		toSerialize["gatewayApi"] = o.GatewayApi
-	}
 	if !IsNil(o.Zones) {
 		toSerialize["zones"] = o.Zones
 	}
@@ -198,7 +161,6 @@ func (o *DNS) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "gatewayApi")
 		delete(additionalProperties, "zones")
 		o.AdditionalProperties = additionalProperties
 	}
