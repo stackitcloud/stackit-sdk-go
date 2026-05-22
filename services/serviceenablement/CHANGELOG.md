@@ -1,3 +1,6 @@
+## v1.6.0
+- **Improvement:** Use new WaiterHelper for serviceenablement waiters
+
 ## v1.5.3
 - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
 
