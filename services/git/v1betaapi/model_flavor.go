@@ -21,8 +21,7 @@ var _ MappedNullable = &Flavor{}
 
 // Flavor Describes a STACKIT Git Flavor.
 type Flavor struct {
-	// Defines the flavor availability.
-	Availability string `json:"availability"`
+	Availability FlavorAvailability `json:"availability"`
 	// Flavor description.
 	Description string `json:"description"`
 	// The display name that will be shown in the Portal.
@@ -40,7 +39,7 @@ type _Flavor Flavor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFlavor(availability string, description string, displayName string, id string, sku string) *Flavor {
+func NewFlavor(availability FlavorAvailability, description string, displayName string, id string, sku string) *Flavor {
 	this := Flavor{}
 	this.Availability = availability
 	this.Description = description
@@ -59,9 +58,9 @@ func NewFlavorWithDefaults() *Flavor {
 }
 
 // GetAvailability returns the Availability field value
-func (o *Flavor) GetAvailability() string {
+func (o *Flavor) GetAvailability() FlavorAvailability {
 	if o == nil {
-		var ret string
+		var ret FlavorAvailability
 		return ret
 	}
 
@@ -70,7 +69,7 @@ func (o *Flavor) GetAvailability() string {
 
 // GetAvailabilityOk returns a tuple with the Availability field value
 // and a boolean to check if the value has been set.
-func (o *Flavor) GetAvailabilityOk() (*string, bool) {
+func (o *Flavor) GetAvailabilityOk() (*FlavorAvailability, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +77,7 @@ func (o *Flavor) GetAvailabilityOk() (*string, bool) {
 }
 
 // SetAvailability sets field value
-func (o *Flavor) SetAvailability(v string) {
+func (o *Flavor) SetAvailability(v FlavorAvailability) {
 	o.Availability = v
 }
 
