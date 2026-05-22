@@ -33,7 +33,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateOrUpdateFolderTelemetryLinkRequest
 	*/
-	CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiCreateOrUpdateFolderTelemetryLinkRequest
+	CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateFolderTelemetryLinkRequest
 
 	// CreateOrUpdateFolderTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -49,7 +49,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateOrUpdateOrganizationTelemetryLinkRequest
 	*/
-	CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiCreateOrUpdateOrganizationTelemetryLinkRequest
+	CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateOrganizationTelemetryLinkRequest
 
 	// CreateOrUpdateOrganizationTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -65,7 +65,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateOrUpdateProjectTelemetryLinkRequest
 	*/
-	CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiCreateOrUpdateProjectTelemetryLinkRequest
+	CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateProjectTelemetryLinkRequest
 
 	// CreateOrUpdateProjectTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -81,7 +81,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiDeleteFolderTelemetryLinkRequest
 	*/
-	DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiDeleteFolderTelemetryLinkRequest
+	DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteFolderTelemetryLinkRequest
 
 	// DeleteFolderTelemetryLinkExecute executes the request
 	DeleteFolderTelemetryLinkExecute(r ApiDeleteFolderTelemetryLinkRequest) error
@@ -96,7 +96,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiDeleteOrganizationTelemetryLinkRequest
 	*/
-	DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiDeleteOrganizationTelemetryLinkRequest
+	DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteOrganizationTelemetryLinkRequest
 
 	// DeleteOrganizationTelemetryLinkExecute executes the request
 	DeleteOrganizationTelemetryLinkExecute(r ApiDeleteOrganizationTelemetryLinkRequest) error
@@ -111,7 +111,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiDeleteProjectTelemetryLinkRequest
 	*/
-	DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiDeleteProjectTelemetryLinkRequest
+	DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteProjectTelemetryLinkRequest
 
 	// DeleteProjectTelemetryLinkExecute executes the request
 	DeleteProjectTelemetryLinkExecute(r ApiDeleteProjectTelemetryLinkRequest) error
@@ -126,7 +126,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiGetFolderTelemetryLinkRequest
 	*/
-	GetFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiGetFolderTelemetryLinkRequest
+	GetFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetFolderTelemetryLinkRequest
 
 	// GetFolderTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -142,7 +142,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiGetOrganizationTelemetryLinkRequest
 	*/
-	GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiGetOrganizationTelemetryLinkRequest
+	GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetOrganizationTelemetryLinkRequest
 
 	// GetOrganizationTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -158,7 +158,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiGetProjectTelemetryLinkRequest
 	*/
-	GetProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiGetProjectTelemetryLinkRequest
+	GetProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetProjectTelemetryLinkRequest
 
 	// GetProjectTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -174,7 +174,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiPartialUpdateFolderTelemetryLinkRequest
 	*/
-	PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiPartialUpdateFolderTelemetryLinkRequest
+	PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateFolderTelemetryLinkRequest
 
 	// PartialUpdateFolderTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -190,7 +190,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiPartialUpdateOrganizationTelemetryLinkRequest
 	*/
-	PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiPartialUpdateOrganizationTelemetryLinkRequest
+	PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateOrganizationTelemetryLinkRequest
 
 	// PartialUpdateOrganizationTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -206,7 +206,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiPartialUpdateProjectTelemetryLinkRequest
 	*/
-	PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiPartialUpdateProjectTelemetryLinkRequest
+	PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateProjectTelemetryLinkRequest
 
 	// PartialUpdateProjectTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
@@ -220,7 +220,7 @@ type ApiCreateOrUpdateFolderTelemetryLinkRequest struct {
 	ctx                                      context.Context
 	ApiService                               DefaultAPI
 	folderId                                 string
-	regionId                                 string
+	regionId                                 GetFolderTelemetryLinkRegionIdParameter
 	createOrUpdateFolderTelemetryLinkPayload *CreateOrUpdateFolderTelemetryLinkPayload
 }
 
@@ -243,7 +243,7 @@ Creates or updates the given Telemetry Link within the folder.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateOrUpdateFolderTelemetryLinkRequest
 */
-func (a *DefaultAPIService) CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiCreateOrUpdateFolderTelemetryLinkRequest {
+func (a *DefaultAPIService) CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateFolderTelemetryLinkRequest {
 	return ApiCreateOrUpdateFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -383,7 +383,7 @@ type ApiCreateOrUpdateOrganizationTelemetryLinkRequest struct {
 	ctx                                            context.Context
 	ApiService                                     DefaultAPI
 	organizationId                                 string
-	regionId                                       string
+	regionId                                       GetFolderTelemetryLinkRegionIdParameter
 	createOrUpdateOrganizationTelemetryLinkPayload *CreateOrUpdateOrganizationTelemetryLinkPayload
 }
 
@@ -406,7 +406,7 @@ Creates or updates the given Telemetry Link within the organization.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateOrUpdateOrganizationTelemetryLinkRequest
 */
-func (a *DefaultAPIService) CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
+func (a *DefaultAPIService) CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
 	return ApiCreateOrUpdateOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -546,7 +546,7 @@ type ApiCreateOrUpdateProjectTelemetryLinkRequest struct {
 	ctx                                       context.Context
 	ApiService                                DefaultAPI
 	projectId                                 string
-	regionId                                  string
+	regionId                                  GetFolderTelemetryLinkRegionIdParameter
 	createOrUpdateProjectTelemetryLinkPayload *CreateOrUpdateProjectTelemetryLinkPayload
 }
 
@@ -569,7 +569,7 @@ Creates or updates the given Telemetry Link within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateOrUpdateProjectTelemetryLinkRequest
 */
-func (a *DefaultAPIService) CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiCreateOrUpdateProjectTelemetryLinkRequest {
+func (a *DefaultAPIService) CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateProjectTelemetryLinkRequest {
 	return ApiCreateOrUpdateProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -709,7 +709,7 @@ type ApiDeleteFolderTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	folderId   string
-	regionId   string
+	regionId   GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiDeleteFolderTelemetryLinkRequest) Execute() error {
@@ -726,7 +726,7 @@ Deletes the given Telemetry Link within the folder.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiDeleteFolderTelemetryLinkRequest
 */
-func (a *DefaultAPIService) DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiDeleteFolderTelemetryLinkRequest {
+func (a *DefaultAPIService) DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteFolderTelemetryLinkRequest {
 	return ApiDeleteFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -848,7 +848,7 @@ type ApiDeleteOrganizationTelemetryLinkRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	organizationId string
-	regionId       string
+	regionId       GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiDeleteOrganizationTelemetryLinkRequest) Execute() error {
@@ -865,7 +865,7 @@ Deletes the given Telemetry Link within the organization.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiDeleteOrganizationTelemetryLinkRequest
 */
-func (a *DefaultAPIService) DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiDeleteOrganizationTelemetryLinkRequest {
+func (a *DefaultAPIService) DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteOrganizationTelemetryLinkRequest {
 	return ApiDeleteOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -987,7 +987,7 @@ type ApiDeleteProjectTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiDeleteProjectTelemetryLinkRequest) Execute() error {
@@ -1004,7 +1004,7 @@ Deletes the given Telemetry Link within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiDeleteProjectTelemetryLinkRequest
 */
-func (a *DefaultAPIService) DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiDeleteProjectTelemetryLinkRequest {
+func (a *DefaultAPIService) DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteProjectTelemetryLinkRequest {
 	return ApiDeleteProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1126,7 +1126,7 @@ type ApiGetFolderTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	folderId   string
-	regionId   string
+	regionId   GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiGetFolderTelemetryLinkRequest) Execute() (*TelemetryLinkResponse, error) {
@@ -1143,7 +1143,7 @@ Returns the details for the given Telemetry Link within the folder.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiGetFolderTelemetryLinkRequest
 */
-func (a *DefaultAPIService) GetFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiGetFolderTelemetryLinkRequest {
+func (a *DefaultAPIService) GetFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetFolderTelemetryLinkRequest {
 	return ApiGetFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1267,7 +1267,7 @@ type ApiGetOrganizationTelemetryLinkRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	organizationId string
-	regionId       string
+	regionId       GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiGetOrganizationTelemetryLinkRequest) Execute() (*TelemetryLinkResponse, error) {
@@ -1284,7 +1284,7 @@ Returns the details for the given Telemetry Link within the organization.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiGetOrganizationTelemetryLinkRequest
 */
-func (a *DefaultAPIService) GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiGetOrganizationTelemetryLinkRequest {
+func (a *DefaultAPIService) GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetOrganizationTelemetryLinkRequest {
 	return ApiGetOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -1408,7 +1408,7 @@ type ApiGetProjectTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   GetFolderTelemetryLinkRegionIdParameter
 }
 
 func (r ApiGetProjectTelemetryLinkRequest) Execute() (*TelemetryLinkResponse, error) {
@@ -1425,7 +1425,7 @@ Returns the details for the given Telemetry Link within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiGetProjectTelemetryLinkRequest
 */
-func (a *DefaultAPIService) GetProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiGetProjectTelemetryLinkRequest {
+func (a *DefaultAPIService) GetProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetProjectTelemetryLinkRequest {
 	return ApiGetProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1549,7 +1549,7 @@ type ApiPartialUpdateFolderTelemetryLinkRequest struct {
 	ctx                                     context.Context
 	ApiService                              DefaultAPI
 	folderId                                string
-	regionId                                string
+	regionId                                GetFolderTelemetryLinkRegionIdParameter
 	partialUpdateFolderTelemetryLinkPayload *PartialUpdateFolderTelemetryLinkPayload
 }
 
@@ -1572,7 +1572,7 @@ Patches the given Telemetry Link within the folder.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiPartialUpdateFolderTelemetryLinkRequest
 */
-func (a *DefaultAPIService) PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiPartialUpdateFolderTelemetryLinkRequest {
+func (a *DefaultAPIService) PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateFolderTelemetryLinkRequest {
 	return ApiPartialUpdateFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1712,7 +1712,7 @@ type ApiPartialUpdateOrganizationTelemetryLinkRequest struct {
 	ctx                                           context.Context
 	ApiService                                    DefaultAPI
 	organizationId                                string
-	regionId                                      string
+	regionId                                      GetFolderTelemetryLinkRegionIdParameter
 	partialUpdateOrganizationTelemetryLinkPayload *PartialUpdateOrganizationTelemetryLinkPayload
 }
 
@@ -1735,7 +1735,7 @@ Patches the given Telemetry Link within the organization.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiPartialUpdateOrganizationTelemetryLinkRequest
 */
-func (a *DefaultAPIService) PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiPartialUpdateOrganizationTelemetryLinkRequest {
+func (a *DefaultAPIService) PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateOrganizationTelemetryLinkRequest {
 	return ApiPartialUpdateOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -1875,7 +1875,7 @@ type ApiPartialUpdateProjectTelemetryLinkRequest struct {
 	ctx                                      context.Context
 	ApiService                               DefaultAPI
 	projectId                                string
-	regionId                                 string
+	regionId                                 GetFolderTelemetryLinkRegionIdParameter
 	partialUpdateProjectTelemetryLinkPayload *PartialUpdateProjectTelemetryLinkPayload
 }
 
@@ -1898,7 +1898,7 @@ Patches the given Telemetry Link within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiPartialUpdateProjectTelemetryLinkRequest
 */
-func (a *DefaultAPIService) PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiPartialUpdateProjectTelemetryLinkRequest {
+func (a *DefaultAPIService) PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateProjectTelemetryLinkRequest {
 	return ApiPartialUpdateProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,

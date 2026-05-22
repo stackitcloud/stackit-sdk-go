@@ -32,11 +32,9 @@ type TelemetryLinkResponse struct {
 	// Indicates whether routing through the link to a telemetry-router is active.
 	Enabled bool `json:"enabled"`
 	// A auto generated unique id which identifies the resource.
-	Id string `json:"id"`
-	// The STACKIT region name the resource is located in.
-	RegionId string `json:"regionId"`
-	// The current state of the link.
-	Status string `json:"status"`
+	Id       string                        `json:"id"`
+	RegionId TelemetryLinkResponseRegionId `json:"regionId"`
+	Status   TelemetryLinkResponseStatus   `json:"status"`
 	// The ID of the telemetry-router to route the telemetry data.
 	TelemetryRouterId    string `json:"telemetryRouterId"`
 	AdditionalProperties map[string]interface{}
@@ -48,7 +46,7 @@ type _TelemetryLinkResponse TelemetryLinkResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTelemetryLinkResponse(createTime time.Time, displayName string, enabled bool, id string, regionId string, status string, telemetryRouterId string) *TelemetryLinkResponse {
+func NewTelemetryLinkResponse(createTime time.Time, displayName string, enabled bool, id string, regionId TelemetryLinkResponseRegionId, status TelemetryLinkResponseStatus, telemetryRouterId string) *TelemetryLinkResponse {
 	this := TelemetryLinkResponse{}
 	this.CreateTime = createTime
 	this.DisplayName = displayName
@@ -229,9 +227,9 @@ func (o *TelemetryLinkResponse) SetId(v string) {
 }
 
 // GetRegionId returns the RegionId field value
-func (o *TelemetryLinkResponse) GetRegionId() string {
+func (o *TelemetryLinkResponse) GetRegionId() TelemetryLinkResponseRegionId {
 	if o == nil {
-		var ret string
+		var ret TelemetryLinkResponseRegionId
 		return ret
 	}
 
@@ -240,7 +238,7 @@ func (o *TelemetryLinkResponse) GetRegionId() string {
 
 // GetRegionIdOk returns a tuple with the RegionId field value
 // and a boolean to check if the value has been set.
-func (o *TelemetryLinkResponse) GetRegionIdOk() (*string, bool) {
+func (o *TelemetryLinkResponse) GetRegionIdOk() (*TelemetryLinkResponseRegionId, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -248,14 +246,14 @@ func (o *TelemetryLinkResponse) GetRegionIdOk() (*string, bool) {
 }
 
 // SetRegionId sets field value
-func (o *TelemetryLinkResponse) SetRegionId(v string) {
+func (o *TelemetryLinkResponse) SetRegionId(v TelemetryLinkResponseRegionId) {
 	o.RegionId = v
 }
 
 // GetStatus returns the Status field value
-func (o *TelemetryLinkResponse) GetStatus() string {
+func (o *TelemetryLinkResponse) GetStatus() TelemetryLinkResponseStatus {
 	if o == nil {
-		var ret string
+		var ret TelemetryLinkResponseStatus
 		return ret
 	}
 
@@ -264,7 +262,7 @@ func (o *TelemetryLinkResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *TelemetryLinkResponse) GetStatusOk() (*string, bool) {
+func (o *TelemetryLinkResponse) GetStatusOk() (*TelemetryLinkResponseStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -272,7 +270,7 @@ func (o *TelemetryLinkResponse) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *TelemetryLinkResponse) SetStatus(v string) {
+func (o *TelemetryLinkResponse) SetStatus(v TelemetryLinkResponseStatus) {
 	o.Status = v
 }
 
