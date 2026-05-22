@@ -1,3 +1,6 @@
+## v0.10.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.9.0
 - `v1api`:
   - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.

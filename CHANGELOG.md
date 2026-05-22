@@ -567,6 +567,8 @@
       - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.10.0](services/vpn/CHANGELOG.md#v0100)
+    - **Feature:** Introduce enums for various attributes
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)

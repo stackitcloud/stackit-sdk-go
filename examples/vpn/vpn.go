@@ -48,14 +48,14 @@ func main() {
 
 	// Create a VPN Connection
 	phase1 := vpn.TunnelConfigurationPhase1{
-		DhGroups:             []string{"ecp384"},
-		EncryptionAlgorithms: []string{"aes256"},
-		IntegrityAlgorithms:  []string{"sha2_384"},
+		DhGroups:             []vpn.PhaseDhGroupsInner{"ecp384"},
+		EncryptionAlgorithms: []vpn.PhaseEncryptionAlgorithmsInner{"aes256"},
+		IntegrityAlgorithms:  []vpn.PhaseIntegrityAlgorithmsInner{"sha2_384"},
 	}
 	phase2 := vpn.TunnelConfigurationPhase2{
-		DhGroups:             []string{"ecp384"},
-		EncryptionAlgorithms: []string{"aes256"},
-		IntegrityAlgorithms:  []string{"sha2_384"},
+		DhGroups:             []vpn.PhaseDhGroupsInner{"ecp384"},
+		EncryptionAlgorithms: []vpn.PhaseEncryptionAlgorithmsInner{"aes256"},
+		IntegrityAlgorithms:  []vpn.PhaseIntegrityAlgorithmsInner{"sha2_384"},
 	}
 	tunnel := vpn.TunnelConfiguration{
 		Phase1:        phase1,
