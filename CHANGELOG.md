@@ -535,6 +535,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v0.2.1](services/telemetryrouter/CHANGELOG.md#v021)
     - **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler
+  - [v0.3.0](services/telemetryrouter/CHANGELOG.md#v030)
+    - **Feature:** Introduce enums for various attributes
 - `telemetrylink`:
   - [v0.1.0](services/telemetrylink/CHANGELOG.md#v010)
     - **New**: API for STACKIT Telemetry Link
