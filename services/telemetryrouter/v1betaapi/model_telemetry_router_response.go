@@ -29,9 +29,8 @@ type TelemetryRouterResponse struct {
 	DisplayName string        `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
 	Filter      *ConfigFilter `json:"filter,omitempty"`
 	// A auto generated unique id which identifies the resource.
-	Id string `json:"id"`
-	// The current status of the resource.
-	Status string `json:"status"`
+	Id     string                        `json:"id"`
+	Status TelemetryRouterResponseStatus `json:"status"`
 	// The URI for reaching the resource.
 	Uri                  string `json:"uri"`
 	AdditionalProperties map[string]interface{}
@@ -43,7 +42,7 @@ type _TelemetryRouterResponse TelemetryRouterResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTelemetryRouterResponse(creationTime time.Time, displayName string, id string, status string, uri string) *TelemetryRouterResponse {
+func NewTelemetryRouterResponse(creationTime time.Time, displayName string, id string, status TelemetryRouterResponseStatus, uri string) *TelemetryRouterResponse {
 	this := TelemetryRouterResponse{}
 	this.CreationTime = creationTime
 	this.DisplayName = displayName
@@ -198,9 +197,9 @@ func (o *TelemetryRouterResponse) SetId(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *TelemetryRouterResponse) GetStatus() string {
+func (o *TelemetryRouterResponse) GetStatus() TelemetryRouterResponseStatus {
 	if o == nil {
-		var ret string
+		var ret TelemetryRouterResponseStatus
 		return ret
 	}
 
@@ -209,7 +208,7 @@ func (o *TelemetryRouterResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *TelemetryRouterResponse) GetStatusOk() (*string, bool) {
+func (o *TelemetryRouterResponse) GetStatusOk() (*TelemetryRouterResponseStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -217,7 +216,7 @@ func (o *TelemetryRouterResponse) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *TelemetryRouterResponse) SetStatus(v string) {
+func (o *TelemetryRouterResponse) SetStatus(v TelemetryRouterResponseStatus) {
 	o.Status = v
 }
 
