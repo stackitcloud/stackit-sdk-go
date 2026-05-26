@@ -7,9 +7,8 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi/wait/wait"
-
 	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi"
+	"github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi/wait"
 )
 
 func main() {
