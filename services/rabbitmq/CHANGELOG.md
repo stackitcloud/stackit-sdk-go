@@ -1,3 +1,6 @@
+## v0.30.0
+- `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
+
 ## v0.29.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 
