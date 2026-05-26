@@ -76,7 +76,7 @@ const (
 	KEYSTATE_NO_VERSION = kms.KEYSTATE_NO_VERSION
 )
 
-func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
+func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
 	waitConfig := wait.WaiterHelper[kms.KeyRing, kms.KeyRingState]{
 		FetchInstance: client.GetKeyRing(ctx, projectId, region, keyRingId).Execute,
 		GetState: func(d *kms.KeyRing) (kms.KeyRingState, error) {
@@ -92,7 +92,7 @@ func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projec
 	return handler
 }
 
-func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
+func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
 	waitConfig := wait.WaiterHelper[kms.Key, kms.KeyState]{
 		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
 		GetState: func(d *kms.Key) (kms.KeyState, error) {
@@ -114,7 +114,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, pr
 	return handler
 }
 
-func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
+func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
 	waitConfig := wait.WaiterHelper[kms.Key, kms.KeyState]{
 		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
 		GetState: func(_ *kms.Key) (kms.KeyState, error) {
@@ -127,7 +127,7 @@ func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId 
 	return handler
 }
 
-func EnableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
+func EnableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
 	waitConfig := wait.WaiterHelper[kms.Version, kms.VersionState]{
 		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
 		GetState: func(d *kms.Version) (kms.VersionState, error) {
@@ -149,7 +149,7 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, pro
 	return handler
 }
 
-func DisableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
+func DisableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
 	waitConfig := wait.WaiterHelper[kms.Version, kms.VersionState]{
 		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
 		GetState: func(d *kms.Version) (kms.VersionState, error) {
@@ -169,7 +169,7 @@ func DisableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, pr
 	return handler
 }
 
-func CreateWrappingKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId string, region string, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
+func CreateWrappingKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
 	waitConfig := wait.WaiterHelper[kms.WrappingKey, kms.WrappingKeyState]{
 		FetchInstance: client.GetWrappingKey(ctx, projectId, region, keyRingId, wrappingKeyId).Execute,
 		GetState: func(d *kms.WrappingKey) (kms.WrappingKeyState, error) {

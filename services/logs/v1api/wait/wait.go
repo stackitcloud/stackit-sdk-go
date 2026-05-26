@@ -12,7 +12,7 @@ import (
 )
 
 // CreateLogsInstanceWaitHandler will wait for logs instance creation
-func CreateLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID string, region string, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
+func CreateLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
 	waitConfig := wait.WaiterHelper[logs.LogsInstance, logs.LogsInstanceStatus]{
 		FetchInstance: client.GetLogsInstance(ctx, projectID, region, instanceID).Execute,
 		GetState: func(l *logs.LogsInstance) (logs.LogsInstanceStatus, error) {
@@ -31,7 +31,7 @@ func CreateLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, 
 }
 
 // DeleteLogsInstanceWaitHandler will wait for logs instance deletion
-func DeleteLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID string, region string, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
+func DeleteLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
 	waitConfig := wait.WaiterHelper[logs.LogsInstance, logs.LogsInstanceStatus]{
 		FetchInstance: client.GetLogsInstance(ctx, projectID, region, instanceID).Execute,
 		GetState: func(l *logs.LogsInstance) (logs.LogsInstanceStatus, error) {
