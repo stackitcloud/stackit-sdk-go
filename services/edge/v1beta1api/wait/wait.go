@@ -62,14 +62,14 @@ func createOrUpdateInstanceWaitHandler(ctx context.Context, getInstance func(ctx
 // CreateOrUpdateInstanceWaitHandler waits for instance creation or update by ID to complete.
 func CreateOrUpdateInstanceWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[edge.Instance] {
 	return createOrUpdateInstanceWaitHandler(ctx, func(ctx context.Context) (*edge.Instance, error) {
-		return a.GetInstance(ctx, projectId, edge.GetInstanceRegionIdParameter(regionId), instanceId).Execute()
+		return a.GetInstance(ctx, projectId, regionId, instanceId).Execute()
 	})
 }
 
 // CreateOrUpdateInstanceByNameWaitHandler waits for instance creation or update by name to complete.
 func CreateOrUpdateInstanceByNameWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, regionId, displayName string) *wait.AsyncActionHandler[edge.Instance] {
 	return createOrUpdateInstanceWaitHandler(ctx, func(ctx context.Context) (*edge.Instance, error) {
-		return a.GetInstanceByName(ctx, projectId, edge.GetInstanceByNameRegionIdParameter(regionId), displayName).Execute()
+		return a.GetInstanceByName(ctx, projectId, regionId, displayName).Execute()
 	})
 }
 
@@ -94,14 +94,14 @@ func deleteInstanceWaitHandler(ctx context.Context, getInstance func(ctx context
 // DeleteInstanceWaitHandler waits for instance deletion by ID.
 func DeleteInstanceWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[edge.Instance] {
 	return deleteInstanceWaitHandler(ctx, func(ctx context.Context) (*edge.Instance, error) {
-		return a.GetInstance(ctx, projectId, edge.GetInstanceRegionIdParameter(regionId), instanceId).Execute()
+		return a.GetInstance(ctx, projectId, regionId, instanceId).Execute()
 	})
 }
 
 // DeleteInstanceByNameWaitHandler waits for instance deletion by name.
 func DeleteInstanceByNameWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, regionId, displayName string) *wait.AsyncActionHandler[edge.Instance] {
 	return deleteInstanceWaitHandler(ctx, func(ctx context.Context) (*edge.Instance, error) {
-		return a.GetInstanceByName(ctx, projectId, edge.GetInstanceByNameRegionIdParameter(regionId), displayName).Execute()
+		return a.GetInstanceByName(ctx, projectId, regionId, displayName).Execute()
 	})
 }
 
@@ -142,7 +142,7 @@ func KubeconfigWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, re
 			return checkInstanceExistsWithUsableStatus(ctx, a, projectId, regionId, instanceId)
 		},
 		func(ctx context.Context) (*edge.Kubeconfig, error) {
-			req := a.GetKubeconfigByInstanceId(ctx, projectId, edge.GetKubeconfigByInstanceIdRegionIdParameter(regionId), instanceId)
+			req := a.GetKubeconfigByInstanceId(ctx, projectId, regionId, instanceId)
 			if expirationSeconds != nil {
 				req = req.ExpirationSeconds(*expirationSeconds)
 			}
@@ -158,7 +158,7 @@ func KubeconfigByInstanceNameWaitHandler(ctx context.Context, a edge.DefaultAPI,
 			return checkInstanceNameExistsWithUsableStatus(ctx, a, projectId, regionId, displayName)
 		},
 		func(ctx context.Context) (*edge.Kubeconfig, error) {
-			req := a.GetKubeconfigByInstanceName(ctx, projectId, edge.GetKubeconfigByInstanceNameRegionIdParameter(regionId), displayName)
+			req := a.GetKubeconfigByInstanceName(ctx, projectId, regionId, displayName)
 			if expirationSeconds != nil {
 				req = req.ExpirationSeconds(*expirationSeconds)
 			}
@@ -204,7 +204,7 @@ func TokenWaitHandler(ctx context.Context, a edge.DefaultAPI, projectId, regionI
 			return checkInstanceExistsWithUsableStatus(ctx, a, projectId, regionId, instanceId)
 		},
 		func(ctx context.Context) (*edge.Token, error) {
-			req := a.GetTokenByInstanceId(ctx, projectId, edge.GetTokenByInstanceIdRegionIdParameter(regionId), instanceId)
+			req := a.GetTokenByInstanceId(ctx, projectId, regionId, instanceId)
 			if expirationSeconds != nil {
 				req = req.ExpirationSeconds(*expirationSeconds)
 			}
@@ -220,7 +220,7 @@ func TokenByInstanceNameWaitHandler(ctx context.Context, a edge.DefaultAPI, proj
 			return checkInstanceNameExistsWithUsableStatus(ctx, a, projectId, regionId, displayName)
 		},
 		func(ctx context.Context) (*edge.Token, error) {
-			req := a.GetTokenByInstanceName(ctx, projectId, edge.GetTokenByInstanceNameRegionIdParameter(regionId), displayName)
+			req := a.GetTokenByInstanceName(ctx, projectId, regionId, displayName)
 			if expirationSeconds != nil {
 				req = req.ExpirationSeconds(*expirationSeconds)
 			}
@@ -249,7 +249,7 @@ func checkInstanceExistsWithUsableStatus(ctx context.Context, a edge.DefaultAPI,
 	return checkInstanceUsableStatus(
 		ctx,
 		func(ctx context.Context) (*edge.Instance, error) {
-			return a.GetInstance(ctx, projectId, edge.GetInstanceRegionIdParameter(regionId), instanceId).Execute()
+			return a.GetInstance(ctx, projectId, regionId, instanceId).Execute()
 		},
 		"ID",
 		instanceId,
@@ -261,7 +261,7 @@ func checkInstanceNameExistsWithUsableStatus(ctx context.Context, a edge.Default
 	return checkInstanceUsableStatus(
 		ctx,
 		func(ctx context.Context) (*edge.Instance, error) {
-			return a.GetInstanceByName(ctx, projectId, edge.GetInstanceByNameRegionIdParameter(regionId), displayName).Execute()
+			return a.GetInstanceByName(ctx, projectId, regionId, displayName).Execute()
 		},
 		"name",
 		displayName,

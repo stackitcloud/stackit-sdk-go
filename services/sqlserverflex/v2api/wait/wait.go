@@ -22,7 +22,7 @@ const (
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region sqlserverflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *sqlserverflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err != nil {
@@ -46,7 +46,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, 
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region sqlserverflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func UpdateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *sqlserverflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err != nil {
@@ -70,12 +70,12 @@ func UpdateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, 
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region sqlserverflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	return UpdateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region sqlserverflex.GetInstanceRegionParameter) *wait.AsyncActionHandler[struct{}] {
+func DeleteInstanceWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, instanceId string, region string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetInstance(ctx, projectId, instanceId, region).Execute()
 		if err == nil {

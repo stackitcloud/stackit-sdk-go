@@ -66,7 +66,7 @@ func newAPIMock(settings *mockSettings) intake.DefaultAPI {
 	}
 }
 
-const regionId = intake.LISTINTAKERUNNERSREGIONIDPARAMETER_EU01
+const regionId = string(intake.LISTINTAKERUNNERSREGIONIDPARAMETER_EU01)
 
 var (
 	projectId      = uuid.NewString()

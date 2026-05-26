@@ -113,7 +113,7 @@ func TestCreateDremioWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
+				handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -181,7 +181,7 @@ func TestUpdateDremioWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
+				handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -254,7 +254,7 @@ func TestDeleteDremioWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
+				handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -326,7 +326,7 @@ func TestCreateDremioUserWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
+				handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -394,7 +394,7 @@ func TestUpdateDremioUserWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
+				handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -467,7 +467,7 @@ func TestDeleteDremioUserWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
+				handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 

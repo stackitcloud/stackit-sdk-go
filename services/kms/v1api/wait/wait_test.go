@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	testRegion    = kms.LISTKEYRINGSREGIONIDPARAMETER_EU01
+	testRegion    = string(kms.LISTKEYRINGSREGIONIDPARAMETER_EU01)
 	testPublicKey = "i am an invalid public key"
 )
 
