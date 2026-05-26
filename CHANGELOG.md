@@ -344,6 +344,8 @@
   - [v0.29.2](services/rabbitmq/CHANGELOG.md#v0292)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.30.0](services/rabbitmq/CHANGELOG.md#v0300)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
+  - [v0.31.0](services/rabbitmq/CHANGELOG.md#v0310)
     - **Feature:** Introduce enums for various attributes
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
@@ -458,6 +460,8 @@
   - [v1.5.3](services/serviceenablement/CHANGELOG.md#v153)
     - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
   - [v1.6.0](services/serviceenablement/CHANGELOG.md#v160)
+    - **Improvement:** Use new WaiterHelper for serviceenablement waiters
+  - [v1.7.0](services/serviceenablement/CHANGELOG.md#v170)
     - **Feature:** Introduce enums for various attributes
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
@@ -500,6 +504,15 @@
   - [v1.14.0](services/ske/CHANGELOG.md#v1140)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.`
   - [v1.15.0](services/ske/CHANGELOG.md#v1150)
+    - Package `v1api`:
+      - **Docs:** Update possible values of `ClusterError`
+    - Package `v2api`:
+      - **Docs:** Update possible values of `ClusterError`
+      - **Feature:** New field `GatewayApi` in `DNS` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Docs:** Update possible values of `ClusterError`
+      - **Feature:** New field `GatewayApi` in `DNS` model struct
+  - [v1.16.0](services/ske/CHANGELOG.md#v1160)
     - **Feature:** Introduce enums for various attributes
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
@@ -568,6 +581,11 @@
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
   - [v0.10.0](services/vpn/CHANGELOG.md#v0100)
+    - `v1api`:
+      - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+  - [v0.11.0](services/vpn/CHANGELOG.md#v0110)
     - **Feature:** Introduce enums for various attributes
 
 ## Release (2026-04-07)

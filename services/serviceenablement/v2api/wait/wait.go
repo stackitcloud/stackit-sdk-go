@@ -2,7 +2,7 @@ package wait
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -24,55 +24,46 @@ const (
 	SERVICESTATUSSTATE_DISABLING = serviceenablement.SERVICESTATUSSTATE_DISABLING
 )
 
+// EnableServiceWaitHandler will wait for service enablement
 func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAPI, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
-	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
-		s, err := a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.State == nil {
-			return false, nil, nil
-		}
-		switch *s.State {
-		default:
-			return true, s, fmt.Errorf("service with id %s has unexpected state %s", serviceId, *s.State)
-		case serviceenablement.SERVICESTATUSSTATE_ENABLED:
-			return true, s, nil
-		case serviceenablement.SERVICESTATUSSTATE_ENABLING:
-			return false, nil, nil
-		case serviceenablement.SERVICESTATUSSTATE_DISABLED:
-			return true, s, fmt.Errorf("enabling failed for service with id %s", serviceId)
-		case serviceenablement.SERVICESTATUSSTATE_DISABLING:
-			return true, s, fmt.Errorf("service with id %s is in state %s", serviceId, *s.State)
-		}
-	})
+	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, serviceenablement.ServiceStatusState]{
+		FetchInstance: a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute,
+		GetState: func(s *serviceenablement.ServiceStatus) (serviceenablement.ServiceStatusState, error) {
+			if s == nil {
+				return "", errors.New("empty response")
+			}
+			if s.State == nil {
+				return "", errors.New("state is missing")
+			}
+			return *s.State, nil
+		},
+		ActiveState: []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_ENABLED},
+		ErrorState:  []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_DISABLED, serviceenablement.SERVICESTATUSSTATE_DISABLING},
+	}
 
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
 	return handler
 }
 
+// DisableServiceWaitHandler will wait for service disablement
 func DisableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAPI, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
-	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
-		s, err := a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.State == nil {
-			return false, nil, nil
-		}
-		switch *s.State {
-		default:
-			return true, s, fmt.Errorf("service with id %s has unexpected state %s", serviceId, *s.State)
-		case serviceenablement.SERVICESTATUSSTATE_DISABLED:
-			return true, s, nil
-		case serviceenablement.SERVICESTATUSSTATE_DISABLING:
-			return false, nil, nil
-		case serviceenablement.SERVICESTATUSSTATE_ENABLED:
-			return true, s, fmt.Errorf("disabling failed for service with id %s", serviceId)
-		case serviceenablement.SERVICESTATUSSTATE_ENABLING:
-			return true, s, fmt.Errorf("service with id %s is in state %s", serviceId, *s.State)
-		}
-	})
+	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, serviceenablement.ServiceStatusState]{
+		FetchInstance: a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute,
+		GetState: func(s *serviceenablement.ServiceStatus) (serviceenablement.ServiceStatusState, error) {
+			if s == nil {
+				return "", errors.New("empty response")
+			}
+			if s.State == nil {
+				return "", errors.New("status is missing")
+			}
+			return *s.State, nil
+		},
+		ActiveState: []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_DISABLED},
+		ErrorState:  []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_ENABLED, serviceenablement.SERVICESTATUSSTATE_ENABLING},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
 	return handler
 }

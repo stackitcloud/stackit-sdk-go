@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -44,45 +45,45 @@ const (
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case rabbitmq.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case rabbitmq.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func CreateInstanceWaitHandler(ctx context.Context, client rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
+	waitConfig := wait.WaiterHelper[rabbitmq.Instance, rabbitmq.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *rabbitmq.Instance) (rabbitmq.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case rabbitmq.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case rabbitmq.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
+	waitConfig := wait.WaiterHelper[rabbitmq.Instance, rabbitmq.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *rabbitmq.Instance) (rabbitmq.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
