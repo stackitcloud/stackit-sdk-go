@@ -101,7 +101,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "wrong state in response",
 			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("wrong state")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -179,7 +179,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "wrong state in response",
 			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("wrong state")),
 			wantErr:       true,
 			wantResp:      false,
 		},
