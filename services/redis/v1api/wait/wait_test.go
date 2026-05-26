@@ -2,14 +2,15 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	redis "github.com/stackitcloud/stackit-sdk-go/services/redis/v1api"
 )
 
@@ -76,7 +77,7 @@ func newAPIMock(settings *mockSettings) redis.DefaultAPI {
 	}
 }
 
-func TestCreateInstanceWaitHandler(t *testing.T) {
+func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -85,14 +86,14 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		wantResp      bool
 	}{
 		{
-			desc:          "create_succeeded",
+			desc:          "create_or_update_succeeded",
 			getFails:      false,
 			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
-			desc:          "create_failed",
+			desc:          "create_or_update_failed",
 			getFails:      false,
 			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
 			wantErr:       true,
@@ -119,115 +120,46 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			wantResp:      false,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
 
-				apiClient := newAPIMock(&mockSettings{
-					instanceGetFails:      tt.getFails,
-					instanceResourceId:    instanceId,
-					instanceResourceState: tt.resourceState,
-				})
-
-				var wantRes *redis.Instance
-				if tt.wantResp {
-					wantRes = &redis.Instance{
-						InstanceId: &instanceId,
-						Status:     tt.resourceState,
-					}
-				}
-
-				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
-
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				diff := cmp.Diff(gotRes, wantRes)
-				if diff != "" {
-					t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
-				}
-			})
-		})
+	handlers := map[string]func(context.Context, redis.DefaultAPI, string, string) *wait.AsyncActionHandler[redis.Instance]{
+		"common logic": createOrUpdateInstanceWaitHandler,
+		"create":       CreateInstanceWaitHandler,
+		"update":       PartialUpdateInstanceWaitHandler,
 	}
-}
 
-func TestUpdateInstanceWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState *string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "update_succeeded",
-			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "update_failed",
-			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
-			desc:          "wrong state in response",
-			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:     "get_fails",
-			getFails: true,
-			wantErr:  true,
-			wantResp: false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
-			wantErr:       true,
-			wantResp:      false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					instanceId := "foo-bar"
 
-				apiClient := newAPIMock(&mockSettings{
-					instanceGetFails:      tt.getFails,
-					instanceResourceId:    instanceId,
-					instanceResourceState: tt.resourceState,
-				})
+					apiClient := newAPIMock(&mockSettings{
+						instanceGetFails:      tt.getFails,
+						instanceResourceId:    instanceId,
+						instanceResourceState: tt.resourceState,
+					})
 
-				var wantRes *redis.Instance
-				if tt.wantResp {
-					wantRes = &redis.Instance{
-						InstanceId: &instanceId,
-						Status:     tt.resourceState,
+					var wantRes *redis.Instance
+					if tt.wantResp {
+						wantRes = &redis.Instance{
+							InstanceId: &instanceId,
+							Status:     tt.resourceState,
+						}
 					}
-				}
 
-				handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+					handler := handlerFn(context.Background(), apiClient, "pid", instanceId)
+					gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					diff := cmp.Diff(gotRes, wantRes)
+					if diff != "" {
+						t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 

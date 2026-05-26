@@ -26,8 +26,7 @@ const (
 	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
 )
 
-// CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
 	waitConfig := wait.WaiterHelper[redis.Instance, string]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
 		GetState: func(response *redis.Instance) (string, error) {
@@ -48,26 +47,14 @@ func CreateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, pro
 	return handler
 }
 
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
+}
+
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	waitConfig := wait.WaiterHelper[redis.Instance, string]{
-		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *redis.Instance) (string, error) {
-			if response == nil {
-				return "", errors.New("empty response")
-			}
-			if response.Status == nil {
-				return "", errors.New("status is missing in response")
-			}
-			return *response.Status, nil
-		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
-	}
-
-	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(45 * time.Minute)
-	return handler
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
