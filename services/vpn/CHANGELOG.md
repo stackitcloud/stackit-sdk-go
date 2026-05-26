@@ -1,3 +1,9 @@
+## v0.10.0
+- `v1api`:
+  - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
 ## v0.9.0
 - `v1api`:
   - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
