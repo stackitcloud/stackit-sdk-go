@@ -39,7 +39,7 @@ func main() {
 		},
 	}
 
-	gatewayResp, err := vpnClient.DefaultAPI.CreateGateway(context.Background(), projectId, vpn.Region(region)).CreateGatewayPayload(createVpnGatewayPayload).Execute()
+	gatewayResp, err := vpnClient.DefaultAPI.CreateGateway(context.Background(), projectId, region).CreateGatewayPayload(createVpnGatewayPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateVpnGateway`: %v\n", err)
 		os.Exit(1)
@@ -69,7 +69,7 @@ func main() {
 		Tunnel1:     tunnel,
 		Tunnel2:     tunnel,
 	}
-	connectionResp, err := vpnClient.DefaultAPI.CreateGatewayConnection(context.Background(), projectId, vpn.Region(region), *gatewayResp.Id).CreateGatewayConnectionPayload(createGatewayConnectionPayload).Execute()
+	connectionResp, err := vpnClient.DefaultAPI.CreateGatewayConnection(context.Background(), projectId, region, *gatewayResp.Id).CreateGatewayConnectionPayload(createGatewayConnectionPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateVpnConnection`: %v\n", err)
 		os.Exit(1)
@@ -77,7 +77,7 @@ func main() {
 	fmt.Printf("Created VPN Connection with id \"%s\".\n", *connectionResp.Id)
 
 	// Delete the VPN Connection
-	err = vpnClient.DefaultAPI.DeleteGatewayConnection(context.Background(), projectId, vpn.Region(region), *gatewayResp.Id, *connectionResp.Id).Execute()
+	err = vpnClient.DefaultAPI.DeleteGatewayConnection(context.Background(), projectId, region, *gatewayResp.Id, *connectionResp.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteVpnConnection`: %v\n", err)
 		os.Exit(1)
@@ -85,7 +85,7 @@ func main() {
 	fmt.Printf("Deleted VPN Connection with id \"%s\".\n", *connectionResp.Id)
 
 	// Delete the VPN Gateway
-	err = vpnClient.DefaultAPI.DeleteGateway(context.Background(), projectId, vpn.Region(region), *gatewayResp.Id).Execute()
+	err = vpnClient.DefaultAPI.DeleteGateway(context.Background(), projectId, region, *gatewayResp.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteVpnGateway`: %v\n", err)
 		os.Exit(1)

@@ -13,7 +13,7 @@ func main() {
 	ctx := context.Background()
 
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
-	regionId := telemetryrouter.ListTelemetryRoutersRegionIdParameter("eu01")
+	regionId := string(telemetryrouter.LISTTELEMETRYROUTERSREGIONIDPARAMETER_EU01)
 
 	client, err := telemetryrouter.NewAPIClient()
 	if err != nil {

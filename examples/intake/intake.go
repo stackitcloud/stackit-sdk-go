@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	region := intake.LISTINTAKERUNNERSREGIONIDPARAMETER_EU01 // Region where the resources will be created
-	projectId := "PROJECT_ID"                                // Your STACKIT project ID
+	region := string(intake.LISTINTAKERUNNERSREGIONIDPARAMETER_EU01) // Region where the resources will be created
+	projectId := "PROJECT_ID"                                        // Your STACKIT project ID
 
 	dremioCatalogURI := "DREMIO_CATALOG_URI"       //nolint:gosec // E.g., "https://my-dremio-catalog.data-platform.stackit.run/iceberg"
 	dremioTokenEndpoint := "DREMIO_TOKEN_ENDPOINT" //nolint:gosec // E.g., "https://my-dremio.data-platform.stackit.run/oauth/token"

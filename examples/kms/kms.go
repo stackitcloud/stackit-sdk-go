@@ -12,7 +12,7 @@ import (
 
 func main() {
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
-	region := kms.LISTKEYRINGSREGIONIDPARAMETER_EU01
+	region := string(kms.LISTKEYRINGSREGIONIDPARAMETER_EU01)
 
 	// Create a new API client, that uses default authentication and configuration
 	kmsClient, err := kms.NewAPIClient()

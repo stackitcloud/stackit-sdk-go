@@ -30,7 +30,7 @@ func main() {
 	}
 
 	// Get the SQLServer Flex instances for your project
-	getInstancesResp, err := sqlserverflexClient.DefaultAPI.ListInstances(ctx, projectId, sqlserverflex.ListInstancesRegionParameter(region)).Execute()
+	getInstancesResp, err := sqlserverflexClient.DefaultAPI.ListInstances(ctx, projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
 		os.Exit(1)
@@ -44,13 +44,13 @@ func main() {
 		FlavorId: flavorId,
 		Version:  utils.Ptr(version),
 	}
-	instance, err := sqlserverflexClient.DefaultAPI.CreateInstance(ctx, projectId, sqlserverflex.CreateInstanceRegionParameter(region)).CreateInstancePayload(createInstancePayload).Execute()
+	instance, err := sqlserverflexClient.DefaultAPI.CreateInstance(ctx, projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating SQL Server Flex instance: %v\n", err)
 	}
 	instanceId := *instance.Id
 
-	_, err = wait.CreateInstanceWaitHandler(ctx, sqlserverflexClient.DefaultAPI, projectId, instanceId, sqlserverflex.GetInstanceRegionParameter(region)).WaitWithContext(ctx)
+	_, err = wait.CreateInstanceWaitHandler(ctx, sqlserverflexClient.DefaultAPI, projectId, instanceId, region).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for SQL Server Flex instance creation: %v\n", err)
 	}
@@ -58,13 +58,13 @@ func main() {
 	fmt.Printf("Created SQL Server Flex instance \"%s\".\n", instanceId)
 
 	// Delete an instance
-	err = sqlserverflexClient.DefaultAPI.DeleteInstance(ctx, projectId, instanceId, sqlserverflex.DeleteInstanceRegionParameter(region)).Execute()
+	err = sqlserverflexClient.DefaultAPI.DeleteInstance(ctx, projectId, instanceId, region).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error deleting SQL Server Flex instance: %v\n", err)
 	}
 
-	_, err = wait.DeleteInstanceWaitHandler(ctx, sqlserverflexClient.DefaultAPI, projectId, instanceId, sqlserverflex.GetInstanceRegionParameter(region)).WaitWithContext(ctx)
+	_, err = wait.DeleteInstanceWaitHandler(ctx, sqlserverflexClient.DefaultAPI, projectId, instanceId, region).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for SQL Server Flex instance deletion: %v\n", err)
 	}
