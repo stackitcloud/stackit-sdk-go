@@ -25,6 +25,8 @@ type UpdateInstanceRequestPayload struct {
 	BackupSchedule string `json:"backupSchedule"`
 	// The id of the instance flavor.
 	FlavorId string `json:"flavorId"`
+	// A dictionary of user-defined key-value pairs used to categorize or organize the resource.  **Rules for Keys:** * Must be between 1 and 63 characters long. * Must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$` * **Restriction:** The prefix `stackit-` is strictly reserved and cannot be used.  **Rules for Values:** * Must be between 0 (empty string) and 63 characters long. * If not empty, must begin and end with an alphanumeric character. * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`
+	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name     string                              `json:"name"`
 	Network  UpdateInstanceRequestPayloadNetwork `json:"network"`
@@ -109,6 +111,38 @@ func (o *UpdateInstanceRequestPayload) GetFlavorIdOk() (*string, bool) {
 // SetFlavorId sets field value
 func (o *UpdateInstanceRequestPayload) SetFlavorId(v string) {
 	o.FlavorId = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateInstanceRequestPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstanceRequestPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *UpdateInstanceRequestPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateInstanceRequestPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value
@@ -267,6 +301,9 @@ func (o UpdateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["backupSchedule"] = o.BackupSchedule
 	toSerialize["flavorId"] = o.FlavorId
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["network"] = o.Network
 	toSerialize["replicas"] = o.Replicas
@@ -325,6 +362,7 @@ func (o *UpdateInstanceRequestPayload) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "backupSchedule")
 		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "replicas")

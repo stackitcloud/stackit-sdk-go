@@ -1,3 +1,6 @@
+## v1.11.0
+- `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
+
 ## v1.10.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 
