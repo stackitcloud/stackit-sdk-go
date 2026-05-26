@@ -305,6 +305,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.29.2](services/rabbitmq/CHANGELOG.md#v0292)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.30.0](services/rabbitmq/CHANGELOG.md#v0300)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -407,6 +409,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v1.5.3](services/serviceenablement/CHANGELOG.md#v153)
     - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
+  - [v1.6.0](services/serviceenablement/CHANGELOG.md#v160)
+    - **Improvement:** Use new WaiterHelper for serviceenablement waiters
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -514,6 +518,11 @@
   - [v0.9.0](services/vpn/CHANGELOG.md#v090)
     - `v1api`:
       - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+  - [v0.10.0](services/vpn/CHANGELOG.md#v0100)
+    - `v1api`:
+      - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
 
