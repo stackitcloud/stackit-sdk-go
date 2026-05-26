@@ -61,7 +61,6 @@ func DeleteInstanceWaitHandler(ctx context.Context, client sqlserverflex.Default
 			if response == nil {
 				return "", errors.New("empty response")
 			}
-
 			if response.Item.Status == nil {
 				return "", errors.New("status is missing in response")
 			}
