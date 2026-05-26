@@ -34,7 +34,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiCreateAccessTokenRequest
 	*/
-	CreateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateAccessTokenRequest
+	CreateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateAccessTokenRequest
 
 	// CreateAccessTokenExecute executes the request
 	//  @return CreateAccessTokenResponse
@@ -51,7 +51,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiCreateDestinationRequest
 	*/
-	CreateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateDestinationRequest
+	CreateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateDestinationRequest
 
 	// CreateDestinationExecute executes the request
 	//  @return DestinationResponse
@@ -67,7 +67,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateTelemetryRouterRequest
 	*/
-	CreateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiCreateTelemetryRouterRequest
+	CreateTelemetryRouter(ctx context.Context, projectId string, regionId string) ApiCreateTelemetryRouterRequest
 
 	// CreateTelemetryRouterExecute executes the request
 	//  @return TelemetryRouterResponse
@@ -85,7 +85,7 @@ type DefaultAPI interface {
 		@param accessTokenId The Access Token UUID.
 		@return ApiDeleteAccessTokenRequest
 	*/
-	DeleteAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest
+	DeleteAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest
 
 	// DeleteAccessTokenExecute executes the request
 	DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error
@@ -102,7 +102,7 @@ type DefaultAPI interface {
 		@param destinationId The Destination UUID.
 		@return ApiDeleteDestinationRequest
 	*/
-	DeleteDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest
+	DeleteDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest
 
 	// DeleteDestinationExecute executes the request
 	DeleteDestinationExecute(r ApiDeleteDestinationRequest) error
@@ -118,7 +118,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiDeleteTelemetryRouterRequest
 	*/
-	DeleteTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiDeleteTelemetryRouterRequest
+	DeleteTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiDeleteTelemetryRouterRequest
 
 	// DeleteTelemetryRouterExecute executes the request
 	DeleteTelemetryRouterExecute(r ApiDeleteTelemetryRouterRequest) error
@@ -135,7 +135,7 @@ type DefaultAPI interface {
 		@param accessTokenId The Access Token UUID.
 		@return ApiGetAccessTokenRequest
 	*/
-	GetAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest
+	GetAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest
 
 	// GetAccessTokenExecute executes the request
 	//  @return GetAccessTokenResponse
@@ -153,7 +153,7 @@ type DefaultAPI interface {
 		@param destinationId The Destination UUID.
 		@return ApiGetDestinationRequest
 	*/
-	GetDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiGetDestinationRequest
+	GetDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiGetDestinationRequest
 
 	// GetDestinationExecute executes the request
 	//  @return DestinationResponse
@@ -170,7 +170,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiGetTelemetryRouterRequest
 	*/
-	GetTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiGetTelemetryRouterRequest
+	GetTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiGetTelemetryRouterRequest
 
 	// GetTelemetryRouterExecute executes the request
 	//  @return TelemetryRouterResponse
@@ -187,7 +187,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiListAccessTokensRequest
 	*/
-	ListAccessTokens(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListAccessTokensRequest
+	ListAccessTokens(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListAccessTokensRequest
 
 	// ListAccessTokensExecute executes the request
 	//  @return ListAccessTokensResponse
@@ -204,7 +204,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiListDestinationsRequest
 	*/
-	ListDestinations(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListDestinationsRequest
+	ListDestinations(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListDestinationsRequest
 
 	// ListDestinationsExecute executes the request
 	//  @return ListDestinationsResponse
@@ -220,7 +220,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiListTelemetryRoutersRequest
 	*/
-	ListTelemetryRouters(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiListTelemetryRoutersRequest
+	ListTelemetryRouters(ctx context.Context, projectId string, regionId string) ApiListTelemetryRoutersRequest
 
 	// ListTelemetryRoutersExecute executes the request
 	//  @return ListTelemetryRoutersResponse
@@ -238,7 +238,7 @@ type DefaultAPI interface {
 		@param accessTokenId The Access Token UUID.
 		@return ApiUpdateAccessTokenRequest
 	*/
-	UpdateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest
+	UpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest
 
 	// UpdateAccessTokenExecute executes the request
 	//  @return UpdateAccessTokenResponse
@@ -256,7 +256,7 @@ type DefaultAPI interface {
 		@param destinationId The Destination UUID.
 		@return ApiUpdateDestinationRequest
 	*/
-	UpdateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest
+	UpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest
 
 	// UpdateDestinationExecute executes the request
 	//  @return DestinationResponse
@@ -273,7 +273,7 @@ type DefaultAPI interface {
 		@param telemetryRouterId The Telemetry Router UUID.
 		@return ApiUpdateTelemetryRouterRequest
 	*/
-	UpdateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiUpdateTelemetryRouterRequest
+	UpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiUpdateTelemetryRouterRequest
 
 	// UpdateTelemetryRouterExecute executes the request
 	//  @return TelemetryRouterResponse
@@ -287,7 +287,7 @@ type ApiCreateAccessTokenRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListTelemetryRoutersRegionIdParameter
+	regionId                 string
 	telemetryRouterId        string
 	createAccessTokenPayload *CreateAccessTokenPayload
 }
@@ -312,7 +312,7 @@ Create a new access token for the given Telemetry Router.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiCreateAccessTokenRequest
 */
-func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateAccessTokenRequest {
+func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -454,7 +454,7 @@ type ApiCreateDestinationRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListTelemetryRoutersRegionIdParameter
+	regionId                 string
 	telemetryRouterId        string
 	createDestinationPayload *CreateDestinationPayload
 }
@@ -479,7 +479,7 @@ Creates a new Destination within the project.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiCreateDestinationRequest
 */
-func (a *DefaultAPIService) CreateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateDestinationRequest {
+func (a *DefaultAPIService) CreateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateDestinationRequest {
 	return ApiCreateDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -621,7 +621,7 @@ type ApiCreateTelemetryRouterRequest struct {
 	ctx                          context.Context
 	ApiService                   DefaultAPI
 	projectId                    string
-	regionId                     ListTelemetryRoutersRegionIdParameter
+	regionId                     string
 	createTelemetryRouterPayload *CreateTelemetryRouterPayload
 }
 
@@ -644,7 +644,7 @@ Creates the new Telemetry Router within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateTelemetryRouterRequest
 */
-func (a *DefaultAPIService) CreateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiCreateTelemetryRouterRequest {
+func (a *DefaultAPIService) CreateTelemetryRouter(ctx context.Context, projectId string, regionId string) ApiCreateTelemetryRouterRequest {
 	return ApiCreateTelemetryRouterRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -784,7 +784,7 @@ type ApiDeleteAccessTokenRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	accessTokenId     string
 }
@@ -805,7 +805,7 @@ Delete an access token for the given Telemetry Router by its ID.
 	@param accessTokenId The Access Token UUID.
 	@return ApiDeleteAccessTokenRequest
 */
-func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest {
+func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -931,7 +931,7 @@ type ApiDeleteDestinationRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	destinationId     string
 }
@@ -952,7 +952,7 @@ Deletes the given Destination.
 	@param destinationId The Destination UUID.
 	@return ApiDeleteDestinationRequest
 */
-func (a *DefaultAPIService) DeleteDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest {
+func (a *DefaultAPIService) DeleteDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest {
 	return ApiDeleteDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1078,7 +1078,7 @@ type ApiDeleteTelemetryRouterRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	force             *bool
 }
@@ -1104,7 +1104,7 @@ Deletes the given Telemetry Router.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiDeleteTelemetryRouterRequest
 */
-func (a *DefaultAPIService) DeleteTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiDeleteTelemetryRouterRequest {
+func (a *DefaultAPIService) DeleteTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiDeleteTelemetryRouterRequest {
 	return ApiDeleteTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1235,7 +1235,7 @@ type ApiGetAccessTokenRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	accessTokenId     string
 }
@@ -1256,7 +1256,7 @@ Get an access token for the given Telemetry Router by its ID.
 	@param accessTokenId The Access Token UUID.
 	@return ApiGetAccessTokenRequest
 */
-func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest {
+func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1395,7 +1395,7 @@ type ApiGetDestinationRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	destinationId     string
 }
@@ -1416,7 +1416,7 @@ Returns the details for the given destination.
 	@param destinationId The Destination UUID.
 	@return ApiGetDestinationRequest
 */
-func (a *DefaultAPIService) GetDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiGetDestinationRequest {
+func (a *DefaultAPIService) GetDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiGetDestinationRequest {
 	return ApiGetDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1544,7 +1544,7 @@ type ApiGetTelemetryRouterRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 }
 
@@ -1563,7 +1563,7 @@ Returns the details for the given Telemetry Router.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiGetTelemetryRouterRequest
 */
-func (a *DefaultAPIService) GetTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiGetTelemetryRouterRequest {
+func (a *DefaultAPIService) GetTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiGetTelemetryRouterRequest {
 	return ApiGetTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1700,7 +1700,7 @@ type ApiListAccessTokensRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	pageToken         *string
 	pageSize          *int32
@@ -1733,7 +1733,7 @@ Get all access tokens for a telemetry router.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiListAccessTokensRequest
 */
-func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListAccessTokensRequest {
+func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -1880,7 +1880,7 @@ type ApiListDestinationsRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          ListTelemetryRoutersRegionIdParameter
+	regionId          string
 	telemetryRouterId string
 	pageToken         *string
 	pageSize          *int32
@@ -1913,7 +1913,7 @@ Returns a list of all destinations of a specific Telemetry Router within a proje
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiListDestinationsRequest
 */
-func (a *DefaultAPIService) ListDestinations(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListDestinationsRequest {
+func (a *DefaultAPIService) ListDestinations(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListDestinationsRequest {
 	return ApiListDestinationsRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -2049,7 +2049,7 @@ type ApiListTelemetryRoutersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListTelemetryRoutersRegionIdParameter
+	regionId   string
 	pageToken  *string
 	pageSize   *int32
 }
@@ -2080,7 +2080,7 @@ Returns a list of all Telemetry Routers within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListTelemetryRoutersRequest
 */
-func (a *DefaultAPIService) ListTelemetryRouters(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiListTelemetryRoutersRequest {
+func (a *DefaultAPIService) ListTelemetryRouters(ctx context.Context, projectId string, regionId string) ApiListTelemetryRoutersRequest {
 	return ApiListTelemetryRoutersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2214,7 +2214,7 @@ type ApiUpdateAccessTokenRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListTelemetryRoutersRegionIdParameter
+	regionId                 string
 	telemetryRouterId        string
 	accessTokenId            string
 	updateAccessTokenPayload *UpdateAccessTokenPayload
@@ -2241,7 +2241,7 @@ Update an existing access token for the given Telemetry Router by its ID.
 	@param accessTokenId The Access Token UUID.
 	@return ApiUpdateAccessTokenRequest
 */
-func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest {
+func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -2385,7 +2385,7 @@ type ApiUpdateDestinationRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListTelemetryRoutersRegionIdParameter
+	regionId                 string
 	telemetryRouterId        string
 	destinationId            string
 	updateDestinationPayload *UpdateDestinationPayload
@@ -2412,7 +2412,7 @@ Updates the given destination.
 	@param destinationId The Destination UUID.
 	@return ApiUpdateDestinationRequest
 */
-func (a *DefaultAPIService) UpdateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest {
+func (a *DefaultAPIService) UpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest {
 	return ApiUpdateDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -2556,7 +2556,7 @@ type ApiUpdateTelemetryRouterRequest struct {
 	ctx                          context.Context
 	ApiService                   DefaultAPI
 	projectId                    string
-	regionId                     ListTelemetryRoutersRegionIdParameter
+	regionId                     string
 	telemetryRouterId            string
 	updateTelemetryRouterPayload *UpdateTelemetryRouterPayload
 }
@@ -2581,7 +2581,7 @@ Updates the given Telemetry Router.
 	@param telemetryRouterId The Telemetry Router UUID.
 	@return ApiUpdateTelemetryRouterRequest
 */
-func (a *DefaultAPIService) UpdateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiUpdateTelemetryRouterRequest {
+func (a *DefaultAPIService) UpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiUpdateTelemetryRouterRequest {
 	return ApiUpdateTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,

@@ -33,7 +33,7 @@ type DefaultAPI interface {
 		@param region
 		@return ApiCreateGatewayRequest
 	*/
-	CreateGateway(ctx context.Context, projectId string, region Region) ApiCreateGatewayRequest
+	CreateGateway(ctx context.Context, projectId string, region string) ApiCreateGatewayRequest
 
 	// CreateGatewayExecute executes the request
 	//  @return GatewayResponse
@@ -50,7 +50,7 @@ type DefaultAPI interface {
 		@param gatewayId
 		@return ApiCreateGatewayConnectionRequest
 	*/
-	CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest
+	CreateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayConnectionRequest
 
 	// CreateGatewayConnectionExecute executes the request
 	//  @return ConnectionResponse
@@ -69,7 +69,7 @@ type DefaultAPI interface {
 			@param gatewayId
 			@return ApiDeleteGatewayRequest
 	*/
-	DeleteGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteGatewayRequest
+	DeleteGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiDeleteGatewayRequest
 
 	// DeleteGatewayExecute executes the request
 	DeleteGatewayExecute(r ApiDeleteGatewayRequest) error
@@ -86,7 +86,7 @@ type DefaultAPI interface {
 		@param connectionId
 		@return ApiDeleteGatewayConnectionRequest
 	*/
-	DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest
+	DeleteGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest
 
 	// DeleteGatewayConnectionExecute executes the request
 	DeleteGatewayConnectionExecute(r ApiDeleteGatewayConnectionRequest) error
@@ -102,7 +102,7 @@ type DefaultAPI interface {
 		@param gatewayId
 		@return ApiGetGatewayRequest
 	*/
-	GetGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayRequest
+	GetGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayRequest
 
 	// GetGatewayExecute executes the request
 	//  @return GatewayResponse
@@ -120,7 +120,7 @@ type DefaultAPI interface {
 		@param connectionId
 		@return ApiGetGatewayConnectionRequest
 	*/
-	GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest
+	GetGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest
 
 	// GetGatewayConnectionExecute executes the request
 	//  @return ConnectionResponse
@@ -138,7 +138,7 @@ type DefaultAPI interface {
 		@param connectionId
 		@return ApiGetGatewayConnectionStatusRequest
 	*/
-	GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest
+	GetGatewayConnectionStatus(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest
 
 	// GetGatewayConnectionStatusExecute executes the request
 	//  @return ConnectionStatusResponse
@@ -155,7 +155,7 @@ type DefaultAPI interface {
 		@param gatewayId
 		@return ApiGetGatewayStatusRequest
 	*/
-	GetGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayStatusRequest
+	GetGatewayStatus(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayStatusRequest
 
 	// GetGatewayStatusExecute executes the request
 	//  @return GatewayStatusResponse
@@ -172,7 +172,7 @@ type DefaultAPI interface {
 		@param gatewayId
 		@return ApiListGatewayConnectionsRequest
 	*/
-	ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest
+	ListGatewayConnections(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayConnectionsRequest
 
 	// ListGatewayConnectionsExecute executes the request
 	//  @return ConnectionList
@@ -190,7 +190,7 @@ type DefaultAPI interface {
 			@param region
 			@return ApiListGatewaysRequest
 	*/
-	ListGateways(ctx context.Context, projectId string, region Region) ApiListGatewaysRequest
+	ListGateways(ctx context.Context, projectId string, region string) ApiListGatewaysRequest
 
 	// ListGatewaysExecute executes the request
 	//  @return GatewayList
@@ -207,7 +207,7 @@ type DefaultAPI interface {
 			@param region
 			@return ApiListPlansRequest
 	*/
-	ListPlans(ctx context.Context, region Region) ApiListPlansRequest
+	ListPlans(ctx context.Context, region string) ApiListPlansRequest
 
 	// ListPlansExecute executes the request
 	//  @return PlanList
@@ -224,7 +224,7 @@ type DefaultAPI interface {
 		@param region
 		@return ApiListQuotasRequest
 	*/
-	ListQuotas(ctx context.Context, projectId string, region Region) ApiListQuotasRequest
+	ListQuotas(ctx context.Context, projectId string, region string) ApiListQuotasRequest
 
 	// ListQuotasExecute executes the request
 	//  @return QuotaListResponse
@@ -243,7 +243,7 @@ type DefaultAPI interface {
 			@param gatewayId
 			@return ApiUpdateGatewayRequest
 	*/
-	UpdateGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateGatewayRequest
+	UpdateGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiUpdateGatewayRequest
 
 	// UpdateGatewayExecute executes the request
 	//  @return GatewayResponse
@@ -261,7 +261,7 @@ type DefaultAPI interface {
 		@param connectionId
 		@return ApiUpdateGatewayConnectionRequest
 	*/
-	UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest
+	UpdateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest
 
 	// UpdateGatewayConnectionExecute executes the request
 	//  @return ConnectionResponse
@@ -275,7 +275,7 @@ type ApiCreateGatewayRequest struct {
 	ctx                  context.Context
 	ApiService           DefaultAPI
 	projectId            string
-	region               Region
+	region               string
 	createGatewayPayload *CreateGatewayPayload
 }
 
@@ -298,7 +298,7 @@ Provision a new VPN gateway.
 	@param region
 	@return ApiCreateGatewayRequest
 */
-func (a *DefaultAPIService) CreateGateway(ctx context.Context, projectId string, region Region) ApiCreateGatewayRequest {
+func (a *DefaultAPIService) CreateGateway(ctx context.Context, projectId string, region string) ApiCreateGatewayRequest {
 	return ApiCreateGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -459,7 +459,7 @@ type ApiCreateGatewayConnectionRequest struct {
 	ctx                            context.Context
 	ApiService                     DefaultAPI
 	projectId                      string
-	region                         Region
+	region                         string
 	gatewayId                      string
 	createGatewayConnectionPayload *CreateGatewayConnectionPayload
 }
@@ -484,7 +484,7 @@ Create a new connection on an existing VPN gateway.
 	@param gatewayId
 	@return ApiCreateGatewayConnectionRequest
 */
-func (a *DefaultAPIService) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest {
+func (a *DefaultAPIService) CreateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayConnectionRequest {
 	return ApiCreateGatewayConnectionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -644,7 +644,7 @@ type ApiDeleteGatewayRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     Region
+	region     string
 	gatewayId  string
 }
 
@@ -664,7 +664,7 @@ This operation is irreversible.
 	@param gatewayId
 	@return ApiDeleteGatewayRequest
 */
-func (a *DefaultAPIService) DeleteGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteGatewayRequest {
+func (a *DefaultAPIService) DeleteGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiDeleteGatewayRequest {
 	return ApiDeleteGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -798,7 +798,7 @@ type ApiDeleteGatewayConnectionRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	region       Region
+	region       string
 	gatewayId    string
 	connectionId string
 }
@@ -819,7 +819,7 @@ Delete a certain connection from an existing VPN gateway.
 	@param connectionId
 	@return ApiDeleteGatewayConnectionRequest
 */
-func (a *DefaultAPIService) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
+func (a *DefaultAPIService) DeleteGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
 	return ApiDeleteGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -966,7 +966,7 @@ type ApiGetGatewayRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     Region
+	region     string
 	gatewayId  string
 }
 
@@ -985,7 +985,7 @@ Get details of a VPN Gateway in a project.
 	@param gatewayId
 	@return ApiGetGatewayRequest
 */
-func (a *DefaultAPIService) GetGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayRequest {
+func (a *DefaultAPIService) GetGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayRequest {
 	return ApiGetGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1143,7 +1143,7 @@ type ApiGetGatewayConnectionRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	region       Region
+	region       string
 	gatewayId    string
 	connectionId string
 }
@@ -1164,7 +1164,7 @@ Get a certain connection for an existing VPN gateway.
 	@param connectionId
 	@return ApiGetGatewayConnectionRequest
 */
-func (a *DefaultAPIService) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
+func (a *DefaultAPIService) GetGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
 	return ApiGetGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -1324,7 +1324,7 @@ type ApiGetGatewayConnectionStatusRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	region       Region
+	region       string
 	gatewayId    string
 	connectionId string
 }
@@ -1345,7 +1345,7 @@ Get the status for a specific connection.
 	@param connectionId
 	@return ApiGetGatewayConnectionStatusRequest
 */
-func (a *DefaultAPIService) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
+func (a *DefaultAPIService) GetGatewayConnectionStatus(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
 	return ApiGetGatewayConnectionStatusRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -1505,7 +1505,7 @@ type ApiGetGatewayStatusRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     Region
+	region     string
 	gatewayId  string
 }
 
@@ -1524,7 +1524,7 @@ Get the status of a VPN gateway in a project.
 	@param gatewayId
 	@return ApiGetGatewayStatusRequest
 */
-func (a *DefaultAPIService) GetGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayStatusRequest {
+func (a *DefaultAPIService) GetGatewayStatus(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayStatusRequest {
 	return ApiGetGatewayStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1682,7 +1682,7 @@ type ApiListGatewayConnectionsRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	region        Region
+	region        string
 	gatewayId     string
 	labelSelector *map[string]string
 }
@@ -1708,7 +1708,7 @@ List connections for an existing VPN gateway.
 	@param gatewayId
 	@return ApiListGatewayConnectionsRequest
 */
-func (a *DefaultAPIService) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest {
+func (a *DefaultAPIService) ListGatewayConnections(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayConnectionsRequest {
 	return ApiListGatewayConnectionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1869,7 +1869,7 @@ type ApiListGatewaysRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	region        Region
+	region        string
 	labelSelector *map[string]string
 }
 
@@ -1894,7 +1894,7 @@ Filter the results using the `label_selector` query parameter.
 	@param region
 	@return ApiListGatewaysRequest
 */
-func (a *DefaultAPIService) ListGateways(ctx context.Context, projectId string, region Region) ApiListGatewaysRequest {
+func (a *DefaultAPIService) ListGateways(ctx context.Context, projectId string, region string) ApiListGatewaysRequest {
 	return ApiListGatewaysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2041,7 +2041,7 @@ func (a *DefaultAPIService) ListGatewaysExecute(r ApiListGatewaysRequest) (*Gate
 type ApiListPlansRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
-	region     Region
+	region     string
 }
 
 func (r ApiListPlansRequest) Execute() (*PlanList, error) {
@@ -2058,7 +2058,7 @@ Use this to identify the `planId` required for gateway creation.
 	@param region
 	@return ApiListPlansRequest
 */
-func (a *DefaultAPIService) ListPlans(ctx context.Context, region Region) ApiListPlansRequest {
+func (a *DefaultAPIService) ListPlans(ctx context.Context, region string) ApiListPlansRequest {
 	return ApiListPlansRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2179,7 +2179,7 @@ type ApiListQuotasRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	region     Region
+	region     string
 }
 
 func (r ApiListQuotasRequest) Execute() (*QuotaListResponse, error) {
@@ -2196,7 +2196,7 @@ Retrieve the resource quotas and current usage for STACKIT VPN within a specific
 	@param region
 	@return ApiListQuotasRequest
 */
-func (a *DefaultAPIService) ListQuotas(ctx context.Context, projectId string, region Region) ApiListQuotasRequest {
+func (a *DefaultAPIService) ListQuotas(ctx context.Context, projectId string, region string) ApiListQuotasRequest {
 	return ApiListQuotasRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2319,7 +2319,7 @@ type ApiUpdateGatewayRequest struct {
 	ctx                  context.Context
 	ApiService           DefaultAPI
 	projectId            string
-	region               Region
+	region               string
 	gatewayId            string
 	updateGatewayPayload *UpdateGatewayPayload
 }
@@ -2345,7 +2345,7 @@ Certain changes may trigger infrastructure updates or temporary connection re-ne
 	@param gatewayId
 	@return ApiUpdateGatewayRequest
 */
-func (a *DefaultAPIService) UpdateGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateGatewayRequest {
+func (a *DefaultAPIService) UpdateGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiUpdateGatewayRequest {
 	return ApiUpdateGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2508,7 +2508,7 @@ type ApiUpdateGatewayConnectionRequest struct {
 	ctx                            context.Context
 	ApiService                     DefaultAPI
 	projectId                      string
-	region                         Region
+	region                         string
 	gatewayId                      string
 	connectionId                   string
 	updateGatewayConnectionPayload *UpdateGatewayConnectionPayload
@@ -2535,7 +2535,7 @@ Updating the configuration of an existing connection.
 	@param connectionId
 	@return ApiUpdateGatewayConnectionRequest
 */
-func (a *DefaultAPIService) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
+func (a *DefaultAPIService) UpdateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
 	return ApiUpdateGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,

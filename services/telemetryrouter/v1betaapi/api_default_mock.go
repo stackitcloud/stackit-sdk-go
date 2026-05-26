@@ -52,7 +52,7 @@ type DefaultAPIServiceMock struct {
 	UpdateTelemetryRouterExecuteMock *func(r ApiUpdateTelemetryRouterRequest) (*TelemetryRouterResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateAccessTokenRequest {
+func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -72,7 +72,7 @@ func (a DefaultAPIServiceMock) CreateAccessTokenExecute(r ApiCreateAccessTokenRe
 	return (*a.CreateAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiCreateDestinationRequest {
+func (a DefaultAPIServiceMock) CreateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiCreateDestinationRequest {
 	return ApiCreateDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -92,7 +92,7 @@ func (a DefaultAPIServiceMock) CreateDestinationExecute(r ApiCreateDestinationRe
 	return (*a.CreateDestinationExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiCreateTelemetryRouterRequest {
+func (a DefaultAPIServiceMock) CreateTelemetryRouter(ctx context.Context, projectId string, regionId string) ApiCreateTelemetryRouterRequest {
 	return ApiCreateTelemetryRouterRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -111,7 +111,7 @@ func (a DefaultAPIServiceMock) CreateTelemetryRouterExecute(r ApiCreateTelemetry
 	return (*a.CreateTelemetryRouterExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest {
+func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -131,7 +131,7 @@ func (a DefaultAPIServiceMock) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRe
 	return (*a.DeleteAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest {
+func (a DefaultAPIServiceMock) DeleteDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiDeleteDestinationRequest {
 	return ApiDeleteDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -151,7 +151,7 @@ func (a DefaultAPIServiceMock) DeleteDestinationExecute(r ApiDeleteDestinationRe
 	return (*a.DeleteDestinationExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiDeleteTelemetryRouterRequest {
+func (a DefaultAPIServiceMock) DeleteTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiDeleteTelemetryRouterRequest {
 	return ApiDeleteTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -170,7 +170,7 @@ func (a DefaultAPIServiceMock) DeleteTelemetryRouterExecute(r ApiDeleteTelemetry
 	return (*a.DeleteTelemetryRouterExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest {
+func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -191,7 +191,7 @@ func (a DefaultAPIServiceMock) GetAccessTokenExecute(r ApiGetAccessTokenRequest)
 	return (*a.GetAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiGetDestinationRequest {
+func (a DefaultAPIServiceMock) GetDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiGetDestinationRequest {
 	return ApiGetDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -212,7 +212,7 @@ func (a DefaultAPIServiceMock) GetDestinationExecute(r ApiGetDestinationRequest)
 	return (*a.GetDestinationExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiGetTelemetryRouterRequest {
+func (a DefaultAPIServiceMock) GetTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiGetTelemetryRouterRequest {
 	return ApiGetTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -232,7 +232,7 @@ func (a DefaultAPIServiceMock) GetTelemetryRouterExecute(r ApiGetTelemetryRouter
 	return (*a.GetTelemetryRouterExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListAccessTokensRequest {
+func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -252,7 +252,7 @@ func (a DefaultAPIServiceMock) ListAccessTokensExecute(r ApiListAccessTokensRequ
 	return (*a.ListAccessTokensExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListDestinations(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiListDestinationsRequest {
+func (a DefaultAPIServiceMock) ListDestinations(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiListDestinationsRequest {
 	return ApiListDestinationsRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -272,7 +272,7 @@ func (a DefaultAPIServiceMock) ListDestinationsExecute(r ApiListDestinationsRequ
 	return (*a.ListDestinationsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListTelemetryRouters(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter) ApiListTelemetryRoutersRequest {
+func (a DefaultAPIServiceMock) ListTelemetryRouters(ctx context.Context, projectId string, regionId string) ApiListTelemetryRoutersRequest {
 	return ApiListTelemetryRoutersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -291,7 +291,7 @@ func (a DefaultAPIServiceMock) ListTelemetryRoutersExecute(r ApiListTelemetryRou
 	return (*a.ListTelemetryRoutersExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest {
+func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -312,7 +312,7 @@ func (a DefaultAPIServiceMock) UpdateAccessTokenExecute(r ApiUpdateAccessTokenRe
 	return (*a.UpdateAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateDestination(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest {
+func (a DefaultAPIServiceMock) UpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiUpdateDestinationRequest {
 	return ApiUpdateDestinationRequest{
 		ApiService:        a,
 		ctx:               ctx,
@@ -333,7 +333,7 @@ func (a DefaultAPIServiceMock) UpdateDestinationExecute(r ApiUpdateDestinationRe
 	return (*a.UpdateDestinationExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateTelemetryRouter(ctx context.Context, projectId string, regionId ListTelemetryRoutersRegionIdParameter, telemetryRouterId string) ApiUpdateTelemetryRouterRequest {
+func (a DefaultAPIServiceMock) UpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiUpdateTelemetryRouterRequest {
 	return ApiUpdateTelemetryRouterRequest{
 		ApiService:        a,
 		ctx:               ctx,

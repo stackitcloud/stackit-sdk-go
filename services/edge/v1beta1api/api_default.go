@@ -33,7 +33,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region the instance is part of.
 		@return ApiCreateInstanceRequest
 	*/
-	CreateInstance(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiCreateInstanceRequest
+	CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return Instance
@@ -50,7 +50,7 @@ type DefaultAPI interface {
 		@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 		@return ApiDeleteInstanceRequest
 	*/
-	DeleteInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiDeleteInstanceRequest
+	DeleteInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
@@ -66,7 +66,7 @@ type DefaultAPI interface {
 		@param displayName The instance display name.
 		@return ApiDeleteInstanceByNameRequest
 	*/
-	DeleteInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiDeleteInstanceByNameRequest
+	DeleteInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiDeleteInstanceByNameRequest
 
 	// DeleteInstanceByNameExecute executes the request
 	DeleteInstanceByNameExecute(r ApiDeleteInstanceByNameRequest) error
@@ -82,7 +82,7 @@ type DefaultAPI interface {
 		@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 		@return ApiGetInstanceRequest
 	*/
-	GetInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiGetInstanceRequest
+	GetInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return Instance
@@ -99,7 +99,7 @@ type DefaultAPI interface {
 		@param displayName The instance display name.
 		@return ApiGetInstanceByNameRequest
 	*/
-	GetInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiGetInstanceByNameRequest
+	GetInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetInstanceByNameRequest
 
 	// GetInstanceByNameExecute executes the request
 	//  @return Instance
@@ -116,7 +116,7 @@ type DefaultAPI interface {
 		@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 		@return ApiGetKubeconfigByInstanceIdRequest
 	*/
-	GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceIdRegionIdParameter, instanceId string) ApiGetKubeconfigByInstanceIdRequest
+	GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetKubeconfigByInstanceIdRequest
 
 	// GetKubeconfigByInstanceIdExecute executes the request
 	//  @return Kubeconfig
@@ -133,7 +133,7 @@ type DefaultAPI interface {
 		@param displayName The instance display name.
 		@return ApiGetKubeconfigByInstanceNameRequest
 	*/
-	GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceNameRegionIdParameter, displayName string) ApiGetKubeconfigByInstanceNameRequest
+	GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetKubeconfigByInstanceNameRequest
 
 	// GetKubeconfigByInstanceNameExecute executes the request
 	//  @return Kubeconfig
@@ -150,7 +150,7 @@ type DefaultAPI interface {
 		@param instanceId The instance UUID.
 		@return ApiGetTokenByInstanceIdRequest
 	*/
-	GetTokenByInstanceId(ctx context.Context, projectId string, regionId GetTokenByInstanceIdRegionIdParameter, instanceId string) ApiGetTokenByInstanceIdRequest
+	GetTokenByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetTokenByInstanceIdRequest
 
 	// GetTokenByInstanceIdExecute executes the request
 	//  @return Token
@@ -167,7 +167,7 @@ type DefaultAPI interface {
 		@param displayName The instance display name.
 		@return ApiGetTokenByInstanceNameRequest
 	*/
-	GetTokenByInstanceName(ctx context.Context, projectId string, regionId GetTokenByInstanceNameRegionIdParameter, displayName string) ApiGetTokenByInstanceNameRequest
+	GetTokenByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetTokenByInstanceNameRequest
 
 	// GetTokenByInstanceNameExecute executes the request
 	//  @return Token
@@ -195,7 +195,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region the instance is part of.
 		@return ApiListInstancesRequest
 	*/
-	ListInstances(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiListInstancesRequest
+	ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return InstanceList
@@ -227,7 +227,7 @@ type DefaultAPI interface {
 		@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 		@return ApiUpdateInstanceRequest
 	*/
-	UpdateInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiUpdateInstanceRequest
+	UpdateInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateInstanceRequest
 
 	// UpdateInstanceExecute executes the request
 	UpdateInstanceExecute(r ApiUpdateInstanceRequest) error
@@ -243,7 +243,7 @@ type DefaultAPI interface {
 		@param displayName The instance display name.
 		@return ApiUpdateInstanceByNameRequest
 	*/
-	UpdateInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiUpdateInstanceByNameRequest
+	UpdateInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiUpdateInstanceByNameRequest
 
 	// UpdateInstanceByNameExecute executes the request
 	UpdateInstanceByNameExecute(r ApiUpdateInstanceByNameRequest) error
@@ -256,7 +256,7 @@ type ApiCreateInstanceRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	regionId              ListInstancesRegionIdParameter
+	regionId              string
 	createInstancePayload *CreateInstancePayload
 }
 
@@ -279,7 +279,7 @@ Creates a new instance within the project.
 	@param regionId The STACKIT region the instance is part of.
 	@return ApiCreateInstanceRequest
 */
-func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiCreateInstanceRequest {
+func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -397,7 +397,7 @@ type ApiDeleteInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   GetInstanceRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -416,7 +416,7 @@ Deletes the given instance.
 	@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 	@return ApiDeleteInstanceRequest
 */
-func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiDeleteInstanceRequest {
+func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -532,7 +532,7 @@ type ApiDeleteInstanceByNameRequest struct {
 	ctx         context.Context
 	ApiService  DefaultAPI
 	projectId   string
-	regionId    GetInstanceByNameRegionIdParameter
+	regionId    string
 	displayName string
 }
 
@@ -551,7 +551,7 @@ Deletes the given instance by name.
 	@param displayName The instance display name.
 	@return ApiDeleteInstanceByNameRequest
 */
-func (a *DefaultAPIService) DeleteInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiDeleteInstanceByNameRequest {
+func (a *DefaultAPIService) DeleteInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiDeleteInstanceByNameRequest {
 	return ApiDeleteInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -667,7 +667,7 @@ type ApiGetInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   GetInstanceRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -686,7 +686,7 @@ Returns the details for the given instance.
 	@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 	@return ApiGetInstanceRequest
 */
-func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiGetInstanceRequest {
+func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -815,7 +815,7 @@ type ApiGetInstanceByNameRequest struct {
 	ctx         context.Context
 	ApiService  DefaultAPI
 	projectId   string
-	regionId    GetInstanceByNameRegionIdParameter
+	regionId    string
 	displayName string
 }
 
@@ -834,7 +834,7 @@ Returns the details for the given instance by name.
 	@param displayName The instance display name.
 	@return ApiGetInstanceByNameRequest
 */
-func (a *DefaultAPIService) GetInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiGetInstanceByNameRequest {
+func (a *DefaultAPIService) GetInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetInstanceByNameRequest {
 	return ApiGetInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -963,7 +963,7 @@ type ApiGetKubeconfigByInstanceIdRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          GetKubeconfigByInstanceIdRegionIdParameter
+	regionId          string
 	instanceId        string
 	expirationSeconds *int64
 }
@@ -989,7 +989,7 @@ Returns the kubeconfig for the given instance.
 	@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 	@return ApiGetKubeconfigByInstanceIdRequest
 */
-func (a *DefaultAPIService) GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceIdRegionIdParameter, instanceId string) ApiGetKubeconfigByInstanceIdRequest {
+func (a *DefaultAPIService) GetKubeconfigByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetKubeconfigByInstanceIdRequest {
 	return ApiGetKubeconfigByInstanceIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1125,7 +1125,7 @@ type ApiGetKubeconfigByInstanceNameRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          GetKubeconfigByInstanceNameRegionIdParameter
+	regionId          string
 	displayName       string
 	expirationSeconds *int64
 }
@@ -1151,7 +1151,7 @@ Returns the kubeconfig for the given instance.
 	@param displayName The instance display name.
 	@return ApiGetKubeconfigByInstanceNameRequest
 */
-func (a *DefaultAPIService) GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId GetKubeconfigByInstanceNameRegionIdParameter, displayName string) ApiGetKubeconfigByInstanceNameRequest {
+func (a *DefaultAPIService) GetKubeconfigByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetKubeconfigByInstanceNameRequest {
 	return ApiGetKubeconfigByInstanceNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -1287,7 +1287,7 @@ type ApiGetTokenByInstanceIdRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          GetTokenByInstanceIdRegionIdParameter
+	regionId          string
 	instanceId        string
 	expirationSeconds *int64
 }
@@ -1313,7 +1313,7 @@ Returns an ServiceAccount token.
 	@param instanceId The instance UUID.
 	@return ApiGetTokenByInstanceIdRequest
 */
-func (a *DefaultAPIService) GetTokenByInstanceId(ctx context.Context, projectId string, regionId GetTokenByInstanceIdRegionIdParameter, instanceId string) ApiGetTokenByInstanceIdRequest {
+func (a *DefaultAPIService) GetTokenByInstanceId(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetTokenByInstanceIdRequest {
 	return ApiGetTokenByInstanceIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1449,7 +1449,7 @@ type ApiGetTokenByInstanceNameRequest struct {
 	ctx               context.Context
 	ApiService        DefaultAPI
 	projectId         string
-	regionId          GetTokenByInstanceNameRegionIdParameter
+	regionId          string
 	displayName       string
 	expirationSeconds *int64
 }
@@ -1475,7 +1475,7 @@ Returns an ServiceAccount token.
 	@param displayName The instance display name.
 	@return ApiGetTokenByInstanceNameRequest
 */
-func (a *DefaultAPIService) GetTokenByInstanceName(ctx context.Context, projectId string, regionId GetTokenByInstanceNameRegionIdParameter, displayName string) ApiGetTokenByInstanceNameRequest {
+func (a *DefaultAPIService) GetTokenByInstanceName(ctx context.Context, projectId string, regionId string, displayName string) ApiGetTokenByInstanceNameRequest {
 	return ApiGetTokenByInstanceNameRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -1742,7 +1742,7 @@ type ApiListInstancesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListInstancesRegionIdParameter
+	regionId   string
 }
 
 func (r ApiListInstancesRequest) Execute() (*InstanceList, error) {
@@ -1759,7 +1759,7 @@ Returns a list of all instances within the project.
 	@param regionId The STACKIT region the instance is part of.
 	@return ApiListInstancesRequest
 */
-func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, regionId ListInstancesRegionIdParameter) ApiListInstancesRequest {
+func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2020,7 +2020,7 @@ type ApiUpdateInstanceRequest struct {
 	ctx                   context.Context
 	ApiService            DefaultAPI
 	projectId             string
-	regionId              GetInstanceRegionIdParameter
+	regionId              string
 	instanceId            string
 	updateInstancePayload *UpdateInstancePayload
 }
@@ -2045,7 +2045,7 @@ Updates the given instance.
 	@param instanceId The full ID of the instance, <display_name>-<project_hash>.
 	@return ApiUpdateInstanceRequest
 */
-func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, regionId GetInstanceRegionIdParameter, instanceId string) ApiUpdateInstanceRequest {
+func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2166,7 +2166,7 @@ type ApiUpdateInstanceByNameRequest struct {
 	ctx                         context.Context
 	ApiService                  DefaultAPI
 	projectId                   string
-	regionId                    GetInstanceByNameRegionIdParameter
+	regionId                    string
 	displayName                 string
 	updateInstanceByNamePayload *UpdateInstanceByNamePayload
 }
@@ -2191,7 +2191,7 @@ Updates the given instance.
 	@param displayName The instance display name.
 	@return ApiUpdateInstanceByNameRequest
 */
-func (a *DefaultAPIService) UpdateInstanceByName(ctx context.Context, projectId string, regionId GetInstanceByNameRegionIdParameter, displayName string) ApiUpdateInstanceByNameRequest {
+func (a *DefaultAPIService) UpdateInstanceByName(ctx context.Context, projectId string, regionId string, displayName string) ApiUpdateInstanceByNameRequest {
 	return ApiUpdateInstanceByNameRequest{
 		ApiService:  a,
 		ctx:         ctx,

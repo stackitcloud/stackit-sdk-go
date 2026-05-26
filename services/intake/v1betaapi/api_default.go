@@ -33,7 +33,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateIntakeRequest
 	*/
-	CreateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRequest
+	CreateIntake(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRequest
 
 	// CreateIntakeExecute executes the request
 	//  @return IntakeResponse
@@ -49,7 +49,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateIntakeRunnerRequest
 	*/
-	CreateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRunnerRequest
+	CreateIntakeRunner(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRunnerRequest
 
 	// CreateIntakeRunnerExecute executes the request
 	//  @return IntakeRunnerResponse
@@ -66,7 +66,7 @@ type DefaultAPI interface {
 		@param intakeId The intake UUID.
 		@return ApiCreateIntakeUserRequest
 	*/
-	CreateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiCreateIntakeUserRequest
+	CreateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string) ApiCreateIntakeUserRequest
 
 	// CreateIntakeUserExecute executes the request
 	//  @return IntakeUserResponse
@@ -83,7 +83,7 @@ type DefaultAPI interface {
 		@param intakeId The intake UUID.
 		@return ApiDeleteIntakeRequest
 	*/
-	DeleteIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiDeleteIntakeRequest
+	DeleteIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiDeleteIntakeRequest
 
 	// DeleteIntakeExecute executes the request
 	DeleteIntakeExecute(r ApiDeleteIntakeRequest) error
@@ -99,7 +99,7 @@ type DefaultAPI interface {
 		@param intakeRunnerId The intake runner UUID.
 		@return ApiDeleteIntakeRunnerRequest
 	*/
-	DeleteIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiDeleteIntakeRunnerRequest
+	DeleteIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiDeleteIntakeRunnerRequest
 
 	// DeleteIntakeRunnerExecute executes the request
 	DeleteIntakeRunnerExecute(r ApiDeleteIntakeRunnerRequest) error
@@ -116,7 +116,7 @@ type DefaultAPI interface {
 		@param intakeUserId The intake user UUID.
 		@return ApiDeleteIntakeUserRequest
 	*/
-	DeleteIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest
+	DeleteIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest
 
 	// DeleteIntakeUserExecute executes the request
 	DeleteIntakeUserExecute(r ApiDeleteIntakeUserRequest) error
@@ -132,7 +132,7 @@ type DefaultAPI interface {
 		@param intakeId The intake UUID.
 		@return ApiGetIntakeRequest
 	*/
-	GetIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiGetIntakeRequest
+	GetIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiGetIntakeRequest
 
 	// GetIntakeExecute executes the request
 	//  @return IntakeResponse
@@ -149,7 +149,7 @@ type DefaultAPI interface {
 		@param intakeRunnerId The intake runner UUID.
 		@return ApiGetIntakeRunnerRequest
 	*/
-	GetIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiGetIntakeRunnerRequest
+	GetIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiGetIntakeRunnerRequest
 
 	// GetIntakeRunnerExecute executes the request
 	//  @return IntakeRunnerResponse
@@ -167,7 +167,7 @@ type DefaultAPI interface {
 		@param intakeUserId The intake user UUID.
 		@return ApiGetIntakeUserRequest
 	*/
-	GetIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiGetIntakeUserRequest
+	GetIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiGetIntakeUserRequest
 
 	// GetIntakeUserExecute executes the request
 	//  @return IntakeUserResponse
@@ -183,7 +183,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiListIntakeRunnersRequest
 	*/
-	ListIntakeRunners(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakeRunnersRequest
+	ListIntakeRunners(ctx context.Context, projectId string, regionId string) ApiListIntakeRunnersRequest
 
 	// ListIntakeRunnersExecute executes the request
 	//  @return ListIntakeRunnersResponse
@@ -200,7 +200,7 @@ type DefaultAPI interface {
 		@param intakeId The intake UUID.
 		@return ApiListIntakeUsersRequest
 	*/
-	ListIntakeUsers(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiListIntakeUsersRequest
+	ListIntakeUsers(ctx context.Context, projectId string, regionId string, intakeId string) ApiListIntakeUsersRequest
 
 	// ListIntakeUsersExecute executes the request
 	//  @return ListIntakeUsersResponse
@@ -216,7 +216,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiListIntakesRequest
 	*/
-	ListIntakes(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakesRequest
+	ListIntakes(ctx context.Context, projectId string, regionId string) ApiListIntakesRequest
 
 	// ListIntakesExecute executes the request
 	//  @return ListIntakesResponse
@@ -233,7 +233,7 @@ type DefaultAPI interface {
 		@param intakeId The intake UUID.
 		@return ApiUpdateIntakeRequest
 	*/
-	UpdateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiUpdateIntakeRequest
+	UpdateIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiUpdateIntakeRequest
 
 	// UpdateIntakeExecute executes the request
 	//  @return IntakeResponse
@@ -250,7 +250,7 @@ type DefaultAPI interface {
 		@param intakeRunnerId The intake runner UUID.
 		@return ApiUpdateIntakeRunnerRequest
 	*/
-	UpdateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiUpdateIntakeRunnerRequest
+	UpdateIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiUpdateIntakeRunnerRequest
 
 	// UpdateIntakeRunnerExecute executes the request
 	//  @return IntakeRunnerResponse
@@ -268,7 +268,7 @@ type DefaultAPI interface {
 		@param intakeUserId The intake user UUID.
 		@return ApiUpdateIntakeUserRequest
 	*/
-	UpdateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest
+	UpdateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest
 
 	// UpdateIntakeUserExecute executes the request
 	//  @return IntakeUserResponse
@@ -282,7 +282,7 @@ type ApiCreateIntakeRequest struct {
 	ctx                 context.Context
 	ApiService          DefaultAPI
 	projectId           string
-	regionId            ListIntakeRunnersRegionIdParameter
+	regionId            string
 	createIntakePayload *CreateIntakePayload
 }
 
@@ -305,7 +305,7 @@ Creates a new intake within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateIntakeRequest
 */
-func (a *DefaultAPIService) CreateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRequest {
+func (a *DefaultAPIService) CreateIntake(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRequest {
 	return ApiCreateIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -412,7 +412,7 @@ type ApiCreateIntakeRunnerRequest struct {
 	ctx                       context.Context
 	ApiService                DefaultAPI
 	projectId                 string
-	regionId                  ListIntakeRunnersRegionIdParameter
+	regionId                  string
 	createIntakeRunnerPayload *CreateIntakeRunnerPayload
 }
 
@@ -435,7 +435,7 @@ Creates a new intake runner within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateIntakeRunnerRequest
 */
-func (a *DefaultAPIService) CreateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRunnerRequest {
+func (a *DefaultAPIService) CreateIntakeRunner(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRunnerRequest {
 	return ApiCreateIntakeRunnerRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -542,7 +542,7 @@ type ApiCreateIntakeUserRequest struct {
 	ctx                     context.Context
 	ApiService              DefaultAPI
 	projectId               string
-	regionId                ListIntakeRunnersRegionIdParameter
+	regionId                string
 	intakeId                string
 	createIntakeUserPayload *CreateIntakeUserPayload
 }
@@ -567,7 +567,7 @@ Creates a new user for this intake.
 	@param intakeId The intake UUID.
 	@return ApiCreateIntakeUserRequest
 */
-func (a *DefaultAPIService) CreateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiCreateIntakeUserRequest {
+func (a *DefaultAPIService) CreateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string) ApiCreateIntakeUserRequest {
 	return ApiCreateIntakeUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -676,7 +676,7 @@ type ApiDeleteIntakeRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListIntakeRunnersRegionIdParameter
+	regionId   string
 	intakeId   string
 	force      *bool
 }
@@ -702,7 +702,7 @@ Deletes the given intake.
 	@param intakeId The intake UUID.
 	@return ApiDeleteIntakeRequest
 */
-func (a *DefaultAPIService) DeleteIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiDeleteIntakeRequest {
+func (a *DefaultAPIService) DeleteIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiDeleteIntakeRequest {
 	return ApiDeleteIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -800,7 +800,7 @@ type ApiDeleteIntakeRunnerRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	projectId      string
-	regionId       ListIntakeRunnersRegionIdParameter
+	regionId       string
 	intakeRunnerId string
 	force          *bool
 }
@@ -826,7 +826,7 @@ Deletes the given intake runner.
 	@param intakeRunnerId The intake runner UUID.
 	@return ApiDeleteIntakeRunnerRequest
 */
-func (a *DefaultAPIService) DeleteIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiDeleteIntakeRunnerRequest {
+func (a *DefaultAPIService) DeleteIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiDeleteIntakeRunnerRequest {
 	return ApiDeleteIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -924,7 +924,7 @@ type ApiDeleteIntakeUserRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	regionId     ListIntakeRunnersRegionIdParameter
+	regionId     string
 	intakeId     string
 	intakeUserId string
 }
@@ -945,7 +945,7 @@ Deletes the given intake user.
 	@param intakeUserId The intake user UUID.
 	@return ApiDeleteIntakeUserRequest
 */
-func (a *DefaultAPIService) DeleteIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest {
+func (a *DefaultAPIService) DeleteIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest {
 	return ApiDeleteIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -1038,7 +1038,7 @@ type ApiGetIntakeRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListIntakeRunnersRegionIdParameter
+	regionId   string
 	intakeId   string
 }
 
@@ -1057,7 +1057,7 @@ Returns the details for the given intake.
 	@param intakeId The intake UUID.
 	@return ApiGetIntakeRequest
 */
-func (a *DefaultAPIService) GetIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiGetIntakeRequest {
+func (a *DefaultAPIService) GetIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiGetIntakeRequest {
 	return ApiGetIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1161,7 +1161,7 @@ type ApiGetIntakeRunnerRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	projectId      string
-	regionId       ListIntakeRunnersRegionIdParameter
+	regionId       string
 	intakeRunnerId string
 }
 
@@ -1180,7 +1180,7 @@ Returns the details for the given intake runner.
 	@param intakeRunnerId The intake runner UUID.
 	@return ApiGetIntakeRunnerRequest
 */
-func (a *DefaultAPIService) GetIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiGetIntakeRunnerRequest {
+func (a *DefaultAPIService) GetIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiGetIntakeRunnerRequest {
 	return ApiGetIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -1284,7 +1284,7 @@ type ApiGetIntakeUserRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	regionId     ListIntakeRunnersRegionIdParameter
+	regionId     string
 	intakeId     string
 	intakeUserId string
 }
@@ -1305,7 +1305,7 @@ Returns the details for the given user.
 	@param intakeUserId The intake user UUID.
 	@return ApiGetIntakeUserRequest
 */
-func (a *DefaultAPIService) GetIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiGetIntakeUserRequest {
+func (a *DefaultAPIService) GetIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiGetIntakeUserRequest {
 	return ApiGetIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -1411,7 +1411,7 @@ type ApiListIntakeRunnersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListIntakeRunnersRegionIdParameter
+	regionId   string
 	pageToken  *string
 	pageSize   *int32
 }
@@ -1442,7 +1442,7 @@ Returns a list of all intake runners within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListIntakeRunnersRequest
 */
-func (a *DefaultAPIService) ListIntakeRunners(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakeRunnersRequest {
+func (a *DefaultAPIService) ListIntakeRunners(ctx context.Context, projectId string, regionId string) ApiListIntakeRunnersRequest {
 	return ApiListIntakeRunnersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1554,7 +1554,7 @@ type ApiListIntakeUsersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListIntakeRunnersRegionIdParameter
+	regionId   string
 	intakeId   string
 	pageToken  *string
 	pageSize   *int32
@@ -1587,7 +1587,7 @@ Returns a list of all intake users within the project and intake.
 	@param intakeId The intake UUID.
 	@return ApiListIntakeUsersRequest
 */
-func (a *DefaultAPIService) ListIntakeUsers(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiListIntakeUsersRequest {
+func (a *DefaultAPIService) ListIntakeUsers(ctx context.Context, projectId string, regionId string, intakeId string) ApiListIntakeUsersRequest {
 	return ApiListIntakeUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1701,7 +1701,7 @@ type ApiListIntakesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListIntakeRunnersRegionIdParameter
+	regionId   string
 	pageToken  *string
 	pageSize   *int32
 }
@@ -1732,7 +1732,7 @@ Returns a list of all intakes within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListIntakesRequest
 */
-func (a *DefaultAPIService) ListIntakes(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakesRequest {
+func (a *DefaultAPIService) ListIntakes(ctx context.Context, projectId string, regionId string) ApiListIntakesRequest {
 	return ApiListIntakesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1844,7 +1844,7 @@ type ApiUpdateIntakeRequest struct {
 	ctx                 context.Context
 	ApiService          DefaultAPI
 	projectId           string
-	regionId            ListIntakeRunnersRegionIdParameter
+	regionId            string
 	intakeId            string
 	updateIntakePayload *UpdateIntakePayload
 }
@@ -1869,7 +1869,7 @@ Updates the given intake.
 	@param intakeId The intake UUID.
 	@return ApiUpdateIntakeRequest
 */
-func (a *DefaultAPIService) UpdateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiUpdateIntakeRequest {
+func (a *DefaultAPIService) UpdateIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiUpdateIntakeRequest {
 	return ApiUpdateIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1978,7 +1978,7 @@ type ApiUpdateIntakeRunnerRequest struct {
 	ctx                       context.Context
 	ApiService                DefaultAPI
 	projectId                 string
-	regionId                  ListIntakeRunnersRegionIdParameter
+	regionId                  string
 	intakeRunnerId            string
 	updateIntakeRunnerPayload *UpdateIntakeRunnerPayload
 }
@@ -2003,7 +2003,7 @@ Updates a intake runner within the project.
 	@param intakeRunnerId The intake runner UUID.
 	@return ApiUpdateIntakeRunnerRequest
 */
-func (a *DefaultAPIService) UpdateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiUpdateIntakeRunnerRequest {
+func (a *DefaultAPIService) UpdateIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiUpdateIntakeRunnerRequest {
 	return ApiUpdateIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -2112,7 +2112,7 @@ type ApiUpdateIntakeUserRequest struct {
 	ctx                     context.Context
 	ApiService              DefaultAPI
 	projectId               string
-	regionId                ListIntakeRunnersRegionIdParameter
+	regionId                string
 	intakeId                string
 	intakeUserId            string
 	updateIntakeUserPayload *UpdateIntakeUserPayload
@@ -2139,7 +2139,7 @@ Updates the given intake user.
 	@param intakeUserId The intake user UUID.
 	@return ApiUpdateIntakeUserRequest
 */
-func (a *DefaultAPIService) UpdateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest {
+func (a *DefaultAPIService) UpdateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest {
 	return ApiUpdateIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,

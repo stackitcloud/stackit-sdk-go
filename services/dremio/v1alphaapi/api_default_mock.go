@@ -40,7 +40,7 @@ type DefaultAPIServiceMock struct {
 	UpdateDremioInstanceExecuteMock *func(r ApiUpdateDremioInstanceRequest) (*DremioResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiCreateDremioInstanceRequest {
+func (a DefaultAPIServiceMock) CreateDremioInstance(ctx context.Context, projectId string, regionId string) ApiCreateDremioInstanceRequest {
 	return ApiCreateDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -59,7 +59,7 @@ func (a DefaultAPIServiceMock) CreateDremioInstanceExecute(r ApiCreateDremioInst
 	return (*a.CreateDremioInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiCreateDremioUserRequest {
+func (a DefaultAPIServiceMock) CreateDremioUser(ctx context.Context, projectId string, regionId string, dremioId string) ApiCreateDremioUserRequest {
 	return ApiCreateDremioUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -79,7 +79,7 @@ func (a DefaultAPIServiceMock) CreateDremioUserExecute(r ApiCreateDremioUserRequ
 	return (*a.CreateDremioUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiDeleteDremioInstanceRequest {
+func (a DefaultAPIServiceMock) DeleteDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiDeleteDremioInstanceRequest {
 	return ApiDeleteDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -98,7 +98,7 @@ func (a DefaultAPIServiceMock) DeleteDremioInstanceExecute(r ApiDeleteDremioInst
 	return (*a.DeleteDremioInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest {
+func (a DefaultAPIServiceMock) DeleteDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest {
 	return ApiDeleteDremioUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -118,7 +118,7 @@ func (a DefaultAPIServiceMock) DeleteDremioUserExecute(r ApiDeleteDremioUserRequ
 	return (*a.DeleteDremioUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiGetDremioInstanceRequest {
+func (a DefaultAPIServiceMock) GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest {
 	return ApiGetDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -138,7 +138,7 @@ func (a DefaultAPIServiceMock) GetDremioInstanceExecute(r ApiGetDremioInstanceRe
 	return (*a.GetDremioInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiGetDremioUserRequest {
+func (a DefaultAPIServiceMock) GetDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiGetDremioUserRequest {
 	return ApiGetDremioUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -159,7 +159,7 @@ func (a DefaultAPIServiceMock) GetDremioUserExecute(r ApiGetDremioUserRequest) (
 	return (*a.GetDremioUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListDremioInstances(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiListDremioInstancesRequest {
+func (a DefaultAPIServiceMock) ListDremioInstances(ctx context.Context, projectId string, regionId string) ApiListDremioInstancesRequest {
 	return ApiListDremioInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -178,7 +178,7 @@ func (a DefaultAPIServiceMock) ListDremioInstancesExecute(r ApiListDremioInstanc
 	return (*a.ListDremioInstancesExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListDremioUsers(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiListDremioUsersRequest {
+func (a DefaultAPIServiceMock) ListDremioUsers(ctx context.Context, projectId string, regionId string, dremioId string) ApiListDremioUsersRequest {
 	return ApiListDremioUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -198,7 +198,7 @@ func (a DefaultAPIServiceMock) ListDremioUsersExecute(r ApiListDremioUsersReques
 	return (*a.ListDremioUsersExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiUpdateDremioInstanceRequest {
+func (a DefaultAPIServiceMock) UpdateDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiUpdateDremioInstanceRequest {
 	return ApiUpdateDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,

@@ -46,7 +46,7 @@ type DefaultAPIServiceMock struct {
 	UpdateLogsInstanceExecuteMock *func(r ApiUpdateLogsInstanceRequest) (*LogsInstance, error)
 }
 
-func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiCreateAccessTokenRequest {
+func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -66,7 +66,7 @@ func (a DefaultAPIServiceMock) CreateAccessTokenExecute(r ApiCreateAccessTokenRe
 	return (*a.CreateAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiCreateLogsInstanceRequest {
+func (a DefaultAPIServiceMock) CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest {
 	return ApiCreateLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -85,7 +85,7 @@ func (a DefaultAPIServiceMock) CreateLogsInstanceExecute(r ApiCreateLogsInstance
 	return (*a.CreateLogsInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiDeleteAccessTokenRequest {
+func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -105,7 +105,7 @@ func (a DefaultAPIServiceMock) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRe
 	return (*a.DeleteAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllAccessTokensRequest {
+func (a DefaultAPIServiceMock) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest {
 	return ApiDeleteAllAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -125,7 +125,7 @@ func (a DefaultAPIServiceMock) DeleteAllAccessTokensExecute(r ApiDeleteAllAccess
 	return (*a.DeleteAllAccessTokensExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
+func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
 	return ApiDeleteAllExpiredAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -145,7 +145,7 @@ func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokensExecute(r ApiDeleteAl
 	return (*a.DeleteAllExpiredAccessTokensExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteLogsInstanceRequest {
+func (a DefaultAPIServiceMock) DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest {
 	return ApiDeleteLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -164,7 +164,7 @@ func (a DefaultAPIServiceMock) DeleteLogsInstanceExecute(r ApiDeleteLogsInstance
 	return (*a.DeleteLogsInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiGetAccessTokenRequest {
+func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -185,7 +185,7 @@ func (a DefaultAPIServiceMock) GetAccessTokenExecute(r ApiGetAccessTokenRequest)
 	return (*a.GetAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiGetLogsInstanceRequest {
+func (a DefaultAPIServiceMock) GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest {
 	return ApiGetLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -205,7 +205,7 @@ func (a DefaultAPIServiceMock) GetLogsInstanceExecute(r ApiGetLogsInstanceReques
 	return (*a.GetLogsInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiListAccessTokensRequest {
+func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -225,7 +225,7 @@ func (a DefaultAPIServiceMock) ListAccessTokensExecute(r ApiListAccessTokensRequ
 	return (*a.ListAccessTokensExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListLogsInstances(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiListLogsInstancesRequest {
+func (a DefaultAPIServiceMock) ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest {
 	return ApiListLogsInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -244,7 +244,7 @@ func (a DefaultAPIServiceMock) ListLogsInstancesExecute(r ApiListLogsInstancesRe
 	return (*a.ListLogsInstancesExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiUpdateAccessTokenRequest {
+func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -264,7 +264,7 @@ func (a DefaultAPIServiceMock) UpdateAccessTokenExecute(r ApiUpdateAccessTokenRe
 	return (*a.UpdateAccessTokenExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiUpdateLogsInstanceRequest {
+func (a DefaultAPIServiceMock) UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest {
 	return ApiUpdateLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,

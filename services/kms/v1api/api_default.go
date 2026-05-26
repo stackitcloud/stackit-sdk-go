@@ -34,7 +34,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiCreateKeyRequest
 	*/
-	CreateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateKeyRequest
+	CreateKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateKeyRequest
 
 	// CreateKeyExecute executes the request
 	//  @return Key
@@ -50,7 +50,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@return ApiCreateKeyRingRequest
 	*/
-	CreateKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiCreateKeyRingRequest
+	CreateKeyRing(ctx context.Context, projectId string, regionId string) ApiCreateKeyRingRequest
 
 	// CreateKeyRingExecute executes the request
 	//  @return KeyRing
@@ -67,7 +67,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiCreateWrappingKeyRequest
 	*/
-	CreateWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateWrappingKeyRequest
+	CreateWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateWrappingKeyRequest
 
 	// CreateWrappingKeyExecute executes the request
 	//  @return WrappingKey
@@ -86,7 +86,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiDecryptRequest
 	*/
-	Decrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest
+	Decrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest
 
 	// DecryptExecute executes the request
 	//  @return DecryptedData
@@ -104,7 +104,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiDeleteKeyRequest
 	*/
-	DeleteKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiDeleteKeyRequest
+	DeleteKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiDeleteKeyRequest
 
 	// DeleteKeyExecute executes the request
 	DeleteKeyExecute(r ApiDeleteKeyRequest) error
@@ -120,7 +120,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiDeleteKeyRingRequest
 	*/
-	DeleteKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiDeleteKeyRingRequest
+	DeleteKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiDeleteKeyRingRequest
 
 	// DeleteKeyRingExecute executes the request
 	DeleteKeyRingExecute(r ApiDeleteKeyRingRequest) error
@@ -137,7 +137,7 @@ type DefaultAPI interface {
 		@param wrappingKeyId The wrapping key UUID.
 		@return ApiDeleteWrappingKeyRequest
 	*/
-	DeleteWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest
+	DeleteWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest
 
 	// DeleteWrappingKeyExecute executes the request
 	DeleteWrappingKeyExecute(r ApiDeleteWrappingKeyRequest) error
@@ -155,7 +155,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiDestroyVersionRequest
 	*/
-	DestroyVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest
+	DestroyVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest
 
 	// DestroyVersionExecute executes the request
 	DestroyVersionExecute(r ApiDestroyVersionRequest) error
@@ -173,7 +173,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiDisableVersionRequest
 	*/
-	DisableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest
+	DisableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest
 
 	// DisableVersionExecute executes the request
 	DisableVersionExecute(r ApiDisableVersionRequest) error
@@ -191,7 +191,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiEnableVersionRequest
 	*/
-	EnableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest
+	EnableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest
 
 	// EnableVersionExecute executes the request
 	EnableVersionExecute(r ApiEnableVersionRequest) error
@@ -209,7 +209,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiEncryptRequest
 	*/
-	Encrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest
+	Encrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest
 
 	// EncryptExecute executes the request
 	//  @return EncryptedData
@@ -227,7 +227,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiGetKeyRequest
 	*/
-	GetKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiGetKeyRequest
+	GetKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiGetKeyRequest
 
 	// GetKeyExecute executes the request
 	//  @return Key
@@ -244,7 +244,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiGetKeyRingRequest
 	*/
-	GetKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiGetKeyRingRequest
+	GetKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiGetKeyRingRequest
 
 	// GetKeyRingExecute executes the request
 	//  @return KeyRing
@@ -263,7 +263,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiGetVersionRequest
 	*/
-	GetVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest
+	GetVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest
 
 	// GetVersionExecute executes the request
 	//  @return Version
@@ -281,7 +281,7 @@ type DefaultAPI interface {
 		@param wrappingKeyId The wrapping key UUID.
 		@return ApiGetWrappingKeyRequest
 	*/
-	GetWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest
+	GetWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest
 
 	// GetWrappingKeyExecute executes the request
 	//  @return WrappingKey
@@ -299,7 +299,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiImportKeyRequest
 	*/
-	ImportKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiImportKeyRequest
+	ImportKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiImportKeyRequest
 
 	// ImportKeyExecute executes the request
 	//  @return Version
@@ -315,7 +315,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@return ApiListKeyRingsRequest
 	*/
-	ListKeyRings(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiListKeyRingsRequest
+	ListKeyRings(ctx context.Context, projectId string, regionId string) ApiListKeyRingsRequest
 
 	// ListKeyRingsExecute executes the request
 	//  @return KeyRingList
@@ -332,7 +332,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiListKeysRequest
 	*/
-	ListKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListKeysRequest
+	ListKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListKeysRequest
 
 	// ListKeysExecute executes the request
 	//  @return KeyList
@@ -350,7 +350,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiListVersionsRequest
 	*/
-	ListVersions(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiListVersionsRequest
+	ListVersions(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
 	//  @return VersionList
@@ -367,7 +367,7 @@ type DefaultAPI interface {
 		@param keyRingId The key ring UUID.
 		@return ApiListWrappingKeysRequest
 	*/
-	ListWrappingKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListWrappingKeysRequest
+	ListWrappingKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListWrappingKeysRequest
 
 	// ListWrappingKeysExecute executes the request
 	//  @return WrappingKeyList
@@ -385,7 +385,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiRestoreKeyRequest
 	*/
-	RestoreKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRestoreKeyRequest
+	RestoreKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRestoreKeyRequest
 
 	// RestoreKeyExecute executes the request
 	RestoreKeyExecute(r ApiRestoreKeyRequest) error
@@ -403,7 +403,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiRestoreVersionRequest
 	*/
-	RestoreVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest
+	RestoreVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest
 
 	// RestoreVersionExecute executes the request
 	RestoreVersionExecute(r ApiRestoreVersionRequest) error
@@ -420,7 +420,7 @@ type DefaultAPI interface {
 		@param keyId The key UUID.
 		@return ApiRotateKeyRequest
 	*/
-	RotateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRotateKeyRequest
+	RotateKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRotateKeyRequest
 
 	// RotateKeyExecute executes the request
 	//  @return Version
@@ -439,7 +439,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiSignRequest
 	*/
-	Sign(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiSignRequest
+	Sign(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiSignRequest
 
 	// SignExecute executes the request
 	//  @return SignedData
@@ -458,7 +458,7 @@ type DefaultAPI interface {
 		@param versionNumber The version number.
 		@return ApiVerifyRequest
 	*/
-	Verify(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest
+	Verify(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest
 
 	// VerifyExecute executes the request
 	//  @return VerifiedData
@@ -472,7 +472,7 @@ type ApiCreateKeyRequest struct {
 	ctx              context.Context
 	ApiService       DefaultAPI
 	projectId        string
-	regionId         ListKeyRingsRegionIdParameter
+	regionId         string
 	keyRingId        string
 	createKeyPayload *CreateKeyPayload
 }
@@ -497,7 +497,7 @@ Creates a new key for the given key ring.
 	@param keyRingId The key ring UUID.
 	@return ApiCreateKeyRequest
 */
-func (a *DefaultAPIService) CreateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateKeyRequest {
+func (a *DefaultAPIService) CreateKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateKeyRequest {
 	return ApiCreateKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -649,7 +649,7 @@ type ApiCreateKeyRingRequest struct {
 	ctx                  context.Context
 	ApiService           DefaultAPI
 	projectId            string
-	regionId             ListKeyRingsRegionIdParameter
+	regionId             string
 	createKeyRingPayload *CreateKeyRingPayload
 }
 
@@ -672,7 +672,7 @@ Creates a new key ring within the project.
 	@param regionId The STACKIT region name the key ring is located in.
 	@return ApiCreateKeyRingRequest
 */
-func (a *DefaultAPIService) CreateKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiCreateKeyRingRequest {
+func (a *DefaultAPIService) CreateKeyRing(ctx context.Context, projectId string, regionId string) ApiCreateKeyRingRequest {
 	return ApiCreateKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -811,7 +811,7 @@ type ApiCreateWrappingKeyRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListKeyRingsRegionIdParameter
+	regionId                 string
 	keyRingId                string
 	createWrappingKeyPayload *CreateWrappingKeyPayload
 }
@@ -836,7 +836,7 @@ Creates a new wrapping key for the given key ring.
 	@param keyRingId The key ring UUID.
 	@return ApiCreateWrappingKeyRequest
 */
-func (a *DefaultAPIService) CreateWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateWrappingKeyRequest {
+func (a *DefaultAPIService) CreateWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateWrappingKeyRequest {
 	return ApiCreateWrappingKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -988,7 +988,7 @@ type ApiDecryptRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	projectId      string
-	regionId       ListKeyRingsRegionIdParameter
+	regionId       string
 	keyRingId      string
 	keyId          string
 	versionNumber  int64
@@ -1017,7 +1017,7 @@ Decrypts data using the given key version.
 	@param versionNumber The version number.
 	@return ApiDecryptRequest
 */
-func (a *DefaultAPIService) Decrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest {
+func (a *DefaultAPIService) Decrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest {
 	return ApiDecryptRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1195,7 +1195,7 @@ type ApiDeleteKeyRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 	keyId      string
 }
@@ -1216,7 +1216,7 @@ Schedules the deletion of the given key
 	@param keyId The key UUID.
 	@return ApiDeleteKeyRequest
 */
-func (a *DefaultAPIService) DeleteKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiDeleteKeyRequest {
+func (a *DefaultAPIService) DeleteKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiDeleteKeyRequest {
 	return ApiDeleteKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1363,7 +1363,7 @@ type ApiDeleteKeyRingRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 }
 
@@ -1382,7 +1382,7 @@ Deletes the given key ring if it is empty
 	@param keyRingId The key ring UUID.
 	@return ApiDeleteKeyRingRequest
 */
-func (a *DefaultAPIService) DeleteKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiDeleteKeyRingRequest {
+func (a *DefaultAPIService) DeleteKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiDeleteKeyRingRequest {
 	return ApiDeleteKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1527,7 +1527,7 @@ type ApiDeleteWrappingKeyRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	wrappingKeyId string
 }
@@ -1548,7 +1548,7 @@ Deletes the given wrapping key
 	@param wrappingKeyId The wrapping key UUID.
 	@return ApiDeleteWrappingKeyRequest
 */
-func (a *DefaultAPIService) DeleteWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest {
+func (a *DefaultAPIService) DeleteWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest {
 	return ApiDeleteWrappingKeyRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1695,7 +1695,7 @@ type ApiDestroyVersionRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -1718,7 +1718,7 @@ Removes the key material of a version permanently.
 	@param versionNumber The version number.
 	@return ApiDestroyVersionRequest
 */
-func (a *DefaultAPIService) DestroyVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest {
+func (a *DefaultAPIService) DestroyVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest {
 	return ApiDestroyVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1867,7 +1867,7 @@ type ApiDisableVersionRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -1890,7 +1890,7 @@ Disables the given version.
 	@param versionNumber The version number.
 	@return ApiDisableVersionRequest
 */
-func (a *DefaultAPIService) DisableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest {
+func (a *DefaultAPIService) DisableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest {
 	return ApiDisableVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -2039,7 +2039,7 @@ type ApiEnableVersionRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -2062,7 +2062,7 @@ Enables the given version.
 	@param versionNumber The version number.
 	@return ApiEnableVersionRequest
 */
-func (a *DefaultAPIService) EnableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest {
+func (a *DefaultAPIService) EnableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest {
 	return ApiEnableVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -2211,7 +2211,7 @@ type ApiEncryptRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	projectId      string
-	regionId       ListKeyRingsRegionIdParameter
+	regionId       string
 	keyRingId      string
 	keyId          string
 	versionNumber  int64
@@ -2240,7 +2240,7 @@ Encrypts data using the given key version.
 	@param versionNumber The version number.
 	@return ApiEncryptRequest
 */
-func (a *DefaultAPIService) Encrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest {
+func (a *DefaultAPIService) Encrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest {
 	return ApiEncryptRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -2418,7 +2418,7 @@ type ApiGetKeyRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 	keyId      string
 }
@@ -2439,7 +2439,7 @@ Returns the details for the given key.
 	@param keyId The key UUID.
 	@return ApiGetKeyRequest
 */
-func (a *DefaultAPIService) GetKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiGetKeyRequest {
+func (a *DefaultAPIService) GetKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiGetKeyRequest {
 	return ApiGetKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2588,7 +2588,7 @@ type ApiGetKeyRingRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 }
 
@@ -2607,7 +2607,7 @@ Returns the details for the given key ring.
 	@param keyRingId The key ring UUID.
 	@return ApiGetKeyRingRequest
 */
-func (a *DefaultAPIService) GetKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiGetKeyRingRequest {
+func (a *DefaultAPIService) GetKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiGetKeyRingRequest {
 	return ApiGetKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2754,7 +2754,7 @@ type ApiGetVersionRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -2777,7 +2777,7 @@ Returns the details for the given version.
 	@param versionNumber The version number.
 	@return ApiGetVersionRequest
 */
-func (a *DefaultAPIService) GetVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest {
+func (a *DefaultAPIService) GetVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest {
 	return ApiGetVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -2928,7 +2928,7 @@ type ApiGetWrappingKeyRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	wrappingKeyId string
 }
@@ -2949,7 +2949,7 @@ Returns the details for the given wrapping key.
 	@param wrappingKeyId The wrapping key UUID.
 	@return ApiGetWrappingKeyRequest
 */
-func (a *DefaultAPIService) GetWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest {
+func (a *DefaultAPIService) GetWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest {
 	return ApiGetWrappingKeyRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -3098,7 +3098,7 @@ type ApiImportKeyRequest struct {
 	ctx              context.Context
 	ApiService       DefaultAPI
 	projectId        string
-	regionId         ListKeyRingsRegionIdParameter
+	regionId         string
 	keyRingId        string
 	keyId            string
 	importKeyPayload *ImportKeyPayload
@@ -3125,7 +3125,7 @@ Imports a new version to the given key.
 	@param keyId The key UUID.
 	@return ApiImportKeyRequest
 */
-func (a *DefaultAPIService) ImportKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiImportKeyRequest {
+func (a *DefaultAPIService) ImportKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiImportKeyRequest {
 	return ApiImportKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3290,7 +3290,7 @@ type ApiListKeyRingsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 }
 
 func (r ApiListKeyRingsRequest) Execute() (*KeyRingList, error) {
@@ -3307,7 +3307,7 @@ Returns a list of all key rings within the project.
 	@param regionId The STACKIT region name the key ring is located in.
 	@return ApiListKeyRingsRequest
 */
-func (a *DefaultAPIService) ListKeyRings(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiListKeyRingsRequest {
+func (a *DefaultAPIService) ListKeyRings(ctx context.Context, projectId string, regionId string) ApiListKeyRingsRequest {
 	return ApiListKeyRingsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3441,7 +3441,7 @@ type ApiListKeysRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 }
 
@@ -3460,7 +3460,7 @@ Returns the keys for the given key ring.
 	@param keyRingId The key ring UUID.
 	@return ApiListKeysRequest
 */
-func (a *DefaultAPIService) ListKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListKeysRequest {
+func (a *DefaultAPIService) ListKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListKeysRequest {
 	return ApiListKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3607,7 +3607,7 @@ type ApiListVersionsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 	keyId      string
 }
@@ -3628,7 +3628,7 @@ Returns a list of all versions of a given key.
 	@param keyId The key UUID.
 	@return ApiListVersionsRequest
 */
-func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiListVersionsRequest {
+func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3777,7 +3777,7 @@ type ApiListWrappingKeysRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 }
 
@@ -3796,7 +3796,7 @@ Returns the wrapping keys for the given key ring.
 	@param keyRingId The key ring UUID.
 	@return ApiListWrappingKeysRequest
 */
-func (a *DefaultAPIService) ListWrappingKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListWrappingKeysRequest {
+func (a *DefaultAPIService) ListWrappingKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListWrappingKeysRequest {
 	return ApiListWrappingKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -3943,7 +3943,7 @@ type ApiRestoreKeyRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 	keyId      string
 }
@@ -3964,7 +3964,7 @@ Restores the given key from being deleted.
 	@param keyId The key UUID.
 	@return ApiRestoreKeyRequest
 */
-func (a *DefaultAPIService) RestoreKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRestoreKeyRequest {
+func (a *DefaultAPIService) RestoreKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRestoreKeyRequest {
 	return ApiRestoreKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4111,7 +4111,7 @@ type ApiRestoreVersionRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -4134,7 +4134,7 @@ Restores the given version from being destroyed
 	@param versionNumber The version number.
 	@return ApiRestoreVersionRequest
 */
-func (a *DefaultAPIService) RestoreVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest {
+func (a *DefaultAPIService) RestoreVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest {
 	return ApiRestoreVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -4283,7 +4283,7 @@ type ApiRotateKeyRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListKeyRingsRegionIdParameter
+	regionId   string
 	keyRingId  string
 	keyId      string
 }
@@ -4304,7 +4304,7 @@ Rotates the given key.
 	@param keyId The key UUID.
 	@return ApiRotateKeyRequest
 */
-func (a *DefaultAPIService) RotateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRotateKeyRequest {
+func (a *DefaultAPIService) RotateKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRotateKeyRequest {
 	return ApiRotateKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -4475,7 +4475,7 @@ type ApiSignRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -4504,7 +4504,7 @@ Sign data using the given key version as secret.
 	@param versionNumber The version number.
 	@return ApiSignRequest
 */
-func (a *DefaultAPIService) Sign(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiSignRequest {
+func (a *DefaultAPIService) Sign(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiSignRequest {
 	return ApiSignRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -4682,7 +4682,7 @@ type ApiVerifyRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
-	regionId      ListKeyRingsRegionIdParameter
+	regionId      string
 	keyRingId     string
 	keyId         string
 	versionNumber int64
@@ -4711,7 +4711,7 @@ Verify data using the given key version as secret.
 	@param versionNumber The version number.
 	@return ApiVerifyRequest
 */
-func (a *DefaultAPIService) Verify(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest {
+func (a *DefaultAPIService) Verify(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest {
 	return ApiVerifyRequest{
 		ApiService:    a,
 		ctx:           ctx,

@@ -46,7 +46,7 @@ type DefaultAPIServiceMock struct {
 	PartialUpdateProjectTelemetryLinkExecuteMock *func(r ApiPartialUpdateProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateFolderTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiCreateOrUpdateFolderTelemetryLinkRequest {
 	return ApiCreateOrUpdateFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -65,7 +65,7 @@ func (a DefaultAPIServiceMock) CreateOrUpdateFolderTelemetryLinkExecute(r ApiCre
 	return (*a.CreateOrUpdateFolderTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) CreateOrUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
 	return ApiCreateOrUpdateOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -84,7 +84,7 @@ func (a DefaultAPIServiceMock) CreateOrUpdateOrganizationTelemetryLinkExecute(r 
 	return (*a.CreateOrUpdateOrganizationTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiCreateOrUpdateProjectTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) CreateOrUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiCreateOrUpdateProjectTelemetryLinkRequest {
 	return ApiCreateOrUpdateProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -103,7 +103,7 @@ func (a DefaultAPIServiceMock) CreateOrUpdateProjectTelemetryLinkExecute(r ApiCr
 	return (*a.CreateOrUpdateProjectTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteFolderTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiDeleteFolderTelemetryLinkRequest {
 	return ApiDeleteFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -121,7 +121,7 @@ func (a DefaultAPIServiceMock) DeleteFolderTelemetryLinkExecute(r ApiDeleteFolde
 	return (*a.DeleteFolderTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteOrganizationTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) DeleteOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiDeleteOrganizationTelemetryLinkRequest {
 	return ApiDeleteOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -139,7 +139,7 @@ func (a DefaultAPIServiceMock) DeleteOrganizationTelemetryLinkExecute(r ApiDelet
 	return (*a.DeleteOrganizationTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiDeleteProjectTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) DeleteProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiDeleteProjectTelemetryLinkRequest {
 	return ApiDeleteProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -157,7 +157,7 @@ func (a DefaultAPIServiceMock) DeleteProjectTelemetryLinkExecute(r ApiDeleteProj
 	return (*a.DeleteProjectTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetFolderTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) GetFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiGetFolderTelemetryLinkRequest {
 	return ApiGetFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -176,7 +176,7 @@ func (a DefaultAPIServiceMock) GetFolderTelemetryLinkExecute(r ApiGetFolderTelem
 	return (*a.GetFolderTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetOrganizationTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiGetOrganizationTelemetryLinkRequest {
 	return ApiGetOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -195,7 +195,7 @@ func (a DefaultAPIServiceMock) GetOrganizationTelemetryLinkExecute(r ApiGetOrgan
 	return (*a.GetOrganizationTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiGetProjectTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) GetProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiGetProjectTelemetryLinkRequest {
 	return ApiGetProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -214,7 +214,7 @@ func (a DefaultAPIServiceMock) GetProjectTelemetryLinkExecute(r ApiGetProjectTel
 	return (*a.GetProjectTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateFolderTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiPartialUpdateFolderTelemetryLinkRequest {
 	return ApiPartialUpdateFolderTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -233,7 +233,7 @@ func (a DefaultAPIServiceMock) PartialUpdateFolderTelemetryLinkExecute(r ApiPart
 	return (*a.PartialUpdateFolderTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateOrganizationTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) PartialUpdateOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiPartialUpdateOrganizationTelemetryLinkRequest {
 	return ApiPartialUpdateOrganizationTelemetryLinkRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -252,7 +252,7 @@ func (a DefaultAPIServiceMock) PartialUpdateOrganizationTelemetryLinkExecute(r A
 	return (*a.PartialUpdateOrganizationTelemetryLinkExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId GetFolderTelemetryLinkRegionIdParameter) ApiPartialUpdateProjectTelemetryLinkRequest {
+func (a DefaultAPIServiceMock) PartialUpdateProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiPartialUpdateProjectTelemetryLinkRequest {
 	return ApiPartialUpdateProjectTelemetryLinkRequest{
 		ApiService: a,
 		ctx:        ctx,

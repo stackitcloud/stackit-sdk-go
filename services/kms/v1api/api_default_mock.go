@@ -72,7 +72,7 @@ type DefaultAPIServiceMock struct {
 	VerifyExecuteMock *func(r ApiVerifyRequest) (*VerifiedData, error)
 }
 
-func (a DefaultAPIServiceMock) CreateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateKeyRequest {
+func (a DefaultAPIServiceMock) CreateKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateKeyRequest {
 	return ApiCreateKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -92,7 +92,7 @@ func (a DefaultAPIServiceMock) CreateKeyExecute(r ApiCreateKeyRequest) (*Key, er
 	return (*a.CreateKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiCreateKeyRingRequest {
+func (a DefaultAPIServiceMock) CreateKeyRing(ctx context.Context, projectId string, regionId string) ApiCreateKeyRingRequest {
 	return ApiCreateKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -111,7 +111,7 @@ func (a DefaultAPIServiceMock) CreateKeyRingExecute(r ApiCreateKeyRingRequest) (
 	return (*a.CreateKeyRingExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiCreateWrappingKeyRequest {
+func (a DefaultAPIServiceMock) CreateWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string) ApiCreateWrappingKeyRequest {
 	return ApiCreateWrappingKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -131,7 +131,7 @@ func (a DefaultAPIServiceMock) CreateWrappingKeyExecute(r ApiCreateWrappingKeyRe
 	return (*a.CreateWrappingKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) Decrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest {
+func (a DefaultAPIServiceMock) Decrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDecryptRequest {
 	return ApiDecryptRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -153,7 +153,7 @@ func (a DefaultAPIServiceMock) DecryptExecute(r ApiDecryptRequest) (*DecryptedDa
 	return (*a.DecryptExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiDeleteKeyRequest {
+func (a DefaultAPIServiceMock) DeleteKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiDeleteKeyRequest {
 	return ApiDeleteKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -173,7 +173,7 @@ func (a DefaultAPIServiceMock) DeleteKeyExecute(r ApiDeleteKeyRequest) error {
 	return (*a.DeleteKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiDeleteKeyRingRequest {
+func (a DefaultAPIServiceMock) DeleteKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiDeleteKeyRingRequest {
 	return ApiDeleteKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -192,7 +192,7 @@ func (a DefaultAPIServiceMock) DeleteKeyRingExecute(r ApiDeleteKeyRingRequest) e
 	return (*a.DeleteKeyRingExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest {
+func (a DefaultAPIServiceMock) DeleteWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest {
 	return ApiDeleteWrappingKeyRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -212,7 +212,7 @@ func (a DefaultAPIServiceMock) DeleteWrappingKeyExecute(r ApiDeleteWrappingKeyRe
 	return (*a.DeleteWrappingKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DestroyVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest {
+func (a DefaultAPIServiceMock) DestroyVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDestroyVersionRequest {
 	return ApiDestroyVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -233,7 +233,7 @@ func (a DefaultAPIServiceMock) DestroyVersionExecute(r ApiDestroyVersionRequest)
 	return (*a.DestroyVersionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DisableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest {
+func (a DefaultAPIServiceMock) DisableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiDisableVersionRequest {
 	return ApiDisableVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -254,7 +254,7 @@ func (a DefaultAPIServiceMock) DisableVersionExecute(r ApiDisableVersionRequest)
 	return (*a.DisableVersionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) EnableVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest {
+func (a DefaultAPIServiceMock) EnableVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEnableVersionRequest {
 	return ApiEnableVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -275,7 +275,7 @@ func (a DefaultAPIServiceMock) EnableVersionExecute(r ApiEnableVersionRequest) e
 	return (*a.EnableVersionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) Encrypt(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest {
+func (a DefaultAPIServiceMock) Encrypt(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiEncryptRequest {
 	return ApiEncryptRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -297,7 +297,7 @@ func (a DefaultAPIServiceMock) EncryptExecute(r ApiEncryptRequest) (*EncryptedDa
 	return (*a.EncryptExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiGetKeyRequest {
+func (a DefaultAPIServiceMock) GetKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiGetKeyRequest {
 	return ApiGetKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -318,7 +318,7 @@ func (a DefaultAPIServiceMock) GetKeyExecute(r ApiGetKeyRequest) (*Key, error) {
 	return (*a.GetKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetKeyRing(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiGetKeyRingRequest {
+func (a DefaultAPIServiceMock) GetKeyRing(ctx context.Context, projectId string, regionId string, keyRingId string) ApiGetKeyRingRequest {
 	return ApiGetKeyRingRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -338,7 +338,7 @@ func (a DefaultAPIServiceMock) GetKeyRingExecute(r ApiGetKeyRingRequest) (*KeyRi
 	return (*a.GetKeyRingExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest {
+func (a DefaultAPIServiceMock) GetVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiGetVersionRequest {
 	return ApiGetVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -360,7 +360,7 @@ func (a DefaultAPIServiceMock) GetVersionExecute(r ApiGetVersionRequest) (*Versi
 	return (*a.GetVersionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetWrappingKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest {
+func (a DefaultAPIServiceMock) GetWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiGetWrappingKeyRequest {
 	return ApiGetWrappingKeyRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -381,7 +381,7 @@ func (a DefaultAPIServiceMock) GetWrappingKeyExecute(r ApiGetWrappingKeyRequest)
 	return (*a.GetWrappingKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ImportKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiImportKeyRequest {
+func (a DefaultAPIServiceMock) ImportKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiImportKeyRequest {
 	return ApiImportKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -402,7 +402,7 @@ func (a DefaultAPIServiceMock) ImportKeyExecute(r ApiImportKeyRequest) (*Version
 	return (*a.ImportKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListKeyRings(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter) ApiListKeyRingsRequest {
+func (a DefaultAPIServiceMock) ListKeyRings(ctx context.Context, projectId string, regionId string) ApiListKeyRingsRequest {
 	return ApiListKeyRingsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -421,7 +421,7 @@ func (a DefaultAPIServiceMock) ListKeyRingsExecute(r ApiListKeyRingsRequest) (*K
 	return (*a.ListKeyRingsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListKeysRequest {
+func (a DefaultAPIServiceMock) ListKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListKeysRequest {
 	return ApiListKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -441,7 +441,7 @@ func (a DefaultAPIServiceMock) ListKeysExecute(r ApiListKeysRequest) (*KeyList, 
 	return (*a.ListKeysExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiListVersionsRequest {
+func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -462,7 +462,7 @@ func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*V
 	return (*a.ListVersionsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListWrappingKeys(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string) ApiListWrappingKeysRequest {
+func (a DefaultAPIServiceMock) ListWrappingKeys(ctx context.Context, projectId string, regionId string, keyRingId string) ApiListWrappingKeysRequest {
 	return ApiListWrappingKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -482,7 +482,7 @@ func (a DefaultAPIServiceMock) ListWrappingKeysExecute(r ApiListWrappingKeysRequ
 	return (*a.ListWrappingKeysExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) RestoreKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRestoreKeyRequest {
+func (a DefaultAPIServiceMock) RestoreKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRestoreKeyRequest {
 	return ApiRestoreKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -502,7 +502,7 @@ func (a DefaultAPIServiceMock) RestoreKeyExecute(r ApiRestoreKeyRequest) error {
 	return (*a.RestoreKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) RestoreVersion(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest {
+func (a DefaultAPIServiceMock) RestoreVersion(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiRestoreVersionRequest {
 	return ApiRestoreVersionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -523,7 +523,7 @@ func (a DefaultAPIServiceMock) RestoreVersionExecute(r ApiRestoreVersionRequest)
 	return (*a.RestoreVersionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) RotateKey(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string) ApiRotateKeyRequest {
+func (a DefaultAPIServiceMock) RotateKey(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) ApiRotateKeyRequest {
 	return ApiRotateKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -544,7 +544,7 @@ func (a DefaultAPIServiceMock) RotateKeyExecute(r ApiRotateKeyRequest) (*Version
 	return (*a.RotateKeyExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) Sign(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiSignRequest {
+func (a DefaultAPIServiceMock) Sign(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiSignRequest {
 	return ApiSignRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -566,7 +566,7 @@ func (a DefaultAPIServiceMock) SignExecute(r ApiSignRequest) (*SignedData, error
 	return (*a.SignExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) Verify(ctx context.Context, projectId string, regionId ListKeyRingsRegionIdParameter, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest {
+func (a DefaultAPIServiceMock) Verify(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) ApiVerifyRequest {
 	return ApiVerifyRequest{
 		ApiService:    a,
 		ctx:           ctx,

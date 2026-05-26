@@ -34,7 +34,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiCreateAccessTokenRequest
 	*/
-	CreateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiCreateAccessTokenRequest
+	CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest
 
 	// CreateAccessTokenExecute executes the request
 	//  @return AccessToken
@@ -50,7 +50,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateLogsInstanceRequest
 	*/
-	CreateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiCreateLogsInstanceRequest
+	CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest
 
 	// CreateLogsInstanceExecute executes the request
 	//  @return LogsInstance
@@ -68,7 +68,7 @@ type DefaultAPI interface {
 		@param tId The access token UUID.
 		@return ApiDeleteAccessTokenRequest
 	*/
-	DeleteAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiDeleteAccessTokenRequest
+	DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest
 
 	// DeleteAccessTokenExecute executes the request
 	DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error
@@ -84,7 +84,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiDeleteAllAccessTokensRequest
 	*/
-	DeleteAllAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllAccessTokensRequest
+	DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest
 
 	// DeleteAllAccessTokensExecute executes the request
 	//  @return AccessTokenList
@@ -101,7 +101,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiDeleteAllExpiredAccessTokensRequest
 	*/
-	DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllExpiredAccessTokensRequest
+	DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest
 
 	// DeleteAllExpiredAccessTokensExecute executes the request
 	//  @return AccessTokenList
@@ -118,7 +118,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiDeleteLogsInstanceRequest
 	*/
-	DeleteLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteLogsInstanceRequest
+	DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest
 
 	// DeleteLogsInstanceExecute executes the request
 	DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceRequest) error
@@ -135,7 +135,7 @@ type DefaultAPI interface {
 		@param tId The access token UUID.
 		@return ApiGetAccessTokenRequest
 	*/
-	GetAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiGetAccessTokenRequest
+	GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest
 
 	// GetAccessTokenExecute executes the request
 	//  @return AccessToken
@@ -152,7 +152,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiGetLogsInstanceRequest
 	*/
-	GetLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiGetLogsInstanceRequest
+	GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest
 
 	// GetLogsInstanceExecute executes the request
 	//  @return LogsInstance
@@ -169,7 +169,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiListAccessTokensRequest
 	*/
-	ListAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiListAccessTokensRequest
+	ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest
 
 	// ListAccessTokensExecute executes the request
 	//  @return AccessTokenList
@@ -185,7 +185,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiListLogsInstancesRequest
 	*/
-	ListLogsInstances(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiListLogsInstancesRequest
+	ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest
 
 	// ListLogsInstancesExecute executes the request
 	//  @return LogsInstancesList
@@ -203,7 +203,7 @@ type DefaultAPI interface {
 		@param tId The access token UUID.
 		@return ApiUpdateAccessTokenRequest
 	*/
-	UpdateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiUpdateAccessTokenRequest
+	UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest
 
 	// UpdateAccessTokenExecute executes the request
 	UpdateAccessTokenExecute(r ApiUpdateAccessTokenRequest) error
@@ -219,7 +219,7 @@ type DefaultAPI interface {
 		@param instanceId The Logs Instance UUID.
 		@return ApiUpdateLogsInstanceRequest
 	*/
-	UpdateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiUpdateLogsInstanceRequest
+	UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest
 
 	// UpdateLogsInstanceExecute executes the request
 	//  @return LogsInstance
@@ -233,7 +233,7 @@ type ApiCreateAccessTokenRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListLogsInstancesRegionIdParameter
+	regionId                 string
 	instanceId               string
 	createAccessTokenPayload *CreateAccessTokenPayload
 }
@@ -258,7 +258,7 @@ Create a new Logs instance access token
 	@param instanceId The Logs Instance UUID.
 	@return ApiCreateAccessTokenRequest
 */
-func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiCreateAccessTokenRequest {
+func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -378,7 +378,7 @@ type ApiCreateLogsInstanceRequest struct {
 	ctx                       context.Context
 	ApiService                DefaultAPI
 	projectId                 string
-	regionId                  ListLogsInstancesRegionIdParameter
+	regionId                  string
 	createLogsInstancePayload *CreateLogsInstancePayload
 }
 
@@ -401,7 +401,7 @@ Creates a new Logs instance within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateLogsInstanceRequest
 */
-func (a *DefaultAPIService) CreateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiCreateLogsInstanceRequest {
+func (a *DefaultAPIService) CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest {
 	return ApiCreateLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -519,7 +519,7 @@ type ApiDeleteAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 	tId        string
 }
@@ -540,7 +540,7 @@ Deletes a Logs instance access token
 	@param tId The access token UUID.
 	@return ApiDeleteAccessTokenRequest
 */
-func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiDeleteAccessTokenRequest {
+func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -644,7 +644,7 @@ type ApiDeleteAllAccessTokensRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -663,7 +663,7 @@ Deletes all access tokens available for a Logs instance
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteAllAccessTokensRequest
 */
-func (a *DefaultAPIService) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllAccessTokensRequest {
+func (a *DefaultAPIService) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest {
 	return ApiDeleteAllAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -778,7 +778,7 @@ type ApiDeleteAllExpiredAccessTokensRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -797,7 +797,7 @@ Deletes all expired access tokens
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteAllExpiredAccessTokensRequest
 */
-func (a *DefaultAPIService) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
+func (a *DefaultAPIService) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
 	return ApiDeleteAllExpiredAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -912,7 +912,7 @@ type ApiDeleteLogsInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -931,7 +931,7 @@ Deletes the given Logs instance.
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteLogsInstanceRequest
 */
-func (a *DefaultAPIService) DeleteLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiDeleteLogsInstanceRequest {
+func (a *DefaultAPIService) DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest {
 	return ApiDeleteLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1033,7 +1033,7 @@ type ApiGetAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 	tId        string
 }
@@ -1054,7 +1054,7 @@ Get the information of the given access token.
 	@param tId The access token UUID.
 	@return ApiGetAccessTokenRequest
 */
-func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiGetAccessTokenRequest {
+func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1171,7 +1171,7 @@ type ApiGetLogsInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -1190,7 +1190,7 @@ Returns the details for the given Logs instance.
 	@param instanceId The Logs Instance UUID.
 	@return ApiGetLogsInstanceRequest
 */
-func (a *DefaultAPIService) GetLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiGetLogsInstanceRequest {
+func (a *DefaultAPIService) GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest {
 	return ApiGetLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1305,7 +1305,7 @@ type ApiListAccessTokensRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 	instanceId string
 }
 
@@ -1324,7 +1324,7 @@ Returns a list of access tokens created for a Logs instance
 	@param instanceId The Logs Instance UUID.
 	@return ApiListAccessTokensRequest
 */
-func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiListAccessTokensRequest {
+func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1439,7 +1439,7 @@ type ApiListLogsInstancesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   ListLogsInstancesRegionIdParameter
+	regionId   string
 }
 
 func (r ApiListLogsInstancesRequest) Execute() (*LogsInstancesList, error) {
@@ -1456,7 +1456,7 @@ Returns a list of all Logs instances within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListLogsInstancesRequest
 */
-func (a *DefaultAPIService) ListLogsInstances(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter) ApiListLogsInstancesRequest {
+func (a *DefaultAPIService) ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest {
 	return ApiListLogsInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1569,7 +1569,7 @@ type ApiUpdateAccessTokenRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
 	projectId                string
-	regionId                 ListLogsInstancesRegionIdParameter
+	regionId                 string
 	instanceId               string
 	tId                      string
 	updateAccessTokenPayload *UpdateAccessTokenPayload
@@ -1596,7 +1596,7 @@ Updates the given access token.
 	@param tId The access token UUID.
 	@return ApiUpdateAccessTokenRequest
 */
-func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string, tId string) ApiUpdateAccessTokenRequest {
+func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1705,7 +1705,7 @@ type ApiUpdateLogsInstanceRequest struct {
 	ctx                       context.Context
 	ApiService                DefaultAPI
 	projectId                 string
-	regionId                  ListLogsInstancesRegionIdParameter
+	regionId                  string
 	instanceId                string
 	updateLogsInstancePayload *UpdateLogsInstancePayload
 }
@@ -1730,7 +1730,7 @@ Updates the given Logs instance.
 	@param instanceId The Logs Instance UUID.
 	@return ApiUpdateLogsInstanceRequest
 */
-func (a *DefaultAPIService) UpdateLogsInstance(ctx context.Context, projectId string, regionId ListLogsInstancesRegionIdParameter, instanceId string) ApiUpdateLogsInstanceRequest {
+func (a *DefaultAPIService) UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest {
 	return ApiUpdateLogsInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
