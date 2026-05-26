@@ -1,3 +1,13 @@
+## v1.15.0
+- Package `v1api`:
+  - **Docs:** Update possible values of `ClusterError`
+- Package `v2api`:
+  - **Docs:** Update possible values of `ClusterError`
+  - **Feature:** New field `GatewayApi` in `DNS` model struct
+- Deprecated SDK layer in root of the module:
+  - **Docs:** Update possible values of `ClusterError`
+  - **Feature:** New field `GatewayApi` in `DNS` model struct
+
 ## v1.14.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 
