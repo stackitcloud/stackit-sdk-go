@@ -1,3 +1,6 @@
+## v0.12.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.11.0
 - `v1api`:
   - **Feature:** Add `Labels` field to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`

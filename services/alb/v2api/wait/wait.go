@@ -10,17 +10,27 @@ import (
 )
 
 const (
-	LOADBALANCERSTATUS_UNSPECIFIED = "STATUS_UNSPECIFIED"
-	LOADBALANCERSTATUS_PENDING     = "STATUS_PENDING"
-	LOADBALANCERSTATUS_READY       = "STATUS_READY"
-	LOADBALANCERSTATUS_ERROR       = "STATUS_ERROR"
-	LOADBALANCERSTATUS_TERMINATING = "STATUS_TERMINATING"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_UNSPECIFIED = alb.LOADBALANCERSTATUS_STATUS_UNSPECIFIED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_PENDING = alb.LOADBALANCERSTATUS_STATUS_PENDING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_READY = alb.LOADBALANCERSTATUS_STATUS_READY
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_ERROR = alb.LOADBALANCERSTATUS_STATUS_ERROR
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	LOADBALANCERSTATUS_TERMINATING = alb.LOADBALANCERSTATUS_STATUS_TERMINATING
 )
 
 func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[alb.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[alb.LoadBalancer, alb.LoadBalancerStatus]{
 		FetchInstance: client.GetLoadBalancer(ctx, projectId, region, name).Execute,
-		GetState: func(response *alb.LoadBalancer) (string, error) {
+		GetState: func(response *alb.LoadBalancer) (alb.LoadBalancerStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -29,8 +39,8 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.Defau
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{LOADBALANCERSTATUS_READY},
-		ErrorState:  []string{LOADBALANCERSTATUS_ERROR},
+		ActiveState: []alb.LoadBalancerStatus{alb.LOADBALANCERSTATUS_STATUS_READY},
+		ErrorState:  []alb.LoadBalancerStatus{alb.LOADBALANCERSTATUS_STATUS_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -39,9 +49,9 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client alb.Defau
 }
 
 func DeleteLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
-	waitConfig := wait.WaiterHelper[alb.LoadBalancer, string]{
+	waitConfig := wait.WaiterHelper[alb.LoadBalancer, alb.LoadBalancerStatus]{
 		FetchInstance: client.GetLoadBalancer(ctx, projectId, region, name).Execute,
-		GetState: func(response *alb.LoadBalancer) (string, error) {
+		GetState: func(response *alb.LoadBalancer) (alb.LoadBalancerStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -50,8 +60,8 @@ func DeleteLoadbalancerWaitHandler(ctx context.Context, client alb.DefaultAPI, p
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{},
-		ErrorState:  []string{LOADBALANCERSTATUS_ERROR},
+		ActiveState: []alb.LoadBalancerStatus{},
+		ErrorState:  []alb.LoadBalancerStatus{alb.LOADBALANCERSTATUS_STATUS_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())

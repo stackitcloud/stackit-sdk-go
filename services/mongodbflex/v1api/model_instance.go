@@ -20,17 +20,16 @@ var _ MappedNullable = &Instance{}
 
 // Instance struct for Instance
 type Instance struct {
-	Acl            *ACL               `json:"acl,omitempty"`
-	BackupSchedule *string            `json:"backupSchedule,omitempty"`
-	Flavor         *Flavor            `json:"flavor,omitempty"`
-	Id             *string            `json:"id,omitempty"`
-	Name           *string            `json:"name,omitempty"`
-	Options        *map[string]string `json:"options,omitempty"`
-	Replicas       *int32             `json:"replicas,omitempty"`
-	// The current status of the instance.
-	Status               *string  `json:"status,omitempty"`
-	Storage              *Storage `json:"storage,omitempty"`
-	Version              *string  `json:"version,omitempty"`
+	Acl                  *ACL               `json:"acl,omitempty"`
+	BackupSchedule       *string            `json:"backupSchedule,omitempty"`
+	Flavor               *Flavor            `json:"flavor,omitempty"`
+	Id                   *string            `json:"id,omitempty"`
+	Name                 *string            `json:"name,omitempty"`
+	Options              *map[string]string `json:"options,omitempty"`
+	Replicas             *int32             `json:"replicas,omitempty"`
+	Status               *InstanceStatus    `json:"status,omitempty"`
+	Storage              *Storage           `json:"storage,omitempty"`
+	Version              *string            `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -278,9 +277,9 @@ func (o *Instance) SetReplicas(v int32) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Instance) GetStatus() string {
+func (o *Instance) GetStatus() InstanceStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret InstanceStatus
 		return ret
 	}
 	return *o.Status
@@ -288,7 +287,7 @@ func (o *Instance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
+func (o *Instance) GetStatusOk() (*InstanceStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -304,8 +303,8 @@ func (o *Instance) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Instance) SetStatus(v string) {
+// SetStatus gets a reference to the given InstanceStatus and assigns it to the Status field.
+func (o *Instance) SetStatus(v InstanceStatus) {
 	o.Status = &v
 }
 

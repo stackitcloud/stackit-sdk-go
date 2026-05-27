@@ -23,9 +23,8 @@ type APIErrorDetail struct {
 	// The domain of the error source.
 	Domain string `json:"domain"`
 	// Metadata contains more information. For bad requests this would be field information.
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	// The reason why the error occurs.
-	Reason               string `json:"reason"`
+	Metadata             map[string]interface{} `json:"metadata,omitempty"`
+	Reason               APIErrorDetailReason   `json:"reason"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,7 +34,7 @@ type _APIErrorDetail APIErrorDetail
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAPIErrorDetail(domain string, reason string) *APIErrorDetail {
+func NewAPIErrorDetail(domain string, reason APIErrorDetailReason) *APIErrorDetail {
 	this := APIErrorDetail{}
 	this.Domain = domain
 	this.Reason = reason
@@ -109,9 +108,9 @@ func (o *APIErrorDetail) SetMetadata(v map[string]interface{}) {
 }
 
 // GetReason returns the Reason field value
-func (o *APIErrorDetail) GetReason() string {
+func (o *APIErrorDetail) GetReason() APIErrorDetailReason {
 	if o == nil {
-		var ret string
+		var ret APIErrorDetailReason
 		return ret
 	}
 
@@ -120,7 +119,7 @@ func (o *APIErrorDetail) GetReason() string {
 
 // GetReasonOk returns a tuple with the Reason field value
 // and a boolean to check if the value has been set.
-func (o *APIErrorDetail) GetReasonOk() (*string, bool) {
+func (o *APIErrorDetail) GetReasonOk() (*APIErrorDetailReason, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -128,7 +127,7 @@ func (o *APIErrorDetail) GetReasonOk() (*string, bool) {
 }
 
 // SetReason sets field value
-func (o *APIErrorDetail) SetReason(v string) {
+func (o *APIErrorDetail) SetReason(v APIErrorDetailReason) {
 	o.Reason = v
 }
 

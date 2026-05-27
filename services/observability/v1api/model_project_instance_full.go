@@ -27,7 +27,7 @@ type ProjectInstanceFull struct {
 	Name                 *string        `json:"name,omitempty"`
 	PlanName             string         `json:"planName"`
 	ServiceName          string         `json:"serviceName"`
-	Status               string         `json:"status"`
+	Status               Status1        `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +37,7 @@ type _ProjectInstanceFull ProjectInstanceFull
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectInstanceFull(id string, instance string, planName string, serviceName string, status string) *ProjectInstanceFull {
+func NewProjectInstanceFull(id string, instance string, planName string, serviceName string, status Status1) *ProjectInstanceFull {
 	this := ProjectInstanceFull{}
 	this.Id = id
 	this.Instance = instance
@@ -227,9 +227,9 @@ func (o *ProjectInstanceFull) SetServiceName(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *ProjectInstanceFull) GetStatus() string {
+func (o *ProjectInstanceFull) GetStatus() Status1 {
 	if o == nil {
-		var ret string
+		var ret Status1
 		return ret
 	}
 
@@ -238,7 +238,7 @@ func (o *ProjectInstanceFull) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetStatusOk() (*string, bool) {
+func (o *ProjectInstanceFull) GetStatusOk() (*Status1, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -246,7 +246,7 @@ func (o *ProjectInstanceFull) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *ProjectInstanceFull) SetStatus(v string) {
+func (o *ProjectInstanceFull) SetStatus(v Status1) {
 	o.Status = v
 }
 

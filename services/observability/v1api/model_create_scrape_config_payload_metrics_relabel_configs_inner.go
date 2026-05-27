@@ -20,8 +20,7 @@ var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
 
 // CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct for CreateScrapeConfigPayloadMetricsRelabelConfigsInner
 type CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
-	// Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
-	Action *string `json:"action,omitempty"`
+	Action *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction `json:"action,omitempty"`
 	// Modulus to take of the hash of the source label values.
 	Modulus *float32 `json:"modulus,omitempty"`
 	// Regular expression against which the extracted value is matched.
@@ -45,7 +44,7 @@ type _CreateScrapeConfigPayloadMetricsRelabelConfigsInner CreateScrapeConfigPayl
 // will change when the set of required properties is changed
 func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInner() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
 	this := CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
-	var action string = "replace"
+	var action CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -61,7 +60,7 @@ func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInner() *CreateScrapeConfi
 // but it doesn't guarantee that properties required by API are set
 func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerWithDefaults() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
 	this := CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
-	var action string = "replace"
+	var action CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -73,9 +72,9 @@ func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerWithDefaults() *Creat
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetAction() string {
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetAction() CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction {
 	if o == nil || IsNil(o.Action) {
-		var ret string
+		var ret CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 		return ret
 	}
 	return *o.Action
@@ -83,7 +82,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetAction() string
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetActionOk() (*string, bool) {
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetActionOk() (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, bool) {
 	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
@@ -99,8 +98,8 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasAction() bool {
 	return false
 }
 
-// SetAction gets a reference to the given string and assigns it to the Action field.
-func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetAction(v string) {
+// SetAction gets a reference to the given CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction and assigns it to the Action field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetAction(v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) {
 	o.Action = &v
 }
 

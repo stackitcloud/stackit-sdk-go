@@ -1,5 +1,8 @@
-## v0.2.2
+## v0.3.1
 - **New**: v1api API version for STACKIT Telemetry Router
+
+## v0.3.0
+- **Feature:** Introduce enums for various attributes
 
 ## v0.2.1
 - **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler

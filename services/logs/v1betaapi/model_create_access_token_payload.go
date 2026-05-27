@@ -27,7 +27,7 @@ type CreateAccessTokenPayload struct {
 	// A lifetime period for an access token in days. If unset the token will not expire.
 	Lifetime *int32 `json:"lifetime,omitempty"`
 	// The access permissions granted to the access token.
-	Permissions          []string `json:"permissions"`
+	Permissions          []PermissionsInner `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +37,7 @@ type _CreateAccessTokenPayload CreateAccessTokenPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccessTokenPayload(displayName string, permissions []string) *CreateAccessTokenPayload {
+func NewCreateAccessTokenPayload(displayName string, permissions []PermissionsInner) *CreateAccessTokenPayload {
 	this := CreateAccessTokenPayload{}
 	this.DisplayName = displayName
 	this.Permissions = permissions
@@ -141,9 +141,9 @@ func (o *CreateAccessTokenPayload) SetLifetime(v int32) {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *CreateAccessTokenPayload) GetPermissions() []string {
+func (o *CreateAccessTokenPayload) GetPermissions() []PermissionsInner {
 	if o == nil {
-		var ret []string
+		var ret []PermissionsInner
 		return ret
 	}
 
@@ -152,7 +152,7 @@ func (o *CreateAccessTokenPayload) GetPermissions() []string {
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessTokenPayload) GetPermissionsOk() ([]string, bool) {
+func (o *CreateAccessTokenPayload) GetPermissionsOk() ([]PermissionsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *CreateAccessTokenPayload) GetPermissionsOk() ([]string, bool) {
 }
 
 // SetPermissions sets field value
-func (o *CreateAccessTokenPayload) SetPermissions(v []string) {
+func (o *CreateAccessTokenPayload) SetPermissions(v []PermissionsInner) {
 	o.Permissions = v
 }
 

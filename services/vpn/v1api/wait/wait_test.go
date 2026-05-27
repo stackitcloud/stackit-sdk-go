@@ -171,7 +171,7 @@ func TestCreateGatewayWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
+				handler := CreateGatewayWaitHandler(context.Background(), apiClient, "pid", string(vpn.REGION_EU01), "gw-1")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
@@ -296,7 +296,7 @@ func TestUpdateGatewayWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := UpdateGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
+				handler := UpdateGatewayWaitHandler(context.Background(), apiClient, "pid", string(vpn.REGION_EU01), "gw-1")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
@@ -402,7 +402,7 @@ func TestDeleteGatewayWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(tt.mockSettings)
 
-				handler := DeleteGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
+				handler := DeleteGatewayWaitHandler(context.Background(), apiClient, "pid", string(vpn.REGION_EU01), "gw-1")
 
 				_, err := handler.WaitWithContext(context.Background())
 

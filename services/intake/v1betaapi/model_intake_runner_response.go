@@ -34,9 +34,8 @@ type IntakeRunnerResponse struct {
 	// The maximum size of a message in kibibytes (1 KiB = 1024 bytes).
 	MaxMessageSizeKiB int32 `json:"maxMessageSizeKiB"`
 	// The maximum number of messages per hour.
-	MaxMessagesPerHour int32 `json:"maxMessagesPerHour"`
-	// The current state of the resource.
-	State string `json:"state"`
+	MaxMessagesPerHour int32                     `json:"maxMessagesPerHour"`
+	State              IntakeRunnerResponseState `json:"state"`
 	// The URI for reaching the resource.
 	Uri                  string `json:"uri"`
 	AdditionalProperties map[string]interface{}
@@ -48,7 +47,7 @@ type _IntakeRunnerResponse IntakeRunnerResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntakeRunnerResponse(createTime time.Time, displayName string, id string, maxMessageSizeKiB int32, maxMessagesPerHour int32, state string, uri string) *IntakeRunnerResponse {
+func NewIntakeRunnerResponse(createTime time.Time, displayName string, id string, maxMessageSizeKiB int32, maxMessagesPerHour int32, state IntakeRunnerResponseState, uri string) *IntakeRunnerResponse {
 	this := IntakeRunnerResponse{}
 	this.CreateTime = createTime
 	this.DisplayName = displayName
@@ -254,9 +253,9 @@ func (o *IntakeRunnerResponse) SetMaxMessagesPerHour(v int32) {
 }
 
 // GetState returns the State field value
-func (o *IntakeRunnerResponse) GetState() string {
+func (o *IntakeRunnerResponse) GetState() IntakeRunnerResponseState {
 	if o == nil {
-		var ret string
+		var ret IntakeRunnerResponseState
 		return ret
 	}
 
@@ -265,7 +264,7 @@ func (o *IntakeRunnerResponse) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *IntakeRunnerResponse) GetStateOk() (*string, bool) {
+func (o *IntakeRunnerResponse) GetStateOk() (*IntakeRunnerResponseState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -273,7 +272,7 @@ func (o *IntakeRunnerResponse) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *IntakeRunnerResponse) SetState(v string) {
+func (o *IntakeRunnerResponse) SetState(v IntakeRunnerResponseState) {
 	o.State = v
 }
 

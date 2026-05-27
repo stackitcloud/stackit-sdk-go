@@ -1,3 +1,6 @@
+## v1.16.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.15.0
 - Package `v1api`:
   - **Docs:** Update possible values of `ClusterError`

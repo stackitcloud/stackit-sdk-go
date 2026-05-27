@@ -23,9 +23,8 @@ type Listener struct {
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
 	Name *string `json:"name,omitempty"`
 	// Port number where we listen for traffic
-	Port *int32 `json:"port,omitempty"`
-	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
-	Protocol *string `json:"protocol,omitempty"`
+	Port     *int32            `json:"port,omitempty"`
+	Protocol *ListenerProtocol `json:"protocol,omitempty"`
 	// Server Name Idicators config for domains to be routed to the desired target pool for this listener.
 	// Deprecated
 	ServerNameIndicators []ServerNameIndicator `json:"serverNameIndicators,omitempty"`
@@ -152,9 +151,9 @@ func (o *Listener) SetPort(v int32) {
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *Listener) GetProtocol() string {
+func (o *Listener) GetProtocol() ListenerProtocol {
 	if o == nil || IsNil(o.Protocol) {
-		var ret string
+		var ret ListenerProtocol
 		return ret
 	}
 	return *o.Protocol
@@ -162,7 +161,7 @@ func (o *Listener) GetProtocol() string {
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetProtocolOk() (*string, bool) {
+func (o *Listener) GetProtocolOk() (*ListenerProtocol, bool) {
 	if o == nil || IsNil(o.Protocol) {
 		return nil, false
 	}
@@ -178,8 +177,8 @@ func (o *Listener) HasProtocol() bool {
 	return false
 }
 
-// SetProtocol gets a reference to the given string and assigns it to the Protocol field.
-func (o *Listener) SetProtocol(v string) {
+// SetProtocol gets a reference to the given ListenerProtocol and assigns it to the Protocol field.
+func (o *Listener) SetProtocol(v ListenerProtocol) {
 	o.Protocol = &v
 }
 

@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.6.0
 - `v1alphaapi`: Align package to latest API specification
 

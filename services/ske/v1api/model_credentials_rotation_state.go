@@ -23,9 +23,8 @@ type CredentialsRotationState struct {
 	// Format: `2024-02-15T11:06:29Z`
 	LastCompletionTime *time.Time `json:"lastCompletionTime,omitempty"`
 	// Format: `2024-02-15T11:06:29Z`
-	LastInitiationTime *time.Time `json:"lastInitiationTime,omitempty"`
-	// Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
-	Phase                *string `json:"phase,omitempty"`
+	LastInitiationTime   *time.Time                     `json:"lastInitiationTime,omitempty"`
+	Phase                *CredentialsRotationStatePhase `json:"phase,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,9 +112,9 @@ func (o *CredentialsRotationState) SetLastInitiationTime(v time.Time) {
 }
 
 // GetPhase returns the Phase field value if set, zero value otherwise.
-func (o *CredentialsRotationState) GetPhase() string {
+func (o *CredentialsRotationState) GetPhase() CredentialsRotationStatePhase {
 	if o == nil || IsNil(o.Phase) {
-		var ret string
+		var ret CredentialsRotationStatePhase
 		return ret
 	}
 	return *o.Phase
@@ -123,7 +122,7 @@ func (o *CredentialsRotationState) GetPhase() string {
 
 // GetPhaseOk returns a tuple with the Phase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsRotationState) GetPhaseOk() (*string, bool) {
+func (o *CredentialsRotationState) GetPhaseOk() (*CredentialsRotationStatePhase, bool) {
 	if o == nil || IsNil(o.Phase) {
 		return nil, false
 	}
@@ -139,8 +138,8 @@ func (o *CredentialsRotationState) HasPhase() bool {
 	return false
 }
 
-// SetPhase gets a reference to the given string and assigns it to the Phase field.
-func (o *CredentialsRotationState) SetPhase(v string) {
+// SetPhase gets a reference to the given CredentialsRotationStatePhase and assigns it to the Phase field.
+func (o *CredentialsRotationState) SetPhase(v CredentialsRotationStatePhase) {
 	o.Phase = &v
 }
 

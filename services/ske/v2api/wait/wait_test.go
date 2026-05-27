@@ -40,7 +40,7 @@ func newAPIMock(settings mockSettings) ske.DefaultAPI {
 					Status: &ske.ClusterStatus{
 						Aggregated: &rs,
 						Error: &ske.RuntimeError{
-							Code:    utils.Ptr(RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
+							Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND),
 							Message: utils.Ptr("invalid argus instance"),
 						},
 					},
@@ -143,7 +143,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 
 					if tt.invalidArgusInstance {
 						wantRes.Status.Error = &ske.RuntimeError{
-							Code:    utils.Ptr(RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
+							Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND),
 							Message: utils.Ptr("invalid argus instance"),
 						}
 					}

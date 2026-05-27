@@ -34,9 +34,8 @@ type Version struct {
 	// A sequential number which identifies the key versions.
 	Number int64 `json:"number"`
 	// The public key of the key version. Only present in asymmetric keys.
-	PublicKey *string `json:"publicKey,omitempty"`
-	// The current state of the key.
-	State                string `json:"state"`
+	PublicKey            *string      `json:"publicKey,omitempty"`
+	State                VersionState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,7 +45,7 @@ type _Version Version
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVersion(createdAt time.Time, disabled bool, keyId string, keyRingId string, number int64, state string) *Version {
+func NewVersion(createdAt time.Time, disabled bool, keyId string, keyRingId string, number int64, state VersionState) *Version {
 	this := Version{}
 	this.CreatedAt = createdAt
 	this.Disabled = disabled
@@ -252,9 +251,9 @@ func (o *Version) SetPublicKey(v string) {
 }
 
 // GetState returns the State field value
-func (o *Version) GetState() string {
+func (o *Version) GetState() VersionState {
 	if o == nil {
-		var ret string
+		var ret VersionState
 		return ret
 	}
 
@@ -263,7 +262,7 @@ func (o *Version) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Version) GetStateOk() (*string, bool) {
+func (o *Version) GetStateOk() (*VersionState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -271,7 +270,7 @@ func (o *Version) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Version) SetState(v string) {
+func (o *Version) SetState(v VersionState) {
 	o.State = v
 }
 

@@ -29,9 +29,8 @@ type ParentListInner struct {
 	// Parent container name.
 	Name string `json:"name"`
 	// Identifier of the parent resource container.
-	ParentId *string `json:"parentId,omitempty"`
-	// Parent container type.
-	Type                 string `json:"type"`
+	ParentId             *string             `json:"parentId,omitempty"`
+	Type                 ParentListInnerType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,7 +40,7 @@ type _ParentListInner ParentListInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParentListInner(containerId string, id string, name string, types string) *ParentListInner {
+func NewParentListInner(containerId string, id string, name string, types ParentListInnerType) *ParentListInner {
 	this := ParentListInner{}
 	this.ContainerId = containerId
 	this.Id = id
@@ -195,9 +194,9 @@ func (o *ParentListInner) SetParentId(v string) {
 }
 
 // GetType returns the Type field value
-func (o *ParentListInner) GetType() string {
+func (o *ParentListInner) GetType() ParentListInnerType {
 	if o == nil {
-		var ret string
+		var ret ParentListInnerType
 		return ret
 	}
 
@@ -206,7 +205,7 @@ func (o *ParentListInner) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ParentListInner) GetTypeOk() (*string, bool) {
+func (o *ParentListInner) GetTypeOk() (*ParentListInnerType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -214,7 +213,7 @@ func (o *ParentListInner) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *ParentListInner) SetType(v string) {
+func (o *ParentListInner) SetType(v ParentListInnerType) {
 	o.Type = v
 }
 

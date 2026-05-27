@@ -1,3 +1,6 @@
+## v0.23.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.22.0
 - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
 

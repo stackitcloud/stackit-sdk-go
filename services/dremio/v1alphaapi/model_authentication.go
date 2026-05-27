@@ -20,9 +20,9 @@ var _ MappedNullable = &Authentication{}
 
 // Authentication Dremio instance authentication settings. A change here triggers a Dremio restart and will incur downtime.
 type Authentication struct {
-	Azuread              *Azuread `json:"azuread,omitempty"`
-	Oauth                *Oauth   `json:"oauth,omitempty"`
-	Type                 string   `json:"type"`
+	Azuread              *Azuread           `json:"azuread,omitempty"`
+	Oauth                *Oauth             `json:"oauth,omitempty"`
+	Type                 AuthenticationType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _Authentication Authentication
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthentication(types string) *Authentication {
+func NewAuthentication(types AuthenticationType) *Authentication {
 	this := Authentication{}
 	this.Type = types
 	return &this
@@ -111,9 +111,9 @@ func (o *Authentication) SetOauth(v Oauth) {
 }
 
 // GetType returns the Type field value
-func (o *Authentication) GetType() string {
+func (o *Authentication) GetType() AuthenticationType {
 	if o == nil {
-		var ret string
+		var ret AuthenticationType
 		return ret
 	}
 
@@ -122,7 +122,7 @@ func (o *Authentication) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Authentication) GetTypeOk() (*string, bool) {
+func (o *Authentication) GetTypeOk() (*AuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *Authentication) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Authentication) SetType(v string) {
+func (o *Authentication) SetType(v AuthenticationType) {
 	o.Type = v
 }
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 
 // PartialUpdateRecordPayload RecordPatch for record patch in record set.
 type PartialUpdateRecordPayload struct {
-	Action string `json:"action"`
+	Action PartialUpdateRecordPayloadAction `json:"action"`
 	// records
 	Records              []RecordPayload `json:"records"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _PartialUpdateRecordPayload PartialUpdateRecordPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartialUpdateRecordPayload(action string, records []RecordPayload) *PartialUpdateRecordPayload {
+func NewPartialUpdateRecordPayload(action PartialUpdateRecordPayloadAction, records []RecordPayload) *PartialUpdateRecordPayload {
 	this := PartialUpdateRecordPayload{}
 	this.Action = action
 	this.Records = records
@@ -49,9 +49,9 @@ func NewPartialUpdateRecordPayloadWithDefaults() *PartialUpdateRecordPayload {
 }
 
 // GetAction returns the Action field value
-func (o *PartialUpdateRecordPayload) GetAction() string {
+func (o *PartialUpdateRecordPayload) GetAction() PartialUpdateRecordPayloadAction {
 	if o == nil {
-		var ret string
+		var ret PartialUpdateRecordPayloadAction
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *PartialUpdateRecordPayload) GetAction() string {
 
 // GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordPayload) GetActionOk() (*string, bool) {
+func (o *PartialUpdateRecordPayload) GetActionOk() (*PartialUpdateRecordPayloadAction, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *PartialUpdateRecordPayload) GetActionOk() (*string, bool) {
 }
 
 // SetAction sets field value
-func (o *PartialUpdateRecordPayload) SetAction(v string) {
+func (o *PartialUpdateRecordPayload) SetAction(v PartialUpdateRecordPayloadAction) {
 	o.Action = v
 }
 

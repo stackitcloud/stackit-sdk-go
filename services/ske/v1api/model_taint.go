@@ -20,9 +20,9 @@ var _ MappedNullable = &Taint{}
 
 // Taint struct for Taint
 type Taint struct {
-	Effect               string  `json:"effect"`
-	Key                  string  `json:"key"`
-	Value                *string `json:"value,omitempty"`
+	Effect               TaintEffect `json:"effect"`
+	Key                  string      `json:"key"`
+	Value                *string     `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _Taint Taint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTaint(effect string, key string) *Taint {
+func NewTaint(effect TaintEffect, key string) *Taint {
 	this := Taint{}
 	this.Effect = effect
 	this.Key = key
@@ -48,9 +48,9 @@ func NewTaintWithDefaults() *Taint {
 }
 
 // GetEffect returns the Effect field value
-func (o *Taint) GetEffect() string {
+func (o *Taint) GetEffect() TaintEffect {
 	if o == nil {
-		var ret string
+		var ret TaintEffect
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *Taint) GetEffect() string {
 
 // GetEffectOk returns a tuple with the Effect field value
 // and a boolean to check if the value has been set.
-func (o *Taint) GetEffectOk() (*string, bool) {
+func (o *Taint) GetEffectOk() (*TaintEffect, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *Taint) GetEffectOk() (*string, bool) {
 }
 
 // SetEffect sets field value
-func (o *Taint) SetEffect(v string) {
+func (o *Taint) SetEffect(v TaintEffect) {
 	o.Effect = v
 }
 

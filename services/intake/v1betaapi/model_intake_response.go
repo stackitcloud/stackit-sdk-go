@@ -37,9 +37,8 @@ type IntakeResponse struct {
 	// The unique id of the intake runner this intake is running on.
 	IntakeRunnerId string `json:"intakeRunnerId"`
 	// Labels are a set of key-value pairs assigned to resources.
-	Labels map[string]string `json:"labels,omitempty"`
-	// The current state of the resource.
-	State string `json:"state"`
+	Labels map[string]string   `json:"labels,omitempty"`
+	State  IntakeResponseState `json:"state"`
 	// The topic to publish data to.
 	Topic string `json:"topic"`
 	// Number of messages that failed delivery and were sent to the Dead Letter Queue.
@@ -55,7 +54,7 @@ type _IntakeResponse IntakeResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntakeResponse(catalog IntakeCatalog, createTime time.Time, deadLetterTopic string, displayName string, id string, intakeRunnerId string, state string, topic string, uri string) *IntakeResponse {
+func NewIntakeResponse(catalog IntakeCatalog, createTime time.Time, deadLetterTopic string, displayName string, id string, intakeRunnerId string, state IntakeResponseState, topic string, uri string) *IntakeResponse {
 	this := IntakeResponse{}
 	this.Catalog = catalog
 	this.CreateTime = createTime
@@ -319,9 +318,9 @@ func (o *IntakeResponse) SetLabels(v map[string]string) {
 }
 
 // GetState returns the State field value
-func (o *IntakeResponse) GetState() string {
+func (o *IntakeResponse) GetState() IntakeResponseState {
 	if o == nil {
-		var ret string
+		var ret IntakeResponseState
 		return ret
 	}
 
@@ -330,7 +329,7 @@ func (o *IntakeResponse) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *IntakeResponse) GetStateOk() (*string, bool) {
+func (o *IntakeResponse) GetStateOk() (*IntakeResponseState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -338,7 +337,7 @@ func (o *IntakeResponse) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *IntakeResponse) SetState(v string) {
+func (o *IntakeResponse) SetState(v IntakeResponseState) {
 	o.State = v
 }
 

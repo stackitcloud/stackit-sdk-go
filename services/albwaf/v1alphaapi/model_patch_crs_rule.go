@@ -19,8 +19,7 @@ var _ MappedNullable = &PatchCRSRule{}
 
 // PatchCRSRule struct for PatchCRSRule
 type PatchCRSRule struct {
-	// The current mode of the rule.
-	Mode                 *string `json:"mode,omitempty" validate:"regexp=^(MODE_ENABLED|MODE_DISABLED|MODE_LOG_ONLY)$"`
+	Mode                 *OWASPCoreRuleSet1 `json:"mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +43,9 @@ func NewPatchCRSRuleWithDefaults() *PatchCRSRule {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *PatchCRSRule) GetMode() string {
+func (o *PatchCRSRule) GetMode() OWASPCoreRuleSet1 {
 	if o == nil || IsNil(o.Mode) {
-		var ret string
+		var ret OWASPCoreRuleSet1
 		return ret
 	}
 	return *o.Mode
@@ -54,7 +53,7 @@ func (o *PatchCRSRule) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchCRSRule) GetModeOk() (*string, bool) {
+func (o *PatchCRSRule) GetModeOk() (*OWASPCoreRuleSet1, bool) {
 	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
@@ -70,8 +69,8 @@ func (o *PatchCRSRule) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *PatchCRSRule) SetMode(v string) {
+// SetMode gets a reference to the given OWASPCoreRuleSet1 and assigns it to the Mode field.
+func (o *PatchCRSRule) SetMode(v OWASPCoreRuleSet1) {
 	o.Mode = &v
 }
 

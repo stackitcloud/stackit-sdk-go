@@ -22,8 +22,8 @@ var _ MappedNullable = &CreateInstancePayload{}
 // CreateInstancePayload Request a STACKIT Git instance to be created with these properties.
 type CreateInstancePayload struct {
 	// A list of CIDR network addresses that are allowed to access the instance.
-	Acl    []string `json:"acl,omitempty"`
-	Flavor *string  `json:"flavor,omitempty"`
+	Acl    []string                     `json:"acl,omitempty"`
+	Flavor *CreateInstancePayloadFlavor `json:"flavor,omitempty"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
 	Name                 string `json:"name" validate:"regexp=^[a-z]([a-z0-9\\\\-]){0,30}[a-z0-9]+$"`
 	AdditionalProperties map[string]interface{}
@@ -82,9 +82,9 @@ func (o *CreateInstancePayload) SetAcl(v []string) {
 }
 
 // GetFlavor returns the Flavor field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetFlavor() string {
+func (o *CreateInstancePayload) GetFlavor() CreateInstancePayloadFlavor {
 	if o == nil || IsNil(o.Flavor) {
-		var ret string
+		var ret CreateInstancePayloadFlavor
 		return ret
 	}
 	return *o.Flavor
@@ -92,7 +92,7 @@ func (o *CreateInstancePayload) GetFlavor() string {
 
 // GetFlavorOk returns a tuple with the Flavor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetFlavorOk() (*string, bool) {
+func (o *CreateInstancePayload) GetFlavorOk() (*CreateInstancePayloadFlavor, bool) {
 	if o == nil || IsNil(o.Flavor) {
 		return nil, false
 	}
@@ -108,8 +108,8 @@ func (o *CreateInstancePayload) HasFlavor() bool {
 	return false
 }
 
-// SetFlavor gets a reference to the given string and assigns it to the Flavor field.
-func (o *CreateInstancePayload) SetFlavor(v string) {
+// SetFlavor gets a reference to the given CreateInstancePayloadFlavor and assigns it to the Flavor field.
+func (o *CreateInstancePayload) SetFlavor(v CreateInstancePayloadFlavor) {
 	o.Flavor = &v
 }
 

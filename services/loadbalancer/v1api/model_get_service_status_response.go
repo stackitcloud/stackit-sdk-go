@@ -19,8 +19,7 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 
 // GetServiceStatusResponse Response with customer project status.
 type GetServiceStatusResponse struct {
-	// status of the project
-	Status               *string `json:"status,omitempty"`
+	Status               *GetServiceStatusResponseStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +43,9 @@ func NewGetServiceStatusResponseWithDefaults() *GetServiceStatusResponse {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *GetServiceStatusResponse) GetStatus() string {
+func (o *GetServiceStatusResponse) GetStatus() GetServiceStatusResponseStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret GetServiceStatusResponseStatus
 		return ret
 	}
 	return *o.Status
@@ -54,7 +53,7 @@ func (o *GetServiceStatusResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetServiceStatusResponse) GetStatusOk() (*string, bool) {
+func (o *GetServiceStatusResponse) GetStatusOk() (*GetServiceStatusResponseStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -70,8 +69,8 @@ func (o *GetServiceStatusResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *GetServiceStatusResponse) SetStatus(v string) {
+// SetStatus gets a reference to the given GetServiceStatusResponseStatus and assigns it to the Status field.
+func (o *GetServiceStatusResponse) SetStatus(v GetServiceStatusResponseStatus) {
 	o.Status = &v
 }
 
