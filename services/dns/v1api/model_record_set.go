@@ -36,13 +36,11 @@ type RecordSet struct {
 	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here.
 	Name string `json:"name"`
 	// records
-	Records []Record `json:"records"`
-	// record set state
-	State string `json:"state"`
+	Records []Record       `json:"records"`
+	State   RecordSetState `json:"state"`
 	// time to live
-	Ttl int32 `json:"ttl"`
-	// record set type
-	Type string `json:"type"`
+	Ttl  int32         `json:"ttl"`
+	Type RecordSetType `json:"type"`
 	// when record set update/deletion finished
 	UpdateFinished string `json:"updateFinished"`
 	// when record set update/deletion started
@@ -56,7 +54,7 @@ type _RecordSet RecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecordSet(creationFinished string, creationStarted string, id string, name string, records []Record, state string, ttl int32, types string, updateFinished string, updateStarted string) *RecordSet {
+func NewRecordSet(creationFinished string, creationStarted string, id string, name string, records []Record, state RecordSetState, ttl int32, types RecordSetType, updateFinished string, updateStarted string) *RecordSet {
 	this := RecordSet{}
 	this.CreationFinished = creationFinished
 	this.CreationStarted = creationStarted
@@ -296,9 +294,9 @@ func (o *RecordSet) SetRecords(v []Record) {
 }
 
 // GetState returns the State field value
-func (o *RecordSet) GetState() string {
+func (o *RecordSet) GetState() RecordSetState {
 	if o == nil {
-		var ret string
+		var ret RecordSetState
 		return ret
 	}
 
@@ -307,7 +305,7 @@ func (o *RecordSet) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetStateOk() (*string, bool) {
+func (o *RecordSet) GetStateOk() (*RecordSetState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -315,7 +313,7 @@ func (o *RecordSet) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *RecordSet) SetState(v string) {
+func (o *RecordSet) SetState(v RecordSetState) {
 	o.State = v
 }
 
@@ -344,9 +342,9 @@ func (o *RecordSet) SetTtl(v int32) {
 }
 
 // GetType returns the Type field value
-func (o *RecordSet) GetType() string {
+func (o *RecordSet) GetType() RecordSetType {
 	if o == nil {
-		var ret string
+		var ret RecordSetType
 		return ret
 	}
 
@@ -355,7 +353,7 @@ func (o *RecordSet) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetTypeOk() (*string, bool) {
+func (o *RecordSet) GetTypeOk() (*RecordSetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -363,7 +361,7 @@ func (o *RecordSet) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *RecordSet) SetType(v string) {
+func (o *RecordSet) SetType(v RecordSetType) {
 	o.Type = v
 }
 

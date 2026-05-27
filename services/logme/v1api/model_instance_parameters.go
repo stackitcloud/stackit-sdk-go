@@ -43,10 +43,10 @@ type InstanceParameters struct {
 	// Frequency of metrics being emitted in seconds
 	MetricsFrequency *int32 `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
-	MetricsPrefix          *string  `json:"metrics_prefix,omitempty"`
-	MonitoringInstanceId   *string  `json:"monitoring_instance_id,omitempty"`
-	OpensearchTlsCiphers   []string `json:"opensearch-tls-ciphers,omitempty"`
-	OpensearchTlsProtocols []string `json:"opensearch-tls-protocols,omitempty"`
+	MetricsPrefix          *string                                       `json:"metrics_prefix,omitempty"`
+	MonitoringInstanceId   *string                                       `json:"monitoring_instance_id,omitempty"`
+	OpensearchTlsCiphers   []InstanceParametersOpensearchTlsCiphersInner `json:"opensearch-tls-ciphers,omitempty"`
+	OpensearchTlsProtocols []string                                      `json:"opensearch-tls-protocols,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
 	SgwAcl               *string  `json:"sgw_acl,omitempty"`
 	Syslog               []string `json:"syslog,omitempty"`
@@ -721,9 +721,9 @@ func (o *InstanceParameters) SetMonitoringInstanceId(v string) {
 }
 
 // GetOpensearchTlsCiphers returns the OpensearchTlsCiphers field value if set, zero value otherwise.
-func (o *InstanceParameters) GetOpensearchTlsCiphers() []string {
+func (o *InstanceParameters) GetOpensearchTlsCiphers() []InstanceParametersOpensearchTlsCiphersInner {
 	if o == nil || IsNil(o.OpensearchTlsCiphers) {
-		var ret []string
+		var ret []InstanceParametersOpensearchTlsCiphersInner
 		return ret
 	}
 	return o.OpensearchTlsCiphers
@@ -731,7 +731,7 @@ func (o *InstanceParameters) GetOpensearchTlsCiphers() []string {
 
 // GetOpensearchTlsCiphersOk returns a tuple with the OpensearchTlsCiphers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetOpensearchTlsCiphersOk() ([]string, bool) {
+func (o *InstanceParameters) GetOpensearchTlsCiphersOk() ([]InstanceParametersOpensearchTlsCiphersInner, bool) {
 	if o == nil || IsNil(o.OpensearchTlsCiphers) {
 		return nil, false
 	}
@@ -747,8 +747,8 @@ func (o *InstanceParameters) HasOpensearchTlsCiphers() bool {
 	return false
 }
 
-// SetOpensearchTlsCiphers gets a reference to the given []string and assigns it to the OpensearchTlsCiphers field.
-func (o *InstanceParameters) SetOpensearchTlsCiphers(v []string) {
+// SetOpensearchTlsCiphers gets a reference to the given []InstanceParametersOpensearchTlsCiphersInner and assigns it to the OpensearchTlsCiphers field.
+func (o *InstanceParameters) SetOpensearchTlsCiphers(v []InstanceParametersOpensearchTlsCiphersInner) {
 	o.OpensearchTlsCiphers = v
 }
 

@@ -20,8 +20,7 @@ var _ MappedNullable = &PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConf
 
 // PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner struct for PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
 type PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner struct {
-	// Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
-	Action *string `json:"action,omitempty"`
+	Action *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction `json:"action,omitempty"`
 	// Modulus to take of the hash of the source label values.
 	Modulus *float32 `json:"modulus,omitempty"`
 	// Regular expression against which the extracted value is matched.
@@ -45,7 +44,7 @@ type _PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner PartialUp
 // will change when the set of required properties is changed
 func NewPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner() *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner {
 	this := PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner{}
-	var action string = "replace"
+	var action PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction = PARTIALUPDATESCRAPECONFIGSREQUESTINNERMETRICSRELABELCONFIGSINNERACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -61,7 +60,7 @@ func NewPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner() *Part
 // but it doesn't guarantee that properties required by API are set
 func NewPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerWithDefaults() *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner {
 	this := PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner{}
-	var action string = "replace"
+	var action PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction = PARTIALUPDATESCRAPECONFIGSREQUESTINNERMETRICSRELABELCONFIGSINNERACTION_REPLACE
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
@@ -73,9 +72,9 @@ func NewPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerWithDefa
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) GetAction() string {
+func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) GetAction() PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction {
 	if o == nil || IsNil(o.Action) {
-		var ret string
+		var ret PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction
 		return ret
 	}
 	return *o.Action
@@ -83,7 +82,7 @@ func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) GetAc
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) GetActionOk() (*string, bool) {
+func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) GetActionOk() (*PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction, bool) {
 	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
@@ -99,8 +98,8 @@ func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) HasAc
 	return false
 }
 
-// SetAction gets a reference to the given string and assigns it to the Action field.
-func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) SetAction(v string) {
+// SetAction gets a reference to the given PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction and assigns it to the Action field.
+func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) SetAction(v PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction) {
 	o.Action = &v
 }
 

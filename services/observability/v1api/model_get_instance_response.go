@@ -33,7 +33,7 @@ type GetInstanceResponse struct {
 	PlanName             string                `json:"planName"`
 	PlanSchema           *string               `json:"planSchema,omitempty"`
 	ServiceName          string                `json:"serviceName"`
-	Status               string                `json:"status"`
+	Status               Status                `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,7 +43,7 @@ type _GetInstanceResponse GetInstanceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetInstanceResponse(dashboardUrl string, id string, instance InstanceSensitiveData, message string, planId string, planName string, serviceName string, status string) *GetInstanceResponse {
+func NewGetInstanceResponse(dashboardUrl string, id string, instance InstanceSensitiveData, message string, planId string, planName string, serviceName string, status Status) *GetInstanceResponse {
 	this := GetInstanceResponse{}
 	this.DashboardUrl = dashboardUrl
 	this.Id = id
@@ -412,9 +412,9 @@ func (o *GetInstanceResponse) SetServiceName(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *GetInstanceResponse) GetStatus() string {
+func (o *GetInstanceResponse) GetStatus() Status {
 	if o == nil {
-		var ret string
+		var ret Status
 		return ret
 	}
 
@@ -423,7 +423,7 @@ func (o *GetInstanceResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *GetInstanceResponse) GetStatusOk() (*string, bool) {
+func (o *GetInstanceResponse) GetStatusOk() (*Status, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -431,7 +431,7 @@ func (o *GetInstanceResponse) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *GetInstanceResponse) SetStatus(v string) {
+func (o *GetInstanceResponse) SetStatus(v Status) {
 	o.Status = v
 }
 

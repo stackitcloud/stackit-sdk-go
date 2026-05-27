@@ -22,12 +22,12 @@ var _ MappedNullable = &Token{}
 
 // Token struct for Token
 type Token struct {
-	Description          *string   `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Id                   string    `json:"id"`
-	Name                 string    `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Region               string    `json:"region"`
-	State                string    `json:"state"`
-	ValidUntil           time.Time `json:"validUntil"`
+	Description          *string    `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Id                   string     `json:"id"`
+	Name                 string     `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Region               string     `json:"region"`
+	State                TokenState `json:"state"`
+	ValidUntil           time.Time  `json:"validUntil"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +37,7 @@ type _Token Token
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewToken(id string, name string, region string, state string, validUntil time.Time) *Token {
+func NewToken(id string, name string, region string, state TokenState, validUntil time.Time) *Token {
 	this := Token{}
 	this.Id = id
 	this.Name = name
@@ -160,9 +160,9 @@ func (o *Token) SetRegion(v string) {
 }
 
 // GetState returns the State field value
-func (o *Token) GetState() string {
+func (o *Token) GetState() TokenState {
 	if o == nil {
-		var ret string
+		var ret TokenState
 		return ret
 	}
 
@@ -171,7 +171,7 @@ func (o *Token) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Token) GetStateOk() (*string, bool) {
+func (o *Token) GetStateOk() (*TokenState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,7 +179,7 @@ func (o *Token) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Token) SetState(v string) {
+func (o *Token) SetState(v TokenState) {
 	o.State = v
 }
 

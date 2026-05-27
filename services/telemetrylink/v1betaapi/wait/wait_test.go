@@ -15,7 +15,7 @@ import (
 type mockSettings struct {
 	getFails      bool
 	notFound      bool
-	resourceState string
+	resourceState telemetrylink.TelemetryLinkResponseStatus
 }
 
 func newAPIMock(settings mockSettings) telemetrylink.DefaultAPI {
@@ -78,14 +78,14 @@ func TestCreateOrUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -138,14 +138,14 @@ func TestPartialUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -199,7 +199,7 @@ func TestDeleteOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		notFound      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -265,14 +265,14 @@ func TestCreateOrUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -325,14 +325,14 @@ func TestPartialUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -386,7 +386,7 @@ func TestDeleteFolderTelemetryLinkWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		notFound      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -452,14 +452,14 @@ func TestCreateOrUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -512,14 +512,14 @@ func TestPartialUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYLINK_ACTIVE,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -573,7 +573,7 @@ func TestDeleteProjectTelemetryLinkWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		notFound      bool
-		resourceState string
+		resourceState telemetrylink.TelemetryLinkResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{

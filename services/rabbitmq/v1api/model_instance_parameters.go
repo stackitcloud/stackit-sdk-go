@@ -29,15 +29,15 @@ type InstanceParameters struct {
 	// Frequency of metrics being emitted in seconds
 	MetricsFrequency *int32 `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
-	MetricsPrefix        *string  `json:"metrics_prefix,omitempty"`
-	MonitoringInstanceId *string  `json:"monitoring_instance_id,omitempty"`
-	Plugins              []string `json:"plugins,omitempty"`
-	Roles                []string `json:"roles,omitempty"`
+	MetricsPrefix        *string                          `json:"metrics_prefix,omitempty"`
+	MonitoringInstanceId *string                          `json:"monitoring_instance_id,omitempty"`
+	Plugins              []InstanceParametersPluginsInner `json:"plugins,omitempty"`
+	Roles                []string                         `json:"roles,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
-	SgwAcl               *string  `json:"sgw_acl,omitempty"`
-	Syslog               []string `json:"syslog,omitempty"`
-	TlsCiphers           []string `json:"tls-ciphers,omitempty"`
-	TlsProtocols         []string `json:"tls-protocols,omitempty"`
+	SgwAcl               *string                               `json:"sgw_acl,omitempty"`
+	Syslog               []string                              `json:"syslog,omitempty"`
+	TlsCiphers           []string                              `json:"tls-ciphers,omitempty"`
+	TlsProtocols         []InstanceParametersTlsProtocolsInner `json:"tls-protocols,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -301,9 +301,9 @@ func (o *InstanceParameters) SetMonitoringInstanceId(v string) {
 }
 
 // GetPlugins returns the Plugins field value if set, zero value otherwise.
-func (o *InstanceParameters) GetPlugins() []string {
+func (o *InstanceParameters) GetPlugins() []InstanceParametersPluginsInner {
 	if o == nil || IsNil(o.Plugins) {
-		var ret []string
+		var ret []InstanceParametersPluginsInner
 		return ret
 	}
 	return o.Plugins
@@ -311,7 +311,7 @@ func (o *InstanceParameters) GetPlugins() []string {
 
 // GetPluginsOk returns a tuple with the Plugins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetPluginsOk() ([]string, bool) {
+func (o *InstanceParameters) GetPluginsOk() ([]InstanceParametersPluginsInner, bool) {
 	if o == nil || IsNil(o.Plugins) {
 		return nil, false
 	}
@@ -327,8 +327,8 @@ func (o *InstanceParameters) HasPlugins() bool {
 	return false
 }
 
-// SetPlugins gets a reference to the given []string and assigns it to the Plugins field.
-func (o *InstanceParameters) SetPlugins(v []string) {
+// SetPlugins gets a reference to the given []InstanceParametersPluginsInner and assigns it to the Plugins field.
+func (o *InstanceParameters) SetPlugins(v []InstanceParametersPluginsInner) {
 	o.Plugins = v
 }
 
@@ -461,9 +461,9 @@ func (o *InstanceParameters) SetTlsCiphers(v []string) {
 }
 
 // GetTlsProtocols returns the TlsProtocols field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsProtocols() []string {
+func (o *InstanceParameters) GetTlsProtocols() []InstanceParametersTlsProtocolsInner {
 	if o == nil || IsNil(o.TlsProtocols) {
-		var ret []string
+		var ret []InstanceParametersTlsProtocolsInner
 		return ret
 	}
 	return o.TlsProtocols
@@ -471,7 +471,7 @@ func (o *InstanceParameters) GetTlsProtocols() []string {
 
 // GetTlsProtocolsOk returns a tuple with the TlsProtocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsProtocolsOk() ([]string, bool) {
+func (o *InstanceParameters) GetTlsProtocolsOk() ([]InstanceParametersTlsProtocolsInner, bool) {
 	if o == nil || IsNil(o.TlsProtocols) {
 		return nil, false
 	}
@@ -487,8 +487,8 @@ func (o *InstanceParameters) HasTlsProtocols() bool {
 	return false
 }
 
-// SetTlsProtocols gets a reference to the given []string and assigns it to the TlsProtocols field.
-func (o *InstanceParameters) SetTlsProtocols(v []string) {
+// SetTlsProtocols gets a reference to the given []InstanceParametersTlsProtocolsInner and assigns it to the TlsProtocols field.
+func (o *InstanceParameters) SetTlsProtocols(v []InstanceParametersTlsProtocolsInner) {
 	o.TlsProtocols = v
 }
 

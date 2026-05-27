@@ -23,17 +23,15 @@ var _ MappedNullable = &DestinationResponse{}
 type DestinationResponse struct {
 	Config DestinationConfig `json:"config"`
 	// The point in time the resource was created.
-	CreationTime time.Time `json:"creationTime"`
-	// The credential type for the resource.
-	CredentialType string `json:"credentialType"`
+	CreationTime   time.Time                         `json:"creationTime"`
+	CredentialType DestinationResponseCredentialType `json:"credentialType"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
 	// A auto generated unique id which identifies the resource.
-	Id string `json:"id"`
-	// The current status of the resource.
-	Status               string `json:"status"`
+	Id                   string                    `json:"id"`
+	Status               DestinationResponseStatus `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,7 +41,7 @@ type _DestinationResponse DestinationResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDestinationResponse(config DestinationConfig, creationTime time.Time, credentialType string, displayName string, id string, status string) *DestinationResponse {
+func NewDestinationResponse(config DestinationConfig, creationTime time.Time, credentialType DestinationResponseCredentialType, displayName string, id string, status DestinationResponseStatus) *DestinationResponse {
 	this := DestinationResponse{}
 	this.Config = config
 	this.CreationTime = creationTime
@@ -111,9 +109,9 @@ func (o *DestinationResponse) SetCreationTime(v time.Time) {
 }
 
 // GetCredentialType returns the CredentialType field value
-func (o *DestinationResponse) GetCredentialType() string {
+func (o *DestinationResponse) GetCredentialType() DestinationResponseCredentialType {
 	if o == nil {
-		var ret string
+		var ret DestinationResponseCredentialType
 		return ret
 	}
 
@@ -122,7 +120,7 @@ func (o *DestinationResponse) GetCredentialType() string {
 
 // GetCredentialTypeOk returns a tuple with the CredentialType field value
 // and a boolean to check if the value has been set.
-func (o *DestinationResponse) GetCredentialTypeOk() (*string, bool) {
+func (o *DestinationResponse) GetCredentialTypeOk() (*DestinationResponseCredentialType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +128,7 @@ func (o *DestinationResponse) GetCredentialTypeOk() (*string, bool) {
 }
 
 // SetCredentialType sets field value
-func (o *DestinationResponse) SetCredentialType(v string) {
+func (o *DestinationResponse) SetCredentialType(v DestinationResponseCredentialType) {
 	o.CredentialType = v
 }
 
@@ -215,9 +213,9 @@ func (o *DestinationResponse) SetId(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *DestinationResponse) GetStatus() string {
+func (o *DestinationResponse) GetStatus() DestinationResponseStatus {
 	if o == nil {
-		var ret string
+		var ret DestinationResponseStatus
 		return ret
 	}
 
@@ -226,7 +224,7 @@ func (o *DestinationResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *DestinationResponse) GetStatusOk() (*string, bool) {
+func (o *DestinationResponse) GetStatusOk() (*DestinationResponseStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -234,7 +232,7 @@ func (o *DestinationResponse) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *DestinationResponse) SetStatus(v string) {
+func (o *DestinationResponse) SetStatus(v DestinationResponseStatus) {
 	o.Status = v
 }
 

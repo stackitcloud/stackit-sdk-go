@@ -21,9 +21,9 @@ var _ MappedNullable = &EmbeddingModelDetails{}
 
 // EmbeddingModelDetails struct for EmbeddingModelDetails
 type EmbeddingModelDetails struct {
-	Category      string `json:"category"`
-	Description   string `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	DisplayedName string `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Category      EmbeddingModelDetailsCategory `json:"category"`
+	Description   string                        `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	DisplayedName string                        `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// generated uuid to identify a model
 	Id string `json:"id"`
 	// huggingface name
@@ -43,7 +43,7 @@ type _EmbeddingModelDetails EmbeddingModelDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmbeddingModelDetails(category string, description string, displayedName string, id string, name string, outputDimension int64, region string, skus []SKU, url string) *EmbeddingModelDetails {
+func NewEmbeddingModelDetails(category EmbeddingModelDetailsCategory, description string, displayedName string, id string, name string, outputDimension int64, region string, skus []SKU, url string) *EmbeddingModelDetails {
 	this := EmbeddingModelDetails{}
 	this.Category = category
 	this.Description = description
@@ -66,9 +66,9 @@ func NewEmbeddingModelDetailsWithDefaults() *EmbeddingModelDetails {
 }
 
 // GetCategory returns the Category field value
-func (o *EmbeddingModelDetails) GetCategory() string {
+func (o *EmbeddingModelDetails) GetCategory() EmbeddingModelDetailsCategory {
 	if o == nil {
-		var ret string
+		var ret EmbeddingModelDetailsCategory
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *EmbeddingModelDetails) GetCategory() string {
 
 // GetCategoryOk returns a tuple with the Category field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetCategoryOk() (*string, bool) {
+func (o *EmbeddingModelDetails) GetCategoryOk() (*EmbeddingModelDetailsCategory, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *EmbeddingModelDetails) GetCategoryOk() (*string, bool) {
 }
 
 // SetCategory sets field value
-func (o *EmbeddingModelDetails) SetCategory(v string) {
+func (o *EmbeddingModelDetails) SetCategory(v EmbeddingModelDetailsCategory) {
 	o.Category = v
 }
 

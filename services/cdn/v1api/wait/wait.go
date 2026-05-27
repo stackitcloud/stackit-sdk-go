@@ -12,14 +12,6 @@ import (
 	cdn "github.com/stackitcloud/stackit-sdk-go/services/cdn/v1api"
 )
 
-const (
-	DISTRIBUTIONSTATUS_CREATING = "CREATING"
-	DISTRIBUTIONSTATUS_ACTIVE   = "ACTIVE"
-	DISTRIBUTIONSTATUS_UPDATING = "UPDATING"
-	DISTRIBUTIONSTATUS_DELETING = "DELETING"
-	DISTRIBUTIONSTATUS_ERROR    = "ERROR"
-)
-
 func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
 		distribution, err = api.GetDistribution(ctx, projectId, distributionId).Execute()
@@ -31,13 +23,13 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, 
 		}
 		if distribution.Distribution.Id == distributionId {
 			switch distribution.Distribution.Status {
-			case DISTRIBUTIONSTATUS_ACTIVE:
+			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
 				return true, distribution, nil
-			case DISTRIBUTIONSTATUS_CREATING, DISTRIBUTIONSTATUS_UPDATING:
+			case cdn.DISTRIBUTIONSTATUS_CREATING, cdn.DISTRIBUTIONSTATUS_UPDATING:
 				return false, nil, nil
-			case DISTRIBUTIONSTATUS_DELETING:
+			case cdn.DISTRIBUTIONSTATUS_DELETING:
 				return true, nil, fmt.Errorf("creating CDN distribution failed")
-			case DISTRIBUTIONSTATUS_ERROR:
+			case cdn.DISTRIBUTIONSTATUS_ERROR:
 				return true, nil, fmt.Errorf("creating CDN distribution failed")
 			default:
 				return true, nil, fmt.Errorf("CDNDistributionWaitHandler: unexpected status %s", distribution.Distribution.Status)
@@ -60,13 +52,13 @@ func UpdateDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, proj
 		}
 		if distribution.Distribution.Id == distributionId {
 			switch distribution.Distribution.Status {
-			case DISTRIBUTIONSTATUS_ACTIVE:
+			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
 				return true, distribution, err
-			case DISTRIBUTIONSTATUS_UPDATING:
+			case cdn.DISTRIBUTIONSTATUS_UPDATING:
 				return false, nil, nil
-			case DISTRIBUTIONSTATUS_DELETING:
+			case cdn.DISTRIBUTIONSTATUS_DELETING:
 				return true, nil, fmt.Errorf("updating CDN distribution failed")
-			case DISTRIBUTIONSTATUS_ERROR:
+			case cdn.DISTRIBUTIONSTATUS_ERROR:
 				return true, nil, fmt.Errorf("updating CDN distribution failed")
 			default:
 				return true, nil, fmt.Errorf("UpdateDistributionWaitHandler: unexpected status %s", distribution.Distribution.Status)
@@ -79,7 +71,6 @@ func UpdateDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, proj
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
-
 func DeleteDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
 		_, err = api.GetDistribution(ctx, projectId, distributionId).Execute()

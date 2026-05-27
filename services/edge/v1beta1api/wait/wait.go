@@ -15,10 +15,18 @@ import (
 const timeoutMinutes time.Duration = 10
 
 const (
-	INSTANCESTATUS_ERROR       = "error"
-	INSTANCESTATUS_RECONCILING = "reconciling"
-	INSTANCESTATUS_ACTIVE      = "active"
-	INSTANCESTATUS_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ERROR = edge.INSTANCESTATUS_ERROR
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_RECONCILING = edge.INSTANCESTATUS_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = edge.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = edge.INSTANCESTATUS_DELETING
 )
 
 var (
@@ -33,18 +41,18 @@ var (
 
 // createOrUpdateInstanceWaitHandler contains the shared logic for waiting on instance creation or updates.
 func createOrUpdateInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	waitConfig := wait.WaiterHelper[edge.Instance, string]{
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
 		FetchInstance: func() (*edge.Instance, error) {
 			return getInstance(ctx)
 		},
-		GetState: func(e *edge.Instance) (string, error) {
+		GetState: func(e *edge.Instance) (edge.InstanceStatus, error) {
 			if e == nil {
 				return "", ErrInstanceNotFound
 			}
 			return e.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_ERROR, INSTANCESTATUS_DELETING},
+		ActiveState: []edge.InstanceStatus{edge.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []edge.InstanceStatus{edge.INSTANCESTATUS_ERROR, edge.INSTANCESTATUS_DELETING},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
@@ -67,11 +75,11 @@ func CreateOrUpdateInstanceByNameWaitHandler(ctx context.Context, a edge.Default
 
 // deleteInstanceWaitHandler contains the shared logic for waiting on instance deletion.
 func deleteInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	waitConfig := wait.WaiterHelper[edge.Instance, string]{
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
 		FetchInstance: func() (*edge.Instance, error) {
 			return getInstance(ctx)
 		},
-		GetState: func(e *edge.Instance) (string, error) {
+		GetState: func(e *edge.Instance) (edge.InstanceStatus, error) {
 			if e == nil {
 				return "", ErrInstanceNotFound
 			}
@@ -230,7 +238,7 @@ func checkInstanceUsableStatus(ctx context.Context, getInstance func(ctx context
 	if instance == nil {
 		return ErrInstanceNotFound
 	}
-	if instance.Status == INSTANCESTATUS_ACTIVE || instance.Status == INSTANCESTATUS_RECONCILING {
+	if instance.Status == edge.INSTANCESTATUS_ACTIVE || instance.Status == edge.INSTANCESTATUS_RECONCILING {
 		return nil
 	}
 	return fmt.Errorf("cannot use instance with %s '%s' with status '%s'", identifierType, identifierValue, instance.Status)

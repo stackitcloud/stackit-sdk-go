@@ -19,10 +19,10 @@ var _ MappedNullable = &TunnelStatus{}
 
 // TunnelStatus Describes the status of the VPN itself.
 type TunnelStatus struct {
-	Established          *bool         `json:"established,omitempty"`
-	Name                 *string       `json:"name,omitempty"`
-	Phase1               *Phase1Status `json:"phase1,omitempty"`
-	Phase2               *Phase2Status `json:"phase2,omitempty"`
+	Established          *bool             `json:"established,omitempty"`
+	Name                 *TunnelStatusName `json:"name,omitempty"`
+	Phase1               *Phase1Status     `json:"phase1,omitempty"`
+	Phase2               *Phase2Status     `json:"phase2,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,9 +78,9 @@ func (o *TunnelStatus) SetEstablished(v bool) {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *TunnelStatus) GetName() string {
+func (o *TunnelStatus) GetName() TunnelStatusName {
 	if o == nil || IsNil(o.Name) {
-		var ret string
+		var ret TunnelStatusName
 		return ret
 	}
 	return *o.Name
@@ -88,7 +88,7 @@ func (o *TunnelStatus) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TunnelStatus) GetNameOk() (*string, bool) {
+func (o *TunnelStatus) GetNameOk() (*TunnelStatusName, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *TunnelStatus) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *TunnelStatus) SetName(v string) {
+// SetName gets a reference to the given TunnelStatusName and assigns it to the Name field.
+func (o *TunnelStatus) SetName(v TunnelStatusName) {
 	o.Name = &v
 }
 

@@ -20,12 +20,12 @@ var _ MappedNullable = &Commands{}
 
 // Commands struct for Commands
 type Commands struct {
-	CommandTemplateName  *string `json:"commandTemplateName,omitempty"`
-	CommandTemplateTitle *string `json:"commandTemplateTitle,omitempty"`
-	FinishedAt           *string `json:"finishedAt,omitempty"`
-	Id                   *int32  `json:"id,omitempty"`
-	StartedAt            *string `json:"startedAt,omitempty"`
-	Status               *string `json:"status,omitempty"`
+	CommandTemplateName  *string         `json:"commandTemplateName,omitempty"`
+	CommandTemplateTitle *string         `json:"commandTemplateTitle,omitempty"`
+	FinishedAt           *string         `json:"finishedAt,omitempty"`
+	Id                   *int32          `json:"id,omitempty"`
+	StartedAt            *string         `json:"startedAt,omitempty"`
+	Status               *CommandsStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -209,9 +209,9 @@ func (o *Commands) SetStartedAt(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Commands) GetStatus() string {
+func (o *Commands) GetStatus() CommandsStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret CommandsStatus
 		return ret
 	}
 	return *o.Status
@@ -219,7 +219,7 @@ func (o *Commands) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Commands) GetStatusOk() (*string, bool) {
+func (o *Commands) GetStatusOk() (*CommandsStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -235,8 +235,8 @@ func (o *Commands) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Commands) SetStatus(v string) {
+// SetStatus gets a reference to the given CommandsStatus and assigns it to the Status field.
+func (o *Commands) SetStatus(v CommandsStatus) {
 	o.Status = &v
 }
 

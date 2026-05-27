@@ -23,9 +23,8 @@ type Parent struct {
 	// User-friendly identifier of either organization or folder (will replace id).
 	ContainerId string `json:"containerId"`
 	// Identifier of either organization or folder.
-	Id string `json:"id"`
-	// Container type of parent container.
-	Type                 string `json:"type"`
+	Id                   string     `json:"id"`
+	Type                 ParentType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,7 +34,7 @@ type _Parent Parent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParent(containerId string, id string, types string) *Parent {
+func NewParent(containerId string, id string, types ParentType) *Parent {
 	this := Parent{}
 	this.ContainerId = containerId
 	this.Id = id
@@ -100,9 +99,9 @@ func (o *Parent) SetId(v string) {
 }
 
 // GetType returns the Type field value
-func (o *Parent) GetType() string {
+func (o *Parent) GetType() ParentType {
 	if o == nil {
-		var ret string
+		var ret ParentType
 		return ret
 	}
 
@@ -111,7 +110,7 @@ func (o *Parent) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Parent) GetTypeOk() (*string, bool) {
+func (o *Parent) GetTypeOk() (*ParentType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,7 +118,7 @@ func (o *Parent) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Parent) SetType(v string) {
+func (o *Parent) SetType(v ParentType) {
 	o.Type = v
 }
 

@@ -46,9 +46,8 @@ type CreateZonePayload struct {
 	// refresh time
 	RefreshTime *int32 `json:"refreshTime,omitempty"`
 	// retry time
-	RetryTime *int32 `json:"retryTime,omitempty"`
-	// zone type
-	Type                 *string `json:"type,omitempty"`
+	RetryTime            *int32                 `json:"retryTime,omitempty"`
+	Type                 *CreateZonePayloadType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,7 +75,7 @@ func NewCreateZonePayload(dnsName string, name string) *CreateZonePayload {
 	this.RefreshTime = &refreshTime
 	var retryTime int32 = 600
 	this.RetryTime = &retryTime
-	var types string = "primary"
+	var types CreateZonePayloadType = CREATEZONEPAYLOADTYPE_PRIMARY
 	this.Type = &types
 	return &this
 }
@@ -100,7 +99,7 @@ func NewCreateZonePayloadWithDefaults() *CreateZonePayload {
 	this.RefreshTime = &refreshTime
 	var retryTime int32 = 600
 	this.RetryTime = &retryTime
-	var types string = "primary"
+	var types CreateZonePayloadType = CREATEZONEPAYLOADTYPE_PRIMARY
 	this.Type = &types
 	return &this
 }
@@ -506,9 +505,9 @@ func (o *CreateZonePayload) SetRetryTime(v int32) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetType() string {
+func (o *CreateZonePayload) GetType() CreateZonePayloadType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret CreateZonePayloadType
 		return ret
 	}
 	return *o.Type
@@ -516,7 +515,7 @@ func (o *CreateZonePayload) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetTypeOk() (*string, bool) {
+func (o *CreateZonePayload) GetTypeOk() (*CreateZonePayloadType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -532,8 +531,8 @@ func (o *CreateZonePayload) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CreateZonePayload) SetType(v string) {
+// SetType gets a reference to the given CreateZonePayloadType and assigns it to the Type field.
+func (o *CreateZonePayload) SetType(v CreateZonePayloadType) {
 	o.Type = &v
 }
 

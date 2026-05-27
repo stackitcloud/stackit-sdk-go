@@ -28,9 +28,8 @@ type CreateRecordSetPayload struct {
 	// records
 	Records []RecordPayload `json:"records"`
 	// time to live. If nothing provided we will set the zone ttl.
-	Ttl *int32 `json:"ttl,omitempty"`
-	// record set type
-	Type                 string `json:"type"`
+	Ttl                  *int32                     `json:"ttl,omitempty"`
+	Type                 CreateRecordSetPayloadType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +39,7 @@ type _CreateRecordSetPayload CreateRecordSetPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRecordSetPayload(name string, records []RecordPayload, types string) *CreateRecordSetPayload {
+func NewCreateRecordSetPayload(name string, records []RecordPayload, types CreateRecordSetPayloadType) *CreateRecordSetPayload {
 	this := CreateRecordSetPayload{}
 	this.Name = name
 	this.Records = records
@@ -169,9 +168,9 @@ func (o *CreateRecordSetPayload) SetTtl(v int32) {
 }
 
 // GetType returns the Type field value
-func (o *CreateRecordSetPayload) GetType() string {
+func (o *CreateRecordSetPayload) GetType() CreateRecordSetPayloadType {
 	if o == nil {
-		var ret string
+		var ret CreateRecordSetPayloadType
 		return ret
 	}
 
@@ -180,7 +179,7 @@ func (o *CreateRecordSetPayload) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetTypeOk() (*string, bool) {
+func (o *CreateRecordSetPayload) GetTypeOk() (*CreateRecordSetPayloadType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -188,7 +187,7 @@ func (o *CreateRecordSetPayload) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *CreateRecordSetPayload) SetType(v string) {
+func (o *CreateRecordSetPayload) SetType(v CreateRecordSetPayloadType) {
 	o.Type = v
 }
 

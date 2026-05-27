@@ -21,8 +21,8 @@ var _ MappedNullable = &InstanceParameters{}
 type InstanceParameters struct {
 	EnableMonitoring *bool `json:"enable_monitoring,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
-	Graphite             *string `json:"graphite,omitempty"`
-	JavaGarbageCollector *string `json:"java_garbage_collector,omitempty"`
+	Graphite             *string                                 `json:"graphite,omitempty"`
+	JavaGarbageCollector *InstanceParametersJavaGarbageCollector `json:"java_garbage_collector,omitempty"`
 	// Default: not set, 46% of available memory will be used. The amount of memory (in MB) allocated as heap by the JVM for OpenSearch.
 	JavaHeapspace *int32 `json:"java_heapspace,omitempty"`
 	// The amount of memory (in MB) used by the JVM to store metadata for OpenSearch.
@@ -35,13 +35,13 @@ type InstanceParameters struct {
 	MetricsPrefix        *string `json:"metrics_prefix,omitempty"`
 	MonitoringInstanceId *string `json:"monitoring_instance_id,omitempty"`
 	// The plugins repository-s3 and repository-azure are enabled by default and cannot be disabled.
-	Plugins []string `json:"plugins,omitempty"`
+	Plugins []InstanceParametersPluginsInner `json:"plugins,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
 	SgwAcl *string  `json:"sgw_acl,omitempty"`
 	Syslog []string `json:"syslog,omitempty"`
 	// Only Java format is supported.
-	TlsCiphers           []string `json:"tls-ciphers,omitempty"`
-	TlsProtocols         []string `json:"tls-protocols,omitempty"`
+	TlsCiphers           []string                              `json:"tls-ciphers,omitempty"`
+	TlsProtocols         []InstanceParametersTlsProtocolsInner `json:"tls-protocols,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,7 +55,7 @@ func NewInstanceParameters() *InstanceParameters {
 	this := InstanceParameters{}
 	var enableMonitoring bool = false
 	this.EnableMonitoring = &enableMonitoring
-	var javaGarbageCollector string = "UseG1GC"
+	var javaGarbageCollector InstanceParametersJavaGarbageCollector = INSTANCEPARAMETERSJAVAGARBAGECOLLECTOR_USE_G1_GC
 	this.JavaGarbageCollector = &javaGarbageCollector
 	var javaMaxmetaspace int32 = 512
 	this.JavaMaxmetaspace = &javaMaxmetaspace
@@ -73,7 +73,7 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this := InstanceParameters{}
 	var enableMonitoring bool = false
 	this.EnableMonitoring = &enableMonitoring
-	var javaGarbageCollector string = "UseG1GC"
+	var javaGarbageCollector InstanceParametersJavaGarbageCollector = INSTANCEPARAMETERSJAVAGARBAGECOLLECTOR_USE_G1_GC
 	this.JavaGarbageCollector = &javaGarbageCollector
 	var javaMaxmetaspace int32 = 512
 	this.JavaMaxmetaspace = &javaMaxmetaspace
@@ -149,9 +149,9 @@ func (o *InstanceParameters) SetGraphite(v string) {
 }
 
 // GetJavaGarbageCollector returns the JavaGarbageCollector field value if set, zero value otherwise.
-func (o *InstanceParameters) GetJavaGarbageCollector() string {
+func (o *InstanceParameters) GetJavaGarbageCollector() InstanceParametersJavaGarbageCollector {
 	if o == nil || IsNil(o.JavaGarbageCollector) {
-		var ret string
+		var ret InstanceParametersJavaGarbageCollector
 		return ret
 	}
 	return *o.JavaGarbageCollector
@@ -159,7 +159,7 @@ func (o *InstanceParameters) GetJavaGarbageCollector() string {
 
 // GetJavaGarbageCollectorOk returns a tuple with the JavaGarbageCollector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetJavaGarbageCollectorOk() (*string, bool) {
+func (o *InstanceParameters) GetJavaGarbageCollectorOk() (*InstanceParametersJavaGarbageCollector, bool) {
 	if o == nil || IsNil(o.JavaGarbageCollector) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *InstanceParameters) HasJavaGarbageCollector() bool {
 	return false
 }
 
-// SetJavaGarbageCollector gets a reference to the given string and assigns it to the JavaGarbageCollector field.
-func (o *InstanceParameters) SetJavaGarbageCollector(v string) {
+// SetJavaGarbageCollector gets a reference to the given InstanceParametersJavaGarbageCollector and assigns it to the JavaGarbageCollector field.
+func (o *InstanceParameters) SetJavaGarbageCollector(v InstanceParametersJavaGarbageCollector) {
 	o.JavaGarbageCollector = &v
 }
 
@@ -373,9 +373,9 @@ func (o *InstanceParameters) SetMonitoringInstanceId(v string) {
 }
 
 // GetPlugins returns the Plugins field value if set, zero value otherwise.
-func (o *InstanceParameters) GetPlugins() []string {
+func (o *InstanceParameters) GetPlugins() []InstanceParametersPluginsInner {
 	if o == nil || IsNil(o.Plugins) {
-		var ret []string
+		var ret []InstanceParametersPluginsInner
 		return ret
 	}
 	return o.Plugins
@@ -383,7 +383,7 @@ func (o *InstanceParameters) GetPlugins() []string {
 
 // GetPluginsOk returns a tuple with the Plugins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetPluginsOk() ([]string, bool) {
+func (o *InstanceParameters) GetPluginsOk() ([]InstanceParametersPluginsInner, bool) {
 	if o == nil || IsNil(o.Plugins) {
 		return nil, false
 	}
@@ -399,8 +399,8 @@ func (o *InstanceParameters) HasPlugins() bool {
 	return false
 }
 
-// SetPlugins gets a reference to the given []string and assigns it to the Plugins field.
-func (o *InstanceParameters) SetPlugins(v []string) {
+// SetPlugins gets a reference to the given []InstanceParametersPluginsInner and assigns it to the Plugins field.
+func (o *InstanceParameters) SetPlugins(v []InstanceParametersPluginsInner) {
 	o.Plugins = v
 }
 
@@ -501,9 +501,9 @@ func (o *InstanceParameters) SetTlsCiphers(v []string) {
 }
 
 // GetTlsProtocols returns the TlsProtocols field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsProtocols() []string {
+func (o *InstanceParameters) GetTlsProtocols() []InstanceParametersTlsProtocolsInner {
 	if o == nil || IsNil(o.TlsProtocols) {
-		var ret []string
+		var ret []InstanceParametersTlsProtocolsInner
 		return ret
 	}
 	return o.TlsProtocols
@@ -511,7 +511,7 @@ func (o *InstanceParameters) GetTlsProtocols() []string {
 
 // GetTlsProtocolsOk returns a tuple with the TlsProtocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsProtocolsOk() ([]string, bool) {
+func (o *InstanceParameters) GetTlsProtocolsOk() ([]InstanceParametersTlsProtocolsInner, bool) {
 	if o == nil || IsNil(o.TlsProtocols) {
 		return nil, false
 	}
@@ -527,8 +527,8 @@ func (o *InstanceParameters) HasTlsProtocols() bool {
 	return false
 }
 
-// SetTlsProtocols gets a reference to the given []string and assigns it to the TlsProtocols field.
-func (o *InstanceParameters) SetTlsProtocols(v []string) {
+// SetTlsProtocols gets a reference to the given []InstanceParametersTlsProtocolsInner and assigns it to the TlsProtocols field.
+func (o *InstanceParameters) SetTlsProtocols(v []InstanceParametersTlsProtocolsInner) {
 	o.TlsProtocols = v
 }
 

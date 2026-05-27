@@ -36,9 +36,8 @@ type Instance struct {
 	// A auto generated unique id which identifies the STACKIT Git instances.
 	Id string `json:"id"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
-	Name string `json:"name"`
-	// The current state of the STACKIT Git instance.
-	State string `json:"state"`
+	Name  string        `json:"name"`
+	State InstanceState `json:"state"`
 	// The URL for reaching the STACKIT Git instance.
 	Url string `json:"url"`
 	// The current version of STACKIT Git deployed to the instance.
@@ -52,7 +51,7 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(acl []string, consumedDisk string, consumedObjectStorage string, created time.Time, featureToggle FeatureToggle, flavor string, id string, name string, state string, url string, version string) *Instance {
+func NewInstance(acl []string, consumedDisk string, consumedObjectStorage string, created time.Time, featureToggle FeatureToggle, flavor string, id string, name string, state InstanceState, url string, version string) *Instance {
 	this := Instance{}
 	this.Acl = acl
 	this.ConsumedDisk = consumedDisk
@@ -269,9 +268,9 @@ func (o *Instance) SetName(v string) {
 }
 
 // GetState returns the State field value
-func (o *Instance) GetState() string {
+func (o *Instance) GetState() InstanceState {
 	if o == nil {
-		var ret string
+		var ret InstanceState
 		return ret
 	}
 
@@ -280,7 +279,7 @@ func (o *Instance) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStateOk() (*string, bool) {
+func (o *Instance) GetStateOk() (*InstanceState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,7 +287,7 @@ func (o *Instance) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Instance) SetState(v string) {
+func (o *Instance) SetState(v InstanceState) {
 	o.State = v
 }
 

@@ -36,11 +36,10 @@ type Key struct {
 	// States whether versions can be created or only imported.
 	ImportOnly bool `json:"importOnly"`
 	// The unique id of the key ring this key is assigned to.
-	KeyRingId  string     `json:"keyRingId"`
-	Protection Protection `json:"protection"`
-	Purpose    Purpose    `json:"purpose"`
-	// The current state of the key.
-	State                string `json:"state"`
+	KeyRingId            string     `json:"keyRingId"`
+	Protection           Protection `json:"protection"`
+	Purpose              Purpose    `json:"purpose"`
+	State                KeyState   `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -50,7 +49,7 @@ type _Key Key
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKey(accessScope AccessScope, algorithm Algorithm, createdAt time.Time, displayName string, id string, importOnly bool, keyRingId string, protection Protection, purpose Purpose, state string) *Key {
+func NewKey(accessScope AccessScope, algorithm Algorithm, createdAt time.Time, displayName string, id string, importOnly bool, keyRingId string, protection Protection, purpose Purpose, state KeyState) *Key {
 	this := Key{}
 	this.AccessScope = accessScope
 	this.Algorithm = algorithm
@@ -358,9 +357,9 @@ func (o *Key) SetPurpose(v Purpose) {
 }
 
 // GetState returns the State field value
-func (o *Key) GetState() string {
+func (o *Key) GetState() KeyState {
 	if o == nil {
-		var ret string
+		var ret KeyState
 		return ret
 	}
 
@@ -369,7 +368,7 @@ func (o *Key) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Key) GetStateOk() (*string, bool) {
+func (o *Key) GetStateOk() (*KeyState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -377,7 +376,7 @@ func (o *Key) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Key) SetState(v string) {
+func (o *Key) SetState(v KeyState) {
 	o.State = v
 }
 

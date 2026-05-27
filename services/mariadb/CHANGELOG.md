@@ -1,3 +1,6 @@
+## v0.30.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.29.0
 - **Improvement:** Use new WaiterHelper for Logs waiters
 

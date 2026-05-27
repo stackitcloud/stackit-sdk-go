@@ -29,7 +29,7 @@ func newAPIMock(settings mockSettings) telemetryrouter.DefaultAPI {
 
 			return &telemetryrouter.TelemetryRouterResponse{
 				Id:     "trid",
-				Status: settings.resourceState,
+				Status: telemetryrouter.TelemetryRouterResponseStatus(settings.resourceState),
 			}, nil
 		}),
 		GetDestinationExecuteMock: utils.Ptr(func(_ telemetryrouter.ApiGetDestinationRequest) (*telemetryrouter.DestinationResponse, error) {
@@ -41,7 +41,7 @@ func newAPIMock(settings mockSettings) telemetryrouter.DefaultAPI {
 
 			return &telemetryrouter.DestinationResponse{
 				Id:     "did",
-				Status: settings.resourceState,
+				Status: telemetryrouter.DestinationResponseStatus(settings.resourceState),
 			}, nil
 		}),
 		GetAccessTokenExecuteMock: utils.Ptr(func(_ telemetryrouter.ApiGetAccessTokenRequest) (*telemetryrouter.GetAccessTokenResponse, error) {
@@ -54,7 +54,7 @@ func newAPIMock(settings mockSettings) telemetryrouter.DefaultAPI {
 			return &telemetryrouter.GetAccessTokenResponse{
 				Id:             "atid",
 				ExpirationTime: telemetryrouter.NullableTime{},
-				Status:         settings.resourceState,
+				Status:         telemetryrouter.AccessTokenBaseResponseStatus(settings.resourceState),
 			}, nil
 		}),
 	}
@@ -64,14 +64,14 @@ func TestCreateTelemetryRouterWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.TelemetryRouterResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYROUTER_ACTIVE,
+			resourceState: telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -95,7 +95,7 @@ func TestCreateTelemetryRouterWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.TelemetryRouterResponse
@@ -125,14 +125,14 @@ func TestUpdateTelemetryRouterWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.TelemetryRouterResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: TELEMETRYROUTER_ACTIVE,
+			resourceState: telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -156,7 +156,7 @@ func TestUpdateTelemetryRouterWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.TelemetryRouterResponse
@@ -186,7 +186,7 @@ func TestDeleteTelemetryRouterWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.TelemetryRouterResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -245,14 +245,14 @@ func TestCreateDestinationWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.DestinationResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: DESTINATION_ACTIVE,
+			resourceState: telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -276,7 +276,7 @@ func TestCreateDestinationWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.DestinationResponse
@@ -306,14 +306,14 @@ func TestUpdateDestinationWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.DestinationResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: DESTINATION_ACTIVE,
+			resourceState: telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -337,7 +337,7 @@ func TestUpdateDestinationWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.DestinationResponse
@@ -367,7 +367,7 @@ func TestDeleteDestinationWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.DestinationResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -426,14 +426,14 @@ func TestCreateAccessTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.AccessTokenBaseResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ACCESSTOKEN_ACTIVE,
+			resourceState: telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -457,7 +457,7 @@ func TestCreateAccessTokenWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.GetAccessTokenResponse
@@ -487,14 +487,14 @@ func TestUpdateAccessTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.AccessTokenBaseResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: ACCESSTOKEN_ACTIVE,
+			resourceState: telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -518,7 +518,7 @@ func TestUpdateAccessTokenWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.GetAccessTokenResponse
@@ -548,7 +548,7 @@ func TestDeleteAccessTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState telemetryrouter.AccessTokenBaseResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -572,7 +572,7 @@ func TestDeleteAccessTokenWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *telemetryrouter.GetAccessTokenResponse

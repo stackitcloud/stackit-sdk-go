@@ -30,7 +30,7 @@ type Instance struct {
 	MetricsRetentionTimeRaw int32     `json:"metricsRetentionTimeRaw"`
 	Name                    *string   `json:"name,omitempty"`
 	Plan                    PlanModel `json:"plan"`
-	State                   *string   `json:"state,omitempty"`
+	State                   *State    `json:"state,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -286,9 +286,9 @@ func (o *Instance) SetPlan(v PlanModel) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *Instance) GetState() string {
+func (o *Instance) GetState() State {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret State
 		return ret
 	}
 	return *o.State
@@ -296,7 +296,7 @@ func (o *Instance) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStateOk() (*string, bool) {
+func (o *Instance) GetStateOk() (*State, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -312,8 +312,8 @@ func (o *Instance) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *Instance) SetState(v string) {
+// SetState gets a reference to the given State and assigns it to the State field.
+func (o *Instance) SetState(v State) {
 	o.State = &v
 }
 

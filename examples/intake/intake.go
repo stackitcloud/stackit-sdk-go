@@ -43,7 +43,7 @@ func main() {
 	fmt.Printf("Triggered creation of Intake Runner with ID: %s. Waiting for it to become active...\n", intakeRunnerId)
 
 	// Create an Intake
-	dremioAuthType := intake.CatalogAuthType("dremio") // can also be set to "none" if the catalog is not authenticated
+	dremioAuthType := intake.CATALOGAUTHTYPE_DREMIO // can also be set to "none" if the catalog is not authenticated
 	createIntakePayload := intake.CreateIntakePayload{
 		DisplayName:    "my-example-intake",
 		IntakeRunnerId: intakeRunnerId,

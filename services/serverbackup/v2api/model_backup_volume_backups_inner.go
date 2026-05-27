@@ -20,12 +20,12 @@ var _ MappedNullable = &BackupVolumeBackupsInner{}
 
 // BackupVolumeBackupsInner struct for BackupVolumeBackupsInner
 type BackupVolumeBackupsInner struct {
-	Id                   *string `json:"id,omitempty"`
-	LastRestoredAt       *string `json:"lastRestoredAt,omitempty"`
-	LastRestoredVolumeId *string `json:"lastRestoredVolumeId,omitempty"`
-	Size                 *int32  `json:"size,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	VolumeId             *string `json:"volumeId,omitempty"`
+	Id                   *string                         `json:"id,omitempty"`
+	LastRestoredAt       *string                         `json:"lastRestoredAt,omitempty"`
+	LastRestoredVolumeId *string                         `json:"lastRestoredVolumeId,omitempty"`
+	Size                 *int32                          `json:"size,omitempty"`
+	Status               *BackupVolumeBackupsInnerStatus `json:"status,omitempty"`
+	VolumeId             *string                         `json:"volumeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -177,9 +177,9 @@ func (o *BackupVolumeBackupsInner) SetSize(v int32) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BackupVolumeBackupsInner) GetStatus() string {
+func (o *BackupVolumeBackupsInner) GetStatus() BackupVolumeBackupsInnerStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret BackupVolumeBackupsInnerStatus
 		return ret
 	}
 	return *o.Status
@@ -187,7 +187,7 @@ func (o *BackupVolumeBackupsInner) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupVolumeBackupsInner) GetStatusOk() (*string, bool) {
+func (o *BackupVolumeBackupsInner) GetStatusOk() (*BackupVolumeBackupsInnerStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -203,8 +203,8 @@ func (o *BackupVolumeBackupsInner) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *BackupVolumeBackupsInner) SetStatus(v string) {
+// SetStatus gets a reference to the given BackupVolumeBackupsInnerStatus and assigns it to the Status field.
+func (o *BackupVolumeBackupsInner) SetStatus(v BackupVolumeBackupsInnerStatus) {
 	o.Status = &v
 }
 
