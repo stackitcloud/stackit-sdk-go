@@ -594,6 +594,11 @@
     - `v1alpha1api`: Align package to latest API specification
   - [v0.12.0](services/vpn/CHANGELOG.md#v0120)
     - **Feature:** Introduce enums for various attributes
+  - [v0.13.0](services/vpn/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Breaking change:** `LocalAsn` is now marked as required (aligned with api) and no longer a pointer
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)

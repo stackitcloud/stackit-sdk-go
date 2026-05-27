@@ -1,3 +1,9 @@
+## v0.13.0
+  - `v1api`:
+    - **Breaking change:** `LocalAsn` is now marked as required (aligned with api) and no longer a pointer
+  - `v1beta1api`:  Align package to latest API specification
+  - `v1alpha1api`: Align package to latest API specification
+
 ## v0.12.0
 - **Feature:** Introduce enums for various attributes
 
