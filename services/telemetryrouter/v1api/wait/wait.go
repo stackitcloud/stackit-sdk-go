@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
-	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1betaapi"
+	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1api"
 )
 
 const (
