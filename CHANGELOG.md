@@ -525,6 +525,11 @@
       - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.11.0](services/vpn/CHANGELOG.md#v0110)
+    - `v1api`:
+      - **Feature:** Add `Labels` field to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)

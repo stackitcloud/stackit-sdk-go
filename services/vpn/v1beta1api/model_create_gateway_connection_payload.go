@@ -24,6 +24,8 @@ type CreateGatewayConnectionPayload struct {
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
 	// This flag decides whether this connection should be enabled or disabled
 	Enabled *bool `json:"enabled,omitempty"`
+	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
 	LocalSubnets []string `json:"localSubnets,omitempty"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
@@ -111,6 +113,38 @@ func (o *CreateGatewayConnectionPayload) HasEnabled() bool {
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 func (o *CreateGatewayConnectionPayload) SetEnabled(v bool) {
 	o.Enabled = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateGatewayConnectionPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateGatewayConnectionPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateGatewayConnectionPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateGatewayConnectionPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetLocalSubnets returns the LocalSubnets field value if set, zero value otherwise.
@@ -271,6 +305,9 @@ func (o CreateGatewayConnectionPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.LocalSubnets) {
 		toSerialize["localSubnets"] = o.LocalSubnets
 	}
@@ -329,6 +366,7 @@ func (o *CreateGatewayConnectionPayload) UnmarshalJSON(data []byte) (err error) 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "localSubnets")
 		delete(additionalProperties, "remoteSubnets")
 		delete(additionalProperties, "staticRoutes")
