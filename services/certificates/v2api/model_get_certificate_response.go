@@ -19,16 +19,18 @@ var _ MappedNullable = &GetCertificateResponse{}
 
 // GetCertificateResponse GetCertificateResponse returns name, id and public key
 type GetCertificateResponse struct {
+	Data *Data `json:"data,omitempty"`
 	// The certificates resource id
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
 	Labels *map[string]string `json:"labels,omitempty"`
-	// TLS certificate name
+	// Certificate display name
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// The PEM encoded public key part
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
 	Region               *string `json:"region,omitempty"`
+	Usage                *Usage  `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,6 +51,38 @@ func NewGetCertificateResponse() *GetCertificateResponse {
 func NewGetCertificateResponseWithDefaults() *GetCertificateResponse {
 	this := GetCertificateResponse{}
 	return &this
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetCertificateResponse) GetData() Data {
+	if o == nil || IsNil(o.Data) {
+		var ret Data
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCertificateResponse) GetDataOk() (*Data, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetCertificateResponse) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given Data and assigns it to the Data field.
+func (o *GetCertificateResponse) SetData(v Data) {
+	o.Data = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -211,6 +245,38 @@ func (o *GetCertificateResponse) SetRegion(v string) {
 	o.Region = &v
 }
 
+// GetUsage returns the Usage field value if set, zero value otherwise.
+func (o *GetCertificateResponse) GetUsage() Usage {
+	if o == nil || IsNil(o.Usage) {
+		var ret Usage
+		return ret
+	}
+	return *o.Usage
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCertificateResponse) GetUsageOk() (*Usage, bool) {
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
+	}
+	return o.Usage, true
+}
+
+// HasUsage returns a boolean if a field has been set.
+func (o *GetCertificateResponse) HasUsage() bool {
+	if o != nil && !IsNil(o.Usage) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsage gets a reference to the given Usage and assigns it to the Usage field.
+func (o *GetCertificateResponse) SetUsage(v Usage) {
+	o.Usage = &v
+}
+
 func (o GetCertificateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -221,6 +287,9 @@ func (o GetCertificateResponse) MarshalJSON() ([]byte, error) {
 
 func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -235,6 +304,9 @@ func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -258,11 +330,13 @@ func (o *GetCertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "publicKey")
 		delete(additionalProperties, "region")
+		delete(additionalProperties, "usage")
 		o.AdditionalProperties = additionalProperties
 	}
 
