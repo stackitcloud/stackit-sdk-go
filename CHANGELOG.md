@@ -29,6 +29,8 @@
     - `v1alphaapi`: Align package to latest API specification
   - [v0.7.0](services/albwaf/CHANGELOG.md#v070)
     - **Feature:** Introduce enums for various attributes
+  - [v0.8.0](services/albwaf/CHANGELOG.md#v080)
+    - `v1alphaapi`: Align package to latest API specification
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
