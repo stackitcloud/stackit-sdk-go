@@ -22,8 +22,8 @@ type VPNTunnels struct {
 	BgpStatus     NullableBGPStatus `json:"bgpStatus,omitempty"`
 	InstanceState *GatewayStatus    `json:"instanceState,omitempty"`
 	// The IPv4 address of the endpoint in the SNA.
-	InternalNextHopIP *string `json:"internalNextHopIP,omitempty"`
-	Name          *VPNTunnelsName   `json:"name,omitempty"`
+	InternalNextHopIP *string         `json:"internalNextHopIP,omitempty"`
+	Name              *VPNTunnelsName `json:"name,omitempty"`
 	// The public IPv4 address of this endpoint.
 	PublicIP             *string `json:"publicIP,omitempty"`
 	AdditionalProperties map[string]interface{}
