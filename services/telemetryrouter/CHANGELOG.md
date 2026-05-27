@@ -1,3 +1,6 @@
+## v0.2.2
+- **New**: v1api API version for STACKIT Telemetry Router
+
 ## v0.2.1
 - **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler
 
