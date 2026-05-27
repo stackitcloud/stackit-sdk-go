@@ -60,6 +60,7 @@ use (
 	./services/logme
 	./services/logs
 	./services/mariadb
+	./services/modelexperiments
 	./services/modelserving
 	./services/mongodbflex
 	./services/objectstorage
