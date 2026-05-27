@@ -586,6 +586,11 @@
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
   - [v0.11.0](services/vpn/CHANGELOG.md#v0110)
+    - `v1api`:
+      - **Feature:** Add `Labels` field to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+  - [v0.12.0](services/vpn/CHANGELOG.md#v0120)
     - **Feature:** Introduce enums for various attributes
 
 ## Release (2026-04-07)
