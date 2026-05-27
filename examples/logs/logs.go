@@ -12,7 +12,7 @@ func main() {
 	ctx := context.Background()
 
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
-	regionId := string(logs.LISTLOGSINSTANCESREGIONIDPARAMETER_EU01)
+	regionId := "eu01"
 
 	client, err := logs.NewAPIClient()
 	if err != nil {

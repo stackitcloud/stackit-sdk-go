@@ -41,7 +41,7 @@ func newAPIMock(settings mockSettings) logs.DefaultAPI {
 var projectId = uuid.NewString()
 var instanceId = uuid.NewString()
 
-const region = string(logs.LISTLOGSINSTANCESREGIONIDPARAMETER_EU01)
+const region = "eu01"
 
 func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 	tests := []struct {

@@ -15,7 +15,7 @@ func main() {
 	organizationId := "ORGANIZATION_ID" // the uuid of your STACKIT organization
 	folderId := "FOLDER_ID"             // the uuid of your STACKIT folder
 	projectId := "PROJECT_ID"           // the uuid of your STACKIT project
-	regionId := string(telemetrylink.GETFOLDERTELEMETRYLINKREGIONIDPARAMETER_EU01)
+	regionId := "eu01"
 	telemetryRouterId := "TELEMETRY_ROUTER_ID"                    // the uuid of your STACKIT TelemetryRouter
 	telemetryRouterAccessToken := "TELEMETRY_ROUTER_ACCESS_TOKEN" // the access token of your TelemetryRouter
 

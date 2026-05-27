@@ -12,8 +12,8 @@ import (
 )
 
 func main() {
-	region := string(dremio.LISTDREMIOINSTANCESREGIONIDPARAMETER_EU01) // Region where the resources will be created
-	projectId := "PROJECT_ID"                                          // Your STACKIT project ID
+	region := "eu01"          // Region where the resources will be created
+	projectId := "PROJECT_ID" // Your STACKIT project ID
 
 	ctx := context.Background()
 
