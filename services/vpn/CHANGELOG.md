@@ -1,3 +1,9 @@
+## v0.11.0
+- `v1api`:
+  - **Feature:** Add `Labels` field to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
 ## v0.10.0
 - `v1api`:
   - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
