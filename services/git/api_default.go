@@ -97,6 +97,30 @@ type DefaultApi interface {
 	*/
 	CreateRunnerExecute(ctx context.Context, projectId string, instanceId string) (*Runner, error)
 	/*
+		CreateUser Create an Instance Local/Technical User.
+		Creates a new STACKIT Git instance Local/Technical User.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return ApiCreateUserRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest
+	/*
+		CreateUserExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return User
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	CreateUserExecute(ctx context.Context, projectId string, instanceId string) (*User, error)
+	/*
 		DeleteAuthentication Delete Authentication Source
 		Deletes the authentication source associated to this STACKIT Git instance.
 
@@ -154,6 +178,26 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	DeleteRunnerExecute(ctx context.Context, projectId string, instanceId string) error
+	/*
+		DeleteUser Delete Instance User.
+		Deletes a STACKIT Git instance User and destroys all associated data.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiDeleteUserRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteUser(ctx context.Context, projectId string, instanceId string, username string) ApiDeleteUserRequest
+	/*
+		DeleteUserExecute executes the request
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteUserExecute(ctx context.Context, projectId string, instanceId string, username string) error
 	/*
 		GetAuthentication Get authentication provider
 		Get authentication provider
@@ -226,6 +270,49 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	GetRunnerExecute(ctx context.Context, projectId string, instanceId string) (*Runner, error)
+	/*
+		GetUser Get Instance User information.
+		Retrieves information about a STACKIT Git instance User.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiGetUserRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetUser(ctx context.Context, projectId string, instanceId string, username string) ApiGetUserRequest
+	/*
+		GetUserExecute executes the request
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetUserExecute(ctx context.Context, projectId string, instanceId string, username string) error
+	/*
+		GetUsers Get instance Users.
+		Lists all STACKIT Git Users within an instances.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return ApiGetUsersRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest
+	/*
+		GetUsersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return ListUsers
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetUsersExecute(ctx context.Context, projectId string, instanceId string) (*ListUsers, error)
 	/*
 		ListAuthentication List authentication sources
 		Lists all authentication sources belonging to a specific instance
@@ -365,6 +452,32 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	PatchInstanceExecute(ctx context.Context, projectId string, instanceId string) (*Instance, error)
+	/*
+		PatchUser Patch Instance User.
+		Patches the Instance User.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiPatchUserRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	PatchUser(ctx context.Context, projectId string, instanceId string, username string) ApiPatchUserRequest
+	/*
+		PatchUserExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return User
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	PatchUserExecute(ctx context.Context, projectId string, instanceId string, username string) (*User, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -395,6 +508,15 @@ type ApiCreateRunnerRequest interface {
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiCreateUserRequest interface {
+	// Instance User details options.
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*User, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiDeleteAuthenticationRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() error
@@ -408,6 +530,12 @@ type ApiDeleteInstanceRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiDeleteRunnerRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() error
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiDeleteUserRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() error
 }
@@ -428,6 +556,18 @@ type ApiGetInstanceRequest interface {
 type ApiGetRunnerRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*Runner, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetUserRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() error
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetUsersRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*ListUsers, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -469,6 +609,14 @@ type ApiPatchInstanceRequest interface {
 	PatchInstancePayload(patchInstancePayload PatchInstancePayload) ApiPatchInstanceRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*Instance, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiPatchUserRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	PatchUserPayload(patchUserPayload PatchUserPayload) ApiPatchUserRequest
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*User, error)
 }
 
 // DefaultApiService DefaultApi service
@@ -1045,6 +1193,192 @@ func (a *APIClient) CreateRunnerExecute(ctx context.Context, projectId string, i
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateUserRequest struct {
+	ctx               context.Context
+	apiService        *DefaultApiService
+	projectId         string
+	instanceId        string
+	createUserPayload *CreateUserPayload
+}
+
+// Instance User details options.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r CreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
+	r.createUserPayload = &createUserPayload
+	return r
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r CreateUserRequest) Execute() (*User, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *User
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUser")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have less than 36 elements")
+	}
+	if r.createUserPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createUserPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createUserPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateUser: Create an Instance Local/Technical User.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@return ApiCreateUserRequest
+*/
+func (a *APIClient) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
+	return CreateUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) CreateUserExecute(ctx context.Context, projectId string, instanceId string) (*User, error) {
+	r := CreateUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DeleteAuthenticationRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
@@ -1564,6 +1898,162 @@ func (a *APIClient) DeleteRunnerExecute(ctx context.Context, projectId string, i
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DeleteUserRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	instanceId string
+	username   string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r DeleteUserRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUser")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return fmt.Errorf("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return fmt.Errorf("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+DeleteUser: Delete Instance User.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiDeleteUserRequest
+*/
+func (a *APIClient) DeleteUser(ctx context.Context, projectId string, instanceId string, username string) ApiDeleteUserRequest {
+	return DeleteUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) DeleteUserExecute(ctx context.Context, projectId string, instanceId string, username string) error {
+	r := DeleteUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type GetAuthenticationRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
@@ -2074,6 +2564,335 @@ func (a *APIClient) GetRunner(ctx context.Context, projectId string, instanceId 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (a *APIClient) GetRunnerExecute(ctx context.Context, projectId string, instanceId string) (*Runner, error) {
 	r := GetRunnerRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetUserRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	instanceId string
+	username   string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetUserRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUser")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return fmt.Errorf("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return fmt.Errorf("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 302 {
+			var v User
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+GetUser: Get Instance User information.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiGetUserRequest
+*/
+func (a *APIClient) GetUser(ctx context.Context, projectId string, instanceId string, username string) ApiGetUserRequest {
+	return GetUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetUserExecute(ctx context.Context, projectId string, instanceId string, username string) error {
+	r := GetUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetUsersRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	instanceId string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetUsersRequest) Execute() (*ListUsers, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListUsers
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUsers")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetUsers: Get instance Users.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@return ApiGetUsersRequest
+*/
+func (a *APIClient) GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest {
+	return GetUsersRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetUsersExecute(ctx context.Context, projectId string, instanceId string) (*ListUsers, error) {
+	r := GetUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3097,6 +3916,185 @@ func (a *APIClient) PatchInstanceExecute(ctx context.Context, projectId string, 
 		ctx:        ctx,
 		projectId:  projectId,
 		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchUserRequest struct {
+	ctx              context.Context
+	apiService       *DefaultApiService
+	projectId        string
+	instanceId       string
+	username         string
+	patchUserPayload *PatchUserPayload
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r PatchUserRequest) PatchUserPayload(patchUserPayload PatchUserPayload) ApiPatchUserRequest {
+	r.patchUserPayload = &patchUserPayload
+	return r
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r PatchUserRequest) Execute() (*User, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *User
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchUser")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, fmt.Errorf("instanceId must have less than 36 elements")
+	}
+	if r.patchUserPayload == nil {
+		return localVarReturnValue, fmt.Errorf("patchUserPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchUserPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+PatchUser: Patch Instance User.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiPatchUserRequest
+*/
+func (a *APIClient) PatchUser(ctx context.Context, projectId string, instanceId string, username string) ApiPatchUserRequest {
+	return PatchUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) PatchUserExecute(ctx context.Context, projectId string, instanceId string, username string) (*User, error) {
+	r := PatchUserRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
 	}
 	return r.Execute()
 }
