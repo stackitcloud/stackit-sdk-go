@@ -82,5 +82,6 @@ use (
 	./services/stackitmarketplace
 	./services/telemetrylink
 	./services/telemetryrouter
+	./services/ufw
 	./services/vpn
 )
