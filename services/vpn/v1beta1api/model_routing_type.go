@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// RoutingType the model 'RoutingType'
+// RoutingType Once the gateway is created, it is not possible to change this attribute.
 type RoutingType string
 
 // List of RoutingType

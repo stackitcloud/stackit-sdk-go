@@ -21,7 +21,9 @@ var _ MappedNullable = &GatewayStatusResponse{}
 type GatewayStatusResponse struct {
 	Connections []ConnectionStatusResponse `json:"connections,omitempty"`
 	// Name of the Gateway instance.
-	DisplayName   *string        `json:"displayName,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	// A descriptive message provided when the gateway is in an error state.
+	ErrorMessage  *string        `json:"errorMessage,omitempty"`
 	GatewayStatus *GatewayStatus `json:"gatewayStatus,omitempty"`
 	// UUID of the Gateway instance.
 	Id                   *string      `json:"id,omitempty"`
@@ -110,6 +112,38 @@ func (o *GatewayStatusResponse) HasDisplayName() bool {
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *GatewayStatusResponse) SetDisplayName(v string) {
 	o.DisplayName = &v
+}
+
+// GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
+func (o *GatewayStatusResponse) GetErrorMessage() string {
+	if o == nil || IsNil(o.ErrorMessage) {
+		var ret string
+		return ret
+	}
+	return *o.ErrorMessage
+}
+
+// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GatewayStatusResponse) GetErrorMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.ErrorMessage) {
+		return nil, false
+	}
+	return o.ErrorMessage, true
+}
+
+// HasErrorMessage returns a boolean if a field has been set.
+func (o *GatewayStatusResponse) HasErrorMessage() bool {
+	if o != nil && !IsNil(o.ErrorMessage) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
+func (o *GatewayStatusResponse) SetErrorMessage(v string) {
+	o.ErrorMessage = &v
 }
 
 // GetGatewayStatus returns the GatewayStatus field value if set, zero value otherwise.
@@ -224,6 +258,9 @@ func (o GatewayStatusResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayName) {
 		toSerialize["displayName"] = o.DisplayName
 	}
+	if !IsNil(o.ErrorMessage) {
+		toSerialize["errorMessage"] = o.ErrorMessage
+	}
 	if !IsNil(o.GatewayStatus) {
 		toSerialize["gatewayStatus"] = o.GatewayStatus
 	}
@@ -257,6 +294,7 @@ func (o *GatewayStatusResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "connections")
 		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "errorMessage")
 		delete(additionalProperties, "gatewayStatus")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "tunnels")
