@@ -35,11 +35,11 @@ const (
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
-	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, mongodbflex.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
-		ActiveState:   []string{INSTANCESTATUS_READY},
-		ErrorState:    []string{INSTANCESTATUS_FAILED},
+		ActiveState:   []mongodbflex.InstanceStatus{INSTANCESTATUS_READY},
+		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -93,11 +93,11 @@ func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, p
 
 // UpdateInstanceWaitHandler will wait for instance update
 func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
-	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, mongodbflex.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
-		ActiveState:   []string{INSTANCESTATUS_READY},
-		ErrorState:    []string{INSTANCESTATUS_FAILED},
+		ActiveState:   []mongodbflex.InstanceStatus{INSTANCESTATUS_READY},
+		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -113,11 +113,11 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.Default
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[struct{}] {
-	w := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+	w := wait.WaiterHelper[mongodbflex.InstanceResponse, mongodbflex.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
-		ActiveState:   []string{},
-		ErrorState:    []string{INSTANCESTATUS_FAILED},
+		ActiveState:   []mongodbflex.InstanceStatus{},
+		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
 	}
 
 	// adapter for adhering to the wait helper type schema
@@ -132,7 +132,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 	return handler
 }
 
-func getStateInstance(response *mongodbflex.InstanceResponse) (string, error) {
+func getStateInstance(response *mongodbflex.InstanceResponse) (mongodbflex.InstanceStatus, error) {
 	if response == nil {
 		return "", errors.New("empty response")
 	}
