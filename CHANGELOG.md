@@ -90,6 +90,13 @@
       - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
     - Deprecated SDK layer in root of the module:
       - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+  - [v1.8.0](services/certificates/CHANGELOG.md#v180)
+    - `v2api`:
+      - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+      - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+      - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
 - `cost`:
   - [v0.2.2](services/cost/CHANGELOG.md#v022) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
