@@ -38,8 +38,8 @@ func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, mongodbflex.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
-		ActiveState:   []mongodbflex.InstanceStatus{INSTANCESTATUS_READY},
-		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
+		ActiveState:   []mongodbflex.InstanceStatus{mongodbflex.INSTANCESTATUS_READY},
+		ErrorState:    []mongodbflex.InstanceStatus{mongodbflex.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -96,8 +96,8 @@ func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, mongodbflex.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
-		ActiveState:   []mongodbflex.InstanceStatus{INSTANCESTATUS_READY},
-		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
+		ActiveState:   []mongodbflex.InstanceStatus{mongodbflex.INSTANCESTATUS_READY},
+		ErrorState:    []mongodbflex.InstanceStatus{mongodbflex.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -117,7 +117,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
 		ActiveState:   []mongodbflex.InstanceStatus{},
-		ErrorState:    []mongodbflex.InstanceStatus{INSTANCESTATUS_FAILED},
+		ErrorState:    []mongodbflex.InstanceStatus{mongodbflex.INSTANCESTATUS_FAILED},
 	}
 
 	// adapter for adhering to the wait helper type schema
