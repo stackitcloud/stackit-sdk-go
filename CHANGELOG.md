@@ -295,6 +295,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.9.0](services/mongodbflex/CHANGELOG.md#v190)
     - **Feature:** Introduce enums for various attributes
+  - [v1.10.0](services/mongodbflex/CHANGELOG.md#v183)
+    - **Improvement:** Use new WaiterHelper for mongodbflex
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -495,6 +497,8 @@
     - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
   - [v0.10.1](services/sfs/CHANGELOG.md#v0101)
     - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
+  - [v0.11.0](services/sfs/CHANGELOG.md#v0100)
+    - **Improvement:** Use new WaiterHelper for SFS waiters
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
