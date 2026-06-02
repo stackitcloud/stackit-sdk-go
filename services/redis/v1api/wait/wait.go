@@ -45,9 +45,9 @@ const (
 )
 
 func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	waitConfig := wait.WaiterHelper[redis.Instance, string]{
+	waitConfig := wait.WaiterHelper[redis.Instance, redis.InstanceStatus]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *redis.Instance) (string, error) {
+		GetState: func(response *redis.Instance) (redis.InstanceStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -56,8 +56,8 @@ func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.Default
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []redis.InstanceStatus{redis.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []redis.InstanceStatus{redis.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())

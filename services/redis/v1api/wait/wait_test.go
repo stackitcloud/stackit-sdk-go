@@ -103,7 +103,7 @@ func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "wrong state in response",
 			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
+			resourceState: utils.Ptr(redis.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
