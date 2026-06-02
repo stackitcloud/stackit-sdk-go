@@ -104,6 +104,7 @@ func TestKeyFlowInit(t *testing.T) {
 			invalidPrivateKey: true,
 			wantErr:           true,
 		},
+		//nolint:gosec // G101: These are only test values
 		{
 			name: "ok-custom-token-endpoint",
 			serviceAccountKey: fixtureServiceAccountKey(func(s *ServiceAccountKeyResponse) {
