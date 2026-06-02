@@ -37,6 +37,7 @@ project-tools: ## Install project tools
 
 # LINT
 lint-golangci-lint: ## Lint Go code
+	@golangci-lint custom
 	@echo ">> Linting with golangci-lint"
 	@$(SCRIPTS_BASE)/lint-golangci-lint.sh "${skip-non-generated-files}" "${service}"
 
