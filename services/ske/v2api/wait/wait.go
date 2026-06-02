@@ -10,13 +10,25 @@ import (
 )
 
 const (
-	CREDENTIALSROTATIONSTATEPHASE_NEVER      = "NEVER"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARING  = "PREPARING"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARED   = "PREPARED"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = "COMPLETING"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETED  = "COMPLETED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_NEVER = ske.CREDENTIALSROTATIONSTATEPHASE_NEVER
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARING = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARED = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETED = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED
 
-	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND
 )
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
@@ -31,7 +43,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, pro
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND {
 			return true, s, nil
 		}
 
@@ -170,11 +182,11 @@ func StartCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, 
 		}
 		state := *s.Status.CredentialsRotation.Phase
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_PREPARED {
+		if state == ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED {
 			return true, s, nil
 		}
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_PREPARING {
+		if state == ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING {
 			return false, nil, nil
 		}
 
@@ -194,11 +206,11 @@ func CompleteCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAP
 		}
 		state := *s.Status.CredentialsRotation.Phase
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_COMPLETED {
+		if state == ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED {
 			return true, s, nil
 		}
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_COMPLETING {
+		if state == ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING {
 			return false, nil, nil
 		}
 

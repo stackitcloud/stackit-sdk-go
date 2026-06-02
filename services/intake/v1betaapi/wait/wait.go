@@ -11,18 +11,38 @@ import (
 )
 
 const (
-	INTAKERESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERESPONSESTATE_ACTIVE      = "active"
-	INTAKERESPONSESTATE_DELETING    = "deleting"
-	INTAKERESPONSESTATE_FAILED      = "failed"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_RECONCILING = intake.INTAKERESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_ACTIVE = intake.INTAKERESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_DELETING = intake.INTAKERESPONSESTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_FAILED = intake.INTAKERESPONSESTATE_FAILED
 
-	INTAKERUNNERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERUNNERRESPONSESTATE_ACTIVE      = "active"
-	INTAKERUNNERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_RECONCILING = intake.INTAKERUNNERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_ACTIVE = intake.INTAKERUNNERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_DELETING = intake.INTAKERUNNERRESPONSESTATE_DELETING
 
-	INTAKEUSERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKEUSERRESPONSESTATE_ACTIVE      = "active"
-	INTAKEUSERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_RECONCILING = intake.INTAKEUSERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_ACTIVE = intake.INTAKEUSERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_DELETING = intake.INTAKEUSERRESPONSESTATE_DELETING
 )
 
 // Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeRunnerWaitHandler or UpdateIntakeRunnerWaitHandler instead

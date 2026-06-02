@@ -19,10 +19,9 @@ var _ MappedNullable = &RuntimeError{}
 
 // RuntimeError struct for RuntimeError
 type RuntimeError struct {
-	// - Code:    `SKE_UNSPECIFIED`   Message: \"An error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_TMP_AUTH_ERROR`   Message: \"Authentication failed. This is a temporary error. Please wait while the system recovers.\" - Code:    `SKE_QUOTA_EXCEEDED`   Message: \"Your project's resource quotas are exhausted. Please make sure your quota is sufficient for the ordered cluster.\" - Code:    `SKE_OBSERVABILITY_INSTANCE_NOT_FOUND`   Message: \"The provided Observability instance could not be found.\" - Code:    `SKE_RATE_LIMITS`   Message: \"While provisioning your cluster, request rate limits where incurred. Please wait while the system recovers.\" - Code:    `SKE_INFRA_ERROR`   Message: \"An error occurred with the underlying infrastructure. Please open a support ticket if this error persists.\" - Code:    `SKE_REMAINING_RESOURCES`   Message: \"There are remaining Kubernetes resources in your cluster that prevent deletion. Please make sure to remove them.\" - Code:    `SKE_CONFIGURATION_PROBLEM`   Message: \"A configuration error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_UNREADY_NODES`   Message: \"Not all worker nodes are ready. Please open a support ticket if this error persists.\" - Code:    `SKE_API_SERVER_ERROR`   Message: \"The Kubernetes API server is not reporting readiness. Please open a support ticket if this error persists.\" - Code:    `SKE_DNS_ZONE_NOT_FOUND`   Message: \"The provided DNS zone for the STACKIT DNS extension could not be found. Please ensure you defined a valid domain that belongs to a STACKIT DNS zone.\"
-	Code                 *string `json:"code,omitempty"`
-	Details              *string `json:"details,omitempty"`
-	Message              *string `json:"message,omitempty"`
+	Code                 *RuntimeErrorCode `json:"code,omitempty"`
+	Details              *string           `json:"details,omitempty"`
+	Message              *string           `json:"message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,9 +45,9 @@ func NewRuntimeErrorWithDefaults() *RuntimeError {
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *RuntimeError) GetCode() string {
+func (o *RuntimeError) GetCode() RuntimeErrorCode {
 	if o == nil || IsNil(o.Code) {
-		var ret string
+		var ret RuntimeErrorCode
 		return ret
 	}
 	return *o.Code
@@ -56,7 +55,7 @@ func (o *RuntimeError) GetCode() string {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuntimeError) GetCodeOk() (*string, bool) {
+func (o *RuntimeError) GetCodeOk() (*RuntimeErrorCode, bool) {
 	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
@@ -72,8 +71,8 @@ func (o *RuntimeError) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *RuntimeError) SetCode(v string) {
+// SetCode gets a reference to the given RuntimeErrorCode and assigns it to the Code field.
+func (o *RuntimeError) SetCode(v RuntimeErrorCode) {
 	o.Code = &v
 }
 

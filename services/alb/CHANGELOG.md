@@ -1,3 +1,6 @@
+## v0.15.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.14.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `v2api`: **Improvement**: Use new `WaiterHandler` struct in the ALB WaitHandler

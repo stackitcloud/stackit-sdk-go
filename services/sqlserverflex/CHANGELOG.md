@@ -1,3 +1,11 @@
+## v1.13.0
+- `v2api`: 
+  - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
+  - **Breaking change:** Change return type of `wait.DeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]`
+
+## v1.12.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.11.0
 - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
 

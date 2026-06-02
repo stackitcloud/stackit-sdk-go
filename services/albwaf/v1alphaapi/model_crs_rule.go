@@ -20,9 +20,8 @@ var _ MappedNullable = &CRSRule{}
 // CRSRule Rule represents an individual security or validation rule.
 type CRSRule struct {
 	// SQL Injection Attack Detected via libinjection
-	Description *string `json:"description,omitempty"`
-	// The current mode of the rule.
-	Mode *string `json:"mode,omitempty" validate:"regexp=^(MODE_ENABLED|MODE_DISABLED|MODE_LOG_ONLY)$"`
+	Description *string           `json:"description,omitempty"`
+	Mode        *OWASPCoreRuleSet `json:"mode,omitempty"`
 	// Impact level.
 	Severity             *string `json:"severity,omitempty" validate:"regexp=^(CRITICAL|ERROR|WARNING|INFO)$"`
 	AdditionalProperties map[string]interface{}
@@ -80,9 +79,9 @@ func (o *CRSRule) SetDescription(v string) {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *CRSRule) GetMode() string {
+func (o *CRSRule) GetMode() OWASPCoreRuleSet {
 	if o == nil || IsNil(o.Mode) {
-		var ret string
+		var ret OWASPCoreRuleSet
 		return ret
 	}
 	return *o.Mode
@@ -90,7 +89,7 @@ func (o *CRSRule) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CRSRule) GetModeOk() (*string, bool) {
+func (o *CRSRule) GetModeOk() (*OWASPCoreRuleSet, bool) {
 	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
@@ -106,8 +105,8 @@ func (o *CRSRule) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *CRSRule) SetMode(v string) {
+// SetMode gets a reference to the given OWASPCoreRuleSet and assigns it to the Mode field.
+func (o *CRSRule) SetMode(v OWASPCoreRuleSet) {
 	o.Mode = &v
 }
 

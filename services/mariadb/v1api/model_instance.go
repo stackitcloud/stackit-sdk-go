@@ -34,7 +34,7 @@ type Instance struct {
 	Parameters           map[string]interface{} `json:"parameters"`
 	PlanId               string                 `json:"planId"`
 	PlanName             string                 `json:"planName"`
-	Status               *string                `json:"status,omitempty"`
+	Status               *InstanceStatus        `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -393,9 +393,9 @@ func (o *Instance) SetPlanName(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Instance) GetStatus() string {
+func (o *Instance) GetStatus() InstanceStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret InstanceStatus
 		return ret
 	}
 	return *o.Status
@@ -403,7 +403,7 @@ func (o *Instance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
+func (o *Instance) GetStatusOk() (*InstanceStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -419,8 +419,8 @@ func (o *Instance) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Instance) SetStatus(v string) {
+// SetStatus gets a reference to the given InstanceStatus and assigns it to the Status field.
+func (o *Instance) SetStatus(v InstanceStatus) {
 	o.Status = &v
 }
 

@@ -1,3 +1,9 @@
+## v1.10.0
+- **Improvement:** Use new WaiterHelper for mongodbflex
+
+## v1.9.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.8.3
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 

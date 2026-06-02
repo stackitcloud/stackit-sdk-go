@@ -25,15 +25,15 @@ type InstanceParameters struct {
 	// The unit is milliseconds.
 	FailoverTimeout *int32 `json:"failover-timeout,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
-	Graphite             *string `json:"graphite,omitempty"`
-	LazyfreeLazyEviction *string `json:"lazyfree-lazy-eviction,omitempty"`
-	LazyfreeLazyExpire   *string `json:"lazyfree-lazy-expire,omitempty"`
-	LuaTimeLimit         *int32  `json:"lua-time-limit,omitempty"`
+	Graphite             *string                                 `json:"graphite,omitempty"`
+	LazyfreeLazyEviction *InstanceParametersLazyfreeLazyEviction `json:"lazyfree-lazy-eviction,omitempty"`
+	LazyfreeLazyExpire   *InstanceParametersLazyfreeLazyExpire   `json:"lazyfree-lazy-expire,omitempty"`
+	LuaTimeLimit         *int32                                  `json:"lua-time-limit,omitempty"`
 	// This component monitors ephemeral and persistent disk usage. If one of these disk usages reaches the default configured threshold of 80%, the a9s Parachute stops all processes on that node.
-	MaxDiskThreshold *int32  `json:"max_disk_threshold,omitempty"`
-	Maxclients       *int32  `json:"maxclients,omitempty"`
-	MaxmemoryPolicy  *string `json:"maxmemory-policy,omitempty"`
-	MaxmemorySamples *int32  `json:"maxmemory-samples,omitempty"`
+	MaxDiskThreshold *int32                             `json:"max_disk_threshold,omitempty"`
+	Maxclients       *int32                             `json:"maxclients,omitempty"`
+	MaxmemoryPolicy  *InstanceParametersMaxmemoryPolicy `json:"maxmemory-policy,omitempty"`
+	MaxmemorySamples *int32                             `json:"maxmemory-samples,omitempty"`
 	// Frequency of metrics being emitted in seconds
 	MetricsFrequency *int32 `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
@@ -46,11 +46,11 @@ type InstanceParameters struct {
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
 	SgwAcl *string `json:"sgw_acl,omitempty"`
 	// This setting must follow the original Redis configuration for RDB.
-	Snapshot             *string  `json:"snapshot,omitempty"`
-	Syslog               []string `json:"syslog,omitempty"`
-	TlsCiphers           []string `json:"tls-ciphers,omitempty"`
-	TlsCiphersuites      *string  `json:"tls-ciphersuites,omitempty"`
-	TlsProtocols         *string  `json:"tls-protocols,omitempty"`
+	Snapshot             *string                         `json:"snapshot,omitempty"`
+	Syslog               []string                        `json:"syslog,omitempty"`
+	TlsCiphers           []string                        `json:"tls-ciphers,omitempty"`
+	TlsCiphersuites      *string                         `json:"tls-ciphersuites,omitempty"`
+	TlsProtocols         *InstanceParametersTlsProtocols `json:"tls-protocols,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -68,9 +68,9 @@ func NewInstanceParameters() *InstanceParameters {
 	this.EnableMonitoring = &enableMonitoring
 	var failoverTimeout int32 = 30000
 	this.FailoverTimeout = &failoverTimeout
-	var lazyfreeLazyEviction string = "no"
+	var lazyfreeLazyEviction InstanceParametersLazyfreeLazyEviction = INSTANCEPARAMETERSLAZYFREELAZYEVICTION_NO
 	this.LazyfreeLazyEviction = &lazyfreeLazyEviction
-	var lazyfreeLazyExpire string = "no"
+	var lazyfreeLazyExpire InstanceParametersLazyfreeLazyExpire = INSTANCEPARAMETERSLAZYFREELAZYEXPIRE_NO
 	this.LazyfreeLazyExpire = &lazyfreeLazyExpire
 	var luaTimeLimit int32 = 5000
 	this.LuaTimeLimit = &luaTimeLimit
@@ -78,7 +78,7 @@ func NewInstanceParameters() *InstanceParameters {
 	this.MaxDiskThreshold = &maxDiskThreshold
 	var maxclients int32 = 10000
 	this.Maxclients = &maxclients
-	var maxmemoryPolicy string = "volatile-lru"
+	var maxmemoryPolicy InstanceParametersMaxmemoryPolicy = INSTANCEPARAMETERSMAXMEMORYPOLICY_VOLATILE_LRU
 	this.MaxmemoryPolicy = &maxmemoryPolicy
 	var maxmemorySamples int32 = 5
 	this.MaxmemorySamples = &maxmemorySamples
@@ -102,9 +102,9 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this.EnableMonitoring = &enableMonitoring
 	var failoverTimeout int32 = 30000
 	this.FailoverTimeout = &failoverTimeout
-	var lazyfreeLazyEviction string = "no"
+	var lazyfreeLazyEviction InstanceParametersLazyfreeLazyEviction = INSTANCEPARAMETERSLAZYFREELAZYEVICTION_NO
 	this.LazyfreeLazyEviction = &lazyfreeLazyEviction
-	var lazyfreeLazyExpire string = "no"
+	var lazyfreeLazyExpire InstanceParametersLazyfreeLazyExpire = INSTANCEPARAMETERSLAZYFREELAZYEXPIRE_NO
 	this.LazyfreeLazyExpire = &lazyfreeLazyExpire
 	var luaTimeLimit int32 = 5000
 	this.LuaTimeLimit = &luaTimeLimit
@@ -112,7 +112,7 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this.MaxDiskThreshold = &maxDiskThreshold
 	var maxclients int32 = 10000
 	this.Maxclients = &maxclients
-	var maxmemoryPolicy string = "volatile-lru"
+	var maxmemoryPolicy InstanceParametersMaxmemoryPolicy = INSTANCEPARAMETERSMAXMEMORYPOLICY_VOLATILE_LRU
 	this.MaxmemoryPolicy = &maxmemoryPolicy
 	var maxmemorySamples int32 = 5
 	this.MaxmemorySamples = &maxmemorySamples
@@ -254,9 +254,9 @@ func (o *InstanceParameters) SetGraphite(v string) {
 }
 
 // GetLazyfreeLazyEviction returns the LazyfreeLazyEviction field value if set, zero value otherwise.
-func (o *InstanceParameters) GetLazyfreeLazyEviction() string {
+func (o *InstanceParameters) GetLazyfreeLazyEviction() InstanceParametersLazyfreeLazyEviction {
 	if o == nil || IsNil(o.LazyfreeLazyEviction) {
-		var ret string
+		var ret InstanceParametersLazyfreeLazyEviction
 		return ret
 	}
 	return *o.LazyfreeLazyEviction
@@ -264,7 +264,7 @@ func (o *InstanceParameters) GetLazyfreeLazyEviction() string {
 
 // GetLazyfreeLazyEvictionOk returns a tuple with the LazyfreeLazyEviction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetLazyfreeLazyEvictionOk() (*string, bool) {
+func (o *InstanceParameters) GetLazyfreeLazyEvictionOk() (*InstanceParametersLazyfreeLazyEviction, bool) {
 	if o == nil || IsNil(o.LazyfreeLazyEviction) {
 		return nil, false
 	}
@@ -280,15 +280,15 @@ func (o *InstanceParameters) HasLazyfreeLazyEviction() bool {
 	return false
 }
 
-// SetLazyfreeLazyEviction gets a reference to the given string and assigns it to the LazyfreeLazyEviction field.
-func (o *InstanceParameters) SetLazyfreeLazyEviction(v string) {
+// SetLazyfreeLazyEviction gets a reference to the given InstanceParametersLazyfreeLazyEviction and assigns it to the LazyfreeLazyEviction field.
+func (o *InstanceParameters) SetLazyfreeLazyEviction(v InstanceParametersLazyfreeLazyEviction) {
 	o.LazyfreeLazyEviction = &v
 }
 
 // GetLazyfreeLazyExpire returns the LazyfreeLazyExpire field value if set, zero value otherwise.
-func (o *InstanceParameters) GetLazyfreeLazyExpire() string {
+func (o *InstanceParameters) GetLazyfreeLazyExpire() InstanceParametersLazyfreeLazyExpire {
 	if o == nil || IsNil(o.LazyfreeLazyExpire) {
-		var ret string
+		var ret InstanceParametersLazyfreeLazyExpire
 		return ret
 	}
 	return *o.LazyfreeLazyExpire
@@ -296,7 +296,7 @@ func (o *InstanceParameters) GetLazyfreeLazyExpire() string {
 
 // GetLazyfreeLazyExpireOk returns a tuple with the LazyfreeLazyExpire field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetLazyfreeLazyExpireOk() (*string, bool) {
+func (o *InstanceParameters) GetLazyfreeLazyExpireOk() (*InstanceParametersLazyfreeLazyExpire, bool) {
 	if o == nil || IsNil(o.LazyfreeLazyExpire) {
 		return nil, false
 	}
@@ -312,8 +312,8 @@ func (o *InstanceParameters) HasLazyfreeLazyExpire() bool {
 	return false
 }
 
-// SetLazyfreeLazyExpire gets a reference to the given string and assigns it to the LazyfreeLazyExpire field.
-func (o *InstanceParameters) SetLazyfreeLazyExpire(v string) {
+// SetLazyfreeLazyExpire gets a reference to the given InstanceParametersLazyfreeLazyExpire and assigns it to the LazyfreeLazyExpire field.
+func (o *InstanceParameters) SetLazyfreeLazyExpire(v InstanceParametersLazyfreeLazyExpire) {
 	o.LazyfreeLazyExpire = &v
 }
 
@@ -414,9 +414,9 @@ func (o *InstanceParameters) SetMaxclients(v int32) {
 }
 
 // GetMaxmemoryPolicy returns the MaxmemoryPolicy field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxmemoryPolicy() string {
+func (o *InstanceParameters) GetMaxmemoryPolicy() InstanceParametersMaxmemoryPolicy {
 	if o == nil || IsNil(o.MaxmemoryPolicy) {
-		var ret string
+		var ret InstanceParametersMaxmemoryPolicy
 		return ret
 	}
 	return *o.MaxmemoryPolicy
@@ -424,7 +424,7 @@ func (o *InstanceParameters) GetMaxmemoryPolicy() string {
 
 // GetMaxmemoryPolicyOk returns a tuple with the MaxmemoryPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxmemoryPolicyOk() (*string, bool) {
+func (o *InstanceParameters) GetMaxmemoryPolicyOk() (*InstanceParametersMaxmemoryPolicy, bool) {
 	if o == nil || IsNil(o.MaxmemoryPolicy) {
 		return nil, false
 	}
@@ -440,8 +440,8 @@ func (o *InstanceParameters) HasMaxmemoryPolicy() bool {
 	return false
 }
 
-// SetMaxmemoryPolicy gets a reference to the given string and assigns it to the MaxmemoryPolicy field.
-func (o *InstanceParameters) SetMaxmemoryPolicy(v string) {
+// SetMaxmemoryPolicy gets a reference to the given InstanceParametersMaxmemoryPolicy and assigns it to the MaxmemoryPolicy field.
+func (o *InstanceParameters) SetMaxmemoryPolicy(v InstanceParametersMaxmemoryPolicy) {
 	o.MaxmemoryPolicy = &v
 }
 
@@ -798,9 +798,9 @@ func (o *InstanceParameters) SetTlsCiphersuites(v string) {
 }
 
 // GetTlsProtocols returns the TlsProtocols field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsProtocols() string {
+func (o *InstanceParameters) GetTlsProtocols() InstanceParametersTlsProtocols {
 	if o == nil || IsNil(o.TlsProtocols) {
-		var ret string
+		var ret InstanceParametersTlsProtocols
 		return ret
 	}
 	return *o.TlsProtocols
@@ -808,7 +808,7 @@ func (o *InstanceParameters) GetTlsProtocols() string {
 
 // GetTlsProtocolsOk returns a tuple with the TlsProtocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsProtocolsOk() (*string, bool) {
+func (o *InstanceParameters) GetTlsProtocolsOk() (*InstanceParametersTlsProtocols, bool) {
 	if o == nil || IsNil(o.TlsProtocols) {
 		return nil, false
 	}
@@ -824,8 +824,8 @@ func (o *InstanceParameters) HasTlsProtocols() bool {
 	return false
 }
 
-// SetTlsProtocols gets a reference to the given string and assigns it to the TlsProtocols field.
-func (o *InstanceParameters) SetTlsProtocols(v string) {
+// SetTlsProtocols gets a reference to the given InstanceParametersTlsProtocols and assigns it to the TlsProtocols field.
+func (o *InstanceParameters) SetTlsProtocols(v InstanceParametersTlsProtocols) {
 	o.TlsProtocols = &v
 }
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &CloudService{}
 type CloudService struct {
 	Dependencies *Dependencies      `json:"dependencies,omitempty"`
 	Labels       *map[string]string `json:"labels,omitempty"`
-	Scope        *string            `json:"scope,omitempty"`
+	Scope        *CloudServiceScope `json:"scope,omitempty"`
 	// the id of the service
 	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
 	AdditionalProperties map[string]interface{}
@@ -35,7 +35,7 @@ type _CloudService CloudService
 // will change when the set of required properties is changed
 func NewCloudService() *CloudService {
 	this := CloudService{}
-	var scope string = "PUBLIC"
+	var scope CloudServiceScope = CLOUDSERVICESCOPE_PUBLIC
 	this.Scope = &scope
 	return &this
 }
@@ -45,7 +45,7 @@ func NewCloudService() *CloudService {
 // but it doesn't guarantee that properties required by API are set
 func NewCloudServiceWithDefaults() *CloudService {
 	this := CloudService{}
-	var scope string = "PUBLIC"
+	var scope CloudServiceScope = CLOUDSERVICESCOPE_PUBLIC
 	this.Scope = &scope
 	return &this
 }
@@ -115,9 +115,9 @@ func (o *CloudService) SetLabels(v map[string]string) {
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *CloudService) GetScope() string {
+func (o *CloudService) GetScope() CloudServiceScope {
 	if o == nil || IsNil(o.Scope) {
-		var ret string
+		var ret CloudServiceScope
 		return ret
 	}
 	return *o.Scope
@@ -125,7 +125,7 @@ func (o *CloudService) GetScope() string {
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudService) GetScopeOk() (*string, bool) {
+func (o *CloudService) GetScopeOk() (*CloudServiceScope, bool) {
 	if o == nil || IsNil(o.Scope) {
 		return nil, false
 	}
@@ -141,8 +141,8 @@ func (o *CloudService) HasScope() bool {
 	return false
 }
 
-// SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *CloudService) SetScope(v string) {
+// SetScope gets a reference to the given CloudServiceScope and assigns it to the Scope field.
+func (o *CloudService) SetScope(v CloudServiceScope) {
 	o.Scope = &v
 }
 

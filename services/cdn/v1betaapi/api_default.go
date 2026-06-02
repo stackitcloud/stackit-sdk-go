@@ -1,7 +1,7 @@
 /*
 STACKIT CDN API (DEPRECATED)
 
-**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1). API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -1627,8 +1627,8 @@ type ApiGetLogsRequest struct {
 	wafAction          *WAFRuleAction
 	pageSize           *int32
 	pageIdentifier     *string
-	sortBy             *string
-	sortOrder          *string
+	sortBy             *GetLogsSortByParameter
+	sortOrder          *GetLogsSortOrderParameter
 	dataCenterRegion   *string
 	requestCountryCode *string
 	statusCode         *int32
@@ -1666,12 +1666,12 @@ func (r ApiGetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsReque
 }
 
 // Sorts the log messages by a specific field. Defaults to &#x60;timestamp&#x60;.  Supported sort options: - &#x60;timestamp&#x60; - &#x60;dataCenterRegion&#x60; - &#x60;requestCountryCode&#x60; - &#x60;statusCode&#x60; - &#x60;cacheHit&#x60; - &#x60;size&#x60; - &#x60;path&#x60; - &#x60;host&#x60;
-func (r ApiGetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
+func (r ApiGetLogsRequest) SortBy(sortBy GetLogsSortByParameter) ApiGetLogsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiGetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
+func (r ApiGetLogsRequest) SortOrder(sortOrder GetLogsSortOrderParameter) ApiGetLogsRequest {
 	r.sortOrder = &sortOrder
 	return r
 }
@@ -1771,7 +1771,7 @@ func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsRespons
 	if r.sortBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "form", "")
 	} else {
-		var defaultValue string = "timestamp"
+		var defaultValue GetLogsSortByParameter = "timestamp"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", defaultValue, "form", "")
 		r.sortBy = &defaultValue
 	}
@@ -2087,7 +2087,7 @@ type ApiGetStatisticsRequest struct {
 	distributionId string
 	from           *time.Time
 	to             *time.Time
-	interval       *string
+	interval       *GetStatisticsIntervalParameter
 }
 
 // the start of the time range for which statistics should be returned
@@ -2103,7 +2103,7 @@ func (r ApiGetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 }
 
 // Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
-func (r ApiGetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
+func (r ApiGetStatisticsRequest) Interval(interval GetStatisticsIntervalParameter) ApiGetStatisticsRequest {
 	r.interval = &interval
 	return r
 }
@@ -2292,8 +2292,8 @@ type ApiListDistributionsRequest struct {
 	pageSize       *int32
 	withWafStatus  *bool
 	pageIdentifier *string
-	sortBy         *string
-	sortOrder      *string
+	sortBy         *ListDistributionsSortByParameter
+	sortOrder      *ListDistributionsSortOrderParameter
 }
 
 // Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
@@ -2315,12 +2315,12 @@ func (r ApiListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiLi
 }
 
 // The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The origin URL is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
-func (r ApiListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
+func (r ApiListDistributionsRequest) SortBy(sortBy ListDistributionsSortByParameter) ApiListDistributionsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiListDistributionsRequest) SortOrder(sortOrder string) ApiListDistributionsRequest {
+func (r ApiListDistributionsRequest) SortOrder(sortOrder ListDistributionsSortOrderParameter) ApiListDistributionsRequest {
 	r.sortOrder = &sortOrder
 	return r
 }
@@ -2394,7 +2394,7 @@ func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsReque
 	if r.sortBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "form", "")
 	} else {
-		var defaultValue string = "createdAt"
+		var defaultValue ListDistributionsSortByParameter = "createdAt"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", defaultValue, "form", "")
 		r.sortBy = &defaultValue
 	}

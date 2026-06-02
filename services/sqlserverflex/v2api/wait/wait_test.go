@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"testing/synctest"
 	"time"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	sqlserverflex "github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v2api"
 )
 
@@ -46,31 +48,30 @@ func newAPIMock(settings mockSettings) sqlserverflex.DefaultAPI {
 	}
 }
 
-func TestCreateInstanceWaitHandler(t *testing.T) {
+func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
-		desc                string
-		instanceGetFails    bool
-		instanceState       string
-		usersGetErrorStatus int
-		wantErr             bool
-		wantResp            bool
+		desc             string
+		instanceGetFails bool
+		instanceState    string
+		wantErr          bool
+		wantResp         bool
 	}{
 		{
-			desc:             "create_succeeded",
+			desc:             "create_or_update_succeeded",
 			instanceGetFails: false,
 			instanceState:    InstanceStateSuccess,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
-			desc:             "create_failed",
+			desc:             "create_or_update_failed",
 			instanceGetFails: false,
 			instanceState:    InstanceStateFailed,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
-			desc:             "create_failed_2",
+			desc:             "create_or_update_failed_2",
 			instanceGetFails: false,
 			instanceState:    InstanceStateEmpty,
 			wantErr:          true,
@@ -87,123 +88,51 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceGetFails: false,
 			instanceState:    InstanceStateProcessing,
 			wantErr:          true,
-			wantResp:         true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
-				instanceState := tt.instanceState
-
-				apiClient := newAPIMock(mockSettings{
-					instanceId:       &instanceId,
-					instanceState:    &instanceState,
-					instanceGetFails: tt.instanceGetFails,
-				})
-
-				var wantRes *sqlserverflex.GetInstanceResponse
-				if tt.wantResp {
-					wantRes = &sqlserverflex.GetInstanceResponse{
-						Item: &sqlserverflex.Instance{
-							Id:     &instanceId,
-							Status: utils.Ptr(tt.instanceState),
-						},
-					}
-				}
-
-				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, "")
-
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
-			})
-		})
-	}
-}
-
-func TestUpdateInstanceWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc             string
-		instanceGetFails bool
-		instanceState    string
-		wantErr          bool
-		wantResp         bool
-	}{
-		{
-			desc:             "update_succeeded",
-			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
-			wantErr:          false,
-			wantResp:         true,
-		},
-		{
-			desc:             "update_failed",
-			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
-			wantErr:          true,
-			wantResp:         true,
-		},
-		{
-			desc:             "update_failed_2",
-			instanceGetFails: false,
-			instanceState:    InstanceStateEmpty,
-			wantErr:          true,
-			wantResp:         true,
-		},
-		{
-			desc:             "get_fails",
-			instanceGetFails: true,
-			wantErr:          true,
 			wantResp:         false,
 		},
-		{
-			desc:             "timeout",
-			instanceGetFails: false,
-			instanceState:    InstanceStateProcessing,
-			wantErr:          true,
-			wantResp:         true,
-		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
-				instanceState := tt.instanceState
 
-				apiClient := newAPIMock(mockSettings{
-					instanceId:       &instanceId,
-					instanceState:    &instanceState,
-					instanceGetFails: tt.instanceGetFails,
-				})
+	handlers := map[string]func(context.Context, sqlserverflex.DefaultAPI, string, string, string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]{
+		"common logic": createOrUpdateInstanceWaitHandler,
+		"create":       CreateInstanceWaitHandler,
+		"update":       UpdateInstanceWaitHandler,
+	}
 
-				var wantRes *sqlserverflex.GetInstanceResponse
-				if tt.wantResp {
-					wantRes = &sqlserverflex.GetInstanceResponse{
-						Item: &sqlserverflex.Instance{
-							Id:     &instanceId,
-							Status: utils.Ptr(tt.instanceState),
-						},
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					instanceId := "foo-bar"
+
+					apiClient := newAPIMock(mockSettings{
+						instanceGetFails: tt.instanceGetFails,
+						instanceId:       &instanceId,
+						instanceState:    &tt.instanceState,
+					})
+
+					var wantRes *sqlserverflex.GetInstanceResponse
+					if tt.wantResp {
+						wantRes = &sqlserverflex.GetInstanceResponse{
+							Item: &sqlserverflex.Instance{
+								Id:     &instanceId,
+								Status: utils.Ptr(tt.instanceState),
+							},
+						}
 					}
-				}
 
-				handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, "")
+					handler := handlerFn(context.Background(), apiClient, "", instanceId, "")
+					gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					diff := cmp.Diff(gotRes, wantRes)
+					if diff != "" {
+						t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 

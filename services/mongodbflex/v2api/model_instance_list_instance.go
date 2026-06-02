@@ -20,10 +20,9 @@ var _ MappedNullable = &InstanceListInstance{}
 
 // InstanceListInstance struct for InstanceListInstance
 type InstanceListInstance struct {
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	// The current status of the instance.
-	Status               *string `json:"status,omitempty"`
+	Id                   *string                     `json:"id,omitempty"`
+	Name                 *string                     `json:"name,omitempty"`
+	Status               *InstanceListInstanceStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,9 +110,9 @@ func (o *InstanceListInstance) SetName(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *InstanceListInstance) GetStatus() string {
+func (o *InstanceListInstance) GetStatus() InstanceListInstanceStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret InstanceListInstanceStatus
 		return ret
 	}
 	return *o.Status
@@ -121,7 +120,7 @@ func (o *InstanceListInstance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListInstance) GetStatusOk() (*string, bool) {
+func (o *InstanceListInstance) GetStatusOk() (*InstanceListInstanceStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -137,8 +136,8 @@ func (o *InstanceListInstance) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *InstanceListInstance) SetStatus(v string) {
+// SetStatus gets a reference to the given InstanceListInstanceStatus and assigns it to the Status field.
+func (o *InstanceListInstance) SetStatus(v InstanceListInstanceStatus) {
 	o.Status = &v
 }
 

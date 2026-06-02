@@ -1,7 +1,7 @@
 /*
 STACKIT CDN API
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta2.0.0) is deprecated. Please migrate to the version (v1). API used to create and manage your CDN distributions.
 
 API version: 1beta2.0.0
 */
@@ -26,11 +26,10 @@ type Distribution struct {
 	CreatedAt time.Time `json:"createdAt"`
 	Domains   []Domain  `json:"domains"`
 	// This object may be present if, and only if the distribution has encountered an error state.
-	Errors    []StatusError `json:"errors,omitempty"`
-	Id        string        `json:"id"`
-	ProjectId string        `json:"projectId"`
-	// - `CREATING`: The distribution was just created.   All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to   `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and   actual configuration state. This occurs right after an update. Will switch to   `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.   After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
-	Status string `json:"status"`
+	Errors    []StatusError      `json:"errors,omitempty"`
+	Id        string             `json:"id"`
+	ProjectId string             `json:"projectId"`
+	Status    DistributionStatus `json:"status"`
 	// RFC3339 string which returns the last time the distribution configuration was modified.
 	UpdatedAt            time.Time        `json:"updatedAt"`
 	Waf                  *DistributionWaf `json:"waf,omitempty"`
@@ -43,7 +42,7 @@ type _Distribution Distribution
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDistribution(config Config, createdAt time.Time, domains []Domain, id string, projectId string, status string, updatedAt time.Time) *Distribution {
+func NewDistribution(config Config, createdAt time.Time, domains []Domain, id string, projectId string, status DistributionStatus, updatedAt time.Time) *Distribution {
 	this := Distribution{}
 	this.Config = config
 	this.CreatedAt = createdAt
@@ -216,9 +215,9 @@ func (o *Distribution) SetProjectId(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *Distribution) GetStatus() string {
+func (o *Distribution) GetStatus() DistributionStatus {
 	if o == nil {
-		var ret string
+		var ret DistributionStatus
 		return ret
 	}
 
@@ -227,7 +226,7 @@ func (o *Distribution) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Distribution) GetStatusOk() (*string, bool) {
+func (o *Distribution) GetStatusOk() (*DistributionStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -235,7 +234,7 @@ func (o *Distribution) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Distribution) SetStatus(v string) {
+func (o *Distribution) SetStatus(v DistributionStatus) {
 	o.Status = v
 }
 

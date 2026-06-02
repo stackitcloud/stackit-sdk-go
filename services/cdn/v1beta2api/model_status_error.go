@@ -1,7 +1,7 @@
 /*
 STACKIT CDN API
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta2.0.0) is deprecated. Please migrate to the version (v1). API used to create and manage your CDN distributions.
 
 API version: 1beta2.0.0
 */
@@ -23,9 +23,8 @@ type StatusError struct {
 	// A german translation string corresponding to the error key. Note that we do not guarantee german translations are present.
 	De *string `json:"de,omitempty"`
 	// An english translation string corresponding to the error key. An english translation key is always present.
-	En string `json:"en"`
-	// An enum value that describes a Status Error.
-	Key                  string `json:"key"`
+	En                   string         `json:"en"`
+	Key                  StatusErrorKey `json:"key"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,7 +34,7 @@ type _StatusError StatusError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStatusError(en string, key string) *StatusError {
+func NewStatusError(en string, key StatusErrorKey) *StatusError {
 	this := StatusError{}
 	this.En = en
 	this.Key = key
@@ -107,9 +106,9 @@ func (o *StatusError) SetEn(v string) {
 }
 
 // GetKey returns the Key field value
-func (o *StatusError) GetKey() string {
+func (o *StatusError) GetKey() StatusErrorKey {
 	if o == nil {
-		var ret string
+		var ret StatusErrorKey
 		return ret
 	}
 
@@ -118,7 +117,7 @@ func (o *StatusError) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *StatusError) GetKeyOk() (*string, bool) {
+func (o *StatusError) GetKeyOk() (*StatusErrorKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +125,7 @@ func (o *StatusError) GetKeyOk() (*string, bool) {
 }
 
 // SetKey sets field value
-func (o *StatusError) SetKey(v string) {
+func (o *StatusError) SetKey(v StatusErrorKey) {
 	o.Key = v
 }
 

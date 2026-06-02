@@ -21,8 +21,7 @@ var _ MappedNullable = &PatchOperation{}
 
 // PatchOperation Request a STACKIT Git instance to be patch with these properties.
 type PatchOperation struct {
-	// The patch operation to perform.
-	Op string `json:"op"`
+	Op PatchOperationOp `json:"op"`
 	// An RFC6901 JSON Pointer to the target location.
 	Path string `json:"path"`
 	// The value to be used for 'add' and 'remove' operations.
@@ -36,7 +35,7 @@ type _PatchOperation PatchOperation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOperation(op string, path string) *PatchOperation {
+func NewPatchOperation(op PatchOperationOp, path string) *PatchOperation {
 	this := PatchOperation{}
 	this.Op = op
 	this.Path = path
@@ -52,9 +51,9 @@ func NewPatchOperationWithDefaults() *PatchOperation {
 }
 
 // GetOp returns the Op field value
-func (o *PatchOperation) GetOp() string {
+func (o *PatchOperation) GetOp() PatchOperationOp {
 	if o == nil {
-		var ret string
+		var ret PatchOperationOp
 		return ret
 	}
 
@@ -63,7 +62,7 @@ func (o *PatchOperation) GetOp() string {
 
 // GetOpOk returns a tuple with the Op field value
 // and a boolean to check if the value has been set.
-func (o *PatchOperation) GetOpOk() (*string, bool) {
+func (o *PatchOperation) GetOpOk() (*PatchOperationOp, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +70,7 @@ func (o *PatchOperation) GetOpOk() (*string, bool) {
 }
 
 // SetOp sets field value
-func (o *PatchOperation) SetOp(v string) {
+func (o *PatchOperation) SetOp(v PatchOperationOp) {
 	o.Op = v
 }
 

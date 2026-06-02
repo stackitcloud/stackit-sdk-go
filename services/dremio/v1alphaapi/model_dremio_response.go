@@ -32,9 +32,8 @@ type DremioResponse struct {
 	// A message describing an actionable error the user can resolve. This field is empty if no such error exists.
 	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// A auto generated unique id which identifies the resource.
-	Id string `json:"id"`
-	// The current state of the resource.
-	State                string `json:"state"`
+	Id                   string              `json:"id"`
+	State                DremioResponseState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,7 +43,7 @@ type _DremioResponse DremioResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDremioResponse(authentication Authentication, createTime time.Time, displayName string, endpoints Endpoints, id string, state string) *DremioResponse {
+func NewDremioResponse(authentication Authentication, createTime time.Time, displayName string, endpoints Endpoints, id string, state DremioResponseState) *DremioResponse {
 	this := DremioResponse{}
 	this.Authentication = authentication
 	this.CreateTime = createTime
@@ -248,9 +247,9 @@ func (o *DremioResponse) SetId(v string) {
 }
 
 // GetState returns the State field value
-func (o *DremioResponse) GetState() string {
+func (o *DremioResponse) GetState() DremioResponseState {
 	if o == nil {
-		var ret string
+		var ret DremioResponseState
 		return ret
 	}
 
@@ -259,7 +258,7 @@ func (o *DremioResponse) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *DremioResponse) GetStateOk() (*string, bool) {
+func (o *DremioResponse) GetStateOk() (*DremioResponseState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -267,7 +266,7 @@ func (o *DremioResponse) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *DremioResponse) SetState(v string) {
+func (o *DremioResponse) SetState(v DremioResponseState) {
 	o.State = v
 }
 

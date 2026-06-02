@@ -21,9 +21,9 @@ var _ MappedNullable = &TunnelConfigurationPhase1{}
 // TunnelConfigurationPhase1 struct for TunnelConfigurationPhase1
 type TunnelConfigurationPhase1 struct {
 	// The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.
-	DhGroups             []string `json:"dhGroups,omitempty"`
-	EncryptionAlgorithms []string `json:"encryptionAlgorithms"`
-	IntegrityAlgorithms  []string `json:"integrityAlgorithms"`
+	DhGroups             []PhaseDhGroupsInner             `json:"dhGroups,omitempty"`
+	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner `json:"encryptionAlgorithms"`
+	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner  `json:"integrityAlgorithms"`
 	// Time to schedule a IKE re-keying (in seconds).
 	RekeyTime            *int32 `json:"rekeyTime,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -35,7 +35,7 @@ type _TunnelConfigurationPhase1 TunnelConfigurationPhase1
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTunnelConfigurationPhase1(encryptionAlgorithms []string, integrityAlgorithms []string) *TunnelConfigurationPhase1 {
+func NewTunnelConfigurationPhase1(encryptionAlgorithms []PhaseEncryptionAlgorithmsInner, integrityAlgorithms []PhaseIntegrityAlgorithmsInner) *TunnelConfigurationPhase1 {
 	this := TunnelConfigurationPhase1{}
 	this.EncryptionAlgorithms = encryptionAlgorithms
 	this.IntegrityAlgorithms = integrityAlgorithms
@@ -55,9 +55,9 @@ func NewTunnelConfigurationPhase1WithDefaults() *TunnelConfigurationPhase1 {
 }
 
 // GetDhGroups returns the DhGroups field value if set, zero value otherwise.
-func (o *TunnelConfigurationPhase1) GetDhGroups() []string {
+func (o *TunnelConfigurationPhase1) GetDhGroups() []PhaseDhGroupsInner {
 	if o == nil || IsNil(o.DhGroups) {
-		var ret []string
+		var ret []PhaseDhGroupsInner
 		return ret
 	}
 	return o.DhGroups
@@ -65,7 +65,7 @@ func (o *TunnelConfigurationPhase1) GetDhGroups() []string {
 
 // GetDhGroupsOk returns a tuple with the DhGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TunnelConfigurationPhase1) GetDhGroupsOk() ([]string, bool) {
+func (o *TunnelConfigurationPhase1) GetDhGroupsOk() ([]PhaseDhGroupsInner, bool) {
 	if o == nil || IsNil(o.DhGroups) {
 		return nil, false
 	}
@@ -81,15 +81,15 @@ func (o *TunnelConfigurationPhase1) HasDhGroups() bool {
 	return false
 }
 
-// SetDhGroups gets a reference to the given []string and assigns it to the DhGroups field.
-func (o *TunnelConfigurationPhase1) SetDhGroups(v []string) {
+// SetDhGroups gets a reference to the given []PhaseDhGroupsInner and assigns it to the DhGroups field.
+func (o *TunnelConfigurationPhase1) SetDhGroups(v []PhaseDhGroupsInner) {
 	o.DhGroups = v
 }
 
 // GetEncryptionAlgorithms returns the EncryptionAlgorithms field value
-func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithms() []string {
+func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithms() []PhaseEncryptionAlgorithmsInner {
 	if o == nil {
-		var ret []string
+		var ret []PhaseEncryptionAlgorithmsInner
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithms() []string {
 
 // GetEncryptionAlgorithmsOk returns a tuple with the EncryptionAlgorithms field value
 // and a boolean to check if the value has been set.
-func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithmsOk() ([]string, bool) {
+func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithmsOk() ([]PhaseEncryptionAlgorithmsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,14 +106,14 @@ func (o *TunnelConfigurationPhase1) GetEncryptionAlgorithmsOk() ([]string, bool)
 }
 
 // SetEncryptionAlgorithms sets field value
-func (o *TunnelConfigurationPhase1) SetEncryptionAlgorithms(v []string) {
+func (o *TunnelConfigurationPhase1) SetEncryptionAlgorithms(v []PhaseEncryptionAlgorithmsInner) {
 	o.EncryptionAlgorithms = v
 }
 
 // GetIntegrityAlgorithms returns the IntegrityAlgorithms field value
-func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithms() []string {
+func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithms() []PhaseIntegrityAlgorithmsInner {
 	if o == nil {
-		var ret []string
+		var ret []PhaseIntegrityAlgorithmsInner
 		return ret
 	}
 
@@ -122,7 +122,7 @@ func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithms() []string {
 
 // GetIntegrityAlgorithmsOk returns a tuple with the IntegrityAlgorithms field value
 // and a boolean to check if the value has been set.
-func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithmsOk() ([]string, bool) {
+func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithmsOk() ([]PhaseIntegrityAlgorithmsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *TunnelConfigurationPhase1) GetIntegrityAlgorithmsOk() ([]string, bool) 
 }
 
 // SetIntegrityAlgorithms sets field value
-func (o *TunnelConfigurationPhase1) SetIntegrityAlgorithms(v []string) {
+func (o *TunnelConfigurationPhase1) SetIntegrityAlgorithms(v []PhaseIntegrityAlgorithmsInner) {
 	o.IntegrityAlgorithms = v
 }
 

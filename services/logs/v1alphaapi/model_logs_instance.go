@@ -42,9 +42,8 @@ type LogsInstance struct {
 	// The Logs instance's query  URL
 	QueryUrl *string `json:"queryUrl,omitempty"`
 	// The log retention time in days.
-	RetentionDays int32 `json:"retentionDays"`
-	// The current status of the Logs instance.
-	Status               string `json:"status"`
+	RetentionDays        int32              `json:"retentionDays"`
+	Status               LogsInstanceStatus `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,7 +53,7 @@ type _LogsInstance LogsInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogsInstance(created time.Time, displayName string, id string, retentionDays int32, status string) *LogsInstance {
+func NewLogsInstance(created time.Time, displayName string, id string, retentionDays int32, status LogsInstanceStatus) *LogsInstance {
 	this := LogsInstance{}
 	this.Created = created
 	this.DisplayName = displayName
@@ -393,9 +392,9 @@ func (o *LogsInstance) SetRetentionDays(v int32) {
 }
 
 // GetStatus returns the Status field value
-func (o *LogsInstance) GetStatus() string {
+func (o *LogsInstance) GetStatus() LogsInstanceStatus {
 	if o == nil {
-		var ret string
+		var ret LogsInstanceStatus
 		return ret
 	}
 
@@ -404,7 +403,7 @@ func (o *LogsInstance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *LogsInstance) GetStatusOk() (*string, bool) {
+func (o *LogsInstance) GetStatusOk() (*LogsInstanceStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -412,7 +411,7 @@ func (o *LogsInstance) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *LogsInstance) SetStatus(v string) {
+func (o *LogsInstance) SetStatus(v LogsInstanceStatus) {
 	o.Status = v
 }
 

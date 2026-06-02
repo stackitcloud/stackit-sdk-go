@@ -29,7 +29,7 @@ func newAPIMock(settings mockSettings) dns.DefaultAPI {
 
 			return &dns.ZoneResponse{
 				Zone: dns.Zone{
-					State: settings.resourceState,
+					State: dns.ZoneState(settings.resourceState),
 					Id:    "zid",
 				},
 			}, nil
@@ -43,7 +43,7 @@ func newAPIMock(settings mockSettings) dns.DefaultAPI {
 
 			return &dns.RecordSetResponse{
 				Rrset: dns.RecordSet{
-					State: settings.resourceState,
+					State: dns.RecordSetState(settings.resourceState),
 					Id:    "rid",
 				},
 			}, nil
@@ -55,21 +55,21 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.ZoneState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ZONESTATE_CREATE_SUCCEEDED,
+			resourceState: dns.ZONESTATE_CREATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: ZONESTATE_CREATE_FAILED,
+			resourceState: dns.ZONESTATE_CREATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -93,7 +93,7 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *dns.ZoneResponse
@@ -125,21 +125,21 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.ZoneState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: ZONESTATE_UPDATE_SUCCEEDED,
+			resourceState: dns.ZONESTATE_UPDATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: ZONESTATE_UPDATE_FAILED,
+			resourceState: dns.ZONESTATE_UPDATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -163,7 +163,7 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *dns.ZoneResponse
@@ -195,21 +195,21 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.ZoneState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			resourceState: ZONESTATE_DELETE_SUCCEEDED,
+			resourceState: dns.ZONESTATE_DELETE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
-			resourceState: ZONESTATE_DELETE_FAILED,
+			resourceState: dns.ZONESTATE_DELETE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -233,7 +233,7 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
 				apiClient := newAPIMock(mockSettings{
 					getFails:      tt.getFails,
-					resourceState: tt.resourceState,
+					resourceState: string(tt.resourceState),
 				})
 
 				var wantRes *dns.ZoneResponse
@@ -267,21 +267,21 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.RecordSetState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_CREATE_SUCCEEDED,
+			resourceState: dns.RECORDSETSTATE_CREATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_CREATE_FAILED,
+			resourceState: dns.RECORDSETSTATE_CREATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -337,21 +337,21 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.RecordSetState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_UPDATE_SUCCEEDED,
+			resourceState: dns.RECORDSETSTATE_UPDATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_UPDATE_FAILED,
+			resourceState: dns.RECORDSETSTATE_UPDATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -407,21 +407,21 @@ func TestDeleteRecordSetWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState dns.RecordSetState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_DELETE_SUCCEEDED,
+			resourceState: dns.RECORDSETSTATE_DELETE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
-			resourceState: RECORDSETSTATE_DELETE_FAILED,
+			resourceState: dns.RECORDSETSTATE_DELETE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
