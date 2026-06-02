@@ -142,7 +142,7 @@ func TestCreateOrUpdateIntakeRunnerWaitHandler(t *testing.T) {
 			returnRunner: true,
 			intakeRunnerResponse: &intake.IntakeRunnerResponse{
 				Id:    intakeRunnerId,
-				State: "wrong state",
+				State: intake.IntakeRunnerResponseState("ANOTHER STATE"),
 			},
 		},
 		{
@@ -179,7 +179,7 @@ func TestCreateOrUpdateIntakeRunnerWaitHandler(t *testing.T) {
 						wantResp = tt.intakeRunnerResponse
 					}
 
-					handler := handlerFn(context.Background(), apiClient, projectId, region, intakeRunnerId)
+					handler := handlerFn(context.Background(), apiClient, projectId, regionId, intakeRunnerId)
 					got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 					if (err != nil) != tt.wantErr {
@@ -311,7 +311,7 @@ func TestCreateOrUpdateIntakeWaitHandler(t *testing.T) {
 			returnIntake: true,
 			intakeResponse: &intake.IntakeResponse{
 				Id:    intakeId,
-				State: "wrong state",
+				State: intake.IntakeResponseState("ANOTHER STATE"),
 			},
 		},
 		{
@@ -348,7 +348,7 @@ func TestCreateOrUpdateIntakeWaitHandler(t *testing.T) {
 						wantResp = tt.intakeResponse
 					}
 
-					handler := handlerFn(context.Background(), apiClient, projectId, region, intakeId)
+					handler := handlerFn(context.Background(), apiClient, projectId, regionId, intakeId)
 					got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 					if (err != nil) != tt.wantErr {
@@ -480,7 +480,7 @@ func TestCreateOrUpdateIntakeUserWaitHandler(t *testing.T) {
 			returnUser: true,
 			intakeUserResponse: &intake.IntakeUserResponse{
 				Id:    intakeUserId,
-				State: "wrong state",
+				State: intake.IntakeUserResponseState("ANOTHER STATE"),
 			},
 		},
 		{
@@ -517,7 +517,7 @@ func TestCreateOrUpdateIntakeUserWaitHandler(t *testing.T) {
 						wantResp = tt.intakeUserResponse
 					}
 
-					handler := handlerFn(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
+					handler := handlerFn(context.Background(), apiClient, projectId, regionId, intakeId, intakeUserId)
 					got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 					if (err != nil) != tt.wantErr {
