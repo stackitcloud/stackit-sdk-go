@@ -34,9 +34,9 @@ lint_service() {
     echo ">> Linting service ${service}"
     cd ${SERVICES_PATH}/${service}
     if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
+        ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
     else
-        golangci-lint run ${GOLANG_CI_ARGS}
+        ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
     fi
 }
 
@@ -48,7 +48,7 @@ else
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
         echo ">> Linting core"
         cd ${CORE_PATH}
-        golangci-lint run ${GOLANG_CI_ARGS}
+        ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
     fi
 
     for service_dir in ${SERVICES_PATH}/*; do
@@ -61,7 +61,7 @@ else
             example=$(basename ${example_dir})
             echo ">> Linting example ${example}"
             cd ${example_dir}
-            golangci-lint run ${GOLANG_CI_ARGS}
+            ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
         done
     fi
 fi
