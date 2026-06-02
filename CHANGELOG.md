@@ -327,6 +327,8 @@
     - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
   - [v0.23.0](services/observability/CHANGELOG.md#v0230)
     - **Feature:** Introduce enums for various attributes
+  - [v0.24.0](services/observability/CHANGELOG.md#v0240)
+    - **Improvement:** Use new WaiterHelper for observability waiters
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
