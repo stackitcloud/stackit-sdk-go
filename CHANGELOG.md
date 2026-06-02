@@ -548,7 +548,7 @@
   - [v1.12.0](services/sqlserverflex/CHANGELOG.md#v1120)
     - **Feature:** Introduce enums for various attributes  
   - [v1.13.0](services/sqlserverflex/CHANGELOG.md#v1130)    
-    - `v1api`:
+    - `v2api`:
       - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
       - **Breaking change:** Change return type of `wait.DeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]`
 - `stackitmarketplace`:

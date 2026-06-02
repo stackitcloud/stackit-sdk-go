@@ -1,5 +1,5 @@
 ## v1.13.0
-- `v1api`: 
+- `v2api`: 
   - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
   - **Breaking change:** Change return type of `wait.DeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]`
 
