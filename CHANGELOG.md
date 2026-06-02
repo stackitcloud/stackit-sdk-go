@@ -610,6 +610,12 @@
       - **Breaking change:** `LocalAsn` is now marked as required (aligned with api) and no longer a pointer
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.14.0](services/vpn/CHANGELOG.md#v0140)
+    - `v1api`:
+      - **Feature:** Add `ErrorMessage` field to `GatewayStatusResponse`
+      - **Improvement:** Add description that `RoutingType` can only be set at the creation
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
