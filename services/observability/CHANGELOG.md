@@ -1,3 +1,6 @@
+## v0.24.0
+- **Improvement:** Use new WaiterHelper for observability waiters
+
 ## v0.23.0
 - **Feature:** Introduce enums for various attributes
 
