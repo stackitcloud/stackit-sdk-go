@@ -550,7 +550,11 @@
   - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
     - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
   - [v1.12.0](services/sqlserverflex/CHANGELOG.md#v1120)
-    - **Feature:** Introduce enums for various attributes
+    - **Feature:** Introduce enums for various attributes  
+  - [v1.13.0](services/sqlserverflex/CHANGELOG.md#v1130)    
+    - `v2api`:
+      - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
+      - **Breaking change:** Change return type of `wait.DeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]`
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
