@@ -1,3 +1,6 @@
+## v0.30.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.29.0
 - `v1api`
   - **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler

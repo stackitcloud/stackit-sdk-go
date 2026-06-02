@@ -27,7 +27,7 @@ type Backup struct {
 	LastRestoredAt       *string                    `json:"lastRestoredAt,omitempty"`
 	Name                 string                     `json:"name"`
 	Size                 *int32                     `json:"size,omitempty"`
-	Status               string                     `json:"status"`
+	Status               BackupStatus               `json:"status"`
 	VolumeBackups        []BackupVolumeBackupsInner `json:"volumeBackups,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -38,7 +38,7 @@ type _Backup Backup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBackup(createdAt string, expireAt string, id string, name string, status string) *Backup {
+func NewBackup(createdAt string, expireAt string, id string, name string, status BackupStatus) *Backup {
 	this := Backup{}
 	this.CreatedAt = createdAt
 	this.ExpireAt = expireAt
@@ -217,9 +217,9 @@ func (o *Backup) SetSize(v int32) {
 }
 
 // GetStatus returns the Status field value
-func (o *Backup) GetStatus() string {
+func (o *Backup) GetStatus() BackupStatus {
 	if o == nil {
-		var ret string
+		var ret BackupStatus
 		return ret
 	}
 
@@ -228,7 +228,7 @@ func (o *Backup) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Backup) GetStatusOk() (*string, bool) {
+func (o *Backup) GetStatusOk() (*BackupStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -236,7 +236,7 @@ func (o *Backup) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Backup) SetStatus(v string) {
+func (o *Backup) SetStatus(v BackupStatus) {
 	o.Status = v
 }
 

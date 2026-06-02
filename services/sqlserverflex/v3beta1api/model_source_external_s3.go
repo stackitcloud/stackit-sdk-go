@@ -24,9 +24,9 @@ type SourceExternalS3 struct {
 	// The owner of the database.
 	DatabaseOwner string `json:"database_owner"`
 	// Logging guid to have a complete activity log over all sub stored procedures.
-	LoggingGuid          *string    `json:"logging_guid,omitempty"`
-	S3Details            ExternalS3 `json:"s3_details"`
-	Type                 string     `json:"type"`
+	LoggingGuid          *string              `json:"logging_guid,omitempty"`
+	S3Details            ExternalS3           `json:"s3_details"`
+	Type                 SourceExternalS3Type `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +36,7 @@ type _SourceExternalS3 SourceExternalS3
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSourceExternalS3(databaseOwner string, s3Details ExternalS3, types string) *SourceExternalS3 {
+func NewSourceExternalS3(databaseOwner string, s3Details ExternalS3, types SourceExternalS3Type) *SourceExternalS3 {
 	this := SourceExternalS3{}
 	this.DatabaseOwner = databaseOwner
 	this.S3Details = s3Details
@@ -133,9 +133,9 @@ func (o *SourceExternalS3) SetS3Details(v ExternalS3) {
 }
 
 // GetType returns the Type field value
-func (o *SourceExternalS3) GetType() string {
+func (o *SourceExternalS3) GetType() SourceExternalS3Type {
 	if o == nil {
-		var ret string
+		var ret SourceExternalS3Type
 		return ret
 	}
 
@@ -144,7 +144,7 @@ func (o *SourceExternalS3) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SourceExternalS3) GetTypeOk() (*string, bool) {
+func (o *SourceExternalS3) GetTypeOk() (*SourceExternalS3Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *SourceExternalS3) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *SourceExternalS3) SetType(v string) {
+func (o *SourceExternalS3) SetType(v SourceExternalS3Type) {
 	o.Type = v
 }
 

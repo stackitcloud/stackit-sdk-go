@@ -32,9 +32,8 @@ type Instance struct {
 	// A auto generated unique id which identifies the instance.
 	Id string `json:"id"`
 	// Service Plan configures the size of the Instance.
-	PlanId string `json:"planId"`
-	// The current status of the instance.
-	Status               string `json:"status"`
+	PlanId               string         `json:"planId"`
+	Status               InstanceStatus `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,7 +43,7 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(created time.Time, displayName string, frontendUrl string, id string, planId string, status string) *Instance {
+func NewInstance(created time.Time, displayName string, frontendUrl string, id string, planId string, status InstanceStatus) *Instance {
 	this := Instance{}
 	this.Created = created
 	this.DisplayName = displayName
@@ -216,9 +215,9 @@ func (o *Instance) SetPlanId(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *Instance) GetStatus() string {
+func (o *Instance) GetStatus() InstanceStatus {
 	if o == nil {
-		var ret string
+		var ret InstanceStatus
 		return ret
 	}
 
@@ -227,7 +226,7 @@ func (o *Instance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
+func (o *Instance) GetStatusOk() (*InstanceStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -235,7 +234,7 @@ func (o *Instance) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Instance) SetStatus(v string) {
+func (o *Instance) SetStatus(v InstanceStatus) {
 	o.Status = v
 }
 

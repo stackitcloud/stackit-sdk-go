@@ -18,7 +18,7 @@ func main() {
 	ctx := context.Background()
 
 	dremioClient, err := dremio.NewAPIClient(
-		config.WithRegion(region),
+		config.WithRegion(string(region)),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Creating API client: %v\n", err)

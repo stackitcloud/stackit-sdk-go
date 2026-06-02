@@ -25,10 +25,9 @@ type RedirectRule struct {
 	// A toggle to enable or disable the redirect rule.
 	Enabled *bool `json:"enabled,omitempty"`
 	// A list of matchers that define when this rule should apply. At least one matcher is required.
-	Matchers           []Matcher       `json:"matchers"`
-	RuleMatchCondition *MatchCondition `json:"ruleMatchCondition,omitempty"`
-	// The HTTP status code for the redirect. Must be one of 301, 302, 303, 307, or 308.
-	StatusCode int32 `json:"statusCode"`
+	Matchers           []Matcher              `json:"matchers"`
+	RuleMatchCondition *MatchCondition        `json:"ruleMatchCondition,omitempty"`
+	StatusCode         RedirectRuleStatusCode `json:"statusCode"`
 	// The target URL to redirect to. Must be a valid URI.
 	TargetUrl            string `json:"targetUrl"`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +39,7 @@ type _RedirectRule RedirectRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRedirectRule(matchers []Matcher, statusCode int32, targetUrl string) *RedirectRule {
+func NewRedirectRule(matchers []Matcher, statusCode RedirectRuleStatusCode, targetUrl string) *RedirectRule {
 	this := RedirectRule{}
 	var enabled bool = true
 	this.Enabled = &enabled
@@ -185,9 +184,9 @@ func (o *RedirectRule) SetRuleMatchCondition(v MatchCondition) {
 }
 
 // GetStatusCode returns the StatusCode field value
-func (o *RedirectRule) GetStatusCode() int32 {
+func (o *RedirectRule) GetStatusCode() RedirectRuleStatusCode {
 	if o == nil {
-		var ret int32
+		var ret RedirectRuleStatusCode
 		return ret
 	}
 
@@ -196,7 +195,7 @@ func (o *RedirectRule) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
-func (o *RedirectRule) GetStatusCodeOk() (*int32, bool) {
+func (o *RedirectRule) GetStatusCodeOk() (*RedirectRuleStatusCode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +203,7 @@ func (o *RedirectRule) GetStatusCodeOk() (*int32, bool) {
 }
 
 // SetStatusCode sets field value
-func (o *RedirectRule) SetStatusCode(v int32) {
+func (o *RedirectRule) SetStatusCode(v RedirectRuleStatusCode) {
 	o.StatusCode = v
 }
 

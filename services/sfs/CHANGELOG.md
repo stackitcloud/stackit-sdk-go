@@ -1,3 +1,6 @@
+## v0.11.0
+- **Improvement:** Use new WaiterHelper for SFS waiters
+
 ## v0.10.1
 - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
 

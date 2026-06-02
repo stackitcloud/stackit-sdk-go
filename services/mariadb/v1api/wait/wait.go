@@ -14,26 +14,38 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = mariadb.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = mariadb.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = mariadb.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = mariadb.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = mariadb.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = mariadb.INSTANCESTATUS_UPDATING
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
-	waitConfig := wait.WaiterHelper[mariadb.Instance, string]{
+	waitConfig := wait.WaiterHelper[mariadb.Instance, mariadb.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(s *mariadb.Instance) (string, error) {
+		GetState: func(s *mariadb.Instance) (mariadb.InstanceStatus, error) {
 			if s == nil || s.Status == nil {
 				return "", errors.New("response or status is nil")
 			}
 			return *s.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -43,16 +55,16 @@ func CreateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projec
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
-	waitConfig := wait.WaiterHelper[mariadb.Instance, string]{
+	waitConfig := wait.WaiterHelper[mariadb.Instance, mariadb.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(s *mariadb.Instance) (string, error) {
+		GetState: func(s *mariadb.Instance) (mariadb.InstanceStatus, error) {
 			if s == nil || s.Status == nil {
 				return "", errors.New("response or status is nil")
 			}
 			return *s.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -68,10 +80,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projec
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != mariadb.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == mariadb.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

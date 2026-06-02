@@ -17,7 +17,7 @@ const testRegion = "eu01"
 
 type mockSettings struct {
 	instanceName      string
-	instanceStatus    *string
+	instanceStatus    *loadbalancer.LoadBalancerStatus
 	instanceIsDeleted bool
 	instanceGetFails  bool
 }
@@ -49,28 +49,28 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceStatus   *string
+		instanceStatus   *loadbalancer.LoadBalancerStatus
 		wantErr          bool
 		wantResp         bool
 	}{
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
-			instanceStatus:   utils.Ptr(LOADBALANCERSTATUS_READY),
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_READY.Ptr(),
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
-			instanceStatus:   utils.Ptr(LOADBALANCERSTATUS_ERROR),
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR.Ptr(),
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
-			instanceStatus:   utils.Ptr(LOADBALANCERSTATUS_TERMINATING),
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING.Ptr(),
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -83,7 +83,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceStatus:   utils.Ptr(LOADBALANCERSTATUS_PENDING),
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_PENDING.Ptr(),
 			wantErr:          true,
 			wantResp:         false,
 		},

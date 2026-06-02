@@ -37,10 +37,9 @@ type WrappingKey struct {
 	KeyRingId  string     `json:"keyRingId"`
 	Protection Protection `json:"protection"`
 	// The public key of the wrapping key.
-	PublicKey *string         `json:"publicKey,omitempty"`
-	Purpose   WrappingPurpose `json:"purpose"`
-	// The current state of the wrapping key.
-	State                string `json:"state"`
+	PublicKey            *string          `json:"publicKey,omitempty"`
+	Purpose              WrappingPurpose  `json:"purpose"`
+	State                WrappingKeyState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -50,7 +49,7 @@ type _WrappingKey WrappingKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection Protection, purpose WrappingPurpose, state string) *WrappingKey {
+func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection Protection, purpose WrappingPurpose, state WrappingKeyState) *WrappingKey {
 	this := WrappingKey{}
 	this.AccessScope = accessScope
 	this.Algorithm = algorithm
@@ -356,9 +355,9 @@ func (o *WrappingKey) SetPurpose(v WrappingPurpose) {
 }
 
 // GetState returns the State field value
-func (o *WrappingKey) GetState() string {
+func (o *WrappingKey) GetState() WrappingKeyState {
 	if o == nil {
-		var ret string
+		var ret WrappingKeyState
 		return ret
 	}
 
@@ -367,7 +366,7 @@ func (o *WrappingKey) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *WrappingKey) GetStateOk() (*string, bool) {
+func (o *WrappingKey) GetStateOk() (*WrappingKeyState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -375,7 +374,7 @@ func (o *WrappingKey) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *WrappingKey) SetState(v string) {
+func (o *WrappingKey) SetState(v WrappingKeyState) {
 	o.State = v
 }
 

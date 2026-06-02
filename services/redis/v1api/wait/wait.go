@@ -14,16 +14,34 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = redis.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = redis.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = redis.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = redis.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = redis.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = redis.INSTANCESTATUS_UPDATING
 
-	INSTANCELASTOPERATIONTYPE_CREATE = "create"
-	INSTANCELASTOPERATIONTYPE_UPDATE = "update"
-	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_CREATE = redis.INSTANCELASTOPERATIONTYPE_CREATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_UPDATE = redis.INSTANCELASTOPERATIONTYPE_UPDATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_DELETE = redis.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
 func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
@@ -65,10 +83,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != redis.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == redis.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

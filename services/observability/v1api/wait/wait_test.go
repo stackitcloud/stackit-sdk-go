@@ -16,7 +16,7 @@ import (
 
 type mockSettings struct {
 	getFails      bool
-	resourceState string
+	resourceState observability.Status
 	jobs          []observability.Job
 }
 
@@ -52,21 +52,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState observability.Status
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED,
+			resourceState: observability.STATUS_CREATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_CREATE_FAILED,
+			resourceState: observability.STATUS_CREATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -127,21 +127,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState observability.Status
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED,
+			resourceState: observability.STATUS_UPDATE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_UPDATE_FAILED,
+			resourceState: observability.STATUS_UPDATE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -195,21 +195,21 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState observability.Status
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED,
+			resourceState: observability.STATUS_DELETE_SUCCEEDED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
-			resourceState: GETINSTANCERESPONSESTATUS_DELETE_FAILED,
+			resourceState: observability.STATUS_DELETE_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -258,7 +258,6 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		})
 	}
 }
-
 func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc     string

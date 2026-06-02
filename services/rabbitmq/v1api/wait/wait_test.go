@@ -17,8 +17,8 @@ type mockSettings struct {
 	instanceGetFails                   bool
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
-	instanceResourceOperation          string
-	instanceResourceState              *string
+	instanceResourceOperation          rabbitmq.InstanceLastOperationType
+	instanceResourceState              *rabbitmq.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -35,7 +35,7 @@ func newAPIMock(settings *mockSettings) rabbitmq.DefaultAPI {
 					StatusCode: 500,
 				}
 			}
-			if settings.instanceResourceOperation == INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation == rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == rabbitmq.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &rabbitmq.Instance{
 						InstanceId: &settings.instanceResourceId,
@@ -80,28 +80,28 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *rabbitmq.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(rabbitmq.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(rabbitmq.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
 		{
 			desc:          "wrong state in response",
 			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("wrong state")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -114,7 +114,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -158,28 +158,28 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *rabbitmq.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(rabbitmq.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(rabbitmq.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
 		{
 			desc:          "wrong state in response",
 			getFails:      false,
-			resourceState: utils.Ptr("wrong state"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("wrong state")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -192,7 +192,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(rabbitmq.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -236,7 +236,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *rabbitmq.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -244,20 +244,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(rabbitmq.INSTANCESTATUS_ACTIVE),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             utils.Ptr(rabbitmq.INSTANCESTATUS_FAILED),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(rabbitmq.INSTANCESTATUS_ACTIVE),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
@@ -278,7 +278,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 					instanceGetFails:                   tt.getFails,
 					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 					instanceResourceId:                 instanceId,
-					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceOperation:          rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE,
 					instanceResourceDescription:        tt.resourceDescription,
 					instanceResourceState:              tt.resourceState,
 				})

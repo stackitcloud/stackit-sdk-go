@@ -10,17 +10,25 @@ import (
 )
 
 const (
-	SERVICESTATUSSTATE_ENABLED   = "ENABLED"
-	SERVICESTATUSSTATE_ENABLING  = "ENABLING"
-	SERVICESTATUSSTATE_DISABLED  = "DISABLED"
-	SERVICESTATUSSTATE_DISABLING = "DISABLING"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_ENABLED = serviceenablement.SERVICESTATUSSTATE_ENABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_ENABLING = serviceenablement.SERVICESTATUSSTATE_ENABLING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_DISABLED = serviceenablement.SERVICESTATUSSTATE_DISABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	SERVICESTATUSSTATE_DISABLING = serviceenablement.SERVICESTATUSSTATE_DISABLING
 )
 
 // EnableServiceWaitHandler will wait for service enablement
 func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAPI, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
-	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, string]{
+	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, serviceenablement.ServiceStatusState]{
 		FetchInstance: a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute,
-		GetState: func(s *serviceenablement.ServiceStatus) (string, error) {
+		GetState: func(s *serviceenablement.ServiceStatus) (serviceenablement.ServiceStatusState, error) {
 			if s == nil {
 				return "", errors.New("empty response")
 			}
@@ -29,8 +37,8 @@ func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAP
 			}
 			return *s.State, nil
 		},
-		ActiveState: []string{SERVICESTATUSSTATE_ENABLED},
-		ErrorState:  []string{SERVICESTATUSSTATE_DISABLED, SERVICESTATUSSTATE_DISABLING},
+		ActiveState: []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_ENABLED},
+		ErrorState:  []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_DISABLED, serviceenablement.SERVICESTATUSSTATE_DISABLING},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -40,9 +48,9 @@ func EnableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAP
 
 // DisableServiceWaitHandler will wait for service disablement
 func DisableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultAPI, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
-	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, string]{
+	waitConfig := wait.WaiterHelper[serviceenablement.ServiceStatus, serviceenablement.ServiceStatusState]{
 		FetchInstance: a.GetServiceStatusRegional(ctx, region, projectId, serviceId).Execute,
-		GetState: func(s *serviceenablement.ServiceStatus) (string, error) {
+		GetState: func(s *serviceenablement.ServiceStatus) (serviceenablement.ServiceStatusState, error) {
 			if s == nil {
 				return "", errors.New("empty response")
 			}
@@ -51,8 +59,8 @@ func DisableServiceWaitHandler(ctx context.Context, a serviceenablement.DefaultA
 			}
 			return *s.State, nil
 		},
-		ActiveState: []string{SERVICESTATUSSTATE_DISABLED},
-		ErrorState:  []string{SERVICESTATUSSTATE_ENABLED, SERVICESTATUSSTATE_ENABLING},
+		ActiveState: []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_DISABLED},
+		ErrorState:  []serviceenablement.ServiceStatusState{serviceenablement.SERVICESTATUSSTATE_ENABLED, serviceenablement.SERVICESTATUSSTATE_ENABLING},
 	}
 
 	handler := wait.New(waitConfig.Wait())

@@ -14,16 +14,34 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = opensearch.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = opensearch.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = opensearch.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = opensearch.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = opensearch.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = opensearch.INSTANCESTATUS_UPDATING
 
-	INSTANCELASTOPERATIONTYPE_CREATE = "create"
-	INSTANCELASTOPERATIONTYPE_UPDATE = "update"
-	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_CREATE = opensearch.INSTANCELASTOPERATIONTYPE_CREATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_UPDATE = opensearch.INSTANCELASTOPERATIONTYPE_UPDATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_DELETE = opensearch.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
@@ -44,10 +62,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a opensearch.DefaultAPI, pro
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != opensearch.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == opensearch.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}
@@ -113,9 +131,9 @@ func DeleteCredentialsWaitHandler(ctx context.Context, a opensearch.DefaultAPI, 
 }
 
 func createOrUpdateInstanceWaitHandler(ctx context.Context, a opensearch.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
-	waitConfig := wait.WaiterHelper[opensearch.Instance, string]{
+	waitConfig := wait.WaiterHelper[opensearch.Instance, opensearch.InstanceStatus]{
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(s *opensearch.Instance) (string, error) {
+		GetState: func(s *opensearch.Instance) (opensearch.InstanceStatus, error) {
 			if s == nil {
 				return "", errors.New("empty response")
 			}
@@ -124,8 +142,8 @@ func createOrUpdateInstanceWaitHandler(ctx context.Context, a opensearch.Default
 			}
 			return *s.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []opensearch.InstanceStatus{opensearch.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []opensearch.InstanceStatus{opensearch.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())

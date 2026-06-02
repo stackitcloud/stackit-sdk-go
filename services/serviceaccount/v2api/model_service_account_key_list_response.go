@@ -25,10 +25,10 @@ type ServiceAccountKeyListResponse struct {
 	// Creation time of the key
 	CreatedAt time.Time `json:"createdAt"`
 	// Unique ID of the key.
-	Id           string `json:"id"`
-	KeyAlgorithm string `json:"keyAlgorithm"`
-	KeyOrigin    string `json:"keyOrigin"`
-	KeyType      string `json:"keyType"`
+	Id           string                                    `json:"id"`
+	KeyAlgorithm ServiceAccountKeyListResponseKeyAlgorithm `json:"keyAlgorithm"`
+	KeyOrigin    ServiceAccountKeyListResponseKeyOrigin    `json:"keyOrigin"`
+	KeyType      ServiceAccountKeyListResponseKeyType      `json:"keyType"`
 	// If specified, the timestamp until the key is active. May be null
 	ValidUntil           *time.Time `json:"validUntil,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +40,7 @@ type _ServiceAccountKeyListResponse ServiceAccountKeyListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccountKeyListResponse(active bool, createdAt time.Time, id string, keyAlgorithm string, keyOrigin string, keyType string) *ServiceAccountKeyListResponse {
+func NewServiceAccountKeyListResponse(active bool, createdAt time.Time, id string, keyAlgorithm ServiceAccountKeyListResponseKeyAlgorithm, keyOrigin ServiceAccountKeyListResponseKeyOrigin, keyType ServiceAccountKeyListResponseKeyType) *ServiceAccountKeyListResponse {
 	this := ServiceAccountKeyListResponse{}
 	this.Active = active
 	this.CreatedAt = createdAt
@@ -132,9 +132,9 @@ func (o *ServiceAccountKeyListResponse) SetId(v string) {
 }
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
-func (o *ServiceAccountKeyListResponse) GetKeyAlgorithm() string {
+func (o *ServiceAccountKeyListResponse) GetKeyAlgorithm() ServiceAccountKeyListResponseKeyAlgorithm {
 	if o == nil {
-		var ret string
+		var ret ServiceAccountKeyListResponseKeyAlgorithm
 		return ret
 	}
 
@@ -143,7 +143,7 @@ func (o *ServiceAccountKeyListResponse) GetKeyAlgorithm() string {
 
 // GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
 // and a boolean to check if the value has been set.
-func (o *ServiceAccountKeyListResponse) GetKeyAlgorithmOk() (*string, bool) {
+func (o *ServiceAccountKeyListResponse) GetKeyAlgorithmOk() (*ServiceAccountKeyListResponseKeyAlgorithm, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,14 +151,14 @@ func (o *ServiceAccountKeyListResponse) GetKeyAlgorithmOk() (*string, bool) {
 }
 
 // SetKeyAlgorithm sets field value
-func (o *ServiceAccountKeyListResponse) SetKeyAlgorithm(v string) {
+func (o *ServiceAccountKeyListResponse) SetKeyAlgorithm(v ServiceAccountKeyListResponseKeyAlgorithm) {
 	o.KeyAlgorithm = v
 }
 
 // GetKeyOrigin returns the KeyOrigin field value
-func (o *ServiceAccountKeyListResponse) GetKeyOrigin() string {
+func (o *ServiceAccountKeyListResponse) GetKeyOrigin() ServiceAccountKeyListResponseKeyOrigin {
 	if o == nil {
-		var ret string
+		var ret ServiceAccountKeyListResponseKeyOrigin
 		return ret
 	}
 
@@ -167,7 +167,7 @@ func (o *ServiceAccountKeyListResponse) GetKeyOrigin() string {
 
 // GetKeyOriginOk returns a tuple with the KeyOrigin field value
 // and a boolean to check if the value has been set.
-func (o *ServiceAccountKeyListResponse) GetKeyOriginOk() (*string, bool) {
+func (o *ServiceAccountKeyListResponse) GetKeyOriginOk() (*ServiceAccountKeyListResponseKeyOrigin, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,14 +175,14 @@ func (o *ServiceAccountKeyListResponse) GetKeyOriginOk() (*string, bool) {
 }
 
 // SetKeyOrigin sets field value
-func (o *ServiceAccountKeyListResponse) SetKeyOrigin(v string) {
+func (o *ServiceAccountKeyListResponse) SetKeyOrigin(v ServiceAccountKeyListResponseKeyOrigin) {
 	o.KeyOrigin = v
 }
 
 // GetKeyType returns the KeyType field value
-func (o *ServiceAccountKeyListResponse) GetKeyType() string {
+func (o *ServiceAccountKeyListResponse) GetKeyType() ServiceAccountKeyListResponseKeyType {
 	if o == nil {
-		var ret string
+		var ret ServiceAccountKeyListResponseKeyType
 		return ret
 	}
 
@@ -191,7 +191,7 @@ func (o *ServiceAccountKeyListResponse) GetKeyType() string {
 
 // GetKeyTypeOk returns a tuple with the KeyType field value
 // and a boolean to check if the value has been set.
-func (o *ServiceAccountKeyListResponse) GetKeyTypeOk() (*string, bool) {
+func (o *ServiceAccountKeyListResponse) GetKeyTypeOk() (*ServiceAccountKeyListResponseKeyType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -199,7 +199,7 @@ func (o *ServiceAccountKeyListResponse) GetKeyTypeOk() (*string, bool) {
 }
 
 // SetKeyType sets field value
-func (o *ServiceAccountKeyListResponse) SetKeyType(v string) {
+func (o *ServiceAccountKeyListResponse) SetKeyType(v ServiceAccountKeyListResponseKeyType) {
 	o.KeyType = v
 }
 

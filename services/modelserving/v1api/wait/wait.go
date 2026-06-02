@@ -10,23 +10,31 @@ import (
 )
 
 const (
-	TOKENSTATE_CREATING = "creating"
-	TOKENSTATE_ACTIVE   = "active"
-	TOKENSTATE_DELETING = "deleting"
-	TOKENSTATE_INACTIVE = "inactive"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_CREATING = modelserving.TOKENSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_ACTIVE = modelserving.TOKENSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_DELETING = modelserving.TOKENSTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	TOKENSTATE_INACTIVE = modelserving.TOKENSTATE_INACTIVE
 )
 
 func CreateModelServingWaitHandler(ctx context.Context, a modelserving.DefaultAPI, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {
-	waitConfig := wait.WaiterHelper[modelserving.GetTokenResponse, string]{
+	waitConfig := wait.WaiterHelper[modelserving.GetTokenResponse, modelserving.TokenState]{
 		FetchInstance: a.GetToken(ctx, region, projectId, tokenId).Execute,
-		GetState: func(response *modelserving.GetTokenResponse) (string, error) {
+		GetState: func(response *modelserving.GetTokenResponse) (modelserving.TokenState, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
 			return response.Token.State, nil
 		},
-		ActiveState: []string{TOKENSTATE_ACTIVE},
-		ErrorState:  []string{},
+		ActiveState: []modelserving.TokenState{modelserving.TOKENSTATE_ACTIVE},
+		ErrorState:  []modelserving.TokenState{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -43,16 +51,16 @@ func UpdateModelServingWaitHandler(ctx context.Context, a modelserving.DefaultAP
 }
 
 func DeleteModelServingWaitHandler(ctx context.Context, a modelserving.DefaultAPI, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {
-	waitConfig := wait.WaiterHelper[modelserving.GetTokenResponse, string]{
+	waitConfig := wait.WaiterHelper[modelserving.GetTokenResponse, modelserving.TokenState]{
 		FetchInstance: a.GetToken(ctx, region, projectId, tokenId).Execute,
-		GetState: func(response *modelserving.GetTokenResponse) (string, error) {
+		GetState: func(response *modelserving.GetTokenResponse) (modelserving.TokenState, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
 			return response.Token.State, nil
 		},
-		ActiveState: []string{},
-		ErrorState:  []string{},
+		ActiveState: []modelserving.TokenState{},
+		ErrorState:  []modelserving.TokenState{},
 	}
 
 	handler := wait.New(waitConfig.Wait())

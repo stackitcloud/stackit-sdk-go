@@ -1,7 +1,7 @@
 /*
 STACKIT CDN API
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta2.0.0) is deprecated. Please migrate to the version (v1). API used to create and manage your CDN distributions.
 
 API version: 1beta2.0.0
 */
@@ -20,7 +20,7 @@ var _ MappedNullable = &GetLogsSearchFiltersResponse{}
 
 // GetLogsSearchFiltersResponse struct for GetLogsSearchFiltersResponse
 type GetLogsSearchFiltersResponse struct {
-	Cache      []string                                    `json:"cache"`
+	Cache      []GetLogsSearchFiltersResponseCacheInner    `json:"cache"`
 	DataCenter GetLogsSearchFiltersResponseDatacenterBlock `json:"dataCenter"`
 	// List of ISO-3166 Alpha2 Country Codes matching the input filter. Response is ordered in ascending order.  For more Info about the country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 	RemoteCountry []string `json:"remoteCountry"`
@@ -35,7 +35,7 @@ type _GetLogsSearchFiltersResponse GetLogsSearchFiltersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetLogsSearchFiltersResponse(cache []string, dataCenter GetLogsSearchFiltersResponseDatacenterBlock, remoteCountry []string, status []int32) *GetLogsSearchFiltersResponse {
+func NewGetLogsSearchFiltersResponse(cache []GetLogsSearchFiltersResponseCacheInner, dataCenter GetLogsSearchFiltersResponseDatacenterBlock, remoteCountry []string, status []int32) *GetLogsSearchFiltersResponse {
 	this := GetLogsSearchFiltersResponse{}
 	this.Cache = cache
 	this.DataCenter = dataCenter
@@ -53,9 +53,9 @@ func NewGetLogsSearchFiltersResponseWithDefaults() *GetLogsSearchFiltersResponse
 }
 
 // GetCache returns the Cache field value
-func (o *GetLogsSearchFiltersResponse) GetCache() []string {
+func (o *GetLogsSearchFiltersResponse) GetCache() []GetLogsSearchFiltersResponseCacheInner {
 	if o == nil {
-		var ret []string
+		var ret []GetLogsSearchFiltersResponseCacheInner
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *GetLogsSearchFiltersResponse) GetCache() []string {
 
 // GetCacheOk returns a tuple with the Cache field value
 // and a boolean to check if the value has been set.
-func (o *GetLogsSearchFiltersResponse) GetCacheOk() ([]string, bool) {
+func (o *GetLogsSearchFiltersResponse) GetCacheOk() ([]GetLogsSearchFiltersResponseCacheInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *GetLogsSearchFiltersResponse) GetCacheOk() ([]string, bool) {
 }
 
 // SetCache sets field value
-func (o *GetLogsSearchFiltersResponse) SetCache(v []string) {
+func (o *GetLogsSearchFiltersResponse) SetCache(v []GetLogsSearchFiltersResponseCacheInner) {
 	o.Cache = v
 }
 

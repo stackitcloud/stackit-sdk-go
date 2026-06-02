@@ -1,3 +1,6 @@
+## v1.12.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.11.0
 - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
 

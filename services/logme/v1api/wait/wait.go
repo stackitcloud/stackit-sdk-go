@@ -14,19 +14,31 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = logme.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = logme.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = logme.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = logme.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = logme.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = logme.INSTANCESTATUS_UPDATING
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+	waitConfig := wait.WaiterHelper[logme.Instance, logme.InstanceStatus]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *logme.Instance) (string, error) {
+		GetState: func(response *logme.Instance) (logme.InstanceStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -35,8 +47,8 @@ func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, pro
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []logme.InstanceStatus{logme.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []logme.InstanceStatus{logme.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -46,9 +58,9 @@ func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, pro
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
 func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+	waitConfig := wait.WaiterHelper[logme.Instance, logme.InstanceStatus]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *logme.Instance) (string, error) {
+		GetState: func(response *logme.Instance) (logme.InstanceStatus, error) {
 			if response == nil {
 				return "", errors.New("empty response")
 			}
@@ -57,8 +69,8 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultA
 			}
 			return *response.Status, nil
 		},
-		ActiveState: []string{INSTANCESTATUS_ACTIVE},
-		ErrorState:  []string{INSTANCESTATUS_FAILED},
+		ActiveState: []logme.InstanceStatus{logme.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []logme.InstanceStatus{logme.INSTANCESTATUS_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -74,10 +86,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != logme.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == logme.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

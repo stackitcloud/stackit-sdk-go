@@ -50,7 +50,7 @@ type DefaultAPIServiceMock struct {
 	UpdateGatewayConnectionExecuteMock *func(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateGateway(ctx context.Context, projectId string, region Region) ApiCreateGatewayRequest {
+func (a DefaultAPIServiceMock) CreateGateway(ctx context.Context, projectId string, region string) ApiCreateGatewayRequest {
 	return ApiCreateGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -69,7 +69,7 @@ func (a DefaultAPIServiceMock) CreateGatewayExecute(r ApiCreateGatewayRequest) (
 	return (*a.CreateGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) CreateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayConnectionRequest {
 	return ApiCreateGatewayConnectionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -89,7 +89,7 @@ func (a DefaultAPIServiceMock) CreateGatewayConnectionExecute(r ApiCreateGateway
 	return (*a.CreateGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteGatewayRequest {
+func (a DefaultAPIServiceMock) DeleteGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiDeleteGatewayRequest {
 	return ApiDeleteGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -108,7 +108,7 @@ func (a DefaultAPIServiceMock) DeleteGatewayExecute(r ApiDeleteGatewayRequest) e
 	return (*a.DeleteGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) DeleteGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
 	return ApiDeleteGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -128,7 +128,7 @@ func (a DefaultAPIServiceMock) DeleteGatewayConnectionExecute(r ApiDeleteGateway
 	return (*a.DeleteGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayRequest {
+func (a DefaultAPIServiceMock) GetGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayRequest {
 	return ApiGetGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -148,7 +148,7 @@ func (a DefaultAPIServiceMock) GetGatewayExecute(r ApiGetGatewayRequest) (*Gatew
 	return (*a.GetGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) GetGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
 	return ApiGetGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -169,7 +169,7 @@ func (a DefaultAPIServiceMock) GetGatewayConnectionExecute(r ApiGetGatewayConnec
 	return (*a.GetGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
+func (a DefaultAPIServiceMock) GetGatewayConnectionStatus(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
 	return ApiGetGatewayConnectionStatusRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -190,7 +190,7 @@ func (a DefaultAPIServiceMock) GetGatewayConnectionStatusExecute(r ApiGetGateway
 	return (*a.GetGatewayConnectionStatusExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayStatusRequest {
+func (a DefaultAPIServiceMock) GetGatewayStatus(ctx context.Context, projectId string, region string, gatewayId string) ApiGetGatewayStatusRequest {
 	return ApiGetGatewayStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -210,7 +210,7 @@ func (a DefaultAPIServiceMock) GetGatewayStatusExecute(r ApiGetGatewayStatusRequ
 	return (*a.GetGatewayStatusExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest {
+func (a DefaultAPIServiceMock) ListGatewayConnections(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayConnectionsRequest {
 	return ApiListGatewayConnectionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -230,7 +230,7 @@ func (a DefaultAPIServiceMock) ListGatewayConnectionsExecute(r ApiListGatewayCon
 	return (*a.ListGatewayConnectionsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListGateways(ctx context.Context, projectId string, region Region) ApiListGatewaysRequest {
+func (a DefaultAPIServiceMock) ListGateways(ctx context.Context, projectId string, region string) ApiListGatewaysRequest {
 	return ApiListGatewaysRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -249,7 +249,7 @@ func (a DefaultAPIServiceMock) ListGatewaysExecute(r ApiListGatewaysRequest) (*G
 	return (*a.ListGatewaysExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListPlans(ctx context.Context, region Region) ApiListPlansRequest {
+func (a DefaultAPIServiceMock) ListPlans(ctx context.Context, region string) ApiListPlansRequest {
 	return ApiListPlansRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -267,7 +267,7 @@ func (a DefaultAPIServiceMock) ListPlansExecute(r ApiListPlansRequest) (*PlanLis
 	return (*a.ListPlansExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListQuotas(ctx context.Context, projectId string, region Region) ApiListQuotasRequest {
+func (a DefaultAPIServiceMock) ListQuotas(ctx context.Context, projectId string, region string) ApiListQuotasRequest {
 	return ApiListQuotasRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -286,7 +286,7 @@ func (a DefaultAPIServiceMock) ListQuotasExecute(r ApiListQuotasRequest) (*Quota
 	return (*a.ListQuotasExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateGatewayRequest {
+func (a DefaultAPIServiceMock) UpdateGateway(ctx context.Context, projectId string, region string, gatewayId string) ApiUpdateGatewayRequest {
 	return ApiUpdateGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -306,7 +306,7 @@ func (a DefaultAPIServiceMock) UpdateGatewayExecute(r ApiUpdateGatewayRequest) (
 	return (*a.UpdateGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) UpdateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
 	return ApiUpdateGatewayConnectionRequest{
 		ApiService:   a,
 		ctx:          ctx,

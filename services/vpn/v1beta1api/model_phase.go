@@ -21,9 +21,9 @@ var _ MappedNullable = &Phase{}
 // Phase struct for Phase
 type Phase struct {
 	// The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.
-	DhGroups             []string `json:"dhGroups,omitempty"`
-	EncryptionAlgorithms []string `json:"encryptionAlgorithms"`
-	IntegrityAlgorithms  []string `json:"integrityAlgorithms"`
+	DhGroups             []PhaseDhGroupsInner             `json:"dhGroups,omitempty"`
+	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner `json:"encryptionAlgorithms"`
+	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner  `json:"integrityAlgorithms"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +33,7 @@ type _Phase Phase
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPhase(encryptionAlgorithms []string, integrityAlgorithms []string) *Phase {
+func NewPhase(encryptionAlgorithms []PhaseEncryptionAlgorithmsInner, integrityAlgorithms []PhaseIntegrityAlgorithmsInner) *Phase {
 	this := Phase{}
 	this.EncryptionAlgorithms = encryptionAlgorithms
 	this.IntegrityAlgorithms = integrityAlgorithms
@@ -49,9 +49,9 @@ func NewPhaseWithDefaults() *Phase {
 }
 
 // GetDhGroups returns the DhGroups field value if set, zero value otherwise.
-func (o *Phase) GetDhGroups() []string {
+func (o *Phase) GetDhGroups() []PhaseDhGroupsInner {
 	if o == nil || IsNil(o.DhGroups) {
-		var ret []string
+		var ret []PhaseDhGroupsInner
 		return ret
 	}
 	return o.DhGroups
@@ -59,7 +59,7 @@ func (o *Phase) GetDhGroups() []string {
 
 // GetDhGroupsOk returns a tuple with the DhGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Phase) GetDhGroupsOk() ([]string, bool) {
+func (o *Phase) GetDhGroupsOk() ([]PhaseDhGroupsInner, bool) {
 	if o == nil || IsNil(o.DhGroups) {
 		return nil, false
 	}
@@ -75,15 +75,15 @@ func (o *Phase) HasDhGroups() bool {
 	return false
 }
 
-// SetDhGroups gets a reference to the given []string and assigns it to the DhGroups field.
-func (o *Phase) SetDhGroups(v []string) {
+// SetDhGroups gets a reference to the given []PhaseDhGroupsInner and assigns it to the DhGroups field.
+func (o *Phase) SetDhGroups(v []PhaseDhGroupsInner) {
 	o.DhGroups = v
 }
 
 // GetEncryptionAlgorithms returns the EncryptionAlgorithms field value
-func (o *Phase) GetEncryptionAlgorithms() []string {
+func (o *Phase) GetEncryptionAlgorithms() []PhaseEncryptionAlgorithmsInner {
 	if o == nil {
-		var ret []string
+		var ret []PhaseEncryptionAlgorithmsInner
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *Phase) GetEncryptionAlgorithms() []string {
 
 // GetEncryptionAlgorithmsOk returns a tuple with the EncryptionAlgorithms field value
 // and a boolean to check if the value has been set.
-func (o *Phase) GetEncryptionAlgorithmsOk() ([]string, bool) {
+func (o *Phase) GetEncryptionAlgorithmsOk() ([]PhaseEncryptionAlgorithmsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,14 +100,14 @@ func (o *Phase) GetEncryptionAlgorithmsOk() ([]string, bool) {
 }
 
 // SetEncryptionAlgorithms sets field value
-func (o *Phase) SetEncryptionAlgorithms(v []string) {
+func (o *Phase) SetEncryptionAlgorithms(v []PhaseEncryptionAlgorithmsInner) {
 	o.EncryptionAlgorithms = v
 }
 
 // GetIntegrityAlgorithms returns the IntegrityAlgorithms field value
-func (o *Phase) GetIntegrityAlgorithms() []string {
+func (o *Phase) GetIntegrityAlgorithms() []PhaseIntegrityAlgorithmsInner {
 	if o == nil {
-		var ret []string
+		var ret []PhaseIntegrityAlgorithmsInner
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *Phase) GetIntegrityAlgorithms() []string {
 
 // GetIntegrityAlgorithmsOk returns a tuple with the IntegrityAlgorithms field value
 // and a boolean to check if the value has been set.
-func (o *Phase) GetIntegrityAlgorithmsOk() ([]string, bool) {
+func (o *Phase) GetIntegrityAlgorithmsOk() ([]PhaseIntegrityAlgorithmsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *Phase) GetIntegrityAlgorithmsOk() ([]string, bool) {
 }
 
 // SetIntegrityAlgorithms sets field value
-func (o *Phase) SetIntegrityAlgorithms(v []string) {
+func (o *Phase) SetIntegrityAlgorithms(v []PhaseIntegrityAlgorithmsInner) {
 	o.IntegrityAlgorithms = v
 }
 

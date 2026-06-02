@@ -11,26 +11,18 @@ import (
 	logs "github.com/stackitcloud/stackit-sdk-go/services/logs/v1api"
 )
 
-const (
-	instanceStatusActive   = "active"
-	instanceStatusDeleting = "deleting"
-)
-
 // CreateLogsInstanceWaitHandler will wait for logs instance creation
 func CreateLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
-	waitConfig := wait.WaiterHelper[logs.LogsInstance, string]{
+	waitConfig := wait.WaiterHelper[logs.LogsInstance, logs.LogsInstanceStatus]{
 		FetchInstance: client.GetLogsInstance(ctx, projectID, region, instanceID).Execute,
-		GetState: func(l *logs.LogsInstance) (string, error) {
+		GetState: func(l *logs.LogsInstance) (logs.LogsInstanceStatus, error) {
 			if l == nil {
 				return "", fmt.Errorf("empty response")
 			}
-			if l.Status == "" {
-				return "", fmt.Errorf("instance status is empty")
-			}
 			return l.Status, nil
 		},
-		ActiveState: []string{instanceStatusActive},
-		ErrorState:  []string{instanceStatusDeleting},
+		ActiveState: []logs.LogsInstanceStatus{logs.LOGSINSTANCESTATUS_ACTIVE},
+		ErrorState:  []logs.LogsInstanceStatus{logs.LOGSINSTANCESTATUS_DELETING},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -40,9 +32,9 @@ func CreateLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, 
 
 // DeleteLogsInstanceWaitHandler will wait for logs instance deletion
 func DeleteLogsInstanceWaitHandler(ctx context.Context, client logs.DefaultAPI, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
-	waitConfig := wait.WaiterHelper[logs.LogsInstance, string]{
+	waitConfig := wait.WaiterHelper[logs.LogsInstance, logs.LogsInstanceStatus]{
 		FetchInstance: client.GetLogsInstance(ctx, projectID, region, instanceID).Execute,
-		GetState: func(l *logs.LogsInstance) (string, error) {
+		GetState: func(l *logs.LogsInstance) (logs.LogsInstanceStatus, error) {
 			if l == nil {
 				return "", errors.New("empty response")
 			}

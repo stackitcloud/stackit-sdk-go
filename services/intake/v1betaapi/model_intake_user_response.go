@@ -31,10 +31,9 @@ type IntakeUserResponse struct {
 	// A auto generated unique id which identifies the resource.
 	Id string `json:"id"`
 	// Labels are a set of key-value pairs assigned to resources.
-	Labels map[string]string `json:"labels,omitempty"`
-	// The current state of the resource.
-	State string   `json:"state"`
-	Type  UserType `json:"type"`
+	Labels map[string]string       `json:"labels,omitempty"`
+	State  IntakeUserResponseState `json:"state"`
+	Type   UserType                `json:"type"`
 	// The user to connect to the intake.
 	User                 string `json:"user"`
 	AdditionalProperties map[string]interface{}
@@ -46,7 +45,7 @@ type _IntakeUserResponse IntakeUserResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntakeUserResponse(createTime time.Time, displayName string, id string, state string, types UserType, user string) *IntakeUserResponse {
+func NewIntakeUserResponse(createTime time.Time, displayName string, id string, state IntakeUserResponseState, types UserType, user string) *IntakeUserResponse {
 	this := IntakeUserResponse{}
 	this.CreateTime = createTime
 	this.DisplayName = displayName
@@ -237,9 +236,9 @@ func (o *IntakeUserResponse) SetLabels(v map[string]string) {
 }
 
 // GetState returns the State field value
-func (o *IntakeUserResponse) GetState() string {
+func (o *IntakeUserResponse) GetState() IntakeUserResponseState {
 	if o == nil {
-		var ret string
+		var ret IntakeUserResponseState
 		return ret
 	}
 
@@ -248,7 +247,7 @@ func (o *IntakeUserResponse) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *IntakeUserResponse) GetStateOk() (*string, bool) {
+func (o *IntakeUserResponse) GetStateOk() (*IntakeUserResponseState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -256,7 +255,7 @@ func (o *IntakeUserResponse) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *IntakeUserResponse) SetState(v string) {
+func (o *IntakeUserResponse) SetState(v IntakeUserResponseState) {
 	o.State = v
 }
 
