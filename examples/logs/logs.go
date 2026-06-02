@@ -63,7 +63,7 @@ func main() {
 	// Create an Access Token
 	createTokenPayload := logs.CreateAccessTokenPayload{
 		DisplayName: "my-access-token",
-		Permissions: []string{"read"},
+		Permissions: []logs.PermissionsInner{logs.PERMISSIONSINNER_READ},
 	}
 	createTokenResp, err := client.DefaultAPI.CreateAccessToken(ctx, projectId, regionId, createdInstance).
 		CreateAccessTokenPayload(createTokenPayload).

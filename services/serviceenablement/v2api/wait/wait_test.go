@@ -15,7 +15,7 @@ import (
 
 type mockSettings struct {
 	serviceId       string
-	serviceState    *string
+	serviceState    *serviceenablement.ServiceStatusState
 	getServiceFails bool
 }
 
@@ -40,42 +40,42 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc            string
 		getServiceFails bool
-		serviceState    *string
+		serviceState    *serviceenablement.ServiceStatusState
 		wantErr         bool
 		wantResp        bool
 	}{
 		{
 			desc:            "enable_succeeded",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_ENABLED),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_ENABLED),
 			wantErr:         false,
 			wantResp:        true,
 		},
 		{
 			desc:            "enable_failed",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_DISABLED),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_DISABLED),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "enable_failed_2",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_DISABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_DISABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "timeout",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_ENABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_ENABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "get_service_fails",
 			getServiceFails: true,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_ENABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_ENABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},
@@ -124,42 +124,42 @@ func TestDisableServiceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc            string
 		getServiceFails bool
-		serviceState    *string
+		serviceState    *serviceenablement.ServiceStatusState
 		wantErr         bool
 		wantResp        bool
 	}{
 		{
 			desc:            "disable_succeeded",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_DISABLED),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_DISABLED),
 			wantErr:         false,
 			wantResp:        true,
 		},
 		{
 			desc:            "disable_failed",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_ENABLED),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_ENABLED),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "disable_failed_2",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_ENABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_ENABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "timeout",
 			getServiceFails: false,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_DISABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_DISABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},
 		{
 			desc:            "get_service_fails",
 			getServiceFails: true,
-			serviceState:    utils.Ptr(SERVICESTATUSSTATE_DISABLING),
+			serviceState:    utils.Ptr(serviceenablement.SERVICESTATUSSTATE_DISABLING),
 			wantErr:         true,
 			wantResp:        false,
 		},

@@ -13,18 +13,38 @@ import (
 )
 
 const (
-	INTAKERESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERESPONSESTATE_ACTIVE      = "active"
-	INTAKERESPONSESTATE_DELETING    = "deleting"
-	INTAKERESPONSESTATE_FAILED      = "failed"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_RECONCILING = intake.INTAKERESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_ACTIVE = intake.INTAKERESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_DELETING = intake.INTAKERESPONSESTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_FAILED = intake.INTAKERESPONSESTATE_FAILED
 
-	INTAKERUNNERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERUNNERRESPONSESTATE_ACTIVE      = "active"
-	INTAKERUNNERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_RECONCILING = intake.INTAKERUNNERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_ACTIVE = intake.INTAKERUNNERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_DELETING = intake.INTAKERUNNERRESPONSESTATE_DELETING
 
-	INTAKEUSERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKEUSERRESPONSESTATE_ACTIVE      = "active"
-	INTAKEUSERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_RECONCILING = intake.INTAKEUSERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_ACTIVE = intake.INTAKEUSERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_DELETING = intake.INTAKEUSERRESPONSESTATE_DELETING
 )
 
 func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
@@ -38,7 +58,7 @@ func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.Default
 			return false, nil, fmt.Errorf("API returned a nil response for Intake Runner %s", intakeRunnerId)
 		}
 
-		if runner.Id == intakeRunnerId && runner.State == INTAKERUNNERRESPONSESTATE_ACTIVE {
+		if runner.Id == intakeRunnerId && runner.State == intake.INTAKERUNNERRESPONSESTATE_ACTIVE {
 			return true, runner, nil
 		}
 
@@ -83,11 +103,11 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, p
 			return false, nil, fmt.Errorf("API returned a nil response for Intake %s", intakeId)
 		}
 
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_ACTIVE {
+		if ik.Id == intakeId && ik.State == intake.INTAKERESPONSESTATE_ACTIVE {
 			return true, ik, nil
 		}
 
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_FAILED {
+		if ik.Id == intakeId && ik.State == intake.INTAKERESPONSESTATE_FAILED {
 			return true, ik, fmt.Errorf("create/update failed for Intake %s", intakeId)
 		}
 
@@ -127,7 +147,7 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAP
 			return false, nil, fmt.Errorf("API returned a nil response for Intake User %s", intakeUserId)
 		}
 
-		if user.Id == intakeUserId && user.State == INTAKEUSERRESPONSESTATE_ACTIVE {
+		if user.Id == intakeUserId && user.State == intake.INTAKEUSERRESPONSESTATE_ACTIVE {
 			return true, user, nil
 		}
 

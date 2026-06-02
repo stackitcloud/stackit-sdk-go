@@ -1,3 +1,6 @@
+## v0.3.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.2.1
 - **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler
 

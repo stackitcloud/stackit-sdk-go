@@ -20,8 +20,7 @@ var _ MappedNullable = &FeatureToggle{}
 
 // FeatureToggle Feature toggles for the instance.
 type FeatureToggle struct {
-	// Default email notifications.
-	DefaultEmailNotifications NullableString `json:"default_email_notifications,omitempty"`
+	DefaultEmailNotifications NullableFeatureToggleDefaultEmailNotifications `json:"default_email_notifications,omitempty"`
 	// Enable commit signatures.
 	EnableCommitSignatures NullableBool `json:"enable_commit_signatures,omitempty"`
 	// Enable local login.
@@ -49,9 +48,9 @@ func NewFeatureToggleWithDefaults() *FeatureToggle {
 }
 
 // GetDefaultEmailNotifications returns the DefaultEmailNotifications field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FeatureToggle) GetDefaultEmailNotifications() string {
+func (o *FeatureToggle) GetDefaultEmailNotifications() FeatureToggleDefaultEmailNotifications {
 	if o == nil || IsNil(o.DefaultEmailNotifications.Get()) {
-		var ret string
+		var ret FeatureToggleDefaultEmailNotifications
 		return ret
 	}
 	return *o.DefaultEmailNotifications.Get()
@@ -60,7 +59,7 @@ func (o *FeatureToggle) GetDefaultEmailNotifications() string {
 // GetDefaultEmailNotificationsOk returns a tuple with the DefaultEmailNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureToggle) GetDefaultEmailNotificationsOk() (*string, bool) {
+func (o *FeatureToggle) GetDefaultEmailNotificationsOk() (*FeatureToggleDefaultEmailNotifications, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,8 +75,8 @@ func (o *FeatureToggle) HasDefaultEmailNotifications() bool {
 	return false
 }
 
-// SetDefaultEmailNotifications gets a reference to the given NullableString and assigns it to the DefaultEmailNotifications field.
-func (o *FeatureToggle) SetDefaultEmailNotifications(v string) {
+// SetDefaultEmailNotifications gets a reference to the given NullableFeatureToggleDefaultEmailNotifications and assigns it to the DefaultEmailNotifications field.
+func (o *FeatureToggle) SetDefaultEmailNotifications(v FeatureToggleDefaultEmailNotifications) {
 	o.DefaultEmailNotifications.Set(&v)
 }
 

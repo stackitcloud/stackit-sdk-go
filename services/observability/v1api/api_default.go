@@ -2539,11 +2539,11 @@ type ApiCreateBackupRequest struct {
 	ApiService   DefaultAPI
 	instanceId   string
 	projectId    string
-	backupTarget *[]string
+	backupTarget *[]CreateBackupBackupTargetParameterInner
 }
 
 // List of backup targets
-func (r ApiCreateBackupRequest) BackupTarget(backupTarget []string) ApiCreateBackupRequest {
+func (r ApiCreateBackupRequest) BackupTarget(backupTarget []CreateBackupBackupTargetParameterInner) ApiCreateBackupRequest {
 	r.backupTarget = &backupTarget
 	return r
 }
@@ -2690,7 +2690,7 @@ type ApiCreateBackupScheduleRequest struct {
 	instanceId                  string
 	projectId                   string
 	createBackupSchedulePayload *CreateBackupSchedulePayload
-	backupTarget                *[]string
+	backupTarget                *[]CreateBackupScheduleBackupTargetParameterInner
 }
 
 func (r ApiCreateBackupScheduleRequest) CreateBackupSchedulePayload(createBackupSchedulePayload CreateBackupSchedulePayload) ApiCreateBackupScheduleRequest {
@@ -2699,7 +2699,7 @@ func (r ApiCreateBackupScheduleRequest) CreateBackupSchedulePayload(createBackup
 }
 
 // List of backup targets
-func (r ApiCreateBackupScheduleRequest) BackupTarget(backupTarget []string) ApiCreateBackupScheduleRequest {
+func (r ApiCreateBackupScheduleRequest) BackupTarget(backupTarget []CreateBackupScheduleBackupTargetParameterInner) ApiCreateBackupScheduleRequest {
 	r.backupTarget = &backupTarget
 	return r
 }
@@ -11486,11 +11486,11 @@ type ApiListBackupSchedulesRequest struct {
 	ApiService   DefaultAPI
 	instanceId   string
 	projectId    string
-	backupTarget *[]string
+	backupTarget *[]ListBackupSchedulesBackupTargetParameterInner
 }
 
 // List of backup targets
-func (r ApiListBackupSchedulesRequest) BackupTarget(backupTarget []string) ApiListBackupSchedulesRequest {
+func (r ApiListBackupSchedulesRequest) BackupTarget(backupTarget []ListBackupSchedulesBackupTargetParameterInner) ApiListBackupSchedulesRequest {
 	r.backupTarget = &backupTarget
 	return r
 }
@@ -11625,11 +11625,11 @@ type ApiListBackupsRequest struct {
 	ApiService   DefaultAPI
 	instanceId   string
 	projectId    string
-	backupTarget *[]string
+	backupTarget *[]ListBackupsBackupTargetParameterInner
 }
 
 // List of backup targets
-func (r ApiListBackupsRequest) BackupTarget(backupTarget []string) ApiListBackupsRequest {
+func (r ApiListBackupsRequest) BackupTarget(backupTarget []ListBackupsBackupTargetParameterInner) ApiListBackupsRequest {
 	r.backupTarget = &backupTarget
 	return r
 }
@@ -14561,11 +14561,11 @@ type ApiRestoreBackupRequest struct {
 	backupDate    string
 	instanceId    string
 	projectId     string
-	restoreTarget *string
+	restoreTarget *RestoreBackupRestoreTargetParameter
 }
 
 // List of restore targets
-func (r ApiRestoreBackupRequest) RestoreTarget(restoreTarget string) ApiRestoreBackupRequest {
+func (r ApiRestoreBackupRequest) RestoreTarget(restoreTarget RestoreBackupRestoreTargetParameter) ApiRestoreBackupRequest {
 	r.restoreTarget = &restoreTarget
 	return r
 }

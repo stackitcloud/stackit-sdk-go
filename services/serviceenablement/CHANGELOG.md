@@ -1,3 +1,6 @@
+## v1.7.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.6.0
 - **Improvement:** Use new WaiterHelper for serviceenablement waiters
 

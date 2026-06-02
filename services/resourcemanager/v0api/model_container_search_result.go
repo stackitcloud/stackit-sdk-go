@@ -21,9 +21,8 @@ var _ MappedNullable = &ContainerSearchResult{}
 // ContainerSearchResult struct for ContainerSearchResult
 type ContainerSearchResult struct {
 	// Globally unique user-friendly identifier.
-	ContainerId string `json:"containerId"`
-	// Resource container type.
-	ContainerType string `json:"containerType"`
+	ContainerId   string                             `json:"containerId"`
+	ContainerType ContainerSearchResultContainerType `json:"containerType"`
 	// Globally unique identifier.
 	Id             string          `json:"id"`
 	LifecycleState *LifecycleState `json:"lifecycleState,omitempty"`
@@ -40,7 +39,7 @@ type _ContainerSearchResult ContainerSearchResult
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerSearchResult(containerId string, containerType string, id string, name string) *ContainerSearchResult {
+func NewContainerSearchResult(containerId string, containerType ContainerSearchResultContainerType, id string, name string) *ContainerSearchResult {
 	this := ContainerSearchResult{}
 	this.ContainerId = containerId
 	this.ContainerType = containerType
@@ -82,9 +81,9 @@ func (o *ContainerSearchResult) SetContainerId(v string) {
 }
 
 // GetContainerType returns the ContainerType field value
-func (o *ContainerSearchResult) GetContainerType() string {
+func (o *ContainerSearchResult) GetContainerType() ContainerSearchResultContainerType {
 	if o == nil {
-		var ret string
+		var ret ContainerSearchResultContainerType
 		return ret
 	}
 
@@ -93,7 +92,7 @@ func (o *ContainerSearchResult) GetContainerType() string {
 
 // GetContainerTypeOk returns a tuple with the ContainerType field value
 // and a boolean to check if the value has been set.
-func (o *ContainerSearchResult) GetContainerTypeOk() (*string, bool) {
+func (o *ContainerSearchResult) GetContainerTypeOk() (*ContainerSearchResultContainerType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +100,7 @@ func (o *ContainerSearchResult) GetContainerTypeOk() (*string, bool) {
 }
 
 // SetContainerType sets field value
-func (o *ContainerSearchResult) SetContainerType(v string) {
+func (o *ContainerSearchResult) SetContainerType(v ContainerSearchResultContainerType) {
 	o.ContainerType = v
 }
 

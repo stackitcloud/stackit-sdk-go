@@ -19,8 +19,8 @@ type mockSettings struct {
 	instanceGetFails                   bool
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
-	instanceResourceOperation          string
-	instanceResourceState              *string
+	instanceResourceOperation          opensearch.InstanceLastOperationType
+	instanceResourceState              *opensearch.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -38,7 +38,7 @@ func newAPIMock(settings *mockSettings) opensearch.DefaultAPI {
 				}
 			}
 
-			if settings.instanceResourceOperation == INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation == opensearch.INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == opensearch.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &opensearch.Instance{
 						InstanceId: &settings.instanceResourceId,
@@ -83,21 +83,21 @@ func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *opensearch.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(opensearch.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(opensearch.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -110,7 +110,7 @@ func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(opensearch.InstanceStatus("ANOTHER_STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -163,7 +163,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *opensearch.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -171,20 +171,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(opensearch.INSTANCESTATUS_ACTIVE),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             utils.Ptr(opensearch.INSTANCESTATUS_FAILED),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(opensearch.INSTANCESTATUS_ACTIVE),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
@@ -205,7 +205,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 					instanceGetFails:                   tt.getFails,
 					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 					instanceResourceId:                 instanceId,
-					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceOperation:          opensearch.INSTANCELASTOPERATIONTYPE_DELETE,
 					instanceResourceDescription:        tt.resourceDescription,
 					instanceResourceState:              tt.resourceState,
 				})

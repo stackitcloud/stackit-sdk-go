@@ -61,17 +61,14 @@ type Zone struct {
 	// retry time
 	RetryTime int32 `json:"retryTime"`
 	// serial number
-	SerialNumber int32 `json:"serialNumber"`
-	// zone state
-	State string `json:"state"`
-	// zone type
-	Type string `json:"type"`
+	SerialNumber int32     `json:"serialNumber"`
+	State        ZoneState `json:"state"`
+	Type         ZoneType  `json:"type"`
 	// when zone update/deletion finished
 	UpdateFinished string `json:"updateFinished"`
 	// when zone update/deletion started
-	UpdateStarted string `json:"updateStarted"`
-	// visibility of the zone
-	Visibility           string `json:"visibility"`
+	UpdateStarted        string         `json:"updateStarted"`
+	Visibility           ZoneVisibility `json:"visibility"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,7 +78,7 @@ type _Zone Zone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZone(acl string, creationFinished string, creationStarted string, defaultTTL int32, dnsName string, expireTime int32, id string, name string, negativeCache int32, primaryNameServer string, refreshTime int32, retryTime int32, serialNumber int32, state string, types string, updateFinished string, updateStarted string, visibility string) *Zone {
+func NewZone(acl string, creationFinished string, creationStarted string, defaultTTL int32, dnsName string, expireTime int32, id string, name string, negativeCache int32, primaryNameServer string, refreshTime int32, retryTime int32, serialNumber int32, state ZoneState, types ZoneType, updateFinished string, updateStarted string, visibility ZoneVisibility) *Zone {
 	this := Zone{}
 	this.Acl = acl
 	this.CreationFinished = creationFinished
@@ -713,9 +710,9 @@ func (o *Zone) SetSerialNumber(v int32) {
 }
 
 // GetState returns the State field value
-func (o *Zone) GetState() string {
+func (o *Zone) GetState() ZoneState {
 	if o == nil {
-		var ret string
+		var ret ZoneState
 		return ret
 	}
 
@@ -724,7 +721,7 @@ func (o *Zone) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetStateOk() (*string, bool) {
+func (o *Zone) GetStateOk() (*ZoneState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -732,14 +729,14 @@ func (o *Zone) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Zone) SetState(v string) {
+func (o *Zone) SetState(v ZoneState) {
 	o.State = v
 }
 
 // GetType returns the Type field value
-func (o *Zone) GetType() string {
+func (o *Zone) GetType() ZoneType {
 	if o == nil {
-		var ret string
+		var ret ZoneType
 		return ret
 	}
 
@@ -748,7 +745,7 @@ func (o *Zone) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetTypeOk() (*string, bool) {
+func (o *Zone) GetTypeOk() (*ZoneType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -756,7 +753,7 @@ func (o *Zone) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Zone) SetType(v string) {
+func (o *Zone) SetType(v ZoneType) {
 	o.Type = v
 }
 
@@ -809,9 +806,9 @@ func (o *Zone) SetUpdateStarted(v string) {
 }
 
 // GetVisibility returns the Visibility field value
-func (o *Zone) GetVisibility() string {
+func (o *Zone) GetVisibility() ZoneVisibility {
 	if o == nil {
-		var ret string
+		var ret ZoneVisibility
 		return ret
 	}
 
@@ -820,7 +817,7 @@ func (o *Zone) GetVisibility() string {
 
 // GetVisibilityOk returns a tuple with the Visibility field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetVisibilityOk() (*string, bool) {
+func (o *Zone) GetVisibilityOk() (*ZoneVisibility, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -828,7 +825,7 @@ func (o *Zone) GetVisibilityOk() (*string, bool) {
 }
 
 // SetVisibility sets field value
-func (o *Zone) SetVisibility(v string) {
+func (o *Zone) SetVisibility(v ZoneVisibility) {
 	o.Visibility = v
 }
 

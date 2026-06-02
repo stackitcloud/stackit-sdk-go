@@ -23,10 +23,9 @@ type Domain struct {
 	// This object is present if the custom domain has errors.
 	Errors []StatusError `json:"errors,omitempty"`
 	// The domain. If this is a custom domain, you can call the GetCustomDomain Endpoint
-	Name   string       `json:"name"`
-	Status DomainStatus `json:"status"`
-	// Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
-	Type                 string `json:"type"`
+	Name                 string       `json:"name"`
+	Status               DomainStatus `json:"status"`
+	Type                 DomainType   `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +35,7 @@ type _Domain Domain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDomain(name string, status DomainStatus, types string) *Domain {
+func NewDomain(name string, status DomainStatus, types DomainType) *Domain {
 	this := Domain{}
 	this.Name = name
 	this.Status = status
@@ -133,9 +132,9 @@ func (o *Domain) SetStatus(v DomainStatus) {
 }
 
 // GetType returns the Type field value
-func (o *Domain) GetType() string {
+func (o *Domain) GetType() DomainType {
 	if o == nil {
-		var ret string
+		var ret DomainType
 		return ret
 	}
 
@@ -144,7 +143,7 @@ func (o *Domain) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Domain) GetTypeOk() (*string, bool) {
+func (o *Domain) GetTypeOk() (*DomainType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -152,7 +151,7 @@ func (o *Domain) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Domain) SetType(v string) {
+func (o *Domain) SetType(v DomainType) {
 	o.Type = v
 }
 

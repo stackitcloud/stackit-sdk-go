@@ -1,3 +1,6 @@
+## v0.29.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.28.0
 - **Improvement:** Use new WaiterHelper for opensearch waiters
 

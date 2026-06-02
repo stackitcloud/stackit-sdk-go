@@ -19,7 +19,7 @@ var _ MappedNullable = &CRI{}
 
 // CRI struct for CRI
 type CRI struct {
-	Name                 *string `json:"name,omitempty"`
+	Name                 *NameOfTheCriLibrary `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,9 +43,9 @@ func NewCRIWithDefaults() *CRI {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CRI) GetName() string {
+func (o *CRI) GetName() NameOfTheCriLibrary {
 	if o == nil || IsNil(o.Name) {
-		var ret string
+		var ret NameOfTheCriLibrary
 		return ret
 	}
 	return *o.Name
@@ -53,7 +53,7 @@ func (o *CRI) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CRI) GetNameOk() (*string, bool) {
+func (o *CRI) GetNameOk() (*NameOfTheCriLibrary, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *CRI) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CRI) SetName(v string) {
+// SetName gets a reference to the given NameOfTheCriLibrary and assigns it to the Name field.
+func (o *CRI) SetName(v NameOfTheCriLibrary) {
 	o.Name = &v
 }
 
