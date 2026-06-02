@@ -181,7 +181,7 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			authServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				err := r.ParseForm()
+				err := r.ParseForm() //nolint:gosec // G120: Safe to bypass inside unit tests
 				if err != nil {
 					t.Fatalf("failed to parse form: %v", err)
 				}

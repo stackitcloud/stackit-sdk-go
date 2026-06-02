@@ -52,18 +52,21 @@ const (
 )
 
 // Interface needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*rabbitmq.Instance, error)
 }
 
 // Interface needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientCredentialsInterface interface {
 	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*rabbitmq.CredentialsResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
@@ -91,6 +94,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
@@ -118,6 +122,7 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
@@ -151,6 +156,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // CreateCredentialsWaitHandler will wait for credentials creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[rabbitmq.CredentialsResponse] {
 	handler := wait.New(func() (waitFinished bool, response *rabbitmq.CredentialsResponse, err error) {
@@ -176,6 +182,7 @@ func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInt
 }
 
 // DeleteCredentialsWaitHandler will wait for credentials deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {

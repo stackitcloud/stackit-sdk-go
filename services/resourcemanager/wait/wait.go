@@ -13,12 +13,14 @@ import (
 )
 
 // Interfaces needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetProjectExecute(ctx context.Context, containerId string) (*resourcemanager.GetProjectResponse, error)
 }
 
 // CreateProjectWaitHandler will wait for project creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.GetProjectResponse] {
 	handler := wait.New(func() (waitFinished bool, response *resourcemanager.GetProjectResponse, err error) {
@@ -43,6 +45,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 }
 
 // DeleteProjectWaitHandler will wait for project deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
