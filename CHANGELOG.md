@@ -76,6 +76,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.17.0](services/cdn/CHANGELOG.md#v1170)
     - **Feature:** Introduce enums for various attributes
+  - [v1.18.0](services/cdn/CHANGELOG.md#v1180)
+    - `v1beta2api`: v1beta2api was deprecated please migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
