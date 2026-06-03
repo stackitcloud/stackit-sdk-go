@@ -199,6 +199,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v0.10.0](services/intake/CHANGELOG.md#v0100)
     - **Feature:** Introduce enums for various attributes
+  - [v0.11.0](services/intake/CHANGELOG.md#v0110)
+    - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler    
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
