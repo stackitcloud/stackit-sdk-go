@@ -33,6 +33,7 @@ type ClusterStatus struct {
 	Identity            *string           `json:"identity,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
 	PodAddressRanges     []string `json:"podAddressRanges,omitempty"`
+	ServiceAccountIssuer *string  `json:"serviceAccountIssuer,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -375,6 +376,38 @@ func (o *ClusterStatus) SetPodAddressRanges(v []string) {
 	o.PodAddressRanges = v
 }
 
+// GetServiceAccountIssuer returns the ServiceAccountIssuer field value if set, zero value otherwise.
+func (o *ClusterStatus) GetServiceAccountIssuer() string {
+	if o == nil || IsNil(o.ServiceAccountIssuer) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceAccountIssuer
+}
+
+// GetServiceAccountIssuerOk returns a tuple with the ServiceAccountIssuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetServiceAccountIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.ServiceAccountIssuer) {
+		return nil, false
+	}
+	return o.ServiceAccountIssuer, true
+}
+
+// HasServiceAccountIssuer returns a boolean if a field has been set.
+func (o *ClusterStatus) HasServiceAccountIssuer() bool {
+	if o != nil && !IsNil(o.ServiceAccountIssuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountIssuer gets a reference to the given string and assigns it to the ServiceAccountIssuer field.
+func (o *ClusterStatus) SetServiceAccountIssuer(v string) {
+	o.ServiceAccountIssuer = &v
+}
+
 func (o ClusterStatus) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -415,6 +448,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PodAddressRanges) {
 		toSerialize["podAddressRanges"] = o.PodAddressRanges
 	}
+	if !IsNil(o.ServiceAccountIssuer) {
+		toSerialize["serviceAccountIssuer"] = o.ServiceAccountIssuer
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -447,6 +483,7 @@ func (o *ClusterStatus) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hibernated")
 		delete(additionalProperties, "identity")
 		delete(additionalProperties, "podAddressRanges")
+		delete(additionalProperties, "serviceAccountIssuer")
 		o.AdditionalProperties = additionalProperties
 	}
 
