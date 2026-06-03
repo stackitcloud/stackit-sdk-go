@@ -183,6 +183,9 @@
       - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
   - [v1.12.1](services/iaas/CHANGELOG.md#v1121)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.23.0` to `v0.24.0`
+  - [v1.12.2](services/iaas/CHANGELOG.md#v1122)
+    - `v2api`
+      - **Improvement**: fix `DeleteVolumeWaitHandler` error message
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
