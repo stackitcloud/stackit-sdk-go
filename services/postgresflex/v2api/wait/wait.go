@@ -95,22 +95,24 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.D
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
-	waitConfig := wait.WaiterHelper[postgresflex.InstanceResponse, string]{
-		FetchInstance: client.GetInstance(ctx, projectId, instanceId, region).Execute,
-		GetState: func(response *postgresflex.InstanceResponse) (string, error) {
-			if response == nil {
-				return "", errors.New("empty response")
-			}
-			if response.Item.Status == nil {
-				return "", errors.New("status is missing in response")
-			}
-			return *response.Item.Status, nil
-		},
-		ActiveState: []string{InstanceStateDeleted},
-		ErrorState:  []string{InstanceStateFailed},
-	}
-	handler := wait.New(waitConfig.Wait())
+func DeleteInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
+		if err != nil {
+			return false, nil, err
+		}
+		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+			return false, nil, nil
+		}
+		switch *s.Item.Status {
+		default:
+			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+		case InstanceStateSuccess:
+			return false, nil, nil
+		case InstanceStateDeleted:
+			return true, nil, nil
+		}
+	})
 	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
