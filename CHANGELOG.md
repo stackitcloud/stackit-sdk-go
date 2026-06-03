@@ -635,6 +635,9 @@
       - **Improvement:** Add description that `RoutingType` can only be set at the creation
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+- `workflows`:
+  - [v0.1.0](services/workflows/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Workflows
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
