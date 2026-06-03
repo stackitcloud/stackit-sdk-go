@@ -226,7 +226,7 @@ func DeleteVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 		FetchInstance: a.GetVolume(ctx, projectId, region, volumeId).Execute,
 		GetState: func(i *iaas.Volume) (string, error) {
 			if i.Id == nil || i.Status == nil {
-				return "", fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
+				return "", fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 			}
 			return *i.Status, nil
 		},
