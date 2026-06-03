@@ -1,3 +1,6 @@
+## v1.17.0
+- **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
+
 ## v1.16.0
 - **Feature:** Introduce enums for various attributes
 
