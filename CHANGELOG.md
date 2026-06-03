@@ -183,6 +183,9 @@
       - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
   - [v1.12.1](services/iaas/CHANGELOG.md#v1121)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.23.0` to `v0.24.0`
+  - [v1.12.2](services/iaas/CHANGELOG.md#v1122)
+    - `v2api`
+      - **Improvement**: fix `DeleteVolumeWaitHandler` error message
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -325,6 +328,8 @@
     - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
   - [v0.23.0](services/observability/CHANGELOG.md#v0230)
     - **Feature:** Introduce enums for various attributes
+  - [v0.24.0](services/observability/CHANGELOG.md#v0240)
+    - **Improvement:** Use new WaiterHelper for observability waiters
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -533,6 +538,8 @@
       - **Feature:** New field `GatewayApi` in `DNS` model struct
   - [v1.16.0](services/ske/CHANGELOG.md#v1160)
     - **Feature:** Introduce enums for various attributes
+  - [v1.17.0](services/ske/CHANGELOG.md#v1170)
+    - **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
