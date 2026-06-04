@@ -39,6 +39,7 @@ use (
 	./examples/telemetryrouter
 	./examples/vpn
 	./examples/waiter
+	./examples/workflows
 	./services/alb
 	./services/albwaf
 	./services/archiving
