@@ -39,6 +39,7 @@
     - "services/dremio/*"
     - "services/modelexperiments/*"
     - "services/ufw/*"
+    - "services/workflows/*"
 # databases
 "domain:Databases":
 - changed-files:
