@@ -199,6 +199,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v0.10.0](services/intake/CHANGELOG.md#v0100)
     - **Feature:** Introduce enums for various attributes
+  - [v0.11.0](services/intake/CHANGELOG.md#v0110)
+    - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler    
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -379,7 +381,9 @@
   - [v0.28.2](services/redis/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.29.0](services/redis/CHANGELOG.md#v0290)
-    - **Feature:** Introduce enums for various attributes
+    - **Feature:** Introduce enums for various attributes    
+  - [v0.30.0](services/redis/CHANGELOG.md#v0300)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the Redis WaitHandler
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
