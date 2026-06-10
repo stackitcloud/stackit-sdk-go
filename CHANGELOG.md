@@ -306,6 +306,8 @@
     - `v1api`:
       - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
 - `modelexperiments`:
+  - [v.0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **New**: STACKIT Model Experiments module wait handler added.
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
 - `modelserving`:
