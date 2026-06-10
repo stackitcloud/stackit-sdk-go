@@ -249,6 +249,10 @@ type DefaultAPIServiceMock struct {
 	UpdateAttachedVolumeExecuteMock *func(r ApiUpdateAttachedVolumeRequest) (*VolumeAttachment, error)
 	// UpdateImageExecuteMock can be populated to implement the behavior of the UpdateImageExecute function of this mock
 	UpdateImageExecuteMock *func(r ApiUpdateImageRequest) (*Image, error)
+	// UpdateImageScopeLocalExecuteMock can be populated to implement the behavior of the UpdateImageScopeLocalExecute function of this mock
+	UpdateImageScopeLocalExecuteMock *func(r ApiUpdateImageScopeLocalRequest) (*Image, error)
+	// UpdateImageScopePublicExecuteMock can be populated to implement the behavior of the UpdateImageScopePublicExecute function of this mock
+	UpdateImageScopePublicExecuteMock *func(r ApiUpdateImageScopePublicRequest) (*Image, error)
 	// UpdateImageShareExecuteMock can be populated to implement the behavior of the UpdateImageShareExecute function of this mock
 	UpdateImageShareExecuteMock *func(r ApiUpdateImageShareRequest) (*ImageShare, error)
 	// UpdateKeyPairExecuteMock can be populated to implement the behavior of the UpdateKeyPairExecute function of this mock
@@ -265,28 +269,28 @@ type DefaultAPIServiceMock struct {
 	UpdateServerExecuteMock *func(r ApiUpdateServerRequest) (*Server, error)
 	// UpdateVolumeExecuteMock can be populated to implement the behavior of the UpdateVolumeExecute function of this mock
 	UpdateVolumeExecuteMock *func(r ApiUpdateVolumeRequest) (*Volume, error)
-	// V2beta1ConfigureNetworkAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1ConfigureNetworkAreaRegionExecute function of this mock
-	V2beta1ConfigureNetworkAreaRegionExecuteMock *func(r ApiV2beta1ConfigureNetworkAreaRegionRequest) (*RegionalArea, error)
+	// V2beta1CreateNetworkAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1CreateNetworkAreaRegionExecute function of this mock
+	V2beta1CreateNetworkAreaRegionExecuteMock *func(r ApiV2beta1CreateNetworkAreaRegionRequest) (*RegionalArea, error)
 	// V2beta1CreateSnapshotExecuteMock can be populated to implement the behavior of the V2beta1CreateSnapshotExecute function of this mock
 	V2beta1CreateSnapshotExecuteMock *func(r ApiV2beta1CreateSnapshotRequest) (*Snapshot, error)
 	// V2beta1DeleteNetworkAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1DeleteNetworkAreaRegionExecute function of this mock
 	V2beta1DeleteNetworkAreaRegionExecuteMock *func(r ApiV2beta1DeleteNetworkAreaRegionRequest) error
 	// V2beta1DeleteSnapshotExecuteMock can be populated to implement the behavior of the V2beta1DeleteSnapshotExecute function of this mock
 	V2beta1DeleteSnapshotExecuteMock *func(r ApiV2beta1DeleteSnapshotRequest) error
-	// V2beta1GetAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1GetAreaRegionExecute function of this mock
-	V2beta1GetAreaRegionExecuteMock *func(r ApiV2beta1GetAreaRegionRequest) (*RegionalArea, error)
+	// V2beta1GetNetworkAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1GetNetworkAreaRegionExecute function of this mock
+	V2beta1GetNetworkAreaRegionExecuteMock *func(r ApiV2beta1GetNetworkAreaRegionRequest) (*RegionalArea, error)
 	// V2beta1GetSnapshotExecuteMock can be populated to implement the behavior of the V2beta1GetSnapshotExecute function of this mock
 	V2beta1GetSnapshotExecuteMock *func(r ApiV2beta1GetSnapshotRequest) (*Snapshot, error)
-	// V2beta1ListAreaRegionsExecuteMock can be populated to implement the behavior of the V2beta1ListAreaRegionsExecute function of this mock
-	V2beta1ListAreaRegionsExecuteMock *func(r ApiV2beta1ListAreaRegionsRequest) (*RegionalAreaListResponse, error)
-	// V2beta1ListSnapshotsInProjectExecuteMock can be populated to implement the behavior of the V2beta1ListSnapshotsInProjectExecute function of this mock
-	V2beta1ListSnapshotsInProjectExecuteMock *func(r ApiV2beta1ListSnapshotsInProjectRequest) (*SnapshotListResponse, error)
+	// V2beta1ListNetworkAreaRegionsExecuteMock can be populated to implement the behavior of the V2beta1ListNetworkAreaRegionsExecute function of this mock
+	V2beta1ListNetworkAreaRegionsExecuteMock *func(r ApiV2beta1ListNetworkAreaRegionsRequest) (*RegionalAreaListResponse, error)
+	// V2beta1ListSnapshotsExecuteMock can be populated to implement the behavior of the V2beta1ListSnapshotsExecute function of this mock
+	V2beta1ListSnapshotsExecuteMock *func(r ApiV2beta1ListSnapshotsRequest) (*SnapshotListResponse, error)
 	// V2beta1UpdateBackupExecuteMock can be populated to implement the behavior of the V2beta1UpdateBackupExecute function of this mock
 	V2beta1UpdateBackupExecuteMock *func(r ApiV2beta1UpdateBackupRequest) (*Backup, error)
 	// V2beta1UpdateNetworkAreaRegionExecuteMock can be populated to implement the behavior of the V2beta1UpdateNetworkAreaRegionExecute function of this mock
 	V2beta1UpdateNetworkAreaRegionExecuteMock *func(r ApiV2beta1UpdateNetworkAreaRegionRequest) (*RegionalArea, error)
-	// V2beta1UpdateRouteOfAreaExecuteMock can be populated to implement the behavior of the V2beta1UpdateRouteOfAreaExecute function of this mock
-	V2beta1UpdateRouteOfAreaExecuteMock *func(r ApiV2beta1UpdateRouteOfAreaRequest) (*Route, error)
+	// V2beta1UpdateNetworkAreaRouteExecuteMock can be populated to implement the behavior of the V2beta1UpdateNetworkAreaRouteExecute function of this mock
+	V2beta1UpdateNetworkAreaRouteExecuteMock *func(r ApiV2beta1UpdateNetworkAreaRouteRequest) (*Route, error)
 	// V2beta1UpdateSecurityGroupExecuteMock can be populated to implement the behavior of the V2beta1UpdateSecurityGroupExecute function of this mock
 	V2beta1UpdateSecurityGroupExecuteMock *func(r ApiV2beta1UpdateSecurityGroupRequest) (*SecurityGroup, error)
 	// V2beta1UpdateSnapshotExecuteMock can be populated to implement the behavior of the V2beta1UpdateSnapshotExecute function of this mock
@@ -2521,6 +2525,46 @@ func (a DefaultAPIServiceMock) UpdateImageExecute(r ApiUpdateImageRequest) (*Ima
 	return (*a.UpdateImageExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest {
+	return ApiUpdateImageScopeLocalRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// UpdateImageScopeLocalExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateImageScopeLocalExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error) {
+	if a.UpdateImageScopeLocalExecuteMock == nil {
+		var localVarReturnValue *Image
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateImageScopeLocalExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest {
+	return ApiUpdateImageScopePublicRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// UpdateImageScopePublicExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateImageScopePublicExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error) {
+	if a.UpdateImageScopePublicExecuteMock == nil {
+		var localVarReturnValue *Image
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateImageScopePublicExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) UpdateImageShare(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageShareRequest {
 	return ApiUpdateImageShareRequest{
 		ApiService: a,
@@ -2683,8 +2727,8 @@ func (a DefaultAPIServiceMock) UpdateVolumeExecute(r ApiUpdateVolumeRequest) (*V
 	return (*a.UpdateVolumeExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) V2beta1ConfigureNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1ConfigureNetworkAreaRegionRequest {
-	return ApiV2beta1ConfigureNetworkAreaRegionRequest{
+func (a DefaultAPIServiceMock) V2beta1CreateNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1CreateNetworkAreaRegionRequest {
+	return ApiV2beta1CreateNetworkAreaRegionRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -2693,14 +2737,14 @@ func (a DefaultAPIServiceMock) V2beta1ConfigureNetworkAreaRegion(ctx context.Con
 	}
 }
 
-// V2beta1ConfigureNetworkAreaRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1ConfigureNetworkAreaRegionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta1ConfigureNetworkAreaRegionRequest) (*RegionalArea, error) {
-	if a.V2beta1ConfigureNetworkAreaRegionExecuteMock == nil {
+// V2beta1CreateNetworkAreaRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1CreateNetworkAreaRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) V2beta1CreateNetworkAreaRegionExecute(r ApiV2beta1CreateNetworkAreaRegionRequest) (*RegionalArea, error) {
+	if a.V2beta1CreateNetworkAreaRegionExecuteMock == nil {
 		var localVarReturnValue *RegionalArea
 		return localVarReturnValue, nil
 	}
 
-	return (*a.V2beta1ConfigureNetworkAreaRegionExecuteMock)(r)
+	return (*a.V2beta1CreateNetworkAreaRegionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) V2beta1CreateSnapshot(ctx context.Context, projectId string, region string) ApiV2beta1CreateSnapshotRequest {
@@ -2760,8 +2804,8 @@ func (a DefaultAPIServiceMock) V2beta1DeleteSnapshotExecute(r ApiV2beta1DeleteSn
 	return (*a.V2beta1DeleteSnapshotExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) V2beta1GetAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetAreaRegionRequest {
-	return ApiV2beta1GetAreaRegionRequest{
+func (a DefaultAPIServiceMock) V2beta1GetNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetNetworkAreaRegionRequest {
+	return ApiV2beta1GetNetworkAreaRegionRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -2770,14 +2814,14 @@ func (a DefaultAPIServiceMock) V2beta1GetAreaRegion(ctx context.Context, organiz
 	}
 }
 
-// V2beta1GetAreaRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1GetAreaRegionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) V2beta1GetAreaRegionExecute(r ApiV2beta1GetAreaRegionRequest) (*RegionalArea, error) {
-	if a.V2beta1GetAreaRegionExecuteMock == nil {
+// V2beta1GetNetworkAreaRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1GetNetworkAreaRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) V2beta1GetNetworkAreaRegionExecute(r ApiV2beta1GetNetworkAreaRegionRequest) (*RegionalArea, error) {
+	if a.V2beta1GetNetworkAreaRegionExecuteMock == nil {
 		var localVarReturnValue *RegionalArea
 		return localVarReturnValue, nil
 	}
 
-	return (*a.V2beta1GetAreaRegionExecuteMock)(r)
+	return (*a.V2beta1GetNetworkAreaRegionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) V2beta1GetSnapshot(ctx context.Context, projectId string, region string, snapshotId string) ApiV2beta1GetSnapshotRequest {
@@ -2800,8 +2844,8 @@ func (a DefaultAPIServiceMock) V2beta1GetSnapshotExecute(r ApiV2beta1GetSnapshot
 	return (*a.V2beta1GetSnapshotExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) V2beta1ListAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListAreaRegionsRequest {
-	return ApiV2beta1ListAreaRegionsRequest{
+func (a DefaultAPIServiceMock) V2beta1ListNetworkAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListNetworkAreaRegionsRequest {
+	return ApiV2beta1ListNetworkAreaRegionsRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -2809,18 +2853,18 @@ func (a DefaultAPIServiceMock) V2beta1ListAreaRegions(ctx context.Context, organ
 	}
 }
 
-// V2beta1ListAreaRegionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1ListAreaRegionsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) V2beta1ListAreaRegionsExecute(r ApiV2beta1ListAreaRegionsRequest) (*RegionalAreaListResponse, error) {
-	if a.V2beta1ListAreaRegionsExecuteMock == nil {
+// V2beta1ListNetworkAreaRegionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1ListNetworkAreaRegionsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) V2beta1ListNetworkAreaRegionsExecute(r ApiV2beta1ListNetworkAreaRegionsRequest) (*RegionalAreaListResponse, error) {
+	if a.V2beta1ListNetworkAreaRegionsExecuteMock == nil {
 		var localVarReturnValue *RegionalAreaListResponse
 		return localVarReturnValue, nil
 	}
 
-	return (*a.V2beta1ListAreaRegionsExecuteMock)(r)
+	return (*a.V2beta1ListNetworkAreaRegionsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) V2beta1ListSnapshotsInProject(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsInProjectRequest {
-	return ApiV2beta1ListSnapshotsInProjectRequest{
+func (a DefaultAPIServiceMock) V2beta1ListSnapshots(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsRequest {
+	return ApiV2beta1ListSnapshotsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2828,14 +2872,14 @@ func (a DefaultAPIServiceMock) V2beta1ListSnapshotsInProject(ctx context.Context
 	}
 }
 
-// V2beta1ListSnapshotsInProjectExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1ListSnapshotsInProjectExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) V2beta1ListSnapshotsInProjectExecute(r ApiV2beta1ListSnapshotsInProjectRequest) (*SnapshotListResponse, error) {
-	if a.V2beta1ListSnapshotsInProjectExecuteMock == nil {
+// V2beta1ListSnapshotsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1ListSnapshotsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) V2beta1ListSnapshotsExecute(r ApiV2beta1ListSnapshotsRequest) (*SnapshotListResponse, error) {
+	if a.V2beta1ListSnapshotsExecuteMock == nil {
 		var localVarReturnValue *SnapshotListResponse
 		return localVarReturnValue, nil
 	}
 
-	return (*a.V2beta1ListSnapshotsInProjectExecuteMock)(r)
+	return (*a.V2beta1ListSnapshotsExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) V2beta1UpdateBackup(ctx context.Context, projectId string, region string, backupId string) ApiV2beta1UpdateBackupRequest {
@@ -2878,8 +2922,8 @@ func (a DefaultAPIServiceMock) V2beta1UpdateNetworkAreaRegionExecute(r ApiV2beta
 	return (*a.V2beta1UpdateNetworkAreaRegionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) V2beta1UpdateRouteOfArea(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateRouteOfAreaRequest {
-	return ApiV2beta1UpdateRouteOfAreaRequest{
+func (a DefaultAPIServiceMock) V2beta1UpdateNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateNetworkAreaRouteRequest {
+	return ApiV2beta1UpdateNetworkAreaRouteRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -2889,14 +2933,14 @@ func (a DefaultAPIServiceMock) V2beta1UpdateRouteOfArea(ctx context.Context, org
 	}
 }
 
-// V2beta1UpdateRouteOfAreaExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1UpdateRouteOfAreaExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRouteOfAreaRequest) (*Route, error) {
-	if a.V2beta1UpdateRouteOfAreaExecuteMock == nil {
+// V2beta1UpdateNetworkAreaRouteExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the V2beta1UpdateNetworkAreaRouteExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) V2beta1UpdateNetworkAreaRouteExecute(r ApiV2beta1UpdateNetworkAreaRouteRequest) (*Route, error) {
+	if a.V2beta1UpdateNetworkAreaRouteExecuteMock == nil {
 		var localVarReturnValue *Route
 		return localVarReturnValue, nil
 	}
 
-	return (*a.V2beta1UpdateRouteOfAreaExecuteMock)(r)
+	return (*a.V2beta1UpdateNetworkAreaRouteExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) V2beta1UpdateSecurityGroup(ctx context.Context, projectId string, region string, securityGroupId string) ApiV2beta1UpdateSecurityGroupRequest {
