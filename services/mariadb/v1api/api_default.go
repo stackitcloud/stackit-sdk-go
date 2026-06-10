@@ -453,10 +453,17 @@ func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) ([]Cre
 }
 
 type ApiCreateCredentialsRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	instanceId string
+	ctx                      context.Context
+	ApiService               DefaultAPI
+	projectId                string
+	instanceId               string
+	createCredentialsPayload *CreateCredentialsPayload
+}
+
+// Parameters for requested credentials
+func (r ApiCreateCredentialsRequest) CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest {
+	r.createCredentialsPayload = &createCredentialsPayload
+	return r
 }
 
 func (r ApiCreateCredentialsRequest) Execute() (*CredentialsResponse, error) {
@@ -507,7 +514,7 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -523,6 +530,8 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.createCredentialsPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
