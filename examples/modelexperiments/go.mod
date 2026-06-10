@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/modelexperiments => ../../services/modelexperiments
 
 require (
-    github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-    github.com/stackitcloud/stackit-sdk-go/services/modelexperiments v0.2.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/services/modelexperiments v0.2.0
 )
 
 require (
