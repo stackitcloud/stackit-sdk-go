@@ -27,7 +27,7 @@ type DefaultAPI interface {
 	/*
 		AddRoutesToRoutingTable Create new routes in a routing table.
 
-		Create new routes in an existing routing table.
+		Create new routes in an existing routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -94,7 +94,7 @@ type DefaultAPI interface {
 	/*
 		DeleteRouteFromRoutingTable Delete a route in a routing table.
 
-		Delete a route in an existing routing table.
+		Delete a route in an existing routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -146,7 +146,7 @@ type DefaultAPI interface {
 	/*
 		GetRouteOfRoutingTable Get details about a route of a routing table.
 
-		Get details about a route defined in a routing table.
+		Get details about a route defined in a routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -199,7 +199,7 @@ type DefaultAPI interface {
 	/*
 		ListNetworksOfRoutingTable List all networks in a routing table.
 
-		Get a list of all networks in a routing table.
+		Get a list of all networks in a routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -217,7 +217,7 @@ type DefaultAPI interface {
 	/*
 		ListRoutesOfRoutingTable List all routes in a routing table.
 
-		Get a list of all routes in a routing table.
+		Get a list of all routes in a routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -268,7 +268,7 @@ type DefaultAPI interface {
 	/*
 		UpdateRouteOfRoutingTable Update a route of a routing table.
 
-		Update a route defined in a routing table.
+		Update a route defined in a routing table of a network area.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -329,7 +329,7 @@ func (r ApiAddRoutesToRoutingTableRequest) Execute() (*RouteListResponse, error)
 /*
 AddRoutesToRoutingTable Create new routes in a routing table.
 
-Create new routes in an existing routing table.
+Create new routes in an existing routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -1146,7 +1146,7 @@ func (r ApiDeleteRouteFromRoutingTableRequest) Execute() error {
 /*
 DeleteRouteFromRoutingTable Delete a route in a routing table.
 
-Delete a route in an existing routing table.
+Delete a route in an existing routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -1717,7 +1717,7 @@ func (r ApiGetRouteOfRoutingTableRequest) Execute() (*Route, error) {
 /*
 GetRouteOfRoutingTable Get details about a route of a routing table.
 
-Get details about a route defined in a routing table.
+Get details about a route defined in a routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -2313,7 +2313,7 @@ func (r ApiListNetworksOfRoutingTableRequest) Execute() (*NetworkListResponse, e
 /*
 ListNetworksOfRoutingTable List all networks in a routing table.
 
-Get a list of all networks in a routing table.
+Get a list of all networks in a routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -2519,7 +2519,7 @@ func (r ApiListRoutesOfRoutingTableRequest) Execute() (*RouteListResponse, error
 /*
 ListRoutesOfRoutingTable List all routes in a routing table.
 
-Get a list of all routes in a routing table.
+Get a list of all routes in a routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
@@ -3116,7 +3116,7 @@ func (r ApiUpdateRouteOfRoutingTableRequest) Execute() (*Route, error) {
 /*
 UpdateRouteOfRoutingTable Update a route of a routing table.
 
-Update a route defined in a routing table.
+Update a route defined in a routing table of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
