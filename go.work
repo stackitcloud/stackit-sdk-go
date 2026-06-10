@@ -20,6 +20,7 @@ use (
 	./examples/logs
 	./examples/mariadb
 	./examples/middleware
+	./examples/modelexperiments
 	./examples/mongodbflex
 	./examples/objectstorage
 	./examples/observability
