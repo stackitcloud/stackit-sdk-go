@@ -278,6 +278,9 @@
     - **Improvement:** Use new WaiterHelper for Logs waiters
   - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+- `modelexperiments`:
+  - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
+    - **New**: API for STACKIT modelexperiments
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
