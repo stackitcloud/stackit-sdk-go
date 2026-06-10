@@ -19,9 +19,9 @@ import (
 // checks if the NetworkRangeListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NetworkRangeListResponse{}
 
-// NetworkRangeListResponse Network Range list response.
+// NetworkRangeListResponse Network Range list response of a network area.
 type NetworkRangeListResponse struct {
-	// A list of network ranges.
+	// A list of network area network ranges.
 	Items                []NetworkRange `json:"items"`
 	AdditionalProperties map[string]interface{}
 }
