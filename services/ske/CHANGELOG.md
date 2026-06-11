@@ -1,3 +1,7 @@
+## v1.18.0
+- **Improvement:** Use new WaiterHelper for ske waiters
+- **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.
+
 ## v1.17.0
 - **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
 

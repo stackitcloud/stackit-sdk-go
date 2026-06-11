@@ -549,6 +549,10 @@
     - **Feature:** Introduce enums for various attributes
   - [v1.17.0](services/ske/CHANGELOG.md#v1170)
     - **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
+  - [v1.18.0](services/ske/CHANGELOG.md#v1180)
+    - `v2api`:
+      - **Improvement:** Use new WaiterHelper for ske waiters
+      - **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
