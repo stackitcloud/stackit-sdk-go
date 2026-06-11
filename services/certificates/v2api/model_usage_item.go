@@ -19,7 +19,7 @@ var _ MappedNullable = &UsageItem{}
 
 // UsageItem struct for UsageItem
 type UsageItem struct {
-	// A list of listener names on this Load Balancer that are using the certificate.
+	// The list of listener names in this Load Balancer, that are using the certificate.
 	ListenerNames []string `json:"listenerNames,omitempty"`
 	// The display name of the Load Balancer.
 	LoadBalancerName     *string `json:"loadBalancerName,omitempty"`
