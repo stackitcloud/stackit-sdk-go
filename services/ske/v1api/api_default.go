@@ -42,7 +42,7 @@ type DefaultAPI interface {
 	/*
 		CreateKubeconfig Create a kubeconfig
 
-		Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
+		Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). This endpoint is rate limited to 1 request per second.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -403,7 +403,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 /*
 CreateKubeconfig Create a kubeconfig
 
-Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
+Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). This endpoint is rate limited to 1 request per second.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
