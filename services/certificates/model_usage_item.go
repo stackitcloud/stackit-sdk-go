@@ -75,7 +75,7 @@ type UsageItemGetLoadBalancerNameRetType = string
 // UsageItem struct for UsageItem
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type UsageItem struct {
-	// A list of listener names on this Load Balancer that are using the certificate.
+	// The list of listener names in this Load Balancer, that are using the certificate.
 	ListenerNames UsageItemGetListenerNamesAttributeType `json:"listenerNames,omitempty"`
 	// The display name of the Load Balancer.
 	LoadBalancerName UsageItemGetLoadBalancerNameAttributeType `json:"loadBalancerName,omitempty"`
