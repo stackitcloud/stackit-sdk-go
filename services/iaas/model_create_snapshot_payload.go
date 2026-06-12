@@ -20,6 +20,33 @@ import (
 var _ MappedNullable = &CreateSnapshotPayload{}
 
 /*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetAvailabilityZoneAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateSnapshotPayloadGetAvailabilityZoneAttributeTypeOk(arg CreateSnapshotPayloadGetAvailabilityZoneAttributeType) (ret CreateSnapshotPayloadGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateSnapshotPayloadGetAvailabilityZoneAttributeType(arg *CreateSnapshotPayloadGetAvailabilityZoneAttributeType, val CreateSnapshotPayloadGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetAvailabilityZoneArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetAvailabilityZoneRetType = string
+
+/*
 	types and functions for createdAt
 */
 
@@ -265,6 +292,8 @@ type CreateSnapshotPayloadGetVolumeIdRetType = string
 // CreateSnapshotPayload Object that represents a snapshot.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateSnapshotPayload struct {
+	// Object that represents an availability zone.
+	AvailabilityZone CreateSnapshotPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt CreateSnapshotPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
@@ -307,6 +336,33 @@ func NewCreateSnapshotPayload(volumeId CreateSnapshotPayloadGetVolumeIdArgType) 
 func NewCreateSnapshotPayloadWithDefaults() *CreateSnapshotPayload {
 	this := CreateSnapshotPayload{}
 	return &this
+}
+
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) GetAvailabilityZone() (res CreateSnapshotPayloadGetAvailabilityZoneRetType) {
+	res, _ = o.GetAvailabilityZoneOk()
+	return
+}
+
+// GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) GetAvailabilityZoneOk() (ret CreateSnapshotPayloadGetAvailabilityZoneRetType, ok bool) {
+	return getCreateSnapshotPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
+}
+
+// HasAvailabilityZone returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) HasAvailabilityZone() bool {
+	_, ok := o.GetAvailabilityZoneOk()
+	return ok
+}
+
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) SetAvailabilityZone(v CreateSnapshotPayloadGetAvailabilityZoneRetType) {
+	setCreateSnapshotPayloadGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -548,6 +604,9 @@ func (o *CreateSnapshotPayload) SetVolumeId(v CreateSnapshotPayloadGetVolumeIdRe
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateSnapshotPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
+	}
 	if val, ok := getCreateSnapshotPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
 	}
