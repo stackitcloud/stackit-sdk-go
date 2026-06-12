@@ -287,6 +287,8 @@
   - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
 - `modelexperiments`:
+  - [v.0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **New**: STACKIT Model Experiments module wait handler added.
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
 - `modelserving`:
