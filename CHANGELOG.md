@@ -392,6 +392,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
   - [v0.31.0](services/rabbitmq/CHANGELOG.md#v0310)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/rabbitmq/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the rabbitmq v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `Roles`, `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-11.
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
