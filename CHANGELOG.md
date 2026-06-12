@@ -252,6 +252,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
   - [v0.30.0](services/logme/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/logme/CHANGELOG.md#v100)
+    - `v2api`:
+      - New package which can be used for communication with the logme v2 API
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
