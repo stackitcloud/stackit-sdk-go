@@ -405,6 +405,14 @@
     - **Feature:** Introduce enums for various attributes    
   - [v0.30.0](services/redis/CHANGELOG.md#v0300)
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the Redis WaitHandler
+  - [v1.0.0](services/redis/CHANGELOG.md#v100)
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v2api`:
+        - New package which can be used for communication with the redis v2 API
+        - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v1api`:
+        - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+        - **Deprecation:** `TlsCiphers`, `TlsCiphersuites`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
