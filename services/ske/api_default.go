@@ -53,7 +53,7 @@ type DefaultApi interface {
 	CompleteCredentialsRotationExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
 	/*
 		CreateKubeconfig Create an admin kubeconfig
-		Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
+		Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600. This endpoint is rate limited to 1 request per second.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
