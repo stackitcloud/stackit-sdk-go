@@ -130,7 +130,7 @@ type DefaultAPI interface {
 	/*
 		AddServiceAccountToServer Attach service account to a server.
 
-		Attach an additional service account to the server.
+		Attach a service account to the server.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -1663,9 +1663,9 @@ type DefaultAPI interface {
 	ListServerNICsExecute(r ApiListServerNICsRequest) (*NICListResponse, error)
 
 	/*
-		ListServerServiceAccounts List all service accounts of the Server.
+		ListServerServiceAccounts List the service account of the Server.
 
-		Get the list of the service accounts of the server.
+		Get service account of the server in a list.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -1862,7 +1862,7 @@ type DefaultAPI interface {
 	/*
 		RemoveServiceAccountFromServer Detach a service account from a server.
 
-		Detach an additional service account from the server.
+		Detach a service account from the server.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -2074,6 +2074,40 @@ type DefaultAPI interface {
 	// UpdateImageExecute executes the request
 	//  @return Image
 	UpdateImageExecute(r ApiUpdateImageRequest) (*Image, error)
+
+	/*
+		UpdateImageScopeLocal Update Image Scope to Local.
+
+		Update the scope property of an existing Image inside a project to local.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@param region The STACKIT Region of the resources.
+		@param imageId The identifier (ID) of a STACKIT Image.
+		@return ApiUpdateImageScopeLocalRequest
+	*/
+	UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest
+
+	// UpdateImageScopeLocalExecute executes the request
+	//  @return Image
+	UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error)
+
+	/*
+		UpdateImageScopePublic Update Image Scope to Public.
+
+		Update the scope property of an existing Image inside a project to public.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@param region The STACKIT Region of the resources.
+		@param imageId The identifier (ID) of a STACKIT Image.
+		@return ApiUpdateImageScopePublicRequest
+	*/
+	UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest
+
+	// UpdateImageScopePublicExecute executes the request
+	//  @return Image
+	UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error)
 
 	/*
 		UpdateImageShare Update image share.
@@ -3513,7 +3547,7 @@ func (r ApiAddServiceAccountToServerRequest) Execute() (*ServiceAccountMailListR
 /*
 AddServiceAccountToServer Attach service account to a server.
 
-Attach an additional service account to the server.
+Attach a service account to the server.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -21280,9 +21314,9 @@ func (r ApiListServerServiceAccountsRequest) Execute() (*ServiceAccountMailListR
 }
 
 /*
-ListServerServiceAccounts List all service accounts of the Server.
+ListServerServiceAccounts List the service account of the Server.
 
-Get the list of the service accounts of the server.
+Get service account of the server in a list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -23594,7 +23628,7 @@ func (r ApiRemoveServiceAccountFromServerRequest) Execute() (*ServiceAccountMail
 /*
 RemoveServiceAccountFromServer Detach a service account from a server.
 
-Detach an additional service account from the server.
+Detach a service account from the server.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -26025,6 +26059,384 @@ func (a *DefaultAPIService) UpdateImageExecute(r ApiUpdateImageRequest) (*Image,
 	}
 	// body params
 	localVarPostBody = r.updateImagePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateImageScopeLocalRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	imageId    string
+}
+
+func (r ApiUpdateImageScopeLocalRequest) Execute() (*Image, error) {
+	return r.ApiService.UpdateImageScopeLocalExecute(r)
+}
+
+/*
+UpdateImageScopeLocal Update Image Scope to Local.
+
+Update the scope property of an existing Image inside a project to local.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param region The STACKIT Region of the resources.
+	@param imageId The identifier (ID) of a STACKIT Image.
+	@return ApiUpdateImageScopeLocalRequest
+*/
+func (a *DefaultAPIService) UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest {
+	return ApiUpdateImageScopeLocalRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Image
+func (a *DefaultAPIService) UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Image
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateImageScopeLocal")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/images/{imageId}/publish"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", url.PathEscape(parameterValueToString(r.imageId, "imageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.imageId) < 36 {
+		return localVarReturnValue, reportError("imageId must have at least 36 elements")
+	}
+	if strlen(r.imageId) > 36 {
+		return localVarReturnValue, reportError("imageId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateImageScopePublicRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	imageId    string
+}
+
+func (r ApiUpdateImageScopePublicRequest) Execute() (*Image, error) {
+	return r.ApiService.UpdateImageScopePublicExecute(r)
+}
+
+/*
+UpdateImageScopePublic Update Image Scope to Public.
+
+Update the scope property of an existing Image inside a project to public.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param region The STACKIT Region of the resources.
+	@param imageId The identifier (ID) of a STACKIT Image.
+	@return ApiUpdateImageScopePublicRequest
+*/
+func (a *DefaultAPIService) UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest {
+	return ApiUpdateImageScopePublicRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Image
+func (a *DefaultAPIService) UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Image
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateImageScopePublic")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/images/{imageId}/publish"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", url.PathEscape(parameterValueToString(r.imageId, "imageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.imageId) < 36 {
+		return localVarReturnValue, reportError("imageId must have at least 36 elements")
+	}
+	if strlen(r.imageId) > 36 {
+		return localVarReturnValue, reportError("imageId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
