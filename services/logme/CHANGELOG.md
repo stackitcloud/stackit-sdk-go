@@ -1,3 +1,7 @@
+## v1.0.1
+- `v2api`:
+  - **Bugfix**: Add missing waiter
+
 ## v1.0.0
 - `v2api`:
   - New package which can be used for communication with the logme v2 API

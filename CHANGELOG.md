@@ -260,6 +260,9 @@
     - `v1api`:
       - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
       - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+  - [v1.0.1](services/logme/CHANGELOG.md#v101)
+    - `v2api`:
+      - **Bugfix**: Add missing waiter
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
