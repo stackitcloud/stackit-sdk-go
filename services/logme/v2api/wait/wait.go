@@ -76,8 +76,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectI
 			}
 			return false, nil, nil
 		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		ok := errors.As(err, &oapiErr) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
 			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}
@@ -95,7 +94,7 @@ func CreateCredentialsWaitHandler(ctx context.Context, a logme.DefaultAPI, proje
 	handler := wait.New(func() (waitFinished bool, response *logme.CredentialsResponse, err error) {
 		s, err := a.GetCredentials(ctx, projectId, region, instanceId, credentialsId).Execute()
 		if err != nil {
-			oapiErr, ok := err.(*oapierror.GenericOpenAPIError)
+			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
 				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 			}
