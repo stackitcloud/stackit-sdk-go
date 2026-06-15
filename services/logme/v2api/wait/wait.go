@@ -65,9 +65,6 @@ func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != logme.INSTANCESTATUS_DELETING {
-				return false, nil, nil
-			}
 			if *s.Status == logme.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
