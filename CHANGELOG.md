@@ -286,6 +286,13 @@
     - **Improvement:** Use new WaiterHelper for Logs waiters
   - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the mariadb v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
 - `modelexperiments`:
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
