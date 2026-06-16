@@ -27,6 +27,8 @@ const (
 	INSTANCESORT_IS_DELETABLE_ASC         InstanceSort = "is_deletable.asc"
 	INSTANCESORT_NAME_ASC                 InstanceSort = "name.asc"
 	INSTANCESORT_NAME_DESC                InstanceSort = "name.desc"
+	INSTANCESORT_STATE_ASC                InstanceSort = "state.asc"
+	INSTANCESORT_STATE_DESC               InstanceSort = "state.desc"
 	INSTANCESORT_STATUS_ASC               InstanceSort = "status.asc"
 	INSTANCESORT_STATUS_DESC              InstanceSort = "status.desc"
 	INSTANCESORT_UNKNOWN_DEFAULT_OPEN_API InstanceSort = "unknown_default_open_api"
@@ -40,6 +42,8 @@ var AllowedInstanceSortEnumValues = []InstanceSort{
 	"is_deletable.asc",
 	"name.asc",
 	"name.desc",
+	"state.asc",
+	"state.desc",
 	"status.asc",
 	"status.desc",
 	"unknown_default_open_api",

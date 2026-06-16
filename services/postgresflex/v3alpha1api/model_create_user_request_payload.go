@@ -23,8 +23,8 @@ var _ MappedNullable = &CreateUserRequestPayload{}
 type CreateUserRequestPayload struct {
 	// The name of the user.
 	Name string `json:"name"`
-	// A list containing the user roles for the instance.
-	Roles                []UserRole `json:"roles,omitempty"`
+	// A list containing the user roles for the instance. Please refer to the List Roles endpoint for a list of all available Roles.
+	Roles                []string `json:"roles,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,9 +73,9 @@ func (o *CreateUserRequestPayload) SetName(v string) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *CreateUserRequestPayload) GetRoles() []UserRole {
+func (o *CreateUserRequestPayload) GetRoles() []string {
 	if o == nil || IsNil(o.Roles) {
-		var ret []UserRole
+		var ret []string
 		return ret
 	}
 	return o.Roles
@@ -83,7 +83,7 @@ func (o *CreateUserRequestPayload) GetRoles() []UserRole {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateUserRequestPayload) GetRolesOk() ([]UserRole, bool) {
+func (o *CreateUserRequestPayload) GetRolesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *CreateUserRequestPayload) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []UserRole and assigns it to the Roles field.
-func (o *CreateUserRequestPayload) SetRoles(v []UserRole) {
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *CreateUserRequestPayload) SetRoles(v []string) {
 	o.Roles = v
 }
 

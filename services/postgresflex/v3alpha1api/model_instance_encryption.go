@@ -19,7 +19,7 @@ import (
 // checks if the InstanceEncryption type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceEncryption{}
 
-// InstanceEncryption The configuration for instance's volume and backup storage encryption.  ⚠︝ **Note:** This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
+// InstanceEncryption The configuration for instance's volume and backup storage encryption.  ⚠️ **Note:** This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
 type InstanceEncryption struct {
 	// The encryption-key key identifier
 	KekKeyId string `json:"kekKeyId"`
