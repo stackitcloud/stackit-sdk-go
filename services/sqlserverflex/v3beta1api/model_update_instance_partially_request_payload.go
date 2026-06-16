@@ -24,6 +24,8 @@ type UpdateInstancePartiallyRequestPayload struct {
 	BackupSchedule *string `json:"backupSchedule,omitempty"`
 	// The id of the instance flavor.
 	FlavorId *string `json:"flavorId,omitempty"`
+	// A dictionary of user-defined key-value pairs used to categorize or organize the resource.  **Rules for Keys:** * Must be between 1 and 63 characters long. * Must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$` * **Restriction:** The prefix `stackit-` is strictly reserved and cannot be used.  **Rules for Values:** * Must be between 0 (empty string) and 63 characters long. * If not empty, must begin and end with an alphanumeric character. * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`
+	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name                 *string                                       `json:"name,omitempty"`
 	Network              *UpdateInstancePartiallyRequestPayloadNetwork `json:"network,omitempty"`
@@ -115,6 +117,38 @@ func (o *UpdateInstancePartiallyRequestPayload) HasFlavorId() bool {
 // SetFlavorId gets a reference to the given string and assigns it to the FlavorId field.
 func (o *UpdateInstancePartiallyRequestPayload) SetFlavorId(v string) {
 	o.FlavorId = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateInstancePartiallyRequestPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstancePartiallyRequestPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *UpdateInstancePartiallyRequestPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateInstancePartiallyRequestPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -325,6 +359,9 @@ func (o UpdateInstancePartiallyRequestPayload) ToMap() (map[string]interface{}, 
 	if !IsNil(o.FlavorId) {
 		toSerialize["flavorId"] = o.FlavorId
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -367,6 +404,7 @@ func (o *UpdateInstancePartiallyRequestPayload) UnmarshalJSON(data []byte) (err 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "backupSchedule")
 		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "replicas")

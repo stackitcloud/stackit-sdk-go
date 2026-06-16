@@ -125,7 +125,7 @@ func TestCreateResourcePoolWaitHandler(t *testing.T) {
 					{ResourcePoolStateCreating, 0},
 				},
 			},
-			ResourcePoolStateCreating,
+			"",
 			true,
 		},
 	}
@@ -214,7 +214,7 @@ func TestUpdateResourcePoolWaitHandler(t *testing.T) {
 					{ResourcePoolStateUpdating, 0},
 				},
 			},
-			ResourcePoolStateUpdating,
+			"",
 			true,
 		},
 	}
@@ -378,7 +378,7 @@ func TestCreateShareWaitHandler(t *testing.T) {
 					{ShareStateCreating, 0},
 				},
 			},
-			ShareStateCreating,
+			"",
 			true,
 		},
 	}
@@ -467,7 +467,7 @@ func TestUpdateShareWaitHandler(t *testing.T) {
 					{ShareStateCreating, 0},
 				},
 			},
-			ShareStateCreating,
+			"",
 			true,
 		},
 	}

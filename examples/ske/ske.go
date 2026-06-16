@@ -84,7 +84,7 @@ func main() {
 	}
 
 	// Wait for cluster creation to complete
-	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient.DefaultAPI, projectId, region, clusterName).WaitWithContext(context.Background())
+	_, err = wait.CreateClusterWaitHandler(context.Background(), skeClient.DefaultAPI, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateOrUpdateCluster`: %v\n", err)
 	} else {

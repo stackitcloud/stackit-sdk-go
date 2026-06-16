@@ -38,6 +38,8 @@ type DefaultAPIServiceMock struct {
 	GetTokenByInstanceIdExecuteMock *func(r ApiGetTokenByInstanceIdRequest) (*Token, error)
 	// GetTokenByInstanceNameExecuteMock can be populated to implement the behavior of the GetTokenByInstanceNameExecute function of this mock
 	GetTokenByInstanceNameExecuteMock *func(r ApiGetTokenByInstanceNameRequest) (*Token, error)
+	// ListCompatibleKubernetesReleasesExecuteMock can be populated to implement the behavior of the ListCompatibleKubernetesReleasesExecute function of this mock
+	ListCompatibleKubernetesReleasesExecuteMock *func(r ApiListCompatibleKubernetesReleasesRequest) (*KubernetesReleaseList, error)
 	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
 	ListInstancesExecuteMock *func(r ApiListInstancesRequest) (*InstanceList, error)
 	// ListPlansProjectExecuteMock can be populated to implement the behavior of the ListPlansProjectExecute function of this mock
@@ -223,6 +225,23 @@ func (a DefaultAPIServiceMock) GetTokenByInstanceNameExecute(r ApiGetTokenByInst
 	}
 
 	return (*a.GetTokenByInstanceNameExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListCompatibleKubernetesReleases(ctx context.Context) ApiListCompatibleKubernetesReleasesRequest {
+	return ApiListCompatibleKubernetesReleasesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// ListCompatibleKubernetesReleasesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCompatibleKubernetesReleasesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListCompatibleKubernetesReleasesExecute(r ApiListCompatibleKubernetesReleasesRequest) (*KubernetesReleaseList, error) {
+	if a.ListCompatibleKubernetesReleasesExecuteMock == nil {
+		var localVarReturnValue *KubernetesReleaseList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListCompatibleKubernetesReleasesExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest {

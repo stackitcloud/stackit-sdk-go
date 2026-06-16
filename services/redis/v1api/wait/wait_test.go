@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"testing/synctest"
 	"time"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	redis "github.com/stackitcloud/stackit-sdk-go/services/redis/v1api"
 )
 
@@ -17,8 +19,8 @@ type mockSettings struct {
 	instanceGetFails                   bool
 	instanceDeletionSucceedsWithErrors bool
 	instanceResourceId                 string
-	instanceResourceOperation          string
-	instanceResourceState              *string
+	instanceResourceOperation          redis.InstanceLastOperationType
+	instanceResourceState              *redis.InstanceStatus
 	instanceResourceDescription        string
 
 	credentialGetFails          bool
@@ -35,7 +37,7 @@ func newAPIMock(settings *mockSettings) redis.DefaultAPI {
 					StatusCode: 500,
 				}
 			}
-			if settings.instanceResourceOperation == INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == INSTANCESTATUS_ACTIVE {
+			if settings.instanceResourceOperation == redis.INSTANCELASTOPERATIONTYPE_DELETE && settings.instanceResourceState != nil && *settings.instanceResourceState == redis.INSTANCESTATUS_ACTIVE {
 				if settings.instanceDeletionSucceedsWithErrors {
 					return &redis.Instance{
 						InstanceId: &settings.instanceResourceId,
@@ -76,27 +78,34 @@ func newAPIMock(settings *mockSettings) redis.DefaultAPI {
 	}
 }
 
-func TestCreateInstanceWaitHandler(t *testing.T) {
+func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *redis.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
-			desc:          "create_succeeded",
+			desc:          "create_or_update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
-			desc:          "create_failed",
+			desc:          "create_or_update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState: utils.Ptr(redis.INSTANCESTATUS_FAILED),
 			wantErr:       true,
 			wantResp:      true,
+		},
+		{
+			desc:          "wrong state in response",
+			getFails:      false,
+			resourceState: utils.Ptr(redis.InstanceStatus("ANOTHER STATE")),
+			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:     "get_fails",
@@ -107,113 +116,51 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(redis.InstanceStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
 
-				apiClient := newAPIMock(&mockSettings{
-					instanceGetFails:      tt.getFails,
-					instanceResourceId:    instanceId,
-					instanceResourceState: tt.resourceState,
-				})
-
-				var wantRes *redis.Instance
-				if tt.wantResp {
-					wantRes = &redis.Instance{
-						InstanceId: &instanceId,
-						Status:     tt.resourceState,
-					}
-				}
-
-				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
-
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				diff := cmp.Diff(gotRes, wantRes)
-				if diff != "" {
-					t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
-				}
-			})
-		})
+	handlers := map[string]func(context.Context, redis.DefaultAPI, string, string) *wait.AsyncActionHandler[redis.Instance]{
+		"common logic": createOrUpdateInstanceWaitHandler,
+		"create":       CreateInstanceWaitHandler,
+		"update":       PartialUpdateInstanceWaitHandler,
 	}
-}
 
-func TestUpdateInstanceWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState *string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "update_succeeded",
-			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_ACTIVE),
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "update_failed",
-			getFails:      false,
-			resourceState: utils.Ptr(INSTANCESTATUS_FAILED),
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
-			desc:     "get_fails",
-			getFails: true,
-			wantErr:  true,
-			wantResp: false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
-			wantErr:       true,
-			wantResp:      false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					instanceId := "foo-bar"
 
-				apiClient := newAPIMock(&mockSettings{
-					instanceGetFails:      tt.getFails,
-					instanceResourceId:    instanceId,
-					instanceResourceState: tt.resourceState,
-				})
+					apiClient := newAPIMock(&mockSettings{
+						instanceGetFails:      tt.getFails,
+						instanceResourceId:    instanceId,
+						instanceResourceState: tt.resourceState,
+					})
 
-				var wantRes *redis.Instance
-				if tt.wantResp {
-					wantRes = &redis.Instance{
-						InstanceId: &instanceId,
-						Status:     tt.resourceState,
+					var wantRes *redis.Instance
+					if tt.wantResp {
+						wantRes = &redis.Instance{
+							InstanceId: &instanceId,
+							Status:     tt.resourceState,
+						}
 					}
-				}
 
-				handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+					handler := handlerFn(context.Background(), apiClient, "pid", instanceId)
+					gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					diff := cmp.Diff(gotRes, wantRes)
+					if diff != "" {
+						t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 
@@ -222,7 +169,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             *string
+		resourceState             *redis.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -230,20 +177,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_FAILED),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_FAILED),
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             utils.Ptr(INSTANCESTATUS_ACTIVE),
+			resourceState:             utils.Ptr(redis.INSTANCESTATUS_ACTIVE),
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
@@ -264,7 +211,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 					instanceGetFails:                   tt.getFails,
 					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 					instanceResourceId:                 instanceId,
-					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceOperation:          redis.INSTANCELASTOPERATIONTYPE_DELETE,
 					instanceResourceDescription:        tt.resourceDescription,
 					instanceResourceState:              tt.resourceState,
 				})

@@ -1,3 +1,10 @@
+## v1.14.0
+- **Feature:** Introduce enums for various attributes
+
+## v1.13.0
+- **Improvement:** Use new WaiterHelper for LoadBalancer waiters
+- **Breaking Change:** `v2api/wait/DeleteLoadBalancerWaitHandler` now returns a `LoadBalancer` instead of `struct{}`
+
 ## v1.12.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 

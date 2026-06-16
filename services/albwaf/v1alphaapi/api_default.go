@@ -36,8 +36,8 @@ type DefaultAPI interface {
 	CreateCoreRuleSet(ctx context.Context, projectId string, region string) ApiCreateCoreRuleSetRequest
 
 	// CreateCoreRuleSetExecute executes the request
-	//  @return CreateCoreRuleSetResponse
-	CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*CreateCoreRuleSetResponse, error)
+	//  @return GetCoreRuleSetResponse
+	CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 
 	/*
 		CreateRules Create a rule configuration
@@ -238,9 +238,26 @@ type DefaultAPI interface {
 	ListWAFExecute(r ApiListWAFRequest) (*ListWAFResponse, error)
 
 	/*
+		PatchCoreRuleSet Granularly update a CRS configuration
+
+		Accepts the same structure as the GET response. Only fields provided with values will be updated.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return ApiPatchCoreRuleSetRequest
+	*/
+	PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest
+
+	// PatchCoreRuleSetExecute executes the request
+	//  @return GetCoreRuleSetResponse
+	PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
+
+	/*
 		UpdateCoreRuleSet Update a CRS configuration
 
-		This endpoint will update an existing core rule set (CRS) configuration and also inturn update all WAF configurations that reference it.
+		DEPRECATED: Use PatchCoreRuleSet
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -305,7 +322,7 @@ func (r ApiCreateCoreRuleSetRequest) CreateCoreRuleSetPayload(createCoreRuleSetP
 	return r
 }
 
-func (r ApiCreateCoreRuleSetRequest) Execute() (*CreateCoreRuleSetResponse, error) {
+func (r ApiCreateCoreRuleSetRequest) Execute() (*GetCoreRuleSetResponse, error) {
 	return r.ApiService.CreateCoreRuleSetExecute(r)
 }
 
@@ -330,13 +347,13 @@ func (a *DefaultAPIService) CreateCoreRuleSet(ctx context.Context, projectId str
 
 // Execute executes the request
 //
-//	@return CreateCoreRuleSetResponse
-func (a *DefaultAPIService) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*CreateCoreRuleSetResponse, error) {
+//	@return GetCoreRuleSetResponse
+func (a *DefaultAPIService) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateCoreRuleSetResponse
+		localVarReturnValue *GetCoreRuleSetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateCoreRuleSet")
@@ -416,7 +433,6 @@ func (a *DefaultAPIService) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -426,7 +442,6 @@ func (a *DefaultAPIService) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -567,7 +582,6 @@ func (a *DefaultAPIService) CreateRulesExecute(r ApiCreateRulesRequest) (*Create
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -577,7 +591,6 @@ func (a *DefaultAPIService) CreateRulesExecute(r ApiCreateRulesRequest) (*Create
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -718,7 +731,6 @@ func (a *DefaultAPIService) CreateWAFExecute(r ApiCreateWAFRequest) (*CreateWAFR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -728,7 +740,6 @@ func (a *DefaultAPIService) CreateWAFExecute(r ApiCreateWAFRequest) (*CreateWAFR
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -862,7 +873,6 @@ func (a *DefaultAPIService) DeleteCoreRuleSetExecute(r ApiDeleteCoreRuleSetReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -872,7 +882,6 @@ func (a *DefaultAPIService) DeleteCoreRuleSetExecute(r ApiDeleteCoreRuleSetReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1006,7 +1015,6 @@ func (a *DefaultAPIService) DeleteRulesExecute(r ApiDeleteRulesRequest) (map[str
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1016,7 +1024,6 @@ func (a *DefaultAPIService) DeleteRulesExecute(r ApiDeleteRulesRequest) (map[str
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1150,7 +1157,6 @@ func (a *DefaultAPIService) DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1160,7 +1166,6 @@ func (a *DefaultAPIService) DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1294,7 +1299,6 @@ func (a *DefaultAPIService) GetCoreRuleSetExecute(r ApiGetCoreRuleSetRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1304,7 +1308,6 @@ func (a *DefaultAPIService) GetCoreRuleSetExecute(r ApiGetCoreRuleSetRequest) (*
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1434,7 +1437,6 @@ func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1444,7 +1446,6 @@ func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResp
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1578,7 +1579,6 @@ func (a *DefaultAPIService) GetRulesExecute(r ApiGetRulesRequest) (*GetRulesResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1588,7 +1588,6 @@ func (a *DefaultAPIService) GetRulesExecute(r ApiGetRulesRequest) (*GetRulesResp
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1722,7 +1721,6 @@ func (a *DefaultAPIService) GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1732,7 +1730,6 @@ func (a *DefaultAPIService) GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1882,7 +1879,6 @@ func (a *DefaultAPIService) ListCoreRuleSetsExecute(r ApiListCoreRuleSetsRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1892,7 +1888,6 @@ func (a *DefaultAPIService) ListCoreRuleSetsExecute(r ApiListCoreRuleSetsRequest
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2042,7 +2037,6 @@ func (a *DefaultAPIService) ListRulesExecute(r ApiListRulesRequest) (*ListRulesR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2052,7 +2046,6 @@ func (a *DefaultAPIService) ListRulesExecute(r ApiListRulesRequest) (*ListRulesR
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2202,7 +2195,6 @@ func (a *DefaultAPIService) ListWAFExecute(r ApiListWAFRequest) (*ListWAFRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2213,6 +2205,158 @@ func (a *DefaultAPIService) ListWAFExecute(r ApiListWAFRequest) (*ListWAFRespons
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
 		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiPatchCoreRuleSetRequest struct {
+	ctx                     context.Context
+	ApiService              DefaultAPI
+	projectId               string
+	region                  string
+	name                    string
+	patchCoreRuleSetPayload *PatchCoreRuleSetPayload
+}
+
+func (r ApiPatchCoreRuleSetRequest) PatchCoreRuleSetPayload(patchCoreRuleSetPayload PatchCoreRuleSetPayload) ApiPatchCoreRuleSetRequest {
+	r.patchCoreRuleSetPayload = &patchCoreRuleSetPayload
+	return r
+}
+
+func (r ApiPatchCoreRuleSetRequest) Execute() (*GetCoreRuleSetResponse, error) {
+	return r.ApiService.PatchCoreRuleSetExecute(r)
+}
+
+/*
+PatchCoreRuleSet Granularly update a CRS configuration
+
+Accepts the same structure as the GET response. Only fields provided with values will be updated.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param name
+	@return ApiPatchCoreRuleSetRequest
+*/
+func (a *DefaultAPIService) PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest {
+	return ApiPatchCoreRuleSetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		name:       name,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCoreRuleSetResponse
+func (a *DefaultAPIService) PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetCoreRuleSetResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchCoreRuleSet")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{region}/core-rule-sets/{name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.patchCoreRuleSetPayload == nil {
+		return localVarReturnValue, reportError("patchCoreRuleSetPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchCoreRuleSetPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Status
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2250,7 +2394,7 @@ func (r ApiUpdateCoreRuleSetRequest) Execute() (*UpdateCoreRuleSetResponse, erro
 /*
 UpdateCoreRuleSet Update a CRS configuration
 
-This endpoint will update an existing core rule set (CRS) configuration and also inturn update all WAF configurations that reference it.
+DEPRECATED: Use PatchCoreRuleSet
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -2357,7 +2501,6 @@ func (a *DefaultAPIService) UpdateCoreRuleSetExecute(r ApiUpdateCoreRuleSetReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2367,7 +2510,6 @@ func (a *DefaultAPIService) UpdateCoreRuleSetExecute(r ApiUpdateCoreRuleSetReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2512,7 +2654,6 @@ func (a *DefaultAPIService) UpdateRulesExecute(r ApiUpdateRulesRequest) (*Update
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2522,7 +2663,6 @@ func (a *DefaultAPIService) UpdateRulesExecute(r ApiUpdateRulesRequest) (*Update
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2667,7 +2807,6 @@ func (a *DefaultAPIService) UpdateWAFExecute(r ApiUpdateWAFRequest) (*UpdateWAFR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2677,7 +2816,6 @@ func (a *DefaultAPIService) UpdateWAFExecute(r ApiUpdateWAFRequest) (*UpdateWAFR
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 

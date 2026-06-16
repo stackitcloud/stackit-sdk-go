@@ -73,33 +73,6 @@ type InstanceSensitiveDataGetClusterArgType = string
 type InstanceSensitiveDataGetClusterRetType = string
 
 /*
-	types and functions for dashboardUrl
-*/
-
-// isNotNullableString
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type InstanceSensitiveDataGetDashboardUrlAttributeType = *string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(arg InstanceSensitiveDataGetDashboardUrlAttributeType) (ret InstanceSensitiveDataGetDashboardUrlRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setInstanceSensitiveDataGetDashboardUrlAttributeType(arg *InstanceSensitiveDataGetDashboardUrlAttributeType, val InstanceSensitiveDataGetDashboardUrlRetType) {
-	*arg = &val
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type InstanceSensitiveDataGetDashboardUrlArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type InstanceSensitiveDataGetDashboardUrlRetType = string
-
-/*
 	types and functions for grafanaAdminEnabled
 */
 
@@ -836,15 +809,11 @@ type InstanceSensitiveData struct {
 	// REQUIRED
 	Cluster InstanceSensitiveDataGetClusterAttributeType `json:"cluster" required:"true"`
 	// REQUIRED
-	DashboardUrl InstanceSensitiveDataGetDashboardUrlAttributeType `json:"dashboardUrl" required:"true"`
-	// REQUIRED
 	GrafanaAdminEnabled InstanceSensitiveDatagetGrafanaAdminEnabledAttributeType `json:"grafanaAdminEnabled" required:"true"`
 	// Deprecated: Check the GitHub changelog for alternatives
-	// REQUIRED
-	GrafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType `json:"grafanaAdminPassword" required:"true"`
+	GrafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType `json:"grafanaAdminPassword,omitempty"`
 	// Deprecated: Check the GitHub changelog for alternatives
-	// REQUIRED
-	GrafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserAttributeType `json:"grafanaAdminUser" required:"true"`
+	GrafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserAttributeType `json:"grafanaAdminUser,omitempty"`
 	// REQUIRED
 	GrafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess" required:"true"`
 	// REQUIRED
@@ -902,14 +871,11 @@ type _InstanceSensitiveData InstanceSensitiveData
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminEnabled InstanceSensitiveDatagetGrafanaAdminEnabledArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpLogsUrl InstanceSensitiveDataGetOtlpHttpLogsUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, grafanaAdminEnabled InstanceSensitiveDatagetGrafanaAdminEnabledArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpLogsUrl InstanceSensitiveDataGetOtlpHttpLogsUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	setInstanceSensitiveDataGetAlertingUrlAttributeType(&this.AlertingUrl, alertingUrl)
 	setInstanceSensitiveDataGetClusterAttributeType(&this.Cluster, cluster)
-	setInstanceSensitiveDataGetDashboardUrlAttributeType(&this.DashboardUrl, dashboardUrl)
 	setInstanceSensitiveDatagetGrafanaAdminEnabledAttributeType(&this.GrafanaAdminEnabled, grafanaAdminEnabled)
-	setInstanceSensitiveDataGetGrafanaAdminPasswordAttributeType(&this.GrafanaAdminPassword, grafanaAdminPassword)
-	setInstanceSensitiveDataGetGrafanaAdminUserAttributeType(&this.GrafanaAdminUser, grafanaAdminUser)
 	setInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType(&this.GrafanaPublicReadAccess, grafanaPublicReadAccess)
 	setInstanceSensitiveDataGetGrafanaUrlAttributeType(&this.GrafanaUrl, grafanaUrl)
 	setInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType(&this.GrafanaUseStackitSso, grafanaUseStackitSso)
@@ -988,26 +954,6 @@ func (o *InstanceSensitiveData) SetCluster(v InstanceSensitiveDataGetClusterRetT
 	setInstanceSensitiveDataGetClusterAttributeType(&o.Cluster, v)
 }
 
-// GetDashboardUrl returns the DashboardUrl field value
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *InstanceSensitiveData) GetDashboardUrl() (ret InstanceSensitiveDataGetDashboardUrlRetType) {
-	ret, _ = o.GetDashboardUrlOk()
-	return ret
-}
-
-// GetDashboardUrlOk returns a tuple with the DashboardUrl field value
-// and a boolean to check if the value has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *InstanceSensitiveData) GetDashboardUrlOk() (ret InstanceSensitiveDataGetDashboardUrlRetType, ok bool) {
-	return getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(o.DashboardUrl)
-}
-
-// SetDashboardUrl sets field value
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *InstanceSensitiveData) SetDashboardUrl(v InstanceSensitiveDataGetDashboardUrlRetType) {
-	setInstanceSensitiveDataGetDashboardUrlAttributeType(&o.DashboardUrl, v)
-}
-
 // GetGrafanaAdminEnabled returns the GrafanaAdminEnabled field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) GetGrafanaAdminEnabled() (ret InstanceSensitiveDatagetGrafanaAdminEnabledRetType) {
@@ -1028,41 +974,55 @@ func (o *InstanceSensitiveData) SetGrafanaAdminEnabled(v InstanceSensitiveDatage
 	setInstanceSensitiveDatagetGrafanaAdminEnabledAttributeType(&o.GrafanaAdminEnabled, v)
 }
 
-// GetGrafanaAdminPassword returns the GrafanaAdminPassword field value
+// GetGrafanaAdminPassword returns the GrafanaAdminPassword field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *InstanceSensitiveData) GetGrafanaAdminPassword() (ret InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
-	ret, _ = o.GetGrafanaAdminPasswordOk()
-	return ret
+func (o *InstanceSensitiveData) GetGrafanaAdminPassword() (res InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
+	res, _ = o.GetGrafanaAdminPasswordOk()
+	return
 }
 
-// GetGrafanaAdminPasswordOk returns a tuple with the GrafanaAdminPassword field value
+// GetGrafanaAdminPasswordOk returns a tuple with the GrafanaAdminPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) GetGrafanaAdminPasswordOk() (ret InstanceSensitiveDataGetGrafanaAdminPasswordRetType, ok bool) {
 	return getInstanceSensitiveDataGetGrafanaAdminPasswordAttributeTypeOk(o.GrafanaAdminPassword)
 }
 
-// SetGrafanaAdminPassword sets field value
+// HasGrafanaAdminPassword returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *InstanceSensitiveData) HasGrafanaAdminPassword() bool {
+	_, ok := o.GetGrafanaAdminPasswordOk()
+	return ok
+}
+
+// SetGrafanaAdminPassword gets a reference to the given string and assigns it to the GrafanaAdminPassword field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) SetGrafanaAdminPassword(v InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
 	setInstanceSensitiveDataGetGrafanaAdminPasswordAttributeType(&o.GrafanaAdminPassword, v)
 }
 
-// GetGrafanaAdminUser returns the GrafanaAdminUser field value
+// GetGrafanaAdminUser returns the GrafanaAdminUser field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *InstanceSensitiveData) GetGrafanaAdminUser() (ret InstanceSensitiveDataGetGrafanaAdminUserRetType) {
-	ret, _ = o.GetGrafanaAdminUserOk()
-	return ret
+func (o *InstanceSensitiveData) GetGrafanaAdminUser() (res InstanceSensitiveDataGetGrafanaAdminUserRetType) {
+	res, _ = o.GetGrafanaAdminUserOk()
+	return
 }
 
-// GetGrafanaAdminUserOk returns a tuple with the GrafanaAdminUser field value
+// GetGrafanaAdminUserOk returns a tuple with the GrafanaAdminUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) GetGrafanaAdminUserOk() (ret InstanceSensitiveDataGetGrafanaAdminUserRetType, ok bool) {
 	return getInstanceSensitiveDataGetGrafanaAdminUserAttributeTypeOk(o.GrafanaAdminUser)
 }
 
-// SetGrafanaAdminUser sets field value
+// HasGrafanaAdminUser returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *InstanceSensitiveData) HasGrafanaAdminUser() bool {
+	_, ok := o.GetGrafanaAdminUserOk()
+	return ok
+}
+
+// SetGrafanaAdminUser gets a reference to the given string and assigns it to the GrafanaAdminUser field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) SetGrafanaAdminUser(v InstanceSensitiveDataGetGrafanaAdminUserRetType) {
 	setInstanceSensitiveDataGetGrafanaAdminUserAttributeType(&o.GrafanaAdminUser, v)
@@ -1570,9 +1530,6 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceSensitiveDataGetClusterAttributeTypeOk(o.Cluster); ok {
 		toSerialize["Cluster"] = val
-	}
-	if val, ok := getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(o.DashboardUrl); ok {
-		toSerialize["DashboardUrl"] = val
 	}
 	if val, ok := getInstanceSensitiveDatagetGrafanaAdminEnabledAttributeTypeOk(o.GrafanaAdminEnabled); ok {
 		toSerialize["GrafanaAdminEnabled"] = val

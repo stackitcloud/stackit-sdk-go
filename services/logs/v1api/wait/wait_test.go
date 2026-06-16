@@ -60,7 +60,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusActive,
+				Status: logs.LOGSINSTANCESTATUS_ACTIVE,
 			},
 		},
 		{
@@ -71,17 +71,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusActive,
-			},
-		},
-		{
-			description:    "create without id",
-			getFails:       false,
-			wantErr:        true,
-			wantResp:       false,
-			returnInstance: true,
-			getLogsResponse: &logs.LogsInstance{
-				Status: instanceStatusActive,
+				Status: logs.LOGSINSTANCESTATUS_ACTIVE,
 			},
 		},
 		{
@@ -99,10 +89,10 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
-			returnInstance: true,
+			returnInstance: false,
 			getLogsResponse: &logs.LogsInstance{
 				Id:     instanceId,
-				Status: instanceStatusDeleting,
+				Status: logs.LOGSINSTANCESTATUS_DELETING,
 			},
 		},
 	}

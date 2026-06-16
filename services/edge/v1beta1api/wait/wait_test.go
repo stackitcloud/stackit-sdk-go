@@ -22,7 +22,7 @@ const (
 )
 
 type mockSettings struct {
-	instanceStatus string
+	instanceStatus edge.InstanceStatus
 	instanceError  error
 
 	deleteErrors    []error
@@ -70,7 +70,7 @@ func newAPIMock(settings *mockSettings) edge.DefaultAPI {
 		if settings.instanceError != nil {
 			return nil, settings.instanceError
 		}
-		return &edge.Instance{Status: settings.instanceStatus}, nil
+		return &edge.Instance{Status: edge.InstanceStatus(settings.instanceStatus)}, nil
 	}
 
 	return &edge.DefaultAPIServiceMock{
@@ -110,26 +110,26 @@ func newAPIMock(settings *mockSettings) edge.DefaultAPI {
 var createOrUpdateInstanceTests = []struct {
 	desc           string
 	shouldFail     bool // This will be used to set instanceError
-	instanceStatus string
+	instanceStatus edge.InstanceStatus
 	wantErr        error
 }{
 	{
 		desc:           "successful creation",
 		shouldFail:     false,
-		instanceStatus: INSTANCESTATUS_ACTIVE,
+		instanceStatus: edge.INSTANCESTATUS_ACTIVE,
 		wantErr:        nil,
 	},
 	{
 		desc:           "timeout during reconciliation",
 		shouldFail:     false,
-		instanceStatus: INSTANCESTATUS_RECONCILING,
+		instanceStatus: edge.INSTANCESTATUS_RECONCILING,
 		wantErr:        errors.New("WaitWithContext() has timed out"),
 	},
 	{
 		desc:           "failed creation",
 		shouldFail:     false,
-		instanceStatus: INSTANCESTATUS_ERROR,
-		wantErr:        errors.New("instance creation failed"),
+		instanceStatus: edge.INSTANCESTATUS_ERROR,
+		wantErr:        errors.New("state is error"),
 	},
 	{
 		desc:       "API fails",
@@ -168,7 +168,7 @@ var deleteInstanceTests = []struct {
 // This test table is for handlers that retry on 404, which is currently required due to incorrect active instance status
 var kubeconfigOrTokenTests = []struct {
 	desc              string
-	instanceStatus    string
+	instanceStatus    edge.InstanceStatus
 	instanceError     error
 	errorsToReturn    []error
 	mockShouldTimeout bool
@@ -176,19 +176,19 @@ var kubeconfigOrTokenTests = []struct {
 }{
 	{
 		desc:           "success",
-		instanceStatus: INSTANCESTATUS_ACTIVE,
+		instanceStatus: edge.INSTANCESTATUS_ACTIVE,
 		errorsToReturn: []error{nil},
 		wantErr:        nil,
 	},
 	{
 		desc:           "success_on_reconciling",
-		instanceStatus: INSTANCESTATUS_RECONCILING,
+		instanceStatus: edge.INSTANCESTATUS_RECONCILING,
 		errorsToReturn: []error{nil},
 		wantErr:        nil,
 	},
 	{
 		desc:           "retry_on_404",
-		instanceStatus: INSTANCESTATUS_ACTIVE,
+		instanceStatus: edge.INSTANCESTATUS_ACTIVE,
 		errorsToReturn: []error{
 			&oapierror.GenericOpenAPIError{StatusCode: http.StatusNotFound},
 			&oapierror.GenericOpenAPIError{StatusCode: http.StatusNotFound},
@@ -199,7 +199,7 @@ var kubeconfigOrTokenTests = []struct {
 	},
 	{
 		desc:              "timeout",
-		instanceStatus:    INSTANCESTATUS_ACTIVE,
+		instanceStatus:    edge.INSTANCESTATUS_ACTIVE,
 		errorsToReturn:    []error{&oapierror.GenericOpenAPIError{StatusCode: http.StatusNotFound}},
 		mockShouldTimeout: true,
 		wantErr:           errors.New("WaitWithContext() has timed out"),
@@ -211,7 +211,7 @@ var kubeconfigOrTokenTests = []struct {
 	},
 	{
 		desc:           "unusable_instance_status",
-		instanceStatus: INSTANCESTATUS_ERROR,
+		instanceStatus: edge.INSTANCESTATUS_ERROR,
 		wantErr:        errors.New("cannot use instance"),
 	},
 }

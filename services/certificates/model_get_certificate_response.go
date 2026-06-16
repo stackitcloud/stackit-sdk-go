@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &GetCertificateResponse{}
 
 /*
+	types and functions for data
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetDataAttributeType = *Data
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetDataArgType = Data
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetDataRetType = Data
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getGetCertificateResponseGetDataAttributeTypeOk(arg GetCertificateResponseGetDataAttributeType) (ret GetCertificateResponseGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setGetCertificateResponseGetDataAttributeType(arg *GetCertificateResponseGetDataAttributeType, val GetCertificateResponseGetDataRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -44,6 +71,33 @@ type GetCertificateResponseGetIdArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type GetCertificateResponseGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getGetCertificateResponseGetLabelsAttributeTypeOk(arg GetCertificateResponseGetLabelsAttributeType) (ret GetCertificateResponseGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setGetCertificateResponseGetLabelsAttributeType(arg *GetCertificateResponseGetLabelsAttributeType, val GetCertificateResponseGetLabelsRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for name
@@ -126,17 +180,48 @@ type GetCertificateResponseGetRegionArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type GetCertificateResponseGetRegionRetType = string
 
+/*
+	types and functions for usage
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetUsageAttributeType = *Usage
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetUsageArgType = Usage
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetUsageRetType = Usage
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getGetCertificateResponseGetUsageAttributeTypeOk(arg GetCertificateResponseGetUsageAttributeType) (ret GetCertificateResponseGetUsageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setGetCertificateResponseGetUsageAttributeType(arg *GetCertificateResponseGetUsageAttributeType, val GetCertificateResponseGetUsageRetType) {
+	*arg = &val
+}
+
 // GetCertificateResponse GetCertificateResponse returns name, id and public key
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type GetCertificateResponse struct {
+	Data GetCertificateResponseGetDataAttributeType `json:"data,omitempty"`
 	// The certificates resource id
 	Id GetCertificateResponseGetIdAttributeType `json:"id,omitempty"`
-	// TLS certificate name
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels GetCertificateResponseGetLabelsAttributeType `json:"labels,omitempty"`
+	// Certificate display name
 	Name GetCertificateResponseGetNameAttributeType `json:"name,omitempty"`
 	// The PEM encoded public key part
 	PublicKey GetCertificateResponseGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
 	Region GetCertificateResponseGetRegionAttributeType `json:"region,omitempty"`
+	Usage  GetCertificateResponseGetUsageAttributeType  `json:"usage,omitempty"`
 }
 
 // NewGetCertificateResponse instantiates a new GetCertificateResponse object
@@ -156,6 +241,33 @@ func NewGetCertificateResponse() *GetCertificateResponse {
 func NewGetCertificateResponseWithDefaults() *GetCertificateResponse {
 	this := GetCertificateResponse{}
 	return &this
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetData() (res GetCertificateResponseGetDataRetType) {
+	res, _ = o.GetDataOk()
+	return
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetDataOk() (ret GetCertificateResponseGetDataRetType, ok bool) {
+	return getGetCertificateResponseGetDataAttributeTypeOk(o.Data)
+}
+
+// HasData returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) HasData() bool {
+	_, ok := o.GetDataOk()
+	return ok
+}
+
+// SetData gets a reference to the given Data and assigns it to the Data field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) SetData(v GetCertificateResponseGetDataRetType) {
+	setGetCertificateResponseGetDataAttributeType(&o.Data, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -183,6 +295,33 @@ func (o *GetCertificateResponse) HasId() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *GetCertificateResponse) SetId(v GetCertificateResponseGetIdRetType) {
 	setGetCertificateResponseGetIdAttributeType(&o.Id, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetLabels() (res GetCertificateResponseGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetLabelsOk() (ret GetCertificateResponseGetLabelsRetType, ok bool) {
+	return getGetCertificateResponseGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) SetLabels(v GetCertificateResponseGetLabelsRetType) {
+	setGetCertificateResponseGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -266,11 +405,44 @@ func (o *GetCertificateResponse) SetRegion(v GetCertificateResponseGetRegionRetT
 	setGetCertificateResponseGetRegionAttributeType(&o.Region, v)
 }
 
+// GetUsage returns the Usage field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetUsage() (res GetCertificateResponseGetUsageRetType) {
+	res, _ = o.GetUsageOk()
+	return
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetUsageOk() (ret GetCertificateResponseGetUsageRetType, ok bool) {
+	return getGetCertificateResponseGetUsageAttributeTypeOk(o.Usage)
+}
+
+// HasUsage returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) HasUsage() bool {
+	_, ok := o.GetUsageOk()
+	return ok
+}
+
+// SetUsage gets a reference to the given Usage and assigns it to the Usage field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) SetUsage(v GetCertificateResponseGetUsageRetType) {
+	setGetCertificateResponseGetUsageAttributeType(&o.Usage, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getGetCertificateResponseGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
 	if val, ok := getGetCertificateResponseGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getGetCertificateResponseGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getGetCertificateResponseGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
@@ -280,6 +452,9 @@ func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getGetCertificateResponseGetRegionAttributeTypeOk(o.Region); ok {
 		toSerialize["Region"] = val
+	}
+	if val, ok := getGetCertificateResponseGetUsageAttributeTypeOk(o.Usage); ok {
+		toSerialize["Usage"] = val
 	}
 	return toSerialize, nil
 }

@@ -1,3 +1,9 @@
+## v0.30.0
+- **Feature:** Introduce enums for various attributes
+
+## v0.29.0
+- **Improvement:** Use new WaiterHelper for Logs waiters
+
 ## v0.28.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 

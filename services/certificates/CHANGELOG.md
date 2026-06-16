@@ -1,3 +1,17 @@
+## v1.8.0
+- `v2api`:
+  - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+  - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
+- Deprecated SDK layer in root of the module:
+  - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+  - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
+
+## v1.7.0
+- `v2api`:
+  - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+- Deprecated SDK layer in root of the module:
+  - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+
 ## v1.6.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 

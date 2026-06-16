@@ -1,5 +1,8 @@
+## v0.3.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.2.1
-- **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
+- **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler
 
 ## v0.2.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.

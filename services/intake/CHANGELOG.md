@@ -1,3 +1,9 @@
+## v0.11.0
+- `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler
+
+## v0.10.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.9.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

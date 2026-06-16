@@ -12,6 +12,7 @@ package v1alpha1api
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BGPGatewayConfig type satisfies the MappedNullable interface at compile time
@@ -20,7 +21,7 @@ var _ MappedNullable = &BGPGatewayConfig{}
 // BGPGatewayConfig BGP configuration effects all connections. (only for routingMode=BGP_ROUTE_BASED)
 type BGPGatewayConfig struct {
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
-	LocalAsn *int32 `json:"localAsn,omitempty"`
+	LocalAsn int64 `json:"localAsn"`
 	// A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised.
 	OverrideAdvertisedRoutes []string `json:"overrideAdvertisedRoutes,omitempty"`
 	AdditionalProperties     map[string]interface{}
@@ -32,8 +33,9 @@ type _BGPGatewayConfig BGPGatewayConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPGatewayConfig() *BGPGatewayConfig {
+func NewBGPGatewayConfig(localAsn int64) *BGPGatewayConfig {
 	this := BGPGatewayConfig{}
+	this.LocalAsn = localAsn
 	return &this
 }
 
@@ -45,36 +47,28 @@ func NewBGPGatewayConfigWithDefaults() *BGPGatewayConfig {
 	return &this
 }
 
-// GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
-func (o *BGPGatewayConfig) GetLocalAsn() int32 {
-	if o == nil || IsNil(o.LocalAsn) {
-		var ret int32
+// GetLocalAsn returns the LocalAsn field value
+func (o *BGPGatewayConfig) GetLocalAsn() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.LocalAsn
+
+	return o.LocalAsn
 }
 
-// GetLocalAsnOk returns a tuple with the LocalAsn field value if set, nil otherwise
+// GetLocalAsnOk returns a tuple with the LocalAsn field value
 // and a boolean to check if the value has been set.
-func (o *BGPGatewayConfig) GetLocalAsnOk() (*int32, bool) {
-	if o == nil || IsNil(o.LocalAsn) {
+func (o *BGPGatewayConfig) GetLocalAsnOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LocalAsn, true
+	return &o.LocalAsn, true
 }
 
-// HasLocalAsn returns a boolean if a field has been set.
-func (o *BGPGatewayConfig) HasLocalAsn() bool {
-	if o != nil && !IsNil(o.LocalAsn) {
-		return true
-	}
-
-	return false
-}
-
-// SetLocalAsn gets a reference to the given int32 and assigns it to the LocalAsn field.
-func (o *BGPGatewayConfig) SetLocalAsn(v int32) {
-	o.LocalAsn = &v
+// SetLocalAsn sets field value
+func (o *BGPGatewayConfig) SetLocalAsn(v int64) {
+	o.LocalAsn = v
 }
 
 // GetOverrideAdvertisedRoutes returns the OverrideAdvertisedRoutes field value if set, zero value otherwise.
@@ -119,9 +113,7 @@ func (o BGPGatewayConfig) MarshalJSON() ([]byte, error) {
 
 func (o BGPGatewayConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.LocalAsn) {
-		toSerialize["localAsn"] = o.LocalAsn
-	}
+	toSerialize["localAsn"] = o.LocalAsn
 	if !IsNil(o.OverrideAdvertisedRoutes) {
 		toSerialize["overrideAdvertisedRoutes"] = o.OverrideAdvertisedRoutes
 	}
@@ -134,6 +126,27 @@ func (o BGPGatewayConfig) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BGPGatewayConfig) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"localAsn",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varBGPGatewayConfig := _BGPGatewayConfig{}
 
 	err = json.Unmarshal(data, &varBGPGatewayConfig)

@@ -1,3 +1,46 @@
+## v0.14.0
+  - `v1api`:
+    - **Feature:** Add `ErrorMessage` field to `GatewayStatusResponse`
+    - **Improvement:** Add description that `RoutingType` can only be set at the creation
+  - `v1beta1api`:  Align package to latest API specification
+  - `v1alpha1api`: Align package to latest API specification
+
+## v0.13.0
+  - `v1api`:
+    - **Breaking change:** `LocalAsn` is now marked as required (aligned with api) and no longer a pointer
+  - `v1beta1api`:  Align package to latest API specification
+  - `v1alpha1api`: Align package to latest API specification
+
+## v0.12.0
+- **Feature:** Introduce enums for various attributes
+
+## v0.11.0
+- `v1api`:
+  - **Feature:** Add `Labels` field to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
+## v0.10.0
+- `v1api`:
+  - **Feature:** Add `InternalNextHopIP` field to `VPNTunnels` model
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
+## v0.9.0
+- `v1api`:
+  - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+- `v1beta1api`: Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
+## v0.8.0
+- `v1api`:
+  - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
+
+## v0.7.0
+- `v1api`: New package which can be used for communication with the STACKIT vpn v1 API
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
 ## v0.6.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

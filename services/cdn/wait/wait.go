@@ -10,6 +10,7 @@ import (
 )
 
 // Interfaces needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*cdn.GetDistributionResponse, error)

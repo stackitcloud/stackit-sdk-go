@@ -2466,8 +2466,8 @@ type ApiImportRecordSetsRequest struct {
 	projectId               string
 	zoneId                  string
 	importRecordSetsPayload *ImportRecordSetsPayload
-	format                  *string
-	importType              *string
+	format                  *ImportRecordSetsFormatParameter
+	importType              *ImportRecordSetsImportTypeParameter
 }
 
 // accepts all response bodies for the export endpoint
@@ -2477,13 +2477,13 @@ func (r ApiImportRecordSetsRequest) ImportRecordSetsPayload(importRecordSetsPayl
 }
 
 // format of the data to import
-func (r ApiImportRecordSetsRequest) Format(format string) ApiImportRecordSetsRequest {
+func (r ApiImportRecordSetsRequest) Format(format ImportRecordSetsFormatParameter) ApiImportRecordSetsRequest {
 	r.format = &format
 	return r
 }
 
 // type of the zone import
-func (r ApiImportRecordSetsRequest) ImportType(importType string) ApiImportRecordSetsRequest {
+func (r ApiImportRecordSetsRequest) ImportType(importType ImportRecordSetsImportTypeParameter) ApiImportRecordSetsRequest {
 	r.importType = &importType
 	return r
 }
@@ -2541,14 +2541,14 @@ func (a *DefaultAPIService) ImportRecordSetsExecute(r ApiImportRecordSetsRequest
 	if r.format != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
 	} else {
-		var defaultValue string = "csv"
+		var defaultValue ImportRecordSetsFormatParameter = "csv"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "format", defaultValue, "form", "")
 		r.format = &defaultValue
 	}
 	if r.importType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "importType", r.importType, "form", "")
 	} else {
-		var defaultValue string = "restore"
+		var defaultValue ImportRecordSetsImportTypeParameter = "restore"
 		parameterAddToHeaderOrQuery(localVarQueryParams, "importType", defaultValue, "form", "")
 		r.importType = &defaultValue
 	}
@@ -2844,9 +2844,9 @@ type ApiListRecordSetsRequest struct {
 	pageSize                *int32
 	nameEq                  *string
 	nameLike                *string
-	typeEq                  *string
-	stateEq                 *string
-	stateNeq                *string
+	typeEq                  *ListRecordSetsTypeEqParameter
+	stateEq                 *ListRecordSetsStateEqParameter
+	stateNeq                *ListRecordSetsStateNeqParameter
 	activeEq                *bool
 	creationStartedGt       *string
 	creationStartedLt       *string
@@ -2864,14 +2864,14 @@ type ApiListRecordSetsRequest struct {
 	updateFinishedLt        *string
 	updateFinishedGte       *string
 	updateFinishedLte       *string
-	orderByName             *string
-	orderByCreationStarted  *string
-	orderByCreationFinished *string
-	orderByUpdateStarted    *string
-	orderByUpdateFinished   *string
-	orderByType             *string
-	orderByState            *string
-	orderByRecordCount      *string
+	orderByName             *ListRecordSetsOrderByNameParameter
+	orderByCreationStarted  *ListRecordSetsOrderByCreationStartedParameter
+	orderByCreationFinished *ListRecordSetsOrderByCreationFinishedParameter
+	orderByUpdateStarted    *ListRecordSetsOrderByUpdateStartedParameter
+	orderByUpdateFinished   *ListRecordSetsOrderByUpdateFinishedParameter
+	orderByType             *ListRecordSetsOrderByTypeParameter
+	orderByState            *ListRecordSetsOrderByStateParameter
+	orderByRecordCount      *ListRecordSetsOrderByRecordCountParameter
 }
 
 // page
@@ -2899,19 +2899,19 @@ func (r ApiListRecordSetsRequest) NameLike(nameLike string) ApiListRecordSetsReq
 }
 
 // filter type
-func (r ApiListRecordSetsRequest) TypeEq(typeEq string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) TypeEq(typeEq ListRecordSetsTypeEqParameter) ApiListRecordSetsRequest {
 	r.typeEq = &typeEq
 	return r
 }
 
 // filter state
-func (r ApiListRecordSetsRequest) StateEq(stateEq string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) StateEq(stateEq ListRecordSetsStateEqParameter) ApiListRecordSetsRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
-func (r ApiListRecordSetsRequest) StateNeq(stateNeq string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) StateNeq(stateNeq ListRecordSetsStateNeqParameter) ApiListRecordSetsRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
@@ -3019,49 +3019,49 @@ func (r ApiListRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) Ap
 }
 
 // order by name
-func (r ApiListRecordSetsRequest) OrderByName(orderByName string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByName(orderByName ListRecordSetsOrderByNameParameter) ApiListRecordSetsRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by creationStarted
-func (r ApiListRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted ListRecordSetsOrderByCreationStartedParameter) ApiListRecordSetsRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
-func (r ApiListRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished ListRecordSetsOrderByCreationFinishedParameter) ApiListRecordSetsRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
-func (r ApiListRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted ListRecordSetsOrderByUpdateStartedParameter) ApiListRecordSetsRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
-func (r ApiListRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished ListRecordSetsOrderByUpdateFinishedParameter) ApiListRecordSetsRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }
 
 // order by type
-func (r ApiListRecordSetsRequest) OrderByType(orderByType string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByType(orderByType ListRecordSetsOrderByTypeParameter) ApiListRecordSetsRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by state
-func (r ApiListRecordSetsRequest) OrderByState(orderByState string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByState(orderByState ListRecordSetsOrderByStateParameter) ApiListRecordSetsRequest {
 	r.orderByState = &orderByState
 	return r
 }
 
 // order by record count
-func (r ApiListRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiListRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByRecordCount(orderByRecordCount ListRecordSetsOrderByRecordCountParameter) ApiListRecordSetsRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
@@ -3333,15 +3333,15 @@ type ApiListZonesRequest struct {
 	pageSize                *int32
 	dnsNameEq               *string
 	dnsNameLike             *string
-	typeEq                  *string
+	typeEq                  *ListZonesTypeEqParameter
 	nameEq                  *string
 	nameNeq                 *string
 	nameLike                *string
 	descriptionEq           *string
 	descriptionNeq          *string
 	descriptionLike         *string
-	stateEq                 *string
-	stateNeq                *string
+	stateEq                 *ListZonesStateEqParameter
+	stateNeq                *ListZonesStateNeqParameter
 	primaryNameServerEq     *string
 	primaryNameServerLike   *string
 	isReverseZoneEq         *bool
@@ -3364,15 +3364,15 @@ type ApiListZonesRequest struct {
 	updateFinishedLte       *string
 	labelKeyEq              *[]string
 	labelValueEq            *[]string
-	orderByDnsName          *string
-	orderByName             *string
-	orderByRecordCount      *string
-	orderByType             *string
-	orderByDescription      *string
-	orderByCreationStarted  *string
-	orderByCreationFinished *string
-	orderByUpdateStarted    *string
-	orderByUpdateFinished   *string
+	orderByDnsName          *ListZonesOrderByDnsNameParameter
+	orderByName             *ListZonesOrderByNameParameter
+	orderByRecordCount      *ListZonesOrderByRecordCountParameter
+	orderByType             *ListZonesOrderByTypeParameter
+	orderByDescription      *ListZonesOrderByDescriptionParameter
+	orderByCreationStarted  *ListZonesOrderByCreationStartedParameter
+	orderByCreationFinished *ListZonesOrderByCreationFinishedParameter
+	orderByUpdateStarted    *ListZonesOrderByUpdateStartedParameter
+	orderByUpdateFinished   *ListZonesOrderByUpdateFinishedParameter
 }
 
 // page
@@ -3400,7 +3400,7 @@ func (r ApiListZonesRequest) DnsNameLike(dnsNameLike string) ApiListZonesRequest
 }
 
 // filter type
-func (r ApiListZonesRequest) TypeEq(typeEq string) ApiListZonesRequest {
+func (r ApiListZonesRequest) TypeEq(typeEq ListZonesTypeEqParameter) ApiListZonesRequest {
 	r.typeEq = &typeEq
 	return r
 }
@@ -3442,13 +3442,13 @@ func (r ApiListZonesRequest) DescriptionLike(descriptionLike string) ApiListZone
 }
 
 // filter state
-func (r ApiListZonesRequest) StateEq(stateEq string) ApiListZonesRequest {
+func (r ApiListZonesRequest) StateEq(stateEq ListZonesStateEqParameter) ApiListZonesRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
-func (r ApiListZonesRequest) StateNeq(stateNeq string) ApiListZonesRequest {
+func (r ApiListZonesRequest) StateNeq(stateNeq ListZonesStateNeqParameter) ApiListZonesRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
@@ -3586,55 +3586,55 @@ func (r ApiListZonesRequest) LabelValueEq(labelValueEq []string) ApiListZonesReq
 }
 
 // order by dns name
-func (r ApiListZonesRequest) OrderByDnsName(orderByDnsName string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByDnsName(orderByDnsName ListZonesOrderByDnsNameParameter) ApiListZonesRequest {
 	r.orderByDnsName = &orderByDnsName
 	return r
 }
 
 // order by name
-func (r ApiListZonesRequest) OrderByName(orderByName string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByName(orderByName ListZonesOrderByNameParameter) ApiListZonesRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by record count
-func (r ApiListZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByRecordCount(orderByRecordCount ListZonesOrderByRecordCountParameter) ApiListZonesRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
 
 // order by type
-func (r ApiListZonesRequest) OrderByType(orderByType string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByType(orderByType ListZonesOrderByTypeParameter) ApiListZonesRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by description
-func (r ApiListZonesRequest) OrderByDescription(orderByDescription string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByDescription(orderByDescription ListZonesOrderByDescriptionParameter) ApiListZonesRequest {
 	r.orderByDescription = &orderByDescription
 	return r
 }
 
 // order by creationStarted
-func (r ApiListZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByCreationStarted(orderByCreationStarted ListZonesOrderByCreationStartedParameter) ApiListZonesRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
-func (r ApiListZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByCreationFinished(orderByCreationFinished ListZonesOrderByCreationFinishedParameter) ApiListZonesRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
-func (r ApiListZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByUpdateStarted(orderByUpdateStarted ListZonesOrderByUpdateStartedParameter) ApiListZonesRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
-func (r ApiListZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListZonesRequest {
+func (r ApiListZonesRequest) OrderByUpdateFinished(orderByUpdateFinished ListZonesOrderByUpdateFinishedParameter) ApiListZonesRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }

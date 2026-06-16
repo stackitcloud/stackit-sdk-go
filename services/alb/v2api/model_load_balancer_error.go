@@ -20,9 +20,8 @@ var _ MappedNullable = &LoadBalancerError{}
 // LoadBalancerError struct for LoadBalancerError
 type LoadBalancerError struct {
 	// The error description contains additional helpful user information to fix the error state of the Application Load Balancer. For example the IP 45.135.247.139 does not exist in the project, then the description will report: Floating IP \"45.135.247.139\" could not be found.
-	Description *string `json:"description,omitempty"`
-	// The error type specifies which part of the Application Load Balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the Application Load Balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error.
-	Type                 *string `json:"type,omitempty"`
+	Description          *string                `json:"description,omitempty"`
+	Type                 *LoadBalancerErrorType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,9 +77,9 @@ func (o *LoadBalancerError) SetDescription(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LoadBalancerError) GetType() string {
+func (o *LoadBalancerError) GetType() LoadBalancerErrorType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret LoadBalancerErrorType
 		return ret
 	}
 	return *o.Type
@@ -88,7 +87,7 @@ func (o *LoadBalancerError) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerError) GetTypeOk() (*string, bool) {
+func (o *LoadBalancerError) GetTypeOk() (*LoadBalancerErrorType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -104,8 +103,8 @@ func (o *LoadBalancerError) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *LoadBalancerError) SetType(v string) {
+// SetType gets a reference to the given LoadBalancerErrorType and assigns it to the Type field.
+func (o *LoadBalancerError) SetType(v LoadBalancerErrorType) {
 	o.Type = &v
 }
 

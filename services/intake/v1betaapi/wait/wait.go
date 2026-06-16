@@ -3,157 +3,189 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	intake "github.com/stackitcloud/stackit-sdk-go/services/intake/v1betaapi"
 )
 
 const (
-	INTAKERESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERESPONSESTATE_ACTIVE      = "active"
-	INTAKERESPONSESTATE_DELETING    = "deleting"
-	INTAKERESPONSESTATE_FAILED      = "failed"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_RECONCILING = intake.INTAKERESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_ACTIVE = intake.INTAKERESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_DELETING = intake.INTAKERESPONSESTATE_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERESPONSESTATE_FAILED = intake.INTAKERESPONSESTATE_FAILED
 
-	INTAKERUNNERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKERUNNERRESPONSESTATE_ACTIVE      = "active"
-	INTAKERUNNERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_RECONCILING = intake.INTAKERUNNERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_ACTIVE = intake.INTAKERUNNERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKERUNNERRESPONSESTATE_DELETING = intake.INTAKERUNNERRESPONSESTATE_DELETING
 
-	INTAKEUSERRESPONSESTATE_RECONCILING = "reconciling"
-	INTAKEUSERRESPONSESTATE_ACTIVE      = "active"
-	INTAKEUSERRESPONSESTATE_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_RECONCILING = intake.INTAKEUSERRESPONSESTATE_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_ACTIVE = intake.INTAKEUSERRESPONSESTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INTAKEUSERRESPONSESTATE_DELETING = intake.INTAKEUSERRESPONSESTATE_DELETING
 )
 
-func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
-		runner, err := a.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if runner == nil {
-			return false, nil, fmt.Errorf("API returned a nil response for Intake Runner %s", intakeRunnerId)
-		}
-
-		if runner.Id == intakeRunnerId && runner.State == INTAKERUNNERRESPONSESTATE_ACTIVE {
-			return true, runner, nil
-		}
-
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeRunnerWaitHandler or UpdateIntakeRunnerWaitHandler instead
+func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	// TODO: mark function as private after deprecation period
+	waitConfig := wait.WaiterHelper[intake.IntakeRunnerResponse, intake.IntakeRunnerResponseState]{
+		FetchInstance: client.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute,
+		GetState: func(response *intake.IntakeRunnerResponse) (intake.IntakeRunnerResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			return response.State, nil
+		},
+		ActiveState: []intake.IntakeRunnerResponseState{intake.INTAKERUNNERRESPONSESTATE_ACTIVE},
+		ErrorState:  []intake.IntakeRunnerResponseState{},
 		// The API does not have a dedicated failure state for this resource,
 		// so we rely on the timeout for cases where it never becomes active.
-		return false, nil, nil
-	})
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
-func DeleteIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
-		_, err = a.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute()
-		if err == nil {
-			// Resource still exists
-			return false, nil, nil
-		}
+func CreateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	return CreateOrUpdateIntakeRunnerWaitHandler(ctx, client, projectId, region, intakeRunnerId)
+}
 
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if oapiError.StatusCode == http.StatusNotFound {
-				// Success: Resource is gone
-				return true, nil, nil
+func UpdateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	return CreateOrUpdateIntakeRunnerWaitHandler(ctx, client, projectId, region, intakeRunnerId)
+}
+
+func DeleteIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	waitConfig := wait.WaiterHelper[intake.IntakeRunnerResponse, intake.IntakeRunnerResponseState]{
+		FetchInstance: client.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute,
+		GetState: func(response *intake.IntakeRunnerResponse) (intake.IntakeRunnerResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-		// An unexpected error occurred
-		return false, nil, err
-	})
+			return response.State, nil
+		},
+		ActiveState:                []intake.IntakeRunnerResponseState{},
+		ErrorState:                 []intake.IntakeRunnerResponseState{},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
-func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
-		ik, err := a.GetIntake(ctx, projectId, region, intakeId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if ik == nil {
-			return false, nil, fmt.Errorf("API returned a nil response for Intake %s", intakeId)
-		}
-
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_ACTIVE {
-			return true, ik, nil
-		}
-
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_FAILED {
-			return true, ik, fmt.Errorf("create/update failed for Intake %s", intakeId)
-		}
-
-		return false, nil, nil
-	})
-	handler.SetTimeout(10 * time.Minute)
-	return handler
-}
-
-func DeleteIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
-		_, err = a.GetIntake(ctx, projectId, region, intakeId).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
-
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if oapiError.StatusCode == http.StatusNotFound {
-				return true, nil, nil
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeWaitHandler or UpdateIntakeWaitHandler instead
+func CreateOrUpdateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	// TODO: mark function as private after deprecation period
+	waitConfig := wait.WaiterHelper[intake.IntakeResponse, intake.IntakeResponseState]{
+		FetchInstance: client.GetIntake(ctx, projectId, region, intakeId).Execute,
+		GetState: func(response *intake.IntakeResponse) (intake.IntakeResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-		return false, nil, err
-	})
+			return response.State, nil
+		},
+		ActiveState: []intake.IntakeResponseState{intake.INTAKERESPONSESTATE_ACTIVE},
+		ErrorState:  []intake.IntakeResponseState{intake.INTAKERESPONSESTATE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
-func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
-		user, err := a.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
+func CreateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	return CreateOrUpdateIntakeWaitHandler(ctx, client, projectId, region, intakeId)
+}
 
-		if user == nil {
-			return false, nil, fmt.Errorf("API returned a nil response for Intake User %s", intakeUserId)
-		}
+func UpdateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	return CreateOrUpdateIntakeWaitHandler(ctx, client, projectId, region, intakeId)
+}
 
-		if user.Id == intakeUserId && user.State == INTAKEUSERRESPONSESTATE_ACTIVE {
-			return true, user, nil
-		}
+func DeleteIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	waitConfig := wait.WaiterHelper[intake.IntakeResponse, intake.IntakeResponseState]{
+		FetchInstance: client.GetIntake(ctx, projectId, region, intakeId).Execute,
+		GetState: func(response *intake.IntakeResponse) (intake.IntakeResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			return response.State, nil
+		},
+		ActiveState:                []intake.IntakeResponseState{},
+		ErrorState:                 []intake.IntakeResponseState{},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	}
 
-		// The API does not have a dedicated failure state for this resource, we rely on the timeout for cases where
-		// it never becomes active.
-		return false, nil, nil
-	})
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeUserWaitHandler or UpdateIntakeUserWaitHandler instead
+func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	// TODO: mark function as private after deprecation period
+	waitConfig := wait.WaiterHelper[intake.IntakeUserResponse, intake.IntakeUserResponseState]{
+		FetchInstance: client.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute,
+		GetState: func(response *intake.IntakeUserResponse) (intake.IntakeUserResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			return response.State, nil
+		},
+		ActiveState: []intake.IntakeUserResponseState{intake.INTAKEUSERRESPONSESTATE_ACTIVE},
+		ErrorState:  []intake.IntakeUserResponseState{},
+		// The API does not have a dedicated failure state for this resource,
+		// so we rely on the timeout for cases where it never becomes active.
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
 
-func DeleteIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
-	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
-		_, err = a.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
+func CreateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	return CreateOrUpdateIntakeUserWaitHandler(ctx, client, projectId, region, intakeId, intakeUserId)
+}
 
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if oapiError.StatusCode == http.StatusNotFound {
-				return true, nil, nil
+func UpdateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	return CreateOrUpdateIntakeUserWaitHandler(ctx, client, projectId, region, intakeId, intakeUserId)
+}
+
+func DeleteIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	waitConfig := wait.WaiterHelper[intake.IntakeUserResponse, intake.IntakeUserResponseState]{
+		FetchInstance: client.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute,
+		GetState: func(response *intake.IntakeUserResponse) (intake.IntakeUserResponseState, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-		return false, nil, err
-	})
+			return response.State, nil
+		},
+		ActiveState:                []intake.IntakeUserResponseState{},
+		ErrorState:                 []intake.IntakeUserResponseState{},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(5 * time.Minute)
 	return handler
 }

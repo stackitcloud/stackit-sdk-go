@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -13,60 +14,65 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = redis.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = redis.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = redis.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = redis.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = redis.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = redis.INSTANCESTATUS_UPDATING
 
-	INSTANCELASTOPERATIONTYPE_CREATE = "create"
-	INSTANCELASTOPERATIONTYPE_UPDATE = "update"
-	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_CREATE = redis.INSTANCELASTOPERATIONTYPE_CREATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_UPDATE = redis.INSTANCELASTOPERATIONTYPE_UPDATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_DELETE = redis.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
-// CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *redis.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	waitConfig := wait.WaiterHelper[redis.Instance, redis.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *redis.Instance) (redis.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []redis.InstanceStatus{redis.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []redis.InstanceStatus{redis.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
+}
+
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *redis.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
-	handler.SetTimeout(45 * time.Minute)
-	return handler
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
@@ -77,10 +83,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectI
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != redis.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == redis.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

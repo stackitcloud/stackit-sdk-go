@@ -1,7 +1,7 @@
 /*
 STACKIT CDN API (DEPRECATED)
 
-**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1). API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -27,8 +27,8 @@ type ErrorDetails struct {
 	// English description of the error
 	En string `json:"en"`
 	// Optional field in the request this error detail refers to
-	Field                *string `json:"field,omitempty"`
-	Key                  string  `json:"key"`
+	Field                *string         `json:"field,omitempty"`
+	Key                  ErrorDetailsKey `json:"key"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _ErrorDetails ErrorDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorDetails(description string, en string, key string) *ErrorDetails {
+func NewErrorDetails(description string, en string, key ErrorDetailsKey) *ErrorDetails {
 	this := ErrorDetails{}
 	this.Description = description
 	this.En = en
@@ -170,9 +170,9 @@ func (o *ErrorDetails) SetField(v string) {
 }
 
 // GetKey returns the Key field value
-func (o *ErrorDetails) GetKey() string {
+func (o *ErrorDetails) GetKey() ErrorDetailsKey {
 	if o == nil {
-		var ret string
+		var ret ErrorDetailsKey
 		return ret
 	}
 
@@ -181,7 +181,7 @@ func (o *ErrorDetails) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *ErrorDetails) GetKeyOk() (*string, bool) {
+func (o *ErrorDetails) GetKeyOk() (*ErrorDetailsKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -189,7 +189,7 @@ func (o *ErrorDetails) GetKeyOk() (*string, bool) {
 }
 
 // SetKey sets field value
-func (o *ErrorDetails) SetKey(v string) {
+func (o *ErrorDetails) SetKey(v ErrorDetailsKey) {
 	o.Key = v
 }
 

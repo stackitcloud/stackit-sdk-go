@@ -1,3 +1,9 @@
+## v0.14.0
+- **Feature:** Introduce enums for various attributes
+
+## v0.13.0
+- `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Git WaitHandler
+
 ## v0.12.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 

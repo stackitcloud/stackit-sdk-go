@@ -15,45 +15,46 @@ import (
 const timeoutMinutes time.Duration = 10
 
 const (
-	INSTANCESTATUS_ERROR       = "error"
-	INSTANCESTATUS_RECONCILING = "reconciling"
-	INSTANCESTATUS_ACTIVE      = "active"
-	INSTANCESTATUS_DELETING    = "deleting"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ERROR = edge.INSTANCESTATUS_ERROR
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_RECONCILING = edge.INSTANCESTATUS_RECONCILING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = edge.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = edge.INSTANCESTATUS_DELETING
 )
 
 var (
-	ErrInstanceNotFound        = errors.New("instance not found")
+	ErrInstanceNotFound = errors.New("instance not found")
+	// Deprecated: ErrInstanceStatusUndefined is no longer used and will be removed after 2026-11-07
 	ErrInstanceStatusUndefined = errors.New("instance status undefined")
-	ErrInstanceCreationFailed  = errors.New("instance creation failed")
-	ErrInstanceIsBeingDeleted  = errors.New("instance is being deleted")
+	// Deprecated: ErrInstanceCreationFailed is no longer used and will be removed after 2026-11-07
+	ErrInstanceCreationFailed = errors.New("instance creation failed")
+	// Deprecated: ErrInstanceIsBeingDeleted is no longer used and will be removed after 2026-11-07
+	ErrInstanceIsBeingDeleted = errors.New("instance is being deleted")
 )
 
 // createOrUpdateInstanceWaitHandler contains the shared logic for waiting on instance creation or updates.
 func createOrUpdateInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Instance, err error) {
-		instance, err := getInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-
-		if instance == nil {
-			return false, nil, ErrInstanceNotFound
-		}
-
-		status := instance.Status
-		switch status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, instance, nil
-		case INSTANCESTATUS_ERROR:
-			return true, instance, ErrInstanceCreationFailed
-		case INSTANCESTATUS_RECONCILING:
-			return false, nil, nil
-		case INSTANCESTATUS_DELETING:
-			return true, instance, ErrInstanceIsBeingDeleted
-		default:
-			return false, nil, nil
-		}
-	})
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
+		FetchInstance: func() (*edge.Instance, error) {
+			return getInstance(ctx)
+		},
+		GetState: func(e *edge.Instance) (edge.InstanceStatus, error) {
+			if e == nil {
+				return "", ErrInstanceNotFound
+			}
+			return e.Status, nil
+		},
+		ActiveState: []edge.InstanceStatus{edge.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []edge.InstanceStatus{edge.INSTANCESTATUS_ERROR, edge.INSTANCESTATUS_DELETING},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -74,17 +75,18 @@ func CreateOrUpdateInstanceByNameWaitHandler(ctx context.Context, a edge.Default
 
 // deleteInstanceWaitHandler contains the shared logic for waiting on instance deletion.
 func deleteInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Instance, err error) {
-		_, err = getInstance(ctx)
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-			return true, nil, nil
-		}
-		return false, nil, err
-	})
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
+		FetchInstance: func() (*edge.Instance, error) {
+			return getInstance(ctx)
+		},
+		GetState: func(e *edge.Instance) (edge.InstanceStatus, error) {
+			if e == nil {
+				return "", ErrInstanceNotFound
+			}
+			return e.Status, nil
+		},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -105,21 +107,30 @@ func DeleteInstanceByNameWaitHandler(ctx context.Context, a edge.DefaultAPI, pro
 
 // kubeconfigWaitHandlerHelper contains the shared logic for waiting for the instance to become ready before retrieving the kubeconfig.
 func kubeconfigWaitHandlerHelper(ctx context.Context, checkInstance func(ctx context.Context) error, getKubeconfig func(ctx context.Context) (*edge.Kubeconfig, error)) *wait.AsyncActionHandler[edge.Kubeconfig] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Kubeconfig, err error) {
-		err = checkInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-		kubeconfig, err := getKubeconfig(ctx)
-		var oapiErr *oapierror.GenericOpenAPIError
-		if err != nil {
-			if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-				return false, nil, nil
+	waitConfig := wait.WaiterHelper[edge.Kubeconfig, string]{
+		FetchInstance: func() (*edge.Kubeconfig, error) {
+			err := checkInstance(ctx)
+			if err != nil {
+				return nil, err
 			}
-			return false, nil, err
-		}
-		return true, kubeconfig, nil
-	})
+			config, err := getKubeconfig(ctx)
+			if err != nil {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
+					return nil, nil
+				}
+			}
+			return config, err
+		},
+		GetState: func(e *edge.Kubeconfig) (string, error) {
+			if e == nil {
+				return "NOT_READY", nil
+			}
+			return "READY", nil
+		},
+		ActiveState: []string{"READY"},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -158,21 +169,30 @@ func KubeconfigByInstanceNameWaitHandler(ctx context.Context, a edge.DefaultAPI,
 
 // tokenWaitHandlerHelper contains the shared logic for waiting for the instance to become ready before retrieving the service token.
 func tokenWaitHandlerHelper(ctx context.Context, checkInstance func(ctx context.Context) error, getToken func(ctx context.Context) (*edge.Token, error)) *wait.AsyncActionHandler[edge.Token] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Token, err error) {
-		err = checkInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-		token, err := getToken(ctx)
-		var oapiErr *oapierror.GenericOpenAPIError
-		if err != nil {
-			if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-				return false, nil, nil
+	waitConfig := wait.WaiterHelper[edge.Token, string]{
+		FetchInstance: func() (*edge.Token, error) {
+			err := checkInstance(ctx)
+			if err != nil {
+				return nil, err
 			}
-			return false, nil, err
-		}
-		return true, token, nil
-	})
+			token, err := getToken(ctx)
+			if err != nil {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
+					return nil, nil
+				}
+			}
+			return token, err
+		},
+		GetState: func(e *edge.Token) (string, error) {
+			if e == nil {
+				return "NOT_READY", nil
+			}
+			return "READY", nil
+		},
+		ActiveState: []string{"READY"},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -218,7 +238,7 @@ func checkInstanceUsableStatus(ctx context.Context, getInstance func(ctx context
 	if instance == nil {
 		return ErrInstanceNotFound
 	}
-	if instance.Status == INSTANCESTATUS_ACTIVE || instance.Status == INSTANCESTATUS_RECONCILING {
+	if instance.Status == edge.INSTANCESTATUS_ACTIVE || instance.Status == edge.INSTANCESTATUS_RECONCILING {
 		return nil
 	}
 	return fmt.Errorf("cannot use instance with %s '%s' with status '%s'", identifierType, identifierValue, instance.Status)

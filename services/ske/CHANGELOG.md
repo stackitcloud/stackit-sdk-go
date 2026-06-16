@@ -1,3 +1,23 @@
+## v1.18.0
+- **Improvement:** Use new WaiterHelper for ske waiters
+- **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.
+
+## v1.17.0
+- **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
+
+## v1.16.0
+- **Feature:** Introduce enums for various attributes
+
+## v1.15.0
+- Package `v1api`:
+  - **Docs:** Update possible values of `ClusterError`
+- Package `v2api`:
+  - **Docs:** Update possible values of `ClusterError`
+  - **Feature:** New field `GatewayApi` in `DNS` model struct
+- Deprecated SDK layer in root of the module:
+  - **Docs:** Update possible values of `ClusterError`
+  - **Feature:** New field `GatewayApi` in `DNS` model struct
+
 ## v1.14.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

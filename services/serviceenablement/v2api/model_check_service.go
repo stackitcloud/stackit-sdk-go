@@ -20,8 +20,8 @@ var _ MappedNullable = &CheckService{}
 // CheckService struct for CheckService
 type CheckService struct {
 	// the identifier of the resource e.g. projectID
-	Resource     *string `json:"resource,omitempty"`
-	ResourceType *string `json:"resourceType,omitempty"`
+	Resource     *string                   `json:"resource,omitempty"`
+	ResourceType *CheckServiceResourceType `json:"resourceType,omitempty"`
 	// the id of the service
 	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
 	AdditionalProperties map[string]interface{}
@@ -35,7 +35,7 @@ type _CheckService CheckService
 // will change when the set of required properties is changed
 func NewCheckService() *CheckService {
 	this := CheckService{}
-	var resourceType string = "project"
+	var resourceType CheckServiceResourceType = CHECKSERVICERESOURCETYPE_PROJECT
 	this.ResourceType = &resourceType
 	return &this
 }
@@ -45,7 +45,7 @@ func NewCheckService() *CheckService {
 // but it doesn't guarantee that properties required by API are set
 func NewCheckServiceWithDefaults() *CheckService {
 	this := CheckService{}
-	var resourceType string = "project"
+	var resourceType CheckServiceResourceType = CHECKSERVICERESOURCETYPE_PROJECT
 	this.ResourceType = &resourceType
 	return &this
 }
@@ -83,9 +83,9 @@ func (o *CheckService) SetResource(v string) {
 }
 
 // GetResourceType returns the ResourceType field value if set, zero value otherwise.
-func (o *CheckService) GetResourceType() string {
+func (o *CheckService) GetResourceType() CheckServiceResourceType {
 	if o == nil || IsNil(o.ResourceType) {
-		var ret string
+		var ret CheckServiceResourceType
 		return ret
 	}
 	return *o.ResourceType
@@ -93,7 +93,7 @@ func (o *CheckService) GetResourceType() string {
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CheckService) GetResourceTypeOk() (*string, bool) {
+func (o *CheckService) GetResourceTypeOk() (*CheckServiceResourceType, bool) {
 	if o == nil || IsNil(o.ResourceType) {
 		return nil, false
 	}
@@ -109,8 +109,8 @@ func (o *CheckService) HasResourceType() bool {
 	return false
 }
 
-// SetResourceType gets a reference to the given string and assigns it to the ResourceType field.
-func (o *CheckService) SetResourceType(v string) {
+// SetResourceType gets a reference to the given CheckServiceResourceType and assigns it to the ResourceType field.
+func (o *CheckService) SetResourceType(v CheckServiceResourceType) {
 	o.ResourceType = &v
 }
 

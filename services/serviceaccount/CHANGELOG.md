@@ -1,3 +1,6 @@
+## v0.20.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.19.0
 - `v2api`:
   - **Feature:**: New API client method `GetFederatedIdentityProvider`

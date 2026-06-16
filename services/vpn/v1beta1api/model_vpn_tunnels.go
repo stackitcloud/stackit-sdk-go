@@ -21,7 +21,9 @@ var _ MappedNullable = &VPNTunnels{}
 type VPNTunnels struct {
 	BgpStatus     NullableBGPStatus `json:"bgpStatus,omitempty"`
 	InstanceState *GatewayStatus    `json:"instanceState,omitempty"`
-	Name          *string           `json:"name,omitempty"`
+	// The IPv4 address of the endpoint in the SNA.
+	InternalNextHopIP *string         `json:"internalNextHopIP,omitempty"`
+	Name              *VPNTunnelsName `json:"name,omitempty"`
 	// The public IPv4 address of this endpoint.
 	PublicIP             *string `json:"publicIP,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -121,10 +123,42 @@ func (o *VPNTunnels) SetInstanceState(v GatewayStatus) {
 	o.InstanceState = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *VPNTunnels) GetName() string {
-	if o == nil || IsNil(o.Name) {
+// GetInternalNextHopIP returns the InternalNextHopIP field value if set, zero value otherwise.
+func (o *VPNTunnels) GetInternalNextHopIP() string {
+	if o == nil || IsNil(o.InternalNextHopIP) {
 		var ret string
+		return ret
+	}
+	return *o.InternalNextHopIP
+}
+
+// GetInternalNextHopIPOk returns a tuple with the InternalNextHopIP field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VPNTunnels) GetInternalNextHopIPOk() (*string, bool) {
+	if o == nil || IsNil(o.InternalNextHopIP) {
+		return nil, false
+	}
+	return o.InternalNextHopIP, true
+}
+
+// HasInternalNextHopIP returns a boolean if a field has been set.
+func (o *VPNTunnels) HasInternalNextHopIP() bool {
+	if o != nil && !IsNil(o.InternalNextHopIP) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternalNextHopIP gets a reference to the given string and assigns it to the InternalNextHopIP field.
+func (o *VPNTunnels) SetInternalNextHopIP(v string) {
+	o.InternalNextHopIP = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *VPNTunnels) GetName() VPNTunnelsName {
+	if o == nil || IsNil(o.Name) {
+		var ret VPNTunnelsName
 		return ret
 	}
 	return *o.Name
@@ -132,7 +166,7 @@ func (o *VPNTunnels) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VPNTunnels) GetNameOk() (*string, bool) {
+func (o *VPNTunnels) GetNameOk() (*VPNTunnelsName, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -148,8 +182,8 @@ func (o *VPNTunnels) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VPNTunnels) SetName(v string) {
+// SetName gets a reference to the given VPNTunnelsName and assigns it to the Name field.
+func (o *VPNTunnels) SetName(v VPNTunnelsName) {
 	o.Name = &v
 }
 
@@ -201,6 +235,9 @@ func (o VPNTunnels) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InstanceState) {
 		toSerialize["instanceState"] = o.InstanceState
 	}
+	if !IsNil(o.InternalNextHopIP) {
+		toSerialize["internalNextHopIP"] = o.InternalNextHopIP
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -231,6 +268,7 @@ func (o *VPNTunnels) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "bgpStatus")
 		delete(additionalProperties, "instanceState")
+		delete(additionalProperties, "internalNextHopIP")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "publicIP")
 		o.AdditionalProperties = additionalProperties

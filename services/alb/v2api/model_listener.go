@@ -24,9 +24,8 @@ type Listener struct {
 	// A unique listener name.
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Port number on which the listener receives incoming traffic.
-	Port *int32 `json:"port,omitempty"`
-	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
-	Protocol *string `json:"protocol,omitempty"`
+	Port     *int32            `json:"port,omitempty"`
+	Protocol *ListenerProtocol `json:"protocol,omitempty"`
 	// Enable Web Application Firewall (WAF), referenced by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
 	WafConfigName        *string `json:"wafConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
@@ -180,9 +179,9 @@ func (o *Listener) SetPort(v int32) {
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *Listener) GetProtocol() string {
+func (o *Listener) GetProtocol() ListenerProtocol {
 	if o == nil || IsNil(o.Protocol) {
-		var ret string
+		var ret ListenerProtocol
 		return ret
 	}
 	return *o.Protocol
@@ -190,7 +189,7 @@ func (o *Listener) GetProtocol() string {
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetProtocolOk() (*string, bool) {
+func (o *Listener) GetProtocolOk() (*ListenerProtocol, bool) {
 	if o == nil || IsNil(o.Protocol) {
 		return nil, false
 	}
@@ -206,8 +205,8 @@ func (o *Listener) HasProtocol() bool {
 	return false
 }
 
-// SetProtocol gets a reference to the given string and assigns it to the Protocol field.
-func (o *Listener) SetProtocol(v string) {
+// SetProtocol gets a reference to the given ListenerProtocol and assigns it to the Protocol field.
+func (o *Listener) SetProtocol(v ListenerProtocol) {
 	o.Protocol = &v
 }
 

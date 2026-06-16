@@ -17,10 +17,12 @@ import (
 // checks if the UpdateCoreRuleSetPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateCoreRuleSetPayload{}
 
-// UpdateCoreRuleSetPayload UpdateCoreRuleSetRequest updates a rules configuration, but only if it changed.
+// UpdateCoreRuleSetPayload UpdateCoreRuleSetRequest updates a rules configuration, but only if it changed.  DEPRECATED use PatchCoreRuleSet
 type UpdateCoreRuleSetPayload struct {
 	// To activate the OWASP core rule set, set this boolean to true.
 	Active *bool `json:"active,omitempty"`
+	// Map of Core Rule Set groups to be patched. The key is the Group ID (e.g., 942 for SQL Injection). Only provided rules within the group will be updated; others remain unchanged.
+	Groups *map[string]PatchCRSRuleGroup `json:"groups,omitempty"`
 	// Core rule set configuration name.
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Project identifier
@@ -79,6 +81,38 @@ func (o *UpdateCoreRuleSetPayload) HasActive() bool {
 // SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *UpdateCoreRuleSetPayload) SetActive(v bool) {
 	o.Active = &v
+}
+
+// GetGroups returns the Groups field value if set, zero value otherwise.
+func (o *UpdateCoreRuleSetPayload) GetGroups() map[string]PatchCRSRuleGroup {
+	if o == nil || IsNil(o.Groups) {
+		var ret map[string]PatchCRSRuleGroup
+		return ret
+	}
+	return *o.Groups
+}
+
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateCoreRuleSetPayload) GetGroupsOk() (*map[string]PatchCRSRuleGroup, bool) {
+	if o == nil || IsNil(o.Groups) {
+		return nil, false
+	}
+	return o.Groups, true
+}
+
+// HasGroups returns a boolean if a field has been set.
+func (o *UpdateCoreRuleSetPayload) HasGroups() bool {
+	if o != nil && !IsNil(o.Groups) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroups gets a reference to the given map[string]PatchCRSRuleGroup and assigns it to the Groups field.
+func (o *UpdateCoreRuleSetPayload) SetGroups(v map[string]PatchCRSRuleGroup) {
+	o.Groups = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -190,6 +224,9 @@ func (o UpdateCoreRuleSetPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
+	if !IsNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -222,6 +259,7 @@ func (o *UpdateCoreRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "active")
+		delete(additionalProperties, "groups")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "projectId")
 		delete(additionalProperties, "region")

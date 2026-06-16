@@ -9,14 +9,6 @@ import (
 	cdn "github.com/stackitcloud/stackit-sdk-go/services/cdn/v1api"
 )
 
-const (
-	DISTRIBUTIONSTATUS_CREATING = "CREATING"
-	DISTRIBUTIONSTATUS_ACTIVE   = "ACTIVE"
-	DISTRIBUTIONSTATUS_UPDATING = "UPDATING"
-	DISTRIBUTIONSTATUS_DELETING = "DELETING"
-	DISTRIBUTIONSTATUS_ERROR    = "ERROR"
-)
-
 func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, string]{
 		FetchInstance: api.GetDistribution(ctx, projectId, distributionId).Execute,

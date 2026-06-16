@@ -1,3 +1,12 @@
+## v1.11.0
+- **Feature:** Introduce enums for various attributes
+
+# v1.10.0
+- `v1betaapi`: This API was removed after the announced deprecation period.
+
+## v1.9.0
+- **Improvement:** Use new WaitHandler struct for all wait handlers
+
 ## v1.8.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

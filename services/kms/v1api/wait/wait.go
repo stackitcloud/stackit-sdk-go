@@ -3,185 +3,184 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	kms "github.com/stackitcloud/stackit-sdk-go/services/kms/v1api"
 )
 
 const (
-	VERSIONSTATE_ACTIVE                   = "active"
-	VERSIONSTATE_CREATING                 = "creating"
-	VERSIONSTATE_KEY_MATERIAL_INVALID     = "key_material_invalid"
-	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE = "key_material_unavailable"
-	VERSIONSTATE_DISABLED                 = "disabled"
-	VERSIONSTATE_DESTROYED                = "destroyed"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_ACTIVE = kms.VERSIONSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_CREATING = kms.VERSIONSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_KEY_MATERIAL_INVALID = kms.VERSIONSTATE_KEY_MATERIAL_INVALID
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE = kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_DISABLED = kms.VERSIONSTATE_DISABLED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	VERSIONSTATE_DESTROYED = kms.VERSIONSTATE_DESTROYED
 
-	KEYRINGSTATE_CREATING = "creating"
-	KEYRINGSTATE_ACTIVE   = "active"
-	KEYRINGSTATE_DELETED  = "deleted"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_CREATING = kms.KEYRINGSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_ACTIVE = kms.KEYRINGSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYRINGSTATE_DELETED = kms.KEYRINGSTATE_DELETED
 
-	WRAPPINGKEYSTATE_ACTIVE                   = "active"
-	WRAPPINGKEYSTATE_CREATING                 = "creating"
-	WRAPPINGKEYSTATE_EXPIRED                  = "expired"
-	WRAPPINGKEYSTATE_DELETED                  = "deleted"
-	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE = "key_material_unavailable"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_ACTIVE = kms.WRAPPINGKEYSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_CREATING = kms.WRAPPINGKEYSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_EXPIRED = kms.WRAPPINGKEYSTATE_EXPIRED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_DELETED = kms.WRAPPINGKEYSTATE_DELETED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE = kms.WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE
 
-	KEYSTATE_ACTIVE        = "active"
-	KEYSTATE_DELETED       = "deleted"
-	KEYSTATE_NOT_AVAILABLE = "not_available"
-	KEYSTATE_ERRORS_EXIST  = "errors_exist"
-	KEYSTATE_CREATING      = "creating"
-	KEYSTATE_NO_VERSION    = "no_version"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_ACTIVE = kms.KEYSTATE_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_DELETED = kms.KEYSTATE_DELETED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_NOT_AVAILABLE = kms.KEYSTATE_NOT_AVAILABLE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_ERRORS_EXIST = kms.KEYSTATE_ERRORS_EXIST
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_CREATING = kms.KEYSTATE_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	KEYSTATE_NO_VERSION = kms.KEYSTATE_NO_VERSION
 )
 
 func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
-	handler := wait.New(func() (bool, *kms.KeyRing, error) {
-		response, err := client.GetKeyRing(ctx, projectId, region, keyRingId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case KEYRINGSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.KeyRing, kms.KeyRingState]{
+		FetchInstance: client.GetKeyRing(ctx, projectId, region, keyRingId).Execute,
+		GetState: func(d *kms.KeyRing) (kms.KeyRingState, error) {
+			if d == nil {
+				return "", errors.New("keyring is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []kms.KeyRingState{kms.KEYRINGSTATE_ACTIVE, kms.KEYRINGSTATE_DELETED},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
-	handler := wait.New(func() (bool, *kms.Key, error) {
-		response, err := client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case KEYSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.Key, kms.KeyState]{
+		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
+		GetState: func(d *kms.Key) (kms.KeyState, error) {
+			if d == nil {
+				return "", errors.New("key is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []kms.KeyState{
+			kms.KEYSTATE_ACTIVE,
+			kms.KEYSTATE_DELETED,
+			kms.KEYSTATE_NO_VERSION,
+			kms.KEYSTATE_ERRORS_EXIST,
+			kms.KEYSTATE_NOT_AVAILABLE,
+		},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
-	handler := wait.New(func() (bool, *kms.Key, error) {
-		_, err := client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, nil
-				}
-			}
-			return true, nil, err
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[kms.Key, kms.KeyState]{
+		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
+		GetState: func(_ *kms.Key) (kms.KeyState, error) {
+			return "", nil
+		},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound, http.StatusGone},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func EnableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
-	handler := wait.New(func() (bool, *kms.Version, error) {
-		response, err := client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("enabling failed for key %s version %d: version or key not found", keyId, version)
-				}
+	waitConfig := wait.WaiterHelper[kms.Version, kms.VersionState]{
+		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
+		GetState: func(d *kms.Version) (kms.VersionState, error) {
+			if d == nil {
+				return "", errors.New("version is nil")
 			}
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case VERSIONSTATE_ACTIVE:
-				return true, response, nil
-			case VERSIONSTATE_CREATING:
-				return false, nil, nil
-			case VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID:
-				return true, response, fmt.Errorf("enabling failed for key %s version %d: state %s", keyId, version, response.State)
-			default:
-				return true, response, fmt.Errorf("key version %d for key %s has unexpected state %s", version, keyId, response.State)
-			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []kms.VersionState{kms.VERSIONSTATE_ACTIVE},
+		ErrorState: []kms.VersionState{
+			kms.VERSIONSTATE_DESTROYED,
+			kms.VERSIONSTATE_KEY_MATERIAL_INVALID,
+			kms.VERSIONSTATE_DISABLED,
+			kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE,
+		},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func DisableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
-	handler := wait.New(func() (bool, *kms.Version, error) {
-		response, err := client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("disabling failed for key %s version %d: version or key not found", keyId, version)
-				}
+	waitConfig := wait.WaiterHelper[kms.Version, kms.VersionState]{
+		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
+		GetState: func(d *kms.Version) (kms.VersionState, error) {
+			if d == nil {
+				return "", errors.New("version is nil")
 			}
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case VERSIONSTATE_DISABLED:
-				return true, response, nil
-			case VERSIONSTATE_ACTIVE, VERSIONSTATE_CREATING, VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE:
-				return false, nil, nil
-			case VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID:
-				return true, response, fmt.Errorf("disabling failed for key %s version %d: state %s", keyId, version, response.State)
-			default:
-				return true, response, fmt.Errorf("key version %d for key %s has unexpected state %s", version, keyId, response.State)
-			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []kms.VersionState{kms.VERSIONSTATE_DISABLED},
+		ErrorState: []kms.VersionState{
+			kms.VERSIONSTATE_DESTROYED,
+			kms.VERSIONSTATE_KEY_MATERIAL_INVALID,
+		},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func CreateWrappingKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
-	handler := wait.New(func() (bool, *kms.WrappingKey, error) {
-		response, err := client.GetWrappingKey(ctx, projectId, region, keyRingId, wrappingKeyId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case WRAPPINGKEYSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.WrappingKey, kms.WrappingKeyState]{
+		FetchInstance: client.GetWrappingKey(ctx, projectId, region, keyRingId, wrappingKeyId).Execute,
+		GetState: func(d *kms.WrappingKey) (kms.WrappingKeyState, error) {
+			if d == nil {
+				return "", errors.New("wrappingkey is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []kms.WrappingKeyState{kms.WRAPPINGKEYSTATE_ACTIVE, kms.WRAPPINGKEYSTATE_DELETED},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }

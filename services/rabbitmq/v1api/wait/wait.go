@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -13,58 +14,76 @@ import (
 )
 
 const (
-	INSTANCESTATUS_ACTIVE   = "active"
-	INSTANCESTATUS_FAILED   = "failed"
-	INSTANCESTATUS_STOPPED  = "stopped"
-	INSTANCESTATUS_CREATING = "creating"
-	INSTANCESTATUS_DELETING = "deleting"
-	INSTANCESTATUS_UPDATING = "updating"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_ACTIVE = rabbitmq.INSTANCESTATUS_ACTIVE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_FAILED = rabbitmq.INSTANCESTATUS_FAILED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_STOPPED = rabbitmq.INSTANCESTATUS_STOPPED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_CREATING = rabbitmq.INSTANCESTATUS_CREATING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_DELETING = rabbitmq.INSTANCESTATUS_DELETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCESTATUS_UPDATING = rabbitmq.INSTANCESTATUS_UPDATING
 
-	INSTANCELASTOPERATIONTYPE_CREATE = "create"
-	INSTANCELASTOPERATIONTYPE_UPDATE = "update"
-	INSTANCELASTOPERATIONTYPE_DELETE = "delete"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_CREATE = rabbitmq.INSTANCELASTOPERATIONTYPE_CREATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_UPDATE = rabbitmq.INSTANCELASTOPERATIONTYPE_UPDATE
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	INSTANCELASTOPERATIONTYPE_DELETE = rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func CreateInstanceWaitHandler(ctx context.Context, client rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
+	waitConfig := wait.WaiterHelper[rabbitmq.Instance, rabbitmq.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *rabbitmq.Instance) (rabbitmq.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client rabbitmq.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
+	waitConfig := wait.WaiterHelper[rabbitmq.Instance, rabbitmq.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *rabbitmq.Instance) (rabbitmq.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []rabbitmq.InstanceStatus{rabbitmq.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
@@ -77,10 +96,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a rabbitmq.DefaultAPI, proje
 			if s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
+			if *s.Status != rabbitmq.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
+			if *s.Status == rabbitmq.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
 				}

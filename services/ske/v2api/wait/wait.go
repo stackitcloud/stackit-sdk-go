@@ -2,7 +2,7 @@ package wait
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -10,16 +10,38 @@ import (
 )
 
 const (
-	CREDENTIALSROTATIONSTATEPHASE_NEVER      = "NEVER"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARING  = "PREPARING"
-	CREDENTIALSROTATIONSTATEPHASE_PREPARED   = "PREPARED"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = "COMPLETING"
-	CREDENTIALSROTATIONSTATEPHASE_COMPLETED  = "COMPLETED"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_NEVER = ske.CREDENTIALSROTATIONSTATEPHASE_NEVER
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARING = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_PREPARED = ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETING = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETED = ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED
 
-	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
+	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
+	//go:fix inline
+	RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND = ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND
 )
 
-// CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
+// CreateClusterWaitHandler will wait for cluster creation
+func CreateClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
+	return CreateOrUpdateClusterWaitHandler(ctx, a, projectId, region, name)
+}
+
+// UpdateClusterWaitHandler will wait for cluster update
+func UpdateClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
+	return CreateOrUpdateClusterWaitHandler(ctx, a, projectId, region, name)
+}
+
+// Deprecated: Will be removed after 2026-12-08. Use the CreateClusterWaitHandler or UpdateClusterWaitHandler instead.
 func CreateOrUpdateClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetCluster(ctx, projectId, region, name).Execute()
@@ -31,7 +53,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, pro
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND {
 			return true, s, nil
 		}
 
@@ -139,72 +161,73 @@ func TriggerClusterWakeupWaitHandler(ctx context.Context, a ske.DefaultAPI, proj
 
 // RotateCredentialsWaitHandler will wait for credentials rotation
 func RotateCredentialsWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
-	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetCluster(ctx, projectId, region, clusterName).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		state := *s.Status.Aggregated
+	waitConfig := wait.WaiterHelper[ske.Cluster, ske.ClusterStatusState]{
+		FetchInstance: a.GetCluster(ctx, projectId, region, clusterName).Execute,
+		GetState: func(s *ske.Cluster) (ske.ClusterStatusState, error) {
+			if s == nil || s.Status == nil || s.Status.Aggregated == nil {
+				return "", errors.New("empty response or status")
+			}
+			return *s.Status.Aggregated, nil
+		},
+		ActiveState: []ske.ClusterStatusState{
+			ske.CLUSTERSTATUSSTATE_STATE_HEALTHY,
+			ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED,
+		},
+		ErrorState: []ske.ClusterStatusState{
+			ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY,
+			ske.CLUSTERSTATUSSTATE_STATE_DELETING,
+			ske.CLUSTERSTATUSSTATE_STATE_HIBERNATING,
+			ske.CLUSTERSTATUSSTATE_STATE_WAKINGUP,
+		},
+	}
 
-		if state == ske.CLUSTERSTATUSSTATE_STATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED {
-			return true, s, nil
-		}
-
-		if state == ske.CLUSTERSTATUSSTATE_STATE_RECONCILING {
-			return false, nil, nil
-		}
-
-		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster reconciliation", state)
-	})
-
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 // StartCredentialsRotationWaitHandler will wait for credentials rotation
 func StartCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
-	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetCluster(ctx, projectId, region, clusterName).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		state := *s.Status.CredentialsRotation.Phase
+	waitConfig := wait.WaiterHelper[ske.Cluster, ske.CredentialsRotationStatePhase]{
+		FetchInstance: a.GetCluster(ctx, projectId, region, clusterName).Execute,
+		GetState: func(s *ske.Cluster) (ske.CredentialsRotationStatePhase, error) {
+			if s == nil || s.Status == nil || s.Status.CredentialsRotation == nil || s.Status.CredentialsRotation.Phase == nil {
+				return "", errors.New("empty response or credentials rotation phase")
+			}
+			return *s.Status.CredentialsRotation.Phase, nil
+		},
+		ActiveState: []ske.CredentialsRotationStatePhase{ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED},
+		ErrorState: []ske.CredentialsRotationStatePhase{
+			ske.CREDENTIALSROTATIONSTATEPHASE_NEVER,
+			ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING,
+			ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED,
+		},
+	}
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_PREPARED {
-			return true, s, nil
-		}
-
-		if state == CREDENTIALSROTATIONSTATEPHASE_PREPARING {
-			return false, nil, nil
-		}
-
-		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be prepared", state)
-	})
-
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // CompleteCredentialsRotationWaitHandler will wait for credentials rotation
 func CompleteCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
-	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetCluster(ctx, projectId, region, clusterName).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		state := *s.Status.CredentialsRotation.Phase
+	waitConfig := wait.WaiterHelper[ske.Cluster, ske.CredentialsRotationStatePhase]{
+		FetchInstance: a.GetCluster(ctx, projectId, region, clusterName).Execute,
+		GetState: func(s *ske.Cluster) (ske.CredentialsRotationStatePhase, error) {
+			if s == nil || s.Status == nil || s.Status.CredentialsRotation == nil || s.Status.CredentialsRotation.Phase == nil {
+				return "", errors.New("empty response or credentials rotation phase")
+			}
+			return *s.Status.CredentialsRotation.Phase, nil
+		},
+		ActiveState: []ske.CredentialsRotationStatePhase{ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED},
+		ErrorState: []ske.CredentialsRotationStatePhase{
+			ske.CREDENTIALSROTATIONSTATEPHASE_NEVER,
+			ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING,
+			ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED,
+		},
+	}
 
-		if state == CREDENTIALSROTATIONSTATEPHASE_COMPLETED {
-			return true, s, nil
-		}
-
-		if state == CREDENTIALSROTATIONSTATEPHASE_COMPLETING {
-			return false, nil, nil
-		}
-
-		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be completed", state)
-	})
-
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }

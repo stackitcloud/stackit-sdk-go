@@ -19,8 +19,7 @@ var _ MappedNullable = &ActionError{}
 
 // ActionError the last error for this service.
 type ActionError struct {
-	// the last action which was triggered on this service
-	Action *string `json:"action,omitempty"`
+	Action *ActionErrorAction `json:"action,omitempty"`
 	// the error code if provided by the service
 	Code *string `json:"code,omitempty"`
 	// the error reason provided by the service
@@ -48,9 +47,9 @@ func NewActionErrorWithDefaults() *ActionError {
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *ActionError) GetAction() string {
+func (o *ActionError) GetAction() ActionErrorAction {
 	if o == nil || IsNil(o.Action) {
-		var ret string
+		var ret ActionErrorAction
 		return ret
 	}
 	return *o.Action
@@ -58,7 +57,7 @@ func (o *ActionError) GetAction() string {
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionError) GetActionOk() (*string, bool) {
+func (o *ActionError) GetActionOk() (*ActionErrorAction, bool) {
 	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
@@ -74,8 +73,8 @@ func (o *ActionError) HasAction() bool {
 	return false
 }
 
-// SetAction gets a reference to the given string and assigns it to the Action field.
-func (o *ActionError) SetAction(v string) {
+// SetAction gets a reference to the given ActionErrorAction and assigns it to the Action field.
+func (o *ActionError) SetAction(v ActionErrorAction) {
 	o.Action = &v
 }
 

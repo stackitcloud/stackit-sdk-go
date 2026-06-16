@@ -20,14 +20,13 @@ var _ MappedNullable = &Domain{}
 
 // Domain Definition of a custom or managed domain without any certificates or keys
 type Domain struct {
-	CertificateType string `json:"certificateType"`
+	CertificateType DomainCertificateType `json:"certificateType"`
 	// This object is present if the custom domain has errors.
 	Errors []StatusError `json:"errors,omitempty"`
 	// The domain. If this is a custom domain, you can call the GetCustomDomain Endpoint
-	Name   string       `json:"name"`
-	Status DomainStatus `json:"status"`
-	// Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
-	Type                 string `json:"type"`
+	Name                 string       `json:"name"`
+	Status               DomainStatus `json:"status"`
+	Type                 DomainType   `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +36,7 @@ type _Domain Domain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDomain(certificateType string, name string, status DomainStatus, types string) *Domain {
+func NewDomain(certificateType DomainCertificateType, name string, status DomainStatus, types DomainType) *Domain {
 	this := Domain{}
 	this.CertificateType = certificateType
 	this.Name = name
@@ -55,9 +54,9 @@ func NewDomainWithDefaults() *Domain {
 }
 
 // GetCertificateType returns the CertificateType field value
-func (o *Domain) GetCertificateType() string {
+func (o *Domain) GetCertificateType() DomainCertificateType {
 	if o == nil {
-		var ret string
+		var ret DomainCertificateType
 		return ret
 	}
 
@@ -66,7 +65,7 @@ func (o *Domain) GetCertificateType() string {
 
 // GetCertificateTypeOk returns a tuple with the CertificateType field value
 // and a boolean to check if the value has been set.
-func (o *Domain) GetCertificateTypeOk() (*string, bool) {
+func (o *Domain) GetCertificateTypeOk() (*DomainCertificateType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,7 +73,7 @@ func (o *Domain) GetCertificateTypeOk() (*string, bool) {
 }
 
 // SetCertificateType sets field value
-func (o *Domain) SetCertificateType(v string) {
+func (o *Domain) SetCertificateType(v DomainCertificateType) {
 	o.CertificateType = v
 }
 
@@ -159,9 +158,9 @@ func (o *Domain) SetStatus(v DomainStatus) {
 }
 
 // GetType returns the Type field value
-func (o *Domain) GetType() string {
+func (o *Domain) GetType() DomainType {
 	if o == nil {
-		var ret string
+		var ret DomainType
 		return ret
 	}
 
@@ -170,7 +169,7 @@ func (o *Domain) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Domain) GetTypeOk() (*string, bool) {
+func (o *Domain) GetTypeOk() (*DomainType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,7 +177,7 @@ func (o *Domain) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Domain) SetType(v string) {
+func (o *Domain) SetType(v DomainType) {
 	o.Type = v
 }
 

@@ -1,3 +1,9 @@
+## v1.18.0
+- `v1beta2api`: v1beta2api was deprecated please migrate to `v1api`
+
+## v1.17.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.16.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 
