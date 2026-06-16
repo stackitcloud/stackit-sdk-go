@@ -10,16 +10,16 @@ import (
 )
 
 func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, string]{
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
 		FetchInstance: api.GetDistribution(ctx, projectId, distributionId).Execute,
-		GetState: func(c *cdn.GetDistributionResponse) (string, error) {
+		GetState: func(c *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
 			if c == nil {
 				return "", errors.New("empty response")
 			}
 			return c.Distribution.Status, nil
 		},
-		ActiveState: []string{DISTRIBUTIONSTATUS_ACTIVE},
-		ErrorState:  []string{DISTRIBUTIONSTATUS_ERROR, DISTRIBUTIONSTATUS_DELETING},
+		ActiveState: []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ACTIVE},
+		ErrorState:  []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ERROR, cdn.DISTRIBUTIONSTATUS_DELETING},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
@@ -27,16 +27,16 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, 
 }
 
 func UpdateDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, string]{
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
 		FetchInstance: api.GetDistribution(ctx, projectId, distributionId).Execute,
-		GetState: func(c *cdn.GetDistributionResponse) (string, error) {
+		GetState: func(c *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
 			if c == nil {
 				return "", errors.New("empty response")
 			}
 			return c.Distribution.Status, nil
 		},
-		ActiveState: []string{DISTRIBUTIONSTATUS_ACTIVE},
-		ErrorState:  []string{DISTRIBUTIONSTATUS_ERROR, DISTRIBUTIONSTATUS_DELETING, DISTRIBUTIONSTATUS_CREATING},
+		ActiveState: []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ACTIVE},
+		ErrorState:  []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ERROR, cdn.DISTRIBUTIONSTATUS_DELETING, cdn.DISTRIBUTIONSTATUS_CREATING},
 	}
 	handler := wait.New(waitConfig.Wait())
 
@@ -45,16 +45,16 @@ func UpdateDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, proj
 }
 
 func DeleteDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, string]{
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
 		FetchInstance: api.GetDistribution(ctx, projectId, distributionId).Execute,
-		GetState: func(c *cdn.GetDistributionResponse) (string, error) {
+		GetState: func(c *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
 			if c == nil {
 				return "", errors.New("empty response")
 			}
 			return c.Distribution.Status, nil
 		},
-		ActiveState: []string{},
-		ErrorState:  []string{},
+		ActiveState: []cdn.DistributionStatus{},
+		ErrorState:  []cdn.DistributionStatus{},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
