@@ -22,7 +22,7 @@ var _ MappedNullable = &ListBackupResponse{}
 // ListBackupResponse struct for ListBackupResponse
 type ListBackupResponse struct {
 	// The list containing the information about the backups.
-	Backups              []ListBackup `json:"backups"`
+	Backups              []BackupData `json:"backups"`
 	Pagination           Pagination   `json:"pagination"`
 	AdditionalProperties map[string]interface{}
 }
@@ -33,7 +33,7 @@ type _ListBackupResponse ListBackupResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBackupResponse(backups []ListBackup, pagination Pagination) *ListBackupResponse {
+func NewListBackupResponse(backups []BackupData, pagination Pagination) *ListBackupResponse {
 	this := ListBackupResponse{}
 	this.Backups = backups
 	this.Pagination = pagination
@@ -49,9 +49,9 @@ func NewListBackupResponseWithDefaults() *ListBackupResponse {
 }
 
 // GetBackups returns the Backups field value
-func (o *ListBackupResponse) GetBackups() []ListBackup {
+func (o *ListBackupResponse) GetBackups() []BackupData {
 	if o == nil {
-		var ret []ListBackup
+		var ret []BackupData
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *ListBackupResponse) GetBackups() []ListBackup {
 
 // GetBackupsOk returns a tuple with the Backups field value
 // and a boolean to check if the value has been set.
-func (o *ListBackupResponse) GetBackupsOk() ([]ListBackup, bool) {
+func (o *ListBackupResponse) GetBackupsOk() ([]BackupData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *ListBackupResponse) GetBackupsOk() ([]ListBackup, bool) {
 }
 
 // SetBackups sets field value
-func (o *ListBackupResponse) SetBackups(v []ListBackup) {
+func (o *ListBackupResponse) SetBackups(v []BackupData) {
 	o.Backups = v
 }
 

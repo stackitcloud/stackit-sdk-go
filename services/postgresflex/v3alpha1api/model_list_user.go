@@ -26,6 +26,8 @@ type ListUser struct {
 	// The name of the user.
 	Name string `json:"name"`
 	// The current status of the user.
+	State string `json:"state"`
+	// The current status of the user.
 	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
@@ -36,10 +38,11 @@ type _ListUser ListUser
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListUser(id int32, name string, status string) *ListUser {
+func NewListUser(id int32, name string, state string, status string) *ListUser {
 	this := ListUser{}
 	this.Id = id
 	this.Name = name
+	this.State = state
 	this.Status = status
 	return &this
 }
@@ -100,6 +103,30 @@ func (o *ListUser) SetName(v string) {
 	o.Name = v
 }
 
+// GetState returns the State field value
+func (o *ListUser) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *ListUser) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *ListUser) SetState(v string) {
+	o.State = v
+}
+
 // GetStatus returns the Status field value
 func (o *ListUser) GetStatus() string {
 	if o == nil {
@@ -136,6 +163,7 @@ func (o ListUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	toSerialize["state"] = o.State
 	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
@@ -152,6 +180,7 @@ func (o *ListUser) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"state",
 		"status",
 	}
 
@@ -184,6 +213,7 @@ func (o *ListUser) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

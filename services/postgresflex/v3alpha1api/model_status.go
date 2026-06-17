@@ -24,6 +24,7 @@ const (
 	STATUS_READY                    Status = "READY"
 	STATUS_PENDING                  Status = "PENDING"
 	STATUS_PROGRESSING              Status = "PROGRESSING"
+	STATUS_WAITING                  Status = "WAITING"
 	STATUS_FAILURE                  Status = "FAILURE"
 	STATUS_UNKNOWN                  Status = "UNKNOWN"
 	STATUS_TERMINATING              Status = "TERMINATING"
@@ -35,6 +36,7 @@ var AllowedStatusEnumValues = []Status{
 	"READY",
 	"PENDING",
 	"PROGRESSING",
+	"WAITING",
 	"FAILURE",
 	"UNKNOWN",
 	"TERMINATING",

@@ -32,7 +32,7 @@ type UpdateInstanceRequestPayload struct {
 	Network  InstanceNetworkUpdate `json:"network"`
 	Replicas Replicas              `json:"replicas"`
 	// How long backups are retained. The value can only be between 32 and 90 days.
-	RetentionDays int32         `json:"retentionDays"`
+	RetentionDays NullableInt32 `json:"retentionDays"`
 	Storage       StorageUpdate `json:"storage"`
 	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version) for supported version parameters.
 	Version              string `json:"version"`
@@ -45,7 +45,7 @@ type _UpdateInstanceRequestPayload UpdateInstanceRequestPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstanceRequestPayload(backupSchedule string, flavorId string, name string, network InstanceNetworkUpdate, replicas Replicas, retentionDays int32, storage StorageUpdate, version string) *UpdateInstanceRequestPayload {
+func NewUpdateInstanceRequestPayload(backupSchedule string, flavorId string, name string, network InstanceNetworkUpdate, replicas Replicas, retentionDays NullableInt32, storage StorageUpdate, version string) *UpdateInstanceRequestPayload {
 	this := UpdateInstanceRequestPayload{}
 	this.BackupSchedule = backupSchedule
 	this.FlavorId = flavorId
@@ -219,27 +219,29 @@ func (o *UpdateInstanceRequestPayload) SetReplicas(v Replicas) {
 }
 
 // GetRetentionDays returns the RetentionDays field value
+// If the value is explicit nil, the zero value for int32 will be returned
 func (o *UpdateInstanceRequestPayload) GetRetentionDays() int32 {
-	if o == nil {
+	if o == nil || o.RetentionDays.Get() == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.RetentionDays
+	return *o.RetentionDays.Get()
 }
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateInstanceRequestPayload) GetRetentionDaysOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RetentionDays, true
+	return o.RetentionDays.Get(), o.RetentionDays.IsSet()
 }
 
 // SetRetentionDays sets field value
 func (o *UpdateInstanceRequestPayload) SetRetentionDays(v int32) {
-	o.RetentionDays = v
+	o.RetentionDays.Set(&v)
 }
 
 // GetStorage returns the Storage field value
@@ -308,7 +310,7 @@ func (o UpdateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["network"] = o.Network
 	toSerialize["replicas"] = o.Replicas
-	toSerialize["retentionDays"] = o.RetentionDays
+	toSerialize["retentionDays"] = o.RetentionDays.Get()
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
 

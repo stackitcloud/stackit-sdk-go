@@ -26,6 +26,8 @@ type ResetUserResponse struct {
 	// The password for the user.
 	Password string `json:"password"`
 	// The current status of the user.
+	State string `json:"state"`
+	// The current status of the user.
 	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
@@ -36,10 +38,11 @@ type _ResetUserResponse ResetUserResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResetUserResponse(name string, password string, status string) *ResetUserResponse {
+func NewResetUserResponse(name string, password string, state string, status string) *ResetUserResponse {
 	this := ResetUserResponse{}
 	this.Name = name
 	this.Password = password
+	this.State = state
 	this.Status = status
 	return &this
 }
@@ -100,6 +103,30 @@ func (o *ResetUserResponse) SetPassword(v string) {
 	o.Password = v
 }
 
+// GetState returns the State field value
+func (o *ResetUserResponse) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *ResetUserResponse) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *ResetUserResponse) SetState(v string) {
+	o.State = v
+}
+
 // GetStatus returns the Status field value
 func (o *ResetUserResponse) GetStatus() string {
 	if o == nil {
@@ -136,6 +163,7 @@ func (o ResetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["password"] = o.Password
+	toSerialize["state"] = o.State
 	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
@@ -152,6 +180,7 @@ func (o *ResetUserResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"password",
+		"state",
 		"status",
 	}
 
@@ -184,6 +213,7 @@ func (o *ResetUserResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the ListBackup type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListBackup{}
+// checks if the BackupData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BackupData{}
 
-// ListBackup struct for ListBackup
-type ListBackup struct {
+// BackupData struct for BackupData
+type BackupData struct {
 	// The time when the backup was completed in RFC3339 format.
 	CompletionTime string `json:"completionTime"`
 	// The ID of the backup.
@@ -36,14 +36,14 @@ type ListBackup struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ListBackup ListBackup
+type _BackupData BackupData
 
-// NewListBackup instantiates a new ListBackup object
+// NewBackupData instantiates a new BackupData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBackup(completionTime string, id int32, name string, retainedUntil string, size int32, types string) *ListBackup {
-	this := ListBackup{}
+func NewBackupData(completionTime string, id int32, name string, retainedUntil string, size int32, types string) *BackupData {
+	this := BackupData{}
 	this.CompletionTime = completionTime
 	this.Id = id
 	this.Name = name
@@ -53,16 +53,16 @@ func NewListBackup(completionTime string, id int32, name string, retainedUntil s
 	return &this
 }
 
-// NewListBackupWithDefaults instantiates a new ListBackup object
+// NewBackupDataWithDefaults instantiates a new BackupData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListBackupWithDefaults() *ListBackup {
-	this := ListBackup{}
+func NewBackupDataWithDefaults() *BackupData {
+	this := BackupData{}
 	return &this
 }
 
 // GetCompletionTime returns the CompletionTime field value
-func (o *ListBackup) GetCompletionTime() string {
+func (o *BackupData) GetCompletionTime() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -73,7 +73,7 @@ func (o *ListBackup) GetCompletionTime() string {
 
 // GetCompletionTimeOk returns a tuple with the CompletionTime field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetCompletionTimeOk() (*string, bool) {
+func (o *BackupData) GetCompletionTimeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,12 +81,12 @@ func (o *ListBackup) GetCompletionTimeOk() (*string, bool) {
 }
 
 // SetCompletionTime sets field value
-func (o *ListBackup) SetCompletionTime(v string) {
+func (o *BackupData) SetCompletionTime(v string) {
 	o.CompletionTime = v
 }
 
 // GetId returns the Id field value
-func (o *ListBackup) GetId() int32 {
+func (o *BackupData) GetId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -97,7 +97,7 @@ func (o *ListBackup) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetIdOk() (*int32, bool) {
+func (o *BackupData) GetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,12 +105,12 @@ func (o *ListBackup) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *ListBackup) SetId(v int32) {
+func (o *BackupData) SetId(v int32) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *ListBackup) GetName() string {
+func (o *BackupData) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -121,7 +121,7 @@ func (o *ListBackup) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetNameOk() (*string, bool) {
+func (o *BackupData) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,12 +129,12 @@ func (o *ListBackup) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ListBackup) SetName(v string) {
+func (o *BackupData) SetName(v string) {
 	o.Name = v
 }
 
 // GetRetainedUntil returns the RetainedUntil field value
-func (o *ListBackup) GetRetainedUntil() string {
+func (o *BackupData) GetRetainedUntil() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -145,7 +145,7 @@ func (o *ListBackup) GetRetainedUntil() string {
 
 // GetRetainedUntilOk returns a tuple with the RetainedUntil field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetRetainedUntilOk() (*string, bool) {
+func (o *BackupData) GetRetainedUntilOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,12 +153,12 @@ func (o *ListBackup) GetRetainedUntilOk() (*string, bool) {
 }
 
 // SetRetainedUntil sets field value
-func (o *ListBackup) SetRetainedUntil(v string) {
+func (o *BackupData) SetRetainedUntil(v string) {
 	o.RetainedUntil = v
 }
 
 // GetSize returns the Size field value
-func (o *ListBackup) GetSize() int32 {
+func (o *BackupData) GetSize() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -169,7 +169,7 @@ func (o *ListBackup) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetSizeOk() (*int32, bool) {
+func (o *BackupData) GetSizeOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -177,12 +177,12 @@ func (o *ListBackup) GetSizeOk() (*int32, bool) {
 }
 
 // SetSize sets field value
-func (o *ListBackup) SetSize(v int32) {
+func (o *BackupData) SetSize(v int32) {
 	o.Size = v
 }
 
 // GetType returns the Type field value
-func (o *ListBackup) GetType() string {
+func (o *BackupData) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -193,7 +193,7 @@ func (o *ListBackup) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ListBackup) GetTypeOk() (*string, bool) {
+func (o *BackupData) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -201,11 +201,11 @@ func (o *ListBackup) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *ListBackup) SetType(v string) {
+func (o *BackupData) SetType(v string) {
 	o.Type = v
 }
 
-func (o ListBackup) MarshalJSON() ([]byte, error) {
+func (o BackupData) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -213,7 +213,7 @@ func (o ListBackup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListBackup) ToMap() (map[string]interface{}, error) {
+func (o BackupData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["completionTime"] = o.CompletionTime
 	toSerialize["id"] = o.Id
@@ -229,7 +229,7 @@ func (o ListBackup) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ListBackup) UnmarshalJSON(data []byte) (err error) {
+func (o *BackupData) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -256,15 +256,15 @@ func (o *ListBackup) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varListBackup := _ListBackup{}
+	varBackupData := _BackupData{}
 
-	err = json.Unmarshal(data, &varListBackup)
+	err = json.Unmarshal(data, &varBackupData)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ListBackup(varListBackup)
+	*o = BackupData(varBackupData)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -281,38 +281,38 @@ func (o *ListBackup) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableListBackup struct {
-	value *ListBackup
+type NullableBackupData struct {
+	value *BackupData
 	isSet bool
 }
 
-func (v NullableListBackup) Get() *ListBackup {
+func (v NullableBackupData) Get() *BackupData {
 	return v.value
 }
 
-func (v *NullableListBackup) Set(val *ListBackup) {
+func (v *NullableBackupData) Set(val *BackupData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListBackup) IsSet() bool {
+func (v NullableBackupData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListBackup) Unset() {
+func (v *NullableBackupData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListBackup(val *ListBackup) *NullableListBackup {
-	return &NullableListBackup{value: val, isSet: true}
+func NewNullableBackupData(val *BackupData) *NullableBackupData {
+	return &NullableBackupData{value: val, isSet: true}
 }
 
-func (v NullableListBackup) MarshalJSON() ([]byte, error) {
+func (v NullableBackupData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListBackup) UnmarshalJSON(src []byte) error {
+func (v *NullableBackupData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
