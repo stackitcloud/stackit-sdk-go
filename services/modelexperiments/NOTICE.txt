@@ -1,2 +1,2 @@
-STACKIT modelexperiments SDK for Go
+STACKIT Model Experiments SDK for Go
 Copyright 2026 Schwarz IT KG

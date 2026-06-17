@@ -50,7 +50,7 @@ func newAPIMock(settings *mockSettings) modelexperiments.DefaultAPI {
 	}
 }
 
-func TestCreateMExpInstanceWaitHandler(t *testing.T) {
+func TestCreateModelExperimentsInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -110,7 +110,7 @@ func TestCreateMExpInstanceWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateMExpInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
+				handler := CreateModelExperimentsInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -125,7 +125,7 @@ func TestCreateMExpInstanceWaitHandler(t *testing.T) {
 	}
 }
 
-func TestDeleteMExpInstanceWaitHandler(t *testing.T) {
+func TestDeleteModelExperimentsInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -177,7 +177,7 @@ func TestDeleteMExpInstanceWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteMExpInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
+				handler := DeleteModelExperimentsInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -192,7 +192,7 @@ func TestDeleteMExpInstanceWaitHandler(t *testing.T) {
 	}
 }
 
-func TestCreateMExpInstanceTokenWaitHandler(t *testing.T) {
+func TestCreateModelExperimentsInstanceTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -244,7 +244,7 @@ func TestCreateMExpInstanceTokenWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateMExpInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
+				handler := CreateModelExperimentsInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -259,7 +259,7 @@ func TestCreateMExpInstanceTokenWaitHandler(t *testing.T) {
 	}
 }
 
-func TestDeleteMExpInstanceTokenWaitHandler(t *testing.T) {
+func TestDeleteModelExperimentsInstanceTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -311,7 +311,7 @@ func TestDeleteMExpInstanceTokenWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteMExpInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
+				handler := DeleteModelExperimentsInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
