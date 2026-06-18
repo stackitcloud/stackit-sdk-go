@@ -32,7 +32,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAP
 	}
 
 	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
@@ -50,7 +50,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAP
 	}
 
 	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
@@ -69,7 +69,7 @@ func CreateInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.Defa
 	}
 
 	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
@@ -87,6 +87,6 @@ func DeleteInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.Defa
 	}
 
 	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
