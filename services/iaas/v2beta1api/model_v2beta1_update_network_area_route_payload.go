@@ -15,37 +15,37 @@ import (
 	"encoding/json"
 )
 
-// checks if the V2beta1UpdateRouteOfAreaPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &V2beta1UpdateRouteOfAreaPayload{}
+// checks if the V2beta1UpdateNetworkAreaRoutePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &V2beta1UpdateNetworkAreaRoutePayload{}
 
-// V2beta1UpdateRouteOfAreaPayload Object that represents the request body for a route update.
-type V2beta1UpdateRouteOfAreaPayload struct {
+// V2beta1UpdateNetworkAreaRoutePayload Object that represents the request body for a route update.
+type V2beta1UpdateNetworkAreaRoutePayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels               map[string]interface{} `json:"labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _V2beta1UpdateRouteOfAreaPayload V2beta1UpdateRouteOfAreaPayload
+type _V2beta1UpdateNetworkAreaRoutePayload V2beta1UpdateNetworkAreaRoutePayload
 
-// NewV2beta1UpdateRouteOfAreaPayload instantiates a new V2beta1UpdateRouteOfAreaPayload object
+// NewV2beta1UpdateNetworkAreaRoutePayload instantiates a new V2beta1UpdateNetworkAreaRoutePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewV2beta1UpdateRouteOfAreaPayload() *V2beta1UpdateRouteOfAreaPayload {
-	this := V2beta1UpdateRouteOfAreaPayload{}
+func NewV2beta1UpdateNetworkAreaRoutePayload() *V2beta1UpdateNetworkAreaRoutePayload {
+	this := V2beta1UpdateNetworkAreaRoutePayload{}
 	return &this
 }
 
-// NewV2beta1UpdateRouteOfAreaPayloadWithDefaults instantiates a new V2beta1UpdateRouteOfAreaPayload object
+// NewV2beta1UpdateNetworkAreaRoutePayloadWithDefaults instantiates a new V2beta1UpdateNetworkAreaRoutePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewV2beta1UpdateRouteOfAreaPayloadWithDefaults() *V2beta1UpdateRouteOfAreaPayload {
-	this := V2beta1UpdateRouteOfAreaPayload{}
+func NewV2beta1UpdateNetworkAreaRoutePayloadWithDefaults() *V2beta1UpdateNetworkAreaRoutePayload {
+	this := V2beta1UpdateNetworkAreaRoutePayload{}
 	return &this
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *V2beta1UpdateRouteOfAreaPayload) GetLabels() map[string]interface{} {
+func (o *V2beta1UpdateNetworkAreaRoutePayload) GetLabels() map[string]interface{} {
 	if o == nil || IsNil(o.Labels) {
 		var ret map[string]interface{}
 		return ret
@@ -55,7 +55,7 @@ func (o *V2beta1UpdateRouteOfAreaPayload) GetLabels() map[string]interface{} {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *V2beta1UpdateRouteOfAreaPayload) GetLabelsOk() (map[string]interface{}, bool) {
+func (o *V2beta1UpdateNetworkAreaRoutePayload) GetLabelsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return map[string]interface{}{}, false
 	}
@@ -63,7 +63,7 @@ func (o *V2beta1UpdateRouteOfAreaPayload) GetLabelsOk() (map[string]interface{},
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *V2beta1UpdateRouteOfAreaPayload) HasLabels() bool {
+func (o *V2beta1UpdateNetworkAreaRoutePayload) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -72,11 +72,11 @@ func (o *V2beta1UpdateRouteOfAreaPayload) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *V2beta1UpdateRouteOfAreaPayload) SetLabels(v map[string]interface{}) {
+func (o *V2beta1UpdateNetworkAreaRoutePayload) SetLabels(v map[string]interface{}) {
 	o.Labels = v
 }
 
-func (o V2beta1UpdateRouteOfAreaPayload) MarshalJSON() ([]byte, error) {
+func (o V2beta1UpdateNetworkAreaRoutePayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -84,7 +84,7 @@ func (o V2beta1UpdateRouteOfAreaPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o V2beta1UpdateRouteOfAreaPayload) ToMap() (map[string]interface{}, error) {
+func (o V2beta1UpdateNetworkAreaRoutePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
@@ -97,16 +97,16 @@ func (o V2beta1UpdateRouteOfAreaPayload) ToMap() (map[string]interface{}, error)
 	return toSerialize, nil
 }
 
-func (o *V2beta1UpdateRouteOfAreaPayload) UnmarshalJSON(data []byte) (err error) {
-	varV2beta1UpdateRouteOfAreaPayload := _V2beta1UpdateRouteOfAreaPayload{}
+func (o *V2beta1UpdateNetworkAreaRoutePayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1UpdateNetworkAreaRoutePayload := _V2beta1UpdateNetworkAreaRoutePayload{}
 
-	err = json.Unmarshal(data, &varV2beta1UpdateRouteOfAreaPayload)
+	err = json.Unmarshal(data, &varV2beta1UpdateNetworkAreaRoutePayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = V2beta1UpdateRouteOfAreaPayload(varV2beta1UpdateRouteOfAreaPayload)
+	*o = V2beta1UpdateNetworkAreaRoutePayload(varV2beta1UpdateNetworkAreaRoutePayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -118,38 +118,38 @@ func (o *V2beta1UpdateRouteOfAreaPayload) UnmarshalJSON(data []byte) (err error)
 	return err
 }
 
-type NullableV2beta1UpdateRouteOfAreaPayload struct {
-	value *V2beta1UpdateRouteOfAreaPayload
+type NullableV2beta1UpdateNetworkAreaRoutePayload struct {
+	value *V2beta1UpdateNetworkAreaRoutePayload
 	isSet bool
 }
 
-func (v NullableV2beta1UpdateRouteOfAreaPayload) Get() *V2beta1UpdateRouteOfAreaPayload {
+func (v NullableV2beta1UpdateNetworkAreaRoutePayload) Get() *V2beta1UpdateNetworkAreaRoutePayload {
 	return v.value
 }
 
-func (v *NullableV2beta1UpdateRouteOfAreaPayload) Set(val *V2beta1UpdateRouteOfAreaPayload) {
+func (v *NullableV2beta1UpdateNetworkAreaRoutePayload) Set(val *V2beta1UpdateNetworkAreaRoutePayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableV2beta1UpdateRouteOfAreaPayload) IsSet() bool {
+func (v NullableV2beta1UpdateNetworkAreaRoutePayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableV2beta1UpdateRouteOfAreaPayload) Unset() {
+func (v *NullableV2beta1UpdateNetworkAreaRoutePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableV2beta1UpdateRouteOfAreaPayload(val *V2beta1UpdateRouteOfAreaPayload) *NullableV2beta1UpdateRouteOfAreaPayload {
-	return &NullableV2beta1UpdateRouteOfAreaPayload{value: val, isSet: true}
+func NewNullableV2beta1UpdateNetworkAreaRoutePayload(val *V2beta1UpdateNetworkAreaRoutePayload) *NullableV2beta1UpdateNetworkAreaRoutePayload {
+	return &NullableV2beta1UpdateNetworkAreaRoutePayload{value: val, isSet: true}
 }
 
-func (v NullableV2beta1UpdateRouteOfAreaPayload) MarshalJSON() ([]byte, error) {
+func (v NullableV2beta1UpdateNetworkAreaRoutePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableV2beta1UpdateRouteOfAreaPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableV2beta1UpdateNetworkAreaRoutePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

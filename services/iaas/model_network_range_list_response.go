@@ -45,10 +45,10 @@ func setNetworkRangeListResponseGetItemsAttributeType(arg *NetworkRangeListRespo
 	*arg = &val
 }
 
-// NetworkRangeListResponse Network Range list response.
+// NetworkRangeListResponse Network Range list response of a network area.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkRangeListResponse struct {
-	// A list of network ranges.
+	// A list of network area network ranges.
 	// REQUIRED
 	Items NetworkRangeListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
