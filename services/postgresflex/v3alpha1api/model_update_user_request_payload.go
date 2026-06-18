@@ -23,8 +23,8 @@ var _ MappedNullable = &UpdateUserRequestPayload{}
 type UpdateUserRequestPayload struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
-	// A list containing the user roles for the instance.
-	Roles                []UserRole `json:"roles"`
+	// A list containing the user roles for the instance. Please refer to the List Roles endpoint for a list of all available Roles.
+	Roles                []string `json:"roles"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _UpdateUserRequestPayload UpdateUserRequestPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateUserRequestPayload(roles []UserRole) *UpdateUserRequestPayload {
+func NewUpdateUserRequestPayload(roles []string) *UpdateUserRequestPayload {
 	this := UpdateUserRequestPayload{}
 	this.Roles = roles
 	return &this
@@ -81,9 +81,9 @@ func (o *UpdateUserRequestPayload) SetName(v string) {
 }
 
 // GetRoles returns the Roles field value
-func (o *UpdateUserRequestPayload) GetRoles() []UserRole {
+func (o *UpdateUserRequestPayload) GetRoles() []string {
 	if o == nil {
-		var ret []UserRole
+		var ret []string
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *UpdateUserRequestPayload) GetRoles() []UserRole {
 
 // GetRolesOk returns a tuple with the Roles field value
 // and a boolean to check if the value has been set.
-func (o *UpdateUserRequestPayload) GetRolesOk() ([]UserRole, bool) {
+func (o *UpdateUserRequestPayload) GetRolesOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *UpdateUserRequestPayload) GetRolesOk() ([]UserRole, bool) {
 }
 
 // SetRoles sets field value
-func (o *UpdateUserRequestPayload) SetRoles(v []UserRole) {
+func (o *UpdateUserRequestPayload) SetRoles(v []string) {
 	o.Roles = v
 }
 
