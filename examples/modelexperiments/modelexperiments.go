@@ -36,7 +36,7 @@ func main() {
 
 	// Wait for the Model Experiments Instance to be ready
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance to be created.\n")
-	_, err = wait.CreateModelExperimentsInstanceWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, createInstanceResp.Instance.Id).WaitWithContext(ctx)
+	_, err = wait.CreateInstanceWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, createInstanceResp.Instance.Id).WaitWithContext(ctx)
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for creation: %v\n", err)
 	}
@@ -82,7 +82,7 @@ func main() {
 
 	// Wait for the Model Experiments Instance Token to be ready
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance Token to be created.\n")
-	_, err = wait.CreateModelExperimentsInstanceTokenWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id, createTokenResp.Token.Id).WaitWithContext(ctx)
+	_, err = wait.CreateInstanceTokenWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id, createTokenResp.Token.Id).WaitWithContext(ctx)
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for creation: %v\n", err)
 	}
@@ -125,7 +125,7 @@ func main() {
 
 	// Wait for the Model Experiments Instance Token to be deleted
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance Token to be deleted.\n")
-	_, err = wait.DeleteModelExperimentsInstanceTokenWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id, deleteTokenResp.Token.Id).WaitWithContext(ctx)
+	_, err = wait.DeleteInstanceTokenWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id, deleteTokenResp.Token.Id).WaitWithContext(ctx)
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for deletion: %v\n", err)
 	}
@@ -141,7 +141,7 @@ func main() {
 
 	// Wait for the Model Experiments Instance to be deleted
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance to be deleted.\n")
-	_, err = wait.DeleteModelExperimentsInstanceWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id).WaitWithContext(ctx)
+	_, err = wait.DeleteInstanceWaitHandler(ctx, modelexperimentsClient.DefaultAPI, region, projectId, getInstanceResp.Instance.Id).WaitWithContext(ctx)
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for deletion: %v\n", err)
 	}

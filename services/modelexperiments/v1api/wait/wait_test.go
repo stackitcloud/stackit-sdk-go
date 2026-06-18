@@ -110,7 +110,7 @@ func TestCreateModelExperimentsInstanceWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateModelExperimentsInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -177,7 +177,7 @@ func TestDeleteModelExperimentsInstanceWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteModelExperimentsInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -244,7 +244,7 @@ func TestCreateModelExperimentsInstanceTokenWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateModelExperimentsInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
+				handler := CreateInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -311,7 +311,7 @@ func TestDeleteModelExperimentsInstanceTokenWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := DeleteModelExperimentsInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
+				handler := DeleteInstanceTokenWaitHandler(context.Background(), apiClient, "region", "pid", "instanceId", "tid")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

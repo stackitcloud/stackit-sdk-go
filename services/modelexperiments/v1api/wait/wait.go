@@ -17,8 +17,8 @@ const (
 	TOKENSTATE_ACTIVE = "active"
 )
 
-// CreateModelExperimentsInstanceWaitHandler will wait for creation of Model Experiments instance
-func CreateModelExperimentsInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceResponse] {
+// CreateInstanceWaitHandler will wait for creation of Model Experiments instance
+func CreateInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[modelexperiments.GetInstanceResponse, modelexperiments.InstanceState]{
 		FetchInstance: a.GetInstance(ctx, projectId, region, instanceId).Execute,
 		GetState: func(response *modelexperiments.GetInstanceResponse) (modelexperiments.InstanceState, error) {
@@ -36,8 +36,8 @@ func CreateModelExperimentsInstanceWaitHandler(ctx context.Context, a modelexper
 	return handler
 }
 
-// DeleteModelExperimentsInstanceWaitHandler will wait for deletion of Model Experiments instance
-func DeleteModelExperimentsInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceResponse] {
+// DeleteInstanceWaitHandler will wait for deletion of Model Experiments instance
+func DeleteInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[modelexperiments.GetInstanceResponse, modelexperiments.InstanceState]{
 		FetchInstance: a.GetInstance(ctx, projectId, region, instanceId).Execute,
 		GetState: func(response *modelexperiments.GetInstanceResponse) (modelexperiments.InstanceState, error) {
@@ -54,8 +54,8 @@ func DeleteModelExperimentsInstanceWaitHandler(ctx context.Context, a modelexper
 	return handler
 }
 
-// CreateModelExperimentsTokenWait Handler will wait for creation of Model Experiments instance token
-func CreateModelExperimentsInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId, tokenId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceTokenResponse] {
+// CreateInstanceTokenWaitHandler will wait for creation of Model Experiments instance token
+func CreateInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId, tokenId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceTokenResponse] {
 	waitConfig := wait.WaiterHelper[modelexperiments.GetInstanceTokenResponse, modelexperiments.TokenState]{
 		FetchInstance: a.GetInstanceToken(ctx, projectId, region, tokenId, instanceId).Execute,
 		GetState: func(response *modelexperiments.GetInstanceTokenResponse) (modelexperiments.TokenState, error) {
@@ -73,8 +73,8 @@ func CreateModelExperimentsInstanceTokenWaitHandler(ctx context.Context, a model
 	return handler
 }
 
-// DeleteModelExperimentsInstanceTokenWaitHandler will wait for deletion of Model Experiments instance token
-func DeleteModelExperimentsInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId, tokenId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceTokenResponse] {
+// DeleteInstanceTokenWaitHandler will wait for deletion of Model Experiments instance token
+func DeleteInstanceTokenWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId, tokenId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceTokenResponse] {
 	waitConfig := wait.WaiterHelper[modelexperiments.GetInstanceTokenResponse, modelexperiments.TokenState]{
 		FetchInstance: a.GetInstanceToken(ctx, projectId, region, tokenId, instanceId).Execute,
 		GetState: func(response *modelexperiments.GetInstanceTokenResponse) (modelexperiments.TokenState, error) {
