@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateUserPayload{}
 
 // UpdateUserPayload struct for UpdateUserPayload
 type UpdateUserPayload struct {
-	Database string `json:"database"`
+	Database string `json:"database" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$"`
 	// The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	Roles                []string `json:"roles"`
 	AdditionalProperties map[string]interface{}
