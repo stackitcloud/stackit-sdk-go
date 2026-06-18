@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-06-18)
 - `core`: 
   - [v0.25.0](core/CHANGELOG.md#v0250)
     - Minimal go version is now Go 1.25
