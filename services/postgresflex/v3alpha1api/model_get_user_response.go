@@ -26,7 +26,9 @@ type GetUserResponse struct {
 	// The name of the user.
 	Name string `json:"name"`
 	// A list of user roles.
-	Roles []UserRole `json:"roles"`
+	Roles []string `json:"roles"`
+	// The current status of the user.
+	State string `json:"state"`
 	// The current status of the user.
 	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
@@ -38,11 +40,12 @@ type _GetUserResponse GetUserResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetUserResponse(id int32, name string, roles []UserRole, status string) *GetUserResponse {
+func NewGetUserResponse(id int32, name string, roles []string, state string, status string) *GetUserResponse {
 	this := GetUserResponse{}
 	this.Id = id
 	this.Name = name
 	this.Roles = roles
+	this.State = state
 	this.Status = status
 	return &this
 }
@@ -104,9 +107,9 @@ func (o *GetUserResponse) SetName(v string) {
 }
 
 // GetRoles returns the Roles field value
-func (o *GetUserResponse) GetRoles() []UserRole {
+func (o *GetUserResponse) GetRoles() []string {
 	if o == nil {
-		var ret []UserRole
+		var ret []string
 		return ret
 	}
 
@@ -115,7 +118,7 @@ func (o *GetUserResponse) GetRoles() []UserRole {
 
 // GetRolesOk returns a tuple with the Roles field value
 // and a boolean to check if the value has been set.
-func (o *GetUserResponse) GetRolesOk() ([]UserRole, bool) {
+func (o *GetUserResponse) GetRolesOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,8 +126,32 @@ func (o *GetUserResponse) GetRolesOk() ([]UserRole, bool) {
 }
 
 // SetRoles sets field value
-func (o *GetUserResponse) SetRoles(v []UserRole) {
+func (o *GetUserResponse) SetRoles(v []string) {
 	o.Roles = v
+}
+
+// GetState returns the State field value
+func (o *GetUserResponse) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *GetUserResponse) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *GetUserResponse) SetState(v string) {
+	o.State = v
 }
 
 // GetStatus returns the Status field value
@@ -164,6 +191,7 @@ func (o GetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["roles"] = o.Roles
+	toSerialize["state"] = o.State
 	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
@@ -181,6 +209,7 @@ func (o *GetUserResponse) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"roles",
+		"state",
 		"status",
 	}
 
@@ -214,6 +243,7 @@ func (o *GetUserResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "roles")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
