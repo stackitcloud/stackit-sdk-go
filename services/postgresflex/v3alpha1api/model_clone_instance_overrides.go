@@ -21,6 +21,8 @@ var _ MappedNullable = &CloneInstanceOverrides{}
 
 // CloneInstanceOverrides struct for CloneInstanceOverrides
 type CloneInstanceOverrides struct {
+	// The name of the cloned instance. If not provided, the default naming behavior of appending '-clone' to the source instance name is used.
+	Name *string `json:"name,omitempty"`
 	// The storage class for the storage.
 	PerformanceClass string `json:"performanceClass"`
 	// The storage size in Gigabytes.
@@ -47,6 +49,38 @@ func NewCloneInstanceOverrides(performanceClass string, size int32) *CloneInstan
 func NewCloneInstanceOverridesWithDefaults() *CloneInstanceOverrides {
 	this := CloneInstanceOverrides{}
 	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CloneInstanceOverrides) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloneInstanceOverrides) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CloneInstanceOverrides) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CloneInstanceOverrides) SetName(v string) {
+	o.Name = &v
 }
 
 // GetPerformanceClass returns the PerformanceClass field value
@@ -107,6 +141,9 @@ func (o CloneInstanceOverrides) MarshalJSON() ([]byte, error) {
 
 func (o CloneInstanceOverrides) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	toSerialize["performanceClass"] = o.PerformanceClass
 	toSerialize["size"] = o.Size
 
@@ -153,6 +190,7 @@ func (o *CloneInstanceOverrides) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "performanceClass")
 		delete(additionalProperties, "size")
 		o.AdditionalProperties = additionalProperties
