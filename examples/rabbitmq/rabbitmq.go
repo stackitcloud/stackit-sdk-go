@@ -7,6 +7,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	rabbitmq "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v2api"
+	wait "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v2api/wait"
 )
 
 func main() {
@@ -51,4 +52,27 @@ func main() {
 	} else {
 		fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
 	}
+
+	// Wait for creation of rabbitmq instance
+	instance, err := wait.CreateInstanceWaitHandler(context.Background(), rabbitmqClient.DefaultAPI, projectId, region, createInstanceResp.InstanceId).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when waiting for creation: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Rabbitmq instance %v has been successfully created.", instance.InstanceId)
+
+	// Delete a rabbitmq instance
+	err = rabbitmqClient.DefaultAPI.DeleteInstance(context.Background(), projectId, region, *instance.InstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling 'DeleteInstance': %v\n", err)
+		os.Exit(1)
+	}
+
+	// Wait for deletaion of rabbitmq instance
+	_, err = wait.DeleteInstanceWaitHandler(context.Background(), rabbitmqClient.DefaultAPI, projectId, region, *instance.InstanceId).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when waiting for deletion: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Rabbitmq instance %v has been successfully deleted.", instance.InstanceId)
 }
