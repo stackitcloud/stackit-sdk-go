@@ -1,6 +1,6 @@
 ## v1.1.0
 - `v2api`:
-  - Feature: Added wait handlers
+  - **Feature**: Added wait handlers
 
 ## v1.0.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
