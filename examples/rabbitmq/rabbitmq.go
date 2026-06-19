@@ -6,11 +6,12 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	rabbitmq "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v1api"
+	rabbitmq "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v2api"
 )
 
 func main() {
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+	region := "eu01"
 	planId := "PLAN_ID"
 
 	// Create a new API client, that uses default authentication and configuration
@@ -23,7 +24,7 @@ func main() {
 	}
 
 	// Get the rabbitmq instances for your project
-	getInstancesResp, err := rabbitmqClient.DefaultAPI.ListInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := rabbitmqClient.DefaultAPI.ListInstances(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -31,7 +32,7 @@ func main() {
 	}
 
 	// Get the rabbitmq offerings for your project
-	getOfferingsResp, err := rabbitmqClient.DefaultAPI.ListOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := rabbitmqClient.DefaultAPI.ListOfferings(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {
@@ -44,7 +45,7 @@ func main() {
 		Parameters:   &rabbitmq.InstanceParameters{},
 		PlanId:       planId,
 	}
-	createInstanceResp, err := rabbitmqClient.DefaultAPI.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+	createInstanceResp, err := rabbitmqClient.DefaultAPI.CreateInstance(context.Background(), projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
 	} else {
