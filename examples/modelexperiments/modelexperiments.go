@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `CreateInstance`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Triggered creation of Model Experiments Instance with ID: \"%s\".\n", createInstanceResp.Instance.Id)
+	log.Printf("[Model Experiments] Triggered creation of Model Experiments Instance with ID: %q.\n", createInstanceResp.Instance.Id)
 
 	// Wait for the Model Experiments Instance to be ready
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance to be created.\n")
@@ -40,7 +40,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for creation: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Model Experiments Instance \"%s\" has been successfully created.\n", createInstanceResp.Instance.Id)
+	log.Printf("[Model Experiments] Model Experiments Instance %q has been successfully created.\n", createInstanceResp.Instance.Id)
 
 	// Get the created Model Experiments Instance
 	log.Printf("[Model Experiments] Retrieving Model Experiments Instance.\n")
@@ -48,7 +48,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `GetInstance`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Retrieved Model Experiments Instance with ID: \"%s\" and display name: \"%s\"\n", getInstanceResp.Instance.Id, getInstanceResp.Instance.Name)
+	log.Printf("[Model Experiments] Retrieved Model Experiments Instance with ID: %q and display name: %q\n", getInstanceResp.Instance.Id, getInstanceResp.Instance.Name)
 
 	// List Model Experiments Instances
 	log.Printf("[Model Experiments] Listing Model Experiments Instances.\n")
@@ -67,7 +67,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `PartialUpdateInstance`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Updated Model Experiments Instance with ID: \"%s\" and display name: \"%s\"\n", partialUpdateInstanceResp.Instance.Id, partialUpdateInstanceResp.Instance.Name)
+	log.Printf("[Model Experiments] Updated Model Experiments Instance with ID: %q and display name: %q\n", partialUpdateInstanceResp.Instance.Id, partialUpdateInstanceResp.Instance.Name)
 
 	// Create a Model Experiments Instance Token
 	log.Printf("[Model Experiments] Creating Model Experiments Instance Token.\n")
@@ -86,7 +86,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for creation: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Model Experiments Instance Token \"%s\" has been successfully created.\n", createTokenResp.Token.Id)
+	log.Printf("[Model Experiments] Model Experiments Instance Token %q has been successfully created.\n", createTokenResp.Token.Id)
 
 	// Get the created Model Experiments Instance Token
 	log.Printf("[Model Experiments] Retrieving Model Experiments Instance Token.\n")
@@ -94,7 +94,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `GetInstanceToken`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Retrieved Model Experiments Instance Token with ID: \"%s\" and display name: \"%s\"\n", getTokenResp.Token.Id, getTokenResp.Token.Name)
+	log.Printf("[Model Experiments] Retrieved Model Experiments Instance Token with ID: %q and display name: %q\n", getTokenResp.Token.Id, getTokenResp.Token.Name)
 
 	// List Model Experiments Instance Tokens
 	log.Printf("[Model Experiments] Listing Model Experiments Instance Tokens.\n")
@@ -113,7 +113,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `PartialUpdateInstanceToken`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Updated Model Experiments Instance Token with ID: \"%s\" and display name: \"%s\"\n", partialUpdateTokenResp.Token.Id, partialUpdateTokenResp.Token.Name)
+	log.Printf("[Model Experiments] Updated Model Experiments Instance Token with ID: %q and display name: %q\n", partialUpdateTokenResp.Token.Id, partialUpdateTokenResp.Token.Name)
 
 	// Delete a Model Experiments Instance Token
 	log.Printf("[Model Experiments] Deleting Model Experiments Instance Token.\n")
@@ -121,7 +121,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `DeleteInstanceToken`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Triggered deletion of Model Experiments Instance Token with ID: \"%s\" and display name: \"%s\"\n", deleteTokenResp.Token.Id, deleteTokenResp.Token.Name)
+	log.Printf("[Model Experiments] Triggered deletion of Model Experiments Instance Token with ID: %q and display name: %q\n", deleteTokenResp.Token.Id, deleteTokenResp.Token.Name)
 
 	// Wait for the Model Experiments Instance Token to be deleted
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance Token to be deleted.\n")
@@ -129,7 +129,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for deletion: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Model Experiments Instance Token \"%s\" has been successfully deleted.\n", deleteTokenResp.Token.Id)
+	log.Printf("[Model Experiments] Model Experiments Instance Token %q has been successfully deleted.\n", deleteTokenResp.Token.Id)
 
 	// Delete a Model Experiments Instance
 	log.Printf("[Model Experiments] Deleting Model Experiments Instance.\n")
@@ -137,7 +137,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when calling `DeleteInstance`: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Triggered deletion of Model Experiments Instance with ID: \"%s\" and display name: \"%s\"\n", deleteInstanceResp.Instance.Id, deleteInstanceResp.Instance.Name)
+	log.Printf("[Model Experiments] Triggered deletion of Model Experiments Instance with ID: %q and display name: %q\n", deleteInstanceResp.Instance.Id, deleteInstanceResp.Instance.Name)
 
 	// Wait for the Model Experiments Instance to be deleted
 	log.Printf("[Model Experiments] Waiting for Model Experiments Instance to be deleted.\n")
@@ -145,5 +145,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Model Experiments] Error when waiting for deletion: %v\n", err)
 	}
-	log.Printf("[Model Experiments] Model Experiments Instance \"%s\" has been successfully deleted.\n", deleteInstanceResp.Instance.Id)
+	log.Printf("[Model Experiments] Model Experiments Instance %q has been successfully deleted.\n", deleteInstanceResp.Instance.Id)
 }

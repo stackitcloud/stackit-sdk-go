@@ -10,13 +10,6 @@ import (
 	modelexperiments "github.com/stackitcloud/stackit-sdk-go/services/modelexperiments/v1api"
 )
 
-const (
-	INSTANCESTATE_ACTIVE   = "active"
-	INSTANCESTATE_IMPAIRED = "impaired"
-
-	TOKENSTATE_ACTIVE = "active"
-)
-
 // CreateInstanceWaitHandler will wait for creation of Model Experiments instance
 func CreateInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAPI, region, projectId, instanceId string) *wait.AsyncActionHandler[modelexperiments.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[modelexperiments.GetInstanceResponse, modelexperiments.InstanceState]{
@@ -46,6 +39,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a modelexperiments.DefaultAP
 			}
 			return response.Instance.State, nil
 		},
+		ErrorState:                 []modelexperiments.InstanceState{modelexperiments.INSTANCESTATE_IMPAIRED},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 
