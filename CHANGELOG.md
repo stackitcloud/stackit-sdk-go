@@ -1,5 +1,11 @@
 ## Release (2026-MM-DD)
 
+- `mongodbflex`:
+  - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
+    - `v2api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
 - `postgresflex`:
   - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
     - `v3alpha1api`: Align package to latest API specification
