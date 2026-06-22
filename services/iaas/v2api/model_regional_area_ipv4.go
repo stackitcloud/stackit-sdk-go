@@ -28,7 +28,7 @@ type RegionalAreaIPv4 struct {
 	MaxPrefixLen int64 `json:"maxPrefixLen"`
 	// The minimal prefix length for networks in the network area.
 	MinPrefixLen int64 `json:"minPrefixLen"`
-	// A list of network ranges.
+	// A list of network area network ranges.
 	NetworkRanges []NetworkRange `json:"networkRanges"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
 	TransferNetwork      string `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
