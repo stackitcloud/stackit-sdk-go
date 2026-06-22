@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	rabbitmq "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v2api"
 	wait "github.com/stackitcloud/stackit-sdk-go/services/rabbitmq/v2api/wait"
 )
@@ -16,9 +15,7 @@ func main() {
 	planId := "PLAN_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	rabbitmqClient, err := rabbitmq.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	rabbitmqClient, err := rabbitmq.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
@@ -28,17 +25,17 @@ func main() {
 	getInstancesResp, err := rabbitmqClient.DefaultAPI.ListInstances(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
-	} else {
-		fmt.Printf("Number of instances: %v\n", len(getInstancesResp.Instances))
+		os.Exit(1)
 	}
+	fmt.Printf("Number of instances: %v\n", len(getInstancesResp.Instances))
 
 	// Get the rabbitmq offerings for your project
 	getOfferingsResp, err := rabbitmqClient.DefaultAPI.ListOfferings(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
-	} else {
-		fmt.Printf("Offerings: %+v\n", getOfferingsResp.Offerings)
+		os.Exit(1)
 	}
+	fmt.Printf("Offerings: %+v\n", getOfferingsResp.Offerings)
 
 	// Create a rabbitmq Instance
 	createInstancePayload := rabbitmq.CreateInstancePayload{
@@ -49,9 +46,9 @@ func main() {
 	createInstanceResp, err := rabbitmqClient.DefaultAPI.CreateInstance(context.Background(), projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
-	} else {
-		fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
+		os.Exit(1)
 	}
+	fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
 
 	// Wait for creation of rabbitmq instance
 	instance, err := wait.CreateInstanceWaitHandler(context.Background(), rabbitmqClient.DefaultAPI, projectId, region, createInstanceResp.InstanceId).WaitWithContext(context.Background())
