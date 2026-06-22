@@ -1,3 +1,6 @@
+## v1.10.0
+- `v3alpha1api`: Align package to latest API specification
+
 ## v1.9.0
 - `v2api`: 
   - **Improvement**: Use new `WaiterHelper` struct in the PostgreSQL Flex WaitHandler

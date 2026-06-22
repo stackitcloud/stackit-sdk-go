@@ -1,3 +1,9 @@
+## Release (2026-MM-DD)
+
+- `postgresflex`:
+  - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
+    - `v3alpha1api`: Align package to latest API specification
+
 ## Release (2026-06-18)
 - `core`: 
   - [v0.25.0](core/CHANGELOG.md#v0250)
