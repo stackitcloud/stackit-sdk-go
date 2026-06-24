@@ -269,6 +269,10 @@ type DefaultAPIServiceMock struct {
 	UpdateBackupExecuteMock *func(r ApiUpdateBackupRequest) (*Backup, error)
 	// UpdateImageExecuteMock can be populated to implement the behavior of the UpdateImageExecute function of this mock
 	UpdateImageExecuteMock *func(r ApiUpdateImageRequest) (*Image, error)
+	// UpdateImageScopeLocalExecuteMock can be populated to implement the behavior of the UpdateImageScopeLocalExecute function of this mock
+	UpdateImageScopeLocalExecuteMock *func(r ApiUpdateImageScopeLocalRequest) (*Image, error)
+	// UpdateImageScopePublicExecuteMock can be populated to implement the behavior of the UpdateImageScopePublicExecute function of this mock
+	UpdateImageScopePublicExecuteMock *func(r ApiUpdateImageScopePublicRequest) (*Image, error)
 	// UpdateImageShareExecuteMock can be populated to implement the behavior of the UpdateImageShareExecute function of this mock
 	UpdateImageShareExecuteMock *func(r ApiUpdateImageShareRequest) (*ImageShare, error)
 	// UpdateKeyPairExecuteMock can be populated to implement the behavior of the UpdateKeyPairExecute function of this mock
@@ -2716,6 +2720,46 @@ func (a DefaultAPIServiceMock) UpdateImageExecute(r ApiUpdateImageRequest) (*Ima
 	}
 
 	return (*a.UpdateImageExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest {
+	return ApiUpdateImageScopeLocalRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// UpdateImageScopeLocalExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateImageScopeLocalExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error) {
+	if a.UpdateImageScopeLocalExecuteMock == nil {
+		var localVarReturnValue *Image
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateImageScopeLocalExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest {
+	return ApiUpdateImageScopePublicRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// UpdateImageScopePublicExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateImageScopePublicExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error) {
+	if a.UpdateImageScopePublicExecuteMock == nil {
+		var localVarReturnValue *Image
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateImageScopePublicExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateImageShare(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageShareRequest {

@@ -20,6 +20,33 @@ import (
 var _ MappedNullable = &Snapshot{}
 
 /*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotGetAvailabilityZoneAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getSnapshotGetAvailabilityZoneAttributeTypeOk(arg SnapshotGetAvailabilityZoneAttributeType) (ret SnapshotGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setSnapshotGetAvailabilityZoneAttributeType(arg *SnapshotGetAvailabilityZoneAttributeType, val SnapshotGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotGetAvailabilityZoneArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotGetAvailabilityZoneRetType = string
+
+/*
 	types and functions for createdAt
 */
 
@@ -265,6 +292,8 @@ type SnapshotGetVolumeIdRetType = string
 // Snapshot Object that represents a snapshot.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Snapshot struct {
+	// Object that represents an availability zone.
+	AvailabilityZone SnapshotGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt SnapshotGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
@@ -307,6 +336,33 @@ func NewSnapshot(volumeId SnapshotGetVolumeIdArgType) *Snapshot {
 func NewSnapshotWithDefaults() *Snapshot {
 	this := Snapshot{}
 	return &this
+}
+
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Snapshot) GetAvailabilityZone() (res SnapshotGetAvailabilityZoneRetType) {
+	res, _ = o.GetAvailabilityZoneOk()
+	return
+}
+
+// GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Snapshot) GetAvailabilityZoneOk() (ret SnapshotGetAvailabilityZoneRetType, ok bool) {
+	return getSnapshotGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
+}
+
+// HasAvailabilityZone returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Snapshot) HasAvailabilityZone() bool {
+	_, ok := o.GetAvailabilityZoneOk()
+	return ok
+}
+
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Snapshot) SetAvailabilityZone(v SnapshotGetAvailabilityZoneRetType) {
+	setSnapshotGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -548,6 +604,9 @@ func (o *Snapshot) SetVolumeId(v SnapshotGetVolumeIdRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Snapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getSnapshotGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
+	}
 	if val, ok := getSnapshotGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
 	}
