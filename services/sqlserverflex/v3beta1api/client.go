@@ -1,7 +1,7 @@
 /*
-STACKIT MSSQL Service API
+[DEPRECATED] STACKIT MSSQL Service API
 
-This is the documentation for the STACKIT MSSQL service
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V3beta2
 
 API version: 3beta1
 Contact: support@stackit.cloud
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT MSSQL Service API API v3beta1
+// APIClient manages communication with the [DEPRECATED] STACKIT MSSQL Service API API v3beta1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration
