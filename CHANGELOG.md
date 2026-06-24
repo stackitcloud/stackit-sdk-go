@@ -9,6 +9,9 @@
 - `postgresflex`:
   - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
     - `v3alpha1api`: Align package to latest API specification
+- `modelexperiments`:
+  - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **New**: STACKIT Model Experiments module wait handler added.
 
 ## Release (2026-06-18)
 - `core`: 
