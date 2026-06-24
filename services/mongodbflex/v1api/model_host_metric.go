@@ -1,7 +1,7 @@
 /*
-STACKIT MongoDB Service API
+[DEPRECATED] STACKIT MongoDB Service API
 
-This is the documentation for the STACKIT MongoDB Flex Service API
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V2
 
 API version: 1.0.0
 Contact: support@stackit.cloud
