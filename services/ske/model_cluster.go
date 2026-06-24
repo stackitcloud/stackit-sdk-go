@@ -270,8 +270,9 @@ type Cluster struct {
 	// REQUIRED
 	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
 	Maintenance ClusterGetMaintenanceAttributeType `json:"maintenance,omitempty"`
-	Name        ClusterGetNameAttributeType        `json:"name,omitempty"`
-	Network     ClusterGetNetworkAttributeType     `json:"network,omitempty"`
+	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
+	Name    ClusterGetNameAttributeType    `json:"name,omitempty"`
+	Network ClusterGetNetworkAttributeType `json:"network,omitempty"`
 	// REQUIRED
 	Nodepools ClusterGetNodepoolsAttributeType `json:"nodepools" required:"true"`
 	Status    ClusterGetStatusAttributeType    `json:"status,omitempty"`
