@@ -3,26 +3,10 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
-	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/cdn"
-)
-
-const (
-	// Deprecated: DistributionStatusCreating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_CREATING] instead.
-	DistributionStatusCreating = "CREATING"
-	// Deprecated: DistributionStatusActive is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ACTIVE] instead.
-	DistributionStatusActive = "ACTIVE"
-	// Deprecated: DistributionStatusUpdating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_UPDATING] instead.
-	DistributionStatusUpdating = "UPDATING"
-	// Deprecated: DistributionStatusDeleting is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_DELETING] instead.
-	DistributionStatusDeleting = "DELETING"
-	// Deprecated: DistributionStatusError is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ERROR] instead.
-	DistributionStatusError = "ERROR"
 )
 
 // Interfaces needed for tests
@@ -35,67 +19,52 @@ type APIClientInterface interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
-		distribution, err = api.GetDistributionExecute(ctx, projectId, distributionId)
-		if err != nil {
-			return false, distribution, err
-		}
-		if distribution == nil ||
-			distribution.Distribution == nil ||
-			distribution.Distribution.Id == nil ||
-			distribution.Distribution.Status == nil {
-			return false, distribution, fmt.Errorf("create failed for distribution with id %s, the response is not valid (state missing)", distributionId)
-		}
-		if *distribution.Distribution.Id == distributionId {
-			switch *distribution.Distribution.Status {
-			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
-				return true, distribution, nil
-			case cdn.DISTRIBUTIONSTATUS_CREATING, cdn.DISTRIBUTIONSTATUS_UPDATING:
-				return false, nil, nil
-			case cdn.DISTRIBUTIONSTATUS_DELETING:
-				return true, nil, fmt.Errorf("creating CDN distribution failed")
-			case cdn.DISTRIBUTIONSTATUS_ERROR:
-				return true, nil, fmt.Errorf("creating CDN distribution failed")
-			default:
-				return true, nil, fmt.Errorf("CDNDistributionWaitHandler: unexpected status %s", *distribution.Distribution.Status)
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
+		FetchInstance: func() (*cdn.GetDistributionResponse, error) {
+			return api.GetDistributionExecute(ctx, projectId, distributionId)
+		},
+		GetState: func(response *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-		return false, nil, nil
-	})
+			if response.Distribution == nil {
+				return "", errors.New("empty distribution")
+			}
+			if response.Distribution.Status == nil {
+				return "", errors.New("empty status")
+			}
+			return *response.Distribution.Status, nil
+		},
+		ActiveState: []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ACTIVE},
+		ErrorState:  []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ERROR, cdn.DISTRIBUTIONSTATUS_DELETING},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
-		distribution, err = api.GetDistributionExecute(ctx, projectId, distributionId)
-		if err != nil {
-			return false, distribution, err
-		}
-		if distribution == nil ||
-			distribution.Distribution == nil ||
-			distribution.Distribution.Id == nil ||
-			distribution.Distribution.Status == nil {
-			return false, distribution, fmt.Errorf("update failed for distribution with id %s, the response is not valid (state missing)", distributionId)
-		}
-		if *distribution.Distribution.Id == distributionId {
-			switch *distribution.Distribution.Status {
-			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
-				return true, distribution, err
-			case cdn.DISTRIBUTIONSTATUS_UPDATING:
-				return false, nil, nil
-			case cdn.DISTRIBUTIONSTATUS_DELETING:
-				return true, nil, fmt.Errorf("updating CDN distribution failed")
-			case cdn.DISTRIBUTIONSTATUS_ERROR:
-				return true, nil, fmt.Errorf("updating CDN distribution failed")
-			default:
-				return true, nil, fmt.Errorf("UpdateDistributionWaitHandler: unexpected status %s", *distribution.Distribution.Status)
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
+		FetchInstance: func() (*cdn.GetDistributionResponse, error) {
+			return api.GetDistributionExecute(ctx, projectId, distributionId)
+		},
+		GetState: func(response *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-
-		return false, nil, nil
-	})
+			if response.Distribution == nil {
+				return "", errors.New("empty distribution")
+			}
+			if response.Distribution.Status == nil {
+				return "", errors.New("empty status")
+			}
+			return *response.Distribution.Status, nil
+		},
+		ActiveState: []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ACTIVE},
+		ErrorState:  []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ERROR, cdn.DISTRIBUTIONSTATUS_DELETING, cdn.DISTRIBUTIONSTATUS_CREATING},
+	}
+	handler := wait.New(waitConfig.Wait())
 
 	handler.SetTimeout(10 * time.Minute)
 	return handler
@@ -103,71 +72,80 @@ func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
-	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
-		_, err = api.GetDistributionExecute(ctx, projectId, distributionId)
-
-		// the distribution is still gettable, e.g. not deleted
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-				return true, nil, nil
+	waitConfig := wait.WaiterHelper[cdn.GetDistributionResponse, cdn.DistributionStatus]{
+		FetchInstance: func() (*cdn.GetDistributionResponse, error) {
+			return api.GetDistributionExecute(ctx, projectId, distributionId)
+		},
+		GetState: func(response *cdn.GetDistributionResponse) (cdn.DistributionStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-		}
-
-		return false, nil, err
-	})
+			if response.Distribution == nil {
+				return "", errors.New("empty distribution")
+			}
+			if response.Distribution.Status == nil {
+				return "", errors.New("empty status")
+			}
+			return *response.Distribution.Status, nil
+		},
+		ActiveState: []cdn.DistributionStatus{},
+		ErrorState:  []cdn.DistributionStatus{},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface, projectId, distributionId, domain string) *wait.AsyncActionHandler[cdn.CustomDomain] {
-	handler := wait.New(func() (waitFinished bool, response *cdn.CustomDomain, err error) {
-		resp, err := a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
-		if err != nil {
-			return false, nil, err
-		}
-		if resp == nil || resp.CustomDomain == nil || resp.CustomDomain.Status == nil {
-			return false, nil, errors.New("CDNDistributionWaitHandler: status or custom domain missing in response")
-		}
-
-		switch *resp.CustomDomain.Status {
-		case cdn.DOMAINSTATUS_ACTIVE:
-			return true, resp.CustomDomain, nil
-		case cdn.DOMAINSTATUS_CREATING, cdn.DOMAINSTATUS_UPDATING:
-			return false, nil, nil
-		case cdn.DOMAINSTATUS_DELETING:
-			return true, nil, fmt.Errorf("creating CDN custom domain failed")
-		case cdn.DOMAINSTATUS_ERROR:
-			return true, nil, fmt.Errorf("creating CDN custom domain failed")
-		default:
-			return true, nil, fmt.Errorf("CDNCustomDomainWaitHandler: unexpected status %s", *resp.CustomDomain.Status)
-		}
-	})
+	waitConfig := wait.WaiterHelper[cdn.CustomDomain, cdn.DomainStatus]{
+		FetchInstance: func() (*cdn.CustomDomain, error) {
+			resp, err := a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
+			if err != nil || resp == nil || resp.CustomDomain == nil {
+				return nil, err
+			}
+			return resp.CustomDomain, nil
+		},
+		GetState: func(response *cdn.CustomDomain) (cdn.DomainStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("empty status")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []cdn.DomainStatus{cdn.DOMAINSTATUS_ACTIVE},
+		ErrorState:  []cdn.DomainStatus{cdn.DOMAINSTATUS_ERROR, cdn.DOMAINSTATUS_DELETING},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface, projectId, distributionId, domain string) *wait.AsyncActionHandler[cdn.CustomDomain] {
-	handler := wait.New(func() (waitFinished bool, response *cdn.CustomDomain, err error) {
-		_, err = a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
-
-		// the custom domain is still gettable, e.g. not deleted
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-				return true, nil, nil
+	waitConfig := wait.WaiterHelper[cdn.CustomDomain, cdn.DomainStatus]{
+		FetchInstance: func() (*cdn.CustomDomain, error) {
+			resp, err := a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
+			if err != nil || resp == nil || resp.CustomDomain == nil {
+				return nil, err
 			}
-		}
-		return false, nil, err
-	})
+			return resp.CustomDomain, nil
+		},
+		GetState: func(response *cdn.CustomDomain) (cdn.DomainStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("empty status")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []cdn.DomainStatus{},
+		ErrorState:  []cdn.DomainStatus{},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }

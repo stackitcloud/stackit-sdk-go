@@ -36,7 +36,7 @@ type DefaultAPIServiceMock struct {
 	// DeleteUserRequestExecuteMock can be populated to implement the behavior of the DeleteUserRequestExecute function of this mock
 	DeleteUserRequestExecuteMock *func(r ApiDeleteUserRequestRequest) error
 	// GetBackupRequestExecuteMock can be populated to implement the behavior of the GetBackupRequestExecute function of this mock
-	GetBackupRequestExecuteMock *func(r ApiGetBackupRequestRequest) (*GetBackupResponse, error)
+	GetBackupRequestExecuteMock *func(r ApiGetBackupRequestRequest) (*BackupData, error)
 	// GetCollationsRequestExecuteMock can be populated to implement the behavior of the GetCollationsRequestExecute function of this mock
 	GetCollationsRequestExecuteMock *func(r ApiGetCollationsRequestRequest) (*GetCollationsResponse, error)
 	// GetDatabaseRequestExecuteMock can be populated to implement the behavior of the GetDatabaseRequestExecute function of this mock
@@ -227,9 +227,9 @@ func (a DefaultAPIServiceMock) GetBackupRequest(ctx context.Context, projectId s
 }
 
 // GetBackupRequestExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetBackupRequestExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetBackupRequestExecute(r ApiGetBackupRequestRequest) (*GetBackupResponse, error) {
+func (a DefaultAPIServiceMock) GetBackupRequestExecute(r ApiGetBackupRequestRequest) (*BackupData, error) {
 	if a.GetBackupRequestExecuteMock == nil {
-		var localVarReturnValue *GetBackupResponse
+		var localVarReturnValue *BackupData
 		return localVarReturnValue, nil
 	}
 

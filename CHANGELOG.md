@@ -1,4 +1,19 @@
 ## Release (2026-MM-DD)
+
+- `mongodbflex`:
+  - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
+    - `v2api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
+- `postgresflex`:
+  - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
+    - `v3alpha1api`: Align package to latest API specification
+- `modelexperiments`:
+  - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **New**: STACKIT Model Experiments module wait handler added.
+
+## Release (2026-06-18)
 - `core`: 
   - [v0.25.0](core/CHANGELOG.md#v0250)
     - Minimal go version is now Go 1.25
@@ -252,6 +267,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
   - [v0.30.0](services/logme/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/logme/CHANGELOG.md#v100)
+    - `v2api`:
+      - New package which can be used for communication with the logme v2 API
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -278,6 +301,16 @@
     - **Improvement:** Use new WaiterHelper for Logs waiters
   - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the mariadb v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+- `modelexperiments`:
+  - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
+    - **New**: API for STACKIT modelexperiments
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -345,6 +378,14 @@
     - **Improvement:** Use new WaiterHelper for opensearch waiters
   - [v0.29.0](services/opensearch/CHANGELOG.md#v0290)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/opensearch/CHANGELOG.md#v100)
+    - `v2api`:
+      - New package which can be used for communication with the opensearch v2 API
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -356,6 +397,10 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.8.0](services/postgresflex/CHANGELOG.md#v180)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.9.0](services/postgresflex/CHANGELOG.md#v190)
+    - `v2api`: 
+      - **Improvement**: Use new `WaiterHelper` struct in the PostgreSQL Flex WaitHandler
+      - **Breaking change:** Change return type of `wait.ForceDeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[postgresflex.InstanceResponse]`
 - `rabbitmq`:
   - [v0.28.3](services/rabbitmq/CHANGELOG.md#v0283) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -369,6 +414,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
   - [v0.31.0](services/rabbitmq/CHANGELOG.md#v0310)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/rabbitmq/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the rabbitmq v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `Roles`, `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-11.
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -382,6 +435,14 @@
     - **Feature:** Introduce enums for various attributes    
   - [v0.30.0](services/redis/CHANGELOG.md#v0300)
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the Redis WaitHandler
+  - [v1.0.0](services/redis/CHANGELOG.md#v100)
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v2api`:
+        - New package which can be used for communication with the redis v2 API
+        - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v1api`:
+        - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+        - **Deprecation:** `TlsCiphers`, `TlsCiphersuites`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -542,6 +603,10 @@
     - **Feature:** Introduce enums for various attributes
   - [v1.17.0](services/ske/CHANGELOG.md#v1170)
     - **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
+  - [v1.18.0](services/ske/CHANGELOG.md#v1180)
+    - `v2api`:
+      - **Improvement:** Use new WaiterHelper for ske waiters
+      - **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

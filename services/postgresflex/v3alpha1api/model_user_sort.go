@@ -25,6 +25,8 @@ const (
 	USERSORT_ID_DESC                  UserSort = "id.desc"
 	USERSORT_NAME_DESC                UserSort = "name.desc"
 	USERSORT_NAME_ASC                 UserSort = "name.asc"
+	USERSORT_STATE_DESC               UserSort = "state.desc"
+	USERSORT_STATE_ASC                UserSort = "state.asc"
 	USERSORT_STATUS_DESC              UserSort = "status.desc"
 	USERSORT_STATUS_ASC               UserSort = "status.asc"
 	USERSORT_UNKNOWN_DEFAULT_OPEN_API UserSort = "unknown_default_open_api"
@@ -36,6 +38,8 @@ var AllowedUserSortEnumValues = []UserSort{
 	"id.desc",
 	"name.desc",
 	"name.asc",
+	"state.desc",
+	"state.asc",
 	"status.desc",
 	"status.asc",
 	"unknown_default_open_api",

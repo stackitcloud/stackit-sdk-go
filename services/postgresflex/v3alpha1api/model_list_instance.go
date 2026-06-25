@@ -27,6 +27,7 @@ type ListInstance struct {
 	IsDeletable bool `json:"isDeletable"`
 	// The name of the instance.
 	Name                 string `json:"name"`
+	State                Status `json:"state"`
 	Status               Status `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,11 +38,12 @@ type _ListInstance ListInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListInstance(id string, isDeletable bool, name string, status Status) *ListInstance {
+func NewListInstance(id string, isDeletable bool, name string, state Status, status Status) *ListInstance {
 	this := ListInstance{}
 	this.Id = id
 	this.IsDeletable = isDeletable
 	this.Name = name
+	this.State = state
 	this.Status = status
 	return &this
 }
@@ -126,6 +128,30 @@ func (o *ListInstance) SetName(v string) {
 	o.Name = v
 }
 
+// GetState returns the State field value
+func (o *ListInstance) GetState() Status {
+	if o == nil {
+		var ret Status
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *ListInstance) GetStateOk() (*Status, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *ListInstance) SetState(v Status) {
+	o.State = v
+}
+
 // GetStatus returns the Status field value
 func (o *ListInstance) GetStatus() Status {
 	if o == nil {
@@ -163,6 +189,7 @@ func (o ListInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["isDeletable"] = o.IsDeletable
 	toSerialize["name"] = o.Name
+	toSerialize["state"] = o.State
 	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
@@ -180,6 +207,7 @@ func (o *ListInstance) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"isDeletable",
 		"name",
+		"state",
 		"status",
 	}
 
@@ -213,6 +241,7 @@ func (o *ListInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "isDeletable")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

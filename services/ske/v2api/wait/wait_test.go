@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"testing"
 	"testing/synctest"
@@ -11,6 +12,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	ske "github.com/stackitcloud/stackit-sdk-go/services/ske/v2api"
 )
 
@@ -84,7 +86,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		wantResp             bool
 	}{
 		{
-			desc:          "create_succeeded",
+			desc:          "succeeded",
 			getFails:      false,
 			resourceState: ske.CLUSTERSTATUSSTATE_STATE_HEALTHY,
 			wantErr:       false,
@@ -119,48 +121,56 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			wantResp:      false,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				name := "cluster"
 
-				apiClient := newAPIMock(mockSettings{
-					getFails:             tt.getFails,
-					name:                 name,
-					resourceState:        tt.resourceState,
-					invalidArgusInstance: tt.invalidArgusInstance,
-				})
+	handlers := map[string]func(context.Context, ske.DefaultAPI, string, string, string) *wait.AsyncActionHandler[ske.Cluster]{
+		"common logic": CreateOrUpdateClusterWaitHandler,
+		"create":       CreateClusterWaitHandler,
+		"update":       UpdateClusterWaitHandler,
+	}
 
-				var wantRes *ske.Cluster
-				rs := ske.ClusterStatusState(tt.resourceState)
-				if tt.wantResp {
-					wantRes = &ske.Cluster{
-						Name: &name,
-						Status: &ske.ClusterStatus{
-							Aggregated: &rs,
-						},
-					}
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					name := "cluster"
 
-					if tt.invalidArgusInstance {
-						wantRes.Status.Error = &ske.RuntimeError{
-							Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND),
-							Message: utils.Ptr("invalid argus instance"),
+					apiClient := newAPIMock(mockSettings{
+						getFails:             tt.getFails,
+						name:                 name,
+						resourceState:        tt.resourceState,
+						invalidArgusInstance: tt.invalidArgusInstance,
+					})
+
+					var wantRes *ske.Cluster
+					rs := ske.ClusterStatusState(tt.resourceState)
+					if tt.wantResp {
+						wantRes = &ske.Cluster{
+							Name: &name,
+							Status: &ske.ClusterStatus{
+								Aggregated: &rs,
+							},
+						}
+
+						if tt.invalidArgusInstance {
+							wantRes.Status.Error = &ske.RuntimeError{
+								Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND),
+								Message: utils.Ptr("invalid argus instance"),
+							}
 						}
 					}
-				}
 
-				handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", testRegion, name)
+					handler := handlerFn(context.Background(), apiClient, "", testRegion, name)
+					gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					if !cmp.Equal(gotRes, wantRes) {
+						t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 

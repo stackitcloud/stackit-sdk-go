@@ -20,6 +20,7 @@ use (
 	./examples/logs
 	./examples/mariadb
 	./examples/middleware
+	./examples/modelexperiments
 	./examples/mongodbflex
 	./examples/objectstorage
 	./examples/observability
@@ -61,6 +62,7 @@ use (
 	./services/logme
 	./services/logs
 	./services/mariadb
+	./services/modelexperiments
 	./services/modelserving
 	./services/mongodbflex
 	./services/objectstorage

@@ -1,3 +1,9 @@
+## v1.11.0
+- `v1api`:
+  - **Breaking change:** Introduce validators for `name`, `database` and `username`
+- `v2api`:
+  - **Breaking change:** Introduce validators for `name`, `database` and `username`
+
 ## v1.10.0
 - **Improvement:** Use new WaiterHelper for mongodbflex
 
