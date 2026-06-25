@@ -11,6 +11,10 @@ env:
   GO_VERSION: "1.25"
   JAVA_VERSION: "25"
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-sdk:
     name: "Update SDK Repo"
