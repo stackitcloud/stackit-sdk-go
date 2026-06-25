@@ -49,7 +49,11 @@ jobs:
       
       - name: Push SDK
         env:
+          # auth
+          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          # variables
+          BRANCH_PREFIX: "generator-bot-${{ github.run_id }}"
+          COMMIT_INFO: "Generated from GitHub run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           REPO_URL: "https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${{ github.repository }}.git"
-        run: |
-          scripts/sdk-create-pr.sh "generator-bot-${{ github.run_id }}" "Generated from GitHub run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+        run: scripts/sdk-create-pr.sh "$BRANCH_PREFIX" "$COMMIT_INFO" "$REPO_URL"
 
