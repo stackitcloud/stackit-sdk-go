@@ -1,5 +1,12 @@
 ## Release (2026-MM-DD)
 
+- `iaas`:
+  - [v1.13.0](services/iaas/CHANGELOG.md#v1130)
+    - `v1api`
+      - **Feature:** add field `AvailabilityZone` to models `CreateSnapshotPayload`, `Snapshot`
+    - `v2api`
+      - **Feature:** add new operations `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+      - **Feature:** add field `AvailabilityZone` to models `CreateSnapshotPayload`, `Snapshot`
 - `mongodbflex`:
   - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
     - `v1api`:

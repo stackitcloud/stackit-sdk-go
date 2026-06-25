@@ -1,3 +1,10 @@
+## v1.13.0
+- `v1api`
+  - **Feature:** add field `AvailabilityZone` to models `CreateSnapshotPayload`, `Snapshot`
+- `v2api`
+  - **Feature:** add new operations `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+  - **Feature:** add field `AvailabilityZone` to models `CreateSnapshotPayload`, `Snapshot`
+
 ## v1.12.2
 - `v2api`
   - **Improvement**: fix `DeleteVolumeWaitHandler` error message
