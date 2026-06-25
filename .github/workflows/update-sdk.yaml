@@ -50,7 +50,8 @@ jobs:
       - name: Push SDK
         env:
           # auth
-          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           # variables
           BRANCH_PREFIX: "generator-bot-${{ github.run_id }}"
           COMMIT_INFO: "Generated from GitHub run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
