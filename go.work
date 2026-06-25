@@ -85,4 +85,5 @@ use (
 	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
+	./services/workflows
 )
