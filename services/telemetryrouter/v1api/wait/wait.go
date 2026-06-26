@@ -10,23 +10,21 @@ import (
 	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1api"
 )
 
-const (
-	TELEMETRYROUTER_ACTIVE = "active"
-	DESTINATION_ACTIVE     = "active"
-	ACCESSTOKEN_ACTIVE     = "active"
-)
-
 // CreateTelemetryRouterWaitHandler will wait for TelemetryRouter creation
 func CreateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, telemetryrouter.TelemetryRouterResponseStatus]{
 		FetchInstance: a.GetTelemetryRouter(ctx, projectId, regionId, instanceId).Execute,
-		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (string, error) {
+		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (telemetryrouter.TelemetryRouterResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{TELEMETRYROUTER_ACTIVE},
+		ActiveState: []telemetryrouter.TelemetryRouterResponseStatus{telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -36,15 +34,21 @@ func CreateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 
 // UpdateTelemetryRouterWaitHandler will wait for TelemetryRouter update
 func UpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, telemetryrouter.TelemetryRouterResponseStatus]{
 		FetchInstance: a.GetTelemetryRouter(ctx, projectId, regionId, instanceId).Execute,
-		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (string, error) {
+		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (telemetryrouter.TelemetryRouterResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{TELEMETRYROUTER_ACTIVE},
+		ActiveState: []telemetryrouter.TelemetryRouterResponseStatus{
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
+		},
+		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -54,15 +58,20 @@ func UpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 
 // DeleteTelemetryRouterWaitHandler will wait for TelemetryRouter deletion
 func DeleteTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, telemetryrouter.TelemetryRouterResponseStatus]{
 		FetchInstance: a.GetTelemetryRouter(ctx, projectId, regionId, instanceId).Execute,
-		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (string, error) {
+		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (telemetryrouter.TelemetryRouterResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
+			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -72,15 +81,21 @@ func DeleteTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 
 // CreateDestinationWaitHandler will wait for Destination creation
 func CreateDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, telemetryrouter.DestinationResponseStatus]{
 		FetchInstance: a.GetDestination(ctx, projectId, regionId, instanceId, destinationId).Execute,
-		GetState: func(d *telemetryrouter.DestinationResponse) (string, error) {
+		GetState: func(d *telemetryrouter.DestinationResponse) (telemetryrouter.DestinationResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{DESTINATION_ACTIVE},
+		ActiveState: []telemetryrouter.DestinationResponseStatus{
+			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
+		},
+		ErrorState: []telemetryrouter.DestinationResponseStatus{
+			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
+			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -90,15 +105,21 @@ func CreateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // UpdateDestinationWaitHandler will wait for Destination update
 func UpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, telemetryrouter.DestinationResponseStatus]{
 		FetchInstance: a.GetDestination(ctx, projectId, regionId, instanceId, destinationId).Execute,
-		GetState: func(d *telemetryrouter.DestinationResponse) (string, error) {
+		GetState: func(d *telemetryrouter.DestinationResponse) (telemetryrouter.DestinationResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{DESTINATION_ACTIVE},
+		ActiveState: []telemetryrouter.DestinationResponseStatus{
+			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
+		},
+		ErrorState: []telemetryrouter.DestinationResponseStatus{
+			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
+			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -108,15 +129,20 @@ func UpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // DeleteDestinationWaitHandler will wait for Destination deletion
 func DeleteDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, telemetryrouter.DestinationResponseStatus]{
 		FetchInstance: a.GetDestination(ctx, projectId, regionId, instanceId, destinationId).Execute,
-		GetState: func(d *telemetryrouter.DestinationResponse) (string, error) {
+		GetState: func(d *telemetryrouter.DestinationResponse) (telemetryrouter.DestinationResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState: []telemetryrouter.DestinationResponseStatus{
+			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
+			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
+			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -126,15 +152,21 @@ func DeleteDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // CreateAccessTokenWaitHandler will wait for AccessToken creation
 func CreateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, telemetryrouter.AccessTokenBaseResponseStatus]{
 		FetchInstance: a.GetAccessToken(ctx, projectId, regionId, instanceId, accessTokenId).Execute,
-		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (string, error) {
+		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (telemetryrouter.AccessTokenBaseResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{ACCESSTOKEN_ACTIVE},
+		ActiveState: []telemetryrouter.AccessTokenBaseResponseStatus{
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+		},
+		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -144,15 +176,21 @@ func CreateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // UpdateAccessTokenWaitHandler will wait for AccessToken update
 func UpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, telemetryrouter.AccessTokenBaseResponseStatus]{
 		FetchInstance: a.GetAccessToken(ctx, projectId, regionId, instanceId, accessTokenId).Execute,
-		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (string, error) {
+		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (telemetryrouter.AccessTokenBaseResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
-		ActiveState: []string{ACCESSTOKEN_ACTIVE},
+		ActiveState: []telemetryrouter.AccessTokenBaseResponseStatus{
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+		},
+		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -162,15 +200,20 @@ func UpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // DeleteAccessTokenWaitHandler will wait for AccessToken deletion
 func DeleteAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
-	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, string]{
+	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, telemetryrouter.AccessTokenBaseResponseStatus]{
 		FetchInstance: a.GetAccessToken(ctx, projectId, regionId, instanceId, accessTokenId).Execute,
-		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (string, error) {
+		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (telemetryrouter.AccessTokenBaseResponseStatus, error) {
 			if d == nil {
 				return "", errors.New("empty response")
 			}
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
