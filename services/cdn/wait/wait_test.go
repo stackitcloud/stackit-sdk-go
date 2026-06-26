@@ -142,11 +142,17 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.distributions[0].Status = &statusDeleting
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			expectedDistribution: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusDeleting,
+				},
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "creating CDN distribution failed") {
+				if strings.Contains(err.Error(), "state is DELETING") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -156,11 +162,17 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.distributions[0].Status = &statusError
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			expectedDistribution: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusError,
+				},
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "creating CDN distribution failed") {
+				if strings.Contains(err.Error(), "state is ERROR") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -377,11 +389,17 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.distributions[0].Status = &statusCreating
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			expectedDistribution: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusCreating,
+				},
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "unexpected status CREATING") {
+				if strings.Contains(err.Error(), "state is CREATING") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -391,11 +409,17 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.distributions[0].Status = &statusDeleting
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			expectedDistribution: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusDeleting,
+				},
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "updating CDN distribution failed") {
+				if strings.Contains(err.Error(), "state is DELETING") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -405,11 +429,17 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.distributions[0].Status = &statusError
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			expectedDistribution: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusError,
+				},
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "updating CDN distribution failed") {
+				if strings.Contains(err.Error(), "state is ERROR") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -491,12 +521,15 @@ func TestCreateCustomDomainWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.customDomains[0].Status = cdn.DOMAINSTATUS_DELETING.Ptr()
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			customDomain:         customDomain,
-			expectedCustomDomain: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			expectedCustomDomain: &cdn.CustomDomain{
+				Name:   &customDomain,
+				Status: cdn.DOMAINSTATUS_DELETING.Ptr(),
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "creating CDN custom domain failed") {
+				if strings.Contains(err.Error(), "state is DELETING") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -506,12 +539,15 @@ func TestCreateCustomDomainWaitHandler(t *testing.T) {
 			apiClient: mockClientFixture(func(tc *mockApiClient) {
 				tc.customDomains[0].Status = cdn.DOMAINSTATUS_ERROR.Ptr()
 			}),
-			projectId:            projectId,
-			distributionId:       distributionId,
-			customDomain:         customDomain,
-			expectedCustomDomain: nil,
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			expectedCustomDomain: &cdn.CustomDomain{
+				Name:   &customDomain,
+				Status: cdn.DOMAINSTATUS_ERROR.Ptr(),
+			},
 			errCheck: func(t *testing.T, err error) {
-				if strings.Contains(err.Error(), "creating CDN custom domain failed") {
+				if strings.Contains(err.Error(), "state is ERROR") {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)

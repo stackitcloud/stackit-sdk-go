@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/loadbalancer => ../../se
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.13.0
+	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.14.0
 )
 
 require (

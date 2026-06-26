@@ -1,3 +1,12 @@
+## v1.0.0
+- `v2api`:
+  - New package which can be used for communication with the opensearch v2 API
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+- `v1api`:
+  - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+  - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+
 ## v0.29.0
 - **Feature:** Introduce enums for various attributes
 

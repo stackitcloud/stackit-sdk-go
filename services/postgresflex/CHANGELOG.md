@@ -1,3 +1,11 @@
+## v1.10.0
+- `v3alpha1api`: Align package to latest API specification
+
+## v1.9.0
+- `v2api`: 
+  - **Improvement**: Use new `WaiterHelper` struct in the PostgreSQL Flex WaitHandler
+  - **Breaking change:** Change return type of `wait.ForceDeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[postgresflex.InstanceResponse]`
+
 ## v1.8.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

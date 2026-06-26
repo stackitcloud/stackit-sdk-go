@@ -1,3 +1,6 @@
+## v0.11.0
+- `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler
+
 ## v0.10.0
 - **Feature:** Introduce enums for various attributes
 

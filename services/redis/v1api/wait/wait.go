@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -43,48 +44,35 @@ const (
 	INSTANCELASTOPERATIONTYPE_DELETE = redis.INSTANCELASTOPERATIONTYPE_DELETE
 )
 
-// CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *redis.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case redis.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case redis.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func createOrUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	waitConfig := wait.WaiterHelper[redis.Instance, redis.InstanceStatus]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *redis.Instance) (redis.InstanceStatus, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []redis.InstanceStatus{redis.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []redis.InstanceStatus{redis.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
+}
+
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *redis.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
-		}
-		switch *s.Status {
-		case redis.INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case redis.INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
-	handler.SetTimeout(45 * time.Minute)
-	return handler
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client redis.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[redis.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion

@@ -1,3 +1,6 @@
+## v1.18.0
+- `v1beta2api`: v1beta2api was deprecated please migrate to `v1api`
+
 ## v1.17.0
 - **Feature:** Introduce enums for various attributes
 

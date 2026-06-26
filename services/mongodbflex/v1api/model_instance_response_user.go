@@ -1,7 +1,7 @@
 /*
-STACKIT MongoDB Service API
+[DEPRECATED] STACKIT MongoDB Service API
 
-This is the documentation for the STACKIT MongoDB Flex Service API
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V2
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -20,7 +20,7 @@ var _ MappedNullable = &InstanceResponseUser{}
 
 // InstanceResponseUser struct for InstanceResponseUser
 type InstanceResponseUser struct {
-	Database *string `json:"database,omitempty"`
+	Database *string `json:"database,omitempty" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$"`
 	Host     *string `json:"host,omitempty"`
 	Id       *string `json:"id,omitempty"`
 	Port     *int32  `json:"port,omitempty"`
