@@ -30,8 +30,8 @@ type CreateAccessTokenResponse struct {
 	// The date and time until the access token is valid to (inclusively).
 	ExpirationTime NullableTime `json:"expirationTime,omitempty"`
 	// An auto generated unique id which identifies the access token.
-	Id     string `json:"id"`
-	Status string `json:"status"`
+	Id     string                        `json:"id"`
+	Status AccessTokenBaseResponseStatus `json:"status"`
 	// The generated access token.
 	AccessToken          string `json:"accessToken"`
 	AdditionalProperties map[string]interface{}
@@ -43,7 +43,7 @@ type _CreateAccessTokenResponse CreateAccessTokenResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccessTokenResponse(creatorId string, displayName string, id string, status string, accessToken string) *CreateAccessTokenResponse {
+func NewCreateAccessTokenResponse(creatorId string, displayName string, id string, status AccessTokenBaseResponseStatus, accessToken string) *CreateAccessTokenResponse {
 	this := CreateAccessTokenResponse{}
 	this.CreatorId = creatorId
 	this.DisplayName = displayName
@@ -209,9 +209,9 @@ func (o *CreateAccessTokenResponse) SetId(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *CreateAccessTokenResponse) GetStatus() string {
+func (o *CreateAccessTokenResponse) GetStatus() AccessTokenBaseResponseStatus {
 	if o == nil {
-		var ret string
+		var ret AccessTokenBaseResponseStatus
 		return ret
 	}
 
@@ -220,7 +220,7 @@ func (o *CreateAccessTokenResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessTokenResponse) GetStatusOk() (*string, bool) {
+func (o *CreateAccessTokenResponse) GetStatusOk() (*AccessTokenBaseResponseStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -228,7 +228,7 @@ func (o *CreateAccessTokenResponse) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *CreateAccessTokenResponse) SetStatus(v string) {
+func (o *CreateAccessTokenResponse) SetStatus(v AccessTokenBaseResponseStatus) {
 	o.Status = v
 }
 
