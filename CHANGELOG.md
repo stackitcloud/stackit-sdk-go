@@ -5,6 +5,9 @@
     - `v1api`:
       - **Improvement**: Improve http error handling
 - `mongodbflex`:
+  - [v1.12.0](services/mongodbflex/CHANGELOG.md#v1120)
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to the `v2api`.
   - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
     - `v1api`:
       - **Breaking change:** Introduce validators for `name`, `database` and `username`
