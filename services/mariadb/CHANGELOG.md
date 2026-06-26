@@ -1,3 +1,15 @@
+## v1.0.1
+- `v1api`:
+  - **Improvement**: Improve http error handling
+
+## v1.0.0
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `v2api`:
+  - New package which can be used for communication with the mariadb v2 API
+  - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `v1api`:
+  - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+
 ## v0.30.0
 - **Feature:** Introduce enums for various attributes
 

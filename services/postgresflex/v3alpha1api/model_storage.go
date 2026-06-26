@@ -20,7 +20,10 @@ var _ MappedNullable = &Storage{}
 
 // Storage The object containing information about the storage size and class.
 type Storage struct {
-	// The storage class for the storage.
+	// The storage class for the storage. If both 'class' and 'performanceClass' are provided, the value of 'class' will take precedence.
+	Class *string `json:"class,omitempty"`
+	// Deprecated: The storage class for the storage. Use the 'class' field instead. If both fields are provided, the value of 'class' will take precedence.
+	// Deprecated
 	PerformanceClass *string `json:"performanceClass,omitempty"`
 	// The storage size in Gigabytes.
 	Size                 *int32 `json:"size,omitempty"`
@@ -46,7 +49,40 @@ func NewStorageWithDefaults() *Storage {
 	return &this
 }
 
+// GetClass returns the Class field value if set, zero value otherwise.
+func (o *Storage) GetClass() string {
+	if o == nil || IsNil(o.Class) {
+		var ret string
+		return ret
+	}
+	return *o.Class
+}
+
+// GetClassOk returns a tuple with the Class field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Storage) GetClassOk() (*string, bool) {
+	if o == nil || IsNil(o.Class) {
+		return nil, false
+	}
+	return o.Class, true
+}
+
+// HasClass returns a boolean if a field has been set.
+func (o *Storage) HasClass() bool {
+	if o != nil && !IsNil(o.Class) {
+		return true
+	}
+
+	return false
+}
+
+// SetClass gets a reference to the given string and assigns it to the Class field.
+func (o *Storage) SetClass(v string) {
+	o.Class = &v
+}
+
 // GetPerformanceClass returns the PerformanceClass field value if set, zero value otherwise.
+// Deprecated
 func (o *Storage) GetPerformanceClass() string {
 	if o == nil || IsNil(o.PerformanceClass) {
 		var ret string
@@ -57,6 +93,7 @@ func (o *Storage) GetPerformanceClass() string {
 
 // GetPerformanceClassOk returns a tuple with the PerformanceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Storage) GetPerformanceClassOk() (*string, bool) {
 	if o == nil || IsNil(o.PerformanceClass) {
 		return nil, false
@@ -74,6 +111,7 @@ func (o *Storage) HasPerformanceClass() bool {
 }
 
 // SetPerformanceClass gets a reference to the given string and assigns it to the PerformanceClass field.
+// Deprecated
 func (o *Storage) SetPerformanceClass(v string) {
 	o.PerformanceClass = &v
 }
@@ -120,6 +158,9 @@ func (o Storage) MarshalJSON() ([]byte, error) {
 
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Class) {
+		toSerialize["class"] = o.Class
+	}
 	if !IsNil(o.PerformanceClass) {
 		toSerialize["performanceClass"] = o.PerformanceClass
 	}
@@ -148,6 +189,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
 		delete(additionalProperties, "performanceClass")
 		delete(additionalProperties, "size")
 		o.AdditionalProperties = additionalProperties

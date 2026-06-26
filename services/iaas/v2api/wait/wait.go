@@ -226,7 +226,7 @@ func DeleteVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 		FetchInstance: a.GetVolume(ctx, projectId, region, volumeId).Execute,
 		GetState: func(i *iaas.Volume) (string, error) {
 			if i.Id == nil || i.Status == nil {
-				return "", fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
+				return "", fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 			}
 			return *i.Status, nil
 		},
@@ -466,6 +466,7 @@ func ProjectRequestWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId
 }
 
 // AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
+//
 // Deprecated: AddVolumeToServerWaitHandler is deprecated and will be removed after November 2026. Please use instead ProjectRequestWaitHandler
 func AddVolumeToServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
@@ -495,6 +496,7 @@ func AddVolumeToServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projec
 }
 
 // RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
+//
 // Deprecated: RemoveVolumeFromServerWaitHandler is deprecated and will be removed after November 2026. Please use instead ProjectRequestWaitHandler
 func RemoveVolumeFromServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {

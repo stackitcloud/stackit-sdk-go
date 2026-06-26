@@ -27,7 +27,7 @@ type CreateInstancePayload struct {
 	FlavorId       string `json:"flavorId"`
 	// Labels field is not certain/clear
 	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 string             `json:"name"`
+	Name                 string             `json:"name" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$"`
 	Options              map[string]string  `json:"options"`
 	Replicas             int32              `json:"replicas"`
 	Storage              Storage            `json:"storage"`

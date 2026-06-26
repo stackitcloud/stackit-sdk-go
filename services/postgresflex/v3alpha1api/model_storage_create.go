@@ -21,8 +21,11 @@ var _ MappedNullable = &StorageCreate{}
 
 // StorageCreate The object containing information about the storage size and class.
 type StorageCreate struct {
-	// The storage class for the storage.
-	PerformanceClass string `json:"performanceClass"`
+	// The storage class for the storage. If both 'class' and 'performanceClass' are provided, the value of 'class' will take precedence.
+	Class *string `json:"class,omitempty"`
+	// Deprecated: The storage class for the storage. Use the 'class' field instead. If both fields are provided, the value of 'class' will take precedence.
+	// Deprecated
+	PerformanceClass *string `json:"performanceClass,omitempty"`
 	// The storage size in Gigabytes.
 	Size                 int32 `json:"size"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +37,8 @@ type _StorageCreate StorageCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageCreate(performanceClass string, size int32) *StorageCreate {
+func NewStorageCreate(size int32) *StorageCreate {
 	this := StorageCreate{}
-	this.PerformanceClass = performanceClass
 	this.Size = size
 	return &this
 }
@@ -49,28 +51,71 @@ func NewStorageCreateWithDefaults() *StorageCreate {
 	return &this
 }
 
-// GetPerformanceClass returns the PerformanceClass field value
-func (o *StorageCreate) GetPerformanceClass() string {
-	if o == nil {
+// GetClass returns the Class field value if set, zero value otherwise.
+func (o *StorageCreate) GetClass() string {
+	if o == nil || IsNil(o.Class) {
 		var ret string
 		return ret
 	}
-
-	return o.PerformanceClass
+	return *o.Class
 }
 
-// GetPerformanceClassOk returns a tuple with the PerformanceClass field value
+// GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageCreate) GetPerformanceClassOk() (*string, bool) {
-	if o == nil {
+func (o *StorageCreate) GetClassOk() (*string, bool) {
+	if o == nil || IsNil(o.Class) {
 		return nil, false
 	}
-	return &o.PerformanceClass, true
+	return o.Class, true
 }
 
-// SetPerformanceClass sets field value
+// HasClass returns a boolean if a field has been set.
+func (o *StorageCreate) HasClass() bool {
+	if o != nil && !IsNil(o.Class) {
+		return true
+	}
+
+	return false
+}
+
+// SetClass gets a reference to the given string and assigns it to the Class field.
+func (o *StorageCreate) SetClass(v string) {
+	o.Class = &v
+}
+
+// GetPerformanceClass returns the PerformanceClass field value if set, zero value otherwise.
+// Deprecated
+func (o *StorageCreate) GetPerformanceClass() string {
+	if o == nil || IsNil(o.PerformanceClass) {
+		var ret string
+		return ret
+	}
+	return *o.PerformanceClass
+}
+
+// GetPerformanceClassOk returns a tuple with the PerformanceClass field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated
+func (o *StorageCreate) GetPerformanceClassOk() (*string, bool) {
+	if o == nil || IsNil(o.PerformanceClass) {
+		return nil, false
+	}
+	return o.PerformanceClass, true
+}
+
+// HasPerformanceClass returns a boolean if a field has been set.
+func (o *StorageCreate) HasPerformanceClass() bool {
+	if o != nil && !IsNil(o.PerformanceClass) {
+		return true
+	}
+
+	return false
+}
+
+// SetPerformanceClass gets a reference to the given string and assigns it to the PerformanceClass field.
+// Deprecated
 func (o *StorageCreate) SetPerformanceClass(v string) {
-	o.PerformanceClass = v
+	o.PerformanceClass = &v
 }
 
 // GetSize returns the Size field value
@@ -107,7 +152,12 @@ func (o StorageCreate) MarshalJSON() ([]byte, error) {
 
 func (o StorageCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["performanceClass"] = o.PerformanceClass
+	if !IsNil(o.Class) {
+		toSerialize["class"] = o.Class
+	}
+	if !IsNil(o.PerformanceClass) {
+		toSerialize["performanceClass"] = o.PerformanceClass
+	}
 	toSerialize["size"] = o.Size
 
 	for key, value := range o.AdditionalProperties {
@@ -122,7 +172,6 @@ func (o *StorageCreate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"performanceClass",
 		"size",
 	}
 
@@ -153,6 +202,7 @@ func (o *StorageCreate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
 		delete(additionalProperties, "performanceClass")
 		delete(additionalProperties, "size")
 		o.AdditionalProperties = additionalProperties

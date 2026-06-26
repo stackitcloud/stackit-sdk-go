@@ -1,3 +1,10 @@
+## v1.12.2
+- `v2api`
+  - **Improvement**: fix `DeleteVolumeWaitHandler` error message
+
+## v1.12.1
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.23.0` to `v0.24.0`
+
 ## v1.12.0
 - Removal of deprecated WaitHandler: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
 - `v2api`

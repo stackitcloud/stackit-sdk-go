@@ -21,6 +21,8 @@ var _ MappedNullable = &UpdateWAFPayload{}
 type UpdateWAFPayload struct {
 	// Name of the core rule set configuration for that WAF.
 	CoreRuleSetName *string `json:"coreRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per WAF.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// WAF name
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Project identifier
@@ -81,6 +83,38 @@ func (o *UpdateWAFPayload) HasCoreRuleSetName() bool {
 // SetCoreRuleSetName gets a reference to the given string and assigns it to the CoreRuleSetName field.
 func (o *UpdateWAFPayload) SetCoreRuleSetName(v string) {
 	o.CoreRuleSetName = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateWAFPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateWAFPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *UpdateWAFPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateWAFPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -224,6 +258,9 @@ func (o UpdateWAFPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CoreRuleSetName) {
 		toSerialize["coreRuleSetName"] = o.CoreRuleSetName
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -259,6 +296,7 @@ func (o *UpdateWAFPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "coreRuleSetName")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "projectId")
 		delete(additionalProperties, "region")

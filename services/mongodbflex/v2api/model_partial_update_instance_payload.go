@@ -25,7 +25,7 @@ type PartialUpdateInstancePayload struct {
 	FlavorId       *string `json:"flavorId,omitempty"`
 	// Labels field is not certain/clear
 	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 *string            `json:"name,omitempty"`
+	Name                 *string            `json:"name,omitempty" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$"`
 	Options              *map[string]string `json:"options,omitempty"`
 	Replicas             *int32             `json:"replicas,omitempty"`
 	Storage              *Storage           `json:"storage,omitempty"`

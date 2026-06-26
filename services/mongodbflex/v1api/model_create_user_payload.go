@@ -1,7 +1,7 @@
 /*
-STACKIT MongoDB Service API
+[DEPRECATED] STACKIT MongoDB Service API
 
-This is the documentation for the STACKIT MongoDB Flex Service API
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V2
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -21,10 +21,10 @@ var _ MappedNullable = &CreateUserPayload{}
 
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
-	Database string `json:"database"`
+	Database string `json:"database" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$"`
 	// The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	Roles                []string `json:"roles"`
-	Username             *string  `json:"username,omitempty"`
+	Username             *string  `json:"username,omitempty" validate:"regexp=^[A-Za-z][A-Za-z0-9-]{1,61}[A-Za-z0-9]$"`
 	AdditionalProperties map[string]interface{}
 }
 

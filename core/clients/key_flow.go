@@ -183,7 +183,7 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 	c.tokenMutex.Lock()
 	c.token = &TokenResponseBody{
 		AccessToken:  accessToken,
-		ExpiresIn:    int(exp.Time.Unix()),
+		ExpiresIn:    int(exp.Unix()),
 		RefreshToken: refreshToken,
 		Scope:        defaultScope,
 		TokenType:    defaultTokenType,
@@ -334,6 +334,7 @@ func (c *KeyFlow) createAccessToken() (err error) {
 
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
+//
 // Deprecated: This method will be removed in future versions. Access tokens are going to be refreshed without refresh token.
 // This will be removed after 2026-07-01.
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {

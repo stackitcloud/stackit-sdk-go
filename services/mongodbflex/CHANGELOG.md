@@ -1,3 +1,16 @@
+## v1.12.0
+- `v1api`:
+   - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to the `v2api`.
+
+## v1.11.0
+- `v1api`:
+  - **Breaking change:** Introduce validators for `name`, `database` and `username`
+- `v2api`:
+  - **Breaking change:** Introduce validators for `name`, `database` and `username`
+
+## v1.10.0
+- **Improvement:** Use new WaiterHelper for mongodbflex
+
 ## v1.9.0
 - **Feature:** Introduce enums for various attributes
 

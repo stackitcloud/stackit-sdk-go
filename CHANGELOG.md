@@ -1,4 +1,26 @@
 ## Release (2026-MM-DD)
+
+- `mariadb`:
+  - [v1.0.1](services/mariadb/CHANGELOG.md#v101)
+    - `v1api`:
+      - **Improvement**: Improve http error handling
+- `mongodbflex`:
+  - [v1.12.0](services/mongodbflex/CHANGELOG.md#v1120)
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to the `v2api`.
+  - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
+    - `v2api`:
+      - **Breaking change:** Introduce validators for `name`, `database` and `username`
+- `postgresflex`:
+  - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
+    - `v3alpha1api`: Align package to latest API specification
+- `modelexperiments`:
+  - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **New**: STACKIT Model Experiments module wait handler added.
+
+## Release (2026-06-18)
 - `core`: 
   - [v0.25.0](core/CHANGELOG.md#v0250)
     - Minimal go version is now Go 1.25
@@ -29,6 +51,8 @@
     - `v1alphaapi`: Align package to latest API specification
   - [v0.7.0](services/albwaf/CHANGELOG.md#v070)
     - **Feature:** Introduce enums for various attributes
+  - [v0.8.0](services/albwaf/CHANGELOG.md#v080)
+    - `v1alphaapi`: Align package to latest API specification
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -74,6 +98,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v1.17.0](services/cdn/CHANGELOG.md#v1170)
     - **Feature:** Introduce enums for various attributes
+  - [v1.18.0](services/cdn/CHANGELOG.md#v1180)
+    - `v1beta2api`: v1beta2api was deprecated please migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -88,6 +114,13 @@
       - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
     - Deprecated SDK layer in root of the module:
       - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+  - [v1.8.0](services/certificates/CHANGELOG.md#v180)
+    - `v2api`:
+      - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+      - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
+      - **Feature:** Add fields `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model struct
 - `cost`:
   - [v0.2.2](services/cost/CHANGELOG.md#v022) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -170,6 +203,11 @@
     - `v2api`
       - **Improvement**: Use new `WaiterHandler` struct in the IaaS WaitHandler
       - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after November 2026. Please use instead `ProjectRequestWaitHandler`.
+  - [v1.12.1](services/iaas/CHANGELOG.md#v1121)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.23.0` to `v0.24.0`
+  - [v1.12.2](services/iaas/CHANGELOG.md#v1122)
+    - `v2api`
+      - **Improvement**: fix `DeleteVolumeWaitHandler` error message
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -183,6 +221,8 @@
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
   - [v0.10.0](services/intake/CHANGELOG.md#v0100)
     - **Feature:** Introduce enums for various attributes
+  - [v0.11.0](services/intake/CHANGELOG.md#v0110)
+    - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler    
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -234,6 +274,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
   - [v0.30.0](services/logme/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/logme/CHANGELOG.md#v100)
+    - `v2api`:
+      - New package which can be used for communication with the logme v2 API
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -260,6 +308,16 @@
     - **Improvement:** Use new WaiterHelper for Logs waiters
   - [v0.30.0](services/mariadb/CHANGELOG.md#v0300)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the mariadb v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+- `modelexperiments`:
+  - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
+    - **New**: API for STACKIT modelexperiments
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -286,6 +344,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.9.0](services/mongodbflex/CHANGELOG.md#v190)
     - **Feature:** Introduce enums for various attributes
+  - [v1.10.0](services/mongodbflex/CHANGELOG.md#v183)
+    - **Improvement:** Use new WaiterHelper for mongodbflex
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -310,6 +370,8 @@
     - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
   - [v0.23.0](services/observability/CHANGELOG.md#v0230)
     - **Feature:** Introduce enums for various attributes
+  - [v0.24.0](services/observability/CHANGELOG.md#v0240)
+    - **Improvement:** Use new WaiterHelper for observability waiters
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -323,6 +385,14 @@
     - **Improvement:** Use new WaiterHelper for opensearch waiters
   - [v0.29.0](services/opensearch/CHANGELOG.md#v0290)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/opensearch/CHANGELOG.md#v100)
+    - `v2api`:
+      - New package which can be used for communication with the opensearch v2 API
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -334,6 +404,10 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v1.8.0](services/postgresflex/CHANGELOG.md#v180)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.9.0](services/postgresflex/CHANGELOG.md#v190)
+    - `v2api`: 
+      - **Improvement**: Use new `WaiterHelper` struct in the PostgreSQL Flex WaitHandler
+      - **Breaking change:** Change return type of `wait.ForceDeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[postgresflex.InstanceResponse]`
 - `rabbitmq`:
   - [v0.28.3](services/rabbitmq/CHANGELOG.md#v0283) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -347,6 +421,14 @@
     - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the RabbitMQ WaitHandler
   - [v0.31.0](services/rabbitmq/CHANGELOG.md#v0310)
     - **Feature:** Introduce enums for various attributes
+  - [v1.0.0](services/rabbitmq/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v2api`:
+      - New package which can be used for communication with the rabbitmq v2 API
+      - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - `v1api`:
+      - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+      - **Deprecation:** `Roles`, `TlsCiphers`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-11.
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -357,7 +439,17 @@
   - [v0.28.2](services/redis/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.29.0](services/redis/CHANGELOG.md#v0290)
-    - **Feature:** Introduce enums for various attributes
+    - **Feature:** Introduce enums for various attributes    
+  - [v0.30.0](services/redis/CHANGELOG.md#v0300)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the Redis WaitHandler
+  - [v1.0.0](services/redis/CHANGELOG.md#v100)
+      - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v2api`:
+        - New package which can be used for communication with the redis v2 API
+        - The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+      - `v1api`:
+        - **Feature:** Added optional `CreateCredentialsPayload` to `ApiCreateCredentialsRequest`.
+        - **Deprecation:** `TlsCiphers`, `TlsCiphersuites`, `TlsProtocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -486,6 +578,8 @@
     - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
   - [v0.10.1](services/sfs/CHANGELOG.md#v0101)
     - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
+  - [v0.11.0](services/sfs/CHANGELOG.md#v0100)
+    - **Improvement:** Use new WaiterHelper for SFS waiters
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -514,6 +608,12 @@
       - **Feature:** New field `GatewayApi` in `DNS` model struct
   - [v1.16.0](services/ske/CHANGELOG.md#v1160)
     - **Feature:** Introduce enums for various attributes
+  - [v1.17.0](services/ske/CHANGELOG.md#v1170)
+    - **Feature:** New field `ServiceAccountIssuer` for `ClusterStatus` model struct
+  - [v1.18.0](services/ske/CHANGELOG.md#v1180)
+    - `v2api`:
+      - **Improvement:** Use new WaiterHelper for ske waiters
+      - **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -531,7 +631,11 @@
   - [v1.11.0](services/sqlserverflex/CHANGELOG.md#v1110)
     - `v3beta1api`: **Feature:** Added `labels` to `CreateInstanceRequestPayload`, `GetInstanceReponse`, `UpdateInstancePartiallyRequestPayload`, `UpdateInstanceRequestPayload`
   - [v1.12.0](services/sqlserverflex/CHANGELOG.md#v1120)
-    - **Feature:** Introduce enums for various attributes
+    - **Feature:** Introduce enums for various attributes  
+  - [v1.13.0](services/sqlserverflex/CHANGELOG.md#v1130)    
+    - `v2api`:
+      - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
+      - **Breaking change:** Change return type of `wait.DeleteInstanceWaitHandler()` to `*wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse]`
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -594,6 +698,17 @@
     - `v1alpha1api`: Align package to latest API specification
   - [v0.12.0](services/vpn/CHANGELOG.md#v0120)
     - **Feature:** Introduce enums for various attributes
+  - [v0.13.0](services/vpn/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Breaking change:** `LocalAsn` is now marked as required (aligned with api) and no longer a pointer
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+  - [v0.14.0](services/vpn/CHANGELOG.md#v0140)
+    - `v1api`:
+      - **Feature:** Add `ErrorMessage` field to `GatewayStatusResponse`
+      - **Improvement:** Add description that `RoutingType` can only be set at the creation
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
