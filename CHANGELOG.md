@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `mariadb`:
+  - [v1.0.1](services/mariadb/CHANGELOG.md#v101)
+    - `v1api`:
+      - **Improvement**: Improve http error handling
 - `mongodbflex`:
   - [v1.11.0](services/mongodbflex/CHANGELOG.md#v1110)
     - `v1api`:
