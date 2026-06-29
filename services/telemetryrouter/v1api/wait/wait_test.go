@@ -621,5 +621,5 @@ func compareNullableTime(x, y telemetryrouter.NullableTime) bool {
 		return valX == valY
 	}
 
-	return *valX == *valY
+	return valX.Equal(*valY)
 }
