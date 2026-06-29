@@ -83,7 +83,7 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param clusterName
+		@param clusterName Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 		@return ApiCreateOrUpdateClusterRequest
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -95,7 +95,7 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param clusterName
+		@param clusterName Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 		@return Cluster
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -963,7 +963,7 @@ Deprecated: Will be removed after 2026-09-30. Move to the packages generated for
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param clusterName
+	@param clusterName Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 	@return ApiCreateOrUpdateClusterRequest
 */
 func (a *APIClient) CreateOrUpdateCluster(ctx context.Context, projectId string, region string, clusterName string) ApiCreateOrUpdateClusterRequest {
