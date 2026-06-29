@@ -19,6 +19,17 @@
 - `modelexperiments`:
   - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
     - **New**: STACKIT Model Experiments module wait handler added.
+- `rabbitmq`:
+  - [v1.1.0](/services/rabbitmq/CHANGELOG.md#v110)
+   - `v2api`:
+    - **Feature**: Added wait handlers
+- `sqlserverflex`: 
+  - [v1.14.0](services/sqlserverflex/CHANGELOG.md#v1140)
+    - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
+    - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
+    - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
+    - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
+
 
 ## Release (2026-06-18)
 - `core`: 
