@@ -672,7 +672,7 @@
     - **Improvement**: Use new `WaiterHandler` struct in the TelemetryLink WaitHandler
   - [v0.2.0](services/telemetrylink/CHANGELOG.md#v020)
     - **Feature:** Introduce enums for various attributes
-  - [v0.2.1](services/telemetrylink/CHANGELOG.md#v021)
+  - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **New:** v1api API for STACKIT Telemetry Link
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 

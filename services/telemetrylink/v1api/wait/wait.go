@@ -31,9 +31,8 @@ func createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a t
 			return d.Status, nil
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
-		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
@@ -54,9 +53,8 @@ func PartialUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a te
 			return d.Status, nil
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
-		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
