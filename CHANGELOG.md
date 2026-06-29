@@ -29,7 +29,7 @@
     - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
     - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
-- `telemetryrouter`:
+- `telemetrylink`:
   - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **New:** v1api API for STACKIT Telemetry Link
 
