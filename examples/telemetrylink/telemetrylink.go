@@ -44,7 +44,7 @@ func main() {
 
 	// Wait for the TelemetryLink to be ready
 	log.Printf("[TelemetryLink API] Waiting for organization TelemetryLink to be created.\n")
-	_, err = wait.CreateOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, client.DefaultAPI, organizationId, regionId).WaitWithContext(context.Background())
+	_, err = wait.CreateOrganizationTelemetryLinkWaitHandler(ctx, client.DefaultAPI, organizationId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for creation: %v\n", err)
 	}
@@ -74,7 +74,7 @@ func main() {
 
 	// Wait for the organization TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for organization TelemetryLink to be updated.\n")
-	_, err = wait.CreateOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, client.DefaultAPI, organizationId, regionId).WaitWithContext(context.Background())
+	_, err = wait.UpdateOrganizationTelemetryLinkWaitHandler(ctx, client.DefaultAPI, organizationId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for update: %v\n", err)
 	}
@@ -135,7 +135,7 @@ func main() {
 
 	// Wait for the Folder TelemetryLink to be ready
 	log.Printf("[TelemetryLink API] Waiting for folder TelemetryLink to be created.\n")
-	_, err = wait.CreateOrUpdateFolderTelemetryLinkWaitHandler(ctx, client.DefaultAPI, folderId, regionId).WaitWithContext(context.Background())
+	_, err = wait.CreateFolderTelemetryLinkWaitHandler(ctx, client.DefaultAPI, folderId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for creation: %v\n", err)
 	}
@@ -165,7 +165,7 @@ func main() {
 
 	// Wait for the folder TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for folder TelemetryLink to be updated.\n")
-	_, err = wait.CreateOrUpdateFolderTelemetryLinkWaitHandler(ctx, client.DefaultAPI, folderId, regionId).WaitWithContext(context.Background())
+	_, err = wait.UpdateFolderTelemetryLinkWaitHandler(ctx, client.DefaultAPI, folderId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for update: %v\n", err)
 	}
@@ -226,7 +226,7 @@ func main() {
 
 	// Wait for the Project TelemetryLink to be ready
 	log.Printf("[TelemetryLink API] Waiting for project TelemetryLink to be created.\n")
-	_, err = wait.CreateOrUpdateProjectTelemetryLinkWaitHandler(ctx, client.DefaultAPI, projectId, regionId).WaitWithContext(context.Background())
+	_, err = wait.CreateProjectTelemetryLinkWaitHandler(ctx, client.DefaultAPI, projectId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for creation: %v\n", err)
 	}
@@ -256,7 +256,7 @@ func main() {
 
 	// Wait for the project TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for project TelemetryLink to be updated.\n")
-	_, err = wait.CreateOrUpdateProjectTelemetryLinkWaitHandler(ctx, client.DefaultAPI, projectId, regionId).WaitWithContext(context.Background())
+	_, err = wait.UpdateProjectTelemetryLinkWaitHandler(ctx, client.DefaultAPI, projectId, regionId).WaitWithContext(context.Background())
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when waiting for update: %v\n", err)
 	}

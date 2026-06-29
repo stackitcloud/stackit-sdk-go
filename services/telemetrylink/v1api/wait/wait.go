@@ -10,14 +10,18 @@ import (
 	telemetrylink "github.com/stackitcloud/stackit-sdk-go/services/telemetrylink/v1api"
 )
 
-const (
-	// Deprecated: symbol is not used anymore, use the packages enum instead, will be removed 2026-12, use `go fix` for automatic fixing
-	//go:fix inline
-	TELEMETRYLINK_ACTIVE = telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE
-)
+// CreateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink creation
+func CreateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
 
-// CreateOrUpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink creation or update
-func CreateOrUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+// UpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink update
+func UpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// createOrUpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink creation or update
+func createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
 	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
 		FetchInstance: a.GetOrganizationTelemetryLink(ctx, organizationId, region).Execute,
 		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
@@ -70,8 +74,18 @@ func DeleteOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetry
 	return handler
 }
 
-// CreateOrUpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink creation or update
-func CreateOrUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+// CreateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink creation
+func CreateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateFolderTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// UpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink update
+func UpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateFolderTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// createOrUpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink creation or update
+func createOrUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
 	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
 		FetchInstance: a.GetFolderTelemetryLink(ctx, folderId, region).Execute,
 		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
@@ -124,8 +138,18 @@ func DeleteFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.D
 	return handler
 }
 
+// CreateProjectTelemetryLinkWaitHandler will wait for folder TelemetryLink creation
+func CreateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateProjectTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// UpdateProjectTelemetryLinkWaitHandler will wait for folder TelemetryLink update
+func UpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateProjectTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
 // CreateOrUpdateProjectTelemetryLinkWaitHandler will wait for project TelemetryLink creation or update
-func CreateOrUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+func createOrUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
 	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
 		FetchInstance: a.GetProjectTelemetryLink(ctx, projectId, region).Execute,
 		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {

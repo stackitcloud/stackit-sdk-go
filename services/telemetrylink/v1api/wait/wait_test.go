@@ -74,7 +74,7 @@ func newAPIMock(settings mockSettings) telemetrylink.DefaultAPI {
 	}
 }
 
-func TestCreateOrUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
+func TestCreateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -83,7 +83,7 @@ func TestCreateOrUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 		wantResp      bool
 	}{
 		{
-			desc:          "create_or_update_succeeded",
+			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
@@ -119,7 +119,67 @@ func TestCreateOrUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateOrUpdateOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+				handler := CreateOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetrylink.TelemetryLinkResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
+
+				var wantRes *telemetrylink.TelemetryLinkResponse
+				if tt.wantResp {
+					wantRes = &telemetrylink.TelemetryLinkResponse{
+						Status: tt.resourceState,
+					}
+				}
+
+				handler := UpdateOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
@@ -261,7 +321,7 @@ func TestDeleteOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 	}
 }
 
-func TestCreateOrUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
+func TestCreateFolderTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -270,7 +330,7 @@ func TestCreateOrUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 		wantResp      bool
 	}{
 		{
-			desc:          "create_or_update_succeeded",
+			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
@@ -306,7 +366,67 @@ func TestCreateOrUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateOrUpdateFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+				handler := CreateFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetrylink.TelemetryLinkResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
+
+				var wantRes *telemetrylink.TelemetryLinkResponse
+				if tt.wantResp {
+					wantRes = &telemetrylink.TelemetryLinkResponse{
+						Status: tt.resourceState,
+					}
+				}
+
+				handler := UpdateFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
@@ -448,7 +568,7 @@ func TestDeleteFolderTelemetryLinkWaitHandler(t *testing.T) {
 	}
 }
 
-func TestCreateOrUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
+func TestCreateProjectTelemetryLinkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -457,7 +577,7 @@ func TestCreateOrUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 		wantResp      bool
 	}{
 		{
-			desc:          "create_or_update_succeeded",
+			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
 			wantErr:       false,
@@ -493,7 +613,67 @@ func TestCreateOrUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateOrUpdateProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+				handler := CreateProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
+
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetrylink.TelemetryLinkResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			resourceState: telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
+
+				var wantRes *telemetrylink.TelemetryLinkResponse
+				if tt.wantResp {
+					wantRes = &telemetrylink.TelemetryLinkResponse{
+						Status: tt.resourceState,
+					}
+				}
+
+				handler := UpdateProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
