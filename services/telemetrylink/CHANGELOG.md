@@ -1,4 +1,4 @@
-## v0.2.1
+## v0.3.0
 - **New:** v1api API for STACKIT Telemetry Link
 
 ## v0.2.0
