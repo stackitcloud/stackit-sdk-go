@@ -20,7 +20,7 @@ import (
 // checks if the NetworkRange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NetworkRange{}
 
-// NetworkRange Object that represents a network range.
+// NetworkRange Object that represents a network range of a network area.
 type NetworkRange struct {
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
