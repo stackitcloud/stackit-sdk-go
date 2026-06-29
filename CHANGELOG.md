@@ -665,7 +665,7 @@
     - **Improvement**: Use new `WaiterHandler` struct in the TelemetryRouter WaitHandler
   - [v0.3.0](services/telemetryrouter/CHANGELOG.md#v030)
     - **Feature:** Introduce enums for various attributes
-  - [v0.3.1](services/telemetryrouter/CHANGELOG.md#v031)
+  - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
     - **New**: v1api API version for STACKIT Telemetry Router
 - `telemetrylink`:
   - [v0.1.0](services/telemetrylink/CHANGELOG.md#v010)
