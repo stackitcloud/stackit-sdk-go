@@ -75,7 +75,7 @@ func setUsageGetItemsAttributeType(arg *UsageGetItemsAttributeType, val UsageGet
 // Usage struct for Usage
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Usage struct {
-	// Number of Load Balancers using this certificate.
+	// Number of listeners using this certificate.
 	// Can be cast to int32 without loss of precision.
 	Count UsageGetCountAttributeType `json:"count,omitempty"`
 	// List of Load Balancers with their associated listeners that use this certificate.
