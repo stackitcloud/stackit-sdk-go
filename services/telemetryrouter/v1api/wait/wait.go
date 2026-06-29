@@ -23,7 +23,6 @@ func CreateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 		ActiveState: []telemetryrouter.TelemetryRouterResponseStatus{telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE},
 		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
 			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
-			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
 		},
 	}
 
@@ -47,7 +46,6 @@ func UpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 		},
 		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
 			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
-			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
 		},
 	}
 
@@ -67,11 +65,7 @@ func DeleteTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetryrouter.TelemetryRouterResponseStatus{
-			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
-			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_DELETING,
-			telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_RECONCILING,
-		},
+		ErrorState:                 []telemetryrouter.TelemetryRouterResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -93,7 +87,6 @@ func CreateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
 		},
 		ErrorState: []telemetryrouter.DestinationResponseStatus{
-			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
 			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
 		},
 	}
@@ -117,7 +110,6 @@ func UpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
 		},
 		ErrorState: []telemetryrouter.DestinationResponseStatus{
-			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
 			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
 		},
 	}
@@ -138,11 +130,7 @@ func DeleteDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetryrouter.DestinationResponseStatus{
-			telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
-			telemetryrouter.DESTINATIONRESPONSESTATUS_RECONCILING,
-			telemetryrouter.DESTINATIONRESPONSESTATUS_DELETING,
-		},
+		ErrorState:                 []telemetryrouter.DestinationResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -162,9 +150,9 @@ func CreateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 		},
 		ActiveState: []telemetryrouter.AccessTokenBaseResponseStatus{
 			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
 		},
 		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
-			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
 			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
 		},
 	}
@@ -186,9 +174,9 @@ func UpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 		},
 		ActiveState: []telemetryrouter.AccessTokenBaseResponseStatus{
 			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
 		},
 		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
-			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
 			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
 		},
 	}
@@ -209,11 +197,7 @@ func DeleteAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetryrouter.AccessTokenBaseResponseStatus{
-			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
-			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_EXPIRED,
-			telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_DELETING,
-		},
+		ErrorState:                 []telemetryrouter.AccessTokenBaseResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
