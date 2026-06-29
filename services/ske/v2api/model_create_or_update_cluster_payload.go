@@ -21,6 +21,7 @@ var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
 	Access               *Access        `json:"access,omitempty"`
+	Audit                *Audit         `json:"audit,omitempty"`
 	Extensions           *Extension     `json:"extensions,omitempty"`
 	Hibernation          *Hibernation   `json:"hibernation,omitempty"`
 	Kubernetes           Kubernetes     `json:"kubernetes"`
@@ -82,6 +83,38 @@ func (o *CreateOrUpdateClusterPayload) HasAccess() bool {
 // SetAccess gets a reference to the given Access and assigns it to the Access field.
 func (o *CreateOrUpdateClusterPayload) SetAccess(v Access) {
 	o.Access = &v
+}
+
+// GetAudit returns the Audit field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetAudit() Audit {
+	if o == nil || IsNil(o.Audit) {
+		var ret Audit
+		return ret
+	}
+	return *o.Audit
+}
+
+// GetAuditOk returns a tuple with the Audit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetAuditOk() (*Audit, bool) {
+	if o == nil || IsNil(o.Audit) {
+		return nil, false
+	}
+	return o.Audit, true
+}
+
+// HasAudit returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasAudit() bool {
+	if o != nil && !IsNil(o.Audit) {
+		return true
+	}
+
+	return false
+}
+
+// SetAudit gets a reference to the given Audit and assigns it to the Audit field.
+func (o *CreateOrUpdateClusterPayload) SetAudit(v Audit) {
+	o.Audit = &v
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -305,6 +338,9 @@ func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Access) {
 		toSerialize["access"] = o.Access
 	}
+	if !IsNil(o.Audit) {
+		toSerialize["audit"] = o.Audit
+	}
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
@@ -367,6 +403,7 @@ func (o *CreateOrUpdateClusterPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "access")
+		delete(additionalProperties, "audit")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "hibernation")
 		delete(additionalProperties, "kubernetes")

@@ -46,6 +46,33 @@ func setCreateOrUpdateClusterPayloadGetAccessAttributeType(arg *CreateOrUpdateCl
 }
 
 /*
+	types and functions for audit
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAuditAttributeType = *Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAuditArgType = Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAuditRetType = Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateOrUpdateClusterPayloadGetAuditAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetAuditAttributeType) (ret CreateOrUpdateClusterPayloadGetAuditRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateOrUpdateClusterPayloadGetAuditAttributeType(arg *CreateOrUpdateClusterPayloadGetAuditAttributeType, val CreateOrUpdateClusterPayloadGetAuditRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for extensions
 */
 
@@ -238,6 +265,7 @@ func setCreateOrUpdateClusterPayloadGetStatusAttributeType(arg *CreateOrUpdateCl
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateOrUpdateClusterPayload struct {
 	Access      CreateOrUpdateClusterPayloadGetAccessAttributeType      `json:"access,omitempty"`
+	Audit       CreateOrUpdateClusterPayloadGetAuditAttributeType       `json:"audit,omitempty"`
 	Extensions  CreateOrUpdateClusterPayloadGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation CreateOrUpdateClusterPayloadGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
@@ -298,6 +326,33 @@ func (o *CreateOrUpdateClusterPayload) HasAccess() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateOrUpdateClusterPayload) SetAccess(v CreateOrUpdateClusterPayloadGetAccessRetType) {
 	setCreateOrUpdateClusterPayloadGetAccessAttributeType(&o.Access, v)
+}
+
+// GetAudit returns the Audit field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetAudit() (res CreateOrUpdateClusterPayloadGetAuditRetType) {
+	res, _ = o.GetAuditOk()
+	return
+}
+
+// GetAuditOk returns a tuple with the Audit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetAuditOk() (ret CreateOrUpdateClusterPayloadGetAuditRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetAuditAttributeTypeOk(o.Audit)
+}
+
+// HasAudit returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) HasAudit() bool {
+	_, ok := o.GetAuditOk()
+	return ok
+}
+
+// SetAudit gets a reference to the given Audit and assigns it to the Audit field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) SetAudit(v CreateOrUpdateClusterPayloadGetAuditRetType) {
+	setCreateOrUpdateClusterPayloadGetAuditAttributeType(&o.Audit, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -480,6 +535,9 @@ func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateOrUpdateClusterPayloadGetAccessAttributeTypeOk(o.Access); ok {
 		toSerialize["Access"] = val
+	}
+	if val, ok := getCreateOrUpdateClusterPayloadGetAuditAttributeTypeOk(o.Audit); ok {
+		toSerialize["Audit"] = val
 	}
 	if val, ok := getCreateOrUpdateClusterPayloadGetExtensionsAttributeTypeOk(o.Extensions); ok {
 		toSerialize["Extensions"] = val
