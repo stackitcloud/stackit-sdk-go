@@ -1,0 +1,230 @@
+package wait
+
+import (
+	"context"
+	"errors"
+	"net/http"
+	"time"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
+	telemetrylink "github.com/stackitcloud/stackit-sdk-go/services/telemetrylink/v1api"
+)
+
+// CreateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink creation
+func CreateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// UpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink update
+func UpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// createOrUpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink creation or update
+func createOrUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetOrganizationTelemetryLink(ctx, organizationId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// PartialUpdateOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink partial update
+func PartialUpdateOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetOrganizationTelemetryLink(ctx, organizationId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// DeleteOrganizationTelemetryLinkWaitHandler will wait for organization TelemetryLink deletion
+func DeleteOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetOrganizationTelemetryLink(ctx, organizationId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink creation
+func CreateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateFolderTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// UpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink update
+func UpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateFolderTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// createOrUpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink creation or update
+func createOrUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetFolderTelemetryLink(ctx, folderId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// PartialUpdateFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink partial update
+func PartialUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetFolderTelemetryLink(ctx, folderId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// DeleteFolderTelemetryLinkWaitHandler will wait for folder TelemetryLink deletion
+func DeleteFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetFolderTelemetryLink(ctx, folderId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateProjectTelemetryLinkWaitHandler will wait for folder TelemetryLink creation
+func CreateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateProjectTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// UpdateProjectTelemetryLinkWaitHandler will wait for folder TelemetryLink update
+func UpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	return createOrUpdateProjectTelemetryLinkWaitHandler(ctx, a, organizationId, region)
+}
+
+// CreateOrUpdateProjectTelemetryLinkWaitHandler will wait for project TelemetryLink creation or update
+func createOrUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetProjectTelemetryLink(ctx, projectId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// PartialUpdateProjectTelemetryLinkWaitHandler will wait for project TelemetryLink partial update
+func PartialUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetProjectTelemetryLink(ctx, projectId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
+		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
+			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// DeleteProjectTelemetryLinkWaitHandler will wait for project TelemetryLink deletion
+func DeleteProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region string) *wait.AsyncActionHandler[telemetrylink.TelemetryLinkResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.TelemetryLinkResponse, telemetrylink.TelemetryLinkResponseStatus]{
+		FetchInstance: a.GetProjectTelemetryLink(ctx, projectId, region).Execute,
+		GetState: func(d *telemetrylink.TelemetryLinkResponse) (telemetrylink.TelemetryLinkResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
