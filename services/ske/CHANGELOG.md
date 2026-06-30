@@ -1,3 +1,15 @@
+## v1.19.0
+- Package `v1api`:
+  - **Improvement:** Add validation to Name field of model struct `Cluster`
+- Package `v2api`:
+  - **Improvement:** Add validation to Name field of model struct `Cluster`
+  - **Feature:** New model struct `Audit`
+  - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
+- Deprecated SDK layer in root of the module:
+  - **Improvement:** Add validation to Name field of model struct `Cluster`
+  - **Feature:** New model struct `Audit`
+  - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
+
 ## v1.18.0
 - **Improvement:** Use new WaiterHelper for ske waiters
 - **Deprecation:** `CreateOrUpdateClusterWaitHandler` will be removed after 2026-12-08. Use the `CreateClusterWaitHandler` or `UpdateClusterWaitHandler` instead.

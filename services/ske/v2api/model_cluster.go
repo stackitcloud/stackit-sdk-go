@@ -20,12 +20,14 @@ var _ MappedNullable = &Cluster{}
 
 // Cluster struct for Cluster
 type Cluster struct {
-	Access               *Access        `json:"access,omitempty"`
-	Extensions           *Extension     `json:"extensions,omitempty"`
-	Hibernation          *Hibernation   `json:"hibernation,omitempty"`
-	Kubernetes           Kubernetes     `json:"kubernetes"`
-	Maintenance          *Maintenance   `json:"maintenance,omitempty"`
-	Name                 *string        `json:"name,omitempty"`
+	Access      *Access      `json:"access,omitempty"`
+	Audit       *Audit       `json:"audit,omitempty"`
+	Extensions  *Extension   `json:"extensions,omitempty"`
+	Hibernation *Hibernation `json:"hibernation,omitempty"`
+	Kubernetes  Kubernetes   `json:"kubernetes"`
+	Maintenance *Maintenance `json:"maintenance,omitempty"`
+	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
+	Name                 *string        `json:"name,omitempty" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,9}[a-z0-9])?$"`
 	Network              *Network       `json:"network,omitempty"`
 	Nodepools            []Nodepool     `json:"nodepools"`
 	Status               *ClusterStatus `json:"status,omitempty"`
@@ -83,6 +85,38 @@ func (o *Cluster) HasAccess() bool {
 // SetAccess gets a reference to the given Access and assigns it to the Access field.
 func (o *Cluster) SetAccess(v Access) {
 	o.Access = &v
+}
+
+// GetAudit returns the Audit field value if set, zero value otherwise.
+func (o *Cluster) GetAudit() Audit {
+	if o == nil || IsNil(o.Audit) {
+		var ret Audit
+		return ret
+	}
+	return *o.Audit
+}
+
+// GetAuditOk returns a tuple with the Audit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Cluster) GetAuditOk() (*Audit, bool) {
+	if o == nil || IsNil(o.Audit) {
+		return nil, false
+	}
+	return o.Audit, true
+}
+
+// HasAudit returns a boolean if a field has been set.
+func (o *Cluster) HasAudit() bool {
+	if o != nil && !IsNil(o.Audit) {
+		return true
+	}
+
+	return false
+}
+
+// SetAudit gets a reference to the given Audit and assigns it to the Audit field.
+func (o *Cluster) SetAudit(v Audit) {
+	o.Audit = &v
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -338,6 +372,9 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Access) {
 		toSerialize["access"] = o.Access
 	}
+	if !IsNil(o.Audit) {
+		toSerialize["audit"] = o.Audit
+	}
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
@@ -403,6 +440,7 @@ func (o *Cluster) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "access")
+		delete(additionalProperties, "audit")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "hibernation")
 		delete(additionalProperties, "kubernetes")
