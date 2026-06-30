@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1betaapi"
-	"github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1betaapi/wait"
+	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1api"
+	"github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1api/wait"
 )
 
 func main() {

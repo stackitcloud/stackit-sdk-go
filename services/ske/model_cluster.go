@@ -46,6 +46,33 @@ func setClusterGetAccessAttributeType(arg *ClusterGetAccessAttributeType, val Cl
 }
 
 /*
+	types and functions for audit
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetAuditAttributeType = *Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetAuditArgType = Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetAuditRetType = Audit
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getClusterGetAuditAttributeTypeOk(arg ClusterGetAuditAttributeType) (ret ClusterGetAuditRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setClusterGetAuditAttributeType(arg *ClusterGetAuditAttributeType, val ClusterGetAuditRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for extensions
 */
 
@@ -265,13 +292,15 @@ func setClusterGetStatusAttributeType(arg *ClusterGetStatusAttributeType, val Cl
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Cluster struct {
 	Access      ClusterGetAccessAttributeType      `json:"access,omitempty"`
+	Audit       ClusterGetAuditAttributeType       `json:"audit,omitempty"`
 	Extensions  ClusterGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation ClusterGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
 	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
 	Maintenance ClusterGetMaintenanceAttributeType `json:"maintenance,omitempty"`
-	Name        ClusterGetNameAttributeType        `json:"name,omitempty"`
-	Network     ClusterGetNetworkAttributeType     `json:"network,omitempty"`
+	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
+	Name    ClusterGetNameAttributeType    `json:"name,omitempty"`
+	Network ClusterGetNetworkAttributeType `json:"network,omitempty"`
 	// REQUIRED
 	Nodepools ClusterGetNodepoolsAttributeType `json:"nodepools" required:"true"`
 	Status    ClusterGetStatusAttributeType    `json:"status,omitempty"`
@@ -326,6 +355,33 @@ func (o *Cluster) HasAccess() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Cluster) SetAccess(v ClusterGetAccessRetType) {
 	setClusterGetAccessAttributeType(&o.Access, v)
+}
+
+// GetAudit returns the Audit field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) GetAudit() (res ClusterGetAuditRetType) {
+	res, _ = o.GetAuditOk()
+	return
+}
+
+// GetAuditOk returns a tuple with the Audit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) GetAuditOk() (ret ClusterGetAuditRetType, ok bool) {
+	return getClusterGetAuditAttributeTypeOk(o.Audit)
+}
+
+// HasAudit returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) HasAudit() bool {
+	_, ok := o.GetAuditOk()
+	return ok
+}
+
+// SetAudit gets a reference to the given Audit and assigns it to the Audit field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) SetAudit(v ClusterGetAuditRetType) {
+	setClusterGetAuditAttributeType(&o.Audit, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -535,6 +591,9 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getClusterGetAccessAttributeTypeOk(o.Access); ok {
 		toSerialize["Access"] = val
+	}
+	if val, ok := getClusterGetAuditAttributeTypeOk(o.Audit); ok {
+		toSerialize["Audit"] = val
 	}
 	if val, ok := getClusterGetExtensionsAttributeTypeOk(o.Extensions); ok {
 		toSerialize["Extensions"] = val
