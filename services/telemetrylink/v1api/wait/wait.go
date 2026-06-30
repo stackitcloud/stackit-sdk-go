@@ -75,13 +75,7 @@ func DeleteOrganizationTelemetryLinkWaitHandler(ctx context.Context, a telemetry
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
-		},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -111,9 +105,7 @@ func createOrUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemet
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
 		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
@@ -135,9 +127,7 @@ func PartialUpdateFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetr
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
 		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
@@ -158,13 +148,7 @@ func DeleteFolderTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.D
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
-		},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -194,9 +178,7 @@ func createOrUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a teleme
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
 		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
@@ -218,9 +200,7 @@ func PartialUpdateProjectTelemetryLinkWaitHandler(ctx context.Context, a telemet
 		},
 		ActiveState: []telemetrylink.TelemetryLinkResponseStatus{telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE},
 		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
 			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
 		},
 	}
@@ -241,13 +221,7 @@ func DeleteProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.
 			return d.Status, nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
-		ErrorState: []telemetrylink.TelemetryLinkResponseStatus{
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_ACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_INACTIVE,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_FAILED,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_RECONCILING,
-			telemetrylink.TELEMETRYLINKRESPONSESTATUS_DELETING,
-		},
+		ErrorState:                 []telemetrylink.TelemetryLinkResponseStatus{},
 	}
 
 	handler := wait.New(waitConfig.Wait())
