@@ -1,5 +1,5 @@
 ## v0.3.0
-- **New:** v1api API for STACKIT Telemetry Link
+- **New:** v1api API version for STACKIT Telemetry Link
 
 ## v0.2.0
 - **Feature:** Introduce enums for various attributes
