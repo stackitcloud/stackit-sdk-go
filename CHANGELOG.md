@@ -29,6 +29,9 @@
     - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
     - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
+- `telemetryrouter`:
+  - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
+    - **New**: v1api API version for STACKIT Telemetry Router
 
 
 ## Release (2026-06-18)
