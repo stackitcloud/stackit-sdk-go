@@ -62,7 +62,7 @@ type DefaultAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
-		@param clusterName
+		@param clusterName Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 		@return ApiCreateOrUpdateClusterRequest
 	*/
 	CreateOrUpdateCluster(ctx context.Context, projectId string, clusterName string) ApiCreateOrUpdateClusterRequest
@@ -569,7 +569,7 @@ Create a new cluster in your project or modify an existing one. To get valid val
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@param clusterName
+	@param clusterName Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 	@return ApiCreateOrUpdateClusterRequest
 */
 func (a *DefaultAPIService) CreateOrUpdateCluster(ctx context.Context, projectId string, clusterName string) ApiCreateOrUpdateClusterRequest {

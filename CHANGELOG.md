@@ -20,9 +20,21 @@
   - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
     - **New**: STACKIT Model Experiments module wait handler added.
 - `rabbitmq`:
-  - [v1.1.0](/services/rabbitmq/CHANGELOG.md#v110)
+  - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
    - `v2api`:
     - **Feature**: Added wait handlers
+- `ske`:
+  - [v1.19.0](services/ske/CHANGELOG.md#v1190)
+    - Package `v1api`:
+      - **Improvement:** Add validation to Name field of model struct `Cluster`
+    - Package `v2api`:
+      - **Improvement:** Add validation to Name field of model struct `Cluster`
+      - **Feature:** New model struct `Audit`
+      - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
+    - Deprecated SDK layer in root of the module:
+      - **Improvement:** Add validation to Name field of model struct `Cluster`
+      - **Feature:** New model struct `Audit`
+      - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
 - `sqlserverflex`: 
   - [v1.14.0](services/sqlserverflex/CHANGELOG.md#v1140)
     - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
