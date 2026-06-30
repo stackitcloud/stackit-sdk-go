@@ -1,3 +1,6 @@
+## v0.4.0
+- **New**: v1api API version for STACKIT Telemetry Router
+
 ## v0.3.0
 - **Feature:** Introduce enums for various attributes
 

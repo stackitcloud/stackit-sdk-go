@@ -23,7 +23,7 @@
   - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
    - `v2api`:
     - **Feature**: Added wait handlers
-- `ske`
+- `ske`:
   - [v1.19.0](services/ske/CHANGELOG.md#v1190)
     - Package `v1api`:
       - **Improvement:** Add validation to Name field of model struct `Cluster`
@@ -35,6 +35,16 @@
       - **Improvement:** Add validation to Name field of model struct `Cluster`
       - **Feature:** New model struct `Audit`
       - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
+- `sqlserverflex`: 
+  - [v1.14.0](services/sqlserverflex/CHANGELOG.md#v1140)
+    - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
+    - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
+    - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
+    - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
+- `telemetryrouter`:
+  - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
+    - **New**: v1api API version for STACKIT Telemetry Router
+
 
 ## Release (2026-06-18)
 - `core`: 

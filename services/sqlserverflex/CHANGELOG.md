@@ -1,3 +1,9 @@
+## v1.14.0
+- `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
+- `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
+- `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
+- `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
+
 ## v1.13.0
 - `v2api`: 
   - **Improvement**: Use new `WaiterHelper` struct in the SQLServer Flex WaitHandler
