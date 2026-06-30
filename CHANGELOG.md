@@ -32,6 +32,9 @@
 - `telemetrylink`:
   - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **New:** v1api API for STACKIT Telemetry Link
+- `telemetryrouter`:
+  - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
+    - **New**: v1api API version for STACKIT Telemetry Router
 
 
 ## Release (2026-06-18)
