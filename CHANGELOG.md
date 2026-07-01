@@ -21,8 +21,12 @@
     - **New**: STACKIT Model Experiments module wait handler added.
 - `rabbitmq`:
   - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
-   - `v2api`:
-    - **Feature**: Added wait handlers
+    - `v2api`:
+      - **Feature**: Added wait handlers
+- `redis`:
+  - [v1.1.0](services/redis/CHANGELOG.md#v110)
+    - `v2api`:
+      - **Feature**: Added wait handlers  
 - `ske`:
   - [v1.19.0](services/ske/CHANGELOG.md#v1190)
     - Package `v1api`:
