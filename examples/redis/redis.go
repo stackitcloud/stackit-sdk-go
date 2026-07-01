@@ -6,7 +6,7 @@ import (
 	"os"
 
 	redis "github.com/stackitcloud/stackit-sdk-go/services/redis/v2api"
-	wait "github.com/stackitcloud/stackit-sdk-go/services/redis/v2api/wait"
+	"github.com/stackitcloud/stackit-sdk-go/services/redis/v2api/wait"
 )
 
 func main() {
@@ -48,7 +48,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
+	fmt.Printf("Triggered creation of instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
 
 	// Wait for creation of redis instance
 	instance, err := wait.CreateInstanceWaitHandler(context.Background(), redisClient.DefaultAPI, projectId, region, createInstanceResp.InstanceId).WaitWithContext(context.Background())
