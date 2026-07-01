@@ -193,7 +193,7 @@ type RegionalAreaIPv4 struct {
 	// The minimal prefix length for networks in the network area.
 	// REQUIRED
 	MinPrefixLen RegionalAreaIPv4GetMinPrefixLenAttributeType `json:"minPrefixLen" required:"true"`
-	// A list of network ranges.
+	// A list of network area network ranges.
 	// REQUIRED
 	NetworkRanges RegionalAreaIPv4GetNetworkRangesAttributeType `json:"networkRanges" required:"true"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
