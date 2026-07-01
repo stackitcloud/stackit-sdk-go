@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `logme`: 
+  - [v1.0.1](services/logme/CHANGELOG.md#v101)
+    - `v1api`:
+      - **Improvement**: Improve http error handling
 - `mariadb`:
   - [v1.0.1](services/mariadb/CHANGELOG.md#v101)
     - `v1api`:
@@ -13,12 +17,16 @@
       - **Breaking change:** Introduce validators for `name`, `database` and `username`
     - `v2api`:
       - **Breaking change:** Introduce validators for `name`, `database` and `username`
-- `postgresflex`:
-  - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
-    - `v3alpha1api`: Align package to latest API specification
 - `modelexperiments`:
   - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
     - **New**: STACKIT Model Experiments module wait handler added.
+- `opensearch`:
+  - [v1.0.1](services/opensearch/CHANGELOG.md#v101)
+    - `v1api`:
+      - **Improvement**: Improve http error handling
+- `postgresflex`:
+  - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
+    - `v3alpha1api`: Align package to latest API specification
 - `rabbitmq`:
   - [v1.1.1](services/rabbitmq/CHANGELOG.md#v111)
     - `v1api`:
