@@ -1,3 +1,6 @@
+## v0.10.0
+  - **Breaking Change**: Remove the unused methods `OrgRoleCreateBff`, `OrganizationCreateBff` and `SpaceRoleCreateBff`
+
 ## v0.9.0
 - **Improvement:** Use new WaiterHelper for scf waiters
 

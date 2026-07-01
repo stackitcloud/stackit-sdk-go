@@ -65,6 +65,8 @@
 - `telemetryrouter`:
   - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
     - **New**: v1api API version for STACKIT Telemetry Router
+- `scf`: [v0.10.0](services/scf/CHANGELOG.md#v0100)
+  - **Breaking Change**: Remove the unused methods `OrgRoleCreateBff`, `OrganizationCreateBff` and `SpaceRoleCreateBff`
 
 
 ## Release (2026-06-18)
