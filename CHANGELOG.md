@@ -35,6 +35,9 @@
     - `v2api`:
       - **Feature**: Added wait handlers
 - `redis`:
+  - [v1.1.1](services/redis/CHANGELOG.md#v111)
+    - `v1api`:
+     - **Improvement**: Improve http error handling
   - [v1.1.0](services/redis/CHANGELOG.md#v110)
     - `v2api`:
       - **Feature**: Added wait handlers  
