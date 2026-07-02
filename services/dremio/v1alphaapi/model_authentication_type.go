@@ -1,7 +1,7 @@
 /*
 STACKIT Dremio API
 
-This API provides endpoints for managing Dremios.
+This API provides endpoints for managing Dremio instances and users.
 
 API version: 1alpha.0.0
 */
