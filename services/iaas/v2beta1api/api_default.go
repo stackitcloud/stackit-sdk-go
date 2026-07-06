@@ -1911,6 +1911,40 @@ type DefaultAPI interface {
 	UpdateImageExecute(r ApiUpdateImageRequest) (*Image, error)
 
 	/*
+		UpdateImageScopeLocal Update Image Scope to Local.
+
+		Update the scope property of an existing Image inside a project to local.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@param region The STACKIT Region of the resources.
+		@param imageId The identifier (ID) of a STACKIT Image.
+		@return ApiUpdateImageScopeLocalRequest
+	*/
+	UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest
+
+	// UpdateImageScopeLocalExecute executes the request
+	//  @return Image
+	UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error)
+
+	/*
+		UpdateImageScopePublic Update Image Scope to Public.
+
+		Update the scope property of an existing Image inside a project to public.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@param region The STACKIT Region of the resources.
+		@param imageId The identifier (ID) of a STACKIT Image.
+		@return ApiUpdateImageScopePublicRequest
+	*/
+	UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest
+
+	// UpdateImageScopePublicExecute executes the request
+	//  @return Image
+	UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error)
+
+	/*
 		UpdateImageShare Update image share.
 
 		Update share of an Image. Projects will be appended to existing list.
@@ -2049,7 +2083,7 @@ type DefaultAPI interface {
 	UpdateVolumeExecute(r ApiUpdateVolumeRequest) (*Volume, error)
 
 	/*
-		V2beta1ConfigureNetworkAreaRegion Configure a region for a network area.
+		V2beta1CreateNetworkAreaRegion Configure a region for a network area.
 
 		Configure a new region for a network area.
 
@@ -2057,13 +2091,13 @@ type DefaultAPI interface {
 		@param organizationId The identifier (ID) of a STACKIT Organization.
 		@param areaId The identifier (ID) of a STACKIT Network Area.
 		@param region The STACKIT Region of the resources.
-		@return ApiV2beta1ConfigureNetworkAreaRegionRequest
+		@return ApiV2beta1CreateNetworkAreaRegionRequest
 	*/
-	V2beta1ConfigureNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1ConfigureNetworkAreaRegionRequest
+	V2beta1CreateNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1CreateNetworkAreaRegionRequest
 
-	// V2beta1ConfigureNetworkAreaRegionExecute executes the request
+	// V2beta1CreateNetworkAreaRegionExecute executes the request
 	//  @return RegionalArea
-	V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta1ConfigureNetworkAreaRegionRequest) (*RegionalArea, error)
+	V2beta1CreateNetworkAreaRegionExecute(r ApiV2beta1CreateNetworkAreaRegionRequest) (*RegionalArea, error)
 
 	/*
 		V2beta1CreateSnapshot Create new Snapshot.
@@ -2114,7 +2148,7 @@ type DefaultAPI interface {
 	V2beta1DeleteSnapshotExecute(r ApiV2beta1DeleteSnapshotRequest) error
 
 	/*
-		V2beta1GetAreaRegion Get details about a configured region.
+		V2beta1GetNetworkAreaRegion Get details about a configured region.
 
 		Get details about a configured region in a network area.
 
@@ -2122,13 +2156,13 @@ type DefaultAPI interface {
 		@param organizationId The identifier (ID) of a STACKIT Organization.
 		@param areaId The identifier (ID) of a STACKIT Network Area.
 		@param region The STACKIT Region of the resources.
-		@return ApiV2beta1GetAreaRegionRequest
+		@return ApiV2beta1GetNetworkAreaRegionRequest
 	*/
-	V2beta1GetAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetAreaRegionRequest
+	V2beta1GetNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetNetworkAreaRegionRequest
 
-	// V2beta1GetAreaRegionExecute executes the request
+	// V2beta1GetNetworkAreaRegionExecute executes the request
 	//  @return RegionalArea
-	V2beta1GetAreaRegionExecute(r ApiV2beta1GetAreaRegionRequest) (*RegionalArea, error)
+	V2beta1GetNetworkAreaRegionExecute(r ApiV2beta1GetNetworkAreaRegionRequest) (*RegionalArea, error)
 
 	/*
 		V2beta1GetSnapshot Get details about a snapshot.
@@ -2148,36 +2182,36 @@ type DefaultAPI interface {
 	V2beta1GetSnapshotExecute(r ApiV2beta1GetSnapshotRequest) (*Snapshot, error)
 
 	/*
-		V2beta1ListAreaRegions List all configured regions in a network area.
+		V2beta1ListNetworkAreaRegions List all configured regions in a network area.
 
 		Get a list of all configured regions.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param organizationId The identifier (ID) of a STACKIT Organization.
 		@param areaId The identifier (ID) of a STACKIT Network Area.
-		@return ApiV2beta1ListAreaRegionsRequest
+		@return ApiV2beta1ListNetworkAreaRegionsRequest
 	*/
-	V2beta1ListAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListAreaRegionsRequest
+	V2beta1ListNetworkAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListNetworkAreaRegionsRequest
 
-	// V2beta1ListAreaRegionsExecute executes the request
+	// V2beta1ListNetworkAreaRegionsExecute executes the request
 	//  @return RegionalAreaListResponse
-	V2beta1ListAreaRegionsExecute(r ApiV2beta1ListAreaRegionsRequest) (*RegionalAreaListResponse, error)
+	V2beta1ListNetworkAreaRegionsExecute(r ApiV2beta1ListNetworkAreaRegionsRequest) (*RegionalAreaListResponse, error)
 
 	/*
-		V2beta1ListSnapshotsInProject List all snapshots inside a project.
+		V2beta1ListSnapshots List all snapshots inside a project.
 
 		Get a list of all snapshots inside a project.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
 		@param region The STACKIT Region of the resources.
-		@return ApiV2beta1ListSnapshotsInProjectRequest
+		@return ApiV2beta1ListSnapshotsRequest
 	*/
-	V2beta1ListSnapshotsInProject(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsInProjectRequest
+	V2beta1ListSnapshots(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsRequest
 
-	// V2beta1ListSnapshotsInProjectExecute executes the request
+	// V2beta1ListSnapshotsExecute executes the request
 	//  @return SnapshotListResponse
-	V2beta1ListSnapshotsInProjectExecute(r ApiV2beta1ListSnapshotsInProjectRequest) (*SnapshotListResponse, error)
+	V2beta1ListSnapshotsExecute(r ApiV2beta1ListSnapshotsRequest) (*SnapshotListResponse, error)
 
 	/*
 		V2beta1UpdateBackup Update information of a backup.
@@ -2214,7 +2248,7 @@ type DefaultAPI interface {
 	V2beta1UpdateNetworkAreaRegionExecute(r ApiV2beta1UpdateNetworkAreaRegionRequest) (*RegionalArea, error)
 
 	/*
-		V2beta1UpdateRouteOfArea Update a network route.
+		V2beta1UpdateNetworkAreaRoute Update a network route.
 
 		Update a network route defined in a network area.
 
@@ -2223,13 +2257,13 @@ type DefaultAPI interface {
 		@param areaId The identifier (ID) of a STACKIT Network Area.
 		@param region The STACKIT Region of the resources.
 		@param routeId The identifier (ID) of a STACKIT Route.
-		@return ApiV2beta1UpdateRouteOfAreaRequest
+		@return ApiV2beta1UpdateNetworkAreaRouteRequest
 	*/
-	V2beta1UpdateRouteOfArea(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateRouteOfAreaRequest
+	V2beta1UpdateNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateNetworkAreaRouteRequest
 
-	// V2beta1UpdateRouteOfAreaExecute executes the request
+	// V2beta1UpdateNetworkAreaRouteExecute executes the request
 	//  @return Route
-	V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRouteOfAreaRequest) (*Route, error)
+	V2beta1UpdateNetworkAreaRouteExecute(r ApiV2beta1UpdateNetworkAreaRouteRequest) (*Route, error)
 
 	/*
 		V2beta1UpdateSecurityGroup Update information of a security group.
@@ -24182,6 +24216,384 @@ func (a *DefaultAPIService) UpdateImageExecute(r ApiUpdateImageRequest) (*Image,
 	return localVarReturnValue, nil
 }
 
+type ApiUpdateImageScopeLocalRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	imageId    string
+}
+
+func (r ApiUpdateImageScopeLocalRequest) Execute() (*Image, error) {
+	return r.ApiService.UpdateImageScopeLocalExecute(r)
+}
+
+/*
+UpdateImageScopeLocal Update Image Scope to Local.
+
+Update the scope property of an existing Image inside a project to local.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param region The STACKIT Region of the resources.
+	@param imageId The identifier (ID) of a STACKIT Image.
+	@return ApiUpdateImageScopeLocalRequest
+*/
+func (a *DefaultAPIService) UpdateImageScopeLocal(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopeLocalRequest {
+	return ApiUpdateImageScopeLocalRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Image
+func (a *DefaultAPIService) UpdateImageScopeLocalExecute(r ApiUpdateImageScopeLocalRequest) (*Image, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Image
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateImageScopeLocal")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2beta1/projects/{projectId}/regions/{region}/images/{imageId}/publish"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", url.PathEscape(parameterValueToString(r.imageId, "imageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.imageId) < 36 {
+		return localVarReturnValue, reportError("imageId must have at least 36 elements")
+	}
+	if strlen(r.imageId) > 36 {
+		return localVarReturnValue, reportError("imageId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateImageScopePublicRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	imageId    string
+}
+
+func (r ApiUpdateImageScopePublicRequest) Execute() (*Image, error) {
+	return r.ApiService.UpdateImageScopePublicExecute(r)
+}
+
+/*
+UpdateImageScopePublic Update Image Scope to Public.
+
+Update the scope property of an existing Image inside a project to public.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param region The STACKIT Region of the resources.
+	@param imageId The identifier (ID) of a STACKIT Image.
+	@return ApiUpdateImageScopePublicRequest
+*/
+func (a *DefaultAPIService) UpdateImageScopePublic(ctx context.Context, projectId string, region string, imageId string) ApiUpdateImageScopePublicRequest {
+	return ApiUpdateImageScopePublicRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		imageId:    imageId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Image
+func (a *DefaultAPIService) UpdateImageScopePublicExecute(r ApiUpdateImageScopePublicRequest) (*Image, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Image
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateImageScopePublic")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2beta1/projects/{projectId}/regions/{region}/images/{imageId}/publish"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", url.PathEscape(parameterValueToString(r.imageId, "imageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.imageId) < 36 {
+		return localVarReturnValue, reportError("imageId must have at least 36 elements")
+	}
+	if strlen(r.imageId) > 36 {
+		return localVarReturnValue, reportError("imageId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiUpdateImageShareRequest struct {
 	ctx                     context.Context
 	ApiService              DefaultAPI
@@ -25824,27 +26236,27 @@ func (a *DefaultAPIService) UpdateVolumeExecute(r ApiUpdateVolumeRequest) (*Volu
 	return localVarReturnValue, nil
 }
 
-type ApiV2beta1ConfigureNetworkAreaRegionRequest struct {
-	ctx                                      context.Context
-	ApiService                               DefaultAPI
-	organizationId                           string
-	areaId                                   string
-	region                                   string
-	v2beta1ConfigureNetworkAreaRegionPayload *V2beta1ConfigureNetworkAreaRegionPayload
+type ApiV2beta1CreateNetworkAreaRegionRequest struct {
+	ctx                                   context.Context
+	ApiService                            DefaultAPI
+	organizationId                        string
+	areaId                                string
+	region                                string
+	v2beta1CreateNetworkAreaRegionPayload *V2beta1CreateNetworkAreaRegionPayload
 }
 
 // Request to add a new regional network area configuration.
-func (r ApiV2beta1ConfigureNetworkAreaRegionRequest) V2beta1ConfigureNetworkAreaRegionPayload(v2beta1ConfigureNetworkAreaRegionPayload V2beta1ConfigureNetworkAreaRegionPayload) ApiV2beta1ConfigureNetworkAreaRegionRequest {
-	r.v2beta1ConfigureNetworkAreaRegionPayload = &v2beta1ConfigureNetworkAreaRegionPayload
+func (r ApiV2beta1CreateNetworkAreaRegionRequest) V2beta1CreateNetworkAreaRegionPayload(v2beta1CreateNetworkAreaRegionPayload V2beta1CreateNetworkAreaRegionPayload) ApiV2beta1CreateNetworkAreaRegionRequest {
+	r.v2beta1CreateNetworkAreaRegionPayload = &v2beta1CreateNetworkAreaRegionPayload
 	return r
 }
 
-func (r ApiV2beta1ConfigureNetworkAreaRegionRequest) Execute() (*RegionalArea, error) {
-	return r.ApiService.V2beta1ConfigureNetworkAreaRegionExecute(r)
+func (r ApiV2beta1CreateNetworkAreaRegionRequest) Execute() (*RegionalArea, error) {
+	return r.ApiService.V2beta1CreateNetworkAreaRegionExecute(r)
 }
 
 /*
-V2beta1ConfigureNetworkAreaRegion Configure a region for a network area.
+V2beta1CreateNetworkAreaRegion Configure a region for a network area.
 
 Configure a new region for a network area.
 
@@ -25852,10 +26264,10 @@ Configure a new region for a network area.
 	@param organizationId The identifier (ID) of a STACKIT Organization.
 	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@param region The STACKIT Region of the resources.
-	@return ApiV2beta1ConfigureNetworkAreaRegionRequest
+	@return ApiV2beta1CreateNetworkAreaRegionRequest
 */
-func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1ConfigureNetworkAreaRegionRequest {
-	return ApiV2beta1ConfigureNetworkAreaRegionRequest{
+func (a *DefaultAPIService) V2beta1CreateNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1CreateNetworkAreaRegionRequest {
+	return ApiV2beta1CreateNetworkAreaRegionRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -25867,7 +26279,7 @@ func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegion(ctx context.Contex
 // Execute executes the request
 //
 //	@return RegionalArea
-func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta1ConfigureNetworkAreaRegionRequest) (*RegionalArea, error) {
+func (a *DefaultAPIService) V2beta1CreateNetworkAreaRegionExecute(r ApiV2beta1CreateNetworkAreaRegionRequest) (*RegionalArea, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -25875,7 +26287,7 @@ func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta
 		localVarReturnValue *RegionalArea
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1ConfigureNetworkAreaRegion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1CreateNetworkAreaRegion")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -25900,8 +26312,8 @@ func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta
 	if strlen(r.areaId) > 36 {
 		return localVarReturnValue, reportError("areaId must have less than 36 elements")
 	}
-	if r.v2beta1ConfigureNetworkAreaRegionPayload == nil {
-		return localVarReturnValue, reportError("v2beta1ConfigureNetworkAreaRegionPayload is required and must be specified")
+	if r.v2beta1CreateNetworkAreaRegionPayload == nil {
+		return localVarReturnValue, reportError("v2beta1CreateNetworkAreaRegionPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -25922,7 +26334,7 @@ func (a *DefaultAPIService) V2beta1ConfigureNetworkAreaRegionExecute(r ApiV2beta
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.v2beta1ConfigureNetworkAreaRegionPayload
+	localVarPostBody = r.v2beta1CreateNetworkAreaRegionPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -26590,7 +27002,7 @@ func (a *DefaultAPIService) V2beta1DeleteSnapshotExecute(r ApiV2beta1DeleteSnaps
 	return nil
 }
 
-type ApiV2beta1GetAreaRegionRequest struct {
+type ApiV2beta1GetNetworkAreaRegionRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	organizationId string
@@ -26598,12 +27010,12 @@ type ApiV2beta1GetAreaRegionRequest struct {
 	region         string
 }
 
-func (r ApiV2beta1GetAreaRegionRequest) Execute() (*RegionalArea, error) {
-	return r.ApiService.V2beta1GetAreaRegionExecute(r)
+func (r ApiV2beta1GetNetworkAreaRegionRequest) Execute() (*RegionalArea, error) {
+	return r.ApiService.V2beta1GetNetworkAreaRegionExecute(r)
 }
 
 /*
-V2beta1GetAreaRegion Get details about a configured region.
+V2beta1GetNetworkAreaRegion Get details about a configured region.
 
 Get details about a configured region in a network area.
 
@@ -26611,10 +27023,10 @@ Get details about a configured region in a network area.
 	@param organizationId The identifier (ID) of a STACKIT Organization.
 	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@param region The STACKIT Region of the resources.
-	@return ApiV2beta1GetAreaRegionRequest
+	@return ApiV2beta1GetNetworkAreaRegionRequest
 */
-func (a *DefaultAPIService) V2beta1GetAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetAreaRegionRequest {
-	return ApiV2beta1GetAreaRegionRequest{
+func (a *DefaultAPIService) V2beta1GetNetworkAreaRegion(ctx context.Context, organizationId string, areaId string, region string) ApiV2beta1GetNetworkAreaRegionRequest {
+	return ApiV2beta1GetNetworkAreaRegionRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -26626,7 +27038,7 @@ func (a *DefaultAPIService) V2beta1GetAreaRegion(ctx context.Context, organizati
 // Execute executes the request
 //
 //	@return RegionalArea
-func (a *DefaultAPIService) V2beta1GetAreaRegionExecute(r ApiV2beta1GetAreaRegionRequest) (*RegionalArea, error) {
+func (a *DefaultAPIService) V2beta1GetNetworkAreaRegionExecute(r ApiV2beta1GetNetworkAreaRegionRequest) (*RegionalArea, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -26634,7 +27046,7 @@ func (a *DefaultAPIService) V2beta1GetAreaRegionExecute(r ApiV2beta1GetAreaRegio
 		localVarReturnValue *RegionalArea
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1GetAreaRegion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1GetNetworkAreaRegion")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -26968,29 +27380,29 @@ func (a *DefaultAPIService) V2beta1GetSnapshotExecute(r ApiV2beta1GetSnapshotReq
 	return localVarReturnValue, nil
 }
 
-type ApiV2beta1ListAreaRegionsRequest struct {
+type ApiV2beta1ListNetworkAreaRegionsRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
 	organizationId string
 	areaId         string
 }
 
-func (r ApiV2beta1ListAreaRegionsRequest) Execute() (*RegionalAreaListResponse, error) {
-	return r.ApiService.V2beta1ListAreaRegionsExecute(r)
+func (r ApiV2beta1ListNetworkAreaRegionsRequest) Execute() (*RegionalAreaListResponse, error) {
+	return r.ApiService.V2beta1ListNetworkAreaRegionsExecute(r)
 }
 
 /*
-V2beta1ListAreaRegions List all configured regions in a network area.
+V2beta1ListNetworkAreaRegions List all configured regions in a network area.
 
 Get a list of all configured regions.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId The identifier (ID) of a STACKIT Organization.
 	@param areaId The identifier (ID) of a STACKIT Network Area.
-	@return ApiV2beta1ListAreaRegionsRequest
+	@return ApiV2beta1ListNetworkAreaRegionsRequest
 */
-func (a *DefaultAPIService) V2beta1ListAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListAreaRegionsRequest {
-	return ApiV2beta1ListAreaRegionsRequest{
+func (a *DefaultAPIService) V2beta1ListNetworkAreaRegions(ctx context.Context, organizationId string, areaId string) ApiV2beta1ListNetworkAreaRegionsRequest {
+	return ApiV2beta1ListNetworkAreaRegionsRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -27001,7 +27413,7 @@ func (a *DefaultAPIService) V2beta1ListAreaRegions(ctx context.Context, organiza
 // Execute executes the request
 //
 //	@return RegionalAreaListResponse
-func (a *DefaultAPIService) V2beta1ListAreaRegionsExecute(r ApiV2beta1ListAreaRegionsRequest) (*RegionalAreaListResponse, error) {
+func (a *DefaultAPIService) V2beta1ListNetworkAreaRegionsExecute(r ApiV2beta1ListNetworkAreaRegionsRequest) (*RegionalAreaListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -27009,7 +27421,7 @@ func (a *DefaultAPIService) V2beta1ListAreaRegionsExecute(r ApiV2beta1ListAreaRe
 		localVarReturnValue *RegionalAreaListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1ListAreaRegions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1ListNetworkAreaRegions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -27153,7 +27565,7 @@ func (a *DefaultAPIService) V2beta1ListAreaRegionsExecute(r ApiV2beta1ListAreaRe
 	return localVarReturnValue, nil
 }
 
-type ApiV2beta1ListSnapshotsInProjectRequest struct {
+type ApiV2beta1ListSnapshotsRequest struct {
 	ctx           context.Context
 	ApiService    DefaultAPI
 	projectId     string
@@ -27162,27 +27574,27 @@ type ApiV2beta1ListSnapshotsInProjectRequest struct {
 }
 
 // Filter resources by labels.
-func (r ApiV2beta1ListSnapshotsInProjectRequest) LabelSelector(labelSelector string) ApiV2beta1ListSnapshotsInProjectRequest {
+func (r ApiV2beta1ListSnapshotsRequest) LabelSelector(labelSelector string) ApiV2beta1ListSnapshotsRequest {
 	r.labelSelector = &labelSelector
 	return r
 }
 
-func (r ApiV2beta1ListSnapshotsInProjectRequest) Execute() (*SnapshotListResponse, error) {
-	return r.ApiService.V2beta1ListSnapshotsInProjectExecute(r)
+func (r ApiV2beta1ListSnapshotsRequest) Execute() (*SnapshotListResponse, error) {
+	return r.ApiService.V2beta1ListSnapshotsExecute(r)
 }
 
 /*
-V2beta1ListSnapshotsInProject List all snapshots inside a project.
+V2beta1ListSnapshots List all snapshots inside a project.
 
 Get a list of all snapshots inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
 	@param region The STACKIT Region of the resources.
-	@return ApiV2beta1ListSnapshotsInProjectRequest
+	@return ApiV2beta1ListSnapshotsRequest
 */
-func (a *DefaultAPIService) V2beta1ListSnapshotsInProject(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsInProjectRequest {
-	return ApiV2beta1ListSnapshotsInProjectRequest{
+func (a *DefaultAPIService) V2beta1ListSnapshots(ctx context.Context, projectId string, region string) ApiV2beta1ListSnapshotsRequest {
+	return ApiV2beta1ListSnapshotsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -27193,7 +27605,7 @@ func (a *DefaultAPIService) V2beta1ListSnapshotsInProject(ctx context.Context, p
 // Execute executes the request
 //
 //	@return SnapshotListResponse
-func (a *DefaultAPIService) V2beta1ListSnapshotsInProjectExecute(r ApiV2beta1ListSnapshotsInProjectRequest) (*SnapshotListResponse, error) {
+func (a *DefaultAPIService) V2beta1ListSnapshotsExecute(r ApiV2beta1ListSnapshotsRequest) (*SnapshotListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -27201,7 +27613,7 @@ func (a *DefaultAPIService) V2beta1ListSnapshotsInProjectExecute(r ApiV2beta1Lis
 		localVarReturnValue *SnapshotListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1ListSnapshotsInProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1ListSnapshots")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -27755,28 +28167,28 @@ func (a *DefaultAPIService) V2beta1UpdateNetworkAreaRegionExecute(r ApiV2beta1Up
 	return localVarReturnValue, nil
 }
 
-type ApiV2beta1UpdateRouteOfAreaRequest struct {
-	ctx                             context.Context
-	ApiService                      DefaultAPI
-	organizationId                  string
-	areaId                          string
-	region                          string
-	routeId                         string
-	v2beta1UpdateRouteOfAreaPayload *V2beta1UpdateRouteOfAreaPayload
+type ApiV2beta1UpdateNetworkAreaRouteRequest struct {
+	ctx                                  context.Context
+	ApiService                           DefaultAPI
+	organizationId                       string
+	areaId                               string
+	region                               string
+	routeId                              string
+	v2beta1UpdateNetworkAreaRoutePayload *V2beta1UpdateNetworkAreaRoutePayload
 }
 
 // Request an update of a network route.
-func (r ApiV2beta1UpdateRouteOfAreaRequest) V2beta1UpdateRouteOfAreaPayload(v2beta1UpdateRouteOfAreaPayload V2beta1UpdateRouteOfAreaPayload) ApiV2beta1UpdateRouteOfAreaRequest {
-	r.v2beta1UpdateRouteOfAreaPayload = &v2beta1UpdateRouteOfAreaPayload
+func (r ApiV2beta1UpdateNetworkAreaRouteRequest) V2beta1UpdateNetworkAreaRoutePayload(v2beta1UpdateNetworkAreaRoutePayload V2beta1UpdateNetworkAreaRoutePayload) ApiV2beta1UpdateNetworkAreaRouteRequest {
+	r.v2beta1UpdateNetworkAreaRoutePayload = &v2beta1UpdateNetworkAreaRoutePayload
 	return r
 }
 
-func (r ApiV2beta1UpdateRouteOfAreaRequest) Execute() (*Route, error) {
-	return r.ApiService.V2beta1UpdateRouteOfAreaExecute(r)
+func (r ApiV2beta1UpdateNetworkAreaRouteRequest) Execute() (*Route, error) {
+	return r.ApiService.V2beta1UpdateNetworkAreaRouteExecute(r)
 }
 
 /*
-V2beta1UpdateRouteOfArea Update a network route.
+V2beta1UpdateNetworkAreaRoute Update a network route.
 
 Update a network route defined in a network area.
 
@@ -27785,10 +28197,10 @@ Update a network route defined in a network area.
 	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@param region The STACKIT Region of the resources.
 	@param routeId The identifier (ID) of a STACKIT Route.
-	@return ApiV2beta1UpdateRouteOfAreaRequest
+	@return ApiV2beta1UpdateNetworkAreaRouteRequest
 */
-func (a *DefaultAPIService) V2beta1UpdateRouteOfArea(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateRouteOfAreaRequest {
-	return ApiV2beta1UpdateRouteOfAreaRequest{
+func (a *DefaultAPIService) V2beta1UpdateNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, region string, routeId string) ApiV2beta1UpdateNetworkAreaRouteRequest {
+	return ApiV2beta1UpdateNetworkAreaRouteRequest{
 		ApiService:     a,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -27801,7 +28213,7 @@ func (a *DefaultAPIService) V2beta1UpdateRouteOfArea(ctx context.Context, organi
 // Execute executes the request
 //
 //	@return Route
-func (a *DefaultAPIService) V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRouteOfAreaRequest) (*Route, error) {
+func (a *DefaultAPIService) V2beta1UpdateNetworkAreaRouteExecute(r ApiV2beta1UpdateNetworkAreaRouteRequest) (*Route, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -27809,7 +28221,7 @@ func (a *DefaultAPIService) V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRo
 		localVarReturnValue *Route
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1UpdateRouteOfArea")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.V2beta1UpdateNetworkAreaRoute")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -27841,8 +28253,8 @@ func (a *DefaultAPIService) V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRo
 	if strlen(r.routeId) > 36 {
 		return localVarReturnValue, reportError("routeId must have less than 36 elements")
 	}
-	if r.v2beta1UpdateRouteOfAreaPayload == nil {
-		return localVarReturnValue, reportError("v2beta1UpdateRouteOfAreaPayload is required and must be specified")
+	if r.v2beta1UpdateNetworkAreaRoutePayload == nil {
+		return localVarReturnValue, reportError("v2beta1UpdateNetworkAreaRoutePayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -27863,7 +28275,7 @@ func (a *DefaultAPIService) V2beta1UpdateRouteOfAreaExecute(r ApiV2beta1UpdateRo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.v2beta1UpdateRouteOfAreaPayload
+	localVarPostBody = r.v2beta1UpdateNetworkAreaRoutePayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
