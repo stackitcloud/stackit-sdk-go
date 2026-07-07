@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the ProtectInstanceResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProtectInstanceResponse{}
+// checks if the UpdateInstanceProtectionPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateInstanceProtectionPayload{}
 
-// ProtectInstanceResponse struct for ProtectInstanceResponse
-type ProtectInstanceResponse struct {
+// UpdateInstanceProtectionPayload struct for UpdateInstanceProtectionPayload
+type UpdateInstanceProtectionPayload struct {
 	// Protect instance from deletion.
 	IsDeletable          bool `json:"isDeletable"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProtectInstanceResponse ProtectInstanceResponse
+type _UpdateInstanceProtectionPayload UpdateInstanceProtectionPayload
 
-// NewProtectInstanceResponse instantiates a new ProtectInstanceResponse object
+// NewUpdateInstanceProtectionPayload instantiates a new UpdateInstanceProtectionPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProtectInstanceResponse(isDeletable bool) *ProtectInstanceResponse {
-	this := ProtectInstanceResponse{}
+func NewUpdateInstanceProtectionPayload(isDeletable bool) *UpdateInstanceProtectionPayload {
+	this := UpdateInstanceProtectionPayload{}
 	this.IsDeletable = isDeletable
 	return &this
 }
 
-// NewProtectInstanceResponseWithDefaults instantiates a new ProtectInstanceResponse object
+// NewUpdateInstanceProtectionPayloadWithDefaults instantiates a new UpdateInstanceProtectionPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProtectInstanceResponseWithDefaults() *ProtectInstanceResponse {
-	this := ProtectInstanceResponse{}
+func NewUpdateInstanceProtectionPayloadWithDefaults() *UpdateInstanceProtectionPayload {
+	this := UpdateInstanceProtectionPayload{}
 	return &this
 }
 
 // GetIsDeletable returns the IsDeletable field value
-func (o *ProtectInstanceResponse) GetIsDeletable() bool {
+func (o *UpdateInstanceProtectionPayload) GetIsDeletable() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -58,7 +58,7 @@ func (o *ProtectInstanceResponse) GetIsDeletable() bool {
 
 // GetIsDeletableOk returns a tuple with the IsDeletable field value
 // and a boolean to check if the value has been set.
-func (o *ProtectInstanceResponse) GetIsDeletableOk() (*bool, bool) {
+func (o *UpdateInstanceProtectionPayload) GetIsDeletableOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *ProtectInstanceResponse) GetIsDeletableOk() (*bool, bool) {
 }
 
 // SetIsDeletable sets field value
-func (o *ProtectInstanceResponse) SetIsDeletable(v bool) {
+func (o *UpdateInstanceProtectionPayload) SetIsDeletable(v bool) {
 	o.IsDeletable = v
 }
 
-func (o ProtectInstanceResponse) MarshalJSON() ([]byte, error) {
+func (o UpdateInstanceProtectionPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o ProtectInstanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProtectInstanceResponse) ToMap() (map[string]interface{}, error) {
+func (o UpdateInstanceProtectionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["isDeletable"] = o.IsDeletable
 
@@ -89,7 +89,7 @@ func (o ProtectInstanceResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProtectInstanceResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdateInstanceProtectionPayload) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *ProtectInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varProtectInstanceResponse := _ProtectInstanceResponse{}
+	varUpdateInstanceProtectionPayload := _UpdateInstanceProtectionPayload{}
 
-	err = json.Unmarshal(data, &varProtectInstanceResponse)
+	err = json.Unmarshal(data, &varUpdateInstanceProtectionPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ProtectInstanceResponse(varProtectInstanceResponse)
+	*o = UpdateInstanceProtectionPayload(varUpdateInstanceProtectionPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *ProtectInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableProtectInstanceResponse struct {
-	value *ProtectInstanceResponse
+type NullableUpdateInstanceProtectionPayload struct {
+	value *UpdateInstanceProtectionPayload
 	isSet bool
 }
 
-func (v NullableProtectInstanceResponse) Get() *ProtectInstanceResponse {
+func (v NullableUpdateInstanceProtectionPayload) Get() *UpdateInstanceProtectionPayload {
 	return v.value
 }
 
-func (v *NullableProtectInstanceResponse) Set(val *ProtectInstanceResponse) {
+func (v *NullableUpdateInstanceProtectionPayload) Set(val *UpdateInstanceProtectionPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProtectInstanceResponse) IsSet() bool {
+func (v NullableUpdateInstanceProtectionPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProtectInstanceResponse) Unset() {
+func (v *NullableUpdateInstanceProtectionPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProtectInstanceResponse(val *ProtectInstanceResponse) *NullableProtectInstanceResponse {
-	return &NullableProtectInstanceResponse{value: val, isSet: true}
+func NewNullableUpdateInstanceProtectionPayload(val *UpdateInstanceProtectionPayload) *NullableUpdateInstanceProtectionPayload {
+	return &NullableUpdateInstanceProtectionPayload{value: val, isSet: true}
 }
 
-func (v NullableProtectInstanceResponse) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateInstanceProtectionPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProtectInstanceResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateInstanceProtectionPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
