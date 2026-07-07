@@ -17,7 +17,7 @@ func main() {
 		// Specify instance configuration options
 		version = sqlserverflex.INSTANCEVERSION__2022
 		// You can find a valid flavorId, by calling this API https://docs.api.stackit.cloud/documentation/mssql-flex-service/version/v3beta2#tag/Flavors
-		// or using sqlserverflexClient.DefaultAPI.GetFlavors(ctx, projectId, region).Execute()
+		// or using sqlserverflexClient.DefaultAPI.ListFlavors(ctx, projectId, region).Execute()
 		flavorId = "FLAVOR_ID"
 	)
 
