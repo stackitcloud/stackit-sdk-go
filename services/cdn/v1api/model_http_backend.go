@@ -25,8 +25,8 @@ type HttpBackend struct {
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text.
 	OriginRequestHeaders map[string]string `json:"originRequestHeaders"`
 	// The origin of the content that should be made available through the CDN. Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed. So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
-	OriginUrl            string `json:"originUrl"`
-	Type                 string `json:"type"`
+	OriginUrl            string          `json:"originUrl"`
+	Type                 HttpBackendType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +36,7 @@ type _HttpBackend HttpBackend
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpBackend(geofencing map[string][]string, originRequestHeaders map[string]string, originUrl string, types string) *HttpBackend {
+func NewHttpBackend(geofencing map[string][]string, originRequestHeaders map[string]string, originUrl string, types HttpBackendType) *HttpBackend {
 	this := HttpBackend{}
 	this.Geofencing = geofencing
 	this.OriginRequestHeaders = originRequestHeaders
@@ -126,9 +126,9 @@ func (o *HttpBackend) SetOriginUrl(v string) {
 }
 
 // GetType returns the Type field value
-func (o *HttpBackend) GetType() string {
+func (o *HttpBackend) GetType() HttpBackendType {
 	if o == nil {
-		var ret string
+		var ret HttpBackendType
 		return ret
 	}
 
@@ -137,7 +137,7 @@ func (o *HttpBackend) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *HttpBackend) GetTypeOk() (*string, bool) {
+func (o *HttpBackend) GetTypeOk() (*HttpBackendType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -145,7 +145,7 @@ func (o *HttpBackend) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *HttpBackend) SetType(v string) {
+func (o *HttpBackend) SetType(v HttpBackendType) {
 	o.Type = v
 }
 
