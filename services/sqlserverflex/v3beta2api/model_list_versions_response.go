@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the GetVersionsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetVersionsResponse{}
+// checks if the ListVersionsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListVersionsResponse{}
 
-// GetVersionsResponse struct for GetVersionsResponse
-type GetVersionsResponse struct {
+// ListVersionsResponse struct for ListVersionsResponse
+type ListVersionsResponse struct {
 	// A list containing available sqlserver versions.
 	Versions             []Version `json:"versions"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetVersionsResponse GetVersionsResponse
+type _ListVersionsResponse ListVersionsResponse
 
-// NewGetVersionsResponse instantiates a new GetVersionsResponse object
+// NewListVersionsResponse instantiates a new ListVersionsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVersionsResponse(versions []Version) *GetVersionsResponse {
-	this := GetVersionsResponse{}
+func NewListVersionsResponse(versions []Version) *ListVersionsResponse {
+	this := ListVersionsResponse{}
 	this.Versions = versions
 	return &this
 }
 
-// NewGetVersionsResponseWithDefaults instantiates a new GetVersionsResponse object
+// NewListVersionsResponseWithDefaults instantiates a new ListVersionsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVersionsResponseWithDefaults() *GetVersionsResponse {
-	this := GetVersionsResponse{}
+func NewListVersionsResponseWithDefaults() *ListVersionsResponse {
+	this := ListVersionsResponse{}
 	return &this
 }
 
 // GetVersions returns the Versions field value
-func (o *GetVersionsResponse) GetVersions() []Version {
+func (o *ListVersionsResponse) GetVersions() []Version {
 	if o == nil {
 		var ret []Version
 		return ret
@@ -58,7 +58,7 @@ func (o *GetVersionsResponse) GetVersions() []Version {
 
 // GetVersionsOk returns a tuple with the Versions field value
 // and a boolean to check if the value has been set.
-func (o *GetVersionsResponse) GetVersionsOk() ([]Version, bool) {
+func (o *ListVersionsResponse) GetVersionsOk() ([]Version, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *GetVersionsResponse) GetVersionsOk() ([]Version, bool) {
 }
 
 // SetVersions sets field value
-func (o *GetVersionsResponse) SetVersions(v []Version) {
+func (o *ListVersionsResponse) SetVersions(v []Version) {
 	o.Versions = v
 }
 
-func (o GetVersionsResponse) MarshalJSON() ([]byte, error) {
+func (o ListVersionsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o GetVersionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetVersionsResponse) ToMap() (map[string]interface{}, error) {
+func (o ListVersionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["versions"] = o.Versions
 
@@ -89,7 +89,7 @@ func (o GetVersionsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetVersionsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ListVersionsResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *GetVersionsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetVersionsResponse := _GetVersionsResponse{}
+	varListVersionsResponse := _ListVersionsResponse{}
 
-	err = json.Unmarshal(data, &varGetVersionsResponse)
+	err = json.Unmarshal(data, &varListVersionsResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetVersionsResponse(varGetVersionsResponse)
+	*o = ListVersionsResponse(varListVersionsResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *GetVersionsResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGetVersionsResponse struct {
-	value *GetVersionsResponse
+type NullableListVersionsResponse struct {
+	value *ListVersionsResponse
 	isSet bool
 }
 
-func (v NullableGetVersionsResponse) Get() *GetVersionsResponse {
+func (v NullableListVersionsResponse) Get() *ListVersionsResponse {
 	return v.value
 }
 
-func (v *NullableGetVersionsResponse) Set(val *GetVersionsResponse) {
+func (v *NullableListVersionsResponse) Set(val *ListVersionsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVersionsResponse) IsSet() bool {
+func (v NullableListVersionsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVersionsResponse) Unset() {
+func (v *NullableListVersionsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVersionsResponse(val *GetVersionsResponse) *NullableGetVersionsResponse {
-	return &NullableGetVersionsResponse{value: val, isSet: true}
+func NewNullableListVersionsResponse(val *ListVersionsResponse) *NullableListVersionsResponse {
+	return &NullableListVersionsResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVersionsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListVersionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVersionsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListVersionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

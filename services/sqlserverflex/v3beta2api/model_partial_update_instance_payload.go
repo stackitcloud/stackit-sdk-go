@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateInstancePartiallyPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateInstancePartiallyPayload{}
+// checks if the PartialUpdateInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateInstancePayload{}
 
-// UpdateInstancePartiallyPayload struct for UpdateInstancePartiallyPayload
-type UpdateInstancePartiallyPayload struct {
+// PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
+type PartialUpdateInstancePayload struct {
 	// The schedule on which time the daily backup is being executed. The schedule is written as a cron schedule.
 	BackupSchedule *string `json:"backupSchedule,omitempty"`
 	// The id of the instance flavor.
@@ -27,35 +27,35 @@ type UpdateInstancePartiallyPayload struct {
 	// A dictionary of user-defined key-value pairs used to categorize or organize the resource.  **Rules for Keys:** * Must be between 1 and 63 characters long. * Must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$` * **Restriction:** The prefix `stackit-` is strictly reserved and cannot be used.  **Rules for Values:** * Must be between 0 (empty string) and 63 characters long. * If not empty, must begin and end with an alphanumeric character. * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
-	Name                 *string                                `json:"name,omitempty"`
-	Network              *UpdateInstancePartiallyPayloadNetwork `json:"network,omitempty"`
-	RetentionDays        *int32                                 `json:"retentionDays,omitempty"`
-	Storage              *StorageUpdate                         `json:"storage,omitempty"`
-	Version              *InstanceVersionOpt                    `json:"version,omitempty"`
+	Name                 *string                              `json:"name,omitempty"`
+	Network              *PartialUpdateInstancePayloadNetwork `json:"network,omitempty"`
+	RetentionDays        *int32                               `json:"retentionDays,omitempty"`
+	Storage              *StorageUpdate                       `json:"storage,omitempty"`
+	Version              *InstanceVersionOpt                  `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateInstancePartiallyPayload UpdateInstancePartiallyPayload
+type _PartialUpdateInstancePayload PartialUpdateInstancePayload
 
-// NewUpdateInstancePartiallyPayload instantiates a new UpdateInstancePartiallyPayload object
+// NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstancePartiallyPayload() *UpdateInstancePartiallyPayload {
-	this := UpdateInstancePartiallyPayload{}
+func NewPartialUpdateInstancePayload() *PartialUpdateInstancePayload {
+	this := PartialUpdateInstancePayload{}
 	return &this
 }
 
-// NewUpdateInstancePartiallyPayloadWithDefaults instantiates a new UpdateInstancePartiallyPayload object
+// NewPartialUpdateInstancePayloadWithDefaults instantiates a new PartialUpdateInstancePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateInstancePartiallyPayloadWithDefaults() *UpdateInstancePartiallyPayload {
-	this := UpdateInstancePartiallyPayload{}
+func NewPartialUpdateInstancePayloadWithDefaults() *PartialUpdateInstancePayload {
+	this := PartialUpdateInstancePayload{}
 	return &this
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetBackupSchedule() string {
+func (o *PartialUpdateInstancePayload) GetBackupSchedule() string {
 	if o == nil || IsNil(o.BackupSchedule) {
 		var ret string
 		return ret
@@ -65,7 +65,7 @@ func (o *UpdateInstancePartiallyPayload) GetBackupSchedule() string {
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetBackupScheduleOk() (*string, bool) {
+func (o *PartialUpdateInstancePayload) GetBackupScheduleOk() (*string, bool) {
 	if o == nil || IsNil(o.BackupSchedule) {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *UpdateInstancePartiallyPayload) GetBackupScheduleOk() (*string, bool) {
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasBackupSchedule() bool {
+func (o *PartialUpdateInstancePayload) HasBackupSchedule() bool {
 	if o != nil && !IsNil(o.BackupSchedule) {
 		return true
 	}
@@ -82,12 +82,12 @@ func (o *UpdateInstancePartiallyPayload) HasBackupSchedule() bool {
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
-func (o *UpdateInstancePartiallyPayload) SetBackupSchedule(v string) {
+func (o *PartialUpdateInstancePayload) SetBackupSchedule(v string) {
 	o.BackupSchedule = &v
 }
 
 // GetFlavorId returns the FlavorId field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetFlavorId() string {
+func (o *PartialUpdateInstancePayload) GetFlavorId() string {
 	if o == nil || IsNil(o.FlavorId) {
 		var ret string
 		return ret
@@ -97,7 +97,7 @@ func (o *UpdateInstancePartiallyPayload) GetFlavorId() string {
 
 // GetFlavorIdOk returns a tuple with the FlavorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetFlavorIdOk() (*string, bool) {
+func (o *PartialUpdateInstancePayload) GetFlavorIdOk() (*string, bool) {
 	if o == nil || IsNil(o.FlavorId) {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *UpdateInstancePartiallyPayload) GetFlavorIdOk() (*string, bool) {
 }
 
 // HasFlavorId returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasFlavorId() bool {
+func (o *PartialUpdateInstancePayload) HasFlavorId() bool {
 	if o != nil && !IsNil(o.FlavorId) {
 		return true
 	}
@@ -114,12 +114,12 @@ func (o *UpdateInstancePartiallyPayload) HasFlavorId() bool {
 }
 
 // SetFlavorId gets a reference to the given string and assigns it to the FlavorId field.
-func (o *UpdateInstancePartiallyPayload) SetFlavorId(v string) {
+func (o *PartialUpdateInstancePayload) SetFlavorId(v string) {
 	o.FlavorId = &v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetLabels() map[string]string {
+func (o *PartialUpdateInstancePayload) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
 		var ret map[string]string
 		return ret
@@ -129,7 +129,7 @@ func (o *UpdateInstancePartiallyPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -137,7 +137,7 @@ func (o *UpdateInstancePartiallyPayload) GetLabelsOk() (*map[string]string, bool
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasLabels() bool {
+func (o *PartialUpdateInstancePayload) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -146,12 +146,12 @@ func (o *UpdateInstancePartiallyPayload) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *UpdateInstancePartiallyPayload) SetLabels(v map[string]string) {
+func (o *PartialUpdateInstancePayload) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetName() string {
+func (o *PartialUpdateInstancePayload) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -161,7 +161,7 @@ func (o *UpdateInstancePartiallyPayload) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetNameOk() (*string, bool) {
+func (o *PartialUpdateInstancePayload) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -169,7 +169,7 @@ func (o *UpdateInstancePartiallyPayload) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasName() bool {
+func (o *PartialUpdateInstancePayload) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -178,14 +178,14 @@ func (o *UpdateInstancePartiallyPayload) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateInstancePartiallyPayload) SetName(v string) {
+func (o *PartialUpdateInstancePayload) SetName(v string) {
 	o.Name = &v
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetNetwork() UpdateInstancePartiallyPayloadNetwork {
+func (o *PartialUpdateInstancePayload) GetNetwork() PartialUpdateInstancePayloadNetwork {
 	if o == nil || IsNil(o.Network) {
-		var ret UpdateInstancePartiallyPayloadNetwork
+		var ret PartialUpdateInstancePayloadNetwork
 		return ret
 	}
 	return *o.Network
@@ -193,7 +193,7 @@ func (o *UpdateInstancePartiallyPayload) GetNetwork() UpdateInstancePartiallyPay
 
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetNetworkOk() (*UpdateInstancePartiallyPayloadNetwork, bool) {
+func (o *PartialUpdateInstancePayload) GetNetworkOk() (*PartialUpdateInstancePayloadNetwork, bool) {
 	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *UpdateInstancePartiallyPayload) GetNetworkOk() (*UpdateInstancePartiall
 }
 
 // HasNetwork returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasNetwork() bool {
+func (o *PartialUpdateInstancePayload) HasNetwork() bool {
 	if o != nil && !IsNil(o.Network) {
 		return true
 	}
@@ -209,13 +209,13 @@ func (o *UpdateInstancePartiallyPayload) HasNetwork() bool {
 	return false
 }
 
-// SetNetwork gets a reference to the given UpdateInstancePartiallyPayloadNetwork and assigns it to the Network field.
-func (o *UpdateInstancePartiallyPayload) SetNetwork(v UpdateInstancePartiallyPayloadNetwork) {
+// SetNetwork gets a reference to the given PartialUpdateInstancePayloadNetwork and assigns it to the Network field.
+func (o *PartialUpdateInstancePayload) SetNetwork(v PartialUpdateInstancePayloadNetwork) {
 	o.Network = &v
 }
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetRetentionDays() int32 {
+func (o *PartialUpdateInstancePayload) GetRetentionDays() int32 {
 	if o == nil || IsNil(o.RetentionDays) {
 		var ret int32
 		return ret
@@ -225,7 +225,7 @@ func (o *UpdateInstancePartiallyPayload) GetRetentionDays() int32 {
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetRetentionDaysOk() (*int32, bool) {
+func (o *PartialUpdateInstancePayload) GetRetentionDaysOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetentionDays) {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *UpdateInstancePartiallyPayload) GetRetentionDaysOk() (*int32, bool) {
 }
 
 // HasRetentionDays returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasRetentionDays() bool {
+func (o *PartialUpdateInstancePayload) HasRetentionDays() bool {
 	if o != nil && !IsNil(o.RetentionDays) {
 		return true
 	}
@@ -242,12 +242,12 @@ func (o *UpdateInstancePartiallyPayload) HasRetentionDays() bool {
 }
 
 // SetRetentionDays gets a reference to the given int32 and assigns it to the RetentionDays field.
-func (o *UpdateInstancePartiallyPayload) SetRetentionDays(v int32) {
+func (o *PartialUpdateInstancePayload) SetRetentionDays(v int32) {
 	o.RetentionDays = &v
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetStorage() StorageUpdate {
+func (o *PartialUpdateInstancePayload) GetStorage() StorageUpdate {
 	if o == nil || IsNil(o.Storage) {
 		var ret StorageUpdate
 		return ret
@@ -257,7 +257,7 @@ func (o *UpdateInstancePartiallyPayload) GetStorage() StorageUpdate {
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetStorageOk() (*StorageUpdate, bool) {
+func (o *PartialUpdateInstancePayload) GetStorageOk() (*StorageUpdate, bool) {
 	if o == nil || IsNil(o.Storage) {
 		return nil, false
 	}
@@ -265,7 +265,7 @@ func (o *UpdateInstancePartiallyPayload) GetStorageOk() (*StorageUpdate, bool) {
 }
 
 // HasStorage returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasStorage() bool {
+func (o *PartialUpdateInstancePayload) HasStorage() bool {
 	if o != nil && !IsNil(o.Storage) {
 		return true
 	}
@@ -274,12 +274,12 @@ func (o *UpdateInstancePartiallyPayload) HasStorage() bool {
 }
 
 // SetStorage gets a reference to the given StorageUpdate and assigns it to the Storage field.
-func (o *UpdateInstancePartiallyPayload) SetStorage(v StorageUpdate) {
+func (o *PartialUpdateInstancePayload) SetStorage(v StorageUpdate) {
 	o.Storage = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *UpdateInstancePartiallyPayload) GetVersion() InstanceVersionOpt {
+func (o *PartialUpdateInstancePayload) GetVersion() InstanceVersionOpt {
 	if o == nil || IsNil(o.Version) {
 		var ret InstanceVersionOpt
 		return ret
@@ -289,7 +289,7 @@ func (o *UpdateInstancePartiallyPayload) GetVersion() InstanceVersionOpt {
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePartiallyPayload) GetVersionOk() (*InstanceVersionOpt, bool) {
+func (o *PartialUpdateInstancePayload) GetVersionOk() (*InstanceVersionOpt, bool) {
 	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
@@ -297,7 +297,7 @@ func (o *UpdateInstancePartiallyPayload) GetVersionOk() (*InstanceVersionOpt, bo
 }
 
 // HasVersion returns a boolean if a field has been set.
-func (o *UpdateInstancePartiallyPayload) HasVersion() bool {
+func (o *PartialUpdateInstancePayload) HasVersion() bool {
 	if o != nil && !IsNil(o.Version) {
 		return true
 	}
@@ -306,11 +306,11 @@ func (o *UpdateInstancePartiallyPayload) HasVersion() bool {
 }
 
 // SetVersion gets a reference to the given InstanceVersionOpt and assigns it to the Version field.
-func (o *UpdateInstancePartiallyPayload) SetVersion(v InstanceVersionOpt) {
+func (o *PartialUpdateInstancePayload) SetVersion(v InstanceVersionOpt) {
 	o.Version = &v
 }
 
-func (o UpdateInstancePartiallyPayload) MarshalJSON() ([]byte, error) {
+func (o PartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -318,7 +318,7 @@ func (o UpdateInstancePartiallyPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateInstancePartiallyPayload) ToMap() (map[string]interface{}, error) {
+func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BackupSchedule) {
 		toSerialize["backupSchedule"] = o.BackupSchedule
@@ -352,16 +352,16 @@ func (o UpdateInstancePartiallyPayload) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-func (o *UpdateInstancePartiallyPayload) UnmarshalJSON(data []byte) (err error) {
-	varUpdateInstancePartiallyPayload := _UpdateInstancePartiallyPayload{}
+func (o *PartialUpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateInstancePayload := _PartialUpdateInstancePayload{}
 
-	err = json.Unmarshal(data, &varUpdateInstancePartiallyPayload)
+	err = json.Unmarshal(data, &varPartialUpdateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateInstancePartiallyPayload(varUpdateInstancePartiallyPayload)
+	*o = PartialUpdateInstancePayload(varPartialUpdateInstancePayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -380,38 +380,38 @@ func (o *UpdateInstancePartiallyPayload) UnmarshalJSON(data []byte) (err error) 
 	return err
 }
 
-type NullableUpdateInstancePartiallyPayload struct {
-	value *UpdateInstancePartiallyPayload
+type NullablePartialUpdateInstancePayload struct {
+	value *PartialUpdateInstancePayload
 	isSet bool
 }
 
-func (v NullableUpdateInstancePartiallyPayload) Get() *UpdateInstancePartiallyPayload {
+func (v NullablePartialUpdateInstancePayload) Get() *PartialUpdateInstancePayload {
 	return v.value
 }
 
-func (v *NullableUpdateInstancePartiallyPayload) Set(val *UpdateInstancePartiallyPayload) {
+func (v *NullablePartialUpdateInstancePayload) Set(val *PartialUpdateInstancePayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateInstancePartiallyPayload) IsSet() bool {
+func (v NullablePartialUpdateInstancePayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateInstancePartiallyPayload) Unset() {
+func (v *NullablePartialUpdateInstancePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateInstancePartiallyPayload(val *UpdateInstancePartiallyPayload) *NullableUpdateInstancePartiallyPayload {
-	return &NullableUpdateInstancePartiallyPayload{value: val, isSet: true}
+func NewNullablePartialUpdateInstancePayload(val *PartialUpdateInstancePayload) *NullablePartialUpdateInstancePayload {
+	return &NullablePartialUpdateInstancePayload{value: val, isSet: true}
 }
 
-func (v NullableUpdateInstancePartiallyPayload) MarshalJSON() ([]byte, error) {
+func (v NullablePartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateInstancePartiallyPayload) UnmarshalJSON(src []byte) error {
+func (v *NullablePartialUpdateInstancePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
