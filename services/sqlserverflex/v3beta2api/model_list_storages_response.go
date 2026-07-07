@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the GetStoragesResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetStoragesResponse{}
+// checks if the ListStoragesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListStoragesResponse{}
 
-// GetStoragesResponse struct for GetStoragesResponse
-type GetStoragesResponse struct {
+// ListStoragesResponse struct for ListStoragesResponse
+type ListStoragesResponse struct {
 	// maximum storage which can be ordered for the flavor in Gigabyte.
 	StorageClasses       []FlavorStorageClassesStorageClass `json:"storageClasses"`
 	StorageRange         FlavorStorageRange                 `json:"storageRange"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetStoragesResponse GetStoragesResponse
+type _ListStoragesResponse ListStoragesResponse
 
-// NewGetStoragesResponse instantiates a new GetStoragesResponse object
+// NewListStoragesResponse instantiates a new ListStoragesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetStoragesResponse(storageClasses []FlavorStorageClassesStorageClass, storageRange FlavorStorageRange) *GetStoragesResponse {
-	this := GetStoragesResponse{}
+func NewListStoragesResponse(storageClasses []FlavorStorageClassesStorageClass, storageRange FlavorStorageRange) *ListStoragesResponse {
+	this := ListStoragesResponse{}
 	this.StorageClasses = storageClasses
 	this.StorageRange = storageRange
 	return &this
 }
 
-// NewGetStoragesResponseWithDefaults instantiates a new GetStoragesResponse object
+// NewListStoragesResponseWithDefaults instantiates a new ListStoragesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetStoragesResponseWithDefaults() *GetStoragesResponse {
-	this := GetStoragesResponse{}
+func NewListStoragesResponseWithDefaults() *ListStoragesResponse {
+	this := ListStoragesResponse{}
 	return &this
 }
 
 // GetStorageClasses returns the StorageClasses field value
-func (o *GetStoragesResponse) GetStorageClasses() []FlavorStorageClassesStorageClass {
+func (o *ListStoragesResponse) GetStorageClasses() []FlavorStorageClassesStorageClass {
 	if o == nil {
 		var ret []FlavorStorageClassesStorageClass
 		return ret
@@ -60,7 +60,7 @@ func (o *GetStoragesResponse) GetStorageClasses() []FlavorStorageClassesStorageC
 
 // GetStorageClassesOk returns a tuple with the StorageClasses field value
 // and a boolean to check if the value has been set.
-func (o *GetStoragesResponse) GetStorageClassesOk() ([]FlavorStorageClassesStorageClass, bool) {
+func (o *ListStoragesResponse) GetStorageClassesOk() ([]FlavorStorageClassesStorageClass, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *GetStoragesResponse) GetStorageClassesOk() ([]FlavorStorageClassesStora
 }
 
 // SetStorageClasses sets field value
-func (o *GetStoragesResponse) SetStorageClasses(v []FlavorStorageClassesStorageClass) {
+func (o *ListStoragesResponse) SetStorageClasses(v []FlavorStorageClassesStorageClass) {
 	o.StorageClasses = v
 }
 
 // GetStorageRange returns the StorageRange field value
-func (o *GetStoragesResponse) GetStorageRange() FlavorStorageRange {
+func (o *ListStoragesResponse) GetStorageRange() FlavorStorageRange {
 	if o == nil {
 		var ret FlavorStorageRange
 		return ret
@@ -84,7 +84,7 @@ func (o *GetStoragesResponse) GetStorageRange() FlavorStorageRange {
 
 // GetStorageRangeOk returns a tuple with the StorageRange field value
 // and a boolean to check if the value has been set.
-func (o *GetStoragesResponse) GetStorageRangeOk() (*FlavorStorageRange, bool) {
+func (o *ListStoragesResponse) GetStorageRangeOk() (*FlavorStorageRange, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *GetStoragesResponse) GetStorageRangeOk() (*FlavorStorageRange, bool) {
 }
 
 // SetStorageRange sets field value
-func (o *GetStoragesResponse) SetStorageRange(v FlavorStorageRange) {
+func (o *ListStoragesResponse) SetStorageRange(v FlavorStorageRange) {
 	o.StorageRange = v
 }
 
-func (o GetStoragesResponse) MarshalJSON() ([]byte, error) {
+func (o ListStoragesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,7 +104,7 @@ func (o GetStoragesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetStoragesResponse) ToMap() (map[string]interface{}, error) {
+func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["storageClasses"] = o.StorageClasses
 	toSerialize["storageRange"] = o.StorageRange
@@ -116,7 +116,7 @@ func (o GetStoragesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetStoragesResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ListStoragesResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -139,15 +139,15 @@ func (o *GetStoragesResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetStoragesResponse := _GetStoragesResponse{}
+	varListStoragesResponse := _ListStoragesResponse{}
 
-	err = json.Unmarshal(data, &varGetStoragesResponse)
+	err = json.Unmarshal(data, &varListStoragesResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetStoragesResponse(varGetStoragesResponse)
+	*o = ListStoragesResponse(varListStoragesResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -160,38 +160,38 @@ func (o *GetStoragesResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGetStoragesResponse struct {
-	value *GetStoragesResponse
+type NullableListStoragesResponse struct {
+	value *ListStoragesResponse
 	isSet bool
 }
 
-func (v NullableGetStoragesResponse) Get() *GetStoragesResponse {
+func (v NullableListStoragesResponse) Get() *ListStoragesResponse {
 	return v.value
 }
 
-func (v *NullableGetStoragesResponse) Set(val *GetStoragesResponse) {
+func (v *NullableListStoragesResponse) Set(val *ListStoragesResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetStoragesResponse) IsSet() bool {
+func (v NullableListStoragesResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetStoragesResponse) Unset() {
+func (v *NullableListStoragesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetStoragesResponse(val *GetStoragesResponse) *NullableGetStoragesResponse {
-	return &NullableGetStoragesResponse{value: val, isSet: true}
+func NewNullableListStoragesResponse(val *ListStoragesResponse) *NullableListStoragesResponse {
+	return &NullableListStoragesResponse{value: val, isSet: true}
 }
 
-func (v NullableGetStoragesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListStoragesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetStoragesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListStoragesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

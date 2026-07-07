@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the GetCollationsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetCollationsResponse{}
+// checks if the ListCollationsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListCollationsResponse{}
 
-// GetCollationsResponse struct for GetCollationsResponse
-type GetCollationsResponse struct {
+// ListCollationsResponse struct for ListCollationsResponse
+type ListCollationsResponse struct {
 	// List of collations available for the instance.
 	Collations           []DatabaseGetcollation `json:"collations"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetCollationsResponse GetCollationsResponse
+type _ListCollationsResponse ListCollationsResponse
 
-// NewGetCollationsResponse instantiates a new GetCollationsResponse object
+// NewListCollationsResponse instantiates a new ListCollationsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCollationsResponse(collations []DatabaseGetcollation) *GetCollationsResponse {
-	this := GetCollationsResponse{}
+func NewListCollationsResponse(collations []DatabaseGetcollation) *ListCollationsResponse {
+	this := ListCollationsResponse{}
 	this.Collations = collations
 	return &this
 }
 
-// NewGetCollationsResponseWithDefaults instantiates a new GetCollationsResponse object
+// NewListCollationsResponseWithDefaults instantiates a new ListCollationsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetCollationsResponseWithDefaults() *GetCollationsResponse {
-	this := GetCollationsResponse{}
+func NewListCollationsResponseWithDefaults() *ListCollationsResponse {
+	this := ListCollationsResponse{}
 	return &this
 }
 
 // GetCollations returns the Collations field value
-func (o *GetCollationsResponse) GetCollations() []DatabaseGetcollation {
+func (o *ListCollationsResponse) GetCollations() []DatabaseGetcollation {
 	if o == nil {
 		var ret []DatabaseGetcollation
 		return ret
@@ -58,7 +58,7 @@ func (o *GetCollationsResponse) GetCollations() []DatabaseGetcollation {
 
 // GetCollationsOk returns a tuple with the Collations field value
 // and a boolean to check if the value has been set.
-func (o *GetCollationsResponse) GetCollationsOk() ([]DatabaseGetcollation, bool) {
+func (o *ListCollationsResponse) GetCollationsOk() ([]DatabaseGetcollation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *GetCollationsResponse) GetCollationsOk() ([]DatabaseGetcollation, bool)
 }
 
 // SetCollations sets field value
-func (o *GetCollationsResponse) SetCollations(v []DatabaseGetcollation) {
+func (o *ListCollationsResponse) SetCollations(v []DatabaseGetcollation) {
 	o.Collations = v
 }
 
-func (o GetCollationsResponse) MarshalJSON() ([]byte, error) {
+func (o ListCollationsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o GetCollationsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetCollationsResponse) ToMap() (map[string]interface{}, error) {
+func (o ListCollationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collations"] = o.Collations
 
@@ -89,7 +89,7 @@ func (o GetCollationsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetCollationsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ListCollationsResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *GetCollationsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetCollationsResponse := _GetCollationsResponse{}
+	varListCollationsResponse := _ListCollationsResponse{}
 
-	err = json.Unmarshal(data, &varGetCollationsResponse)
+	err = json.Unmarshal(data, &varListCollationsResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetCollationsResponse(varGetCollationsResponse)
+	*o = ListCollationsResponse(varListCollationsResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *GetCollationsResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGetCollationsResponse struct {
-	value *GetCollationsResponse
+type NullableListCollationsResponse struct {
+	value *ListCollationsResponse
 	isSet bool
 }
 
-func (v NullableGetCollationsResponse) Get() *GetCollationsResponse {
+func (v NullableListCollationsResponse) Get() *ListCollationsResponse {
 	return v.value
 }
 
-func (v *NullableGetCollationsResponse) Set(val *GetCollationsResponse) {
+func (v *NullableListCollationsResponse) Set(val *ListCollationsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetCollationsResponse) IsSet() bool {
+func (v NullableListCollationsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetCollationsResponse) Unset() {
+func (v *NullableListCollationsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetCollationsResponse(val *GetCollationsResponse) *NullableGetCollationsResponse {
-	return &NullableGetCollationsResponse{value: val, isSet: true}
+func NewNullableListCollationsResponse(val *ListCollationsResponse) *NullableListCollationsResponse {
+	return &NullableListCollationsResponse{value: val, isSet: true}
 }
 
-func (v NullableGetCollationsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListCollationsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetCollationsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListCollationsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
