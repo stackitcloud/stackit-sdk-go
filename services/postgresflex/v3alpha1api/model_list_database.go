@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.08.2026. Please use the STACKIT PostgreSQL Flex API v3beta1 instead.
 
 API version: 3alpha1
 Contact: support@stackit.cloud
