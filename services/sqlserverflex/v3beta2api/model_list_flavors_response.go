@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the GetFlavorsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetFlavorsResponse{}
+// checks if the ListFlavorsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListFlavorsResponse{}
 
-// GetFlavorsResponse struct for GetFlavorsResponse
-type GetFlavorsResponse struct {
+// ListFlavorsResponse struct for ListFlavorsResponse
+type ListFlavorsResponse struct {
 	// List of flavors available for the project.
 	Flavors              []ListFlavors `json:"flavors"`
 	Pagination           Pagination    `json:"pagination"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetFlavorsResponse GetFlavorsResponse
+type _ListFlavorsResponse ListFlavorsResponse
 
-// NewGetFlavorsResponse instantiates a new GetFlavorsResponse object
+// NewListFlavorsResponse instantiates a new ListFlavorsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetFlavorsResponse(flavors []ListFlavors, pagination Pagination) *GetFlavorsResponse {
-	this := GetFlavorsResponse{}
+func NewListFlavorsResponse(flavors []ListFlavors, pagination Pagination) *ListFlavorsResponse {
+	this := ListFlavorsResponse{}
 	this.Flavors = flavors
 	this.Pagination = pagination
 	return &this
 }
 
-// NewGetFlavorsResponseWithDefaults instantiates a new GetFlavorsResponse object
+// NewListFlavorsResponseWithDefaults instantiates a new ListFlavorsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetFlavorsResponseWithDefaults() *GetFlavorsResponse {
-	this := GetFlavorsResponse{}
+func NewListFlavorsResponseWithDefaults() *ListFlavorsResponse {
+	this := ListFlavorsResponse{}
 	return &this
 }
 
 // GetFlavors returns the Flavors field value
-func (o *GetFlavorsResponse) GetFlavors() []ListFlavors {
+func (o *ListFlavorsResponse) GetFlavors() []ListFlavors {
 	if o == nil {
 		var ret []ListFlavors
 		return ret
@@ -60,7 +60,7 @@ func (o *GetFlavorsResponse) GetFlavors() []ListFlavors {
 
 // GetFlavorsOk returns a tuple with the Flavors field value
 // and a boolean to check if the value has been set.
-func (o *GetFlavorsResponse) GetFlavorsOk() ([]ListFlavors, bool) {
+func (o *ListFlavorsResponse) GetFlavorsOk() ([]ListFlavors, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *GetFlavorsResponse) GetFlavorsOk() ([]ListFlavors, bool) {
 }
 
 // SetFlavors sets field value
-func (o *GetFlavorsResponse) SetFlavors(v []ListFlavors) {
+func (o *ListFlavorsResponse) SetFlavors(v []ListFlavors) {
 	o.Flavors = v
 }
 
 // GetPagination returns the Pagination field value
-func (o *GetFlavorsResponse) GetPagination() Pagination {
+func (o *ListFlavorsResponse) GetPagination() Pagination {
 	if o == nil {
 		var ret Pagination
 		return ret
@@ -84,7 +84,7 @@ func (o *GetFlavorsResponse) GetPagination() Pagination {
 
 // GetPaginationOk returns a tuple with the Pagination field value
 // and a boolean to check if the value has been set.
-func (o *GetFlavorsResponse) GetPaginationOk() (*Pagination, bool) {
+func (o *ListFlavorsResponse) GetPaginationOk() (*Pagination, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *GetFlavorsResponse) GetPaginationOk() (*Pagination, bool) {
 }
 
 // SetPagination sets field value
-func (o *GetFlavorsResponse) SetPagination(v Pagination) {
+func (o *ListFlavorsResponse) SetPagination(v Pagination) {
 	o.Pagination = v
 }
 
-func (o GetFlavorsResponse) MarshalJSON() ([]byte, error) {
+func (o ListFlavorsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,7 +104,7 @@ func (o GetFlavorsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetFlavorsResponse) ToMap() (map[string]interface{}, error) {
+func (o ListFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["flavors"] = o.Flavors
 	toSerialize["pagination"] = o.Pagination
@@ -116,7 +116,7 @@ func (o GetFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ListFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -139,15 +139,15 @@ func (o *GetFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetFlavorsResponse := _GetFlavorsResponse{}
+	varListFlavorsResponse := _ListFlavorsResponse{}
 
-	err = json.Unmarshal(data, &varGetFlavorsResponse)
+	err = json.Unmarshal(data, &varListFlavorsResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetFlavorsResponse(varGetFlavorsResponse)
+	*o = ListFlavorsResponse(varListFlavorsResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -160,38 +160,38 @@ func (o *GetFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGetFlavorsResponse struct {
-	value *GetFlavorsResponse
+type NullableListFlavorsResponse struct {
+	value *ListFlavorsResponse
 	isSet bool
 }
 
-func (v NullableGetFlavorsResponse) Get() *GetFlavorsResponse {
+func (v NullableListFlavorsResponse) Get() *ListFlavorsResponse {
 	return v.value
 }
 
-func (v *NullableGetFlavorsResponse) Set(val *GetFlavorsResponse) {
+func (v *NullableListFlavorsResponse) Set(val *ListFlavorsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetFlavorsResponse) IsSet() bool {
+func (v NullableListFlavorsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetFlavorsResponse) Unset() {
+func (v *NullableListFlavorsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetFlavorsResponse(val *GetFlavorsResponse) *NullableGetFlavorsResponse {
-	return &NullableGetFlavorsResponse{value: val, isSet: true}
+func NewNullableListFlavorsResponse(val *ListFlavorsResponse) *NullableListFlavorsResponse {
+	return &NullableListFlavorsResponse{value: val, isSet: true}
 }
 
-func (v NullableGetFlavorsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListFlavorsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetFlavorsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListFlavorsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

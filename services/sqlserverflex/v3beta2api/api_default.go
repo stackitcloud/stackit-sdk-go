@@ -143,23 +143,6 @@ type DefaultAPI interface {
 	GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error)
 
 	/*
-		GetCollations Get database collation list
-
-		Returns a list of collations for an instance
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT project ID.
-		@param region The region which should be addressed
-		@param instanceId The ID of the instance.
-		@return ApiGetCollationsRequest
-	*/
-	GetCollations(ctx context.Context, projectId string, region string, instanceId string) ApiGetCollationsRequest
-
-	// GetCollationsExecute executes the request
-	//  @return GetCollationsResponse
-	GetCollationsExecute(r ApiGetCollationsRequest) (*GetCollationsResponse, error)
-
-	/*
 		GetDatabase Get Database
 
 		Get specific available database
@@ -178,22 +161,6 @@ type DefaultAPI interface {
 	GetDatabaseExecute(r ApiGetDatabaseRequest) (*GetDatabaseResponse, error)
 
 	/*
-		GetFlavors Get Flavors
-
-		Get all available flavors for a project.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT project ID.
-		@param region The region which should be addressed
-		@return ApiGetFlavorsRequest
-	*/
-	GetFlavors(ctx context.Context, projectId string, region string) ApiGetFlavorsRequest
-
-	// GetFlavorsExecute executes the request
-	//  @return GetFlavorsResponse
-	GetFlavorsExecute(r ApiGetFlavorsRequest) (*GetFlavorsResponse, error)
-
-	/*
 		GetInstance Get Specific Instance
 
 		Get information about a specific available instance
@@ -209,23 +176,6 @@ type DefaultAPI interface {
 	// GetInstanceExecute executes the request
 	//  @return GetInstanceResponse
 	GetInstanceExecute(r ApiGetInstanceRequest) (*GetInstanceResponse, error)
-
-	/*
-		GetStorages Get Storages
-
-		Get available storages for a specific flavor
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT project ID.
-		@param region The region which should be addressed
-		@param flavorId The id of an instance flavor.
-		@return ApiGetStoragesRequest
-	*/
-	GetStorages(ctx context.Context, projectId string, region string, flavorId string) ApiGetStoragesRequest
-
-	// GetStoragesExecute executes the request
-	//  @return GetStoragesResponse
-	GetStoragesExecute(r ApiGetStoragesRequest) (*GetStoragesResponse, error)
 
 	/*
 		GetUser Get User
@@ -246,22 +196,6 @@ type DefaultAPI interface {
 	GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error)
 
 	/*
-		GetVersions Get Versions
-
-		Get the sqlserver available versions for the project.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT project ID.
-		@param region The region which should be addressed
-		@return ApiGetVersionsRequest
-	*/
-	GetVersions(ctx context.Context, projectId string, region string) ApiGetVersionsRequest
-
-	// GetVersionsExecute executes the request
-	//  @return GetVersionsResponse
-	GetVersionsExecute(r ApiGetVersionsRequest) (*GetVersionsResponse, error)
-
-	/*
 		ListBackups List backups
 
 		List all backups which are available for a specific instance.
@@ -277,6 +211,23 @@ type DefaultAPI interface {
 	// ListBackupsExecute executes the request
 	//  @return ListBackupResponse
 	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error)
+
+	/*
+		ListCollations Get database collation list
+
+		Returns a list of collations for an instance
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT project ID.
+		@param region The region which should be addressed
+		@param instanceId The ID of the instance.
+		@return ApiListCollationsRequest
+	*/
+	ListCollations(ctx context.Context, projectId string, region string, instanceId string) ApiListCollationsRequest
+
+	// ListCollationsExecute executes the request
+	//  @return ListCollationsResponse
+	ListCollationsExecute(r ApiListCollationsRequest) (*ListCollationsResponse, error)
 
 	/*
 		ListCompatibilities Get database compatibility list
@@ -330,6 +281,22 @@ type DefaultAPI interface {
 	ListDatabasesExecute(r ApiListDatabasesRequest) (*ListDatabasesResponse, error)
 
 	/*
+		ListFlavors Get Flavors
+
+		Get all available flavors for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT project ID.
+		@param region The region which should be addressed
+		@return ApiListFlavorsRequest
+	*/
+	ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest
+
+	// ListFlavorsExecute executes the request
+	//  @return ListFlavorsResponse
+	ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error)
+
+	/*
 		ListInstances List Instances
 
 		List all available instances for your project.
@@ -363,6 +330,23 @@ type DefaultAPI interface {
 	ListRolesExecute(r ApiListRolesRequest) (*ListRolesResponse, error)
 
 	/*
+		ListStorages Get Storages
+
+		Get available storages for a specific flavor
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT project ID.
+		@param region The region which should be addressed
+		@param flavorId The id of an instance flavor.
+		@return ApiListStoragesRequest
+	*/
+	ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest
+
+	// ListStoragesExecute executes the request
+	//  @return ListStoragesResponse
+	ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error)
+
+	/*
 		ListUsers List Users
 
 		List available users for an instance.
@@ -380,21 +364,39 @@ type DefaultAPI interface {
 	ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error)
 
 	/*
-		ProtectInstance Protect Instance
+		ListVersions Get Versions
 
-		Toggle the deletion protection for an instance.
+		Get the sqlserver available versions for the project.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The STACKIT project ID.
 		@param region The region which should be addressed
-		@param instanceId The ID of the instance.
-		@return ApiProtectInstanceRequest
+		@return ApiListVersionsRequest
 	*/
-	ProtectInstance(ctx context.Context, projectId string, region string, instanceId string) ApiProtectInstanceRequest
+	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
 
-	// ProtectInstanceExecute executes the request
-	//  @return ProtectInstanceResponse
-	ProtectInstanceExecute(r ApiProtectInstanceRequest) (*ProtectInstanceResponse, error)
+	// ListVersionsExecute executes the request
+	//  @return ListVersionsResponse
+	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error)
+
+	/*
+			PartialUpdateInstance Update Instance Partially
+
+			Update an available instance of a mssql database. No fields are required.
+
+		**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT project ID.
+			@param region The region which should be addressed
+			@param instanceId The ID of the instance.
+			@return ApiPartialUpdateInstanceRequest
+	*/
+	PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest
+
+	// PartialUpdateInstanceExecute executes the request
+	PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error
 
 	/*
 		ResetUser Reset User
@@ -487,23 +489,21 @@ type DefaultAPI interface {
 	UpdateInstanceExecute(r ApiUpdateInstanceRequest) error
 
 	/*
-			UpdateInstancePartially Update Instance Partially
+		UpdateInstanceProtection Protect Instance
 
-			Update an available instance of a mssql database. No fields are required.
+		Toggle the deletion protection for an instance.
 
-		**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
-
-
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param projectId The STACKIT project ID.
-			@param region The region which should be addressed
-			@param instanceId The ID of the instance.
-			@return ApiUpdateInstancePartiallyRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT project ID.
+		@param region The region which should be addressed
+		@param instanceId The ID of the instance.
+		@return ApiUpdateInstanceProtectionRequest
 	*/
-	UpdateInstancePartially(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstancePartiallyRequest
+	UpdateInstanceProtection(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceProtectionRequest
 
-	// UpdateInstancePartiallyExecute executes the request
-	UpdateInstancePartiallyExecute(r ApiUpdateInstancePartiallyRequest) error
+	// UpdateInstanceProtectionExecute executes the request
+	//  @return UpdateInstanceProtectionResponse
+	UpdateInstanceProtectionExecute(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error)
 }
 
 // DefaultAPIService DefaultAPI service
@@ -1797,194 +1797,6 @@ func (a *DefaultAPIService) GetBackupExecute(r ApiGetBackupRequest) (*GetBackupR
 	return localVarReturnValue, nil
 }
 
-type ApiGetCollationsRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	region     string
-	instanceId string
-}
-
-func (r ApiGetCollationsRequest) Execute() (*GetCollationsResponse, error) {
-	return r.ApiService.GetCollationsExecute(r)
-}
-
-/*
-GetCollations Get database collation list
-
-Returns a list of collations for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT project ID.
-	@param region The region which should be addressed
-	@param instanceId The ID of the instance.
-	@return ApiGetCollationsRequest
-*/
-func (a *DefaultAPIService) GetCollations(ctx context.Context, projectId string, region string, instanceId string) ApiGetCollationsRequest {
-	return ApiGetCollationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		instanceId: instanceId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return GetCollationsResponse
-func (a *DefaultAPIService) GetCollationsExecute(r ApiGetCollationsRequest) (*GetCollationsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetCollationsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCollations")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/collations"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-			StatusCode:   localVarHTTPResponse.StatusCode,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
 type ApiGetDatabaseRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
@@ -2047,228 +1859,6 @@ func (a *DefaultAPIService) GetDatabaseExecute(r ApiGetDatabaseRequest) (*GetDat
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-			StatusCode:   localVarHTTPResponse.StatusCode,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-type ApiGetFlavorsRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	region     string
-	page       *int64
-	size       *int64
-	sort       *FlavorSort
-}
-
-// Number of the page of items list to be returned.
-func (r ApiGetFlavorsRequest) Page(page int64) ApiGetFlavorsRequest {
-	r.page = &page
-	return r
-}
-
-// Number of items to be returned on each page.
-func (r ApiGetFlavorsRequest) Size(size int64) ApiGetFlavorsRequest {
-	r.size = &size
-	return r
-}
-
-// Sorting of the flavors to be returned on each page.
-func (r ApiGetFlavorsRequest) Sort(sort FlavorSort) ApiGetFlavorsRequest {
-	r.sort = &sort
-	return r
-}
-
-func (r ApiGetFlavorsRequest) Execute() (*GetFlavorsResponse, error) {
-	return r.ApiService.GetFlavorsExecute(r)
-}
-
-/*
-GetFlavors Get Flavors
-
-Get all available flavors for a project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT project ID.
-	@param region The region which should be addressed
-	@return ApiGetFlavorsRequest
-*/
-func (a *DefaultAPIService) GetFlavors(ctx context.Context, projectId string, region string) ApiGetFlavorsRequest {
-	return ApiGetFlavorsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// Execute executes the request
-//
-//	@return GetFlavorsResponse
-func (a *DefaultAPIService) GetFlavorsExecute(r ApiGetFlavorsRequest) (*GetFlavorsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetFlavorsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFlavors")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/flavors"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	} else {
-		var defaultValue int64 = 1
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
-		r.page = &defaultValue
-	}
-	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
-	} else {
-		var defaultValue int64 = 10
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
-		r.size = &defaultValue
-	}
-	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2576,183 +2166,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetIns
 	return localVarReturnValue, nil
 }
 
-type ApiGetStoragesRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	region     string
-	flavorId   string
-}
-
-func (r ApiGetStoragesRequest) Execute() (*GetStoragesResponse, error) {
-	return r.ApiService.GetStoragesExecute(r)
-}
-
-/*
-GetStorages Get Storages
-
-Get available storages for a specific flavor
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT project ID.
-	@param region The region which should be addressed
-	@param flavorId The id of an instance flavor.
-	@return ApiGetStoragesRequest
-*/
-func (a *DefaultAPIService) GetStorages(ctx context.Context, projectId string, region string, flavorId string) ApiGetStoragesRequest {
-	return ApiGetStoragesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		flavorId:   flavorId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return GetStoragesResponse
-func (a *DefaultAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStoragesResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetStoragesResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetStorages")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/storages/{flavorId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"flavorId"+"}", url.PathEscape(parameterValueToString(r.flavorId, "flavorId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-			StatusCode:   localVarHTTPResponse.StatusCode,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
 type ApiGetUserRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -2934,60 +2347,102 @@ func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserRespons
 	return localVarReturnValue, nil
 }
 
-type ApiGetVersionsRequest struct {
+type ApiListBackupsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
 	region     string
+	instanceId string
+	page       *int64
+	size       *int64
+	sort       *BackupSort
 }
 
-func (r ApiGetVersionsRequest) Execute() (*GetVersionsResponse, error) {
-	return r.ApiService.GetVersionsExecute(r)
+// Number of the page of items list to be returned.
+func (r ApiListBackupsRequest) Page(page int64) ApiListBackupsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of items to be returned on each page.
+func (r ApiListBackupsRequest) Size(size int64) ApiListBackupsRequest {
+	r.size = &size
+	return r
+}
+
+// Sorting of the backups to be returned on each page.
+func (r ApiListBackupsRequest) Sort(sort BackupSort) ApiListBackupsRequest {
+	r.sort = &sort
+	return r
+}
+
+func (r ApiListBackupsRequest) Execute() (*ListBackupResponse, error) {
+	return r.ApiService.ListBackupsExecute(r)
 }
 
 /*
-GetVersions Get Versions
+ListBackups List backups
 
-Get the sqlserver available versions for the project.
+List all backups which are available for a specific instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
-	@return ApiGetVersionsRequest
+	@param instanceId The ID of the instance.
+	@return ApiListBackupsRequest
 */
-func (a *DefaultAPIService) GetVersions(ctx context.Context, projectId string, region string) ApiGetVersionsRequest {
-	return ApiGetVersionsRequest{
+func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest {
+	return ApiListBackupsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
+		instanceId: instanceId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return GetVersionsResponse
-func (a *DefaultAPIService) GetVersionsExecute(r ApiGetVersionsRequest) (*GetVersionsResponse, error) {
+//	@return ListBackupResponse
+func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetVersionsResponse
+		localVarReturnValue *ListBackupResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetVersions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/versions"
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int64 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
+	}
+	if r.size != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3118,52 +2573,31 @@ func (a *DefaultAPIService) GetVersionsExecute(r ApiGetVersionsRequest) (*GetVer
 	return localVarReturnValue, nil
 }
 
-type ApiListBackupsRequest struct {
+type ApiListCollationsRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
 	region     string
 	instanceId string
-	page       *int64
-	size       *int64
-	sort       *BackupSort
 }
 
-// Number of the page of items list to be returned.
-func (r ApiListBackupsRequest) Page(page int64) ApiListBackupsRequest {
-	r.page = &page
-	return r
-}
-
-// Number of items to be returned on each page.
-func (r ApiListBackupsRequest) Size(size int64) ApiListBackupsRequest {
-	r.size = &size
-	return r
-}
-
-// Sorting of the backups to be returned on each page.
-func (r ApiListBackupsRequest) Sort(sort BackupSort) ApiListBackupsRequest {
-	r.sort = &sort
-	return r
-}
-
-func (r ApiListBackupsRequest) Execute() (*ListBackupResponse, error) {
-	return r.ApiService.ListBackupsExecute(r)
+func (r ApiListCollationsRequest) Execute() (*ListCollationsResponse, error) {
+	return r.ApiService.ListCollationsExecute(r)
 }
 
 /*
-ListBackups List backups
+ListCollations Get database collation list
 
-List all backups which are available for a specific instance.
+Returns a list of collations for an instance
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
-	@return ApiListBackupsRequest
+	@return ApiListCollationsRequest
 */
-func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest {
-	return ApiListBackupsRequest{
+func (a *DefaultAPIService) ListCollations(ctx context.Context, projectId string, region string, instanceId string) ApiListCollationsRequest {
+	return ApiListCollationsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3174,21 +2608,21 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, r
 
 // Execute executes the request
 //
-//	@return ListBackupResponse
-func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error) {
+//	@return ListCollationsResponse
+func (a *DefaultAPIService) ListCollationsExecute(r ApiListCollationsRequest) (*ListCollationsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListBackupResponse
+		localVarReturnValue *ListCollationsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCollations")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/collations"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
@@ -3197,23 +2631,6 @@ func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBa
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	} else {
-		var defaultValue int64 = 1
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
-		r.page = &defaultValue
-	}
-	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
-	} else {
-		var defaultValue int64 = 10
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
-		r.size = &defaultValue
-	}
-	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3935,6 +3352,228 @@ func (a *DefaultAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Li
 	return localVarReturnValue, nil
 }
 
+type ApiListFlavorsRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	page       *int64
+	size       *int64
+	sort       *FlavorSort
+}
+
+// Number of the page of items list to be returned.
+func (r ApiListFlavorsRequest) Page(page int64) ApiListFlavorsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of items to be returned on each page.
+func (r ApiListFlavorsRequest) Size(size int64) ApiListFlavorsRequest {
+	r.size = &size
+	return r
+}
+
+// Sorting of the flavors to be returned on each page.
+func (r ApiListFlavorsRequest) Sort(sort FlavorSort) ApiListFlavorsRequest {
+	r.sort = &sort
+	return r
+}
+
+func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
+	return r.ApiService.ListFlavorsExecute(r)
+}
+
+/*
+ListFlavors Get Flavors
+
+Get all available flavors for a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT project ID.
+	@param region The region which should be addressed
+	@return ApiListFlavorsRequest
+*/
+func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest {
+	return ApiListFlavorsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListFlavorsResponse
+func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListFlavorsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListFlavors")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/flavors"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int64 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
+	}
+	if r.size != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", defaultValue, "form", "")
+		r.size = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListInstancesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -4334,6 +3973,183 @@ func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*ListRolesR
 	return localVarReturnValue, nil
 }
 
+type ApiListStoragesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	flavorId   string
+}
+
+func (r ApiListStoragesRequest) Execute() (*ListStoragesResponse, error) {
+	return r.ApiService.ListStoragesExecute(r)
+}
+
+/*
+ListStorages Get Storages
+
+Get available storages for a specific flavor
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT project ID.
+	@param region The region which should be addressed
+	@param flavorId The id of an instance flavor.
+	@return ApiListStoragesRequest
+*/
+func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest {
+	return ApiListStoragesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		flavorId:   flavorId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListStoragesResponse
+func (a *DefaultAPIService) ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListStoragesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListStorages")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/storages/{flavorId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"flavorId"+"}", url.PathEscape(parameterValueToString(r.flavorId, "flavorId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListUsersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -4549,76 +4365,62 @@ func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUserRe
 	return localVarReturnValue, nil
 }
 
-type ApiProtectInstanceRequest struct {
-	ctx                    context.Context
-	ApiService             DefaultAPI
-	projectId              string
-	region                 string
-	instanceId             string
-	protectInstancePayload *ProtectInstancePayload
+type ApiListVersionsRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
 }
 
-// The request body with flag isDeletable. Parameter is required.
-func (r ApiProtectInstanceRequest) ProtectInstancePayload(protectInstancePayload ProtectInstancePayload) ApiProtectInstanceRequest {
-	r.protectInstancePayload = &protectInstancePayload
-	return r
-}
-
-func (r ApiProtectInstanceRequest) Execute() (*ProtectInstanceResponse, error) {
-	return r.ApiService.ProtectInstanceExecute(r)
+func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
+	return r.ApiService.ListVersionsExecute(r)
 }
 
 /*
-ProtectInstance Protect Instance
+ListVersions Get Versions
 
-Toggle the deletion protection for an instance.
+Get the sqlserver available versions for the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
-	@param instanceId The ID of the instance.
-	@return ApiProtectInstanceRequest
+	@return ApiListVersionsRequest
 */
-func (a *DefaultAPIService) ProtectInstance(ctx context.Context, projectId string, region string, instanceId string) ApiProtectInstanceRequest {
-	return ApiProtectInstanceRequest{
+func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest {
+	return ApiListVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
-		instanceId: instanceId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return ProtectInstanceResponse
-func (a *DefaultAPIService) ProtectInstanceExecute(r ApiProtectInstanceRequest) (*ProtectInstanceResponse, error) {
+//	@return ListVersionsResponse
+func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
+		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProtectInstanceResponse
+		localVarReturnValue *ListVersionsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ProtectInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListVersions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/protections"
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/versions"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.protectInstancePayload == nil {
-		return localVarReturnValue, reportError("protectInstancePayload is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4634,8 +4436,6 @@ func (a *DefaultAPIService) ProtectInstanceExecute(r ApiProtectInstanceRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.protectInstancePayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -4712,17 +4512,6 @@ func (a *DefaultAPIService) ProtectInstanceExecute(r ApiProtectInstanceRequest) 
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4758,6 +4547,195 @@ func (a *DefaultAPIService) ProtectInstanceExecute(r ApiProtectInstanceRequest) 
 	}
 
 	return localVarReturnValue, nil
+}
+
+type ApiPartialUpdateInstanceRequest struct {
+	ctx                          context.Context
+	ApiService                   DefaultAPI
+	projectId                    string
+	region                       string
+	instanceId                   string
+	partialUpdateInstancePayload *PartialUpdateInstancePayload
+}
+
+// The request body with the parameters for updating the instance.
+func (r ApiPartialUpdateInstanceRequest) PartialUpdateInstancePayload(partialUpdateInstancePayload PartialUpdateInstancePayload) ApiPartialUpdateInstanceRequest {
+	r.partialUpdateInstancePayload = &partialUpdateInstancePayload
+	return r
+}
+
+func (r ApiPartialUpdateInstanceRequest) Execute() error {
+	return r.ApiService.PartialUpdateInstanceExecute(r)
+}
+
+/*
+PartialUpdateInstance Update Instance Partially
+
+Update an available instance of a mssql database. No fields are required.
+
+**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT project ID.
+	@param region The region which should be addressed
+	@param instanceId The ID of the instance.
+	@return ApiPartialUpdateInstanceRequest
+*/
+func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest {
+	return ApiPartialUpdateInstanceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateInstance")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.partialUpdateInstancePayload == nil {
+		return reportError("partialUpdateInstancePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateInstancePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
 }
 
 type ApiResetUserRequest struct {
@@ -5719,40 +5697,38 @@ func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) er
 	return nil
 }
 
-type ApiUpdateInstancePartiallyRequest struct {
-	ctx                            context.Context
-	ApiService                     DefaultAPI
-	projectId                      string
-	region                         string
-	instanceId                     string
-	updateInstancePartiallyPayload *UpdateInstancePartiallyPayload
+type ApiUpdateInstanceProtectionRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	projectId                       string
+	region                          string
+	instanceId                      string
+	updateInstanceProtectionPayload *UpdateInstanceProtectionPayload
 }
 
-// The request body with the parameters for updating the instance.
-func (r ApiUpdateInstancePartiallyRequest) UpdateInstancePartiallyPayload(updateInstancePartiallyPayload UpdateInstancePartiallyPayload) ApiUpdateInstancePartiallyRequest {
-	r.updateInstancePartiallyPayload = &updateInstancePartiallyPayload
+// The request body with flag isDeletable. Parameter is required.
+func (r ApiUpdateInstanceProtectionRequest) UpdateInstanceProtectionPayload(updateInstanceProtectionPayload UpdateInstanceProtectionPayload) ApiUpdateInstanceProtectionRequest {
+	r.updateInstanceProtectionPayload = &updateInstanceProtectionPayload
 	return r
 }
 
-func (r ApiUpdateInstancePartiallyRequest) Execute() error {
-	return r.ApiService.UpdateInstancePartiallyExecute(r)
+func (r ApiUpdateInstanceProtectionRequest) Execute() (*UpdateInstanceProtectionResponse, error) {
+	return r.ApiService.UpdateInstanceProtectionExecute(r)
 }
 
 /*
-UpdateInstancePartially Update Instance Partially
+UpdateInstanceProtection Protect Instance
 
-Update an available instance of a mssql database. No fields are required.
-
-**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+Toggle the deletion protection for an instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
-	@return ApiUpdateInstancePartiallyRequest
+	@return ApiUpdateInstanceProtectionRequest
 */
-func (a *DefaultAPIService) UpdateInstancePartially(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstancePartiallyRequest {
-	return ApiUpdateInstancePartiallyRequest{
+func (a *DefaultAPIService) UpdateInstanceProtection(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceProtectionRequest {
+	return ApiUpdateInstanceProtectionRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5762,19 +5738,22 @@ func (a *DefaultAPIService) UpdateInstancePartially(ctx context.Context, project
 }
 
 // Execute executes the request
-func (a *DefaultAPIService) UpdateInstancePartiallyExecute(r ApiUpdateInstancePartiallyRequest) error {
+//
+//	@return UpdateInstanceProtectionResponse
+func (a *DefaultAPIService) UpdateInstanceProtectionExecute(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error) {
 	var (
-		localVarHTTPMethod = http.MethodPatch
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateInstanceProtectionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateInstancePartially")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateInstanceProtection")
 	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}"
+	localVarPath := localBasePath + "/v3beta2/projects/{projectId}/regions/{region}/instances/{instanceId}/protections"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
@@ -5782,8 +5761,8 @@ func (a *DefaultAPIService) UpdateInstancePartiallyExecute(r ApiUpdateInstancePa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateInstancePartiallyPayload == nil {
-		return reportError("updateInstancePartiallyPayload is required and must be specified")
+	if r.updateInstanceProtectionPayload == nil {
+		return localVarReturnValue, reportError("updateInstanceProtectionPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5804,10 +5783,10 @@ func (a *DefaultAPIService) UpdateInstancePartiallyExecute(r ApiUpdateInstancePa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateInstancePartiallyPayload
+	localVarPostBody = r.updateInstanceProtectionPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
@@ -5821,14 +5800,14 @@ func (a *DefaultAPIService) UpdateInstancePartiallyExecute(r ApiUpdateInstancePa
 		*contextHTTPResponse = localVarHTTPResponse
 	}
 	if err != nil || localVarHTTPResponse == nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -5842,68 +5821,89 @@ func (a *DefaultAPIService) UpdateInstancePartiallyExecute(r ApiUpdateInstancePa
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
-		return newErr
+		return localVarReturnValue, newErr
 	}
 
-	return nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
 }
