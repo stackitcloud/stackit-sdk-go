@@ -1,3 +1,22 @@
+## v1.15.0
+- `v3beta2api`: 
+  - **Breaking change:** Rename methods:
+    - `GetFlavors` renamed to `ListFlavors`
+    - `GetCollations` renamed to `ListCollations`
+    - `GetStorages` renamed to `ListStorages`
+    - `GetVersions` renamed to `ListVersions`
+    - `ProtectInstance` renamed to `UpdateInstanceProtection`
+    - `UpdateInstancePartially` renamed to `PartialUpdateInstance`
+  - **Breaking change:** Rename structs:
+    - `GetFlavorsResponse` renamed to `ListFlavorsResponse`
+    - `GetCollationsResponse` renamed to `ListCollationsResponse` 
+    - `GetStoragesResponse` renamed to `ListStoragesResponse` 
+    - `GetVersionsResponse` renamed to `ListVersionsResponse` 
+    - `UpdateInstancePartiallyPayload` renamed to `PartialUpdateInstancePayload` 
+    - `UpdateInstancePartiallyPayloadNetwork` renamed to `PartialUpdateInstancePayloadNetwork` 
+    - `ProtectInstanceResponse` renamed to `UpdateInstanceProtectionResponse` 
+    - `ProtectInstancePayload` renamed to `UpdateInstanceProtectionPayload` 
+
 ## v1.14.0
 - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
 - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
