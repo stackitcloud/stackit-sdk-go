@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// ReplicasOpt How many replicas the instance should have.
+// ReplicasOpt Deprecated: Use flavorId instead, -replica in flavorId means 3 replicas. How many replicas the instance should have.
 type ReplicasOpt uint32
 
 // List of replicas.opt
