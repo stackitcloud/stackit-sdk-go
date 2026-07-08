@@ -1,3 +1,10 @@
+## v1.16.0
+- **Breaking Change:** The `v3api` replaces the `v2api`.
+  - The order of the parameters has changed in some cases. Region and the resource id has changed. 
+- `v3api`: **New:** New package which can be used for communication with the sqlserverflex v3 API
+- `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
+- `v3beta2api`: **Deprecated:** `v3beta2api` is deprecated, use instead `v3api`
+
 ## v1.15.0
 - `v3beta2api`: 
   - **Breaking change:** Rename methods:

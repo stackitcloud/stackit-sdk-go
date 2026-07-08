@@ -70,6 +70,12 @@
       - **Feature:** New model struct `Audit`
       - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
 - `sqlserverflex`: 
+  - [v1.16.0](services/sqlserverflex/CHANGELOG.md#v1160)
+    - **Breaking Change:** The `v3api` replaces the `v2api`.
+      - The order of the parameters has changed in some cases. Region and the resource id has changed.
+    - `v3api`: **New:** New package which can be used for communication with the sqlserverflex v3 API
+    - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
+    - `v3beta2api`: **Deprecated:** `v3beta2api` is deprecated, use instead `v3api`
   - [v1.15.0](services/sqlserverflex/CHANGELOG.md#v1150)
     - `v3beta2api`: 
       - **Breaking change:** Rename methods:
