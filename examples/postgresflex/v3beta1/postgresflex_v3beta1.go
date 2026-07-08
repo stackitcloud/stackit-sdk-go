@@ -92,7 +92,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("Created user \"%s\" associated to instance \"%s\".\n", username, instanceResp.Name)
+	fmt.Printf("Triggered creation of user %q associated to instance %q.\n", username, instanceResp.Name)
+
+	// Wait for the user to become active
+	_, err = wait.CreateUserWaitHandler(ctx, postgresflexClient.DefaultAPI, projectId, region, instance.Id, user.Id).WaitWithContext(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when waiting for PostgreSQL Flex user creation: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Created PostgreSQL Flex user %q.\n", user.Id)
 
 	// Get a user
 	userResp, err := postgresflexClient.DefaultAPI.GetUser(ctx, projectId, region, instance.Id, user.Id).Execute()
@@ -108,6 +117,7 @@ func main() {
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when deleting PostgreSQL Flex user: %v", err)
+		os.Exit(1)
 	}
 
 	_, err = wait.DeleteUserWaitHandler(ctx, postgresflexClient.DefaultAPI, projectId, region, instanceId, user.Id).WaitWithContext(ctx)
@@ -115,7 +125,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when waiting for PostgreSQL Flex user deletion: %v", err)
 	}
 
-	fmt.Printf("Deleted PostgreSQL Flex user \"%s\".\n", instanceId)
+	fmt.Printf("Deleted PostgreSQL Flex user %q.\n", instanceId)
 
 	// Update an instance
 	updateInstancePayload := postgresflex.PartialUpdateInstancePayload{
@@ -142,12 +152,14 @@ func main() {
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when deleting PostgreSQL Flex instance: %v", err)
+		os.Exit(1)
 	}
 
 	_, err = wait.DeleteInstanceWaitHandler(ctx, postgresflexClient.DefaultAPI, projectId, region, instanceId).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for PostgreSQL Flex instance deletion: %v", err)
+		os.Exit(1)
 	}
 
-	fmt.Printf("Deleted PostgreSQL Flex instance \"%s\".\n", instanceId)
+	fmt.Printf("Deleted PostgreSQL Flex instance %q.\n", instanceId)
 }

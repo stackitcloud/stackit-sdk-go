@@ -12,10 +12,6 @@ import (
 	postgresflex "github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3beta1api"
 )
 
-const (
-	InstanceStateEmpty = ""
-)
-
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
 	instanceCreated := false
@@ -32,10 +28,6 @@ func CreateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, p
 			}
 			switch s.State {
 			default:
-				return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, s.State)
-			case InstanceStateEmpty:
-				return false, nil, nil
-			case postgresflex.STATE_PROGRESSING:
 				return false, nil, nil
 			case postgresflex.STATE_READY:
 				instanceCreated = true
@@ -51,11 +43,12 @@ func CreateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, p
 		if err == nil {
 			return true, instanceGetResponse, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
 		if !ok {
 			return false, nil, err
 		}
-		if oapiErr.StatusCode < 500 {
+		if oapiErr.StatusCode != http.StatusLocked {
 			return true, instanceGetResponse, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
 		}
 		return false, nil, nil
@@ -108,7 +101,27 @@ func DeleteInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultA
 	return handler
 }
 
-// DeleteUserWaitHandler will wait for delete
+// CreateUserWaitHandler will wait for user creation
+func CreateUserWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[postgresflex.GetUserResponse] {
+	waitConfig := wait.WaiterHelper[postgresflex.GetUserResponse, string]{
+		FetchInstance: client.GetUser(ctx, projectId, region, instanceId, userId).Execute,
+		GetState: func(response *postgresflex.GetUserResponse) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			return response.State, nil
+		},
+		ActiveState: []string{"ACTIVE"},
+		ErrorState:  []string{},
+		// The API does not have a dedicated failure state for this resource,
+		// so we rely on the timeout for cases where it never becomes active.
+	}
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// DeleteUserWaitHandler will wait for user deletion
 func DeleteUserWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetUser(ctx, projectId, region, instanceId, userId).Execute()

@@ -25,6 +25,7 @@ type mockSettings struct {
 	userGetFails  bool
 	userId        int64
 	userIsDeleted bool
+	userState     string
 }
 
 // Used for testing instance operations
@@ -62,7 +63,7 @@ func newAPIMock(settings *mockSettings) postgresflex.DefaultAPI {
 		GetUserExecuteMock: utils.Ptr(func(_ postgresflex.ApiGetUserRequest) (*postgresflex.GetUserResponse, error) {
 			if settings.userGetFails {
 				return nil, &oapierror.GenericOpenAPIError{
-					StatusCode: 500,
+					StatusCode: 423,
 				}
 			}
 
@@ -73,7 +74,8 @@ func newAPIMock(settings *mockSettings) postgresflex.DefaultAPI {
 			}
 
 			return &postgresflex.GetUserResponse{
-				Id: settings.userId,
+				Id:    settings.userId,
+				State: settings.userState,
 			}, nil
 		}),
 	}
@@ -105,7 +107,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
-			instanceState:    InstanceStateEmpty,
+			instanceState:    "ANOTHER STATE",
 			wantErr:          true,
 			wantResp:         false,
 		},
@@ -119,17 +121,9 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			desc:                "users_get_fails",
 			instanceGetFails:    false,
 			instanceState:       postgresflex.STATE_READY,
-			usersGetErrorStatus: 500,
+			usersGetErrorStatus: 423,
 			wantErr:             true,
 			wantResp:            false,
-		},
-		{
-			desc:                "users_get_fails_2",
-			instanceGetFails:    false,
-			instanceState:       postgresflex.STATE_READY,
-			usersGetErrorStatus: 400,
-			wantErr:             true,
-			wantResp:            true,
 		},
 		{
 			desc:             "timeout",
@@ -199,7 +193,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "update_failed_2",
 			instanceGetFails: false,
-			instanceState:    InstanceStateEmpty,
+			instanceState:    "ANOTHER STATE",
 			wantErr:          true,
 			wantResp:         false,
 		},
@@ -295,6 +289,77 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
+		})
+	}
+}
+
+func TestCreateUserWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                string
+		userGetFails        bool
+		userState           string
+		usersGetErrorStatus int
+		wantErr             bool
+		wantResp            bool
+	}{
+		{
+			desc:         "create_succeeded",
+			userGetFails: false,
+			userState:    "ACTIVE",
+			wantErr:      false,
+			wantResp:     true,
+		},
+		{
+			desc:         "user_get_fails",
+			userGetFails: true,
+			wantErr:      true,
+			wantResp:     false,
+		},
+		{
+			desc:                "users_get_fails",
+			userGetFails:        true,
+			usersGetErrorStatus: 423,
+			wantErr:             true,
+			wantResp:            false,
+		},
+		{
+			desc:         "timeout",
+			userGetFails: false,
+			userState:    "PROCESSED",
+			wantErr:      true,
+			wantResp:     false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				userId := int64(34)
+
+				apiClient := newAPIMock(&mockSettings{
+					userGetFails: tt.userGetFails,
+					userId:       userId,
+					userState:    tt.userState,
+				})
+
+				var wantRes *postgresflex.GetUserResponse
+				if tt.wantResp {
+					wantRes = &postgresflex.GetUserResponse{
+						Id:    userId,
+						State: tt.userState,
+					}
+				}
+
+				handler := CreateUserWaitHandler(context.Background(), apiClient, "", "", "", userId)
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmp.AllowUnexported(postgresflex.NullableString{}, postgresflex.NullableBool{}, postgresflex.NullableInt32{}), cmpopts.EquateComparable(apiClient)) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
 		})
