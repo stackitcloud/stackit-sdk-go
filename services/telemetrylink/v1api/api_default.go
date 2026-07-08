@@ -222,10 +222,17 @@ type ApiCreateOrUpdateFolderTelemetryLinkRequest struct {
 	folderId                                 string
 	regionId                                 string
 	createOrUpdateFolderTelemetryLinkPayload *CreateOrUpdateFolderTelemetryLinkPayload
+	ifNoneMatch                              *string
 }
 
 func (r ApiCreateOrUpdateFolderTelemetryLinkRequest) CreateOrUpdateFolderTelemetryLinkPayload(createOrUpdateFolderTelemetryLinkPayload CreateOrUpdateFolderTelemetryLinkPayload) ApiCreateOrUpdateFolderTelemetryLinkRequest {
 	r.createOrUpdateFolderTelemetryLinkPayload = &createOrUpdateFolderTelemetryLinkPayload
+	return r
+}
+
+// ETag of the resource. If specified, the resource is only created if it does not exist. Specify \&quot;*\&quot; to avoid creating a resource.
+func (r ApiCreateOrUpdateFolderTelemetryLinkRequest) IfNoneMatch(ifNoneMatch string) ApiCreateOrUpdateFolderTelemetryLinkRequest {
+	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
@@ -296,6 +303,9 @@ func (a *DefaultAPIService) CreateOrUpdateFolderTelemetryLinkExecute(r ApiCreate
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-None-Match", r.ifNoneMatch, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.createOrUpdateFolderTelemetryLinkPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -363,6 +373,17 @@ func (a *DefaultAPIService) CreateOrUpdateFolderTelemetryLinkExecute(r ApiCreate
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
@@ -385,10 +406,17 @@ type ApiCreateOrUpdateOrganizationTelemetryLinkRequest struct {
 	organizationId                                 string
 	regionId                                       string
 	createOrUpdateOrganizationTelemetryLinkPayload *CreateOrUpdateOrganizationTelemetryLinkPayload
+	ifNoneMatch                                    *string
 }
 
 func (r ApiCreateOrUpdateOrganizationTelemetryLinkRequest) CreateOrUpdateOrganizationTelemetryLinkPayload(createOrUpdateOrganizationTelemetryLinkPayload CreateOrUpdateOrganizationTelemetryLinkPayload) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
 	r.createOrUpdateOrganizationTelemetryLinkPayload = &createOrUpdateOrganizationTelemetryLinkPayload
+	return r
+}
+
+// ETag of the resource. If specified, the resource is only created if it does not exist. Specify \&quot;*\&quot; to avoid creating a resource.
+func (r ApiCreateOrUpdateOrganizationTelemetryLinkRequest) IfNoneMatch(ifNoneMatch string) ApiCreateOrUpdateOrganizationTelemetryLinkRequest {
+	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
@@ -459,6 +487,9 @@ func (a *DefaultAPIService) CreateOrUpdateOrganizationTelemetryLinkExecute(r Api
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-None-Match", r.ifNoneMatch, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.createOrUpdateOrganizationTelemetryLinkPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -526,6 +557,17 @@ func (a *DefaultAPIService) CreateOrUpdateOrganizationTelemetryLinkExecute(r Api
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
@@ -548,10 +590,17 @@ type ApiCreateOrUpdateProjectTelemetryLinkRequest struct {
 	projectId                                 string
 	regionId                                  string
 	createOrUpdateProjectTelemetryLinkPayload *CreateOrUpdateProjectTelemetryLinkPayload
+	ifNoneMatch                               *string
 }
 
 func (r ApiCreateOrUpdateProjectTelemetryLinkRequest) CreateOrUpdateProjectTelemetryLinkPayload(createOrUpdateProjectTelemetryLinkPayload CreateOrUpdateProjectTelemetryLinkPayload) ApiCreateOrUpdateProjectTelemetryLinkRequest {
 	r.createOrUpdateProjectTelemetryLinkPayload = &createOrUpdateProjectTelemetryLinkPayload
+	return r
+}
+
+// ETag of the resource. If specified, the resource is only created if it does not exist. Specify \&quot;*\&quot; to avoid creating a resource.
+func (r ApiCreateOrUpdateProjectTelemetryLinkRequest) IfNoneMatch(ifNoneMatch string) ApiCreateOrUpdateProjectTelemetryLinkRequest {
+	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
 
@@ -622,6 +671,9 @@ func (a *DefaultAPIService) CreateOrUpdateProjectTelemetryLinkExecute(r ApiCreat
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-None-Match", r.ifNoneMatch, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.createOrUpdateProjectTelemetryLinkPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -679,6 +731,17 @@ func (a *DefaultAPIService) CreateOrUpdateProjectTelemetryLinkExecute(r ApiCreat
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
 			var v Response4xx
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
