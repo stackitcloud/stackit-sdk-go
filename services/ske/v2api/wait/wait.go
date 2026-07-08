@@ -83,6 +83,7 @@ func DeleteClusterWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, 
 		}
 		return true, s, nil
 	})
+	// Timeout was aligned with the service team
 	handler.SetTimeout(90 * time.Minute)
 	return handler
 }
