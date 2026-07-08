@@ -19,7 +19,7 @@ var _ MappedNullable = &Usage{}
 
 // Usage struct for Usage
 type Usage struct {
-	// Number of Load Balancers using this certificate.
+	// Number of listeners using this certificate.
 	Count *int32 `json:"count,omitempty"`
 	// List of Load Balancers with their associated listeners that use this certificate.
 	Items                []UsageItem `json:"items,omitempty"`

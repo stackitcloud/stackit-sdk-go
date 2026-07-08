@@ -1,3 +1,8 @@
+## v1.9.0
+- `v2api`
+  - **Improvement**: Update descriptions in `Usage` and `UsageItem` model structs
+- **Breaking change**: Remove `v2betaapi` API
+
 ## v1.8.0
 - `v2api`:
   - **Feature:** Add new model structs: `Data`, `Usage` and `UsageItem`
