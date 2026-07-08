@@ -13,6 +13,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the LokiLogSink type satisfies the MappedNullable interface at compile time
@@ -49,9 +50,132 @@ type LokiLogSinkGetPushUrlRetType = string
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// LokiLogSinkTypes Defines the type of the log sink.
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkGetTypeAttributeType = *string
+type LokiLogSinkTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOKILOGSINKTYPE_LOKI LokiLogSinkTypes = "loki"
+)
+
+// All allowed values of LokiLogSink enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedLokiLogSinkTypesEnumValues = []LokiLogSinkTypes{
+	"loki",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *LokiLogSinkTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson LokiLogSinkTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := LokiLogSinkTypes(value)
+	for _, existing := range AllowedLokiLogSinkTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid LokiLogSink", value)
+}
+
+// NewLokiLogSinkTypesFromValue returns a pointer to a valid LokiLogSinkTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewLokiLogSinkTypesFromValue(v LokiLogSinkTypes) (*LokiLogSinkTypes, error) {
+	ev := LokiLogSinkTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for LokiLogSinkTypes: valid values are %v", v, AllowedLokiLogSinkTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v LokiLogSinkTypes) IsValid() bool {
+	for _, existing := range AllowedLokiLogSinkTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v LokiLogSinkTypes) Ptr() *LokiLogSinkTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableLokiLogSinkTypes struct {
+	value *LokiLogSinkTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkTypes) Get() *LokiLogSinkTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkTypes) Set(val *LokiLogSinkTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableLokiLogSinkTypes(val *LokiLogSinkTypes) *NullableLokiLogSinkTypes {
+	return &NullableLokiLogSinkTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkGetTypeAttributeType = *LokiLogSinkTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkGetTypeArgType = LokiLogSinkTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkGetTypeRetType = LokiLogSinkTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getLokiLogSinkGetTypeAttributeTypeOk(arg LokiLogSinkGetTypeAttributeType) (ret LokiLogSinkGetTypeRetType, ok bool) {
@@ -66,17 +190,13 @@ func setLokiLogSinkGetTypeAttributeType(arg *LokiLogSinkGetTypeAttributeType, va
 	*arg = &val
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkGetTypeRetType = string
-
 // LokiLogSink struct for LokiLogSink
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type LokiLogSink struct {
+	// The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).
 	// REQUIRED
 	PushUrl LokiLogSinkGetPushUrlAttributeType `json:"pushUrl" required:"true"`
+	// Defines the type of the log sink.
 	// REQUIRED
 	Type LokiLogSinkGetTypeAttributeType `json:"type" required:"true"`
 }
