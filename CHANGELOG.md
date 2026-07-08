@@ -4,6 +4,9 @@
   - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `dremio`
+  - [v0.4.0](services/dremio/CHANGELOG.md#v040)
+    - `v1alphaapi`: Align package to latest API specification
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:
