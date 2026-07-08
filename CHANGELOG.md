@@ -104,6 +104,8 @@
     - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
 - `telemetrylink`:
+  - [v0.4.0](services/telemetrylink/CHANGELOG.md#v040)
+    - `v1api`: **Feature:** Add support for `If-None-Match` header in `CreateOrUpdateFolderTelemetryLink`, `CreateOrUpdateOrganizationTelemetryLink` and `CreateOrUpdateProjectTelemetryLink`
   - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **New:** v1api API version for STACKIT Telemetry Link
 - `telemetryrouter`:
