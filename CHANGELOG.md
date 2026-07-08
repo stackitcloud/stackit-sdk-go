@@ -4,6 +4,11 @@
   - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `certificates`:
+  - [v1.9.0](services/certificates/CHANGELOG.md#v190)
+    - `v2api`
+      - **Improvement**: Update descriptions in `Usage` and `UsageItem` model structs
+    - **Breaking change**: Remove `v2betaapi` API
 - `dremio`
   - [v0.4.0](services/dremio/CHANGELOG.md#v040)
     - `v1alphaapi`: Align package to latest API specification
