@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+
+- `alb`
+  - [v0.16.0](services/alb/CHANGELOG.md#v0160)
+    - **Breaking change**: Remove `v2beta2api` API
 - `albwaf`:
   - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
     - `v1alphaapi`: Align package to latest API specification
