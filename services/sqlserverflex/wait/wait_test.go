@@ -16,7 +16,7 @@ import (
 // Used for testing instance operations
 type apiClientInstanceMocked struct {
 	instanceId        string
-	instanceState     string
+	instanceState     sqlserverflex.State
 	instanceIsDeleted bool
 	instanceGetFails  bool
 }
@@ -35,17 +35,16 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ 
 	}
 
 	return &sqlserverflex.GetInstanceResponse{
-		Item: &sqlserverflex.Instance{
-			Id:     &a.instanceId,
-			Status: &a.instanceState,
-		},
+		Id:    &a.instanceId,
+		State: &a.instanceState,
 	}, nil
 }
+
 func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc                string
 		instanceGetFails    bool
-		instanceState       string
+		instanceState       sqlserverflex.State
 		usersGetErrorStatus int
 		wantErr             bool
 		wantResp            bool
@@ -53,21 +52,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    sqlserverflex.STATE_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    sqlserverflex.STATE_FAILURE,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
-			instanceState:    InstanceStateEmpty,
+			instanceState:    sqlserverflex.STATE_UNKNOWN,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -80,7 +79,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    InstanceStateProcessing,
+			instanceState:    sqlserverflex.STATE_PROGRESSING,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -99,14 +98,12 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				var wantRes *sqlserverflex.GetInstanceResponse
 				if tt.wantResp {
 					wantRes = &sqlserverflex.GetInstanceResponse{
-						Item: &sqlserverflex.Instance{
-							Id:     &instanceId,
-							Status: utils.Ptr(tt.instanceState),
-						},
+						Id:    &instanceId,
+						State: utils.Ptr(tt.instanceState),
 					}
 				}
 
-				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, "")
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -125,28 +122,28 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceState    string
+		instanceState    sqlserverflex.State
 		wantErr          bool
 		wantResp         bool
 	}{
 		{
 			desc:             "update_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    sqlserverflex.STATE_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "update_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    sqlserverflex.STATE_FAILURE,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
 			desc:             "update_failed_2",
 			instanceGetFails: false,
-			instanceState:    InstanceStateEmpty,
+			instanceState:    sqlserverflex.STATE_UNKNOWN,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -159,7 +156,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    InstanceStateProcessing,
+			instanceState:    sqlserverflex.STATE_PROGRESSING,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -178,14 +175,12 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				var wantRes *sqlserverflex.GetInstanceResponse
 				if tt.wantResp {
 					wantRes = &sqlserverflex.GetInstanceResponse{
-						Item: &sqlserverflex.Instance{
-							Id:     &instanceId,
-							Status: utils.Ptr(tt.instanceState),
-						},
+						Id:    &instanceId,
+						State: utils.Ptr(tt.instanceState),
 					}
 				}
 
-				handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, "")
+				handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -204,19 +199,19 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceState    string
+		instanceState    sqlserverflex.State
 		wantErr          bool
 	}{
 		{
 			desc:             "delete_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    sqlserverflex.STATE_READY,
 			wantErr:          false,
 		},
 		{
 			desc:             "delete_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    sqlserverflex.STATE_FAILURE,
 			wantErr:          true,
 		},
 		{
@@ -232,12 +227,12 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 				apiClient := &apiClientInstanceMocked{
 					instanceGetFails:  tt.instanceGetFails,
-					instanceIsDeleted: tt.instanceState == InstanceStateSuccess,
+					instanceIsDeleted: tt.instanceState == sqlserverflex.STATE_READY,
 					instanceId:        instanceId,
 					instanceState:     tt.instanceState,
 				}
 
-				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId, "")
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
