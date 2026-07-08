@@ -1,3 +1,6 @@
+## v0.16.0
+  - **Breaking change**: Remove `v2beta2api` API
+
 ## v0.15.0
 - **Feature:** Introduce enums for various attributes
 
