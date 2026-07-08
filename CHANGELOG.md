@@ -36,6 +36,10 @@
     - `v1api`:
       - **Improvement**: Improve http error handling
 - `postgresflex`:
+  - [v1.11.0](services/postgresflex/CHANGELOG.md#v1110)
+    - `v3beta1api`: **New:** New package which can be used for communication with the PostgreSQL Flex v3beta1 API
+    - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
+    - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta1api`
   - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
     - `v3alpha1api`: Align package to latest API specification
 - `rabbitmq`:
