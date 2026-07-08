@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	sqlserverflex "github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3beta2api"
-	"github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3beta2api/wait"
+	sqlserverflex "github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3api"
+	"github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3api/wait"
 )
 
 func main() {
