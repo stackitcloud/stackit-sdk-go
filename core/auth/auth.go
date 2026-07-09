@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
 type credentialType string
@@ -78,33 +79,87 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 }
 
 // DefaultAuth will search for a valid service account key or token in several locations.
-// It will first try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
+// It will first try to use the instance metadata service (IMS), which is available on STACKIT VMs.
+// If IMS is not available, it will try the workload identity federation (WIF) flow.
+// If WIF is not available, it will try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
 // STACKIT_PRIVATE_KEY and STACKIT_PRIVATE_KEY_PATH. If the keys cannot be retrieved, it will check the credentials file located in STACKIT_CREDENTIALS_PATH, if specified, or in
 // $HOME/.stackit/credentials.json as a fallback. If the key are found and are valid, the KeyAuth flow is used.
 // If the key flow cannot be used, it will try to find a token in the STACKIT_SERVICE_ACCOUNT_TOKEN. If not present, it will
 // search in the credentials file. If the token is found, the TokenAuth flow is used.
 // DefaultAuth returns an http.RoundTripper that can be used to make authenticated requests.
-// In case the token is not found, DefaultAuth fails.
+// In case no valid credentials were found, DefaultAuth fails.
 func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
 	}
 
-	// WIF flow
-	rt, err = WorkloadIdentityFederationAuth(cfg)
-	if err != nil {
-		// Key flow
-		rt, err = KeyAuth(cfg)
-		if err != nil {
-			keyFlowErr := err
-			// Token flow
-			rt, err = TokenAuth(cfg)
-			if err != nil {
-				return nil, fmt.Errorf("no valid credentials were found: trying key flow: %s, trying token flow: %w", keyFlowErr.Error(), err)
+	providers := []identity.TokenProvider{}
+
+	// Try Instance Metadata Service (IMS) with aggressive timeout to fail fast if not in cloud
+	email := getServiceAccountEmail(cfg)
+	if email != "" {
+		imsClient := &http.Client{Timeout: 2 * time.Second}
+		if imsProvider, err := identity.NewInstanceMetadataProvider(identity.InstanceMetadataProviderConfig{
+			ServiceAccountEmail: email,
+			HTTPClient:          imsClient,
+		}); err == nil {
+			providers = append(providers, imsProvider)
+		}
+	}
+
+	// Try Workload Identity Federation
+	if wifProvider, err := identity.NewWorkloadIdentityFederationProvider(identity.WorkloadIdentityFederationProviderConfig{
+		TokenURL:               cfg.TokenCustomUrl,
+		ClientID:               cfg.ServiceAccountEmail,
+		FederatedTokenFunction: cfg.ServiceAccountFederatedTokenFunc,
+		HTTPClient:             cfg.HTTPClient,
+	}); err == nil {
+		providers = append(providers, wifProvider)
+	}
+
+	// Try Service Account Key - provider handles env var resolution, fallback to credentials file
+	if keyProvider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
+		ServiceAccountKey: cfg.ServiceAccountKey,
+		PrivateKey:        cfg.PrivateKey,
+		TokenURL:          cfg.TokenCustomUrl,
+		HTTPClient:        cfg.HTTPClient,
+	}); err == nil {
+		providers = append(providers, keyProvider)
+	} else {
+		// Try resolving from credentials file if direct/env resolution fails
+		keyCfg := *cfg
+		if getServiceAccountKeyAndPrivateKeyWithFallback(&keyCfg) == nil {
+			if keyProvider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
+				ServiceAccountKey: keyCfg.ServiceAccountKey,
+				PrivateKey:        keyCfg.PrivateKey,
+				TokenURL:          keyCfg.TokenCustomUrl,
+				HTTPClient:        keyCfg.HTTPClient,
+			}); err == nil {
+				providers = append(providers, keyProvider)
 			}
 		}
 	}
-	return rt, nil
+
+	// Try Static Token - provider handles env var resolution, fallback to credentials file
+	if staticProvider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
+		Token: cfg.Token,
+	}); err == nil {
+		providers = append(providers, staticProvider)
+	} else if token, err := getTokenWithFallback(cfg); err == nil && token != "" {
+		// Try resolving from credentials file if env resolution fails
+		if staticProvider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
+			Token: token,
+		}); err == nil {
+			providers = append(providers, staticProvider)
+		}
+	}
+
+	chained, err := identity.NewChainedProvider(providers...)
+	if err != nil {
+		return nil, fmt.Errorf("error initializing chained provider: %w", err)
+	}
+
+	return newTokenProviderRoundTripper(chained, getTransportFromConfig(cfg)), nil
 }
 
 // NoAuth configures a flow without authentication and returns an http.RoundTripper
@@ -134,124 +189,76 @@ func NoAuth(cfgs ...*config.Configuration) (rt http.RoundTripper, err error) {
 // TokenAuth configures the token flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using a token
 func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
-	// Check token
-	if cfg.Token == "" {
-		token, tokenSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_TOKEN")
-		if !tokenSet || token == "" {
-			credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
-			if err != nil {
-				return nil, fmt.Errorf("reading from credentials file: %w", err)
-			}
-			token, err = readCredential(tokenCredentialType, credentials)
-			if err != nil {
-				return nil, fmt.Errorf("STACKIT_SERVICE_ACCOUNT_TOKEN not set. Trying to read from credentials file: %w", err)
-			}
-		}
-		cfg.Token = token
+	token, err := getTokenWithFallback(cfg)
+	if err != nil {
+		return nil, fmt.Errorf("resolving token: %w", err)
+	}
+	if token == "" {
+		return nil, fmt.Errorf("STACKIT_SERVICE_ACCOUNT_TOKEN not set and no token found in credentials file")
 	}
 
-	tokenCfg := clients.TokenFlowConfig{
-		ServiceAccountToken: cfg.Token,
+	provider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
+		Token: token,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error initializing static token provider: %w", err)
 	}
 
-	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
-		tokenCfg.HTTPTransport = cfg.HTTPClient.Transport
-	}
-
-	client := &clients.TokenFlow{}
-	if err := client.Init(&tokenCfg); err != nil {
-		return nil, fmt.Errorf("error initializing client: %w", err)
-	}
-
-	return client, nil
+	return newTokenProviderRoundTripper(provider, getTransportFromConfig(cfg)), nil
 }
 
 // KeyAuth configures the key flow and returns an http.RoundTripper
-// that can be used to make authenticated requests using an access token
+// that can be used to make authenticated requests using an access token.
 // The KeyFlow requires a service account key and a private key.
 //
-// If the private key is not provided explicitly, KeyAuth will check if there is one included
-// in the service account key and use that one. An explicitly provided private key takes
-// precedence over the one on the service account key.
+// Configuration is resolved in the following order:
+// 1. Values from cfg parameter
+// 2. Environment variables (STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_PRIVATE_KEY, etc.)
+// 3. Credentials file
+// 4. Private key embedded in the service account key
 func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
-	err := getServiceAccountKey(cfg)
+	if cfg == nil {
+		cfg = &config.Configuration{}
+	}
+
+	if err := getServiceAccountKeyAndPrivateKeyWithFallback(cfg); err != nil {
+		return nil, fmt.Errorf("configuring key authentication: %w", err)
+	}
+
+	provider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
+		ServiceAccountKey: cfg.ServiceAccountKey,
+		PrivateKey:        cfg.PrivateKey,
+		TokenURL:          cfg.TokenCustomUrl,
+		HTTPClient:        cfg.HTTPClient,
+	})
 	if err != nil {
-		return nil, fmt.Errorf("configuring key authentication: service account key could not be found: %w", err)
-	}
-
-	// Unmarshal service account key to check if private key is present
-	var serviceAccountKey = &clients.ServiceAccountKeyResponse{}
-	err = json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey)
-	if err != nil {
-		var errorSuffix string
-		if strings.HasPrefix(cfg.ServiceAccountKey, "-----BEGIN") {
-			errorSuffix = " - it seems like the provided service account key is in PEM format. Please provide it in JSON format."
-		}
-		return nil, fmt.Errorf("unmarshalling service account key: %w%s", err, errorSuffix)
-	}
-
-	// Try to get private key from configuration, environment or credentials file
-	err = getPrivateKey(cfg)
-	if err != nil {
-		// If the private key is not provided explicitly, try to extract private key from the service account key
-		// and use it if present
-		var extractedPrivateKey string
-		if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
-			extractedPrivateKey = *serviceAccountKey.Credentials.PrivateKey
-		}
-		if extractedPrivateKey == "" {
-			return nil, fmt.Errorf("configuring key authentication: private key is not part of the service account key and could not be found: %w", err)
-		}
-		cfg.PrivateKey = extractedPrivateKey
-	}
-
-	if cfg.TokenCustomUrl == "" {
-		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
-		if tokenUrlSet {
-			cfg.TokenCustomUrl = tokenCustomUrl
-		}
-	}
-
-	keyCfg := clients.KeyFlowConfig{
-		ServiceAccountKey:             serviceAccountKey,
-		PrivateKey:                    cfg.PrivateKey,
-		TokenUrl:                      cfg.TokenCustomUrl,
-		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
-	}
-
-	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
-		keyCfg.HTTPTransport = cfg.HTTPClient.Transport
-	}
-
-	client := &clients.KeyFlow{}
-	if err := client.Init(&keyCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 
-	return client, nil
+	return newTokenProviderRoundTripper(provider, getTransportFromConfig(cfg)), nil
 }
 
 // WorkloadIdentityFederationAuth configures the wif flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
 func WorkloadIdentityFederationAuth(cfg *config.Configuration) (http.RoundTripper, error) {
-	wifConfig := clients.WorkloadIdentityFederationFlowConfig{
-		TokenUrl:                      cfg.TokenCustomUrl,
-		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
-		ClientID:                      cfg.ServiceAccountEmail,
-		TokenExpiration:               cfg.ServiceAccountFederatedTokenExpiration,
-		FederatedTokenFunction:        cfg.ServiceAccountFederatedTokenFunc,
-	}
-
-	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
-		wifConfig.HTTPTransport = cfg.HTTPClient.Transport
-	}
-
-	client := &clients.WorkloadIdentityFederationFlow{}
-	if err := client.Init(&wifConfig); err != nil {
+	provider, err := identity.NewWorkloadIdentityFederationProvider(identity.WorkloadIdentityFederationProviderConfig{
+		TokenURL:               cfg.TokenCustomUrl,
+		ClientID:               cfg.ServiceAccountEmail,
+		FederatedTokenFunction: cfg.ServiceAccountFederatedTokenFunc,
+		HTTPClient:             cfg.HTTPClient,
+	})
+	if err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 
-	return client, nil
+	return newTokenProviderRoundTripper(provider, getTransportFromConfig(cfg)), nil
+}
+
+func getTransportFromConfig(cfg *config.Configuration) http.RoundTripper {
+	if cfg != nil && cfg.HTTPClient != nil {
+		return cfg.HTTPClient.Transport
+	}
+	return nil
 }
 
 // readCredentialsFile reads the credentials file from the specified path and returns Credentials
@@ -321,8 +328,6 @@ func readCredential(cred credentialType, credentials *Credentials) (string, erro
 
 // getServiceAccountEmail searches for an email in the following order: client configuration, environment variable, credentials file.
 // is not required for authentication, so it can be empty.
-//
-// Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 func getServiceAccountEmail(cfg *config.Configuration) string {
 	if cfg.ServiceAccountEmail != "" {
 		return cfg.ServiceAccountEmail
@@ -393,4 +398,65 @@ func getServiceAccountKey(cfg *config.Configuration) error {
 // getPrivateKey configures the private key in the provided configuration
 func getPrivateKey(cfg *config.Configuration) error {
 	return getKey(&cfg.PrivateKey, &cfg.PrivateKeyPath, "STACKIT_PRIVATE_KEY_PATH", "STACKIT_PRIVATE_KEY", privateKeyPathCredentialType, privateKeyCredentialType, cfg.CredentialsFilePath)
+}
+
+// getTokenWithFallback resolves a token from config, environment, or credentials file
+func getTokenWithFallback(cfg *config.Configuration) (string, error) {
+	if cfg.Token != "" {
+		return cfg.Token, nil
+	}
+
+	// Try environment variable
+	if token, exists := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_TOKEN"); exists && token != "" {
+		return token, nil
+	}
+
+	// Try credentials file
+	credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+	if err != nil {
+		return "", fmt.Errorf("reading from credentials file: %w", err)
+	}
+
+	token, err := readCredential(tokenCredentialType, credentials)
+	if err != nil {
+		return "", fmt.Errorf("token not found in credentials file: %w", err)
+	}
+
+	return token, nil
+}
+
+// getServiceAccountKeyAndPrivateKeyWithFallback resolves service account key and private key with fallback to credentials file
+// It also attempts to extract private key from the service account key JSON if not provided separately
+func getServiceAccountKeyAndPrivateKeyWithFallback(cfg *config.Configuration) error {
+	// Resolve service account key
+	err := getServiceAccountKey(cfg)
+	if err != nil {
+		return fmt.Errorf("service account key could not be found: %w", err)
+	}
+
+	// Try to get private key
+	err = getPrivateKey(cfg)
+	if err != nil {
+		// If the private key is not provided explicitly, try to extract it from the service account key JSON
+		cfg.PrivateKey = ""
+	}
+
+	// If private key is still empty, try to extract from service account key JSON
+	if cfg.PrivateKey == "" && cfg.ServiceAccountKey != "" {
+		var serviceAccountKey = &identity.ServiceAccountJson{}
+		if err := json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey); err == nil {
+			if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
+				cfg.PrivateKey = *serviceAccountKey.Credentials.PrivateKey
+			}
+		}
+	}
+
+	// Resolve token URL from env if not set
+	if cfg.TokenCustomUrl == "" {
+		if tokenURL, exists := os.LookupEnv("STACKIT_TOKEN_BASEURL"); exists && tokenURL != "" {
+			cfg.TokenCustomUrl = tokenURL
+		}
+	}
+
+	return nil
 }

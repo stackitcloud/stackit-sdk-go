@@ -132,6 +132,19 @@ For each authentication method, the try order is:
 2. Key Flow
 3. Token Flow
 
+### Modular Identity Package (Initial)
+
+An initial modular identity package is available at `core/identity`.
+
+It introduces a minimal token contract and composable providers:
+
+- `identity.TokenProvider` with `Token(ctx, options)`
+- `identity.ServiceAccountKeyProvider`
+- `identity.WorkloadIdentityFederationProvider`
+- `identity.InstanceMetadataProvider`
+- `identity.ChainedProvider`
+
+
 ### Using the Workload Identity Fedearion Flow
 
 1. Create a service account trusted relation in the STACKIT Portal:

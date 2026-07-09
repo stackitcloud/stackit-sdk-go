@@ -18,6 +18,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
 const (
@@ -65,26 +66,12 @@ type KeyFlowConfig struct {
 
 // ServiceAccountKeyResponse is the API response
 // when creating a new SA key
-type ServiceAccountKeyResponse struct {
-	Active       bool                          `json:"active"`
-	CreatedAt    time.Time                     `json:"createdAt"`
-	Credentials  *ServiceAccountKeyCredentials `json:"credentials"`
-	ID           uuid.UUID                     `json:"id"`
-	KeyAlgorithm string                        `json:"keyAlgorithm"`
-	KeyOrigin    string                        `json:"keyOrigin"`
-	KeyType      string                        `json:"keyType"`
-	PublicKey    string                        `json:"publicKey"`
-	ValidUntil   *time.Time                    `json:"validUntil,omitempty"`
-}
+//
+// Deprecated: use identity.ServiceAccountKeyResponse.
+type ServiceAccountKeyResponse = identity.ServiceAccountJson
 
-type ServiceAccountKeyCredentials struct {
-	Aud           string    `json:"aud"`
-	Iss           string    `json:"iss"`
-	Kid           string    `json:"kid"`
-	PrivateKey    *string   `json:"privateKey,omitempty"`
-	Sub           uuid.UUID `json:"sub"`
-	TokenEndpoint string    `json:"tokenEndpoint"`
-}
+// Deprecated: use identity.ServiceAccountKeyCredentials.
+type ServiceAccountKeyCredentials = identity.ServiceAccountKeyCredentials
 
 // GetConfig returns the flow configuration
 func (c *KeyFlow) GetConfig() KeyFlowConfig {
