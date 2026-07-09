@@ -327,7 +327,7 @@ func TestCreateUserWaitHandler(t *testing.T) {
 		{
 			desc:         "timeout",
 			userGetFails: false,
-			userState:    "PROCESSED",
+			userState:    "",
 			wantErr:      true,
 			wantResp:     false,
 		},
