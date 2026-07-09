@@ -20,10 +20,12 @@ var _ MappedNullable = &BucketBackendPatch{}
 
 // BucketBackendPatch struct for BucketBackendPatch
 type BucketBackendPatch struct {
-	BucketUrl            *string            `json:"bucketUrl,omitempty"`
-	Credentials          *BucketCredentials `json:"credentials,omitempty"`
-	Region               *string            `json:"region,omitempty"`
-	Type                 string             `json:"type"`
+	// The fully qualified URL of your cloud storage bucket (for example, `https://s3.eu-central-1.amazonaws.com/my-bucket`).
+	BucketUrl   *string            `json:"bucketUrl,omitempty"`
+	Credentials *BucketCredentials `json:"credentials,omitempty"`
+	// The cloud provider region where your storage bucket is located (for example, `us-west-1` for AWS or `eu01` for STACKIT).
+	Region               *string                `json:"region,omitempty"`
+	Type                 BucketBackendPatchType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +35,7 @@ type _BucketBackendPatch BucketBackendPatch
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketBackendPatch(types string) *BucketBackendPatch {
+func NewBucketBackendPatch(types BucketBackendPatchType) *BucketBackendPatch {
 	this := BucketBackendPatch{}
 	this.Type = types
 	return &this
@@ -144,9 +146,9 @@ func (o *BucketBackendPatch) SetRegion(v string) {
 }
 
 // GetType returns the Type field value
-func (o *BucketBackendPatch) GetType() string {
+func (o *BucketBackendPatch) GetType() BucketBackendPatchType {
 	if o == nil {
-		var ret string
+		var ret BucketBackendPatchType
 		return ret
 	}
 
@@ -155,7 +157,7 @@ func (o *BucketBackendPatch) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BucketBackendPatch) GetTypeOk() (*string, bool) {
+func (o *BucketBackendPatch) GetTypeOk() (*BucketBackendPatchType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -163,7 +165,7 @@ func (o *BucketBackendPatch) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *BucketBackendPatch) SetType(v string) {
+func (o *BucketBackendPatch) SetType(v BucketBackendPatchType) {
 	o.Type = v
 }
 
