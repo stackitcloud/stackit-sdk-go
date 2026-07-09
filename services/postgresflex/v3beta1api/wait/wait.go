@@ -111,7 +111,7 @@ func CreateUserWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, 
 			}
 			return response.State, nil
 		},
-		ActiveState: []string{"ACTIVE"},
+		ActiveState: []string{"PROCESSED"},
 		ErrorState:  []string{},
 		// The API does not have a dedicated failure state for this resource,
 		// so we rely on the timeout for cases where it never becomes active.
