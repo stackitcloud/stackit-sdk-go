@@ -13,6 +13,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the HttpBackend type satisfies the MappedNullable interface at compile time
@@ -103,9 +104,132 @@ type HttpBackendGetOriginUrlRetType = string
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// HttpBackendTypes Defines the type of content origin. For this schema, it must be set to `http`.
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type HttpBackendGetTypeAttributeType = *string
+type HttpBackendTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	HTTPBACKENDTYPE_HTTP HttpBackendTypes = "http"
+)
+
+// All allowed values of HttpBackend enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedHttpBackendTypesEnumValues = []HttpBackendTypes{
+	"http",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *HttpBackendTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson HttpBackendTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := HttpBackendTypes(value)
+	for _, existing := range AllowedHttpBackendTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid HttpBackend", value)
+}
+
+// NewHttpBackendTypesFromValue returns a pointer to a valid HttpBackendTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewHttpBackendTypesFromValue(v HttpBackendTypes) (*HttpBackendTypes, error) {
+	ev := HttpBackendTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for HttpBackendTypes: valid values are %v", v, AllowedHttpBackendTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v HttpBackendTypes) IsValid() bool {
+	for _, existing := range AllowedHttpBackendTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v HttpBackendTypes) Ptr() *HttpBackendTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableHttpBackendTypes struct {
+	value *HttpBackendTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableHttpBackendTypes) Get() *HttpBackendTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableHttpBackendTypes) Set(val *HttpBackendTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableHttpBackendTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableHttpBackendTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableHttpBackendTypes(val *HttpBackendTypes) *NullableHttpBackendTypes {
+	return &NullableHttpBackendTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableHttpBackendTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableHttpBackendTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type HttpBackendGetTypeAttributeType = *HttpBackendTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type HttpBackendGetTypeArgType = HttpBackendTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type HttpBackendGetTypeRetType = HttpBackendTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getHttpBackendGetTypeAttributeTypeOk(arg HttpBackendGetTypeAttributeType) (ret HttpBackendGetTypeRetType, ok bool) {
@@ -120,12 +244,6 @@ func setHttpBackendGetTypeAttributeType(arg *HttpBackendGetTypeAttributeType, va
 	*arg = &val
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type HttpBackendGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type HttpBackendGetTypeRetType = string
-
 // HttpBackend struct for HttpBackend
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type HttpBackend struct {
@@ -138,6 +256,7 @@ type HttpBackend struct {
 	// The origin of the content that should be made available through the CDN. Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed. So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
 	// REQUIRED
 	OriginUrl HttpBackendGetOriginUrlAttributeType `json:"originUrl" required:"true"`
+	// Defines the type of content origin. For this schema, it must be set to `http`.
 	// REQUIRED
 	Type HttpBackendGetTypeAttributeType `json:"type" required:"true"`
 }
