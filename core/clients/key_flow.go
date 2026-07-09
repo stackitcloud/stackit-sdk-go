@@ -21,18 +21,6 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
-const (
-	// Service Account Key Flow
-	// Auth flow env variables
-	ServiceAccountKey     = "STACKIT_SERVICE_ACCOUNT_KEY"
-	PrivateKey            = "STACKIT_PRIVATE_KEY"
-	ServiceAccountKeyPath = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
-	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
-	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
-	defaultTokenType      = "Bearer"
-	defaultScope          = ""
-)
-
 var _ AuthFlow = &KeyFlow{}
 
 // KeyFlow handles auth with SA key
@@ -108,11 +96,11 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 // getCredentialsTokenEndpoint returns the token endpoint from credentials or a default fallback
 func (cfg *KeyFlowConfig) getCredentialsTokenEndpoint() string {
 	if cfg.ServiceAccountKey == nil || cfg.ServiceAccountKey.Credentials == nil {
-		return tokenAPI
+		return identity.KeyFlowTokenAPI
 	}
 
 	if cfg.ServiceAccountKey.Credentials.TokenEndpoint == "" {
-		return tokenAPI
+		return identity.KeyFlowTokenAPI
 	}
 
 	return cfg.ServiceAccountKey.Credentials.TokenEndpoint
@@ -172,8 +160,8 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 		AccessToken:  accessToken,
 		ExpiresIn:    int(exp.Unix()),
 		RefreshToken: refreshToken,
-		Scope:        defaultScope,
-		TokenType:    defaultTokenType,
+		Scope:        identity.DefaultScope,
+		TokenType:    identity.DefaultTokenType,
 	}
 	c.tokenMutex.Unlock()
 	return nil

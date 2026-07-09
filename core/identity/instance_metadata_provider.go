@@ -52,10 +52,8 @@ func NewInstanceMetadataProvider(cfg InstanceMetadataProviderConfig) (*InstanceM
 		return nil, fmt.Errorf("%s: service account email cannot be empty", instanceMetadataErrorPrefix)
 	}
 
-	httpClient := cfg.HTTPClient
-	if httpClient == nil {
-		httpClient = &http.Client{Timeout: time.Minute}
-	}
+	// Create a clean client to avoid deadlocks if the provided client already has auth roundtrippers
+	httpClient := authHTTPClient(cfg.HTTPClient, time.Minute)
 
 	leeway := cfg.TokenRefreshLeeway
 	if leeway == 0 {

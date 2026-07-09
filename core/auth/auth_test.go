@@ -20,11 +20,11 @@ import (
 )
 
 func setTemporaryHome(t *testing.T) {
-	old := userHomeDir
+	old := identity.UserHomeDir
 	t.Cleanup(func() {
-		userHomeDir = old
+		identity.UserHomeDir = old
 	})
-	userHomeDir = func() (string, error) {
+	identity.UserHomeDir = func() (string, error) {
 		return t.TempDir(), nil
 	}
 }
@@ -353,7 +353,7 @@ func TestReadCredentials(t *testing.T) {
 		desc               string
 		path               string
 		pathEnv            string
-		credentialType     credentialType
+		credentialType     identity.CredentialType
 		isValid            bool
 		expectedCredential string
 	}{
@@ -361,7 +361,7 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "valid_path_argument_token",
 			path:               "test_resources/test_credentials_bar.json",
 			pathEnv:            "",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
@@ -369,7 +369,7 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "valid_path_env",
 			path:               "",
 			pathEnv:            "test_resources/test_credentials_bar.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
@@ -377,14 +377,14 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "path_over_env",
 			path:               "test_resources/test_credentials_bar.json",
 			pathEnv:            "test_resources/test_credentials_foo.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
 		{
 			desc:               "invalid_structure",
 			path:               "test_resources/test_invalid_structure.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			pathEnv:            "",
 			isValid:            false,
 			expectedCredential: "",
@@ -395,9 +395,9 @@ func TestReadCredentials(t *testing.T) {
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.pathEnv)
 
 			var credential string
-			credentials, err := readCredentialsFile(test.path)
+			credentials, err := identity.ReadCredentialsFile(test.path)
 			if err == nil {
-				credential, err = readCredential(test.credentialType, credentials)
+				credential, err = identity.ReadCredential(test.credentialType, credentials)
 			}
 
 			if err != nil && test.isValid {
@@ -418,7 +418,7 @@ func TestReadCredentials(t *testing.T) {
 func TestReadCredentialsFileErrorMessage(t *testing.T) {
 	setTemporaryHome(t)
 
-	_, err := readCredentialsFile("test_resources/test_invalid_structure.json")
+	_, err := identity.ReadCredentialsFile("test_resources/test_invalid_structure.json")
 	if err == nil {
 		t.Fatalf("error expected")
 	}

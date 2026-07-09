@@ -34,10 +34,10 @@ func TestWorkloadIdentityFederationToken(t *testing.T) {
 		if err := r.ParseForm(); err != nil {
 			t.Fatalf("parse form: %v", err)
 		}
-		if r.PostForm.Get("grant_type") != workloadIdentityGrantType {
+		if r.PostForm.Get("grant_type") != WifGrantType {
 			t.Fatalf("unexpected grant type: %s", r.PostForm.Get("grant_type"))
 		}
-		if r.PostForm.Get("client_assertion_type") != workloadIdentityClientAssertionType {
+		if r.PostForm.Get("client_assertion_type") != WifClientAssertionType {
 			t.Fatalf("unexpected assertion type: %s", r.PostForm.Get("client_assertion_type"))
 		}
 		if r.PostForm.Get("client_assertion") == "" {

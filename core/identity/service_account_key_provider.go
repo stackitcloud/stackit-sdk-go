@@ -28,11 +28,11 @@ const (
 type ServiceAccountKeyProviderConfig struct {
 	// ServiceAccountKey is the service account key as a JSON string.
 	// If empty, attempts to read from STACKIT_SERVICE_ACCOUNT_KEY environment variable,
-	// then from STACKIT_SERVICE_ACCOUNT_KEY_PATH, then from credentials file.
+	// then from STACKIT_SERVICE_ACCOUNT_KEY_PATH, then optionally from credentials file if CredentialsFilePath is set.
 	ServiceAccountKey string
 	// PrivateKey is the RSA private key as a PEM-encoded string.
 	// If empty, attempts to read from STACKIT_PRIVATE_KEY environment variable,
-	// then from STACKIT_PRIVATE_KEY_PATH, then from credentials file.
+	// then from STACKIT_PRIVATE_KEY_PATH, then optionally from credentials file if CredentialsFilePath is set.
 	PrivateKey string
 	// TokenURL overrides the token endpoint. If empty, the value from the service account key is used,
 	// falling back to the default STACKIT token endpoint.
@@ -42,6 +42,15 @@ type ServiceAccountKeyProviderConfig struct {
 	TokenRefreshLeeway time.Duration
 	// HTTPClient is used for token requests. If nil, a default client with a 1-minute timeout is used.
 	HTTPClient *http.Client
+	// CredentialsFilePath is a pointer to the path to the credentials file. When set (not nil), it enables
+	// automatic resolution of key/private key from the credentials file if they are not found in config or
+	// environment variables. If the pointer is nil, credentials file resolution is skipped.
+	// When set to a pointer to an empty string, uses the default credentials file path (~/.stackit/credentials.json).
+	CredentialsFilePath *string
+	// Optional scopes to request for the access token
+	Scopes []string
+	// Optional resources to request for the access token
+	Resources []string
 }
 
 var _ TokenProvider = (*ServiceAccountKeyProvider)(nil)
@@ -57,6 +66,8 @@ type ServiceAccountKeyProvider struct {
 	tokenLeeway time.Duration
 	tokenMutex  sync.RWMutex
 	token       Token
+	scopes      string
+	resources   []string
 }
 
 type oauthTokenResponse struct {
@@ -71,15 +82,23 @@ func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*Service
 	serviceAccountKeyJSON := cfg.ServiceAccountKey
 	if serviceAccountKeyJSON == "" {
 		// Try STACKIT_SERVICE_ACCOUNT_KEY env var
-		if key, exists := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_KEY"); exists && key != "" {
+		if key, exists := os.LookupEnv(EnvServiceAccountKey); exists && key != "" {
 			serviceAccountKeyJSON = key
-		} else if keyPath, exists := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_KEY_PATH"); exists && keyPath != "" {
+		} else if keyPath, exists := os.LookupEnv(EnvServiceAccountKeyPath); exists && keyPath != "" {
 			// Try STACKIT_SERVICE_ACCOUNT_KEY_PATH env var
 			data, err := os.ReadFile(keyPath)
 			if err != nil {
 				return nil, fmt.Errorf("%s: read service account key from path: %w", serviceAccountKeyErrorPrefix, err)
 			}
 			serviceAccountKeyJSON = string(data)
+		} else if cfg.CredentialsFilePath != nil {
+			// Try credentials file if pointer is set (not nil)
+			credentials, err := ReadCredentialsFile(*cfg.CredentialsFilePath)
+			if err == nil {
+				if key, err := ReadCredential(CredentialTypeServiceAccountKey, credentials); err == nil {
+					serviceAccountKeyJSON = key
+				}
+			}
 		}
 	}
 
@@ -97,13 +116,13 @@ func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*Service
 		return nil, fmt.Errorf("%s: service account key credentials cannot be empty", serviceAccountKeyErrorPrefix)
 	}
 
-	// Resolve private key from config, env vars, credentials file, or embedded in service account key
+	// Resolve private key from config, env vars, embedded in service account key, or credentials file
 	privateKeyPEM := cfg.PrivateKey
 	if privateKeyPEM == "" {
 		// Try STACKIT_PRIVATE_KEY env var
-		if key, exists := os.LookupEnv("STACKIT_PRIVATE_KEY"); exists && key != "" {
+		if key, exists := os.LookupEnv(EnvPrivateKey); exists && key != "" {
 			privateKeyPEM = key
-		} else if keyPath, exists := os.LookupEnv("STACKIT_PRIVATE_KEY_PATH"); exists && keyPath != "" {
+		} else if keyPath, exists := os.LookupEnv(EnvPrivateKeyPath); exists && keyPath != "" {
 			// Try STACKIT_PRIVATE_KEY_PATH env var
 			data, err := os.ReadFile(keyPath)
 			if err != nil {
@@ -111,8 +130,16 @@ func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*Service
 			}
 			privateKeyPEM = string(data)
 		} else if serviceAccountKey.Credentials.PrivateKey != nil {
-			// Fall back to private key embedded in service account key
+			// Try private key embedded in service account key
 			privateKeyPEM = *serviceAccountKey.Credentials.PrivateKey
+		} else if cfg.CredentialsFilePath != nil {
+			// Try credentials file if pointer is set and not found elsewhere
+			credentials, err := ReadCredentialsFile(*cfg.CredentialsFilePath)
+			if err == nil {
+				if key, err := ReadCredential(CredentialTypePrivateKey, credentials); err == nil {
+					privateKeyPEM = key
+				}
+			}
 		}
 	}
 
@@ -135,11 +162,8 @@ func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*Service
 		tokenURL = serviceAccountKeyDefaultTokenURL
 	}
 
-	// Resolve HTTP client
-	httpClient := cfg.HTTPClient
-	if httpClient == nil {
-		httpClient = &http.Client{Timeout: time.Minute}
-	}
+	// Resolve HTTP client - use clean client to avoid deadlocks if the provided client already has auth roundtrippers
+	httpClient := authHTTPClient(cfg.HTTPClient, time.Minute)
 
 	// Resolve token refresh leeway
 	leeway := cfg.TokenRefreshLeeway
@@ -154,6 +178,8 @@ func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*Service
 		json:        serviceAccountKey,
 		privateKey:  privateKey,
 		tokenLeeway: leeway,
+		scopes:      strings.Join(cfg.Scopes, " "),
+		resources:   cfg.Resources,
 	}, nil
 }
 
@@ -194,6 +220,12 @@ func (p *ServiceAccountKeyProvider) requestToken(ctx context.Context) (Token, er
 	body := url.Values{}
 	body.Set("grant_type", serviceAccountJWTBearerGrantType)
 	body.Set("assertion", assertion)
+	if p.scopes != "" {
+		body.Set("scope", p.scopes)
+	}
+	for _, resource := range p.resources {
+		body.Add("resource", resource)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, p.tokenURL, strings.NewReader(body.Encode()))
 	if err != nil {
@@ -209,6 +241,7 @@ func (p *ServiceAccountKeyProvider) requestToken(ctx context.Context) (Token, er
 
 	if res.StatusCode != http.StatusOK {
 		bodyRaw, _ := io.ReadAll(res.Body)
+		ErrorContext(ctx, "identity: token request failed", "status", res.StatusCode, "body", string(bodyRaw))
 		return Token{}, fmt.Errorf("%s: token request failed with status %d: %s", serviceAccountKeyErrorPrefix, res.StatusCode, string(bodyRaw))
 	}
 

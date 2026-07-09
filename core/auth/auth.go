@@ -5,35 +5,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"path/filepath"
-	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
-
-type credentialType string
-
-type Credentials struct {
-	STACKIT_SERVICE_ACCOUNT_EMAIL    string // Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
-	STACKIT_SERVICE_ACCOUNT_TOKEN    string
-	STACKIT_SERVICE_ACCOUNT_KEY_PATH string
-	STACKIT_PRIVATE_KEY_PATH         string
-	STACKIT_SERVICE_ACCOUNT_KEY      string
-	STACKIT_PRIVATE_KEY              string
-}
-
-const (
-	credentialsFilePath                                = ".stackit/credentials.json" //nolint:gosec // linter false positive
-	tokenCredentialType                 credentialType = "token"
-	serviceAccountKeyCredentialType     credentialType = "service_account_key"
-	serviceAccountKeyPathCredentialType credentialType = "service_account_key_path"
-	privateKeyCredentialType            credentialType = "private_key"
-	privateKeyPathCredentialType        credentialType = "private_key_path"
-)
-
-var userHomeDir = os.UserHomeDir
 
 // SetupAuth sets up authentication based on the configuration. The different options are
 // custom authentication, no authentication, explicit key flow, explicit token flow or default authentication
@@ -98,60 +74,45 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	// Try Instance Metadata Service (IMS) with aggressive timeout to fail fast if not in cloud
 	email := getServiceAccountEmail(cfg)
 	if email != "" {
-		imsClient := &http.Client{Timeout: 2 * time.Second}
 		if imsProvider, err := identity.NewInstanceMetadataProvider(identity.InstanceMetadataProviderConfig{
 			ServiceAccountEmail: email,
-			HTTPClient:          imsClient,
+			HTTPClient:          cfg.HTTPClient,
 		}); err == nil {
 			providers = append(providers, imsProvider)
 		}
 	}
 
-	// Try Workload Identity Federation
+	// Try Workload Identity Federation - provider handles client cleanup internally
 	if wifProvider, err := identity.NewWorkloadIdentityFederationProvider(identity.WorkloadIdentityFederationProviderConfig{
 		TokenURL:               cfg.TokenCustomUrl,
 		ClientID:               cfg.ServiceAccountEmail,
 		FederatedTokenFunction: cfg.ServiceAccountFederatedTokenFunc,
 		HTTPClient:             cfg.HTTPClient,
+		Scopes:                 cfg.Scopes,
+		Resources:              cfg.Resources,
 	}); err == nil {
 		providers = append(providers, wifProvider)
 	}
 
-	// Try Service Account Key - provider handles env var resolution, fallback to credentials file
+	// Try Service Account Key - provider handles client cleanup internally and credentials file resolution
 	if keyProvider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
-		ServiceAccountKey: cfg.ServiceAccountKey,
-		PrivateKey:        cfg.PrivateKey,
-		TokenURL:          cfg.TokenCustomUrl,
-		HTTPClient:        cfg.HTTPClient,
+		ServiceAccountKey:   cfg.ServiceAccountKey,
+		PrivateKey:          cfg.PrivateKey,
+		TokenURL:            cfg.TokenCustomUrl,
+		HTTPClient:          cfg.HTTPClient,
+		CredentialsFilePath: &cfg.CredentialsFilePath,
+		Scopes:              cfg.Scopes,
+		Resources:           cfg.Resources,
 	}); err == nil {
 		providers = append(providers, keyProvider)
-	} else {
-		// Try resolving from credentials file if direct/env resolution fails
-		keyCfg := *cfg
-		if getServiceAccountKeyAndPrivateKeyWithFallback(&keyCfg) == nil {
-			if keyProvider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
-				ServiceAccountKey: keyCfg.ServiceAccountKey,
-				PrivateKey:        keyCfg.PrivateKey,
-				TokenURL:          keyCfg.TokenCustomUrl,
-				HTTPClient:        keyCfg.HTTPClient,
-			}); err == nil {
-				providers = append(providers, keyProvider)
-			}
-		}
 	}
 
-	// Try Static Token - provider handles env var resolution, fallback to credentials file
+	// Try Static Token - provider handles env var resolution and credentials file resolution
 	if staticProvider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
-		Token: cfg.Token,
+		Token:               cfg.Token,
+		CredentialsFilePath: &cfg.CredentialsFilePath,
 	}); err == nil {
 		providers = append(providers, staticProvider)
-	} else if token, err := getTokenWithFallback(cfg); err == nil && token != "" {
-		// Try resolving from credentials file if env resolution fails
-		if staticProvider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
-			Token: token,
-		}); err == nil {
-			providers = append(providers, staticProvider)
-		}
 	}
 
 	chained, err := identity.NewChainedProvider(providers...)
@@ -189,6 +150,10 @@ func NoAuth(cfgs ...*config.Configuration) (rt http.RoundTripper, err error) {
 // TokenAuth configures the token flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using a token
 func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
+	if cfg == nil {
+		cfg = &config.Configuration{}
+	}
+
 	token, err := getTokenWithFallback(cfg)
 	if err != nil {
 		return nil, fmt.Errorf("resolving token: %w", err)
@@ -198,7 +163,8 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	provider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
-		Token: token,
+		Token:               token,
+		CredentialsFilePath: &cfg.CredentialsFilePath,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("error initializing static token provider: %w", err)
@@ -226,10 +192,11 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	provider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
-		ServiceAccountKey: cfg.ServiceAccountKey,
-		PrivateKey:        cfg.PrivateKey,
-		TokenURL:          cfg.TokenCustomUrl,
-		HTTPClient:        cfg.HTTPClient,
+		ServiceAccountKey:   cfg.ServiceAccountKey,
+		PrivateKey:          cfg.PrivateKey,
+		TokenURL:            cfg.TokenCustomUrl,
+		HTTPClient:          cfg.HTTPClient,
+		CredentialsFilePath: &cfg.CredentialsFilePath,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
@@ -261,71 +228,6 @@ func getTransportFromConfig(cfg *config.Configuration) http.RoundTripper {
 	return nil
 }
 
-// readCredentialsFile reads the credentials file from the specified path and returns Credentials
-func readCredentialsFile(path string) (*Credentials, error) {
-	if path == "" {
-		customPath, customPathSet := os.LookupEnv("STACKIT_CREDENTIALS_PATH")
-		if !customPathSet || customPath == "" {
-			path = credentialsFilePath
-			home, err := userHomeDir()
-			if err != nil {
-				return nil, fmt.Errorf("getting home directory: %w", err)
-			}
-			path = filepath.Join(home, path)
-		} else {
-			path = customPath
-		}
-	}
-
-	credentialsRaw, err := os.ReadFile(path)
-	if err != nil {
-		return nil, fmt.Errorf("opening file: %w", err)
-	}
-
-	var credentials Credentials
-	err = json.Unmarshal(credentialsRaw, &credentials)
-	if err != nil {
-		return nil, fmt.Errorf("unmarshalling credentials: %w", err)
-	}
-	return &credentials, nil
-}
-
-// readCredential reads the specified credentialType from Credentials and returns it as a string
-func readCredential(cred credentialType, credentials *Credentials) (string, error) {
-	var credentialValue string
-	switch cred {
-	case tokenCredentialType:
-		credentialValue = credentials.STACKIT_SERVICE_ACCOUNT_TOKEN
-		if credentialValue == "" {
-			return credentialValue, fmt.Errorf("token is empty or not set")
-		}
-	case serviceAccountKeyPathCredentialType:
-		credentialValue = credentials.STACKIT_SERVICE_ACCOUNT_KEY_PATH
-		if credentialValue == "" {
-			return credentialValue, fmt.Errorf("service account key path is empty or not set")
-		}
-	case privateKeyPathCredentialType:
-		credentialValue = credentials.STACKIT_PRIVATE_KEY_PATH
-		if credentialValue == "" {
-			return credentialValue, fmt.Errorf("private key path is empty or not set")
-		}
-	case serviceAccountKeyCredentialType:
-		credentialValue = credentials.STACKIT_SERVICE_ACCOUNT_KEY
-		if credentialValue == "" {
-			return credentialValue, fmt.Errorf("service account key is empty or not set")
-		}
-	case privateKeyCredentialType:
-		credentialValue = credentials.STACKIT_PRIVATE_KEY
-		if credentialValue == "" {
-			return credentialValue, fmt.Errorf("private key is empty or not set")
-		}
-	default:
-		return "", fmt.Errorf("invalid credential type: %s", cred)
-	}
-
-	return credentialValue, nil
-}
-
 // getServiceAccountEmail searches for an email in the following order: client configuration, environment variable, credentials file.
 // is not required for authentication, so it can be empty.
 func getServiceAccountEmail(cfg *config.Configuration) string {
@@ -333,20 +235,20 @@ func getServiceAccountEmail(cfg *config.Configuration) string {
 		return cfg.ServiceAccountEmail
 	}
 
-	email, emailSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_EMAIL")
+	email, emailSet := os.LookupEnv(identity.EnvServiceAccountEmail)
 	if !emailSet || email == "" {
-		credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+		credentials, err := identity.ReadCredentialsFile(cfg.CredentialsFilePath)
 		if err != nil {
 			// email is not required for authentication, so it shouldnt block it
 			return ""
 		}
-		return credentials.STACKIT_SERVICE_ACCOUNT_EMAIL
+		return credentials.ServiceAccountEmail
 	}
 	return email
 }
 
 // getKey searches for a key in the following order: client configuration, environment variable, credentials file.
-func getKey(cfgKey, cfgKeyPath *string, envVarKeyPath, envVarKey string, credTypePath, credTypeKey credentialType, cfgCredFilePath string) error {
+func getKey(cfgKey, cfgKeyPath *string, envVarKeyPath, envVarKey string, credTypePath, credTypeKey identity.CredentialType, cfgCredFilePath string) error {
 	if *cfgKey != "" {
 		return nil
 	}
@@ -357,15 +259,15 @@ func getKey(cfgKey, cfgKeyPath *string, envVarKeyPath, envVarKey string, credTyp
 		key, keySet := os.LookupEnv(envVarKey)
 		// if both are not set -> read from credentials file
 		if (!keyPathSet || keyPath == "") && (!keySet || key == "") {
-			credentials, err := readCredentialsFile(cfgCredFilePath)
+			credentials, err := identity.ReadCredentialsFile(cfgCredFilePath)
 			if err != nil {
 				return fmt.Errorf("reading from credentials file: %w", err)
 			}
 			// read key path from credentials file
-			keyPath, err = readCredential(credTypePath, credentials)
+			keyPath, err = identity.ReadCredential(credTypePath, credentials)
 			if err != nil || keyPath == "" {
 				// key path was not provided, read key from credentials file
-				key, err = readCredential(credTypeKey, credentials)
+				key, err = identity.ReadCredential(credTypeKey, credentials)
 				if err != nil || key == "" {
 					return fmt.Errorf("neither key nor path is provided in the configuration, environment variable, or credentials file: %w", err)
 				}
@@ -392,12 +294,12 @@ func getKey(cfgKey, cfgKeyPath *string, envVarKeyPath, envVarKey string, credTyp
 
 // getServiceAccountKey configures the service account key in the provided configuration
 func getServiceAccountKey(cfg *config.Configuration) error {
-	return getKey(&cfg.ServiceAccountKey, &cfg.ServiceAccountKeyPath, "STACKIT_SERVICE_ACCOUNT_KEY_PATH", "STACKIT_SERVICE_ACCOUNT_KEY", serviceAccountKeyPathCredentialType, serviceAccountKeyCredentialType, cfg.CredentialsFilePath)
+	return getKey(&cfg.ServiceAccountKey, &cfg.ServiceAccountKeyPath, identity.EnvServiceAccountKeyPath, identity.EnvServiceAccountKey, identity.CredentialTypeServiceAccountKeyPath, identity.CredentialTypeServiceAccountKey, cfg.CredentialsFilePath)
 }
 
 // getPrivateKey configures the private key in the provided configuration
 func getPrivateKey(cfg *config.Configuration) error {
-	return getKey(&cfg.PrivateKey, &cfg.PrivateKeyPath, "STACKIT_PRIVATE_KEY_PATH", "STACKIT_PRIVATE_KEY", privateKeyPathCredentialType, privateKeyCredentialType, cfg.CredentialsFilePath)
+	return getKey(&cfg.PrivateKey, &cfg.PrivateKeyPath, identity.EnvPrivateKeyPath, identity.EnvPrivateKey, identity.CredentialTypePrivateKeyPath, identity.CredentialTypePrivateKey, cfg.CredentialsFilePath)
 }
 
 // getTokenWithFallback resolves a token from config, environment, or credentials file
@@ -407,17 +309,17 @@ func getTokenWithFallback(cfg *config.Configuration) (string, error) {
 	}
 
 	// Try environment variable
-	if token, exists := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_TOKEN"); exists && token != "" {
+	if token, exists := os.LookupEnv(identity.EnvServiceAccountToken); exists && token != "" {
 		return token, nil
 	}
 
 	// Try credentials file
-	credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+	credentials, err := identity.ReadCredentialsFile(cfg.CredentialsFilePath)
 	if err != nil {
 		return "", fmt.Errorf("reading from credentials file: %w", err)
 	}
 
-	token, err := readCredential(tokenCredentialType, credentials)
+	token, err := identity.ReadCredential(identity.CredentialTypeToken, credentials)
 	if err != nil {
 		return "", fmt.Errorf("token not found in credentials file: %w", err)
 	}
@@ -453,7 +355,7 @@ func getServiceAccountKeyAndPrivateKeyWithFallback(cfg *config.Configuration) er
 
 	// Resolve token URL from env if not set
 	if cfg.TokenCustomUrl == "" {
-		if tokenURL, exists := os.LookupEnv("STACKIT_TOKEN_BASEURL"); exists && tokenURL != "" {
+		if tokenURL, exists := os.LookupEnv(identity.EnvTokenBaseUrl); exists && tokenURL != "" {
 			cfg.TokenCustomUrl = tokenURL
 		}
 	}

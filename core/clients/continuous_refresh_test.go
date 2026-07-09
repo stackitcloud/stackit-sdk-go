@@ -14,6 +14,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -187,7 +188,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	defer cancel() // This cancels the refresher goroutine
 
 	// Extract host from tokenAPI constant for consistency
-	tokenURL, _ := url.Parse(tokenAPI)
+	tokenURL, _ := url.Parse(identity.KeyFlowTokenAPI)
 	tokenHost := tokenURL.Host
 
 	// The Do() routine, that both the keyFlow and continuousRefreshToken() use to make their requests

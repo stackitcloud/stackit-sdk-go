@@ -16,15 +16,9 @@ import (
 )
 
 const (
-	workloadIdentityClientIDEnv         = "STACKIT_SERVICE_ACCOUNT_EMAIL"
-	workloadIdentityFederatedTokenEnv   = "STACKIT_FEDERATED_TOKEN_FILE"
-	workloadIdentityTokenEndpointEnv    = "STACKIT_IDP_TOKEN_ENDPOINT"
-	workloadIdentityDefaultTokenURL     = "https://accounts.stackit.cloud/oauth/v2/token"
-	workloadIdentityDefaultTokenPath    = "/var/run/secrets/stackit.cloud/serviceaccount/token"
-	workloadIdentityClientAssertionType = "urn:schwarz:params:oauth:client-assertion-type:workload-jwt"
-	workloadIdentityGrantType           = "client_credentials"
-	workloadIdentityDefaultLeeway       = time.Minute
-	workloadIdentityErrorPrefix         = "workload identity federation provider"
+	workloadIdentityClientIDEnv   = EnvServiceAccountEmail
+	workloadIdentityDefaultLeeway = time.Minute
+	workloadIdentityErrorPrefix   = "workload identity federation provider"
 )
 
 // WorkloadIdentityFederationProviderConfig contains the configuration for WorkloadIdentityFederationProvider.
@@ -41,6 +35,10 @@ type WorkloadIdentityFederationProviderConfig struct {
 	TokenRefreshLeeway time.Duration
 	// HTTPClient is used for token requests. If nil, a default client with a 1-minute timeout is used.
 	HTTPClient *http.Client
+	// Optional scopes to request for the access token
+	Scopes []string
+	// Optional resources to request for the access token
+	Resources []string
 }
 
 var _ TokenProvider = (*WorkloadIdentityFederationProvider)(nil)
@@ -55,6 +53,8 @@ type WorkloadIdentityFederationProvider struct {
 	tokenLeeway            time.Duration
 	tokenMutex             sync.RWMutex
 	token                  Token
+	scopes                 string
+	resources              []string
 }
 
 type workloadIdentityTokenResponse struct {
@@ -66,7 +66,7 @@ type workloadIdentityTokenResponse struct {
 func NewWorkloadIdentityFederationProvider(cfg WorkloadIdentityFederationProviderConfig) (*WorkloadIdentityFederationProvider, error) {
 	tokenURL := cfg.TokenURL
 	if tokenURL == "" {
-		tokenURL = utils.GetEnvOrDefault(workloadIdentityTokenEndpointEnv, workloadIdentityDefaultTokenURL)
+		tokenURL = utils.GetEnvOrDefault(EnvIdpTokenEndpoint, WifDefaultTokenEndpoint)
 	}
 
 	clientID := cfg.ClientID
@@ -79,16 +79,13 @@ func NewWorkloadIdentityFederationProvider(cfg WorkloadIdentityFederationProvide
 
 	federatedTokenFunction := cfg.FederatedTokenFunction
 	if federatedTokenFunction == nil {
-		federatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(workloadIdentityFederatedTokenEnv, workloadIdentityDefaultTokenPath))
+		federatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(EnvFederatedTokenFile, WifDefaultFederatedTokenPath))
 	}
 	if _, err := federatedTokenFunction(context.Background()); err != nil {
 		return nil, fmt.Errorf("%s: error reading federated token file: %w", workloadIdentityErrorPrefix, err)
 	}
 
-	httpClient := cfg.HTTPClient
-	if httpClient == nil {
-		httpClient = &http.Client{Timeout: time.Minute}
-	}
+	httpClient := authHTTPClient(cfg.HTTPClient, time.Minute)
 
 	leeway := cfg.TokenRefreshLeeway
 	if leeway == 0 {
@@ -102,6 +99,8 @@ func NewWorkloadIdentityFederationProvider(cfg WorkloadIdentityFederationProvide
 		clientID:               clientID,
 		federatedTokenFunction: federatedTokenFunction,
 		tokenLeeway:            leeway,
+		scopes:                 strings.Join(cfg.Scopes, " "),
+		resources:              cfg.Resources,
 	}, nil
 }
 
@@ -140,10 +139,16 @@ func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context) (
 	}
 
 	body := url.Values{}
-	body.Set("grant_type", workloadIdentityGrantType)
-	body.Set("client_assertion_type", workloadIdentityClientAssertionType)
+	body.Set("grant_type", WifGrantType)
+	body.Set("client_assertion_type", WifClientAssertionType)
 	body.Set("client_assertion", clientAssertion)
 	body.Set("client_id", p.clientID)
+	if p.scopes != "" {
+		body.Set("scope", p.scopes)
+	}
+	for _, resource := range p.resources {
+		body.Add("resource", resource)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, p.tokenURL, strings.NewReader(body.Encode()))
 	if err != nil {
