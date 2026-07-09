@@ -47,7 +47,11 @@ type instanceMetadataTokenResponse struct {
 }
 
 // NewInstanceMetadataProvider creates an InstanceMetadata provider.
-func NewInstanceMetadataProvider(cfg InstanceMetadataProviderConfig) (*InstanceMetadataProvider, error) {
+func NewInstanceMetadataProvider(cfg *InstanceMetadataProviderConfig) (*InstanceMetadataProvider, error) {
+	if cfg == nil {
+		return nil, fmt.Errorf("%s: config cannot be nil", instanceMetadataErrorPrefix)
+	}
+
 	if cfg.ServiceAccountEmail == "" {
 		return nil, fmt.Errorf("%s: service account email cannot be empty", instanceMetadataErrorPrefix)
 	}
@@ -101,7 +105,7 @@ func (p *InstanceMetadataProvider) Token(ctx context.Context, _ TokenRequestOpti
 
 func (p *InstanceMetadataProvider) requestToken(ctx context.Context) (Token, error) {
 	url := strings.ReplaceAll(p.endpointTemplate, instanceMetadataPathPlaceholder, p.serviceAccount)
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, http.NoBody)
 	if err != nil {
 		return Token{}, fmt.Errorf("%s: create instance metadata request: %w", instanceMetadataErrorPrefix, err)
 	}
@@ -110,7 +114,9 @@ func (p *InstanceMetadataProvider) requestToken(ctx context.Context) (Token, err
 	if err != nil {
 		return Token{}, fmt.Errorf("%s: request instance metadata token: %w", instanceMetadataErrorPrefix, err)
 	}
-	defer res.Body.Close()
+	defer func() {
+		_ = res.Body.Close()
+	}()
 
 	if res.StatusCode != http.StatusOK {
 		return Token{}, fmt.Errorf("%s: instance metadata request failed with status %d", instanceMetadataErrorPrefix, res.StatusCode)

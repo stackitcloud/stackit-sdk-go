@@ -21,6 +21,7 @@ type Credentials struct {
 }
 
 const (
+	// nolint:gosec // G101 False positive: This is a constant path, not a credential
 	credentialsFilePath                                = ".stackit/credentials.json"
 	CredentialTypeToken                 CredentialType = "token"
 	CredentialTypeServiceAccountKey     CredentialType = "service_account_key"

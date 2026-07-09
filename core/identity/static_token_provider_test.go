@@ -6,8 +6,9 @@ import (
 )
 
 func TestStaticTokenProvider(t *testing.T) {
+	//nolint:gosec // G101 False positive: This is a test JWT token, not a credential
 	accessToken := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjk5OTk5OTk5OTl9.test"
-	provider, err := NewStaticTokenProvider(StaticTokenProviderConfig{Token: accessToken})
+	provider, err := NewStaticTokenProvider(&StaticTokenProviderConfig{Token: accessToken})
 	if err != nil {
 		t.Fatalf("expected no error: %v", err)
 	}
@@ -27,7 +28,7 @@ func TestStaticTokenProvider(t *testing.T) {
 }
 
 func TestStaticTokenProviderEmpty(t *testing.T) {
-	_, err := NewStaticTokenProvider(StaticTokenProviderConfig{Token: ""})
+	_, err := NewStaticTokenProvider(&StaticTokenProviderConfig{Token: ""})
 	if err == nil {
 		t.Fatalf("expected error for empty token")
 	}

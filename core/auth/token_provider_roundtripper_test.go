@@ -17,7 +17,7 @@ type tokenProviderStub struct {
 	err   error
 }
 
-func (s tokenProviderStub) Token(context.Context, identity.TokenRequestOptions) (identity.Token, error) {
+func (s *tokenProviderStub) Token(context.Context, identity.TokenRequestOptions) (identity.Token, error) {
 	if s.err != nil {
 		return identity.Token{}, s.err
 	}
@@ -31,7 +31,7 @@ func (f roundTripperStub) RoundTrip(req *http.Request) (*http.Response, error) {
 }
 
 func TestTokenProviderRoundTripper(t *testing.T) {
-	rt := newTokenProviderRoundTripper(tokenProviderStub{
+	rt := newTokenProviderRoundTripper(&tokenProviderStub{
 		token: identity.Token{AccessToken: "token-value", RefreshOn: time.Now().Add(time.Hour)},
 	}, roundTripperStub(func(req *http.Request) (*http.Response, error) {
 		if req.Header.Get("Authorization") != "Bearer token-value" {
@@ -40,7 +40,7 @@ func TestTokenProviderRoundTripper(t *testing.T) {
 		return &http.Response{StatusCode: http.StatusOK, Body: io.NopCloser(strings.NewReader("ok")), Header: make(http.Header)}, nil
 	}))
 
-	req, err := http.NewRequest(http.MethodGet, "https://example.com", nil)
+	req, err := http.NewRequest(http.MethodGet, "https://example.com", http.NoBody)
 	if err != nil {
 		t.Fatalf("create request: %v", err)
 	}
@@ -52,21 +52,27 @@ func TestTokenProviderRoundTripper(t *testing.T) {
 	if res.StatusCode != http.StatusOK {
 		t.Fatalf("unexpected status code: %d", res.StatusCode)
 	}
+	if err := res.Body.Close(); err != nil {
+		t.Fatalf("close response body: %v", err)
+	}
 }
 
 func TestTokenProviderRoundTripperProviderError(t *testing.T) {
-	rt := newTokenProviderRoundTripper(tokenProviderStub{err: fmt.Errorf("failed")}, roundTripperStub(func(req *http.Request) (*http.Response, error) {
+	rt := newTokenProviderRoundTripper(&tokenProviderStub{err: fmt.Errorf("failed")}, roundTripperStub(func(_ *http.Request) (*http.Response, error) {
 		return nil, fmt.Errorf("unexpected")
 	}))
 
-	req, err := http.NewRequest(http.MethodGet, "https://example.com", nil)
+	req, err := http.NewRequest(http.MethodGet, "https://example.com", http.NoBody)
 	if err != nil {
 		t.Fatalf("create request: %v", err)
 	}
 
-	_, err = rt.RoundTrip(req)
+	res, err := rt.RoundTrip(req) //nolint:bodyclose // Not executed due to error in provider
 	if err == nil {
 		t.Fatalf("expected error")
+	}
+	if res != nil {
+		res.Body.Close() // nolint:errcheck // Response may be nil, only closing if not
 	}
 	if !strings.Contains(err.Error(), "get access token from provider") {
 		t.Fatalf("unexpected error: %v", err)

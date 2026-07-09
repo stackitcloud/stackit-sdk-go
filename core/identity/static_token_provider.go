@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+const staticTokenErrorPrefix = "static token provider"
+
 var _ TokenProvider = (*StaticTokenProvider)(nil)
 
 // StaticTokenProviderConfig contains configuration for StaticTokenProvider.
@@ -27,7 +29,10 @@ type StaticTokenProvider struct {
 }
 
 // NewStaticTokenProvider creates a StaticTokenProvider, resolving the token from config or environment.
-func NewStaticTokenProvider(cfg StaticTokenProviderConfig) (*StaticTokenProvider, error) {
+func NewStaticTokenProvider(cfg *StaticTokenProviderConfig) (*StaticTokenProvider, error) {
+	if cfg == nil {
+		return nil, fmt.Errorf("%s: config cannot be nil", staticTokenErrorPrefix)
+	}
 	token := cfg.Token
 	if token == "" {
 		if val, found := os.LookupEnv(EnvServiceAccountToken); found && val != "" {

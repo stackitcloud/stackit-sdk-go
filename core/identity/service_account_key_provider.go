@@ -18,7 +18,9 @@ import (
 )
 
 const (
+	// nolint:gosec // G101 False positive: This is a constant URL, not a credential
 	serviceAccountKeyDefaultTokenURL = "https://accounts.stackit.cloud/oauth/v2/token"
+	// nolint:gosec // G101 False positive: This is a constant protocol string, not a credential
 	serviceAccountJWTBearerGrantType = "urn:ietf:params:oauth:grant-type:jwt-bearer"
 	serviceAccountKeyDefaultLeeway   = time.Minute
 	serviceAccountKeyErrorPrefix     = "service account key provider"
@@ -77,7 +79,10 @@ type oauthTokenResponse struct {
 
 // NewServiceAccountKeyProvider creates a ServiceAccountKey provider.
 // It resolves configuration from environment variables if not provided in the config.
-func NewServiceAccountKeyProvider(cfg ServiceAccountKeyProviderConfig) (*ServiceAccountKeyProvider, error) {
+func NewServiceAccountKeyProvider(cfg *ServiceAccountKeyProviderConfig) (*ServiceAccountKeyProvider, error) {
+	if cfg == nil {
+		return nil, fmt.Errorf("%s: config cannot be nil", serviceAccountKeyErrorPrefix)
+	}
 	// Resolve service account key from config, env vars, or credentials file
 	serviceAccountKeyJSON := cfg.ServiceAccountKey
 	if serviceAccountKeyJSON == "" {
@@ -237,7 +242,9 @@ func (p *ServiceAccountKeyProvider) requestToken(ctx context.Context) (Token, er
 	if err != nil {
 		return Token{}, fmt.Errorf("%s: request access token: %w", serviceAccountKeyErrorPrefix, err)
 	}
-	defer res.Body.Close()
+	defer func() {
+		_ = res.Body.Close()
+	}()
 
 	if res.StatusCode != http.StatusOK {
 		bodyRaw, _ := io.ReadAll(res.Body)

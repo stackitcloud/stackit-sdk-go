@@ -14,7 +14,7 @@ type staticProvider struct {
 	err   error
 }
 
-func (s staticProvider) Token(context.Context, TokenRequestOptions) (Token, error) {
+func (s *staticProvider) Token(context.Context, TokenRequestOptions) (Token, error) {
 	if s.err != nil {
 		return Token{}, s.err
 	}
@@ -24,8 +24,8 @@ func (s staticProvider) Token(context.Context, TokenRequestOptions) (Token, erro
 func TestChainToken(t *testing.T) {
 	expected := Token{AccessToken: "token", RefreshOn: time.Now().Add(time.Hour)}
 	chain, err := NewChainedProvider(
-		staticProvider{err: fmt.Errorf("first failed")},
-		staticProvider{token: expected},
+		&staticProvider{err: fmt.Errorf("first failed")},
+		&staticProvider{token: expected},
 	)
 	if err != nil {
 		t.Fatalf("new chain: %v", err)
@@ -42,8 +42,8 @@ func TestChainToken(t *testing.T) {
 
 func TestChainTokenAllFailures(t *testing.T) {
 	chain, err := NewChainedProvider(
-		staticProvider{err: fmt.Errorf("first failed")},
-		staticProvider{err: fmt.Errorf("second failed")},
+		&staticProvider{err: fmt.Errorf("first failed")},
+		&staticProvider{err: fmt.Errorf("second failed")},
 	)
 	if err != nil {
 		t.Fatalf("new chain: %v", err)
@@ -72,8 +72,8 @@ func TestChainCachesSuccessfulProviderByDefault(t *testing.T) {
 	var firstCalls int32
 	var secondCalls int32
 
-	first := staticProvider{err: fmt.Errorf("first failed")}
-	second := staticProvider{token: Token{AccessToken: "token", RefreshOn: time.Now().Add(time.Hour)}}
+	first := &staticProvider{err: fmt.Errorf("first failed")}
+	second := &staticProvider{token: Token{AccessToken: "token", RefreshOn: time.Now().Add(time.Hour)}}
 
 	countingFirst := countingProvider{inner: first, count: &firstCalls}
 	countingSecond := countingProvider{inner: second, count: &secondCalls}
@@ -104,8 +104,8 @@ func TestChainRetrySourcesOption(t *testing.T) {
 	var firstCalls int32
 	var secondCalls int32
 
-	first := staticProvider{err: fmt.Errorf("first failed")}
-	second := staticProvider{token: Token{AccessToken: "token", RefreshOn: time.Now().Add(time.Hour)}}
+	first := &staticProvider{err: fmt.Errorf("first failed")}
+	second := &staticProvider{token: Token{AccessToken: "token", RefreshOn: time.Now().Add(time.Hour)}}
 
 	countingFirst := countingProvider{inner: first, count: &firstCalls}
 	countingSecond := countingProvider{inner: second, count: &secondCalls}

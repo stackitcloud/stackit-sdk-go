@@ -63,7 +63,10 @@ type workloadIdentityTokenResponse struct {
 }
 
 // NewWorkloadIdentityFederationProvider creates a WorkloadIdentityFederation provider.
-func NewWorkloadIdentityFederationProvider(cfg WorkloadIdentityFederationProviderConfig) (*WorkloadIdentityFederationProvider, error) {
+func NewWorkloadIdentityFederationProvider(cfg *WorkloadIdentityFederationProviderConfig) (*WorkloadIdentityFederationProvider, error) {
+	if cfg == nil {
+		return nil, fmt.Errorf("%s: config cannot be nil", workloadIdentityErrorPrefix)
+	}
 	tokenURL := cfg.TokenURL
 	if tokenURL == "" {
 		tokenURL = utils.GetEnvOrDefault(EnvIdpTokenEndpoint, WifDefaultTokenEndpoint)
@@ -160,7 +163,7 @@ func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context) (
 	if err != nil {
 		return Token{}, fmt.Errorf("%s: request access token: %w", workloadIdentityErrorPrefix, err)
 	}
-	defer res.Body.Close()
+	defer func() { _ = res.Body.Close() }()
 
 	if res.StatusCode != http.StatusOK {
 		bodyRaw, _ := io.ReadAll(res.Body)

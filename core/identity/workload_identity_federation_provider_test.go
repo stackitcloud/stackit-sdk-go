@@ -54,7 +54,7 @@ func TestWorkloadIdentityFederationToken(t *testing.T) {
 	}))
 	defer server.Close()
 
-	provider, err := NewWorkloadIdentityFederationProvider(WorkloadIdentityFederationProviderConfig{
+	provider, err := NewWorkloadIdentityFederationProvider(&WorkloadIdentityFederationProviderConfig{
 		TokenURL:               server.URL,
 		ClientID:               "service-account@sa.stackit.cloud",
 		FederatedTokenFunction: func(context.Context) (string, error) { return assertion, nil },
@@ -81,7 +81,7 @@ func TestWorkloadIdentityFederationToken(t *testing.T) {
 }
 
 func TestWorkloadIdentityFederationRequiresClientID(t *testing.T) {
-	_, err := NewWorkloadIdentityFederationProvider(WorkloadIdentityFederationProviderConfig{
+	_, err := NewWorkloadIdentityFederationProvider(&WorkloadIdentityFederationProviderConfig{
 		FederatedTokenFunction: func(context.Context) (string, error) { return "token", nil },
 	})
 	if err == nil {

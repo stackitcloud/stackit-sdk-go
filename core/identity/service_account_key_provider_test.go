@@ -65,7 +65,7 @@ func TestServiceAccountKeyToken(t *testing.T) {
 		t.Fatalf("marshal service account key: %v", err)
 	}
 
-	provider, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{
+	provider, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{
 		ServiceAccountKey: string(saKeyJSON),
 		PrivateKey:        string(privateKeyPEM),
 		TokenURL:          server.URL,
@@ -92,7 +92,7 @@ func TestServiceAccountKeyToken(t *testing.T) {
 }
 
 func TestServiceAccountKeyRequiresKeyAndPrivateKey(t *testing.T) {
-	_, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{})
+	_, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{})
 	if err == nil {
 		t.Fatalf("expected error")
 	}
@@ -139,7 +139,7 @@ func TestServiceAccountKeyWithScopes(t *testing.T) {
 		t.Fatalf("marshal service account key: %v", err)
 	}
 
-	provider, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{
+	provider, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{
 		ServiceAccountKey: string(saKeyJSON),
 		PrivateKey:        string(privateKeyPEM),
 		TokenURL:          server.URL,
@@ -202,7 +202,7 @@ func TestServiceAccountKeyWithResources(t *testing.T) {
 		t.Fatalf("marshal service account key: %v", err)
 	}
 
-	provider, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{
+	provider, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{
 		ServiceAccountKey: string(saKeyJSON),
 		PrivateKey:        string(privateKeyPEM),
 		TokenURL:          server.URL,
@@ -272,7 +272,7 @@ func TestServiceAccountKeyWithScopesAndResources(t *testing.T) {
 		t.Fatalf("marshal service account key: %v", err)
 	}
 
-	provider, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{
+	provider, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{
 		ServiceAccountKey: string(saKeyJSON),
 		PrivateKey:        string(privateKeyPEM),
 		TokenURL:          server.URL,
@@ -348,7 +348,7 @@ func TestServiceAccountKeyWithEmptyScopesAndResources(t *testing.T) {
 		t.Fatalf("marshal service account key: %v", err)
 	}
 
-	provider, err := NewServiceAccountKeyProvider(ServiceAccountKeyProviderConfig{
+	provider, err := NewServiceAccountKeyProvider(&ServiceAccountKeyProviderConfig{
 		ServiceAccountKey: string(saKeyJSON),
 		PrivateKey:        string(privateKeyPEM),
 		TokenURL:          server.URL,

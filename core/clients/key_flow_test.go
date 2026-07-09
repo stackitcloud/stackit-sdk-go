@@ -17,10 +17,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
+
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
-	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
 var (

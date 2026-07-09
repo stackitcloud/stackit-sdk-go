@@ -14,11 +14,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
-	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
 var _ AuthFlow = &KeyFlow{}

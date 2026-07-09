@@ -34,7 +34,7 @@ func TestInstanceMetadataTokenCachesResponse(t *testing.T) {
 	}))
 	defer server.Close()
 
-	provider, err := NewInstanceMetadataProvider(InstanceMetadataProviderConfig{
+	provider, err := NewInstanceMetadataProvider(&InstanceMetadataProviderConfig{
 		ServiceAccountEmail: "test@sa.stackit.cloud",
 		HTTPClient:          server.Client(),
 	})
@@ -60,14 +60,14 @@ func TestInstanceMetadataTokenCachesResponse(t *testing.T) {
 }
 
 func TestInstanceMetadataTokenRequiresServiceAccountEmail(t *testing.T) {
-	_, err := NewInstanceMetadataProvider(InstanceMetadataProviderConfig{})
+	_, err := NewInstanceMetadataProvider(&InstanceMetadataProviderConfig{})
 	if err == nil {
 		t.Fatalf("expected error")
 	}
 }
 
 func TestInstanceMetadataTokenInvalidValidUntil(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		_ = json.NewEncoder(w).Encode(map[string]any{
 			"token":      "token",
 			"validUntil": "invalid",
@@ -75,7 +75,7 @@ func TestInstanceMetadataTokenInvalidValidUntil(t *testing.T) {
 	}))
 	defer server.Close()
 
-	provider, err := NewInstanceMetadataProvider(InstanceMetadataProviderConfig{
+	provider, err := NewInstanceMetadataProvider(&InstanceMetadataProviderConfig{
 		ServiceAccountEmail: "test@sa.stackit.cloud",
 		HTTPClient:          server.Client(),
 	})
@@ -91,12 +91,12 @@ func TestInstanceMetadataTokenInvalidValidUntil(t *testing.T) {
 }
 
 func TestInstanceMetadataTokenHTTPError(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 	}))
 	defer server.Close()
 
-	provider, err := NewInstanceMetadataProvider(InstanceMetadataProviderConfig{
+	provider, err := NewInstanceMetadataProvider(&InstanceMetadataProviderConfig{
 		ServiceAccountEmail: "test@sa.stackit.cloud",
 		HTTPClient:          server.Client(),
 	})

@@ -74,7 +74,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	// Try Instance Metadata Service (IMS) with aggressive timeout to fail fast if not in cloud
 	email := getServiceAccountEmail(cfg)
 	if email != "" {
-		if imsProvider, err := identity.NewInstanceMetadataProvider(identity.InstanceMetadataProviderConfig{
+		if imsProvider, err := identity.NewInstanceMetadataProvider(&identity.InstanceMetadataProviderConfig{
 			ServiceAccountEmail: email,
 			HTTPClient:          cfg.HTTPClient,
 		}); err == nil {
@@ -83,7 +83,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	}
 
 	// Try Workload Identity Federation - provider handles client cleanup internally
-	if wifProvider, err := identity.NewWorkloadIdentityFederationProvider(identity.WorkloadIdentityFederationProviderConfig{
+	if wifProvider, err := identity.NewWorkloadIdentityFederationProvider(&identity.WorkloadIdentityFederationProviderConfig{
 		TokenURL:               cfg.TokenCustomUrl,
 		ClientID:               cfg.ServiceAccountEmail,
 		FederatedTokenFunction: cfg.ServiceAccountFederatedTokenFunc,
@@ -95,7 +95,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	}
 
 	// Try Service Account Key - provider handles client cleanup internally and credentials file resolution
-	if keyProvider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
+	if keyProvider, err := identity.NewServiceAccountKeyProvider(&identity.ServiceAccountKeyProviderConfig{
 		ServiceAccountKey:   cfg.ServiceAccountKey,
 		PrivateKey:          cfg.PrivateKey,
 		TokenURL:            cfg.TokenCustomUrl,
@@ -108,7 +108,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	}
 
 	// Try Static Token - provider handles env var resolution and credentials file resolution
-	if staticProvider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
+	if staticProvider, err := identity.NewStaticTokenProvider(&identity.StaticTokenProviderConfig{
 		Token:               cfg.Token,
 		CredentialsFilePath: &cfg.CredentialsFilePath,
 	}); err == nil {
@@ -162,7 +162,7 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("STACKIT_SERVICE_ACCOUNT_TOKEN not set and no token found in credentials file")
 	}
 
-	provider, err := identity.NewStaticTokenProvider(identity.StaticTokenProviderConfig{
+	provider, err := identity.NewStaticTokenProvider(&identity.StaticTokenProviderConfig{
 		Token:               token,
 		CredentialsFilePath: &cfg.CredentialsFilePath,
 	})
@@ -191,7 +191,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("configuring key authentication: %w", err)
 	}
 
-	provider, err := identity.NewServiceAccountKeyProvider(identity.ServiceAccountKeyProviderConfig{
+	provider, err := identity.NewServiceAccountKeyProvider(&identity.ServiceAccountKeyProviderConfig{
 		ServiceAccountKey:   cfg.ServiceAccountKey,
 		PrivateKey:          cfg.PrivateKey,
 		TokenURL:            cfg.TokenCustomUrl,
@@ -208,7 +208,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 // WorkloadIdentityFederationAuth configures the wif flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
 func WorkloadIdentityFederationAuth(cfg *config.Configuration) (http.RoundTripper, error) {
-	provider, err := identity.NewWorkloadIdentityFederationProvider(identity.WorkloadIdentityFederationProviderConfig{
+	provider, err := identity.NewWorkloadIdentityFederationProvider(&identity.WorkloadIdentityFederationProviderConfig{
 		TokenURL:               cfg.TokenCustomUrl,
 		ClientID:               cfg.ServiceAccountEmail,
 		FederatedTokenFunction: cfg.ServiceAccountFederatedTokenFunc,
