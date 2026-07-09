@@ -1,3 +1,8 @@
+## v1.19.0
+- `v1api`:
+  - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
+  - **Improvement**: Add documentation to various attributes
+
 ## v1.18.0
 - `v1beta2api`: v1beta2api was deprecated please migrate to `v1api`
 
