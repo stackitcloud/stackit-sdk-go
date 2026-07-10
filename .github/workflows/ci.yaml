@@ -1,6 +1,14 @@
 name: CI Workflow
 
-on: [pull_request, workflow_dispatch]
+on:
+  pull_request:
+    # trigger also if labels are set/unsed to allow to ignore the gorelease check
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write # required to add comments to the PR
+  contents: read
 
 jobs:
   main:
@@ -13,10 +21,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
+      
       - name: Test
         run: make test
 
@@ -29,13 +39,87 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.25
+      
       - name: Install project tools and dependencies
         run: make project-tools
+      
       - name: Lint
         run: |
           make lint
           scripts/check-sync-tidy.sh
+
+  gorelease-check:
+    name: Gorelease check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.25
+      
+      - name: Install project tools and dependencies
+        run: make project-tools
+
+      - name: Create gorelease report
+        run: make gorelease-report
+
+      # Creates a new comment or updates the existing one to show the report result
+      - name: Comment PR
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: "gorelease_report.md"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const identifier = `<!-- gorelease-report -->`;
+            const fs = require('fs');
+            
+            let report = "No output generated.";
+            if (process.env.REPORT_FILE && fs.existsSync(process.env.REPORT_FILE)) {
+              report = fs.readFileSync(process.env.REPORT_FILE, 'utf8');
+            }
+            
+            // Format the comment
+            const body = `${identifier}\n${report}`;
+
+            // Fetch existing comments on the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            // Look for a comment containing our unique identifier
+            const existingComment = comments.find(c => c.body.includes(identifier));
+            
+            if (existingComment) {
+              // Update the existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: body
+              });
+            } else {
+              // Create a new comment if one doesn't exist
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+      - name: Fail job if gorelease failed
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'ignore-gorelease-check') }}
+        run: make gorelease-check

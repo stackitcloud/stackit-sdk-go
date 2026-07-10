@@ -15,3 +15,5 @@ bin/
 *.vscode/
 
 go.work.sum
+
+gorelease_report.md

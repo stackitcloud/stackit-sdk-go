@@ -49,7 +49,7 @@ func CreateInstanceWaitHandler(ctx context.Context, client sqlserverflex.Default
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func FooUpdateInstanceWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, instanceId, region)
 }
 
