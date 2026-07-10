@@ -22,6 +22,8 @@ var _ MappedNullable = &V2beta1CreateSnapshotPayload{}
 
 // V2beta1CreateSnapshotPayload Object that represents a snapshot.
 type V2beta1CreateSnapshotPayload struct {
+	// Object that represents an availability zone.
+	AvailabilityZone *string `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
@@ -61,6 +63,38 @@ func NewV2beta1CreateSnapshotPayload(volumeId string) *V2beta1CreateSnapshotPayl
 func NewV2beta1CreateSnapshotPayloadWithDefaults() *V2beta1CreateSnapshotPayload {
 	this := V2beta1CreateSnapshotPayload{}
 	return &this
+}
+
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
+func (o *V2beta1CreateSnapshotPayload) GetAvailabilityZone() string {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		var ret string
+		return ret
+	}
+	return *o.AvailabilityZone
+}
+
+// GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *V2beta1CreateSnapshotPayload) GetAvailabilityZoneOk() (*string, bool) {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		return nil, false
+	}
+	return o.AvailabilityZone, true
+}
+
+// HasAvailabilityZone returns a boolean if a field has been set.
+func (o *V2beta1CreateSnapshotPayload) HasAvailabilityZone() bool {
+	if o != nil && !IsNil(o.AvailabilityZone) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
+func (o *V2beta1CreateSnapshotPayload) SetAvailabilityZone(v string) {
+	o.AvailabilityZone = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -353,6 +387,9 @@ func (o V2beta1CreateSnapshotPayload) MarshalJSON() ([]byte, error) {
 
 func (o V2beta1CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AvailabilityZone) {
+		toSerialize["availabilityZone"] = o.AvailabilityZone
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
@@ -421,6 +458,7 @@ func (o *V2beta1CreateSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZone")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")
