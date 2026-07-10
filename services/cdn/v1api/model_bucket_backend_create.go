@@ -20,10 +20,12 @@ var _ MappedNullable = &BucketBackendCreate{}
 
 // BucketBackendCreate struct for BucketBackendCreate
 type BucketBackendCreate struct {
-	BucketUrl            string            `json:"bucketUrl"`
-	Credentials          BucketCredentials `json:"credentials"`
-	Region               string            `json:"region"`
-	Type                 string            `json:"type"`
+	// The fully qualified URL of your cloud storage bucket (for example, `https://s3.eu-central-1.amazonaws.com/my-bucket`).
+	BucketUrl   string            `json:"bucketUrl"`
+	Credentials BucketCredentials `json:"credentials"`
+	// The cloud provider region where your storage bucket is located (for example, `us-west-1` for AWS or `eu01` for STACKIT).
+	Region               string                  `json:"region"`
+	Type                 BucketBackendCreateType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,7 +35,7 @@ type _BucketBackendCreate BucketBackendCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketBackendCreate(bucketUrl string, credentials BucketCredentials, region string, types string) *BucketBackendCreate {
+func NewBucketBackendCreate(bucketUrl string, credentials BucketCredentials, region string, types BucketBackendCreateType) *BucketBackendCreate {
 	this := BucketBackendCreate{}
 	this.BucketUrl = bucketUrl
 	this.Credentials = credentials
@@ -123,9 +125,9 @@ func (o *BucketBackendCreate) SetRegion(v string) {
 }
 
 // GetType returns the Type field value
-func (o *BucketBackendCreate) GetType() string {
+func (o *BucketBackendCreate) GetType() BucketBackendCreateType {
 	if o == nil {
-		var ret string
+		var ret BucketBackendCreateType
 		return ret
 	}
 
@@ -134,7 +136,7 @@ func (o *BucketBackendCreate) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BucketBackendCreate) GetTypeOk() (*string, bool) {
+func (o *BucketBackendCreate) GetTypeOk() (*BucketBackendCreateType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,7 +144,7 @@ func (o *BucketBackendCreate) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *BucketBackendCreate) SetType(v string) {
+func (o *BucketBackendCreate) SetType(v BucketBackendCreateType) {
 	o.Type = v
 }
 
