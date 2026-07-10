@@ -17,6 +17,9 @@ elif [ "$action" = "tools" ]; then
     go mod download
 
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.12.2
+
+    # see https://pkg.go.dev/golang.org/x/exp/cmd/gorelease?tab=versions
+    go install golang.org/x/exp/cmd/gorelease@v0.0.0-20260718201538-764159d718ef
 else
     echo "Invalid action: '$action', please use $0 help for help"
 fi
