@@ -20,9 +20,10 @@ var _ MappedNullable = &LokiLogSinkCreate{}
 
 // LokiLogSinkCreate struct for LokiLogSinkCreate
 type LokiLogSinkCreate struct {
-	Credentials          LokiLogSinkCredentials `json:"credentials"`
-	PushUrl              string                 `json:"pushUrl"`
-	Type                 string                 `json:"type"`
+	Credentials LokiLogSinkCredentials `json:"credentials"`
+	// The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).
+	PushUrl              string                `json:"pushUrl"`
+	Type                 LokiLogSinkCreateType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +33,7 @@ type _LokiLogSinkCreate LokiLogSinkCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLokiLogSinkCreate(credentials LokiLogSinkCredentials, pushUrl string, types string) *LokiLogSinkCreate {
+func NewLokiLogSinkCreate(credentials LokiLogSinkCredentials, pushUrl string, types LokiLogSinkCreateType) *LokiLogSinkCreate {
 	this := LokiLogSinkCreate{}
 	this.Credentials = credentials
 	this.PushUrl = pushUrl
@@ -97,9 +98,9 @@ func (o *LokiLogSinkCreate) SetPushUrl(v string) {
 }
 
 // GetType returns the Type field value
-func (o *LokiLogSinkCreate) GetType() string {
+func (o *LokiLogSinkCreate) GetType() LokiLogSinkCreateType {
 	if o == nil {
-		var ret string
+		var ret LokiLogSinkCreateType
 		return ret
 	}
 
@@ -108,7 +109,7 @@ func (o *LokiLogSinkCreate) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LokiLogSinkCreate) GetTypeOk() (*string, bool) {
+func (o *LokiLogSinkCreate) GetTypeOk() (*LokiLogSinkCreateType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +117,7 @@ func (o *LokiLogSinkCreate) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *LokiLogSinkCreate) SetType(v string) {
+func (o *LokiLogSinkCreate) SetType(v LokiLogSinkCreateType) {
 	o.Type = v
 }
 
