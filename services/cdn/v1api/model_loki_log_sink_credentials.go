@@ -18,9 +18,11 @@ import (
 // checks if the LokiLogSinkCredentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LokiLogSinkCredentials{}
 
-// LokiLogSinkCredentials struct for LokiLogSinkCredentials
+// LokiLogSinkCredentials The authentication credentials required for the CDN to push logs to your Loki instance.
 type LokiLogSinkCredentials struct {
-	Password             string `json:"password"`
+	// The password corresponding to your username.
+	Password string `json:"password"`
+	// The username used to authenticate against your Loki instance.
 	Username             string `json:"username"`
 	AdditionalProperties map[string]interface{}
 }

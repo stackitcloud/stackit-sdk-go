@@ -13,6 +13,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BucketBackendCreate type satisfies the MappedNullable interface at compile time
@@ -103,9 +104,132 @@ type BucketBackendCreateGetRegionRetType = string
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// BucketBackendCreateTypes Defines the type of content origin. For this schema, it must be set to `bucket`.
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type BucketBackendCreateGetTypeAttributeType = *string
+type BucketBackendCreateTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	BUCKETBACKENDCREATETYPE_BUCKET BucketBackendCreateTypes = "bucket"
+)
+
+// All allowed values of BucketBackendCreate enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedBucketBackendCreateTypesEnumValues = []BucketBackendCreateTypes{
+	"bucket",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *BucketBackendCreateTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson BucketBackendCreateTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := BucketBackendCreateTypes(value)
+	for _, existing := range AllowedBucketBackendCreateTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BucketBackendCreate", value)
+}
+
+// NewBucketBackendCreateTypesFromValue returns a pointer to a valid BucketBackendCreateTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewBucketBackendCreateTypesFromValue(v BucketBackendCreateTypes) (*BucketBackendCreateTypes, error) {
+	ev := BucketBackendCreateTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BucketBackendCreateTypes: valid values are %v", v, AllowedBucketBackendCreateTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v BucketBackendCreateTypes) IsValid() bool {
+	for _, existing := range AllowedBucketBackendCreateTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v BucketBackendCreateTypes) Ptr() *BucketBackendCreateTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableBucketBackendCreateTypes struct {
+	value *BucketBackendCreateTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableBucketBackendCreateTypes) Get() *BucketBackendCreateTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableBucketBackendCreateTypes) Set(val *BucketBackendCreateTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableBucketBackendCreateTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableBucketBackendCreateTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableBucketBackendCreateTypes(val *BucketBackendCreateTypes) *NullableBucketBackendCreateTypes {
+	return &NullableBucketBackendCreateTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableBucketBackendCreateTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableBucketBackendCreateTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketBackendCreateGetTypeAttributeType = *BucketBackendCreateTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketBackendCreateGetTypeArgType = BucketBackendCreateTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketBackendCreateGetTypeRetType = BucketBackendCreateTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getBucketBackendCreateGetTypeAttributeTypeOk(arg BucketBackendCreateGetTypeAttributeType) (ret BucketBackendCreateGetTypeRetType, ok bool) {
@@ -120,21 +244,18 @@ func setBucketBackendCreateGetTypeAttributeType(arg *BucketBackendCreateGetTypeA
 	*arg = &val
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type BucketBackendCreateGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type BucketBackendCreateGetTypeRetType = string
-
 // BucketBackendCreate struct for BucketBackendCreate
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type BucketBackendCreate struct {
+	// The fully qualified URL of your cloud storage bucket (for example, `https://s3.eu-central-1.amazonaws.com/my-bucket`).
 	// REQUIRED
 	BucketUrl BucketBackendCreateGetBucketUrlAttributeType `json:"bucketUrl" required:"true"`
 	// REQUIRED
 	Credentials BucketBackendCreateGetCredentialsAttributeType `json:"credentials" required:"true"`
+	// The cloud provider region where your storage bucket is located (for example, `us-west-1` for AWS or `eu01` for STACKIT).
 	// REQUIRED
 	Region BucketBackendCreateGetRegionAttributeType `json:"region" required:"true"`
+	// Defines the type of content origin. For this schema, it must be set to `bucket`.
 	// REQUIRED
 	Type BucketBackendCreateGetTypeAttributeType `json:"type" required:"true"`
 }
