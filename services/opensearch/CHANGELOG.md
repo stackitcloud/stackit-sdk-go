@@ -1,3 +1,7 @@
+## v1.1.0
+- `v2api`
+  - **Feature**: Add `wait` handlers
+
 ## v1.0.1
 - `v1api`:
   - **Improvement**: Improve http error handling
