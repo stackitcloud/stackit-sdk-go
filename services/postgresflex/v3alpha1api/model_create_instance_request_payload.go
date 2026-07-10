@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.08.2026. Please use the STACKIT PostgreSQL Flex API v3beta1 instead.
 
 API version: 3alpha1
 Contact: support@stackit.cloud
@@ -29,9 +29,10 @@ type CreateInstanceRequestPayload struct {
 	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
-	Name     string                `json:"name"`
-	Network  InstanceNetworkCreate `json:"network"`
-	Replicas Replicas              `json:"replicas"`
+	Name    string                `json:"name"`
+	Network InstanceNetworkCreate `json:"network"`
+	// Deprecated
+	Replicas *Replicas `json:"replicas,omitempty"`
 	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays NullableInt32 `json:"retentionDays"`
 	Storage       StorageCreate `json:"storage"`
@@ -46,13 +47,12 @@ type _CreateInstanceRequestPayload CreateInstanceRequestPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstanceRequestPayload(backupSchedule string, flavorId string, name string, network InstanceNetworkCreate, replicas Replicas, retentionDays NullableInt32, storage StorageCreate, version string) *CreateInstanceRequestPayload {
+func NewCreateInstanceRequestPayload(backupSchedule string, flavorId string, name string, network InstanceNetworkCreate, retentionDays NullableInt32, storage StorageCreate, version string) *CreateInstanceRequestPayload {
 	this := CreateInstanceRequestPayload{}
 	this.BackupSchedule = backupSchedule
 	this.FlavorId = flavorId
 	this.Name = name
 	this.Network = network
-	this.Replicas = replicas
 	this.RetentionDays = retentionDays
 	this.Storage = storage
 	this.Version = version
@@ -227,28 +227,39 @@ func (o *CreateInstanceRequestPayload) SetNetwork(v InstanceNetworkCreate) {
 	o.Network = v
 }
 
-// GetReplicas returns the Replicas field value
+// GetReplicas returns the Replicas field value if set, zero value otherwise.
+// Deprecated
 func (o *CreateInstanceRequestPayload) GetReplicas() Replicas {
-	if o == nil {
+	if o == nil || IsNil(o.Replicas) {
 		var ret Replicas
 		return ret
 	}
-
-	return o.Replicas
+	return *o.Replicas
 }
 
-// GetReplicasOk returns a tuple with the Replicas field value
+// GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateInstanceRequestPayload) GetReplicasOk() (*Replicas, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Replicas) {
 		return nil, false
 	}
-	return &o.Replicas, true
+	return o.Replicas, true
 }
 
-// SetReplicas sets field value
+// HasReplicas returns a boolean if a field has been set.
+func (o *CreateInstanceRequestPayload) HasReplicas() bool {
+	if o != nil && !IsNil(o.Replicas) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplicas gets a reference to the given Replicas and assigns it to the Replicas field.
+// Deprecated
 func (o *CreateInstanceRequestPayload) SetReplicas(v Replicas) {
-	o.Replicas = v
+	o.Replicas = &v
 }
 
 // GetRetentionDays returns the RetentionDays field value
@@ -345,7 +356,9 @@ func (o CreateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["network"] = o.Network
-	toSerialize["replicas"] = o.Replicas
+	if !IsNil(o.Replicas) {
+		toSerialize["replicas"] = o.Replicas
+	}
 	toSerialize["retentionDays"] = o.RetentionDays.Get()
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
@@ -366,7 +379,6 @@ func (o *CreateInstanceRequestPayload) UnmarshalJSON(data []byte) (err error) {
 		"flavorId",
 		"name",
 		"network",
-		"replicas",
 		"retentionDays",
 		"storage",
 		"version",
