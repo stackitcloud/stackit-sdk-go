@@ -56,6 +56,7 @@ func NewChainedProviderWithOptions(options ChainedProviderOptions, providers ...
 }
 
 // NewChainWithOptions creates a chain using the provided options.
+//
 // Deprecated: use NewChainedProviderWithOptions.
 func NewChainWithOptions(options ChainedProviderOptions, providers ...TokenProvider) (*ChainedProvider, error) {
 	return NewChainedProviderWithOptions(options, providers...)
