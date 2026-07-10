@@ -1,6 +1,5 @@
 ## Release (2026-MM-DD)
 
-
 - `alb`
   - [v0.16.0](services/alb/CHANGELOG.md#v0160)
     - **Breaking change**: Remove `v2beta2api` API
@@ -37,6 +36,9 @@
   - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
     - **New**: STACKIT Model Experiments module wait handler added.
 - `opensearch`:
+  - [v1.1.0](services/opensearch/CHANGELOG.md#v110)
+    - `v2api`
+      - **Feature**: Add `wait` handlers
   - [v1.0.1](services/opensearch/CHANGELOG.md#v101)
     - `v1api`:
       - **Improvement**: Improve http error handling
