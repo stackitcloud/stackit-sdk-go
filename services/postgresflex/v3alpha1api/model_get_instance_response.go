@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.08.2026. Please use the STACKIT PostgreSQL Flex API v3beta1 instead.
 
 API version: 3alpha1
 Contact: support@stackit.cloud
@@ -36,9 +36,10 @@ type GetInstanceResponse struct {
 	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
-	Name     string          `json:"name"`
-	Network  InstanceNetwork `json:"network"`
-	Replicas Replicas        `json:"replicas"`
+	Name    string          `json:"name"`
+	Network InstanceNetwork `json:"network"`
+	// Deprecated
+	Replicas Replicas `json:"replicas"`
 	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays NullableInt32 `json:"retentionDays"`
 	State         Status        `json:"state"`
@@ -346,6 +347,7 @@ func (o *GetInstanceResponse) SetNetwork(v InstanceNetwork) {
 }
 
 // GetReplicas returns the Replicas field value
+// Deprecated
 func (o *GetInstanceResponse) GetReplicas() Replicas {
 	if o == nil {
 		var ret Replicas
@@ -357,6 +359,7 @@ func (o *GetInstanceResponse) GetReplicas() Replicas {
 
 // GetReplicasOk returns a tuple with the Replicas field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *GetInstanceResponse) GetReplicasOk() (*Replicas, bool) {
 	if o == nil {
 		return nil, false
@@ -365,6 +368,7 @@ func (o *GetInstanceResponse) GetReplicasOk() (*Replicas, bool) {
 }
 
 // SetReplicas sets field value
+// Deprecated
 func (o *GetInstanceResponse) SetReplicas(v Replicas) {
 	o.Replicas = v
 }
