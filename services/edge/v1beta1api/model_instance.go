@@ -21,6 +21,7 @@ var _ MappedNullable = &Instance{}
 
 // Instance struct for Instance
 type Instance struct {
+	Acl *Acl `json:"acl,omitempty"`
 	// The date and time the creation of the instance was triggered.
 	Created time.Time `json:"created"`
 	// A user chosen description to distinguish multiple instances.
@@ -60,6 +61,38 @@ func NewInstance(created time.Time, displayName string, frontendUrl string, id s
 func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
 	return &this
+}
+
+// GetAcl returns the Acl field value if set, zero value otherwise.
+func (o *Instance) GetAcl() Acl {
+	if o == nil || IsNil(o.Acl) {
+		var ret Acl
+		return ret
+	}
+	return *o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetAclOk() (*Acl, bool) {
+	if o == nil || IsNil(o.Acl) {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// HasAcl returns a boolean if a field has been set.
+func (o *Instance) HasAcl() bool {
+	if o != nil && !IsNil(o.Acl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAcl gets a reference to the given Acl and assigns it to the Acl field.
+func (o *Instance) SetAcl(v Acl) {
+	o.Acl = &v
 }
 
 // GetCreated returns the Created field value
@@ -248,6 +281,9 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Acl) {
+		toSerialize["acl"] = o.Acl
+	}
 	toSerialize["created"] = o.Created
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -305,6 +341,7 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
 		delete(additionalProperties, "created")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "displayName")
