@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.08.2026. Please use the STACKIT PostgreSQL Flex API v3beta1 instead.
 
 API version: 3alpha1
 Contact: support@stackit.cloud
@@ -27,9 +27,10 @@ type UpdateInstancePartiallyRequestPayload struct {
 	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
-	Name     *string             `json:"name,omitempty"`
-	Network  *InstanceNetworkOpt `json:"network,omitempty"`
-	Replicas *ReplicasOpt        `json:"replicas,omitempty"`
+	Name    *string             `json:"name,omitempty"`
+	Network *InstanceNetworkOpt `json:"network,omitempty"`
+	// Deprecated
+	Replicas *ReplicasOpt `json:"replicas,omitempty"`
 	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays *int32         `json:"retentionDays,omitempty"`
 	Storage       *StorageUpdate `json:"storage,omitempty"`
@@ -218,6 +219,7 @@ func (o *UpdateInstancePartiallyRequestPayload) SetNetwork(v InstanceNetworkOpt)
 }
 
 // GetReplicas returns the Replicas field value if set, zero value otherwise.
+// Deprecated
 func (o *UpdateInstancePartiallyRequestPayload) GetReplicas() ReplicasOpt {
 	if o == nil || IsNil(o.Replicas) {
 		var ret ReplicasOpt
@@ -228,6 +230,7 @@ func (o *UpdateInstancePartiallyRequestPayload) GetReplicas() ReplicasOpt {
 
 // GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UpdateInstancePartiallyRequestPayload) GetReplicasOk() (*ReplicasOpt, bool) {
 	if o == nil || IsNil(o.Replicas) {
 		return nil, false
@@ -245,6 +248,7 @@ func (o *UpdateInstancePartiallyRequestPayload) HasReplicas() bool {
 }
 
 // SetReplicas gets a reference to the given ReplicasOpt and assigns it to the Replicas field.
+// Deprecated
 func (o *UpdateInstancePartiallyRequestPayload) SetReplicas(v ReplicasOpt) {
 	o.Replicas = &v
 }
