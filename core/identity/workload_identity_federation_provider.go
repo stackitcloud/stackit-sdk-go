@@ -108,7 +108,7 @@ func NewWorkloadIdentityFederationProvider(cfg *WorkloadIdentityFederationProvid
 }
 
 // Token returns a valid access token.
-func (p *WorkloadIdentityFederationProvider) Token(ctx context.Context, _ TokenRequestOptions) (Token, error) {
+func (p *WorkloadIdentityFederationProvider) Token(ctx context.Context, opt TokenRequestOptions) (Token, error) {
 	if p == nil || p.httpClient == nil {
 		return Token{}, fmt.Errorf("%s: provider is not initialized", workloadIdentityErrorPrefix)
 	}
@@ -124,7 +124,7 @@ func (p *WorkloadIdentityFederationProvider) Token(ctx context.Context, _ TokenR
 		return cached, nil
 	}
 
-	fresh, err := p.requestToken(ctx)
+	fresh, err := p.requestToken(ctx, opt)
 	if err != nil {
 		return Token{}, err
 	}
@@ -135,7 +135,7 @@ func (p *WorkloadIdentityFederationProvider) Token(ctx context.Context, _ TokenR
 	return fresh, nil
 }
 
-func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context) (Token, error) {
+func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context, opt TokenRequestOptions) (Token, error) {
 	clientAssertion, err := p.federatedTokenFunction(ctx)
 	if err != nil {
 		return Token{}, fmt.Errorf("%s: get federated token: %w", workloadIdentityErrorPrefix, err)
@@ -146,11 +146,19 @@ func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context) (
 	body.Set("client_assertion_type", WifClientAssertionType)
 	body.Set("client_assertion", clientAssertion)
 	body.Set("client_id", p.clientID)
-	if p.scopes != "" {
+	if len(opt.Scopes) > 0 {
+		body.Set("scope", strings.Join(opt.Scopes, " "))
+	} else if p.scopes != "" {
 		body.Set("scope", p.scopes)
 	}
-	for _, resource := range p.resources {
-		body.Add("resource", resource)
+	if len(opt.Resources) > 0 {
+		for _, resource := range opt.Resources {
+			body.Add("resource", resource)
+		}
+	} else {
+		for _, resource := range p.resources {
+			body.Add("resource", resource)
+		}
 	}
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, p.tokenURL, strings.NewReader(body.Encode()))
