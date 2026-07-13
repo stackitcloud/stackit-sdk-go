@@ -23,9 +23,15 @@
     - `v2api`
       - **Improvement**: Update descriptions in `Usage` and `UsageItem` model structs
     - **Breaking change**: Remove `v2betaapi` API
-- `dremio`
+- `dremio`:
   - [v0.4.0](services/dremio/CHANGELOG.md#v040)
     - `v1alphaapi`: Align package to latest API specification
+- `edge`:
+  - [v0.13.0](services/edge/CHANGELOG.md#v0130)
+    - `v1beta1api`:
+      - **Feature**: New field `Acl` in `Instance` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Feature**: New field `Acl` in `Instance` model struct
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:

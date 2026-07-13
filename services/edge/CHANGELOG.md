@@ -1,3 +1,9 @@
+## v0.13.0
+- `v1beta1api`:
+  - **Feature**: New field `Acl` in `Instance` model struct
+- Deprecated SDK layer in root of the module:
+  - **Feature**: New field `Acl` in `Instance` model struct
+
 ## v0.12.0
 - **Feature:** Introduce enums for various attributes
 
