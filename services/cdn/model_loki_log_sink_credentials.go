@@ -72,11 +72,13 @@ type LokiLogSinkCredentialsGetUsernameArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type LokiLogSinkCredentialsGetUsernameRetType = string
 
-// LokiLogSinkCredentials struct for LokiLogSinkCredentials
+// LokiLogSinkCredentials The authentication credentials required for the CDN to push logs to your Loki instance.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type LokiLogSinkCredentials struct {
+	// The password corresponding to your username.
 	// REQUIRED
 	Password LokiLogSinkCredentialsGetPasswordAttributeType `json:"password" required:"true"`
+	// The username used to authenticate against your Loki instance.
 	// REQUIRED
 	Username LokiLogSinkCredentialsGetUsernameAttributeType `json:"username" required:"true"`
 }
