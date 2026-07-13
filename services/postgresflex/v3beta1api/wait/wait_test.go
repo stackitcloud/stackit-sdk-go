@@ -139,6 +139,7 @@ func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 		"common logic": createOrUpdateInstanceWaitHandler,
 		"create":       CreateInstanceWaitHandler,
 		"update":       PartialUpdateInstanceWaitHandler,
+		"clone":        CloneInstanceWaitHandler,
 	}
 
 	for handlerDesc, handlerFn := range handlers {

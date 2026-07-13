@@ -47,6 +47,11 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.D
 	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, region, instanceId)
 }
 
+// CloneInstanceWaitHandler will wait for instance cloning
+func CloneInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, region, instanceId)
+}
+
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[postgresflex.GetInstanceResponse, postgresflex.State]{
