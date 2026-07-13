@@ -20,9 +20,10 @@ var _ MappedNullable = &LokiLogSinkPatch{}
 
 // LokiLogSinkPatch struct for LokiLogSinkPatch
 type LokiLogSinkPatch struct {
-	Credentials          *LokiLogSinkCredentials `json:"credentials,omitempty"`
-	PushUrl              *string                 `json:"pushUrl,omitempty"`
-	Type                 string                  `json:"type"`
+	Credentials *LokiLogSinkCredentials `json:"credentials,omitempty"`
+	// The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).
+	PushUrl              *string              `json:"pushUrl,omitempty"`
+	Type                 LokiLogSinkPatchType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +33,7 @@ type _LokiLogSinkPatch LokiLogSinkPatch
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLokiLogSinkPatch(types string) *LokiLogSinkPatch {
+func NewLokiLogSinkPatch(types LokiLogSinkPatchType) *LokiLogSinkPatch {
 	this := LokiLogSinkPatch{}
 	this.Type = types
 	return &this
@@ -111,9 +112,9 @@ func (o *LokiLogSinkPatch) SetPushUrl(v string) {
 }
 
 // GetType returns the Type field value
-func (o *LokiLogSinkPatch) GetType() string {
+func (o *LokiLogSinkPatch) GetType() LokiLogSinkPatchType {
 	if o == nil {
-		var ret string
+		var ret LokiLogSinkPatchType
 		return ret
 	}
 
@@ -122,7 +123,7 @@ func (o *LokiLogSinkPatch) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LokiLogSinkPatch) GetTypeOk() (*string, bool) {
+func (o *LokiLogSinkPatch) GetTypeOk() (*LokiLogSinkPatchType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +131,7 @@ func (o *LokiLogSinkPatch) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *LokiLogSinkPatch) SetType(v string) {
+func (o *LokiLogSinkPatch) SetType(v LokiLogSinkPatchType) {
 	o.Type = v
 }
 

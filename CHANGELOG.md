@@ -7,6 +7,14 @@
   - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `cdn`
+  - [v1.19.0](services/cdn/CHANGELOG.md#v1190)
+    - `v1api`:
+      - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
+      - **Improvement**: Add documentation to various attributes
+    - Deprecated SDK layer in root of the module:
+      - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
+      - **Improvement**: Add documentation to various attributes
 - `certificates`:
   - [v1.9.0](services/certificates/CHANGELOG.md#v190)
     - `v2api`

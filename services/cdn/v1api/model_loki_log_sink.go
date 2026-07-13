@@ -20,8 +20,9 @@ var _ MappedNullable = &LokiLogSink{}
 
 // LokiLogSink struct for LokiLogSink
 type LokiLogSink struct {
-	PushUrl              string `json:"pushUrl"`
-	Type                 string `json:"type"`
+	// The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).
+	PushUrl              string          `json:"pushUrl"`
+	Type                 LokiLogSinkType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +32,7 @@ type _LokiLogSink LokiLogSink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLokiLogSink(pushUrl string, types string) *LokiLogSink {
+func NewLokiLogSink(pushUrl string, types LokiLogSinkType) *LokiLogSink {
 	this := LokiLogSink{}
 	this.PushUrl = pushUrl
 	this.Type = types
@@ -71,9 +72,9 @@ func (o *LokiLogSink) SetPushUrl(v string) {
 }
 
 // GetType returns the Type field value
-func (o *LokiLogSink) GetType() string {
+func (o *LokiLogSink) GetType() LokiLogSinkType {
 	if o == nil {
-		var ret string
+		var ret LokiLogSinkType
 		return ret
 	}
 
@@ -82,7 +83,7 @@ func (o *LokiLogSink) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LokiLogSink) GetTypeOk() (*string, bool) {
+func (o *LokiLogSink) GetTypeOk() (*LokiLogSinkType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,7 +91,7 @@ func (o *LokiLogSink) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *LokiLogSink) SetType(v string) {
+func (o *LokiLogSink) SetType(v LokiLogSinkType) {
 	o.Type = v
 }
 
