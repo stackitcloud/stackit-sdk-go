@@ -2,12 +2,15 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
@@ -81,94 +84,7 @@ func newAPIMock(settings *mockSettings) postgresflex.DefaultAPI {
 	}
 }
 
-func TestCreateInstanceWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc                string
-		instanceGetFails    bool
-		instanceState       postgresflex.State
-		usersGetErrorStatus int
-		wantErr             bool
-		wantResp            bool
-	}{
-		{
-			desc:             "create_succeeded",
-			instanceGetFails: false,
-			instanceState:    postgresflex.STATE_READY,
-			wantErr:          false,
-			wantResp:         true,
-		},
-		{
-			desc:             "create_failed",
-			instanceGetFails: false,
-			instanceState:    postgresflex.STATE_FAILURE,
-			wantErr:          true,
-			wantResp:         true,
-		},
-		{
-			desc:             "create_failed_2",
-			instanceGetFails: false,
-			instanceState:    "ANOTHER STATE",
-			wantErr:          true,
-			wantResp:         false,
-		},
-		{
-			desc:             "instance_get_fails",
-			instanceGetFails: true,
-			wantErr:          true,
-			wantResp:         false,
-		},
-		{
-			desc:                "users_get_fails",
-			instanceGetFails:    false,
-			instanceState:       postgresflex.STATE_READY,
-			usersGetErrorStatus: 423,
-			wantErr:             true,
-			wantResp:            false,
-		},
-		{
-			desc:             "timeout",
-			instanceGetFails: false,
-			instanceState:    postgresflex.STATE_PROGRESSING,
-			wantErr:          true,
-			wantResp:         false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
-
-				apiClient := newAPIMock(&mockSettings{
-					instanceId:          instanceId,
-					instanceState:       tt.instanceState,
-					instanceGetFails:    tt.instanceGetFails,
-					usersGetErrorStatus: tt.usersGetErrorStatus,
-				})
-
-				var wantRes *postgresflex.GetInstanceResponse
-				if tt.wantResp {
-					wantRes = &postgresflex.GetInstanceResponse{
-						Id:    instanceId,
-						State: tt.instanceState,
-					}
-				}
-
-				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
-
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes, cmp.AllowUnexported(postgresflex.NullableString{}, postgresflex.NullableBool{}, postgresflex.NullableInt32{}), cmpopts.EquateComparable(apiClient)) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
-			})
-		})
-	}
-}
-
-func TestUpdateInstanceWaitHandler(t *testing.T) {
+func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
@@ -177,28 +93,28 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		wantResp         bool
 	}{
 		{
-			desc:             "update_succeeded",
+			desc:             "create_or_update_succeeded",
 			instanceGetFails: false,
 			instanceState:    postgresflex.STATE_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
-			desc:             "update_failed",
+			desc:             "create_or_update_failed",
 			instanceGetFails: false,
 			instanceState:    postgresflex.STATE_FAILURE,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
-			desc:             "update_failed_2",
+			desc:             "create_or_update_failed_2",
 			instanceGetFails: false,
-			instanceState:    "ANOTHER STATE",
+			instanceState:    postgresflex.STATE_UNKNOWN,
 			wantErr:          true,
-			wantResp:         false,
+			wantResp:         true,
 		},
 		{
-			desc:             "get_fails",
+			desc:             "instance_get_fails",
 			instanceGetFails: true,
 			wantErr:          true,
 			wantResp:         false,
@@ -210,38 +126,53 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			wantErr:          true,
 			wantResp:         false,
 		},
+		{
+			desc:             "timeout_2",
+			instanceGetFails: false,
+			instanceState:    postgresflex.STATE_PENDING,
+			wantErr:          true,
+			wantResp:         false,
+		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				instanceId := "foo-bar"
 
-				apiClient := newAPIMock(&mockSettings{
-					instanceId:       instanceId,
-					instanceState:    tt.instanceState,
-					instanceGetFails: tt.instanceGetFails,
-				})
+	handlers := map[string]func(context.Context, postgresflex.DefaultAPI, string, string, string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse]{
+		"common logic": createOrUpdateInstanceWaitHandler,
+		"create":       CreateInstanceWaitHandler,
+		"update":       PartialUpdateInstanceWaitHandler,
+	}
 
-				var wantRes *postgresflex.GetInstanceResponse
-				if tt.wantResp {
-					wantRes = &postgresflex.GetInstanceResponse{
-						Id:    instanceId,
-						State: tt.instanceState,
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					instanceId := "foo-bar"
+
+					apiClient := newAPIMock(&mockSettings{
+						instanceId:       instanceId,
+						instanceState:    tt.instanceState,
+						instanceGetFails: tt.instanceGetFails,
+					})
+
+					var wantRes *postgresflex.GetInstanceResponse
+					if tt.wantResp {
+						wantRes = &postgresflex.GetInstanceResponse{
+							Id:    instanceId,
+							State: tt.instanceState,
+						}
 					}
-				}
 
-				handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
+					handler := handlerFn(context.Background(), apiClient, "", "", instanceId)
+					gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !cmp.Equal(gotRes, wantRes, cmp.AllowUnexported(postgresflex.NullableString{}, postgresflex.NullableBool{}, postgresflex.NullableInt32{}), cmpopts.EquateComparable(apiClient)) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					if !cmp.Equal(gotRes, wantRes, cmp.AllowUnexported(postgresflex.NullableString{}, postgresflex.NullableBool{}, postgresflex.NullableInt32{}), cmpopts.EquateComparable(apiClient)) {
+						t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 

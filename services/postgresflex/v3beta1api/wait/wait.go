@@ -3,7 +3,6 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -12,54 +11,8 @@ import (
 	postgresflex "github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3beta1api"
 )
 
-// CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
-	instanceCreated := false
-	var instanceGetResponse *postgresflex.GetInstanceResponse
-
-	handler := wait.New(func() (waitFinished bool, response *postgresflex.GetInstanceResponse, err error) {
-		if !instanceCreated {
-			s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
-			if err != nil {
-				return false, nil, err
-			}
-			if s == nil || s.Id == "" || s.Id != instanceId {
-				return false, nil, nil
-			}
-			switch s.State {
-			default:
-				return false, nil, nil
-			case postgresflex.STATE_READY:
-				instanceCreated = true
-				instanceGetResponse = s
-			case postgresflex.STATE_FAILURE:
-				return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
-			}
-		}
-
-		// User operations aren't available right after an instance is deemed successful
-		// To check if they are, perform a users request
-		_, err = a.ListUsers(ctx, projectId, region, instanceId).Execute()
-		if err == nil {
-			return true, instanceGetResponse, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		ok := errors.As(err, &oapiErr)
-		if !ok {
-			return false, nil, err
-		}
-		if oapiErr.StatusCode != http.StatusLocked {
-			return true, instanceGetResponse, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
-		}
-		return false, nil, nil
-	})
-	// Sleep before wait is set because sometimes API returns 404 right after creation request
-	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
-	return handler
-}
-
-// PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
+// createOrUpdateInstanceWaitHandler will wait for instance creation
+func createOrUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[postgresflex.GetInstanceResponse, postgresflex.State]{
 		FetchInstance: client.GetInstance(ctx, projectId, region, instanceId).Execute,
 		GetState: func(response *postgresflex.GetInstanceResponse) (postgresflex.State, error) {
@@ -72,12 +25,26 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.D
 			return response.State, nil
 		},
 		ActiveState: []postgresflex.State{postgresflex.STATE_READY},
-		ErrorState:  []postgresflex.State{postgresflex.STATE_FAILURE},
+		ErrorState: []postgresflex.State{
+			postgresflex.STATE_FAILURE,
+			postgresflex.STATE_UNKNOWN,
+			postgresflex.STATE_TERMINATING,
+		},
 	}
 
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
+}
+
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, region, instanceId).SetSleepBeforeWait(15 * time.Second)
+}
+
+// PartialUpdateInstanceWaitHandler will wait for instance update
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
+	return createOrUpdateInstanceWaitHandler(ctx, client, projectId, region, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
