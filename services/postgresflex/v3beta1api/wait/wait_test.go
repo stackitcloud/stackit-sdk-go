@@ -290,7 +290,7 @@ func TestCreateUserWaitHandler(t *testing.T) {
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !cmp.Equal(gotRes, wantRes, cmp.AllowUnexported(postgresflex.NullableString{}, postgresflex.NullableBool{}, postgresflex.NullableInt32{}), cmpopts.EquateComparable(apiClient)) {
+				if !cmp.Equal(gotRes, wantRes) {
 					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
