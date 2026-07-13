@@ -4,6 +4,9 @@
   - [v0.16.0](services/alb/CHANGELOG.md#v0160)
     - **Breaking change**: Remove `v2beta2api` API
 - `albwaf`:
+  - [v0.10.0](services/albwaf/CHANGELOG.md#v0100)
+    - `v1alphaapi`:
+      - **Deprecation:** The `v1alphaapi` is deprecated and will be removed in the future. Migrate to the `v1betaapi`.
   - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
