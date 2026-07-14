@@ -1,3 +1,15 @@
+## v1.13.0
+- **Improvement:** Update various descriptions
+- **Improvement:** Add new error messages for `CreateBackupRequest`, `CreateImageRequest`, `CreateSnapshotRequest` and `CreateVolumeRequest
+- **Feature:** Add fields `VpcNetworkRangeId` and `VpcId` in Network
+- **Feature:** Add field `Vtpm` in Server
+- **Feature:** Add field `AvailabilityZone` in Snapshot
+- `v1api`: **Removal:** Remove deprecated methods `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+- `v2beta1api`: Align package to latest API specification
+- `v2alpha1api`: 
+  - Align package to latest API specification
+  - **Feature:** Add waiters for VPC region and VPC network ranges
+
 ## v1.12.2
 - `v2api`
   - **Improvement**: fix `DeleteVolumeWaitHandler` error message
