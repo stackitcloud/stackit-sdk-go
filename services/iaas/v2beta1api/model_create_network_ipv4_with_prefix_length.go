@@ -22,8 +22,10 @@ var _ MappedNullable = &CreateNetworkIPv4WithPrefixLength{}
 // CreateNetworkIPv4WithPrefixLength The create request for an IPv4 network with a wanted prefix length.
 type CreateNetworkIPv4WithPrefixLength struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers          []string `json:"nameservers,omitempty"`
-	PrefixLength         int64    `json:"prefixLength"`
+	Nameservers  []string `json:"nameservers,omitempty"`
+	PrefixLength int64    `json:"prefixLength"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId    *string `json:"vpcNetworkRangeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -103,6 +105,38 @@ func (o *CreateNetworkIPv4WithPrefixLength) SetPrefixLength(v int64) {
 	o.PrefixLength = v
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+func (o *CreateNetworkIPv4WithPrefixLength) GetVpcNetworkRangeId() string {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcNetworkRangeId
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkIPv4WithPrefixLength) GetVpcNetworkRangeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		return nil, false
+	}
+	return o.VpcNetworkRangeId, true
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+func (o *CreateNetworkIPv4WithPrefixLength) HasVpcNetworkRangeId() bool {
+	if o != nil && !IsNil(o.VpcNetworkRangeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+func (o *CreateNetworkIPv4WithPrefixLength) SetVpcNetworkRangeId(v string) {
+	o.VpcNetworkRangeId = &v
+}
+
 func (o CreateNetworkIPv4WithPrefixLength) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -117,6 +151,9 @@ func (o CreateNetworkIPv4WithPrefixLength) ToMap() (map[string]interface{}, erro
 		toSerialize["nameservers"] = o.Nameservers
 	}
 	toSerialize["prefixLength"] = o.PrefixLength
+	if !IsNil(o.VpcNetworkRangeId) {
+		toSerialize["vpcNetworkRangeId"] = o.VpcNetworkRangeId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -162,6 +199,7 @@ func (o *CreateNetworkIPv4WithPrefixLength) UnmarshalJSON(data []byte) (err erro
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "nameservers")
 		delete(additionalProperties, "prefixLength")
+		delete(additionalProperties, "vpcNetworkRangeId")
 		o.AdditionalProperties = additionalProperties
 	}
 

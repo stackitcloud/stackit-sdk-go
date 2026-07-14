@@ -32,7 +32,9 @@ type CreateNetworkPayload struct {
 	// Shows if the network is routed and therefore accessible from other networks.
 	Routed *bool `json:"routed,omitempty"`
 	// Universally Unique Identifier (UUID).
-	RoutingTableId       *string `json:"routingTableId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	RoutingTableId *string `json:"routingTableId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// The identifier (ID) of a STACKIT VPC.
+	VpcId                *string `json:"vpcId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -276,6 +278,38 @@ func (o *CreateNetworkPayload) SetRoutingTableId(v string) {
 	o.RoutingTableId = &v
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+func (o *CreateNetworkPayload) GetVpcId() string {
+	if o == nil || IsNil(o.VpcId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcId
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkPayload) GetVpcIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcId) {
+		return nil, false
+	}
+	return o.VpcId, true
+}
+
+// HasVpcId returns a boolean if a field has been set.
+func (o *CreateNetworkPayload) HasVpcId() bool {
+	if o != nil && !IsNil(o.VpcId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+func (o *CreateNetworkPayload) SetVpcId(v string) {
+	o.VpcId = &v
+}
+
 func (o CreateNetworkPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -304,6 +338,9 @@ func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RoutingTableId) {
 		toSerialize["routingTableId"] = o.RoutingTableId
+	}
+	if !IsNil(o.VpcId) {
+		toSerialize["vpcId"] = o.VpcId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -355,6 +392,7 @@ func (o *CreateNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "routed")
 		delete(additionalProperties, "routingTableId")
+		delete(additionalProperties, "vpcId")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -127,7 +127,7 @@ func setNetworkRangeGetUpdatedAtAttributeType(arg *NetworkRangeGetUpdatedAtAttri
 	*arg = &val
 }
 
-// NetworkRange Object that represents a network range.
+// NetworkRange Object that represents a network range of a network area.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkRange struct {
 	// Date-time when resource was created.
