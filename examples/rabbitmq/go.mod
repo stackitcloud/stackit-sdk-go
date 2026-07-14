@@ -5,7 +5,7 @@ go 1.25
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/rabbitmq => ../../services/rabbitmq
 
-require github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.31.0
+require github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v1.1.1
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
