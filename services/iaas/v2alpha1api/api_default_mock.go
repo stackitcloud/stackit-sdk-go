@@ -25,20 +25,50 @@ type DefaultAPIServiceMock struct {
 	AddRoutesToRoutingTableExecuteMock *func(r ApiAddRoutesToRoutingTableRequest) (*RouteListResponse, error)
 	// AddRoutingTableToAreaExecuteMock can be populated to implement the behavior of the AddRoutingTableToAreaExecute function of this mock
 	AddRoutingTableToAreaExecuteMock *func(r ApiAddRoutingTableToAreaRequest) (*RoutingTable, error)
+	// AddVPCRoutingTableExecuteMock can be populated to implement the behavior of the AddVPCRoutingTableExecute function of this mock
+	AddVPCRoutingTableExecuteMock *func(r ApiAddVPCRoutingTableRequest) (*VPCRoutingTable, error)
+	// AddVPCStaticRouteExecuteMock can be populated to implement the behavior of the AddVPCStaticRouteExecute function of this mock
+	AddVPCStaticRouteExecuteMock *func(r ApiAddVPCStaticRouteRequest) (*Route, error)
 	// CreateNetworkExecuteMock can be populated to implement the behavior of the CreateNetworkExecute function of this mock
 	CreateNetworkExecuteMock *func(r ApiCreateNetworkRequest) (*Network, error)
+	// CreateVPCExecuteMock can be populated to implement the behavior of the CreateVPCExecute function of this mock
+	CreateVPCExecuteMock *func(r ApiCreateVPCRequest) (*VPC, error)
+	// CreateVPCNetworkRangeExecuteMock can be populated to implement the behavior of the CreateVPCNetworkRangeExecute function of this mock
+	CreateVPCNetworkRangeExecuteMock *func(r ApiCreateVPCNetworkRangeRequest) (*VPCNetworkRange, error)
+	// CreateVPCRegionExecuteMock can be populated to implement the behavior of the CreateVPCRegionExecute function of this mock
+	CreateVPCRegionExecuteMock *func(r ApiCreateVPCRegionRequest) (*RegionalVPC, error)
 	// DeleteNetworkExecuteMock can be populated to implement the behavior of the DeleteNetworkExecute function of this mock
 	DeleteNetworkExecuteMock *func(r ApiDeleteNetworkRequest) error
 	// DeleteRouteFromRoutingTableExecuteMock can be populated to implement the behavior of the DeleteRouteFromRoutingTableExecute function of this mock
 	DeleteRouteFromRoutingTableExecuteMock *func(r ApiDeleteRouteFromRoutingTableRequest) error
 	// DeleteRoutingTableFromAreaExecuteMock can be populated to implement the behavior of the DeleteRoutingTableFromAreaExecute function of this mock
 	DeleteRoutingTableFromAreaExecuteMock *func(r ApiDeleteRoutingTableFromAreaRequest) error
+	// DeleteVPCExecuteMock can be populated to implement the behavior of the DeleteVPCExecute function of this mock
+	DeleteVPCExecuteMock *func(r ApiDeleteVPCRequest) error
+	// DeleteVPCNetworkRangeExecuteMock can be populated to implement the behavior of the DeleteVPCNetworkRangeExecute function of this mock
+	DeleteVPCNetworkRangeExecuteMock *func(r ApiDeleteVPCNetworkRangeRequest) error
+	// DeleteVPCRegionExecuteMock can be populated to implement the behavior of the DeleteVPCRegionExecute function of this mock
+	DeleteVPCRegionExecuteMock *func(r ApiDeleteVPCRegionRequest) error
+	// DeleteVPCRoutingTableExecuteMock can be populated to implement the behavior of the DeleteVPCRoutingTableExecute function of this mock
+	DeleteVPCRoutingTableExecuteMock *func(r ApiDeleteVPCRoutingTableRequest) error
+	// DeleteVPCStaticRouteExecuteMock can be populated to implement the behavior of the DeleteVPCStaticRouteExecute function of this mock
+	DeleteVPCStaticRouteExecuteMock *func(r ApiDeleteVPCStaticRouteRequest) error
 	// GetNetworkExecuteMock can be populated to implement the behavior of the GetNetworkExecute function of this mock
 	GetNetworkExecuteMock *func(r ApiGetNetworkRequest) (*Network, error)
 	// GetRouteOfRoutingTableExecuteMock can be populated to implement the behavior of the GetRouteOfRoutingTableExecute function of this mock
 	GetRouteOfRoutingTableExecuteMock *func(r ApiGetRouteOfRoutingTableRequest) (*Route, error)
 	// GetRoutingTableOfAreaExecuteMock can be populated to implement the behavior of the GetRoutingTableOfAreaExecute function of this mock
 	GetRoutingTableOfAreaExecuteMock *func(r ApiGetRoutingTableOfAreaRequest) (*RoutingTable, error)
+	// GetVPCExecuteMock can be populated to implement the behavior of the GetVPCExecute function of this mock
+	GetVPCExecuteMock *func(r ApiGetVPCRequest) (*VPC, error)
+	// GetVPCNetworkRangeExecuteMock can be populated to implement the behavior of the GetVPCNetworkRangeExecute function of this mock
+	GetVPCNetworkRangeExecuteMock *func(r ApiGetVPCNetworkRangeRequest) (*VPCNetworkRange, error)
+	// GetVPCRegionExecuteMock can be populated to implement the behavior of the GetVPCRegionExecute function of this mock
+	GetVPCRegionExecuteMock *func(r ApiGetVPCRegionRequest) (*RegionalVPC, error)
+	// GetVPCRoutingTableExecuteMock can be populated to implement the behavior of the GetVPCRoutingTableExecute function of this mock
+	GetVPCRoutingTableExecuteMock *func(r ApiGetVPCRoutingTableRequest) (*VPCRoutingTable, error)
+	// GetVPCStaticRouteExecuteMock can be populated to implement the behavior of the GetVPCStaticRouteExecute function of this mock
+	GetVPCStaticRouteExecuteMock *func(r ApiGetVPCStaticRouteRequest) (*Route, error)
 	// ListNetworksExecuteMock can be populated to implement the behavior of the ListNetworksExecute function of this mock
 	ListNetworksExecuteMock *func(r ApiListNetworksRequest) (*NetworkListResponse, error)
 	// ListNetworksOfRoutingTableExecuteMock can be populated to implement the behavior of the ListNetworksOfRoutingTableExecute function of this mock
@@ -47,12 +77,32 @@ type DefaultAPIServiceMock struct {
 	ListRoutesOfRoutingTableExecuteMock *func(r ApiListRoutesOfRoutingTableRequest) (*RouteListResponse, error)
 	// ListRoutingTablesOfAreaExecuteMock can be populated to implement the behavior of the ListRoutingTablesOfAreaExecute function of this mock
 	ListRoutingTablesOfAreaExecuteMock *func(r ApiListRoutingTablesOfAreaRequest) (*RoutingTableListResponse, error)
+	// ListVPCNetworkRangesExecuteMock can be populated to implement the behavior of the ListVPCNetworkRangesExecute function of this mock
+	ListVPCNetworkRangesExecuteMock *func(r ApiListVPCNetworkRangesRequest) (*VPCNetworkRangeList, error)
+	// ListVPCRegionsExecuteMock can be populated to implement the behavior of the ListVPCRegionsExecute function of this mock
+	ListVPCRegionsExecuteMock *func(r ApiListVPCRegionsRequest) (*RegionalVPCList, error)
+	// ListVPCRoutingTablesExecuteMock can be populated to implement the behavior of the ListVPCRoutingTablesExecute function of this mock
+	ListVPCRoutingTablesExecuteMock *func(r ApiListVPCRoutingTablesRequest) (*VPCRoutingTableList, error)
+	// ListVPCStaticRoutesExecuteMock can be populated to implement the behavior of the ListVPCStaticRoutesExecute function of this mock
+	ListVPCStaticRoutesExecuteMock *func(r ApiListVPCStaticRoutesRequest) (*RouteListResponse, error)
+	// ListVPCsExecuteMock can be populated to implement the behavior of the ListVPCsExecute function of this mock
+	ListVPCsExecuteMock *func(r ApiListVPCsRequest) (*VPCList, error)
 	// PartialUpdateNetworkExecuteMock can be populated to implement the behavior of the PartialUpdateNetworkExecute function of this mock
 	PartialUpdateNetworkExecuteMock *func(r ApiPartialUpdateNetworkRequest) error
+	// PartialUpdateVPCExecuteMock can be populated to implement the behavior of the PartialUpdateVPCExecute function of this mock
+	PartialUpdateVPCExecuteMock *func(r ApiPartialUpdateVPCRequest) (*VPC, error)
 	// UpdateRouteOfRoutingTableExecuteMock can be populated to implement the behavior of the UpdateRouteOfRoutingTableExecute function of this mock
 	UpdateRouteOfRoutingTableExecuteMock *func(r ApiUpdateRouteOfRoutingTableRequest) (*Route, error)
 	// UpdateRoutingTableOfAreaExecuteMock can be populated to implement the behavior of the UpdateRoutingTableOfAreaExecute function of this mock
 	UpdateRoutingTableOfAreaExecuteMock *func(r ApiUpdateRoutingTableOfAreaRequest) (*RoutingTable, error)
+	// UpdateVPCNetworkRangeExecuteMock can be populated to implement the behavior of the UpdateVPCNetworkRangeExecute function of this mock
+	UpdateVPCNetworkRangeExecuteMock *func(r ApiUpdateVPCNetworkRangeRequest) (*VPCNetworkRange, error)
+	// UpdateVPCRegionExecuteMock can be populated to implement the behavior of the UpdateVPCRegionExecute function of this mock
+	UpdateVPCRegionExecuteMock *func(r ApiUpdateVPCRegionRequest) (*RegionalVPC, error)
+	// UpdateVPCRoutingTableExecuteMock can be populated to implement the behavior of the UpdateVPCRoutingTableExecute function of this mock
+	UpdateVPCRoutingTableExecuteMock *func(r ApiUpdateVPCRoutingTableRequest) (*VPCRoutingTable, error)
+	// UpdateVPCStaticRouteExecuteMock can be populated to implement the behavior of the UpdateVPCStaticRouteExecute function of this mock
+	UpdateVPCStaticRouteExecuteMock *func(r ApiUpdateVPCStaticRouteRequest) (*Route, error)
 }
 
 func (a DefaultAPIServiceMock) AddRoutesToRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) ApiAddRoutesToRoutingTableRequest {
@@ -96,6 +146,47 @@ func (a DefaultAPIServiceMock) AddRoutingTableToAreaExecute(r ApiAddRoutingTable
 	return (*a.AddRoutingTableToAreaExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) AddVPCRoutingTable(ctx context.Context, projectId string, vpcId string, region string) ApiAddVPCRoutingTableRequest {
+	return ApiAddVPCRoutingTableRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// AddVPCRoutingTableExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the AddVPCRoutingTableExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) AddVPCRoutingTableExecute(r ApiAddVPCRoutingTableRequest) (*VPCRoutingTable, error) {
+	if a.AddVPCRoutingTableExecuteMock == nil {
+		var localVarReturnValue *VPCRoutingTable
+		return localVarReturnValue, nil
+	}
+
+	return (*a.AddVPCRoutingTableExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) AddVPCStaticRoute(ctx context.Context, projectId string, vpcId string, region string, routingTableId string) ApiAddVPCStaticRouteRequest {
+	return ApiAddVPCStaticRouteRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// AddVPCStaticRouteExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the AddVPCStaticRouteExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) AddVPCStaticRouteExecute(r ApiAddVPCStaticRouteRequest) (*Route, error) {
+	if a.AddVPCStaticRouteExecuteMock == nil {
+		var localVarReturnValue *Route
+		return localVarReturnValue, nil
+	}
+
+	return (*a.AddVPCStaticRouteExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) CreateNetwork(ctx context.Context, projectId string, region string) ApiCreateNetworkRequest {
 	return ApiCreateNetworkRequest{
 		ApiService: a,
@@ -113,6 +204,64 @@ func (a DefaultAPIServiceMock) CreateNetworkExecute(r ApiCreateNetworkRequest) (
 	}
 
 	return (*a.CreateNetworkExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateVPC(ctx context.Context, projectId string) ApiCreateVPCRequest {
+	return ApiCreateVPCRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// CreateVPCExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateVPCExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateVPCExecute(r ApiCreateVPCRequest) (*VPC, error) {
+	if a.CreateVPCExecuteMock == nil {
+		var localVarReturnValue *VPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateVPCExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateVPCNetworkRange(ctx context.Context, projectId string, vpcId string, region string) ApiCreateVPCNetworkRangeRequest {
+	return ApiCreateVPCNetworkRangeRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// CreateVPCNetworkRangeExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateVPCNetworkRangeExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateVPCNetworkRangeExecute(r ApiCreateVPCNetworkRangeRequest) (*VPCNetworkRange, error) {
+	if a.CreateVPCNetworkRangeExecuteMock == nil {
+		var localVarReturnValue *VPCNetworkRange
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateVPCNetworkRangeExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateVPCRegion(ctx context.Context, projectId string, vpcId string, region string) ApiCreateVPCRegionRequest {
+	return ApiCreateVPCRegionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// CreateVPCRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateVPCRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateVPCRegionExecute(r ApiCreateVPCRegionRequest) (*RegionalVPC, error) {
+	if a.CreateVPCRegionExecuteMock == nil {
+		var localVarReturnValue *RegionalVPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateVPCRegionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) DeleteNetwork(ctx context.Context, projectId string, region string, networkId string) ApiDeleteNetworkRequest {
@@ -173,6 +322,104 @@ func (a DefaultAPIServiceMock) DeleteRoutingTableFromAreaExecute(r ApiDeleteRout
 	}
 
 	return (*a.DeleteRoutingTableFromAreaExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteVPC(ctx context.Context, projectId string, vpcId string) ApiDeleteVPCRequest {
+	return ApiDeleteVPCRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+	}
+}
+
+// DeleteVPCExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteVPCExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteVPCExecute(r ApiDeleteVPCRequest) error {
+	if a.DeleteVPCExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteVPCExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteVPCNetworkRange(ctx context.Context, projectId string, vpcId string, region string, networkRangeId string) ApiDeleteVPCNetworkRangeRequest {
+	return ApiDeleteVPCNetworkRangeRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		networkRangeId: networkRangeId,
+	}
+}
+
+// DeleteVPCNetworkRangeExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteVPCNetworkRangeExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteVPCNetworkRangeExecute(r ApiDeleteVPCNetworkRangeRequest) error {
+	if a.DeleteVPCNetworkRangeExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteVPCNetworkRangeExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteVPCRegion(ctx context.Context, projectId string, vpcId string, region string) ApiDeleteVPCRegionRequest {
+	return ApiDeleteVPCRegionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// DeleteVPCRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteVPCRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteVPCRegionExecute(r ApiDeleteVPCRegionRequest) error {
+	if a.DeleteVPCRegionExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteVPCRegionExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteVPCRoutingTable(ctx context.Context, projectId string, vpcId string, region string, routingTableId string) ApiDeleteVPCRoutingTableRequest {
+	return ApiDeleteVPCRoutingTableRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// DeleteVPCRoutingTableExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteVPCRoutingTableExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteVPCRoutingTableExecute(r ApiDeleteVPCRoutingTableRequest) error {
+	if a.DeleteVPCRoutingTableExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteVPCRoutingTableExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteVPCStaticRoute(ctx context.Context, projectId string, vpcId string, region string, routingTableId string, routeId string) ApiDeleteVPCStaticRouteRequest {
+	return ApiDeleteVPCStaticRouteRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+		routeId:        routeId,
+	}
+}
+
+// DeleteVPCStaticRouteExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteVPCStaticRouteExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteVPCStaticRouteExecute(r ApiDeleteVPCStaticRouteRequest) error {
+	if a.DeleteVPCStaticRouteExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteVPCStaticRouteExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetNetwork(ctx context.Context, projectId string, region string, networkId string) ApiGetNetworkRequest {
@@ -236,6 +483,109 @@ func (a DefaultAPIServiceMock) GetRoutingTableOfAreaExecute(r ApiGetRoutingTable
 	}
 
 	return (*a.GetRoutingTableOfAreaExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetVPC(ctx context.Context, projectId string, vpcId string) ApiGetVPCRequest {
+	return ApiGetVPCRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+	}
+}
+
+// GetVPCExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVPCExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetVPCExecute(r ApiGetVPCRequest) (*VPC, error) {
+	if a.GetVPCExecuteMock == nil {
+		var localVarReturnValue *VPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetVPCExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetVPCNetworkRange(ctx context.Context, projectId string, vpcId string, region string, networkRangeId string) ApiGetVPCNetworkRangeRequest {
+	return ApiGetVPCNetworkRangeRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		networkRangeId: networkRangeId,
+	}
+}
+
+// GetVPCNetworkRangeExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVPCNetworkRangeExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetVPCNetworkRangeExecute(r ApiGetVPCNetworkRangeRequest) (*VPCNetworkRange, error) {
+	if a.GetVPCNetworkRangeExecuteMock == nil {
+		var localVarReturnValue *VPCNetworkRange
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetVPCNetworkRangeExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetVPCRegion(ctx context.Context, projectId string, vpcId string, region string) ApiGetVPCRegionRequest {
+	return ApiGetVPCRegionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// GetVPCRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVPCRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetVPCRegionExecute(r ApiGetVPCRegionRequest) (*RegionalVPC, error) {
+	if a.GetVPCRegionExecuteMock == nil {
+		var localVarReturnValue *RegionalVPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetVPCRegionExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetVPCRoutingTable(ctx context.Context, projectId string, vpcId string, region string, routingTableId string) ApiGetVPCRoutingTableRequest {
+	return ApiGetVPCRoutingTableRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// GetVPCRoutingTableExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVPCRoutingTableExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetVPCRoutingTableExecute(r ApiGetVPCRoutingTableRequest) (*VPCRoutingTable, error) {
+	if a.GetVPCRoutingTableExecuteMock == nil {
+		var localVarReturnValue *VPCRoutingTable
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetVPCRoutingTableExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetVPCStaticRoute(ctx context.Context, projectId string, vpcId string, region string, routingTableId string, routeId string) ApiGetVPCStaticRouteRequest {
+	return ApiGetVPCStaticRouteRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+		routeId:        routeId,
+	}
+}
+
+// GetVPCStaticRouteExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVPCStaticRouteExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetVPCStaticRouteExecute(r ApiGetVPCStaticRouteRequest) (*Route, error) {
+	if a.GetVPCStaticRouteExecuteMock == nil {
+		var localVarReturnValue *Route
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetVPCStaticRouteExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListNetworks(ctx context.Context, projectId string, region string) ApiListNetworksRequest {
@@ -319,6 +669,104 @@ func (a DefaultAPIServiceMock) ListRoutingTablesOfAreaExecute(r ApiListRoutingTa
 	return (*a.ListRoutingTablesOfAreaExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) ListVPCNetworkRanges(ctx context.Context, projectId string, vpcId string, region string) ApiListVPCNetworkRangesRequest {
+	return ApiListVPCNetworkRangesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// ListVPCNetworkRangesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVPCNetworkRangesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVPCNetworkRangesExecute(r ApiListVPCNetworkRangesRequest) (*VPCNetworkRangeList, error) {
+	if a.ListVPCNetworkRangesExecuteMock == nil {
+		var localVarReturnValue *VPCNetworkRangeList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVPCNetworkRangesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListVPCRegions(ctx context.Context, projectId string, vpcId string) ApiListVPCRegionsRequest {
+	return ApiListVPCRegionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+	}
+}
+
+// ListVPCRegionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVPCRegionsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVPCRegionsExecute(r ApiListVPCRegionsRequest) (*RegionalVPCList, error) {
+	if a.ListVPCRegionsExecuteMock == nil {
+		var localVarReturnValue *RegionalVPCList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVPCRegionsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListVPCRoutingTables(ctx context.Context, projectId string, vpcId string, region string) ApiListVPCRoutingTablesRequest {
+	return ApiListVPCRoutingTablesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// ListVPCRoutingTablesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVPCRoutingTablesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVPCRoutingTablesExecute(r ApiListVPCRoutingTablesRequest) (*VPCRoutingTableList, error) {
+	if a.ListVPCRoutingTablesExecuteMock == nil {
+		var localVarReturnValue *VPCRoutingTableList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVPCRoutingTablesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListVPCStaticRoutes(ctx context.Context, projectId string, vpcId string, region string, routingTableId string) ApiListVPCStaticRoutesRequest {
+	return ApiListVPCStaticRoutesRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// ListVPCStaticRoutesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVPCStaticRoutesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVPCStaticRoutesExecute(r ApiListVPCStaticRoutesRequest) (*RouteListResponse, error) {
+	if a.ListVPCStaticRoutesExecuteMock == nil {
+		var localVarReturnValue *RouteListResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVPCStaticRoutesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListVPCs(ctx context.Context, projectId string) ApiListVPCsRequest {
+	return ApiListVPCsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// ListVPCsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVPCsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVPCsExecute(r ApiListVPCsRequest) (*VPCList, error) {
+	if a.ListVPCsExecuteMock == nil {
+		var localVarReturnValue *VPCList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVPCsExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) PartialUpdateNetwork(ctx context.Context, projectId string, region string, networkId string) ApiPartialUpdateNetworkRequest {
 	return ApiPartialUpdateNetworkRequest{
 		ApiService: a,
@@ -336,6 +784,25 @@ func (a DefaultAPIServiceMock) PartialUpdateNetworkExecute(r ApiPartialUpdateNet
 	}
 
 	return (*a.PartialUpdateNetworkExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PartialUpdateVPC(ctx context.Context, projectId string, vpcId string) ApiPartialUpdateVPCRequest {
+	return ApiPartialUpdateVPCRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+	}
+}
+
+// PartialUpdateVPCExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateVPCExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PartialUpdateVPCExecute(r ApiPartialUpdateVPCRequest) (*VPC, error) {
+	if a.PartialUpdateVPCExecuteMock == nil {
+		var localVarReturnValue *VPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PartialUpdateVPCExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateRouteOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string, routeId string) ApiUpdateRouteOfRoutingTableRequest {
@@ -379,4 +846,88 @@ func (a DefaultAPIServiceMock) UpdateRoutingTableOfAreaExecute(r ApiUpdateRoutin
 	}
 
 	return (*a.UpdateRoutingTableOfAreaExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateVPCNetworkRange(ctx context.Context, projectId string, vpcId string, region string, networkRangeId string) ApiUpdateVPCNetworkRangeRequest {
+	return ApiUpdateVPCNetworkRangeRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		networkRangeId: networkRangeId,
+	}
+}
+
+// UpdateVPCNetworkRangeExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateVPCNetworkRangeExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateVPCNetworkRangeExecute(r ApiUpdateVPCNetworkRangeRequest) (*VPCNetworkRange, error) {
+	if a.UpdateVPCNetworkRangeExecuteMock == nil {
+		var localVarReturnValue *VPCNetworkRange
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateVPCNetworkRangeExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateVPCRegion(ctx context.Context, projectId string, vpcId string, region string) ApiUpdateVPCRegionRequest {
+	return ApiUpdateVPCRegionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		vpcId:      vpcId,
+		region:     region,
+	}
+}
+
+// UpdateVPCRegionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateVPCRegionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateVPCRegionExecute(r ApiUpdateVPCRegionRequest) (*RegionalVPC, error) {
+	if a.UpdateVPCRegionExecuteMock == nil {
+		var localVarReturnValue *RegionalVPC
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateVPCRegionExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateVPCRoutingTable(ctx context.Context, projectId string, vpcId string, region string, routingTableId string) ApiUpdateVPCRoutingTableRequest {
+	return ApiUpdateVPCRoutingTableRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// UpdateVPCRoutingTableExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateVPCRoutingTableExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateVPCRoutingTableExecute(r ApiUpdateVPCRoutingTableRequest) (*VPCRoutingTable, error) {
+	if a.UpdateVPCRoutingTableExecuteMock == nil {
+		var localVarReturnValue *VPCRoutingTable
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateVPCRoutingTableExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateVPCStaticRoute(ctx context.Context, projectId string, vpcId string, region string, routingTableId string, routeId string) ApiUpdateVPCStaticRouteRequest {
+	return ApiUpdateVPCStaticRouteRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		vpcId:          vpcId,
+		region:         region,
+		routingTableId: routingTableId,
+		routeId:        routeId,
+	}
+}
+
+// UpdateVPCStaticRouteExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateVPCStaticRouteExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateVPCStaticRouteExecute(r ApiUpdateVPCStaticRouteRequest) (*Route, error) {
+	if a.UpdateVPCStaticRouteExecuteMock == nil {
+		var localVarReturnValue *Route
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateVPCStaticRouteExecuteMock)(r)
 }

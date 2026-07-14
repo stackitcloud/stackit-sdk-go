@@ -130,7 +130,7 @@ type DefaultAPI interface {
 	/*
 		AddServiceAccountToServer Attach service account to a server.
 
-		Attach an additional service account to the server.
+		Attach a service account to the server.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -198,7 +198,7 @@ type DefaultAPI interface {
 	/*
 		CreateImage Create new Image.
 
-		Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
+		Create a new Image in a project in queued state. Image data must be imported separately. This call returns a pre-signed URL to upload small images.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -1663,9 +1663,9 @@ type DefaultAPI interface {
 	ListServerNICsExecute(r ApiListServerNICsRequest) (*NICListResponse, error)
 
 	/*
-		ListServerServiceAccounts List all service accounts of the Server.
+		ListServerServiceAccounts List the service account of the Server.
 
-		Get the list of the service accounts of the server.
+		Get service account of the server in a list.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -1862,7 +1862,7 @@ type DefaultAPI interface {
 	/*
 		RemoveServiceAccountFromServer Detach a service account from a server.
 
-		Detach an additional service account from the server.
+		Detach a service account from the server.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The identifier (ID) of a STACKIT Project.
@@ -3513,7 +3513,7 @@ func (r ApiAddServiceAccountToServerRequest) Execute() (*ServiceAccountMailListR
 /*
 AddServiceAccountToServer Attach service account to a server.
 
-Attach an additional service account to the server.
+Attach a service account to the server.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -4279,6 +4279,17 @@ func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*Back
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4326,7 +4337,7 @@ func (r ApiCreateImageRequest) Execute() (*ImageCreateResponse, error) {
 /*
 CreateImage Create new Image.
 
-Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
+Create a new Image in a project in queued state. Image data must be imported separately. This call returns a pre-signed URL to upload small images.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -4460,6 +4471,17 @@ func (a *DefaultAPIService) CreateImageExecute(r ApiCreateImageRequest) (*ImageC
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -7095,6 +7117,28 @@ func (a *DefaultAPIService) CreateSnapshotExecute(r ApiCreateSnapshotRequest) (*
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -7276,6 +7320,28 @@ func (a *DefaultAPIService) CreateVolumeExecute(r ApiCreateVolumeRequest) (*Volu
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -21280,9 +21346,9 @@ func (r ApiListServerServiceAccountsRequest) Execute() (*ServiceAccountMailListR
 }
 
 /*
-ListServerServiceAccounts List all service accounts of the Server.
+ListServerServiceAccounts List the service account of the Server.
 
-Get the list of the service accounts of the server.
+Get service account of the server in a list.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -23594,7 +23660,7 @@ func (r ApiRemoveServiceAccountFromServerRequest) Execute() (*ServiceAccountMail
 /*
 RemoveServiceAccountFromServer Detach a service account from a server.
 
-Detach an additional service account from the server.
+Detach a service account from the server.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
