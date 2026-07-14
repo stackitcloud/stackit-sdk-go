@@ -27,7 +27,9 @@ type NetworkIPv4 struct {
 	Nameservers []string `json:"nameservers,omitempty"`
 	Prefixes    []string `json:"prefixes"`
 	// String that represents an IPv4 address.
-	PublicIp             *string `json:"publicIp,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	PublicIp *string `json:"publicIp,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId    *string `json:"vpcNetworkRangeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -182,6 +184,38 @@ func (o *NetworkIPv4) SetPublicIp(v string) {
 	o.PublicIp = &v
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+func (o *NetworkIPv4) GetVpcNetworkRangeId() string {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcNetworkRangeId
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkIPv4) GetVpcNetworkRangeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		return nil, false
+	}
+	return o.VpcNetworkRangeId, true
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+func (o *NetworkIPv4) HasVpcNetworkRangeId() bool {
+	if o != nil && !IsNil(o.VpcNetworkRangeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+func (o *NetworkIPv4) SetVpcNetworkRangeId(v string) {
+	o.VpcNetworkRangeId = &v
+}
+
 func (o NetworkIPv4) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -201,6 +235,9 @@ func (o NetworkIPv4) ToMap() (map[string]interface{}, error) {
 	toSerialize["prefixes"] = o.Prefixes
 	if !IsNil(o.PublicIp) {
 		toSerialize["publicIp"] = o.PublicIp
+	}
+	if !IsNil(o.VpcNetworkRangeId) {
+		toSerialize["vpcNetworkRangeId"] = o.VpcNetworkRangeId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -249,6 +286,7 @@ func (o *NetworkIPv4) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "nameservers")
 		delete(additionalProperties, "prefixes")
 		delete(additionalProperties, "publicIp")
+		delete(additionalProperties, "vpcNetworkRangeId")
 		o.AdditionalProperties = additionalProperties
 	}
 
