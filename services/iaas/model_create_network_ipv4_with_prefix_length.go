@@ -72,6 +72,33 @@ func setCreateNetworkIPv4WithPrefixLengthGetPrefixLengthAttributeType(arg *Creat
 	*arg = &val
 }
 
+/*
+	types and functions for vpcNetworkRangeId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeTypeOk(arg CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType) (ret CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType(arg *CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType, val CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType = string
+
 // CreateNetworkIPv4WithPrefixLength The create request for an IPv4 network with a wanted prefix length.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNetworkIPv4WithPrefixLength struct {
@@ -79,6 +106,8 @@ type CreateNetworkIPv4WithPrefixLength struct {
 	Nameservers CreateNetworkIPv4WithPrefixLengthGetNameserversAttributeType `json:"nameservers,omitempty"`
 	// REQUIRED
 	PrefixLength CreateNetworkIPv4WithPrefixLengthGetPrefixLengthAttributeType `json:"prefixLength" required:"true"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType `json:"vpcNetworkRangeId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -151,6 +180,33 @@ func (o *CreateNetworkIPv4WithPrefixLength) SetPrefixLength(v CreateNetworkIPv4W
 	setCreateNetworkIPv4WithPrefixLengthGetPrefixLengthAttributeType(&o.PrefixLength, v)
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkIPv4WithPrefixLength) GetVpcNetworkRangeId() (res CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType) {
+	res, _ = o.GetVpcNetworkRangeIdOk()
+	return
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkIPv4WithPrefixLength) GetVpcNetworkRangeIdOk() (ret CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType, ok bool) {
+	return getCreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId)
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkIPv4WithPrefixLength) HasVpcNetworkRangeId() bool {
+	_, ok := o.GetVpcNetworkRangeIdOk()
+	return ok
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkIPv4WithPrefixLength) SetVpcNetworkRangeId(v CreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdRetType) {
+	setCreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeType(&o.VpcNetworkRangeId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateNetworkIPv4WithPrefixLength) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,6 +215,9 @@ func (o CreateNetworkIPv4WithPrefixLength) ToMap() (map[string]interface{}, erro
 	}
 	if val, ok := getCreateNetworkIPv4WithPrefixLengthGetPrefixLengthAttributeTypeOk(o.PrefixLength); ok {
 		toSerialize["PrefixLength"] = val
+	}
+	if val, ok := getCreateNetworkIPv4WithPrefixLengthGetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId); ok {
+		toSerialize["VpcNetworkRangeId"] = val
 	}
 	return toSerialize, nil
 }

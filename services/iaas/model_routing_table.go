@@ -262,7 +262,7 @@ func setRoutingTableGetUpdatedAtAttributeType(arg *RoutingTableGetUpdatedAtAttri
 	*arg = &val
 }
 
-// RoutingTable An object representing a routing table.
+// RoutingTable An object representing a routing table. Filterable Fields: `dynamicRoutes`, `systemRoutes`.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type RoutingTable struct {
 	// Date-time when resource was created.

@@ -694,6 +694,33 @@ func setServerGetVolumesAttributeType(arg *ServerGetVolumesAttributeType, val Se
 	*arg = &val
 }
 
+/*
+	types and functions for vtpm
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerGetVtpmAttributeType = *ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerGetVtpmArgType = ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerGetVtpmRetType = ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getServerGetVtpmAttributeTypeOk(arg ServerGetVtpmAttributeType) (ret ServerGetVtpmRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setServerGetVtpmAttributeType(arg *ServerGetVtpmAttributeType, val ServerGetVtpmRetType) {
+	*arg = &val
+}
+
 // Server Representation of a single server object.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Server struct {
@@ -745,6 +772,7 @@ type Server struct {
 	UserData ServerGetUserDataAttributeType `json:"userData,omitempty"`
 	// A list of UUIDs.
 	Volumes ServerGetVolumesAttributeType `json:"volumes,omitempty"`
+	Vtpm    ServerGetVtpmAttributeType    `json:"vtpm,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -1434,6 +1462,33 @@ func (o *Server) SetVolumes(v ServerGetVolumesRetType) {
 	setServerGetVolumesAttributeType(&o.Volumes, v)
 }
 
+// GetVtpm returns the Vtpm field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) GetVtpm() (res ServerGetVtpmRetType) {
+	res, _ = o.GetVtpmOk()
+	return
+}
+
+// GetVtpmOk returns a tuple with the Vtpm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) GetVtpmOk() (ret ServerGetVtpmRetType, ok bool) {
+	return getServerGetVtpmAttributeTypeOk(o.Vtpm)
+}
+
+// HasVtpm returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) HasVtpm() bool {
+	_, ok := o.GetVtpmOk()
+	return ok
+}
+
+// SetVtpm gets a reference to the given ServerVtpm and assigns it to the Vtpm field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) SetVtpm(v ServerGetVtpmRetType) {
+	setServerGetVtpmAttributeType(&o.Vtpm, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Server) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -1511,6 +1566,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getServerGetVolumesAttributeTypeOk(o.Volumes); ok {
 		toSerialize["Volumes"] = val
+	}
+	if val, ok := getServerGetVtpmAttributeTypeOk(o.Vtpm); ok {
+		toSerialize["Vtpm"] = val
 	}
 	return toSerialize, nil
 }

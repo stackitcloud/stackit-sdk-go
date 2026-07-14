@@ -22,6 +22,8 @@ var _ MappedNullable = &Snapshot{}
 
 // Snapshot Object that represents a snapshot.
 type Snapshot struct {
+	// Object that represents an availability zone.
+	AvailabilityZone *string `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
@@ -61,6 +63,38 @@ func NewSnapshot(volumeId string) *Snapshot {
 func NewSnapshotWithDefaults() *Snapshot {
 	this := Snapshot{}
 	return &this
+}
+
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
+func (o *Snapshot) GetAvailabilityZone() string {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		var ret string
+		return ret
+	}
+	return *o.AvailabilityZone
+}
+
+// GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Snapshot) GetAvailabilityZoneOk() (*string, bool) {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		return nil, false
+	}
+	return o.AvailabilityZone, true
+}
+
+// HasAvailabilityZone returns a boolean if a field has been set.
+func (o *Snapshot) HasAvailabilityZone() bool {
+	if o != nil && !IsNil(o.AvailabilityZone) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
+func (o *Snapshot) SetAvailabilityZone(v string) {
+	o.AvailabilityZone = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -353,6 +387,9 @@ func (o Snapshot) MarshalJSON() ([]byte, error) {
 
 func (o Snapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AvailabilityZone) {
+		toSerialize["availabilityZone"] = o.AvailabilityZone
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
@@ -421,6 +458,7 @@ func (o *Snapshot) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZone")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")

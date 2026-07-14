@@ -26,7 +26,7 @@ type Request struct {
 	RequestAction string `json:"requestAction"`
 	// Identifier (ID) representing a single API request.
 	RequestId string `json:"requestId" validate:"regexp=^req-[0-9a-f]{32}$"`
-	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
+	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`, `VPC`, `VPCNETWORKRANGE`.
 	RequestType string            `json:"requestType"`
 	Resources   []RequestResource `json:"resources"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.

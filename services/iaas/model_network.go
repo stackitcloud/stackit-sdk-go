@@ -316,6 +316,33 @@ func setNetworkGetUpdatedAtAttributeType(arg *NetworkGetUpdatedAtAttributeType, 
 	*arg = &val
 }
 
+/*
+	types and functions for vpcId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetVpcIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkGetVpcIdAttributeTypeOk(arg NetworkGetVpcIdAttributeType) (ret NetworkGetVpcIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkGetVpcIdAttributeType(arg *NetworkGetVpcIdAttributeType, val NetworkGetVpcIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetVpcIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetVpcIdRetType = string
+
 // Network Object that represents a network. If no routing table is specified, the default routing table is used.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Network struct {
@@ -341,6 +368,8 @@ type Network struct {
 	Status NetworkGetStatusAttributeType `json:"status" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt NetworkGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
+	// Universally Unique Identifier (UUID).
+	VpcId NetworkGetVpcIdAttributeType `json:"vpcId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -644,6 +673,33 @@ func (o *Network) SetUpdatedAt(v NetworkGetUpdatedAtRetType) {
 	setNetworkGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetVpcId() (res NetworkGetVpcIdRetType) {
+	res, _ = o.GetVpcIdOk()
+	return
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetVpcIdOk() (ret NetworkGetVpcIdRetType, ok bool) {
+	return getNetworkGetVpcIdAttributeTypeOk(o.VpcId)
+}
+
+// HasVpcId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) HasVpcId() bool {
+	_, ok := o.GetVpcIdOk()
+	return ok
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) SetVpcId(v NetworkGetVpcIdRetType) {
+	setNetworkGetVpcIdAttributeType(&o.VpcId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -679,6 +735,9 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNetworkGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
 		toSerialize["UpdatedAt"] = val
+	}
+	if val, ok := getNetworkGetVpcIdAttributeTypeOk(o.VpcId); ok {
+		toSerialize["VpcId"] = val
 	}
 	return toSerialize, nil
 }

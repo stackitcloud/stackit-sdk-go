@@ -20,7 +20,7 @@ import (
 // checks if the AddRoutingTableToAreaPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AddRoutingTableToAreaPayload{}
 
-// AddRoutingTableToAreaPayload An object representing a routing table.
+// AddRoutingTableToAreaPayload An object representing a routing table. Filterable Fields: `dynamicRoutes`, `systemRoutes`.
 type AddRoutingTableToAreaPayload struct {
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`

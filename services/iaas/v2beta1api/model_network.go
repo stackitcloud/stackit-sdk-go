@@ -40,7 +40,9 @@ type Network struct {
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	Status string `json:"status"`
 	// Date-time when resource was last updated.
-	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	// The identifier (ID) of a STACKIT VPC.
+	VpcId                *string `json:"vpcId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -394,6 +396,38 @@ func (o *Network) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+func (o *Network) GetVpcId() string {
+	if o == nil || IsNil(o.VpcId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcId
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetVpcIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcId) {
+		return nil, false
+	}
+	return o.VpcId, true
+}
+
+// HasVpcId returns a boolean if a field has been set.
+func (o *Network) HasVpcId() bool {
+	if o != nil && !IsNil(o.VpcId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+func (o *Network) SetVpcId(v string) {
+	o.VpcId = &v
+}
+
 func (o Network) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -430,6 +464,9 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if !IsNil(o.VpcId) {
+		toSerialize["vpcId"] = o.VpcId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -487,6 +524,7 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "routingTableId")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "vpcId")
 		o.AdditionalProperties = additionalProperties
 	}
 
