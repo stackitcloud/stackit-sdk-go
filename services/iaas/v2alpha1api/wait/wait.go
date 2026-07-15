@@ -20,17 +20,9 @@ const (
 func CreateVPCRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region string) *wait.AsyncActionHandler[iaas.RegionalVPC] {
 	waitConfig := wait.WaiterHelper[iaas.RegionalVPC, string]{
 		FetchInstance: a.GetVPCRegion(ctx, projectId, vpcId, region).Execute,
-		GetState: func(i *iaas.RegionalVPC) (string, error) {
-			if i == nil {
-				return "", errors.New("empty response")
-			}
-			if i.Status == nil {
-				return "", errors.New("status is missing in response")
-			}
-			return *i.Status, nil
-		},
-		ActiveState: []string{CreateSuccess},
-		ErrorState:  []string{FailedStatus},
+		GetState:      getStateVPCRegion,
+		ActiveState:   []string{CreateSuccess},
+		ErrorState:    []string{FailedStatus},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -43,17 +35,9 @@ func CreateVPCRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectI
 func DeleteVPCRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region string) *wait.AsyncActionHandler[iaas.RegionalVPC] {
 	waitConfig := wait.WaiterHelper[iaas.RegionalVPC, string]{
 		FetchInstance: a.GetVPCRegion(ctx, projectId, vpcId, region).Execute,
-		GetState: func(i *iaas.RegionalVPC) (string, error) {
-			if i == nil {
-				return "", errors.New("empty response")
-			}
-			if i.Status == nil {
-				return "", errors.New("status is missing in response")
-			}
-			return *i.Status, nil
-		},
-		ActiveState: []string{},
-		ErrorState:  []string{FailedStatus},
+		GetState:      getStateVPCRegion,
+		ActiveState:   []string{},
+		ErrorState:    []string{FailedStatus},
 
 		// The IaaS API response with a 400 if the regional network area configuration doesn't exist because of some compatible
 		// issues to v1. When v1 is deprecated, they probably will respond with 404
@@ -66,27 +50,10 @@ func DeleteVPCRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectI
 	return handler
 }
 
-func createOrUpdateNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region, networkRangeId string) *wait.AsyncActionHandler[iaas.VPCNetworkRange] {
+func createOrUpdateVPCNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region, networkRangeId string) *wait.AsyncActionHandler[iaas.VPCNetworkRange] {
 	waitConfig := wait.WaiterHelper[iaas.VPCNetworkRange, string]{
 		FetchInstance: a.GetVPCNetworkRange(ctx, projectId, vpcId, region, networkRangeId).Execute,
-		GetState: func(i *iaas.VPCNetworkRange) (string, error) {
-			if i == nil {
-				return "", errors.New("empty response")
-			}
-			if i.VPCNetworkRangeIPv4 != nil {
-				if i.VPCNetworkRangeIPv4.Status == nil {
-					return "", errors.New("status is missing in response")
-				}
-				return *i.VPCNetworkRangeIPv4.Status, nil
-			}
-			if i.VPCNetworkRangeIPv6 != nil {
-				if i.VPCNetworkRangeIPv6.Status == nil {
-					return "", errors.New("status is missing in response")
-				}
-				return *i.VPCNetworkRangeIPv6.Status, nil
-			}
-			return "", errors.New("unknown status in response")
-		},
+		GetState:      getStateVPCNetworkRange,
 		// Usually "CREATED" should be enough as active state. The IaaS API uses "CREATED" always as active state, even after an update.
 		// To prevent potential issues in the future, we set "UPDATED" also as active state.
 		ActiveState: []string{CreateSuccess, UpdateSuccess},
@@ -99,35 +66,21 @@ func createOrUpdateNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAP
 	return handler
 }
 
+// CreateVPCNetworkRangeWaitHandler will wait for VPC Network range creation
 func CreateVPCNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region, networkRangeId string) *wait.AsyncActionHandler[iaas.VPCNetworkRange] {
-	return createOrUpdateNetworkRangeWaitHandler(ctx, a, projectId, vpcId, region, networkRangeId)
+	return createOrUpdateVPCNetworkRangeWaitHandler(ctx, a, projectId, vpcId, region, networkRangeId)
 }
 
+// UpdateVPCNetworkRangeWaitHandler will wait for VPC Network range update
 func UpdateVPCNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region, networkRangeId string) *wait.AsyncActionHandler[iaas.VPCNetworkRange] {
-	return createOrUpdateNetworkRangeWaitHandler(ctx, a, projectId, vpcId, region, networkRangeId)
+	return createOrUpdateVPCNetworkRangeWaitHandler(ctx, a, projectId, vpcId, region, networkRangeId)
 }
 
+// DeleteVPCNetworkRangeWaitHandler will wait for VPC Network range deletion
 func DeleteVPCNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, vpcId, region, networkRangeId string) *wait.AsyncActionHandler[iaas.VPCNetworkRange] {
 	waitConfig := wait.WaiterHelper[iaas.VPCNetworkRange, string]{
-		FetchInstance: a.GetVPCNetworkRange(ctx, projectId, vpcId, region, networkRangeId).Execute,
-		GetState: func(i *iaas.VPCNetworkRange) (string, error) {
-			if i == nil {
-				return "", errors.New("empty response")
-			}
-			if i.VPCNetworkRangeIPv4 != nil {
-				if i.VPCNetworkRangeIPv4.Status == nil {
-					return "", errors.New("status is missing in response")
-				}
-				return *i.VPCNetworkRangeIPv4.Status, nil
-			}
-			if i.VPCNetworkRangeIPv6 != nil {
-				if i.VPCNetworkRangeIPv6.Status == nil {
-					return "", errors.New("status is missing in response")
-				}
-				return *i.VPCNetworkRangeIPv6.Status, nil
-			}
-			return "", errors.New("unknown status in response")
-		},
+		FetchInstance:              a.GetVPCNetworkRange(ctx, projectId, vpcId, region, networkRangeId).Execute,
+		GetState:                   getStateVPCNetworkRange,
 		ErrorState:                 []string{FailedStatus},
 		DeleteHttpErrorStatusCodes: nil, // Use defaults
 	}
@@ -136,4 +89,35 @@ func DeleteVPCNetworkRangeWaitHandler(ctx context.Context, a iaas.DefaultAPI, pr
 	handler.SetSleepBeforeWait(5 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
 	return handler
+}
+
+// getStateVPCRegion returns the state of an iaas.RegionalVPC
+func getStateVPCRegion(i *iaas.RegionalVPC) (string, error) {
+	if i == nil {
+		return "", errors.New("empty response")
+	}
+	if i.Status == nil {
+		return "", errors.New("status is missing in response")
+	}
+	return *i.Status, nil
+}
+
+// getStateVPCNetworkRange returns the state of an iaas.VPCNetworkRange
+func getStateVPCNetworkRange(i *iaas.VPCNetworkRange) (string, error) {
+	if i == nil {
+		return "", errors.New("empty response")
+	}
+	if i.VPCNetworkRangeIPv4 != nil {
+		if i.VPCNetworkRangeIPv4.Status == nil {
+			return "", errors.New("ipv4 status is missing in response")
+		}
+		return *i.VPCNetworkRangeIPv4.Status, nil
+	}
+	if i.VPCNetworkRangeIPv6 != nil {
+		if i.VPCNetworkRangeIPv6.Status == nil {
+			return "", errors.New("ipv6 status is missing in response")
+		}
+		return *i.VPCNetworkRangeIPv6.Status, nil
+	}
+	return "", errors.New("unknown status in response")
 }

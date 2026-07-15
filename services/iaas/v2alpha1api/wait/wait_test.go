@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"testing/synctest"
 	"time"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2alpha1api"
 )
 
@@ -183,69 +185,7 @@ func TestDeleteNetworkAreaRegionWaitHandler(t *testing.T) {
 	}
 }
 
-func TestCreateVPCNetworkRangeWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "create_succeeded",
-			getFails:      false,
-			resourceState: CreateSuccess,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "get_fails",
-			getFails:      true,
-			resourceState: "",
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: "ANOTHER STATE",
-			wantErr:       true,
-			wantResp:      true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				apiClient := newIaaSAPIMock(&iaasMockSettings{
-					getVPCNetworkRangeFails: tt.getFails,
-					resourceState:           tt.resourceState,
-				})
-
-				var wantRes *iaas.VPCNetworkRange
-				if tt.wantResp {
-					wantRes = &iaas.VPCNetworkRange{
-						VPCNetworkRangeIPv4: &iaas.VPCNetworkRangeIPv4{
-							Status: utils.Ptr(tt.resourceState),
-						},
-					}
-				}
-
-				handler := CreateVPCNetworkRangeWaitHandler(context.Background(), apiClient, "pid", "vpcId", "region", "nid")
-
-				gotRes, err := handler.WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
-			})
-		})
-	}
-}
-
-func TestUpdateVPCNetworkRangeWaitHandler(t *testing.T) {
+func TestCreateOrUpdateVPCNetworkRangeWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -282,35 +222,44 @@ func TestUpdateVPCNetworkRangeWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				apiClient := newIaaSAPIMock(&iaasMockSettings{
-					getVPCNetworkRangeFails: tt.getFails,
-					resourceState:           tt.resourceState,
-				})
 
-				var wantRes *iaas.VPCNetworkRange
-				if tt.wantResp {
-					wantRes = &iaas.VPCNetworkRange{
-						VPCNetworkRangeIPv4: &iaas.VPCNetworkRangeIPv4{
-							Status: utils.Ptr(tt.resourceState),
-						},
+	handlers := map[string]func(context.Context, iaas.DefaultAPI, string, string, string, string) *wait.AsyncActionHandler[iaas.VPCNetworkRange]{
+		"common logic": createOrUpdateVPCNetworkRangeWaitHandler,
+		"create":       CreateVPCNetworkRangeWaitHandler,
+		"update":       UpdateVPCNetworkRangeWaitHandler,
+	}
+
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					apiClient := newIaaSAPIMock(&iaasMockSettings{
+						getVPCNetworkRangeFails: tt.getFails,
+						resourceState:           tt.resourceState,
+					})
+
+					var wantRes *iaas.VPCNetworkRange
+					if tt.wantResp {
+						wantRes = &iaas.VPCNetworkRange{
+							VPCNetworkRangeIPv4: &iaas.VPCNetworkRangeIPv4{
+								Status: utils.Ptr(tt.resourceState),
+							},
+						}
 					}
-				}
 
-				handler := UpdateVPCNetworkRangeWaitHandler(context.Background(), apiClient, "pid", "vpcId", "region", "nid")
+					handler := handlerFn(context.Background(), apiClient, "pid", "vpcId", "region", "nid")
 
-				gotRes, err := handler.WaitWithContext(context.Background())
+					gotRes, err := handler.WaitWithContext(context.Background())
 
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
-					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-				}
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
+						t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+					}
+				})
 			})
-		})
+		}
 	}
 }
 
