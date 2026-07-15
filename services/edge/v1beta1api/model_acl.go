@@ -17,7 +17,7 @@ import (
 // checks if the Acl type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Acl{}
 
-// Acl The ACL config for the instances API and all edgecluster proxies.
+// Acl The ACL config for the instances API.
 type Acl struct {
 	IpAllowList          []IpAllowListEntry `json:"ipAllowList,omitempty"`
 	AdditionalProperties map[string]interface{}
