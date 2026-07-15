@@ -207,6 +207,33 @@ type CreateNetworkPayloadGetRoutingTableIdArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNetworkPayloadGetRoutingTableIdRetType = string
 
+/*
+	types and functions for vpcId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetVpcIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateNetworkPayloadGetVpcIdAttributeTypeOk(arg CreateNetworkPayloadGetVpcIdAttributeType) (ret CreateNetworkPayloadGetVpcIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateNetworkPayloadGetVpcIdAttributeType(arg *CreateNetworkPayloadGetVpcIdAttributeType, val CreateNetworkPayloadGetVpcIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetVpcIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetVpcIdRetType = string
+
 // CreateNetworkPayload Object that represents the request body for a network create.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNetworkPayload struct {
@@ -223,6 +250,8 @@ type CreateNetworkPayload struct {
 	Routed CreateNetworkPayloadgetRoutedAttributeType `json:"routed,omitempty"`
 	// Universally Unique Identifier (UUID).
 	RoutingTableId CreateNetworkPayloadGetRoutingTableIdAttributeType `json:"routingTableId,omitempty"`
+	// Universally Unique Identifier (UUID).
+	VpcId CreateNetworkPayloadGetVpcIdAttributeType `json:"vpcId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -432,6 +461,33 @@ func (o *CreateNetworkPayload) SetRoutingTableId(v CreateNetworkPayloadGetRoutin
 	setCreateNetworkPayloadGetRoutingTableIdAttributeType(&o.RoutingTableId, v)
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) GetVpcId() (res CreateNetworkPayloadGetVpcIdRetType) {
+	res, _ = o.GetVpcIdOk()
+	return
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) GetVpcIdOk() (ret CreateNetworkPayloadGetVpcIdRetType, ok bool) {
+	return getCreateNetworkPayloadGetVpcIdAttributeTypeOk(o.VpcId)
+}
+
+// HasVpcId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) HasVpcId() bool {
+	_, ok := o.GetVpcIdOk()
+	return ok
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) SetVpcId(v CreateNetworkPayloadGetVpcIdRetType) {
+	setCreateNetworkPayloadGetVpcIdAttributeType(&o.VpcId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -455,6 +511,9 @@ func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateNetworkPayloadGetRoutingTableIdAttributeTypeOk(o.RoutingTableId); ok {
 		toSerialize["RoutingTableId"] = val
+	}
+	if val, ok := getCreateNetworkPayloadGetVpcIdAttributeTypeOk(o.VpcId); ok {
+		toSerialize["VpcId"] = val
 	}
 	return toSerialize, nil
 }
