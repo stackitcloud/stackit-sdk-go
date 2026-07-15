@@ -190,7 +190,7 @@ type Request struct {
 	// Identifier (ID) representing a single API request.
 	// REQUIRED
 	RequestId RequestGetRequestIdAttributeType `json:"requestId" required:"true"`
-	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
+	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`, `VPC`, `VPCNETWORKRANGE`.
 	// REQUIRED
 	RequestType RequestGetRequestTypeAttributeType `json:"requestType" required:"true"`
 	// REQUIRED

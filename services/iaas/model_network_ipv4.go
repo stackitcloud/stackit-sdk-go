@@ -130,6 +130,33 @@ type NetworkIPv4GetPublicIpArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkIPv4GetPublicIpRetType = string
 
+/*
+	types and functions for vpcNetworkRangeId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv4GetVpcNetworkRangeIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkIPv4GetVpcNetworkRangeIdAttributeTypeOk(arg NetworkIPv4GetVpcNetworkRangeIdAttributeType) (ret NetworkIPv4GetVpcNetworkRangeIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkIPv4GetVpcNetworkRangeIdAttributeType(arg *NetworkIPv4GetVpcNetworkRangeIdAttributeType, val NetworkIPv4GetVpcNetworkRangeIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv4GetVpcNetworkRangeIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv4GetVpcNetworkRangeIdRetType = string
+
 // NetworkIPv4 Object that represents the IPv4 part of a network.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkIPv4 struct {
@@ -141,6 +168,8 @@ type NetworkIPv4 struct {
 	Prefixes NetworkIPv4GetPrefixesAttributeType `json:"prefixes" required:"true"`
 	// String that represents an IPv4 address.
 	PublicIp NetworkIPv4GetPublicIpAttributeType `json:"publicIp,omitempty"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId NetworkIPv4GetVpcNetworkRangeIdAttributeType `json:"vpcNetworkRangeId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -280,6 +309,33 @@ func (o *NetworkIPv4) SetPublicIp(v NetworkIPv4GetPublicIpRetType) {
 	setNetworkIPv4GetPublicIpAttributeType(&o.PublicIp, v)
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv4) GetVpcNetworkRangeId() (res NetworkIPv4GetVpcNetworkRangeIdRetType) {
+	res, _ = o.GetVpcNetworkRangeIdOk()
+	return
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv4) GetVpcNetworkRangeIdOk() (ret NetworkIPv4GetVpcNetworkRangeIdRetType, ok bool) {
+	return getNetworkIPv4GetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId)
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv4) HasVpcNetworkRangeId() bool {
+	_, ok := o.GetVpcNetworkRangeIdOk()
+	return ok
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv4) SetVpcNetworkRangeId(v NetworkIPv4GetVpcNetworkRangeIdRetType) {
+	setNetworkIPv4GetVpcNetworkRangeIdAttributeType(&o.VpcNetworkRangeId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o NetworkIPv4) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -294,6 +350,9 @@ func (o NetworkIPv4) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNetworkIPv4GetPublicIpAttributeTypeOk(o.PublicIp); ok {
 		toSerialize["PublicIp"] = val
+	}
+	if val, ok := getNetworkIPv4GetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId); ok {
+		toSerialize["VpcNetworkRangeId"] = val
 	}
 	return toSerialize, nil
 }

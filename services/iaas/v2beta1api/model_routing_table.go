@@ -20,7 +20,7 @@ import (
 // checks if the RoutingTable type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RoutingTable{}
 
-// RoutingTable An object representing a routing table.
+// RoutingTable An object representing a routing table. Filterable Fields: `dynamicRoutes`, `systemRoutes`.
 type RoutingTable struct {
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
