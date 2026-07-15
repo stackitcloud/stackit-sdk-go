@@ -24,8 +24,10 @@ type NetworkIPv6 struct {
 	// The IPv6 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\\\s*((([0-9a-f]{1,4}:){7}([0-9a-f]{1,4}|:))|(([0-9a-f]{1,4}:){6}(:[0-9a-f]{1,4}|((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3})|:))|(([0-9a-f]{1,4}:){5}(((:[0-9a-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3})|:))|(([0-9a-f]{1,4}:){4}(((:[0-9a-f]{1,4}){1,3})|((:[0-9a-f]{1,4})?:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){3}(((:[0-9a-f]{1,4}){1,4})|((:[0-9a-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){2}(((:[0-9a-f]{1,4}){1,5})|((:[0-9a-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){1}(((:[0-9a-f]{1,4}){1,6})|((:[0-9a-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(:(((:[0-9a-f]{1,4}){1,7})|((:[0-9a-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:)))(%.+)?\\\\s*$"`
 	// A list containing DNS Servers/Nameservers for IPv6.
-	Nameservers          []string `json:"nameservers,omitempty"`
-	Prefixes             []string `json:"prefixes"`
+	Nameservers []string `json:"nameservers,omitempty"`
+	Prefixes    []string `json:"prefixes"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId    *string `json:"vpcNetworkRangeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -148,6 +150,38 @@ func (o *NetworkIPv6) SetPrefixes(v []string) {
 	o.Prefixes = v
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+func (o *NetworkIPv6) GetVpcNetworkRangeId() string {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcNetworkRangeId
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkIPv6) GetVpcNetworkRangeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcNetworkRangeId) {
+		return nil, false
+	}
+	return o.VpcNetworkRangeId, true
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+func (o *NetworkIPv6) HasVpcNetworkRangeId() bool {
+	if o != nil && !IsNil(o.VpcNetworkRangeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+func (o *NetworkIPv6) SetVpcNetworkRangeId(v string) {
+	o.VpcNetworkRangeId = &v
+}
+
 func (o NetworkIPv6) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -165,6 +199,9 @@ func (o NetworkIPv6) ToMap() (map[string]interface{}, error) {
 		toSerialize["nameservers"] = o.Nameservers
 	}
 	toSerialize["prefixes"] = o.Prefixes
+	if !IsNil(o.VpcNetworkRangeId) {
+		toSerialize["vpcNetworkRangeId"] = o.VpcNetworkRangeId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -211,6 +248,7 @@ func (o *NetworkIPv6) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "gateway")
 		delete(additionalProperties, "nameservers")
 		delete(additionalProperties, "prefixes")
+		delete(additionalProperties, "vpcNetworkRangeId")
 		o.AdditionalProperties = additionalProperties
 	}
 

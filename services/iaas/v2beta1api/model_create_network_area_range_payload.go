@@ -20,7 +20,7 @@ var _ MappedNullable = &CreateNetworkAreaRangePayload{}
 
 // CreateNetworkAreaRangePayload struct for CreateNetworkAreaRangePayload
 type CreateNetworkAreaRangePayload struct {
-	// A list of network ranges.
+	// A list of network area network ranges.
 	Ipv4                 []NetworkRange `json:"ipv4,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

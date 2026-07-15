@@ -694,6 +694,33 @@ func setCreateServerPayloadGetVolumesAttributeType(arg *CreateServerPayloadGetVo
 	*arg = &val
 }
 
+/*
+	types and functions for vtpm
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadGetVtpmAttributeType = *ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadGetVtpmArgType = ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadGetVtpmRetType = ServerVtpm
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateServerPayloadGetVtpmAttributeTypeOk(arg CreateServerPayloadGetVtpmAttributeType) (ret CreateServerPayloadGetVtpmRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateServerPayloadGetVtpmAttributeType(arg *CreateServerPayloadGetVtpmAttributeType, val CreateServerPayloadGetVtpmRetType) {
+	*arg = &val
+}
+
 // CreateServerPayload Object that represents the request body for a server create.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateServerPayload struct {
@@ -746,6 +773,7 @@ type CreateServerPayload struct {
 	UserData CreateServerPayloadGetUserDataAttributeType `json:"userData,omitempty"`
 	// A list of UUIDs.
 	Volumes CreateServerPayloadGetVolumesAttributeType `json:"volumes,omitempty"`
+	Vtpm    CreateServerPayloadGetVtpmAttributeType    `json:"vtpm,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -1429,6 +1457,33 @@ func (o *CreateServerPayload) SetVolumes(v CreateServerPayloadGetVolumesRetType)
 	setCreateServerPayloadGetVolumesAttributeType(&o.Volumes, v)
 }
 
+// GetVtpm returns the Vtpm field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) GetVtpm() (res CreateServerPayloadGetVtpmRetType) {
+	res, _ = o.GetVtpmOk()
+	return
+}
+
+// GetVtpmOk returns a tuple with the Vtpm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) GetVtpmOk() (ret CreateServerPayloadGetVtpmRetType, ok bool) {
+	return getCreateServerPayloadGetVtpmAttributeTypeOk(o.Vtpm)
+}
+
+// HasVtpm returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) HasVtpm() bool {
+	_, ok := o.GetVtpmOk()
+	return ok
+}
+
+// SetVtpm gets a reference to the given ServerVtpm and assigns it to the Vtpm field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) SetVtpm(v CreateServerPayloadGetVtpmRetType) {
+	setCreateServerPayloadGetVtpmAttributeType(&o.Vtpm, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -1506,6 +1561,9 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateServerPayloadGetVolumesAttributeTypeOk(o.Volumes); ok {
 		toSerialize["Volumes"] = val
+	}
+	if val, ok := getCreateServerPayloadGetVtpmAttributeTypeOk(o.Vtpm); ok {
+		toSerialize["Vtpm"] = val
 	}
 	return toSerialize, nil
 }

@@ -15,38 +15,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the V2beta1ConfigureNetworkAreaRegionPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &V2beta1ConfigureNetworkAreaRegionPayload{}
+// checks if the V2beta1CreateNetworkAreaRegionPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &V2beta1CreateNetworkAreaRegionPayload{}
 
-// V2beta1ConfigureNetworkAreaRegionPayload The basic properties of a regional network area.
-type V2beta1ConfigureNetworkAreaRegionPayload struct {
+// V2beta1CreateNetworkAreaRegionPayload The basic properties of a regional network area.
+type V2beta1CreateNetworkAreaRegionPayload struct {
 	Ipv4 *RegionalAreaIPv4 `json:"ipv4,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	Status               *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _V2beta1ConfigureNetworkAreaRegionPayload V2beta1ConfigureNetworkAreaRegionPayload
+type _V2beta1CreateNetworkAreaRegionPayload V2beta1CreateNetworkAreaRegionPayload
 
-// NewV2beta1ConfigureNetworkAreaRegionPayload instantiates a new V2beta1ConfigureNetworkAreaRegionPayload object
+// NewV2beta1CreateNetworkAreaRegionPayload instantiates a new V2beta1CreateNetworkAreaRegionPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewV2beta1ConfigureNetworkAreaRegionPayload() *V2beta1ConfigureNetworkAreaRegionPayload {
-	this := V2beta1ConfigureNetworkAreaRegionPayload{}
+func NewV2beta1CreateNetworkAreaRegionPayload() *V2beta1CreateNetworkAreaRegionPayload {
+	this := V2beta1CreateNetworkAreaRegionPayload{}
 	return &this
 }
 
-// NewV2beta1ConfigureNetworkAreaRegionPayloadWithDefaults instantiates a new V2beta1ConfigureNetworkAreaRegionPayload object
+// NewV2beta1CreateNetworkAreaRegionPayloadWithDefaults instantiates a new V2beta1CreateNetworkAreaRegionPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewV2beta1ConfigureNetworkAreaRegionPayloadWithDefaults() *V2beta1ConfigureNetworkAreaRegionPayload {
-	this := V2beta1ConfigureNetworkAreaRegionPayload{}
+func NewV2beta1CreateNetworkAreaRegionPayloadWithDefaults() *V2beta1CreateNetworkAreaRegionPayload {
+	this := V2beta1CreateNetworkAreaRegionPayload{}
 	return &this
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetIpv4() RegionalAreaIPv4 {
+func (o *V2beta1CreateNetworkAreaRegionPayload) GetIpv4() RegionalAreaIPv4 {
 	if o == nil || IsNil(o.Ipv4) {
 		var ret RegionalAreaIPv4
 		return ret
@@ -56,7 +56,7 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetIpv4() RegionalAreaIPv4 {
 
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetIpv4Ok() (*RegionalAreaIPv4, bool) {
+func (o *V2beta1CreateNetworkAreaRegionPayload) GetIpv4Ok() (*RegionalAreaIPv4, bool) {
 	if o == nil || IsNil(o.Ipv4) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetIpv4Ok() (*RegionalAreaIPv
 }
 
 // HasIpv4 returns a boolean if a field has been set.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) HasIpv4() bool {
+func (o *V2beta1CreateNetworkAreaRegionPayload) HasIpv4() bool {
 	if o != nil && !IsNil(o.Ipv4) {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) HasIpv4() bool {
 }
 
 // SetIpv4 gets a reference to the given RegionalAreaIPv4 and assigns it to the Ipv4 field.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) SetIpv4(v RegionalAreaIPv4) {
+func (o *V2beta1CreateNetworkAreaRegionPayload) SetIpv4(v RegionalAreaIPv4) {
 	o.Ipv4 = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetStatus() string {
+func (o *V2beta1CreateNetworkAreaRegionPayload) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
@@ -88,7 +88,7 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetStatusOk() (*string, bool) {
+func (o *V2beta1CreateNetworkAreaRegionPayload) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) GetStatusOk() (*string, bool)
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) HasStatus() bool {
+func (o *V2beta1CreateNetworkAreaRegionPayload) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -105,11 +105,11 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) SetStatus(v string) {
+func (o *V2beta1CreateNetworkAreaRegionPayload) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o V2beta1ConfigureNetworkAreaRegionPayload) MarshalJSON() ([]byte, error) {
+func (o V2beta1CreateNetworkAreaRegionPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -117,7 +117,7 @@ func (o V2beta1ConfigureNetworkAreaRegionPayload) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o V2beta1ConfigureNetworkAreaRegionPayload) ToMap() (map[string]interface{}, error) {
+func (o V2beta1CreateNetworkAreaRegionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
@@ -133,16 +133,16 @@ func (o V2beta1ConfigureNetworkAreaRegionPayload) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-func (o *V2beta1ConfigureNetworkAreaRegionPayload) UnmarshalJSON(data []byte) (err error) {
-	varV2beta1ConfigureNetworkAreaRegionPayload := _V2beta1ConfigureNetworkAreaRegionPayload{}
+func (o *V2beta1CreateNetworkAreaRegionPayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1CreateNetworkAreaRegionPayload := _V2beta1CreateNetworkAreaRegionPayload{}
 
-	err = json.Unmarshal(data, &varV2beta1ConfigureNetworkAreaRegionPayload)
+	err = json.Unmarshal(data, &varV2beta1CreateNetworkAreaRegionPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = V2beta1ConfigureNetworkAreaRegionPayload(varV2beta1ConfigureNetworkAreaRegionPayload)
+	*o = V2beta1CreateNetworkAreaRegionPayload(varV2beta1CreateNetworkAreaRegionPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -155,38 +155,38 @@ func (o *V2beta1ConfigureNetworkAreaRegionPayload) UnmarshalJSON(data []byte) (e
 	return err
 }
 
-type NullableV2beta1ConfigureNetworkAreaRegionPayload struct {
-	value *V2beta1ConfigureNetworkAreaRegionPayload
+type NullableV2beta1CreateNetworkAreaRegionPayload struct {
+	value *V2beta1CreateNetworkAreaRegionPayload
 	isSet bool
 }
 
-func (v NullableV2beta1ConfigureNetworkAreaRegionPayload) Get() *V2beta1ConfigureNetworkAreaRegionPayload {
+func (v NullableV2beta1CreateNetworkAreaRegionPayload) Get() *V2beta1CreateNetworkAreaRegionPayload {
 	return v.value
 }
 
-func (v *NullableV2beta1ConfigureNetworkAreaRegionPayload) Set(val *V2beta1ConfigureNetworkAreaRegionPayload) {
+func (v *NullableV2beta1CreateNetworkAreaRegionPayload) Set(val *V2beta1CreateNetworkAreaRegionPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableV2beta1ConfigureNetworkAreaRegionPayload) IsSet() bool {
+func (v NullableV2beta1CreateNetworkAreaRegionPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableV2beta1ConfigureNetworkAreaRegionPayload) Unset() {
+func (v *NullableV2beta1CreateNetworkAreaRegionPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableV2beta1ConfigureNetworkAreaRegionPayload(val *V2beta1ConfigureNetworkAreaRegionPayload) *NullableV2beta1ConfigureNetworkAreaRegionPayload {
-	return &NullableV2beta1ConfigureNetworkAreaRegionPayload{value: val, isSet: true}
+func NewNullableV2beta1CreateNetworkAreaRegionPayload(val *V2beta1CreateNetworkAreaRegionPayload) *NullableV2beta1CreateNetworkAreaRegionPayload {
+	return &NullableV2beta1CreateNetworkAreaRegionPayload{value: val, isSet: true}
 }
 
-func (v NullableV2beta1ConfigureNetworkAreaRegionPayload) MarshalJSON() ([]byte, error) {
+func (v NullableV2beta1CreateNetworkAreaRegionPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableV2beta1ConfigureNetworkAreaRegionPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableV2beta1CreateNetworkAreaRegionPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

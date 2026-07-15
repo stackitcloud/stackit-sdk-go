@@ -47,7 +47,7 @@ type Volume struct {
 	// Size in Gigabyte.
 	Size   *int64        `json:"size,omitempty"`
 	Source *VolumeSource `json:"source,omitempty"`
-	// The status of a volume object. Possible values: `ATTACHED`, `ATTACHING`, `AVAILABLE`, `AWAITING-TRANSFER`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `DETACHING`, `DOWNLOADING`, `ERROR`, `ERROR_BACKING-UP`, `ERROR_DELETING`, `ERROR_RESIZING`, `ERROR_RESTORING-BACKUP`, `MAINTENANCE`, `RESERVED`, `RESIZING`, `RESTORING-BACKUP`, `RETYPING`, `UPLOADING`.
+	// The status of a volume object. Possible values: `ATTACHED`, `ATTACHING`, `AVAILABLE`, `AWAITING-TRANSFER`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `DETACHING`, `DOWNLOADING`, `ERROR`, `ERROR_BACKING-UP`, `ERROR_DELETING`, `ERROR_RESIZING`, `ERROR_RESTORING-BACKUP`, `ERROR_KMS-ENCRYPTION-PARAMS`, `MAINTENANCE`, `RESERVED`, `RESIZING`, `RESTORING-BACKUP`, `RETYPING`, `UPLOADING`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`

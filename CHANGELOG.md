@@ -32,6 +32,17 @@
       - **Feature**: New field `Acl` in `Instance` model struct
     - Deprecated SDK layer in root of the module:
       - **Feature**: New field `Acl` in `Instance` model struct
+- `iaas`: [v1.13.0](services/iaas/CHANGELOG.md#v1130)
+  - **Improvement:** Update various descriptions
+  - **Improvement:** Add new error messages for `CreateBackupRequest`, `CreateImageRequest`, `CreateSnapshotRequest` and `CreateVolumeRequest
+  - **Feature:** Add fields `VpcNetworkRangeId` and `VpcId` in Network
+  - **Feature:** Add field `Vtpm` in Server
+  - **Feature:** Add field `AvailabilityZone` in Snapshot
+  - `v1api`: **Removal:** Remove deprecated methods `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+  - `v2beta1api`: Align package to latest API specification
+  - `v2alpha1api`:
+    - Align package to latest API specification
+    - **Feature:** Add waiters for VPC region and VPC network ranges
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:
