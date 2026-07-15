@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT postgres service
+⚠️ This API is deprecated. It will be retired on 01.08.2027. Please use the STACKIT PostgreSQL Flex API v3 instead.
 
 API version: 2.0.0
 Contact: support@stackit.cloud
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT PostgreSQL Flex API API v2.0.0
+// APIClient manages communication with the STACKIT PostgreSQL Flex API (deprecated) API v2.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration
