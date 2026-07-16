@@ -1,3 +1,7 @@
+## v1.16.1
+- **Improvement**: Improve http error handling
+- `v3api`: **Improvement**: Improve http error handling
+
 ## v1.16.0
 - **Breaking Change:** The `v3api` replaces the `v2api`.
   - The order of the parameters has changed in some cases. Region and the resource id has changed. 
