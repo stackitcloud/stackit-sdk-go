@@ -43,6 +43,8 @@
   - `v2alpha1api`:
     - Align package to latest API specification
     - **Feature:** Add waiters for VPC region and VPC network ranges
+- `kms`: [v1.12.0](services/kms/CHANGELOG.md#v1120)
+  - **Feature:** Add enum "hsm" for key protection. Only as private preview feature available.
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:
