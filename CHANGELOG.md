@@ -103,7 +103,10 @@
       - **Improvement:** Add validation to Name field of model struct `Cluster`
       - **Feature:** New model struct `Audit`
       - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
-- `sqlserverflex`: 
+- `sqlserverflex`:
+  - [v1.16.1](services/sqlserverflex/CHANGELOG.md#v1161)
+    - **Improvement**: Improve http error handling
+    - `v3api`: **Improvement**: Improve http error handling
   - [v1.16.0](services/sqlserverflex/CHANGELOG.md#v1160)
     - **Breaking Change:** The `v3api` replaces the `v2api`.
       - The order of the parameters has changed in some cases. Region and the resource id has changed.
