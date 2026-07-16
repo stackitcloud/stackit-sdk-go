@@ -22,20 +22,36 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 type DefaultAPIServiceMock struct {
 	// CreateGatewayExecuteMock can be populated to implement the behavior of the CreateGatewayExecute function of this mock
 	CreateGatewayExecuteMock *func(r ApiCreateGatewayRequest) (*GatewayResponse, error)
+	// CreateGatewayBGPFilterExecuteMock can be populated to implement the behavior of the CreateGatewayBGPFilterExecute function of this mock
+	CreateGatewayBGPFilterExecuteMock *func(r ApiCreateGatewayBGPFilterRequest) (*BGPFilter, error)
+	// CreateGatewayBGPFilterRuleExecuteMock can be populated to implement the behavior of the CreateGatewayBGPFilterRuleExecute function of this mock
+	CreateGatewayBGPFilterRuleExecuteMock *func(r ApiCreateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
 	// CreateGatewayConnectionExecuteMock can be populated to implement the behavior of the CreateGatewayConnectionExecute function of this mock
 	CreateGatewayConnectionExecuteMock *func(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error)
 	// DeleteGatewayExecuteMock can be populated to implement the behavior of the DeleteGatewayExecute function of this mock
 	DeleteGatewayExecuteMock *func(r ApiDeleteGatewayRequest) error
+	// DeleteGatewayBGPFilterExecuteMock can be populated to implement the behavior of the DeleteGatewayBGPFilterExecute function of this mock
+	DeleteGatewayBGPFilterExecuteMock *func(r ApiDeleteGatewayBGPFilterRequest) error
+	// DeleteGatewayBGPFilterRuleExecuteMock can be populated to implement the behavior of the DeleteGatewayBGPFilterRuleExecute function of this mock
+	DeleteGatewayBGPFilterRuleExecuteMock *func(r ApiDeleteGatewayBGPFilterRuleRequest) error
 	// DeleteGatewayConnectionExecuteMock can be populated to implement the behavior of the DeleteGatewayConnectionExecute function of this mock
 	DeleteGatewayConnectionExecuteMock *func(r ApiDeleteGatewayConnectionRequest) error
 	// GetGatewayExecuteMock can be populated to implement the behavior of the GetGatewayExecute function of this mock
 	GetGatewayExecuteMock *func(r ApiGetGatewayRequest) (*GatewayResponse, error)
+	// GetGatewayBGPFilterExecuteMock can be populated to implement the behavior of the GetGatewayBGPFilterExecute function of this mock
+	GetGatewayBGPFilterExecuteMock *func(r ApiGetGatewayBGPFilterRequest) (*BGPFilter, error)
+	// GetGatewayBGPFilterRuleExecuteMock can be populated to implement the behavior of the GetGatewayBGPFilterRuleExecute function of this mock
+	GetGatewayBGPFilterRuleExecuteMock *func(r ApiGetGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
 	// GetGatewayConnectionExecuteMock can be populated to implement the behavior of the GetGatewayConnectionExecute function of this mock
 	GetGatewayConnectionExecuteMock *func(r ApiGetGatewayConnectionRequest) (*ConnectionResponse, error)
 	// GetGatewayConnectionStatusExecuteMock can be populated to implement the behavior of the GetGatewayConnectionStatusExecute function of this mock
 	GetGatewayConnectionStatusExecuteMock *func(r ApiGetGatewayConnectionStatusRequest) (*ConnectionStatusResponse, error)
 	// GetGatewayStatusExecuteMock can be populated to implement the behavior of the GetGatewayStatusExecute function of this mock
 	GetGatewayStatusExecuteMock *func(r ApiGetGatewayStatusRequest) (*GatewayStatusResponse, error)
+	// ListGatewayBGPFilterRulesExecuteMock can be populated to implement the behavior of the ListGatewayBGPFilterRulesExecute function of this mock
+	ListGatewayBGPFilterRulesExecuteMock *func(r ApiListGatewayBGPFilterRulesRequest) (*BGPFilterRuleList, error)
+	// ListGatewayBGPFiltersExecuteMock can be populated to implement the behavior of the ListGatewayBGPFiltersExecute function of this mock
+	ListGatewayBGPFiltersExecuteMock *func(r ApiListGatewayBGPFiltersRequest) (*BGPFilterList, error)
 	// ListGatewayConnectionsExecuteMock can be populated to implement the behavior of the ListGatewayConnectionsExecute function of this mock
 	ListGatewayConnectionsExecuteMock *func(r ApiListGatewayConnectionsRequest) (*ConnectionList, error)
 	// ListGatewaysExecuteMock can be populated to implement the behavior of the ListGatewaysExecute function of this mock
@@ -46,6 +62,10 @@ type DefaultAPIServiceMock struct {
 	ListQuotasExecuteMock *func(r ApiListQuotasRequest) (*QuotaListResponse, error)
 	// UpdateGatewayExecuteMock can be populated to implement the behavior of the UpdateGatewayExecute function of this mock
 	UpdateGatewayExecuteMock *func(r ApiUpdateGatewayRequest) (*GatewayResponse, error)
+	// UpdateGatewayBGPFilterExecuteMock can be populated to implement the behavior of the UpdateGatewayBGPFilterExecute function of this mock
+	UpdateGatewayBGPFilterExecuteMock *func(r ApiUpdateGatewayBGPFilterRequest) (*BGPFilter, error)
+	// UpdateGatewayBGPFilterRuleExecuteMock can be populated to implement the behavior of the UpdateGatewayBGPFilterRuleExecute function of this mock
+	UpdateGatewayBGPFilterRuleExecuteMock *func(r ApiUpdateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
 	// UpdateGatewayConnectionExecuteMock can be populated to implement the behavior of the UpdateGatewayConnectionExecute function of this mock
 	UpdateGatewayConnectionExecuteMock *func(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error)
 }
@@ -67,6 +87,47 @@ func (a DefaultAPIServiceMock) CreateGatewayExecute(r ApiCreateGatewayRequest) (
 	}
 
 	return (*a.CreateGatewayExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayBGPFilterRequest {
+	return ApiCreateGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+	}
+}
+
+// CreateGatewayBGPFilterExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateGatewayBGPFilterExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateGatewayBGPFilterExecute(r ApiCreateGatewayBGPFilterRequest) (*BGPFilter, error) {
+	if a.CreateGatewayBGPFilterExecuteMock == nil {
+		var localVarReturnValue *BGPFilter
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateGatewayBGPFilterExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiCreateGatewayBGPFilterRuleRequest {
+	return ApiCreateGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// CreateGatewayBGPFilterRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateGatewayBGPFilterRuleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateGatewayBGPFilterRuleExecute(r ApiCreateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	if a.CreateGatewayBGPFilterRuleExecuteMock == nil {
+		var localVarReturnValue *BGPFilterRule
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateGatewayBGPFilterRuleExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) CreateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayConnectionRequest {
@@ -108,6 +169,47 @@ func (a DefaultAPIServiceMock) DeleteGatewayExecute(r ApiDeleteGatewayRequest) e
 	return (*a.DeleteGatewayExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) DeleteGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiDeleteGatewayBGPFilterRequest {
+	return ApiDeleteGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// DeleteGatewayBGPFilterExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteGatewayBGPFilterExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteGatewayBGPFilterExecute(r ApiDeleteGatewayBGPFilterRequest) error {
+	if a.DeleteGatewayBGPFilterExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteGatewayBGPFilterExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiDeleteGatewayBGPFilterRuleRequest {
+	return ApiDeleteGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// DeleteGatewayBGPFilterRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteGatewayBGPFilterRuleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteGatewayBGPFilterRuleExecute(r ApiDeleteGatewayBGPFilterRuleRequest) error {
+	if a.DeleteGatewayBGPFilterRuleExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteGatewayBGPFilterRuleExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) DeleteGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
 	return ApiDeleteGatewayConnectionRequest{
 		ApiService:   a,
@@ -146,6 +248,49 @@ func (a DefaultAPIServiceMock) GetGatewayExecute(r ApiGetGatewayRequest) (*Gatew
 	}
 
 	return (*a.GetGatewayExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiGetGatewayBGPFilterRequest {
+	return ApiGetGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// GetGatewayBGPFilterExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetGatewayBGPFilterExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetGatewayBGPFilterExecute(r ApiGetGatewayBGPFilterRequest) (*BGPFilter, error) {
+	if a.GetGatewayBGPFilterExecuteMock == nil {
+		var localVarReturnValue *BGPFilter
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetGatewayBGPFilterExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiGetGatewayBGPFilterRuleRequest {
+	return ApiGetGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// GetGatewayBGPFilterRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetGatewayBGPFilterRuleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetGatewayBGPFilterRuleExecute(r ApiGetGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	if a.GetGatewayBGPFilterRuleExecuteMock == nil {
+		var localVarReturnValue *BGPFilterRule
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetGatewayBGPFilterRuleExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
@@ -208,6 +353,47 @@ func (a DefaultAPIServiceMock) GetGatewayStatusExecute(r ApiGetGatewayStatusRequ
 	}
 
 	return (*a.GetGatewayStatusExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListGatewayBGPFilterRules(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiListGatewayBGPFilterRulesRequest {
+	return ApiListGatewayBGPFilterRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// ListGatewayBGPFilterRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListGatewayBGPFilterRulesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListGatewayBGPFilterRulesExecute(r ApiListGatewayBGPFilterRulesRequest) (*BGPFilterRuleList, error) {
+	if a.ListGatewayBGPFilterRulesExecuteMock == nil {
+		var localVarReturnValue *BGPFilterRuleList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListGatewayBGPFilterRulesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListGatewayBGPFilters(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayBGPFiltersRequest {
+	return ApiListGatewayBGPFiltersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+	}
+}
+
+// ListGatewayBGPFiltersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListGatewayBGPFiltersExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListGatewayBGPFiltersExecute(r ApiListGatewayBGPFiltersRequest) (*BGPFilterList, error) {
+	if a.ListGatewayBGPFiltersExecuteMock == nil {
+		var localVarReturnValue *BGPFilterList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListGatewayBGPFiltersExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListGatewayConnections(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayConnectionsRequest {
@@ -304,6 +490,49 @@ func (a DefaultAPIServiceMock) UpdateGatewayExecute(r ApiUpdateGatewayRequest) (
 	}
 
 	return (*a.UpdateGatewayExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiUpdateGatewayBGPFilterRequest {
+	return ApiUpdateGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// UpdateGatewayBGPFilterExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateGatewayBGPFilterExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateGatewayBGPFilterExecute(r ApiUpdateGatewayBGPFilterRequest) (*BGPFilter, error) {
+	if a.UpdateGatewayBGPFilterExecuteMock == nil {
+		var localVarReturnValue *BGPFilter
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateGatewayBGPFilterExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiUpdateGatewayBGPFilterRuleRequest {
+	return ApiUpdateGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// UpdateGatewayBGPFilterRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateGatewayBGPFilterRuleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateGatewayBGPFilterRuleExecute(r ApiUpdateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	if a.UpdateGatewayBGPFilterRuleExecuteMock == nil {
+		var localVarReturnValue *BGPFilterRule
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateGatewayBGPFilterRuleExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateGatewayConnection(ctx context.Context, projectId string, region string, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
