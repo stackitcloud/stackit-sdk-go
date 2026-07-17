@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/kms => ../../services/km
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/kms v1.11.0
+	github.com/stackitcloud/stackit-sdk-go/services/kms v1.12.0
 )
 
 require (
