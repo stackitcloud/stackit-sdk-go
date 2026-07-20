@@ -1,3 +1,9 @@
+## v1.15.0
+- `v2api`
+  - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+- Deprecated SDK layer in root of the module:
+  - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+
 ## v1.14.0
 - **Feature:** Introduce enums for various attributes
 
