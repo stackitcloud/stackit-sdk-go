@@ -40,6 +40,7 @@
     - "services/modelexperiments/*"
     - "services/ufw/*"
     - "services/workflows/*"
+    - "services/valkey/*"
 # databases
 "domain:Databases":
 - changed-files:
@@ -58,6 +59,7 @@
     - "services/serverbackup/*"
     - "services/serverupdate/*"
     - "services/sfs/*"
+    - "services/automation/*"
 # core platform
 "domain:CorePlatform":
 - changed-files:
