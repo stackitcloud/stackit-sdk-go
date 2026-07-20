@@ -31,25 +31,25 @@ const (
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
-	GetInstanceExecute(ctx context.Context, projectId, instanceId, region string) (*sqlserverflex.GetInstanceResponse, error)
+	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*sqlserverflex.GetInstanceResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *sqlserverflex.GetInstanceResponse, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, instanceId, region)
+		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+		if s == nil || s.Id == nil || *s.Id != instanceId || s.State == nil {
 			return false, nil, nil
 		}
-		switch strings.ToLower(*s.Item.Status) {
-		case strings.ToLower(InstanceStateSuccess):
+		switch strings.ToLower(string(*s.State)) {
+		case strings.ToLower(string(sqlserverflex.STATE_READY)):
 			return true, s, nil
-		case strings.ToLower(InstanceStateUnknown), strings.ToLower(InstanceStateFailed):
+		case strings.ToLower(string(sqlserverflex.STATE_UNKNOWN)), strings.ToLower(string(sqlserverflex.STATE_FAILURE)):
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		default:
 			return false, s, nil
@@ -63,19 +63,19 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 // UpdateInstanceWaitHandler will wait for instance update
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *sqlserverflex.GetInstanceResponse, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, instanceId, region)
+		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+		if s == nil || s.Id == nil || *s.Id != instanceId || s.State == nil {
 			return false, nil, nil
 		}
-		switch strings.ToLower(*s.Item.Status) {
-		case strings.ToLower(InstanceStateSuccess):
+		switch strings.ToLower(string(*s.State)) {
+		case strings.ToLower(string(sqlserverflex.STATE_READY)):
 			return true, s, nil
-		case strings.ToLower(InstanceStateUnknown), strings.ToLower(InstanceStateFailed):
+		case strings.ToLower(string(sqlserverflex.STATE_UNKNOWN)), strings.ToLower(string(sqlserverflex.STATE_FAILURE)):
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		default:
 			return false, s, nil
@@ -89,16 +89,16 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 // PartialUpdateInstanceWaitHandler will wait for instance update
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
-	return UpdateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
+	return UpdateInstanceWaitHandler(ctx, a, projectId, region, instanceId)
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[struct{}] {
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetInstanceExecute(ctx, projectId, instanceId, region)
+		_, err = a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err == nil {
 			return false, nil, nil
 		}

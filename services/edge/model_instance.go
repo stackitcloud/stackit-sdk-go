@@ -21,6 +21,33 @@ import (
 var _ MappedNullable = &Instance{}
 
 /*
+	types and functions for acl
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetAclAttributeType = *Acl
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetAclArgType = Acl
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetAclRetType = Acl
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getInstanceGetAclAttributeTypeOk(arg InstanceGetAclAttributeType) (ret InstanceGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setInstanceGetAclAttributeType(arg *InstanceGetAclAttributeType, val InstanceGetAclRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for created
 */
 
@@ -338,6 +365,7 @@ func setInstanceGetStatusAttributeType(arg *InstanceGetStatusAttributeType, val 
 // Instance struct for Instance
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Instance struct {
+	Acl InstanceGetAclAttributeType `json:"acl,omitempty"`
 	// The date and time the creation of the instance was triggered.
 	// REQUIRED
 	Created InstanceGetCreatedAttributeType `json:"created" required:"true"`
@@ -386,6 +414,33 @@ func NewInstance(created InstanceGetCreatedArgType, displayName InstanceGetDispl
 func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
 	return &this
+}
+
+// GetAcl returns the Acl field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetAcl() (res InstanceGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
+}
+
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetAclOk() (ret InstanceGetAclRetType, ok bool) {
+	return getInstanceGetAclAttributeTypeOk(o.Acl)
+}
+
+// HasAcl returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) HasAcl() bool {
+	_, ok := o.GetAclOk()
+	return ok
+}
+
+// SetAcl gets a reference to the given Acl and assigns it to the Acl field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) SetAcl(v InstanceGetAclRetType) {
+	setInstanceGetAclAttributeType(&o.Acl, v)
 }
 
 // GetCreated returns the Created field value
@@ -538,6 +593,9 @@ func (o *Instance) SetStatus(v InstanceGetStatusRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getInstanceGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
+	}
 	if val, ok := getInstanceGetCreatedAttributeTypeOk(o.Created); ok {
 		toSerialize["Created"] = val
 	}

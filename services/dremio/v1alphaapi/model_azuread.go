@@ -1,7 +1,7 @@
 /*
 STACKIT Dremio API
 
-This API provides endpoints for managing Dremios.
+This API provides endpoints for managing Dremio instances and users.
 
 API version: 1alpha.0.0
 */
@@ -25,7 +25,7 @@ type Azuread struct {
 	// The Azure AD client ID.
 	ClientId string `json:"clientId"`
 	// The Azure AD client secret.
-	ClientSecret string `json:"clientSecret"`
+	ClientSecret *string `json:"clientSecret,omitempty"`
 	// The Azure AD redirect URL.
 	RedirectUrl          *string `json:"redirectUrl,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +37,10 @@ type _Azuread Azuread
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzuread(authorityUrl string, clientId string, clientSecret string) *Azuread {
+func NewAzuread(authorityUrl string, clientId string) *Azuread {
 	this := Azuread{}
 	this.AuthorityUrl = authorityUrl
 	this.ClientId = clientId
-	this.ClientSecret = clientSecret
 	return &this
 }
 
@@ -101,28 +100,36 @@ func (o *Azuread) SetClientId(v string) {
 	o.ClientId = v
 }
 
-// GetClientSecret returns the ClientSecret field value
+// GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *Azuread) GetClientSecret() string {
-	if o == nil {
+	if o == nil || IsNil(o.ClientSecret) {
 		var ret string
 		return ret
 	}
-
-	return o.ClientSecret
+	return *o.ClientSecret
 }
 
-// GetClientSecretOk returns a tuple with the ClientSecret field value
+// GetClientSecretOk returns a tuple with the ClientSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Azuread) GetClientSecretOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ClientSecret) {
 		return nil, false
 	}
-	return &o.ClientSecret, true
+	return o.ClientSecret, true
 }
 
-// SetClientSecret sets field value
+// HasClientSecret returns a boolean if a field has been set.
+func (o *Azuread) HasClientSecret() bool {
+	if o != nil && !IsNil(o.ClientSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientSecret gets a reference to the given string and assigns it to the ClientSecret field.
 func (o *Azuread) SetClientSecret(v string) {
-	o.ClientSecret = v
+	o.ClientSecret = &v
 }
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
@@ -169,7 +176,9 @@ func (o Azuread) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["authorityUrl"] = o.AuthorityUrl
 	toSerialize["clientId"] = o.ClientId
-	toSerialize["clientSecret"] = o.ClientSecret
+	if !IsNil(o.ClientSecret) {
+		toSerialize["clientSecret"] = o.ClientSecret
+	}
 	if !IsNil(o.RedirectUrl) {
 		toSerialize["redirectUrl"] = o.RedirectUrl
 	}
@@ -188,7 +197,6 @@ func (o *Azuread) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"authorityUrl",
 		"clientId",
-		"clientSecret",
 	}
 
 	allProperties := make(map[string]interface{})

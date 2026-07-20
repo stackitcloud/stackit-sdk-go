@@ -13,6 +13,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the LokiLogSinkCreate type satisfies the MappedNullable interface at compile time
@@ -76,9 +77,132 @@ type LokiLogSinkCreateGetPushUrlRetType = string
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// LokiLogSinkCreateTypes Defines the type of the log sink. For Grafana Loki, this must be set to `loki`.
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkCreateGetTypeAttributeType = *string
+type LokiLogSinkCreateTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOKILOGSINKCREATETYPE_LOKI LokiLogSinkCreateTypes = "loki"
+)
+
+// All allowed values of LokiLogSinkCreate enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedLokiLogSinkCreateTypesEnumValues = []LokiLogSinkCreateTypes{
+	"loki",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *LokiLogSinkCreateTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson LokiLogSinkCreateTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := LokiLogSinkCreateTypes(value)
+	for _, existing := range AllowedLokiLogSinkCreateTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid LokiLogSinkCreate", value)
+}
+
+// NewLokiLogSinkCreateTypesFromValue returns a pointer to a valid LokiLogSinkCreateTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewLokiLogSinkCreateTypesFromValue(v LokiLogSinkCreateTypes) (*LokiLogSinkCreateTypes, error) {
+	ev := LokiLogSinkCreateTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for LokiLogSinkCreateTypes: valid values are %v", v, AllowedLokiLogSinkCreateTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v LokiLogSinkCreateTypes) IsValid() bool {
+	for _, existing := range AllowedLokiLogSinkCreateTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v LokiLogSinkCreateTypes) Ptr() *LokiLogSinkCreateTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableLokiLogSinkCreateTypes struct {
+	value *LokiLogSinkCreateTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkCreateTypes) Get() *LokiLogSinkCreateTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkCreateTypes) Set(val *LokiLogSinkCreateTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkCreateTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkCreateTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableLokiLogSinkCreateTypes(val *LokiLogSinkCreateTypes) *NullableLokiLogSinkCreateTypes {
+	return &NullableLokiLogSinkCreateTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableLokiLogSinkCreateTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableLokiLogSinkCreateTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkCreateGetTypeAttributeType = *LokiLogSinkCreateTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkCreateGetTypeArgType = LokiLogSinkCreateTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LokiLogSinkCreateGetTypeRetType = LokiLogSinkCreateTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getLokiLogSinkCreateGetTypeAttributeTypeOk(arg LokiLogSinkCreateGetTypeAttributeType) (ret LokiLogSinkCreateGetTypeRetType, ok bool) {
@@ -93,19 +217,15 @@ func setLokiLogSinkCreateGetTypeAttributeType(arg *LokiLogSinkCreateGetTypeAttri
 	*arg = &val
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkCreateGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type LokiLogSinkCreateGetTypeRetType = string
-
 // LokiLogSinkCreate struct for LokiLogSinkCreate
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type LokiLogSinkCreate struct {
 	// REQUIRED
 	Credentials LokiLogSinkCreateGetCredentialsAttributeType `json:"credentials" required:"true"`
+	// The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).
 	// REQUIRED
 	PushUrl LokiLogSinkCreateGetPushUrlAttributeType `json:"pushUrl" required:"true"`
+	// Defines the type of the log sink. For Grafana Loki, this must be set to `loki`.
 	// REQUIRED
 	Type LokiLogSinkCreateGetTypeAttributeType `json:"type" required:"true"`
 }

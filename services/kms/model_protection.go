@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// Protection The underlying system that is responsible for protecting the key material.
+// Protection The underlying system that is responsible for protecting the key material. (\"hsm\" is a private preview feature).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Protection string
 
@@ -24,12 +24,15 @@ type Protection string
 const (
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PROTECTION_SOFTWARE Protection = "software"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	PROTECTION_HSM Protection = "hsm"
 )
 
 // All allowed values of Protection enum
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 var AllowedProtectionEnumValues = []Protection{
 	"software",
+	"hsm",
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead

@@ -1,7 +1,7 @@
 /*
 STACKIT MSSQL Service API
 
-This is the documentation for the STACKIT MSSQL service
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V3
 
 API version: 3beta2
 Contact: support@stackit.cloud
@@ -35,36 +35,36 @@ type DefaultAPIServiceMock struct {
 	DeleteUserExecuteMock *func(r ApiDeleteUserRequest) error
 	// GetBackupExecuteMock can be populated to implement the behavior of the GetBackupExecute function of this mock
 	GetBackupExecuteMock *func(r ApiGetBackupRequest) (*GetBackupResponse, error)
-	// GetCollationsExecuteMock can be populated to implement the behavior of the GetCollationsExecute function of this mock
-	GetCollationsExecuteMock *func(r ApiGetCollationsRequest) (*GetCollationsResponse, error)
 	// GetDatabaseExecuteMock can be populated to implement the behavior of the GetDatabaseExecute function of this mock
 	GetDatabaseExecuteMock *func(r ApiGetDatabaseRequest) (*GetDatabaseResponse, error)
-	// GetFlavorsExecuteMock can be populated to implement the behavior of the GetFlavorsExecute function of this mock
-	GetFlavorsExecuteMock *func(r ApiGetFlavorsRequest) (*GetFlavorsResponse, error)
 	// GetInstanceExecuteMock can be populated to implement the behavior of the GetInstanceExecute function of this mock
 	GetInstanceExecuteMock *func(r ApiGetInstanceRequest) (*GetInstanceResponse, error)
-	// GetStoragesExecuteMock can be populated to implement the behavior of the GetStoragesExecute function of this mock
-	GetStoragesExecuteMock *func(r ApiGetStoragesRequest) (*GetStoragesResponse, error)
 	// GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
 	GetUserExecuteMock *func(r ApiGetUserRequest) (*GetUserResponse, error)
-	// GetVersionsExecuteMock can be populated to implement the behavior of the GetVersionsExecute function of this mock
-	GetVersionsExecuteMock *func(r ApiGetVersionsRequest) (*GetVersionsResponse, error)
 	// ListBackupsExecuteMock can be populated to implement the behavior of the ListBackupsExecute function of this mock
 	ListBackupsExecuteMock *func(r ApiListBackupsRequest) (*ListBackupResponse, error)
+	// ListCollationsExecuteMock can be populated to implement the behavior of the ListCollationsExecute function of this mock
+	ListCollationsExecuteMock *func(r ApiListCollationsRequest) (*ListCollationsResponse, error)
 	// ListCompatibilitiesExecuteMock can be populated to implement the behavior of the ListCompatibilitiesExecute function of this mock
 	ListCompatibilitiesExecuteMock *func(r ApiListCompatibilitiesRequest) (*ListCompatibilityResponse, error)
 	// ListCurrentRunningRestoreJobsExecuteMock can be populated to implement the behavior of the ListCurrentRunningRestoreJobsExecute function of this mock
 	ListCurrentRunningRestoreJobsExecuteMock *func(r ApiListCurrentRunningRestoreJobsRequest) (*ListCurrentRunningRestoreJobs, error)
 	// ListDatabasesExecuteMock can be populated to implement the behavior of the ListDatabasesExecute function of this mock
 	ListDatabasesExecuteMock *func(r ApiListDatabasesRequest) (*ListDatabasesResponse, error)
+	// ListFlavorsExecuteMock can be populated to implement the behavior of the ListFlavorsExecute function of this mock
+	ListFlavorsExecuteMock *func(r ApiListFlavorsRequest) (*ListFlavorsResponse, error)
 	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
 	ListInstancesExecuteMock *func(r ApiListInstancesRequest) (*ListInstancesResponse, error)
 	// ListRolesExecuteMock can be populated to implement the behavior of the ListRolesExecute function of this mock
 	ListRolesExecuteMock *func(r ApiListRolesRequest) (*ListRolesResponse, error)
+	// ListStoragesExecuteMock can be populated to implement the behavior of the ListStoragesExecute function of this mock
+	ListStoragesExecuteMock *func(r ApiListStoragesRequest) (*ListStoragesResponse, error)
 	// ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
 	ListUsersExecuteMock *func(r ApiListUsersRequest) (*ListUserResponse, error)
-	// ProtectInstanceExecuteMock can be populated to implement the behavior of the ProtectInstanceExecute function of this mock
-	ProtectInstanceExecuteMock *func(r ApiProtectInstanceRequest) (*ProtectInstanceResponse, error)
+	// ListVersionsExecuteMock can be populated to implement the behavior of the ListVersionsExecute function of this mock
+	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*ListVersionsResponse, error)
+	// PartialUpdateInstanceExecuteMock can be populated to implement the behavior of the PartialUpdateInstanceExecute function of this mock
+	PartialUpdateInstanceExecuteMock *func(r ApiPartialUpdateInstanceRequest) error
 	// ResetUserExecuteMock can be populated to implement the behavior of the ResetUserExecute function of this mock
 	ResetUserExecuteMock *func(r ApiResetUserRequest) (*ResetUserResponse, error)
 	// RestoreDatabaseFromBackupExecuteMock can be populated to implement the behavior of the RestoreDatabaseFromBackupExecute function of this mock
@@ -75,8 +75,8 @@ type DefaultAPIServiceMock struct {
 	TriggerRestoreExecuteMock *func(r ApiTriggerRestoreRequest) error
 	// UpdateInstanceExecuteMock can be populated to implement the behavior of the UpdateInstanceExecute function of this mock
 	UpdateInstanceExecuteMock *func(r ApiUpdateInstanceRequest) error
-	// UpdateInstancePartiallyExecuteMock can be populated to implement the behavior of the UpdateInstancePartiallyExecute function of this mock
-	UpdateInstancePartiallyExecuteMock *func(r ApiUpdateInstancePartiallyRequest) error
+	// UpdateInstanceProtectionExecuteMock can be populated to implement the behavior of the UpdateInstanceProtectionExecute function of this mock
+	UpdateInstanceProtectionExecuteMock *func(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error)
 }
 
 func (a DefaultAPIServiceMock) CreateDatabase(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequest {
@@ -218,26 +218,6 @@ func (a DefaultAPIServiceMock) GetBackupExecute(r ApiGetBackupRequest) (*GetBack
 	return (*a.GetBackupExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetCollations(ctx context.Context, projectId string, region string, instanceId string) ApiGetCollationsRequest {
-	return ApiGetCollationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		instanceId: instanceId,
-	}
-}
-
-// GetCollationsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCollationsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetCollationsExecute(r ApiGetCollationsRequest) (*GetCollationsResponse, error) {
-	if a.GetCollationsExecuteMock == nil {
-		var localVarReturnValue *GetCollationsResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.GetCollationsExecuteMock)(r)
-}
-
 func (a DefaultAPIServiceMock) GetDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiGetDatabaseRequest {
 	return ApiGetDatabaseRequest{
 		ApiService:   a,
@@ -259,25 +239,6 @@ func (a DefaultAPIServiceMock) GetDatabaseExecute(r ApiGetDatabaseRequest) (*Get
 	return (*a.GetDatabaseExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetFlavors(ctx context.Context, projectId string, region string) ApiGetFlavorsRequest {
-	return ApiGetFlavorsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// GetFlavorsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetFlavorsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetFlavorsExecute(r ApiGetFlavorsRequest) (*GetFlavorsResponse, error) {
-	if a.GetFlavorsExecuteMock == nil {
-		var localVarReturnValue *GetFlavorsResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.GetFlavorsExecuteMock)(r)
-}
-
 func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
@@ -296,26 +257,6 @@ func (a DefaultAPIServiceMock) GetInstanceExecute(r ApiGetInstanceRequest) (*Get
 	}
 
 	return (*a.GetInstanceExecuteMock)(r)
-}
-
-func (a DefaultAPIServiceMock) GetStorages(ctx context.Context, projectId string, region string, flavorId string) ApiGetStoragesRequest {
-	return ApiGetStoragesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		flavorId:   flavorId,
-	}
-}
-
-// GetStoragesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetStoragesExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStoragesResponse, error) {
-	if a.GetStoragesExecuteMock == nil {
-		var localVarReturnValue *GetStoragesResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.GetStoragesExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiGetUserRequest {
@@ -339,25 +280,6 @@ func (a DefaultAPIServiceMock) GetUserExecute(r ApiGetUserRequest) (*GetUserResp
 	return (*a.GetUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetVersions(ctx context.Context, projectId string, region string) ApiGetVersionsRequest {
-	return ApiGetVersionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// GetVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetVersionsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetVersionsExecute(r ApiGetVersionsRequest) (*GetVersionsResponse, error) {
-	if a.GetVersionsExecuteMock == nil {
-		var localVarReturnValue *GetVersionsResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.GetVersionsExecuteMock)(r)
-}
-
 func (a DefaultAPIServiceMock) ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
 		ApiService: a,
@@ -376,6 +298,26 @@ func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*Lis
 	}
 
 	return (*a.ListBackupsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListCollations(ctx context.Context, projectId string, region string, instanceId string) ApiListCollationsRequest {
+	return ApiListCollationsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		instanceId: instanceId,
+	}
+}
+
+// ListCollationsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCollationsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListCollationsExecute(r ApiListCollationsRequest) (*ListCollationsResponse, error) {
+	if a.ListCollationsExecuteMock == nil {
+		var localVarReturnValue *ListCollationsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListCollationsExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListCompatibilities(ctx context.Context, projectId string, region string, instanceId string) ApiListCompatibilitiesRequest {
@@ -438,6 +380,25 @@ func (a DefaultAPIServiceMock) ListDatabasesExecute(r ApiListDatabasesRequest) (
 	return (*a.ListDatabasesExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest {
+	return ApiListFlavorsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// ListFlavorsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFlavorsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error) {
+	if a.ListFlavorsExecuteMock == nil {
+		var localVarReturnValue *ListFlavorsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListFlavorsExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
@@ -477,6 +438,26 @@ func (a DefaultAPIServiceMock) ListRolesExecute(r ApiListRolesRequest) (*ListRol
 	return (*a.ListRolesExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest {
+	return ApiListStoragesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		flavorId:   flavorId,
+	}
+}
+
+// ListStoragesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListStoragesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error) {
+	if a.ListStoragesExecuteMock == nil {
+		var localVarReturnValue *ListStoragesResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListStoragesExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
@@ -497,8 +478,27 @@ func (a DefaultAPIServiceMock) ListUsersExecute(r ApiListUsersRequest) (*ListUse
 	return (*a.ListUsersExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ProtectInstance(ctx context.Context, projectId string, region string, instanceId string) ApiProtectInstanceRequest {
-	return ApiProtectInstanceRequest{
+func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest {
+	return ApiListVersionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// ListVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVersionsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
+	if a.ListVersionsExecuteMock == nil {
+		var localVarReturnValue *ListVersionsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListVersionsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest {
+	return ApiPartialUpdateInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -507,14 +507,13 @@ func (a DefaultAPIServiceMock) ProtectInstance(ctx context.Context, projectId st
 	}
 }
 
-// ProtectInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ProtectInstanceExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ProtectInstanceExecute(r ApiProtectInstanceRequest) (*ProtectInstanceResponse, error) {
-	if a.ProtectInstanceExecuteMock == nil {
-		var localVarReturnValue *ProtectInstanceResponse
-		return localVarReturnValue, nil
+// PartialUpdateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error {
+	if a.PartialUpdateInstanceExecuteMock == nil {
+		return nil
 	}
 
-	return (*a.ProtectInstanceExecuteMock)(r)
+	return (*a.PartialUpdateInstanceExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ResetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiResetUserRequest {
@@ -616,8 +615,8 @@ func (a DefaultAPIServiceMock) UpdateInstanceExecute(r ApiUpdateInstanceRequest)
 	return (*a.UpdateInstanceExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateInstancePartially(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstancePartiallyRequest {
-	return ApiUpdateInstancePartiallyRequest{
+func (a DefaultAPIServiceMock) UpdateInstanceProtection(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceProtectionRequest {
+	return ApiUpdateInstanceProtectionRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -626,11 +625,12 @@ func (a DefaultAPIServiceMock) UpdateInstancePartially(ctx context.Context, proj
 	}
 }
 
-// UpdateInstancePartiallyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateInstancePartiallyExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateInstancePartiallyExecute(r ApiUpdateInstancePartiallyRequest) error {
-	if a.UpdateInstancePartiallyExecuteMock == nil {
-		return nil
+// UpdateInstanceProtectionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateInstanceProtectionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateInstanceProtectionExecute(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error) {
+	if a.UpdateInstanceProtectionExecuteMock == nil {
+		var localVarReturnValue *UpdateInstanceProtectionResponse
+		return localVarReturnValue, nil
 	}
 
-	return (*a.UpdateInstancePartiallyExecuteMock)(r)
+	return (*a.UpdateInstanceProtectionExecuteMock)(r)
 }

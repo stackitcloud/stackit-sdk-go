@@ -15,18 +15,20 @@ import (
 	"fmt"
 )
 
-// Protection The underlying system that is responsible for protecting the key material.
+// Protection The underlying system that is responsible for protecting the key material. (\"hsm\" is a private preview feature).
 type Protection string
 
 // List of protection
 const (
 	PROTECTION_SOFTWARE                 Protection = "software"
+	PROTECTION_HSM                      Protection = "hsm"
 	PROTECTION_UNKNOWN_DEFAULT_OPEN_API Protection = "unknown_default_open_api"
 )
 
 // All allowed values of Protection enum
 var AllowedProtectionEnumValues = []Protection{
 	"software",
+	"hsm",
 	"unknown_default_open_api",
 }
 

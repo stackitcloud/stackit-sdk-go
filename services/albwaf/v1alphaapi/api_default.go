@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have OWASP core rule set enabled and in addition can have custom rule configurations. To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1beta instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have OWASP core rule set enabled and in addition can have custom rule configurations. To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1alpha.0.0
 */
@@ -32,11 +32,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateCoreRuleSetRequest
+
+		Deprecated
 	*/
 	CreateCoreRuleSet(ctx context.Context, projectId string, region string) ApiCreateCoreRuleSetRequest
 
 	// CreateCoreRuleSetExecute executes the request
 	//  @return GetCoreRuleSetResponse
+	// Deprecated
 	CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 
 	/*
@@ -48,11 +51,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateRulesRequest
+
+		Deprecated
 	*/
 	CreateRules(ctx context.Context, projectId string, region string) ApiCreateRulesRequest
 
 	// CreateRulesExecute executes the request
 	//  @return CreateRulesResponse
+	// Deprecated
 	CreateRulesExecute(r ApiCreateRulesRequest) (*CreateRulesResponse, error)
 
 	/*
@@ -64,11 +70,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateWAFRequest
+
+		Deprecated
 	*/
 	CreateWAF(ctx context.Context, projectId string, region string) ApiCreateWAFRequest
 
 	// CreateWAFExecute executes the request
 	//  @return CreateWAFResponse
+	// Deprecated
 	CreateWAFExecute(r ApiCreateWAFRequest) (*CreateWAFResponse, error)
 
 	/*
@@ -81,11 +90,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteCoreRuleSetRequest
+
+		Deprecated
 	*/
 	DeleteCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiDeleteCoreRuleSetRequest
 
 	// DeleteCoreRuleSetExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteCoreRuleSetExecute(r ApiDeleteCoreRuleSetRequest) (map[string]interface{}, error)
 
 	/*
@@ -98,11 +110,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteRulesRequest
+
+		Deprecated
 	*/
 	DeleteRules(ctx context.Context, projectId string, region string, name string) ApiDeleteRulesRequest
 
 	// DeleteRulesExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteRulesExecute(r ApiDeleteRulesRequest) (map[string]interface{}, error)
 
 	/*
@@ -115,11 +130,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteWAFRequest
+
+		Deprecated
 	*/
 	DeleteWAF(ctx context.Context, projectId string, region string, name string) ApiDeleteWAFRequest
 
 	// DeleteWAFExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]interface{}, error)
 
 	/*
@@ -132,11 +150,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetCoreRuleSetRequest
+
+		Deprecated
 	*/
 	GetCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiGetCoreRuleSetRequest
 
 	// GetCoreRuleSetExecute executes the request
 	//  @return GetCoreRuleSetResponse
+	// Deprecated
 	GetCoreRuleSetExecute(r ApiGetCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 
 	/*
@@ -148,11 +169,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiGetQuotaRequest
+
+		Deprecated
 	*/
 	GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest
 
 	// GetQuotaExecute executes the request
 	//  @return GetQuotaResponse
+	// Deprecated
 	GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
 
 	/*
@@ -165,11 +189,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetRulesRequest
+
+		Deprecated
 	*/
 	GetRules(ctx context.Context, projectId string, region string, name string) ApiGetRulesRequest
 
 	// GetRulesExecute executes the request
 	//  @return GetRulesResponse
+	// Deprecated
 	GetRulesExecute(r ApiGetRulesRequest) (*GetRulesResponse, error)
 
 	/*
@@ -182,11 +209,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetWAFRequest
+
+		Deprecated
 	*/
 	GetWAF(ctx context.Context, projectId string, region string, name string) ApiGetWAFRequest
 
 	// GetWAFExecute executes the request
 	//  @return GetWAFResponse
+	// Deprecated
 	GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, error)
 
 	/*
@@ -198,11 +228,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListCoreRuleSetsRequest
+
+		Deprecated
 	*/
 	ListCoreRuleSets(ctx context.Context, projectId string, region string) ApiListCoreRuleSetsRequest
 
 	// ListCoreRuleSetsExecute executes the request
 	//  @return ListCoreRuleSetResponse
+	// Deprecated
 	ListCoreRuleSetsExecute(r ApiListCoreRuleSetsRequest) (*ListCoreRuleSetResponse, error)
 
 	/*
@@ -214,11 +247,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListRulesRequest
+
+		Deprecated
 	*/
 	ListRules(ctx context.Context, projectId string, region string) ApiListRulesRequest
 
 	// ListRulesExecute executes the request
 	//  @return ListRulesResponse
+	// Deprecated
 	ListRulesExecute(r ApiListRulesRequest) (*ListRulesResponse, error)
 
 	/*
@@ -230,11 +266,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListWAFRequest
+
+		Deprecated
 	*/
 	ListWAF(ctx context.Context, projectId string, region string) ApiListWAFRequest
 
 	// ListWAFExecute executes the request
 	//  @return ListWAFResponse
+	// Deprecated
 	ListWAFExecute(r ApiListWAFRequest) (*ListWAFResponse, error)
 
 	/*
@@ -247,11 +286,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiPatchCoreRuleSetRequest
+
+		Deprecated
 	*/
 	PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest
 
 	// PatchCoreRuleSetExecute executes the request
 	//  @return GetCoreRuleSetResponse
+	// Deprecated
 	PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 
 	/*
@@ -264,11 +306,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiUpdateCoreRuleSetRequest
+
+		Deprecated
 	*/
 	UpdateCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiUpdateCoreRuleSetRequest
 
 	// UpdateCoreRuleSetExecute executes the request
 	//  @return UpdateCoreRuleSetResponse
+	// Deprecated
 	UpdateCoreRuleSetExecute(r ApiUpdateCoreRuleSetRequest) (*UpdateCoreRuleSetResponse, error)
 
 	/*
@@ -281,11 +326,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiUpdateRulesRequest
+
+		Deprecated
 	*/
 	UpdateRules(ctx context.Context, projectId string, region string, name string) ApiUpdateRulesRequest
 
 	// UpdateRulesExecute executes the request
 	//  @return UpdateRulesResponse
+	// Deprecated
 	UpdateRulesExecute(r ApiUpdateRulesRequest) (*UpdateRulesResponse, error)
 
 	/*
@@ -298,11 +346,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiUpdateWAFRequest
+
+		Deprecated
 	*/
 	UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest
 
 	// UpdateWAFExecute executes the request
 	//  @return UpdateWAFResponse
+	// Deprecated
 	UpdateWAFExecute(r ApiUpdateWAFRequest) (*UpdateWAFResponse, error)
 }
 
@@ -335,6 +386,8 @@ With this endpoint a core rule set (CRS) configuration is created and stored in 
 	@param projectId
 	@param region
 	@return ApiCreateCoreRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCoreRuleSet(ctx context.Context, projectId string, region string) ApiCreateCoreRuleSetRequest {
 	return ApiCreateCoreRuleSetRequest{
@@ -348,6 +401,8 @@ func (a *DefaultAPIService) CreateCoreRuleSet(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return GetCoreRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -484,6 +539,8 @@ With this endpoint a rule configuration is created and stored in this project. T
 	@param projectId
 	@param region
 	@return ApiCreateRulesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateRules(ctx context.Context, projectId string, region string) ApiCreateRulesRequest {
 	return ApiCreateRulesRequest{
@@ -497,6 +554,8 @@ func (a *DefaultAPIService) CreateRules(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return CreateRulesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateRulesExecute(r ApiCreateRulesRequest) (*CreateRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -633,6 +692,8 @@ This endpoint will create and store a WAF configuration in a project. The name o
 	@param projectId
 	@param region
 	@return ApiCreateWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateWAF(ctx context.Context, projectId string, region string) ApiCreateWAFRequest {
 	return ApiCreateWAFRequest{
@@ -646,6 +707,8 @@ func (a *DefaultAPIService) CreateWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return CreateWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateWAFExecute(r ApiCreateWAFRequest) (*CreateWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -778,6 +841,8 @@ To delete a core rule set (CRS) configuration this endpoint is used, but it is o
 	@param region
 	@param name
 	@return ApiDeleteCoreRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiDeleteCoreRuleSetRequest {
 	return ApiDeleteCoreRuleSetRequest{
@@ -792,6 +857,8 @@ func (a *DefaultAPIService) DeleteCoreRuleSet(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCoreRuleSetExecute(r ApiDeleteCoreRuleSetRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -920,6 +987,8 @@ To delete a rule configuration this endpoint is used, but it is only possible to
 	@param region
 	@param name
 	@return ApiDeleteRulesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteRules(ctx context.Context, projectId string, region string, name string) ApiDeleteRulesRequest {
 	return ApiDeleteRulesRequest{
@@ -934,6 +1003,8 @@ func (a *DefaultAPIService) DeleteRules(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteRulesExecute(r ApiDeleteRulesRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1062,6 +1133,8 @@ This will delete the specified WAF configuration, but only if it is not used by 
 	@param region
 	@param name
 	@return ApiDeleteWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteWAF(ctx context.Context, projectId string, region string, name string) ApiDeleteWAFRequest {
 	return ApiDeleteWAFRequest{
@@ -1076,6 +1149,8 @@ func (a *DefaultAPIService) DeleteWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1204,6 +1279,8 @@ To retrieve an existing core rule set (CRS) configuration this endpoint can be u
 	@param region
 	@param name
 	@return ApiGetCoreRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiGetCoreRuleSetRequest {
 	return ApiGetCoreRuleSetRequest{
@@ -1218,6 +1295,8 @@ func (a *DefaultAPIService) GetCoreRuleSet(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return GetCoreRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCoreRuleSetExecute(r ApiGetCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1344,6 +1423,8 @@ Retrieves the configured WAF resource quotas for the project. Limit can be chang
 	@param projectId
 	@param region
 	@return ApiGetQuotaRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
 	return ApiGetQuotaRequest{
@@ -1357,6 +1438,8 @@ func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string, regi
 // Execute executes the request
 //
 //	@return GetQuotaResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1484,6 +1567,8 @@ To retrieve an existing rule configuration this endpoint can be used.
 	@param region
 	@param name
 	@return ApiGetRulesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetRules(ctx context.Context, projectId string, region string, name string) ApiGetRulesRequest {
 	return ApiGetRulesRequest{
@@ -1498,6 +1583,8 @@ func (a *DefaultAPIService) GetRules(ctx context.Context, projectId string, regi
 // Execute executes the request
 //
 //	@return GetRulesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetRulesExecute(r ApiGetRulesRequest) (*GetRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1626,6 +1713,8 @@ This endpoint will return the specified WAF configuration.
 	@param region
 	@param name
 	@return ApiGetWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetWAF(ctx context.Context, projectId string, region string, name string) ApiGetWAFRequest {
 	return ApiGetWAFRequest{
@@ -1640,6 +1729,8 @@ func (a *DefaultAPIService) GetWAF(ctx context.Context, projectId string, region
 // Execute executes the request
 //
 //	@return GetWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1780,6 +1871,8 @@ List all existing core rule set (CRS) configurations that are stored in the proj
 	@param projectId
 	@param region
 	@return ApiListCoreRuleSetsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCoreRuleSets(ctx context.Context, projectId string, region string) ApiListCoreRuleSetsRequest {
 	return ApiListCoreRuleSetsRequest{
@@ -1793,6 +1886,8 @@ func (a *DefaultAPIService) ListCoreRuleSets(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return ListCoreRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCoreRuleSetsExecute(r ApiListCoreRuleSetsRequest) (*ListCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1938,6 +2033,8 @@ List all existing rule configurations that are stored in the project.
 	@param projectId
 	@param region
 	@return ApiListRulesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListRules(ctx context.Context, projectId string, region string) ApiListRulesRequest {
 	return ApiListRulesRequest{
@@ -1951,6 +2048,8 @@ func (a *DefaultAPIService) ListRules(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return ListRulesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListRulesExecute(r ApiListRulesRequest) (*ListRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2096,6 +2195,8 @@ To list all WAF configurations stored in a project, use this endpoint.
 	@param projectId
 	@param region
 	@return ApiListWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListWAF(ctx context.Context, projectId string, region string) ApiListWAFRequest {
 	return ApiListWAFRequest{
@@ -2109,6 +2210,8 @@ func (a *DefaultAPIService) ListWAF(ctx context.Context, projectId string, regio
 // Execute executes the request
 //
 //	@return ListWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListWAFExecute(r ApiListWAFRequest) (*ListWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2248,6 +2351,8 @@ Accepts the same structure as the GET response. Only fields provided with values
 	@param region
 	@param name
 	@return ApiPatchCoreRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest {
 	return ApiPatchCoreRuleSetRequest{
@@ -2262,6 +2367,8 @@ func (a *DefaultAPIService) PatchCoreRuleSet(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return GetCoreRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -2401,6 +2508,8 @@ DEPRECATED: Use PatchCoreRuleSet
 	@param region
 	@param name
 	@return ApiUpdateCoreRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiUpdateCoreRuleSetRequest {
 	return ApiUpdateCoreRuleSetRequest{
@@ -2415,6 +2524,8 @@ func (a *DefaultAPIService) UpdateCoreRuleSet(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return UpdateCoreRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateCoreRuleSetExecute(r ApiUpdateCoreRuleSetRequest) (*UpdateCoreRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -2554,6 +2665,8 @@ This endpoint will update an existing rules configuration and also inturn update
 	@param region
 	@param name
 	@return ApiUpdateRulesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateRules(ctx context.Context, projectId string, region string, name string) ApiUpdateRulesRequest {
 	return ApiUpdateRulesRequest{
@@ -2568,6 +2681,8 @@ func (a *DefaultAPIService) UpdateRules(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return UpdateRulesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateRulesExecute(r ApiUpdateRulesRequest) (*UpdateRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -2707,6 +2822,8 @@ The update endpoint will update a stored WAF configuration in project and not ye
 	@param region
 	@param name
 	@return ApiUpdateWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest {
 	return ApiUpdateWAFRequest{
@@ -2721,6 +2838,8 @@ func (a *DefaultAPIService) UpdateWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return UpdateWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateWAFExecute(r ApiUpdateWAFRequest) (*UpdateWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

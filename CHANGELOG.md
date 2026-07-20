@@ -1,5 +1,56 @@
 ## Release (2026-MM-DD)
 
+- `alb`
+  - [v0.16.0](services/alb/CHANGELOG.md#v0160)
+    - **Breaking change**: Remove `v2beta2api` API
+- `albwaf`:
+  - [v0.10.0](services/albwaf/CHANGELOG.md#v0100)
+    - `v1alphaapi`:
+      - **Deprecation:** The `v1alphaapi` is deprecated and will be removed in the future. Migrate to the `v1betaapi`.
+  - [v0.9.0](services/albwaf/CHANGELOG.md#v090)
+    - `v1alphaapi`: Align package to latest API specification
+    - `v1betaapi`: Align package to latest API specification
+- `cdn`
+  - [v1.19.0](services/cdn/CHANGELOG.md#v1190)
+    - `v1api`:
+      - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
+      - **Improvement**: Add documentation to various attributes
+    - Deprecated SDK layer in root of the module:
+      - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
+      - **Improvement**: Add documentation to various attributes
+- `certificates`:
+  - [v1.9.0](services/certificates/CHANGELOG.md#v190)
+    - `v2api`
+      - **Improvement**: Update descriptions in `Usage` and `UsageItem` model structs
+    - **Breaking change**: Remove `v2betaapi` API
+- `dremio`:
+  - [v0.4.0](services/dremio/CHANGELOG.md#v040)
+    - `v1alphaapi`: Align package to latest API specification
+- `edge`:
+  - [v0.13.0](services/edge/CHANGELOG.md#v0130)
+    - `v1beta1api`:
+      - **Feature**: New field `Acl` in `Instance` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Feature**: New field `Acl` in `Instance` model struct
+- `iaas`: [v1.13.0](services/iaas/CHANGELOG.md#v1130)
+  - **Improvement:** Update various descriptions
+  - **Improvement:** Add new error messages for `CreateBackupRequest`, `CreateImageRequest`, `CreateSnapshotRequest` and `CreateVolumeRequest
+  - **Feature:** Add fields `VpcNetworkRangeId` and `VpcId` in Network
+  - **Feature:** Add field `Vtpm` in Server
+  - **Feature:** Add field `AvailabilityZone` in Snapshot
+  - `v1api`: **Removal:** Remove deprecated methods `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+  - `v2beta1api`: Align package to latest API specification
+  - `v2alpha1api`:
+    - Align package to latest API specification
+    - **Feature:** Add waiters for VPC region and VPC network ranges
+- `kms`: [v1.12.0](services/kms/CHANGELOG.md#v1120)
+  - **Feature:** Add enum "hsm" for key protection. Only as private preview feature available.
+- `loadbalancer`: 
+  - [v1.15.0](services/loadbalancer/CHANGELOG.md#v1150) 
+    - `v2api`:
+      - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+    - Deprecated SDK layer in root of the module:
+      - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:
@@ -21,10 +72,17 @@
   - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
     - **New**: STACKIT Model Experiments module wait handler added.
 - `opensearch`:
+  - [v1.1.0](services/opensearch/CHANGELOG.md#v110)
+    - `v2api`
+      - **Feature**: Add `wait` handlers
   - [v1.0.1](services/opensearch/CHANGELOG.md#v101)
     - `v1api`:
       - **Improvement**: Improve http error handling
 - `postgresflex`:
+  - [v1.11.0](services/postgresflex/CHANGELOG.md#v1110)
+    - `v3beta1api`: **New:** New package which can be used for communication with the PostgreSQL Flex v3beta1 API
+    - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
+    - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta1api`
   - [v1.10.0](services/postgresflex/CHANGELOG.md#v1100)
     - `v3alpha1api`: Align package to latest API specification
 - `rabbitmq`:
@@ -58,14 +116,42 @@
       - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
     - Deprecated SDK layer in root of the module:
       - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
-
-- `sqlserverflex`: 
+- `sqlserverflex`:
+  - [v1.16.1](services/sqlserverflex/CHANGELOG.md#v1161)
+    - **Improvement**: Improve http error handling
+    - `v3api`: **Improvement**: Improve http error handling
+  - [v1.16.0](services/sqlserverflex/CHANGELOG.md#v1160)
+    - **Breaking Change:** The `v3api` replaces the `v2api`.
+      - The order of the parameters has changed in some cases. Region and the resource id has changed.
+    - `v3api`: **New:** New package which can be used for communication with the sqlserverflex v3 API
+    - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
+    - `v3beta2api`: **Deprecated:** `v3beta2api` is deprecated, use instead `v3api`
+  - [v1.15.0](services/sqlserverflex/CHANGELOG.md#v1150)
+    - `v3beta2api`: 
+      - **Breaking change:** Rename methods:
+        - `GetFlavors` renamed to `ListFlavors`
+        - `GetCollations` renamed to `ListCollations`
+        - `GetStorages` renamed to `ListStorages`
+        - `GetVersions` renamed to `ListVersions`
+        - `ProtectInstance` renamed to `UpdateInstanceProtection`
+        - `UpdateInstancePartially` renamed to `PartialUpdateInstance`
+      - **Breaking change:** Rename structs:
+        - `GetFlavorsResponse` renamed to `ListFlavorsResponse`
+        - `GetCollationsResponse` renamed to `ListCollationsResponse`
+        - `GetStoragesResponse` renamed to `ListStoragesResponse`
+        - `GetVersionsResponse` renamed to `ListVersionsResponse`
+        - `UpdateInstancePartiallyPayload` renamed to `PartialUpdateInstancePayload`
+        - `UpdateInstancePartiallyPayloadNetwork` renamed to `PartialUpdateInstancePayloadNetwork`
+        - `ProtectInstanceResponse` renamed to `UpdateInstanceProtectionResponse`
+        - `ProtectInstancePayload` renamed to `UpdateInstanceProtectionPayload`
   - [v1.14.0](services/sqlserverflex/CHANGELOG.md#v1140)
     - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
     - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
     - `v3alpha1api`: **Deprecated:** `v3alpha1api` is deprecated, use instead `v3beta2api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3beta2api`
 - `telemetrylink`:
+  - [v0.4.0](services/telemetrylink/CHANGELOG.md#v040)
+    - `v1api`: **Feature:** Add support for `If-None-Match` header in `CreateOrUpdateFolderTelemetryLink`, `CreateOrUpdateOrganizationTelemetryLink` and `CreateOrUpdateProjectTelemetryLink`
   - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **New:** v1api API version for STACKIT Telemetry Link
 - `telemetryrouter`:

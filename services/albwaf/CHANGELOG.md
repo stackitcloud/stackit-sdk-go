@@ -1,3 +1,10 @@
+## v0.10.0
+- **Deprecation:** The `v1alphaapi` is deprecated and will be removed in the future. Migrate to the `v1betaapi`.
+
+## v0.9.0
+- `v1alphaapi`: Align package to latest API specification
+- `v1betaapi`: Align package to latest API specification
+
 ## v0.8.0
 - `v1alphaapi`: Align package to latest API specification
 

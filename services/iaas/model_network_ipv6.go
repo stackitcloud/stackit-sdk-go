@@ -103,6 +103,33 @@ func setNetworkIPv6GetPrefixesAttributeType(arg *NetworkIPv6GetPrefixesAttribute
 	*arg = &val
 }
 
+/*
+	types and functions for vpcNetworkRangeId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv6GetVpcNetworkRangeIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkIPv6GetVpcNetworkRangeIdAttributeTypeOk(arg NetworkIPv6GetVpcNetworkRangeIdAttributeType) (ret NetworkIPv6GetVpcNetworkRangeIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkIPv6GetVpcNetworkRangeIdAttributeType(arg *NetworkIPv6GetVpcNetworkRangeIdAttributeType, val NetworkIPv6GetVpcNetworkRangeIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv6GetVpcNetworkRangeIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkIPv6GetVpcNetworkRangeIdRetType = string
+
 // NetworkIPv6 Object that represents the IPv6 part of a network.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkIPv6 struct {
@@ -112,6 +139,8 @@ type NetworkIPv6 struct {
 	Nameservers NetworkIPv6GetNameserversAttributeType `json:"nameservers,omitempty"`
 	// REQUIRED
 	Prefixes NetworkIPv6GetPrefixesAttributeType `json:"prefixes" required:"true"`
+	// Universally Unique Identifier (UUID).
+	VpcNetworkRangeId NetworkIPv6GetVpcNetworkRangeIdAttributeType `json:"vpcNetworkRangeId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -224,6 +253,33 @@ func (o *NetworkIPv6) SetPrefixes(v NetworkIPv6GetPrefixesRetType) {
 	setNetworkIPv6GetPrefixesAttributeType(&o.Prefixes, v)
 }
 
+// GetVpcNetworkRangeId returns the VpcNetworkRangeId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv6) GetVpcNetworkRangeId() (res NetworkIPv6GetVpcNetworkRangeIdRetType) {
+	res, _ = o.GetVpcNetworkRangeIdOk()
+	return
+}
+
+// GetVpcNetworkRangeIdOk returns a tuple with the VpcNetworkRangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv6) GetVpcNetworkRangeIdOk() (ret NetworkIPv6GetVpcNetworkRangeIdRetType, ok bool) {
+	return getNetworkIPv6GetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId)
+}
+
+// HasVpcNetworkRangeId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv6) HasVpcNetworkRangeId() bool {
+	_, ok := o.GetVpcNetworkRangeIdOk()
+	return ok
+}
+
+// SetVpcNetworkRangeId gets a reference to the given string and assigns it to the VpcNetworkRangeId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NetworkIPv6) SetVpcNetworkRangeId(v NetworkIPv6GetVpcNetworkRangeIdRetType) {
+	setNetworkIPv6GetVpcNetworkRangeIdAttributeType(&o.VpcNetworkRangeId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o NetworkIPv6) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -235,6 +291,9 @@ func (o NetworkIPv6) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNetworkIPv6GetPrefixesAttributeTypeOk(o.Prefixes); ok {
 		toSerialize["Prefixes"] = val
+	}
+	if val, ok := getNetworkIPv6GetVpcNetworkRangeIdAttributeTypeOk(o.VpcNetworkRangeId); ok {
+		toSerialize["VpcNetworkRangeId"] = val
 	}
 	return toSerialize, nil
 }

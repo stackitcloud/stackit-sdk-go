@@ -1,7 +1,7 @@
 /*
 STACKIT MSSQL Service API
 
-This is the documentation for the STACKIT MSSQL service
+> **⚠️ DEPRECATION NOTICE** >  > **Version 2 of this API is deprecated but remains fully supported.** > We strongly recommend migrating to [Version 3 (v3)](https://docs.api.stackit.cloud/documentation/mssql-flex-service/version/v3) for all new integrations to take advantage of the latest features. >  > End-of-life (EOL) for v2 is planned for 2027.
 
 API version: 2.0.0
 Contact: support@stackit.cloud

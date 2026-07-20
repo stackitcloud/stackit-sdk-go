@@ -1,3 +1,6 @@
+## v1.12.0
+- **Feature:** Add enum "hsm" for key protection. Only as private preview feature available.
+
 ## v1.11.0
 - **Feature:** Introduce enums for various attributes
 

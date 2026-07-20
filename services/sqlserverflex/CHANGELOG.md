@@ -1,3 +1,33 @@
+## v1.16.1
+- **Improvement**: Improve http error handling
+- `v3api`: **Improvement**: Improve http error handling
+
+## v1.16.0
+- **Breaking Change:** The `v3api` replaces the `v2api`.
+  - The order of the parameters has changed in some cases. Region and the resource id has changed. 
+- `v3api`: **New:** New package which can be used for communication with the sqlserverflex v3 API
+- `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
+- `v3beta2api`: **Deprecated:** `v3beta2api` is deprecated, use instead `v3api`
+
+## v1.15.0
+- `v3beta2api`: 
+  - **Breaking change:** Rename methods:
+    - `GetFlavors` renamed to `ListFlavors`
+    - `GetCollations` renamed to `ListCollations`
+    - `GetStorages` renamed to `ListStorages`
+    - `GetVersions` renamed to `ListVersions`
+    - `ProtectInstance` renamed to `UpdateInstanceProtection`
+    - `UpdateInstancePartially` renamed to `PartialUpdateInstance`
+  - **Breaking change:** Rename structs:
+    - `GetFlavorsResponse` renamed to `ListFlavorsResponse`
+    - `GetCollationsResponse` renamed to `ListCollationsResponse` 
+    - `GetStoragesResponse` renamed to `ListStoragesResponse` 
+    - `GetVersionsResponse` renamed to `ListVersionsResponse` 
+    - `UpdateInstancePartiallyPayload` renamed to `PartialUpdateInstancePayload` 
+    - `UpdateInstancePartiallyPayloadNetwork` renamed to `PartialUpdateInstancePayloadNetwork` 
+    - `ProtectInstanceResponse` renamed to `UpdateInstanceProtectionResponse` 
+    - `ProtectInstancePayload` renamed to `UpdateInstanceProtectionPayload` 
+
 ## v1.14.0
 - `v3beta2api`: **New:** New package which can be used for communication with the sqlserverflex v3beta2 API
 - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
