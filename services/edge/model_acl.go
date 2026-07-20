@@ -45,7 +45,7 @@ func setAclGetIpAllowListAttributeType(arg *AclGetIpAllowListAttributeType, val 
 	*arg = &val
 }
 
-// Acl The ACL config for the instances API and all edgecluster proxies.
+// Acl The ACL config for the instances API.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Acl struct {
 	IpAllowList AclGetIpAllowListAttributeType `json:"ipAllowList,omitempty"`
