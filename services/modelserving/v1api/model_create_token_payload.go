@@ -22,7 +22,9 @@ var _ MappedNullable = &CreateTokenPayload{}
 // CreateTokenPayload struct for CreateTokenPayload
 type CreateTokenPayload struct {
 	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Name        string  `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.
+	Labels *map[string]string `json:"labels,omitempty"`
+	Name   string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
 	TtlDuration          *string `json:"ttlDuration,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -78,6 +80,38 @@ func (o *CreateTokenPayload) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *CreateTokenPayload) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateTokenPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateTokenPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateTokenPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateTokenPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value
@@ -149,6 +183,9 @@ func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.TtlDuration) {
 		toSerialize["ttlDuration"] = o.TtlDuration
@@ -197,6 +234,7 @@ func (o *CreateTokenPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "ttlDuration")
 		o.AdditionalProperties = additionalProperties
