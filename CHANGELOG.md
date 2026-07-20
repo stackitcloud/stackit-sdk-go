@@ -45,6 +45,12 @@
     - **Feature:** Add waiters for VPC region and VPC network ranges
 - `kms`: [v1.12.0](services/kms/CHANGELOG.md#v1120)
   - **Feature:** Add enum "hsm" for key protection. Only as private preview feature available.
+- `loadbalancer`: 
+  - [v1.15.0](services/loadbalancer/CHANGELOG.md#v1150) 
+    - `v2api`:
+      - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+    - Deprecated SDK layer in root of the module:
+      - **Feature**: Introduce `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `logme`: 
   - [v1.0.1](services/logme/CHANGELOG.md#v101)
     - `v1api`:
