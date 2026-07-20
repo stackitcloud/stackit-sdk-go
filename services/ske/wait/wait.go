@@ -91,7 +91,8 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 		}
 		return true, s, nil
 	})
-	handler.SetTimeout(45 * time.Minute)
+	// Timeout was aligned with the service team
+	handler.SetTimeout(90 * time.Minute)
 	return handler
 }
 

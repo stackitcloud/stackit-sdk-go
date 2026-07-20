@@ -111,6 +111,11 @@
       - **Improvement:** Add validation to Name field of model struct `Cluster`
       - **Feature:** New model struct `Audit`
       - **Feature:** Add Audit (type Audit) field to model struct `CreateOrUpdateClusterPayload`
+  - [v1.20.0](services/ske/CHANGELOG.md#v1200)
+    - Package `v2api`:
+      - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
+    - Deprecated SDK layer in root of the module:
+      - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
 - `sqlserverflex`:
   - [v1.16.1](services/sqlserverflex/CHANGELOG.md#v1161)
     - **Improvement**: Improve http error handling

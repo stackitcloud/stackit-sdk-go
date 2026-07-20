@@ -1,3 +1,9 @@
+## v1.20.0
+- Package `v2api`:
+  - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
+- Deprecated SDK layer in root of the module:
+  - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min
+
 ## v1.19.0
 - Package `v1api`:
   - **Improvement:** Add validation to Name field of model struct `Cluster`
