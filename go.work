@@ -84,5 +84,6 @@ use (
 	./services/stackitmarketplace
 	./services/telemetrylink
 	./services/telemetryrouter
+	./services/valkey
 	./services/vpn
 )
