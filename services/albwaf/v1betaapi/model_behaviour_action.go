@@ -20,7 +20,7 @@ type BehaviourAction string
 
 // List of Behaviour_action
 const (
-	BEHAVIOURACTION_ACTION_UNSPECIFIED       BehaviourAction = "ACTION_UNSPECIFIED"
+	BEHAVIOURACTION_ACTION_UNSPECIFIED2       BehaviourAction = "ACTION_UNSPECIFIED"
 	BEHAVIOURACTION_ACTION_DENY              BehaviourAction = "ACTION_DENY"
 	BEHAVIOURACTION_ACTION_PASS              BehaviourAction = "ACTION_PASS"
 	BEHAVIOURACTION_ACTION_ALLOW             BehaviourAction = "ACTION_ALLOW"

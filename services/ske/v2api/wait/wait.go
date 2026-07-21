@@ -211,7 +211,7 @@ func StartCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, 
 }
 
 // CompleteCredentialsRotationWaitHandler will wait for credentials rotation
-func CompleteCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+func FooCompleteCredentialsRotationWaitHandler(ctx context.Context, a ske.DefaultAPI, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	waitConfig := wait.WaiterHelper[ske.Cluster, ske.CredentialsRotationStatePhase]{
 		FetchInstance: a.GetCluster(ctx, projectId, region, clusterName).Execute,
 		GetState: func(s *ske.Cluster) (ske.CredentialsRotationStatePhase, error) {

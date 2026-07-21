@@ -62,3 +62,9 @@ test-scripts: ## Run tests for scripts
 test: ## Run all tests
 	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files} service=${service}
 
+gorelease-report:
+	@$(SCRIPTS_BASE)/gorelease-report.sh
+
+gorelease-check:
+	@$(SCRIPTS_BASE)/gorelease-report.sh --strict
+
