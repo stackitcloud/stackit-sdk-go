@@ -15,13 +15,14 @@ import (
 	"fmt"
 )
 
-// APIErrorDetailReason The reason why the error occurs.
+// APIErrorDetailReason The reason why the error occurs. RESOURCE_IN_USE is returned when a referenced resource cannot be deleted; the 'metadata.references' field then lists the referencing resources (e.g. connection IDs and displayNames pointing at a BGPFilter on DELETE).
 type APIErrorDetailReason string
 
 // List of APIErrorDetail_reason
 const (
 	APIERRORDETAILREASON_INVALID_FIELD            APIErrorDetailReason = "INVALID_FIELD"
 	APIERRORDETAILREASON_INVALID_PATH_PARAMETER   APIErrorDetailReason = "INVALID_PATH_PARAMETER"
+	APIERRORDETAILREASON_RESOURCE_IN_USE          APIErrorDetailReason = "RESOURCE_IN_USE"
 	APIERRORDETAILREASON_UNKNOWN_DEFAULT_OPEN_API APIErrorDetailReason = "unknown_default_open_api"
 )
 
@@ -29,6 +30,7 @@ const (
 var AllowedAPIErrorDetailReasonEnumValues = []APIErrorDetailReason{
 	"INVALID_FIELD",
 	"INVALID_PATH_PARAMETER",
+	"RESOURCE_IN_USE",
 	"unknown_default_open_api",
 }
 
