@@ -259,11 +259,11 @@ type DefaultApi interface {
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@param instanceId Instance id
-		@return ListBackupsResponse
+		@return []Backup
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
-	ListBackupsExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*ListBackupsResponse, error)
+	ListBackupsExecute(ctx context.Context, projectId string, regionId string, instanceId string) ([]Backup, error)
 	/*
 		ListCredentials get list of credentials ids
 		get list all credentials ids for instance
@@ -542,7 +542,7 @@ type ApiGetMetricsRequest interface {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiListBackupsRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	Execute() (*ListBackupsResponse, error)
+	Execute() ([]Backup, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -2143,12 +2143,12 @@ type ListBackupsRequest struct {
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (r ListBackupsRequest) Execute() (*ListBackupsResponse, error) {
+func (r ListBackupsRequest) Execute() ([]Backup, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListBackupsResponse
+		localVarReturnValue []Backup
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -2287,7 +2287,7 @@ func (a *APIClient) ListBackups(ctx context.Context, projectId string, regionId 
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*ListBackupsResponse, error) {
+func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, regionId string, instanceId string) ([]Backup, error) {
 	r := ListBackupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
