@@ -1,7 +1,7 @@
 /*
 STACKIT Audit Log API
 
-API Endpoints to retrieve recorded actions and resulting changes in the system.  ### Documentation The user documentation with explanations how to use the api can be found  [here](https://docs.stackit.cloud/stackit/en/retrieve-audit-log-per-api-request-134415907.html).  ### Audit Logging Changes on organizations, folders and projects and respective cloud resources are logged and collected in the audit  log.  ### API Constraints The audit log API allows to download messages from the last 90 days. The maximum duration that can be queried at  once is 24 hours. Requests are rate limited - the current maximum is 60 requests per minute.
+**Deprecated:** The auditlog API is deprecated and will be removed shortly.  Please use the [telemetry-router](https://docs.stackit.cloud/products/logging-and-monitoring/telemetry-router/) to retrieve audit log messages in the future.
 
 API version: 2.0
 */
@@ -20,14 +20,15 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// ListFolderAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListFolderAuditLogEntriesExecute function of this mock
+	// Deprecated: ListFolderAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListFolderAuditLogEntriesExecute function of this mock
 	ListFolderAuditLogEntriesExecuteMock *func(r ApiListFolderAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
-	// ListOrganizationAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListOrganizationAuditLogEntriesExecute function of this mock
+	// Deprecated: ListOrganizationAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListOrganizationAuditLogEntriesExecute function of this mock
 	ListOrganizationAuditLogEntriesExecuteMock *func(r ApiListOrganizationAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
-	// ListProjectAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListProjectAuditLogEntriesExecute function of this mock
+	// Deprecated: ListProjectAuditLogEntriesExecuteMock can be populated to implement the behavior of the ListProjectAuditLogEntriesExecute function of this mock
 	ListProjectAuditLogEntriesExecuteMock *func(r ApiListProjectAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListFolderAuditLogEntries(ctx context.Context, folderId string) ApiListFolderAuditLogEntriesRequest {
 	return ApiListFolderAuditLogEntriesRequest{
 		ApiService: a,
@@ -36,7 +37,7 @@ func (a DefaultAPIServiceMock) ListFolderAuditLogEntries(ctx context.Context, fo
 	}
 }
 
-// ListFolderAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFolderAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListFolderAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFolderAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListFolderAuditLogEntriesExecute(r ApiListFolderAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	if a.ListFolderAuditLogEntriesExecuteMock == nil {
 		var localVarReturnValue *ListAuditLogEntriesResponse
@@ -46,6 +47,7 @@ func (a DefaultAPIServiceMock) ListFolderAuditLogEntriesExecute(r ApiListFolderA
 	return (*a.ListFolderAuditLogEntriesExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListOrganizationAuditLogEntries(ctx context.Context, organizationId string) ApiListOrganizationAuditLogEntriesRequest {
 	return ApiListOrganizationAuditLogEntriesRequest{
 		ApiService:     a,
@@ -54,7 +56,7 @@ func (a DefaultAPIServiceMock) ListOrganizationAuditLogEntries(ctx context.Conte
 	}
 }
 
-// ListOrganizationAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListOrganizationAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListOrganizationAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListOrganizationAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListOrganizationAuditLogEntriesExecute(r ApiListOrganizationAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	if a.ListOrganizationAuditLogEntriesExecuteMock == nil {
 		var localVarReturnValue *ListAuditLogEntriesResponse
@@ -64,6 +66,7 @@ func (a DefaultAPIServiceMock) ListOrganizationAuditLogEntriesExecute(r ApiListO
 	return (*a.ListOrganizationAuditLogEntriesExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListProjectAuditLogEntries(ctx context.Context, projectId string) ApiListProjectAuditLogEntriesRequest {
 	return ApiListProjectAuditLogEntriesRequest{
 		ApiService: a,
@@ -72,7 +75,7 @@ func (a DefaultAPIServiceMock) ListProjectAuditLogEntries(ctx context.Context, p
 	}
 }
 
-// ListProjectAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListProjectAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListProjectAuditLogEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListProjectAuditLogEntriesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListProjectAuditLogEntriesExecute(r ApiListProjectAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	if a.ListProjectAuditLogEntriesExecuteMock == nil {
 		var localVarReturnValue *ListAuditLogEntriesResponse
