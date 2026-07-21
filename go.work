@@ -45,6 +45,7 @@ use (
 	./services/archiving
 	./services/auditlog
 	./services/authorization
+	./services/automation
 	./services/cdn
 	./services/certificates
 	./services/cost
