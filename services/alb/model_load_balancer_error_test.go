@@ -89,6 +89,34 @@ func TestLoadBalancerErrorTypes_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 10`,
+			args: args{
+				src: []byte(`"TYPE_FIP_NOT_FOUND"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 11`,
+			args: args{
+				src: []byte(`"TYPE_IP_EXHAUSTED"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 12`,
+			args: args{
+				src: []byte(`"TYPE_DNS_NOT_CONFIGURED"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 13`,
+			args: args{
+				src: []byte(`"TYPE_VM_PORT_NOT_CONFIGURED"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
