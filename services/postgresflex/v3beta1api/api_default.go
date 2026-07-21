@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.11.2026. Please use the STACKIT PostgreSQL Flex API v3 instead.
 
 API version: 3beta1
 Contact: support@stackit.cloud
@@ -226,8 +226,8 @@ type DefaultAPI interface {
 	ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
-	//  @return ListBackupResponse
-	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error)
+	//  @return ListBackupsResponse
+	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error)
 
 	/*
 		ListCollations Get Collations for an Instance
@@ -326,8 +326,8 @@ type DefaultAPI interface {
 	ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest
 
 	// ListUsersExecute executes the request
-	//  @return ListUserResponse
-	ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error)
+	//  @return ListUsersResponse
+	ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error)
 
 	/*
 		ListVersions Get Versions
@@ -342,8 +342,8 @@ type DefaultAPI interface {
 	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
-	//  @return ListVersionResponse
-	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error)
+	//  @return ListVersionsResponse
+	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error)
 
 	/*
 		PartialUpdateDatabase Update Database partially
@@ -2768,7 +2768,7 @@ func (r ApiListBackupsRequest) Sort(sort BackupSort) ApiListBackupsRequest {
 	return r
 }
 
-func (r ApiListBackupsRequest) Execute() (*ListBackupResponse, error) {
+func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 	return r.ApiService.ListBackupsExecute(r)
 }
 
@@ -2795,13 +2795,13 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, r
 
 // Execute executes the request
 //
-//	@return ListBackupResponse
-func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error) {
+//	@return ListBackupsResponse
+func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListBackupResponse
+		localVarReturnValue *ListBackupsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackups")
@@ -4073,7 +4073,7 @@ func (r ApiListUsersRequest) Sort(sort UserSort) ApiListUsersRequest {
 	return r
 }
 
-func (r ApiListUsersRequest) Execute() (*ListUserResponse, error) {
+func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 	return r.ApiService.ListUsersExecute(r)
 }
 
@@ -4100,13 +4100,13 @@ func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, reg
 
 // Execute executes the request
 //
-//	@return ListUserResponse
-func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error) {
+//	@return ListUsersResponse
+func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListUserResponse
+		localVarReturnValue *ListUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUsers")
@@ -4277,7 +4277,7 @@ type ApiListVersionsRequest struct {
 	region     string
 }
 
-func (r ApiListVersionsRequest) Execute() (*ListVersionResponse, error) {
+func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
 	return r.ApiService.ListVersionsExecute(r)
 }
 
@@ -4302,13 +4302,13 @@ func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, 
 
 // Execute executes the request
 //
-//	@return ListVersionResponse
-func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error) {
+//	@return ListVersionsResponse
+func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListVersionResponse
+		localVarReturnValue *ListVersionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListVersions")
