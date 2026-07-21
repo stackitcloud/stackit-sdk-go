@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.11.2026. Please use the STACKIT PostgreSQL Flex API v3 instead.
 
 API version: 3beta1
 Contact: support@stackit.cloud
@@ -44,7 +44,7 @@ type DefaultAPIServiceMock struct {
 	// GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
 	GetUserExecuteMock *func(r ApiGetUserRequest) (*GetUserResponse, error)
 	// ListBackupsExecuteMock can be populated to implement the behavior of the ListBackupsExecute function of this mock
-	ListBackupsExecuteMock *func(r ApiListBackupsRequest) (*ListBackupResponse, error)
+	ListBackupsExecuteMock *func(r ApiListBackupsRequest) (*ListBackupsResponse, error)
 	// ListCollationsExecuteMock can be populated to implement the behavior of the ListCollationsExecute function of this mock
 	ListCollationsExecuteMock *func(r ApiListCollationsRequest) (*ListCollationsResponse, error)
 	// ListDatabasesExecuteMock can be populated to implement the behavior of the ListDatabasesExecute function of this mock
@@ -56,9 +56,9 @@ type DefaultAPIServiceMock struct {
 	// ListRolesExecuteMock can be populated to implement the behavior of the ListRolesExecute function of this mock
 	ListRolesExecuteMock *func(r ApiListRolesRequest) (*ListRolesResponse, error)
 	// ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
-	ListUsersExecuteMock *func(r ApiListUsersRequest) (*ListUserResponse, error)
+	ListUsersExecuteMock *func(r ApiListUsersRequest) (*ListUsersResponse, error)
 	// ListVersionsExecuteMock can be populated to implement the behavior of the ListVersionsExecute function of this mock
-	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*ListVersionResponse, error)
+	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*ListVersionsResponse, error)
 	// PartialUpdateDatabaseExecuteMock can be populated to implement the behavior of the PartialUpdateDatabaseExecute function of this mock
 	PartialUpdateDatabaseExecuteMock *func(r ApiPartialUpdateDatabaseRequest) error
 	// PartialUpdateInstanceExecuteMock can be populated to implement the behavior of the PartialUpdateInstanceExecute function of this mock
@@ -309,9 +309,9 @@ func (a DefaultAPIServiceMock) ListBackups(ctx context.Context, projectId string
 }
 
 // ListBackupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBackupsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error) {
+func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
 	if a.ListBackupsExecuteMock == nil {
-		var localVarReturnValue *ListBackupResponse
+		var localVarReturnValue *ListBackupsResponse
 		return localVarReturnValue, nil
 	}
 
@@ -427,9 +427,9 @@ func (a DefaultAPIServiceMock) ListUsers(ctx context.Context, projectId string, 
 }
 
 // ListUsersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListUsersExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error) {
+func (a DefaultAPIServiceMock) ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error) {
 	if a.ListUsersExecuteMock == nil {
-		var localVarReturnValue *ListUserResponse
+		var localVarReturnValue *ListUsersResponse
 		return localVarReturnValue, nil
 	}
 
@@ -446,9 +446,9 @@ func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId strin
 }
 
 // ListVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVersionsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error) {
+func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	if a.ListVersionsExecuteMock == nil {
-		var localVarReturnValue *ListVersionResponse
+		var localVarReturnValue *ListVersionsResponse
 		return localVarReturnValue, nil
 	}
 
