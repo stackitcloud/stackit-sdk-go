@@ -33,11 +33,7 @@ lint_service() {
 
     echo ">> Linting service ${service}"
     cd ${SERVICES_PATH}/${service}
-    if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
-    else
-        ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
-    fi
+    ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS} 
 }
 
 # If a service is specified, only lint that service
