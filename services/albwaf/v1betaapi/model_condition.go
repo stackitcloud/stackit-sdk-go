@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Condition type satisfies the MappedNullable interface at compile time
@@ -19,10 +20,10 @@ var _ MappedNullable = &Condition{}
 
 // Condition struct for Condition
 type Condition struct {
-	Operator *ConditionOperator `json:"operator,omitempty"`
+	Operator ConditionOperator `json:"operator"`
 	// [HINT] Ordered processing adjustments applied to clean inputs before match checking.
 	Transformations      []ConditionTransformationsInner `json:"transformations,omitempty"`
-	Variable             *ConditionVariable              `json:"variable,omitempty"`
+	Variable             ConditionVariable               `json:"variable"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,8 +33,10 @@ type _Condition Condition
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCondition() *Condition {
+func NewCondition(operator ConditionOperator, variable ConditionVariable) *Condition {
 	this := Condition{}
+	this.Operator = operator
+	this.Variable = variable
 	return &this
 }
 
@@ -45,36 +48,28 @@ func NewConditionWithDefaults() *Condition {
 	return &this
 }
 
-// GetOperator returns the Operator field value if set, zero value otherwise.
+// GetOperator returns the Operator field value
 func (o *Condition) GetOperator() ConditionOperator {
-	if o == nil || IsNil(o.Operator) {
+	if o == nil {
 		var ret ConditionOperator
 		return ret
 	}
-	return *o.Operator
+
+	return o.Operator
 }
 
-// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
+// GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
 func (o *Condition) GetOperatorOk() (*ConditionOperator, bool) {
-	if o == nil || IsNil(o.Operator) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Operator, true
+	return &o.Operator, true
 }
 
-// HasOperator returns a boolean if a field has been set.
-func (o *Condition) HasOperator() bool {
-	if o != nil && !IsNil(o.Operator) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperator gets a reference to the given ConditionOperator and assigns it to the Operator field.
+// SetOperator sets field value
 func (o *Condition) SetOperator(v ConditionOperator) {
-	o.Operator = &v
+	o.Operator = v
 }
 
 // GetTransformations returns the Transformations field value if set, zero value otherwise.
@@ -109,36 +104,28 @@ func (o *Condition) SetTransformations(v []ConditionTransformationsInner) {
 	o.Transformations = v
 }
 
-// GetVariable returns the Variable field value if set, zero value otherwise.
+// GetVariable returns the Variable field value
 func (o *Condition) GetVariable() ConditionVariable {
-	if o == nil || IsNil(o.Variable) {
+	if o == nil {
 		var ret ConditionVariable
 		return ret
 	}
-	return *o.Variable
+
+	return o.Variable
 }
 
-// GetVariableOk returns a tuple with the Variable field value if set, nil otherwise
+// GetVariableOk returns a tuple with the Variable field value
 // and a boolean to check if the value has been set.
 func (o *Condition) GetVariableOk() (*ConditionVariable, bool) {
-	if o == nil || IsNil(o.Variable) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Variable, true
+	return &o.Variable, true
 }
 
-// HasVariable returns a boolean if a field has been set.
-func (o *Condition) HasVariable() bool {
-	if o != nil && !IsNil(o.Variable) {
-		return true
-	}
-
-	return false
-}
-
-// SetVariable gets a reference to the given ConditionVariable and assigns it to the Variable field.
+// SetVariable sets field value
 func (o *Condition) SetVariable(v ConditionVariable) {
-	o.Variable = &v
+	o.Variable = v
 }
 
 func (o Condition) MarshalJSON() ([]byte, error) {
@@ -151,15 +138,11 @@ func (o Condition) MarshalJSON() ([]byte, error) {
 
 func (o Condition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Operator) {
-		toSerialize["operator"] = o.Operator
-	}
+	toSerialize["operator"] = o.Operator
 	if !IsNil(o.Transformations) {
 		toSerialize["transformations"] = o.Transformations
 	}
-	if !IsNil(o.Variable) {
-		toSerialize["variable"] = o.Variable
-	}
+	toSerialize["variable"] = o.Variable
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -169,6 +152,28 @@ func (o Condition) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Condition) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"operator",
+		"variable",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCondition := _Condition{}
 
 	err = json.Unmarshal(data, &varCondition)
