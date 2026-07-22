@@ -1,7 +1,7 @@
 /*
 STACKIT Audit Log API
 
-API Endpoints to retrieve recorded actions and resulting changes in the system.  ### Documentation The user documentation with explanations how to use the api can be found  [here](https://docs.stackit.cloud/stackit/en/retrieve-audit-log-per-api-request-134415907.html).  ### Audit Logging Changes on organizations, folders and projects and respective cloud resources are logged and collected in the audit  log.  ### API Constraints The audit log API allows to download messages from the last 90 days. The maximum duration that can be queried at  once is 24 hours. Requests are rate limited - the current maximum is 60 requests per minute.
+**Deprecated:** The auditlog API is deprecated and will be removed shortly.  Please use the [telemetry-router](https://docs.stackit.cloud/products/logging-and-monitoring/telemetry-router/) to retrieve audit log messages in the future.
 
 API version: 2.0
 */
@@ -34,11 +34,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param folderId ID of the folder for which entries should be returned.
 			@return ApiListFolderAuditLogEntriesRequest
+
+			Deprecated
 	*/
 	ListFolderAuditLogEntries(ctx context.Context, folderId string) ApiListFolderAuditLogEntriesRequest
 
 	// ListFolderAuditLogEntriesExecute executes the request
 	//  @return ListAuditLogEntriesResponse
+	// Deprecated
 	ListFolderAuditLogEntriesExecute(r ApiListFolderAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
 
 	/*
@@ -51,11 +54,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param organizationId ID of the organization for which entries should be returned.
 			@return ApiListOrganizationAuditLogEntriesRequest
+
+			Deprecated
 	*/
 	ListOrganizationAuditLogEntries(ctx context.Context, organizationId string) ApiListOrganizationAuditLogEntriesRequest
 
 	// ListOrganizationAuditLogEntriesExecute executes the request
 	//  @return ListAuditLogEntriesResponse
+	// Deprecated
 	ListOrganizationAuditLogEntriesExecute(r ApiListOrganizationAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
 
 	/*
@@ -68,11 +74,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId ID of the project for which entries should be returned.
 			@return ApiListProjectAuditLogEntriesRequest
+
+			Deprecated
 	*/
 	ListProjectAuditLogEntries(ctx context.Context, projectId string) ApiListProjectAuditLogEntriesRequest
 
 	// ListProjectAuditLogEntriesExecute executes the request
 	//  @return ListAuditLogEntriesResponse
+	// Deprecated
 	ListProjectAuditLogEntriesExecute(r ApiListProjectAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error)
 }
 
@@ -126,6 +135,8 @@ Period must not be longer than 24 hours within the last 90 days.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param folderId ID of the folder for which entries should be returned.
 	@return ApiListFolderAuditLogEntriesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListFolderAuditLogEntries(ctx context.Context, folderId string) ApiListFolderAuditLogEntriesRequest {
 	return ApiListFolderAuditLogEntriesRequest{
@@ -138,6 +149,8 @@ func (a *DefaultAPIService) ListFolderAuditLogEntries(ctx context.Context, folde
 // Execute executes the request
 //
 //	@return ListAuditLogEntriesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListFolderAuditLogEntriesExecute(r ApiListFolderAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -331,6 +344,8 @@ Period must not be longer than 24 hours within the last 90 days.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId ID of the organization for which entries should be returned.
 	@return ApiListOrganizationAuditLogEntriesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListOrganizationAuditLogEntries(ctx context.Context, organizationId string) ApiListOrganizationAuditLogEntriesRequest {
 	return ApiListOrganizationAuditLogEntriesRequest{
@@ -343,6 +358,8 @@ func (a *DefaultAPIService) ListOrganizationAuditLogEntries(ctx context.Context,
 // Execute executes the request
 //
 //	@return ListAuditLogEntriesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListOrganizationAuditLogEntriesExecute(r ApiListOrganizationAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -536,6 +553,8 @@ Period must not be longer than 24 hours within the last 90 days.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId ID of the project for which entries should be returned.
 	@return ApiListProjectAuditLogEntriesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListProjectAuditLogEntries(ctx context.Context, projectId string) ApiListProjectAuditLogEntriesRequest {
 	return ApiListProjectAuditLogEntriesRequest{
@@ -548,6 +567,8 @@ func (a *DefaultAPIService) ListProjectAuditLogEntries(ctx context.Context, proj
 // Execute executes the request
 //
 //	@return ListAuditLogEntriesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListProjectAuditLogEntriesExecute(r ApiListProjectAuditLogEntriesRequest) (*ListAuditLogEntriesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
