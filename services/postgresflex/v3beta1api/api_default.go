@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.11.2026. Please use the STACKIT PostgreSQL Flex API v3 instead.
 
 API version: 3beta1
 Contact: support@stackit.cloud
@@ -342,8 +342,8 @@ type DefaultAPI interface {
 	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
-	//  @return ListVersionResponse
-	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error)
+	//  @return GetVersionsResponse
+	ListVersionsExecute(r ApiListVersionsRequest) (*GetVersionsResponse, error)
 
 	/*
 		PartialUpdateDatabase Update Database partially
@@ -4277,7 +4277,7 @@ type ApiListVersionsRequest struct {
 	region     string
 }
 
-func (r ApiListVersionsRequest) Execute() (*ListVersionResponse, error) {
+func (r ApiListVersionsRequest) Execute() (*GetVersionsResponse, error) {
 	return r.ApiService.ListVersionsExecute(r)
 }
 
@@ -4302,13 +4302,13 @@ func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, 
 
 // Execute executes the request
 //
-//	@return ListVersionResponse
-func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error) {
+//	@return GetVersionsResponse
+func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*GetVersionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListVersionResponse
+		localVarReturnValue *GetVersionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListVersions")
