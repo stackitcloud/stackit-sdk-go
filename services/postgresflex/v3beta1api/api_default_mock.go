@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API
+STACKIT PostgreSQL Flex API (deprecated)
 
-This is the documentation for the STACKIT Postgres Flex service
+⚠️ This API is deprecated. It will be retired on 01.11.2026. Please use the STACKIT PostgreSQL Flex API v3 instead.
 
 API version: 3beta1
 Contact: support@stackit.cloud
@@ -58,7 +58,7 @@ type DefaultAPIServiceMock struct {
 	// ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
 	ListUsersExecuteMock *func(r ApiListUsersRequest) (*ListUserResponse, error)
 	// ListVersionsExecuteMock can be populated to implement the behavior of the ListVersionsExecute function of this mock
-	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*ListVersionResponse, error)
+	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*GetVersionsResponse, error)
 	// PartialUpdateDatabaseExecuteMock can be populated to implement the behavior of the PartialUpdateDatabaseExecute function of this mock
 	PartialUpdateDatabaseExecuteMock *func(r ApiPartialUpdateDatabaseRequest) error
 	// PartialUpdateInstanceExecuteMock can be populated to implement the behavior of the PartialUpdateInstanceExecute function of this mock
@@ -446,9 +446,9 @@ func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId strin
 }
 
 // ListVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVersionsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionResponse, error) {
+func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*GetVersionsResponse, error) {
 	if a.ListVersionsExecuteMock == nil {
-		var localVarReturnValue *ListVersionResponse
+		var localVarReturnValue *GetVersionsResponse
 		return localVarReturnValue, nil
 	}
 
