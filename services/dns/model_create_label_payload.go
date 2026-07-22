@@ -76,9 +76,8 @@ type CreateLabelPayloadGetValueRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateLabelPayload struct {
 	// REQUIRED
-	Key CreateLabelPayloadGetKeyAttributeType `json:"key" required:"true"`
-	// REQUIRED
-	Value CreateLabelPayloadGetValueAttributeType `json:"value" required:"true"`
+	Key   CreateLabelPayloadGetKeyAttributeType   `json:"key" required:"true"`
+	Value CreateLabelPayloadGetValueAttributeType `json:"value,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -89,10 +88,9 @@ type _CreateLabelPayload CreateLabelPayload
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewCreateLabelPayload(key CreateLabelPayloadGetKeyArgType, value CreateLabelPayloadGetValueArgType) *CreateLabelPayload {
+func NewCreateLabelPayload(key CreateLabelPayloadGetKeyArgType) *CreateLabelPayload {
 	this := CreateLabelPayload{}
 	setCreateLabelPayloadGetKeyAttributeType(&this.Key, key)
-	setCreateLabelPayloadGetValueAttributeType(&this.Value, value)
 	return &this
 }
 
@@ -125,21 +123,28 @@ func (o *CreateLabelPayload) SetKey(v CreateLabelPayloadGetKeyRetType) {
 	setCreateLabelPayloadGetKeyAttributeType(&o.Key, v)
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateLabelPayload) GetValue() (ret CreateLabelPayloadGetValueRetType) {
-	ret, _ = o.GetValueOk()
-	return ret
+func (o *CreateLabelPayload) GetValue() (res CreateLabelPayloadGetValueRetType) {
+	res, _ = o.GetValueOk()
+	return
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateLabelPayload) GetValueOk() (ret CreateLabelPayloadGetValueRetType, ok bool) {
 	return getCreateLabelPayloadGetValueAttributeTypeOk(o.Value)
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateLabelPayload) HasValue() bool {
+	_, ok := o.GetValueOk()
+	return ok
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateLabelPayload) SetValue(v CreateLabelPayloadGetValueRetType) {
 	setCreateLabelPayloadGetValueAttributeType(&o.Value, v)

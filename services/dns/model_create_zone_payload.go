@@ -520,7 +520,7 @@ func setCreateZonePayloadGetTypeAttributeType(arg *CreateZonePayloadGetTypeAttri
 // CreateZonePayload Zone to create.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateZonePayload struct {
-	// access control list
+	// the access control list (note: this field currently has no effect and does not enforce any access restrictions on the DNS zone)
 	Acl CreateZonePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// contact e-mail for the zone
 	ContactEmail CreateZonePayloadGetContactEmailAttributeType `json:"contactEmail,omitempty"`
