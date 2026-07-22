@@ -275,8 +275,8 @@ type DefaultAPI interface {
 	ListBackupsRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequestRequest
 
 	// ListBackupsRequestExecute executes the request
-	//  @return ListBackupResponse
-	ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupResponse, error)
+	//  @return ListBackupsResponse
+	ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupsResponse, error)
 
 	/*
 		ListDatabasesRequest List Databases
@@ -342,8 +342,8 @@ type DefaultAPI interface {
 	ListUsersRequest(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequestRequest
 
 	// ListUsersRequestExecute executes the request
-	//  @return ListUserResponse
-	ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUserResponse, error)
+	//  @return ListUsersResponse
+	ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUsersResponse, error)
 
 	/*
 		ProtectInstanceRequest Protect Instance
@@ -3384,7 +3384,7 @@ func (r ApiListBackupsRequestRequest) Sort(sort BackupSort) ApiListBackupsReques
 	return r
 }
 
-func (r ApiListBackupsRequestRequest) Execute() (*ListBackupResponse, error) {
+func (r ApiListBackupsRequestRequest) Execute() (*ListBackupsResponse, error) {
 	return r.ApiService.ListBackupsRequestExecute(r)
 }
 
@@ -3411,13 +3411,13 @@ func (a *DefaultAPIService) ListBackupsRequest(ctx context.Context, projectId st
 
 // Execute executes the request
 //
-//	@return ListBackupResponse
-func (a *DefaultAPIService) ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupResponse, error) {
+//	@return ListBackupsResponse
+func (a *DefaultAPIService) ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListBackupResponse
+		localVarReturnValue *ListBackupsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackupsRequest")
@@ -4257,7 +4257,7 @@ func (r ApiListUsersRequestRequest) Sort(sort UserSort) ApiListUsersRequestReque
 	return r
 }
 
-func (r ApiListUsersRequestRequest) Execute() (*ListUserResponse, error) {
+func (r ApiListUsersRequestRequest) Execute() (*ListUsersResponse, error) {
 	return r.ApiService.ListUsersRequestExecute(r)
 }
 
@@ -4284,13 +4284,13 @@ func (a *DefaultAPIService) ListUsersRequest(ctx context.Context, projectId stri
 
 // Execute executes the request
 //
-//	@return ListUserResponse
-func (a *DefaultAPIService) ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUserResponse, error) {
+//	@return ListUsersResponse
+func (a *DefaultAPIService) ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUsersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListUserResponse
+		localVarReturnValue *ListUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUsersRequest")
