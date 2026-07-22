@@ -77,6 +77,14 @@ const (
 	LOADBALANCERERRORTYPE_METRICS_MISCONFIGURED LoadBalancerErrorTypes = "TYPE_METRICS_MISCONFIGURED"
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	LOADBALANCERERRORTYPE_LOGS_MISCONFIGURED LoadBalancerErrorTypes = "TYPE_LOGS_MISCONFIGURED"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOADBALANCERERRORTYPE_FIP_NOT_FOUND LoadBalancerErrorTypes = "TYPE_FIP_NOT_FOUND"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOADBALANCERERRORTYPE_IP_EXHAUSTED LoadBalancerErrorTypes = "TYPE_IP_EXHAUSTED"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOADBALANCERERRORTYPE_DNS_NOT_CONFIGURED LoadBalancerErrorTypes = "TYPE_DNS_NOT_CONFIGURED"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LOADBALANCERERRORTYPE_VM_PORT_NOT_CONFIGURED LoadBalancerErrorTypes = "TYPE_VM_PORT_NOT_CONFIGURED"
 )
 
 // All allowed values of LoadBalancerError enum
@@ -91,6 +99,10 @@ var AllowedLoadBalancerErrorTypesEnumValues = []LoadBalancerErrorTypes{
 	"TYPE_TARGET_NOT_ACTIVE",
 	"TYPE_METRICS_MISCONFIGURED",
 	"TYPE_LOGS_MISCONFIGURED",
+	"TYPE_FIP_NOT_FOUND",
+	"TYPE_IP_EXHAUSTED",
+	"TYPE_DNS_NOT_CONFIGURED",
+	"TYPE_VM_PORT_NOT_CONFIGURED",
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
