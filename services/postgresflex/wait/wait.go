@@ -27,7 +27,7 @@ const (
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
-	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.InstanceResponse, error)
+	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.GetInstanceResponse, error)
 	ListUsersExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.ListUsersResponse, error)
 }
 
@@ -35,28 +35,28 @@ type APIClientInstanceInterface interface {
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientUserInterface interface {
-	GetUserExecute(ctx context.Context, projectId, region, instanceId, userId string) (*postgresflex.GetUserResponse, error)
+	GetUserExecute(ctx context.Context, projectId, region, instanceId string, userId int64) (*postgresflex.GetUserResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
 	instanceCreated := false
-	var instanceGetResponse *postgresflex.InstanceResponse
+	var instanceGetResponse *postgresflex.GetInstanceResponse
 
-	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *postgresflex.GetInstanceResponse, err error) {
 		if !instanceCreated {
 			s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 			if err != nil {
 				return false, nil, err
 			}
-			if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+			if s == nil || s.Id == nil || *s.Id != instanceId || s.State == nil {
 				return false, nil, nil
 			}
-			switch *s.Item.Status {
+			switch *s.State {
 			default:
-				return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+				return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.State)
 			case InstanceStateEmpty:
 				return false, nil, nil
 			case InstanceStateProgressing:
@@ -92,18 +92,18 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 // PartialUpdateInstanceWaitHandler will wait for instance update
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.GetInstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *postgresflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+		if s == nil || s.Id == nil || *s.Id != instanceId || s.State == nil {
 			return false, nil, nil
 		}
-		switch *s.Item.Status {
+		switch *s.State {
 		default:
-			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.State)
 		case InstanceStateEmpty:
 			return false, nil, nil
 		case InstanceStateProgressing:
@@ -127,12 +127,12 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err != nil {
 			return false, nil, err
 		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+		if s == nil || s.Id == nil || *s.Id != instanceId || s.State == nil {
 			return false, nil, nil
 		}
-		switch *s.Item.Status {
+		switch *s.State {
 		default:
-			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.State)
 		case InstanceStateSuccess:
 			return false, nil, nil
 		case InstanceStateDeleted:
@@ -168,7 +168,7 @@ func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInte
 // DeleteUserWaitHandler will wait for delete
 //
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, region, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
+func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetUserExecute(ctx, projectId, region, instanceId, userId)
 		if err == nil {
