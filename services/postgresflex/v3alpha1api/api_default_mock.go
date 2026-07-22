@@ -50,7 +50,7 @@ type DefaultAPIServiceMock struct {
 	// GetVersionsRequestExecuteMock can be populated to implement the behavior of the GetVersionsRequestExecute function of this mock
 	GetVersionsRequestExecuteMock *func(r ApiGetVersionsRequestRequest) (*GetVersionsResponse, error)
 	// ListBackupsRequestExecuteMock can be populated to implement the behavior of the ListBackupsRequestExecute function of this mock
-	ListBackupsRequestExecuteMock *func(r ApiListBackupsRequestRequest) (*ListBackupResponse, error)
+	ListBackupsRequestExecuteMock *func(r ApiListBackupsRequestRequest) (*ListBackupsResponse, error)
 	// ListDatabasesRequestExecuteMock can be populated to implement the behavior of the ListDatabasesRequestExecute function of this mock
 	ListDatabasesRequestExecuteMock *func(r ApiListDatabasesRequestRequest) (*ListDatabasesResponse, error)
 	// ListInstancesRequestExecuteMock can be populated to implement the behavior of the ListInstancesRequestExecute function of this mock
@@ -58,7 +58,7 @@ type DefaultAPIServiceMock struct {
 	// ListRolesRequestExecuteMock can be populated to implement the behavior of the ListRolesRequestExecute function of this mock
 	ListRolesRequestExecuteMock *func(r ApiListRolesRequestRequest) (*ListRolesResponse, error)
 	// ListUsersRequestExecuteMock can be populated to implement the behavior of the ListUsersRequestExecute function of this mock
-	ListUsersRequestExecuteMock *func(r ApiListUsersRequestRequest) (*ListUserResponse, error)
+	ListUsersRequestExecuteMock *func(r ApiListUsersRequestRequest) (*ListUsersResponse, error)
 	// ProtectInstanceRequestExecuteMock can be populated to implement the behavior of the ProtectInstanceRequestExecute function of this mock
 	ProtectInstanceRequestExecuteMock *func(r ApiProtectInstanceRequestRequest) (*ProtectInstanceResponse, error)
 	// ResetUserRequestExecuteMock can be populated to implement the behavior of the ResetUserRequestExecute function of this mock
@@ -367,9 +367,9 @@ func (a DefaultAPIServiceMock) ListBackupsRequest(ctx context.Context, projectId
 }
 
 // ListBackupsRequestExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBackupsRequestExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupResponse, error) {
+func (a DefaultAPIServiceMock) ListBackupsRequestExecute(r ApiListBackupsRequestRequest) (*ListBackupsResponse, error) {
 	if a.ListBackupsRequestExecuteMock == nil {
-		var localVarReturnValue *ListBackupResponse
+		var localVarReturnValue *ListBackupsResponse
 		return localVarReturnValue, nil
 	}
 
@@ -446,9 +446,9 @@ func (a DefaultAPIServiceMock) ListUsersRequest(ctx context.Context, projectId s
 }
 
 // ListUsersRequestExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListUsersRequestExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUserResponse, error) {
+func (a DefaultAPIServiceMock) ListUsersRequestExecute(r ApiListUsersRequestRequest) (*ListUsersResponse, error) {
 	if a.ListUsersRequestExecuteMock == nil {
-		var localVarReturnValue *ListUserResponse
+		var localVarReturnValue *ListUsersResponse
 		return localVarReturnValue, nil
 	}
 
