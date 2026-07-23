@@ -22,13 +22,15 @@ var _ MappedNullable = &TokenCreated{}
 
 // TokenCreated struct for TokenCreated
 type TokenCreated struct {
-	Content              string            `json:"content" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Description          *string           `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Id                   string            `json:"id"`
-	Name                 string            `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Region               string            `json:"region"`
-	State                TokenCreatedState `json:"state"`
-	ValidUntil           time.Time         `json:"validUntil"`
+	Content     string  `json:"content" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Id          string  `json:"id"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Name                 string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Region               string             `json:"region"`
+	State                TokenCreatedState  `json:"state"`
+	ValidUntil           time.Time          `json:"validUntil"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -135,6 +137,38 @@ func (o *TokenCreated) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *TokenCreated) SetId(v string) {
 	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *TokenCreated) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TokenCreated) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *TokenCreated) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *TokenCreated) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value
@@ -248,6 +282,9 @@ func (o TokenCreated) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["region"] = o.Region
 	toSerialize["state"] = o.State
@@ -303,6 +340,7 @@ func (o *TokenCreated) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "content")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "region")
 		delete(additionalProperties, "state")

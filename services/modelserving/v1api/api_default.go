@@ -1110,10 +1110,17 @@ func (a *DefaultAPIService) ListModelsExecute(r ApiListModelsRequest) (*ListMode
 }
 
 type ApiListTokensRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	regionId   string
-	projectId  string
+	ctx           context.Context
+	ApiService    DefaultAPI
+	regionId      string
+	projectId     string
+	labelSelector *string
+}
+
+// Filter token resource by labels
+func (r ApiListTokensRequest) LabelSelector(labelSelector string) ApiListTokensRequest {
+	r.labelSelector = &labelSelector
+	return r
 }
 
 func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
@@ -1163,6 +1170,9 @@ func (a *DefaultAPIService) ListTokensExecute(r ApiListTokensRequest) (*ListToke
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

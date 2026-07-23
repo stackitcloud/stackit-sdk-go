@@ -46,6 +46,33 @@ type CreateTokenPayloadGetDescriptionArgType = string
 type CreateTokenPayloadGetDescriptionRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateTokenPayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateTokenPayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateTokenPayloadGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateTokenPayloadGetLabelsAttributeTypeOk(arg CreateTokenPayloadGetLabelsAttributeType) (ret CreateTokenPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateTokenPayloadGetLabelsAttributeType(arg *CreateTokenPayloadGetLabelsAttributeType, val CreateTokenPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -103,6 +130,8 @@ type CreateTokenPayloadGetTtlDurationRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateTokenPayload struct {
 	Description CreateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.
+	Labels CreateTokenPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	Name CreateTokenPayloadGetNameAttributeType `json:"name" required:"true"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
@@ -159,6 +188,33 @@ func (o *CreateTokenPayload) SetDescription(v CreateTokenPayloadGetDescriptionRe
 	setCreateTokenPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateTokenPayload) GetLabels() (res CreateTokenPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateTokenPayload) GetLabelsOk() (ret CreateTokenPayloadGetLabelsRetType, ok bool) {
+	return getCreateTokenPayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateTokenPayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateTokenPayload) SetLabels(v CreateTokenPayloadGetLabelsRetType) {
+	setCreateTokenPayloadGetLabelsAttributeType(&o.Labels, v)
+}
+
 // GetName returns the Name field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateTokenPayload) GetName() (ret CreateTokenPayloadGetNameRetType) {
@@ -211,6 +267,9 @@ func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateTokenPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
+	}
+	if val, ok := getCreateTokenPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getCreateTokenPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
