@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateManagedRuleSetPayload type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,12 @@ var _ MappedNullable = &CreateManagedRuleSetPayload{}
 // CreateManagedRuleSetPayload CreateManagedRuleSetRequest creates a rule configuration.
 type CreateManagedRuleSetPayload struct {
 	// Managed rule set configuration name.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region               *string  `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
-	Type                 *MRSType `json:"type,omitempty"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Type                 MRSType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,8 +36,10 @@ type _CreateManagedRuleSetPayload CreateManagedRuleSetPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManagedRuleSetPayload() *CreateManagedRuleSetPayload {
+func NewCreateManagedRuleSetPayload(name string, types MRSType) *CreateManagedRuleSetPayload {
 	this := CreateManagedRuleSetPayload{}
+	this.Name = name
+	this.Type = types
 	return &this
 }
 
@@ -48,36 +51,28 @@ func NewCreateManagedRuleSetPayloadWithDefaults() *CreateManagedRuleSetPayload {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CreateManagedRuleSetPayload) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateManagedRuleSetPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateManagedRuleSetPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateManagedRuleSetPayload) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
@@ -144,36 +139,28 @@ func (o *CreateManagedRuleSetPayload) SetRegion(v string) {
 	o.Region = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *CreateManagedRuleSetPayload) GetType() MRSType {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret MRSType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *CreateManagedRuleSetPayload) GetTypeOk() (*MRSType, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CreateManagedRuleSetPayload) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given MRSType and assigns it to the Type field.
+// SetType sets field value
 func (o *CreateManagedRuleSetPayload) SetType(v MRSType) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o CreateManagedRuleSetPayload) MarshalJSON() ([]byte, error) {
@@ -186,18 +173,14 @@ func (o CreateManagedRuleSetPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateManagedRuleSetPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -207,6 +190,28 @@ func (o CreateManagedRuleSetPayload) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CreateManagedRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCreateManagedRuleSetPayload := _CreateManagedRuleSetPayload{}
 
 	err = json.Unmarshal(data, &varCreateManagedRuleSetPayload)
