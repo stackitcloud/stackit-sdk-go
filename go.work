@@ -1,4 +1,4 @@
-go 1.25
+go 1.25.9
 
 use (
 	./core
@@ -84,5 +84,7 @@ use (
 	./services/stackitmarketplace
 	./services/telemetrylink
 	./services/telemetryrouter
+	./services/valkey
 	./services/vpn
+	./tools
 )
