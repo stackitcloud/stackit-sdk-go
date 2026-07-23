@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	postgresflex "github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3beta1api"
-	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3beta1api/wait"
+	postgresflex "github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3api"
+	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v3api/wait"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 		region    = "eu01"       // Specify the region
 		// Specify instance configuration options
 		version = "VERSION"
-		// You can find a valid flavorId, by calling this API https://docs.api.stackit.cloud/documentation/postgres-flex-service/version/v3alpha1#tag/Flavor/operation/getFlavorsRequest
+		// You can find a valid flavorId, by calling this API https://docs.api.stackit.cloud/documentation/postgres-flex-service/version/v3#tag/Flavor/operation/getFlavorsRequest
 		// or using postgresflexClient.DefaultAPI.ListFlavors(ctx, projectId, region).Execute()
 		flavorId = "FLAVOR_ID"
 	)
