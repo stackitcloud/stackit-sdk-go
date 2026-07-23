@@ -9,6 +9,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 )
 
@@ -21,7 +22,7 @@ type apiClientInstanceMocked struct {
 	usersGetErrorStatus    int
 }
 
-func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*postgresflex.GetInstanceResponse, error) {
+func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*postgresflex.InstanceResponse, error) {
 	if a.instanceGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -34,9 +35,11 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ 
 		}
 	}
 
-	return &postgresflex.GetInstanceResponse{
-		Id:    &a.instanceId,
-		State: postgresflex.GetInstanceResponseGetStateAttributeType(&a.instanceState),
+	return &postgresflex.InstanceResponse{
+		Item: &postgresflex.Instance{
+			Id:     &a.instanceId,
+			Status: &a.instanceState,
+		},
 	}, nil
 }
 
@@ -46,20 +49,22 @@ func (a *apiClientInstanceMocked) ListUsersExecute(_ context.Context, _, _, _ st
 			StatusCode: a.usersGetErrorStatus,
 		}
 	}
+
+	aux := int64(0)
 	return &postgresflex.ListUsersResponse{
-		Pagination: &postgresflex.Pagination{},
-		Users:      &[]postgresflex.ListUser{},
+		Count: &aux,
+		Items: &[]postgresflex.ListUsersResponseItem{},
 	}, nil
 }
 
 // Used for testing user operations
 type apiClientUserMocked struct {
 	getFails      bool
-	userId        int64
+	userId        string
 	isUserDeleted bool
 }
 
-func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string, _ int64) (*postgresflex.GetUserResponse, error) {
+func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _, _ string) (*postgresflex.GetUserResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -73,7 +78,9 @@ func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string, 
 	}
 
 	return &postgresflex.GetUserResponse{
-		Id: postgresflex.GetUserResponseGetIdAttributeType(&a.userId),
+		Item: &postgresflex.UserResponse{
+			Id: &a.userId,
+		},
 	}, nil
 }
 
@@ -149,11 +156,13 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 					usersGetErrorStatus: tt.usersGetErrorStatus,
 				}
 
-				var wantRes *postgresflex.GetInstanceResponse
+				var wantRes *postgresflex.InstanceResponse
 				if tt.wantResp {
-					wantRes = &postgresflex.GetInstanceResponse{
-						Id:    &instanceId,
-						State: postgresflex.GetInstanceResponseGetStateAttributeType(&tt.instanceState),
+					wantRes = &postgresflex.InstanceResponse{
+						Item: &postgresflex.Instance{
+							Id:     &instanceId,
+							Status: utils.Ptr(tt.instanceState),
+						},
 					}
 				}
 
@@ -226,11 +235,13 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 					instanceGetFails: tt.instanceGetFails,
 				}
 
-				var wantRes *postgresflex.GetInstanceResponse
+				var wantRes *postgresflex.InstanceResponse
 				if tt.wantResp {
-					wantRes = &postgresflex.GetInstanceResponse{
-						Id:    &instanceId,
-						State: postgresflex.GetInstanceResponseGetStateAttributeType(&tt.instanceState),
+					wantRes = &postgresflex.InstanceResponse{
+						Item: &postgresflex.Instance{
+							Id:     &instanceId,
+							Status: utils.Ptr(tt.instanceState),
+						},
 					}
 				}
 
@@ -375,7 +386,7 @@ func TestDeleteUserWaitHandler(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			synctest.Test(t, func(t *testing.T) {
-				userId := int64(1234)
+				userId := "foo-bar"
 
 				apiClient := &apiClientUserMocked{
 					getFails:      tt.getFails,

@@ -1,9 +1,3 @@
-## v1.12.0
-- **Breaking Change:** The `v3api` replaces the `v2api`.
-- `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
-- `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
-- `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
-
 ## v1.11.0
 - `v3beta1api`: **New:** New package which can be used for communication with the PostgreSQL Flex v3beta1 API
 - `v1api`: **Deprecated:** `v1api` is deprecated, use instead `v2api`
