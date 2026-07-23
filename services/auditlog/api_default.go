@@ -1,7 +1,7 @@
 /*
 STACKIT Audit Log API
 
-API Endpoints to retrieve recorded actions and resulting changes in the system.  ### Documentation The user documentation with explanations how to use the api can be found  [here](https://docs.stackit.cloud/stackit/en/retrieve-audit-log-per-api-request-134415907.html).  ### Audit Logging Changes on organizations, folders and projects and respective cloud resources are logged and collected in the audit  log.  ### API Constraints The audit log API allows to download messages from the last 90 days. The maximum duration that can be queried at  once is 24 hours. Requests are rate limited - the current maximum is 60 requests per minute.
+**Deprecated:** The auditlog API is deprecated and will be removed shortly.  Please use the [telemetry-router](https://docs.stackit.cloud/products/logging-and-monitoring/telemetry-router/) to retrieve audit log messages in the future.
 
 API version: 2.0
 */
@@ -29,7 +29,7 @@ import (
 type DefaultApi interface {
 	/*
 		ListFolderAuditLogEntries Folder - Download audit log entries
-		Returns all audit log entries of the folder for the specified period. \
+		Deprecated: Returns all audit log entries of the folder for the specified period. \
 		Period must not be longer than 24 hours within the last 90 days.
 
 
@@ -52,7 +52,7 @@ type DefaultApi interface {
 	ListFolderAuditLogEntriesExecute(ctx context.Context, folderId string) (*ListAuditLogEntriesResponse, error)
 	/*
 		ListOrganizationAuditLogEntries Organization - Download audit log entries
-		Returns all audit log entries of the organization for the specified period. \
+		Deprecated: Returns all audit log entries of the organization for the specified period. \
 		Period must not be longer than 24 hours within the last 90 days.
 
 
@@ -75,7 +75,7 @@ type DefaultApi interface {
 	ListOrganizationAuditLogEntriesExecute(ctx context.Context, organizationId string) (*ListAuditLogEntriesResponse, error)
 	/*
 		ListProjectAuditLogEntries Project - Download audit log entries
-		Returns all audit log entries of the project for the specified period. \
+		Deprecated: Returns all audit log entries of the project for the specified period. \
 		Period must not be longer than 24 hours within the last 90 days.
 
 
