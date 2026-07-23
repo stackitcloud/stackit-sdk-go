@@ -34,6 +34,8 @@ type DetailedServiceCost struct {
 	TotalDiscount float64 `json:"totalDiscount"`
 	// Total quantity
 	TotalQuantity int32 `json:"totalQuantity"`
+	// Total quantity in decimal format, returned as string to preserve precision. NOTE: This field will be removed in future versions and `totalQuantity` will become a decimal.
+	TotalQuantityDecimal string `json:"totalQuantityDecimal"`
 	// Label for unit
 	UnitLabel            string `json:"unitLabel"`
 	AdditionalProperties map[string]interface{}
@@ -45,7 +47,7 @@ type _DetailedServiceCost DetailedServiceCost
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDetailedServiceCost(serviceCategoryName string, serviceName string, sku string, totalCharge float64, totalDiscount float64, totalQuantity int32, unitLabel string) *DetailedServiceCost {
+func NewDetailedServiceCost(serviceCategoryName string, serviceName string, sku string, totalCharge float64, totalDiscount float64, totalQuantity int32, totalQuantityDecimal string, unitLabel string) *DetailedServiceCost {
 	this := DetailedServiceCost{}
 	this.ServiceCategoryName = serviceCategoryName
 	this.ServiceName = serviceName
@@ -53,6 +55,7 @@ func NewDetailedServiceCost(serviceCategoryName string, serviceName string, sku 
 	this.TotalCharge = totalCharge
 	this.TotalDiscount = totalDiscount
 	this.TotalQuantity = totalQuantity
+	this.TotalQuantityDecimal = totalQuantityDecimal
 	this.UnitLabel = unitLabel
 	return &this
 }
@@ -241,6 +244,30 @@ func (o *DetailedServiceCost) SetTotalQuantity(v int32) {
 	o.TotalQuantity = v
 }
 
+// GetTotalQuantityDecimal returns the TotalQuantityDecimal field value
+func (o *DetailedServiceCost) GetTotalQuantityDecimal() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TotalQuantityDecimal
+}
+
+// GetTotalQuantityDecimalOk returns a tuple with the TotalQuantityDecimal field value
+// and a boolean to check if the value has been set.
+func (o *DetailedServiceCost) GetTotalQuantityDecimalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalQuantityDecimal, true
+}
+
+// SetTotalQuantityDecimal sets field value
+func (o *DetailedServiceCost) SetTotalQuantityDecimal(v string) {
+	o.TotalQuantityDecimal = v
+}
+
 // GetUnitLabel returns the UnitLabel field value
 func (o *DetailedServiceCost) GetUnitLabel() string {
 	if o == nil {
@@ -284,6 +311,7 @@ func (o DetailedServiceCost) ToMap() (map[string]interface{}, error) {
 	toSerialize["totalCharge"] = o.TotalCharge
 	toSerialize["totalDiscount"] = o.TotalDiscount
 	toSerialize["totalQuantity"] = o.TotalQuantity
+	toSerialize["totalQuantityDecimal"] = o.TotalQuantityDecimal
 	toSerialize["unitLabel"] = o.UnitLabel
 
 	for key, value := range o.AdditionalProperties {
@@ -304,6 +332,7 @@ func (o *DetailedServiceCost) UnmarshalJSON(data []byte) (err error) {
 		"totalCharge",
 		"totalDiscount",
 		"totalQuantity",
+		"totalQuantityDecimal",
 		"unitLabel",
 	}
 
@@ -341,6 +370,7 @@ func (o *DetailedServiceCost) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "totalCharge")
 		delete(additionalProperties, "totalDiscount")
 		delete(additionalProperties, "totalQuantity")
+		delete(additionalProperties, "totalQuantityDecimal")
 		delete(additionalProperties, "unitLabel")
 		o.AdditionalProperties = additionalProperties
 	}
