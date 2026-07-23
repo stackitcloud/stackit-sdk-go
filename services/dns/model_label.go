@@ -76,9 +76,8 @@ type LabelGetValueRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Label struct {
 	// REQUIRED
-	Key LabelGetKeyAttributeType `json:"key" required:"true"`
-	// REQUIRED
-	Value LabelGetValueAttributeType `json:"value" required:"true"`
+	Key   LabelGetKeyAttributeType   `json:"key" required:"true"`
+	Value LabelGetValueAttributeType `json:"value,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -89,10 +88,9 @@ type _Label Label
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewLabel(key LabelGetKeyArgType, value LabelGetValueArgType) *Label {
+func NewLabel(key LabelGetKeyArgType) *Label {
 	this := Label{}
 	setLabelGetKeyAttributeType(&this.Key, key)
-	setLabelGetValueAttributeType(&this.Value, value)
 	return &this
 }
 
@@ -125,21 +123,28 @@ func (o *Label) SetKey(v LabelGetKeyRetType) {
 	setLabelGetKeyAttributeType(&o.Key, v)
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Label) GetValue() (ret LabelGetValueRetType) {
-	ret, _ = o.GetValueOk()
-	return ret
+func (o *Label) GetValue() (res LabelGetValueRetType) {
+	res, _ = o.GetValueOk()
+	return
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Label) GetValueOk() (ret LabelGetValueRetType, ok bool) {
 	return getLabelGetValueAttributeTypeOk(o.Value)
 }
 
-// SetValue sets field value
+// HasValue returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Label) HasValue() bool {
+	_, ok := o.GetValueOk()
+	return ok
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Label) SetValue(v LabelGetValueRetType) {
 	setLabelGetValueAttributeType(&o.Value, v)
