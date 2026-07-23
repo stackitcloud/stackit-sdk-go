@@ -1,3 +1,12 @@
+## Release (2026-MM-DD)
+
+- `postgresflex`:
+  - [v1.12.0](services/postgresflex/CHANGELOG.md#v1120)
+    - **Breaking Change:** The `v3api` replaces the `v2api`.
+    - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
+    - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
+    - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+
 ## Release (2026-07-21)
 
 - `alb`
