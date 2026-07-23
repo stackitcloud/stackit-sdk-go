@@ -256,6 +256,9 @@ type ApiListModelsRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiListTokensRequest interface {
+	// Filter token resource by labels
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	LabelSelector(labelSelector string) ApiListTokensRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*ListTokenResp, error)
 }
@@ -1287,10 +1290,18 @@ func (a *APIClient) ListModelsExecute(ctx context.Context, regionId string) (*Li
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ListTokensRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	regionId   string
-	projectId  string
+	ctx           context.Context
+	apiService    *DefaultApiService
+	regionId      string
+	projectId     string
+	labelSelector *string
+}
+
+// Filter token resource by labels
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r ListTokensRequest) LabelSelector(labelSelector string) ApiListTokensRequest {
+	r.labelSelector = &labelSelector
+	return r
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -1319,6 +1330,9 @@ func (r ListTokensRequest) Execute() (*ListTokenResp, error) {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
