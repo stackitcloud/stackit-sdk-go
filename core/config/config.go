@@ -93,6 +93,8 @@ type Configuration struct {
 	PrivateKeyPath                         string                     `json:"privateKeyPath,omitempty"`
 	CredentialsFilePath                    string                     `json:"credentialsFilePath,omitempty"`
 	TokenCustomUrl                         string                     `json:"tokenCustomUrl,omitempty"`
+	Scopes                                 []string                   `json:"scopes,omitempty"`
+	Resources                              []string                   `json:"resources,omitempty"`
 	Region                                 string                     `json:"region,omitempty"`
 	CustomAuth                             http.RoundTripper
 	Servers                                ServerConfigurations
@@ -366,6 +368,10 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.Token = cfg.Token
 		config.ServiceAccountKey = cfg.ServiceAccountKey
 		config.ServiceAccountKeyPath = cfg.ServiceAccountKeyPath
+		config.ServiceAccountEmail = cfg.ServiceAccountEmail
+		config.ServiceAccountFederatedTokenFunc = cfg.ServiceAccountFederatedTokenFunc
+		config.Scopes = cfg.Scopes
+		config.Resources = cfg.Resources
 		config.PrivateKey = cfg.PrivateKey
 		config.PrivateKeyPath = cfg.PrivateKeyPath
 		config.Region = cfg.Region
