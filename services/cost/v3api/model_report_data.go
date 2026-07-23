@@ -25,7 +25,9 @@ type ReportData struct {
 	// Discount, value in cents
 	Discount float64 `json:"discount"`
 	// Quantity
-	Quantity             int32                `json:"quantity"`
+	Quantity int32 `json:"quantity"`
+	// Quantity in decimal format, returned as string to preserve precision. NOTE: This field will be removed in future versions and `totalQuantity` will become a decimal.
+	QuantityDecimal      string               `json:"quantityDecimal"`
 	TimePeriod           ReportDataTimePeriod `json:"timePeriod"`
 	AdditionalProperties map[string]interface{}
 }
@@ -36,11 +38,12 @@ type _ReportData ReportData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReportData(charge float64, discount float64, quantity int32, timePeriod ReportDataTimePeriod) *ReportData {
+func NewReportData(charge float64, discount float64, quantity int32, quantityDecimal string, timePeriod ReportDataTimePeriod) *ReportData {
 	this := ReportData{}
 	this.Charge = charge
 	this.Discount = discount
 	this.Quantity = quantity
+	this.QuantityDecimal = quantityDecimal
 	this.TimePeriod = timePeriod
 	return &this
 }
@@ -125,6 +128,30 @@ func (o *ReportData) SetQuantity(v int32) {
 	o.Quantity = v
 }
 
+// GetQuantityDecimal returns the QuantityDecimal field value
+func (o *ReportData) GetQuantityDecimal() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.QuantityDecimal
+}
+
+// GetQuantityDecimalOk returns a tuple with the QuantityDecimal field value
+// and a boolean to check if the value has been set.
+func (o *ReportData) GetQuantityDecimalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.QuantityDecimal, true
+}
+
+// SetQuantityDecimal sets field value
+func (o *ReportData) SetQuantityDecimal(v string) {
+	o.QuantityDecimal = v
+}
+
 // GetTimePeriod returns the TimePeriod field value
 func (o *ReportData) GetTimePeriod() ReportDataTimePeriod {
 	if o == nil {
@@ -162,6 +189,7 @@ func (o ReportData) ToMap() (map[string]interface{}, error) {
 	toSerialize["charge"] = o.Charge
 	toSerialize["discount"] = o.Discount
 	toSerialize["quantity"] = o.Quantity
+	toSerialize["quantityDecimal"] = o.QuantityDecimal
 	toSerialize["timePeriod"] = o.TimePeriod
 
 	for key, value := range o.AdditionalProperties {
@@ -179,6 +207,7 @@ func (o *ReportData) UnmarshalJSON(data []byte) (err error) {
 		"charge",
 		"discount",
 		"quantity",
+		"quantityDecimal",
 		"timePeriod",
 	}
 
@@ -212,6 +241,7 @@ func (o *ReportData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "charge")
 		delete(additionalProperties, "discount")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "quantityDecimal")
 		delete(additionalProperties, "timePeriod")
 		o.AdditionalProperties = additionalProperties
 	}
