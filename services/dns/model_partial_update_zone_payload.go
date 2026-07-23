@@ -318,7 +318,7 @@ func setPartialUpdateZonePayloadGetRetryTimeAttributeType(arg *PartialUpdateZone
 // PartialUpdateZonePayload struct for PartialUpdateZonePayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PartialUpdateZonePayload struct {
-	// access control list
+	// the access control list (note: this field currently has no effect and does not enforce any access restrictions on the DNS zone)
 	Acl PartialUpdateZonePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// contact e-mail for the zone
 	ContactEmail PartialUpdateZonePayloadGetContactEmailAttributeType `json:"contactEmail,omitempty"`
