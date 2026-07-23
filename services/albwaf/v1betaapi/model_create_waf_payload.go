@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateWAFPayload type satisfies the MappedNullable interface at compile time
@@ -26,7 +27,7 @@ type CreateWAFPayload struct {
 	// Name of the managed rule set configuration for that WAF.
 	ManagedRuleSetName *string `json:"managedRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// WAF name
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
@@ -40,8 +41,9 @@ type _CreateWAFPayload CreateWAFPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWAFPayload() *CreateWAFPayload {
+func NewCreateWAFPayload(name string) *CreateWAFPayload {
 	this := CreateWAFPayload{}
+	this.Name = name
 	return &this
 }
 
@@ -149,36 +151,28 @@ func (o *CreateWAFPayload) SetManagedRuleSetName(v string) {
 	o.ManagedRuleSetName = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CreateWAFPayload) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateWAFPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateWAFPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateWAFPayload) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
@@ -264,9 +258,7 @@ func (o CreateWAFPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ManagedRuleSetName) {
 		toSerialize["managedRuleSetName"] = o.ManagedRuleSetName
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
@@ -282,6 +274,27 @@ func (o CreateWAFPayload) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CreateWAFPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCreateWAFPayload := _CreateWAFPayload{}
 
 	err = json.Unmarshal(data, &varCreateWAFPayload)
