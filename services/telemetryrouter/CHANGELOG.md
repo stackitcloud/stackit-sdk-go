@@ -1,3 +1,7 @@
+## v0.5.0
+- **Improvement:** Add validation for `Description` field
+- `v1api`: **Improvement:** Add validation for `Description` field 
+
 ## v0.4.0
 - **New**: v1api API version for STACKIT Telemetry Router
 
