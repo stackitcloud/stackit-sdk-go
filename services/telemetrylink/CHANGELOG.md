@@ -1,3 +1,7 @@
+## v0.5.0
+- **Improvement:** Add validation for `Description` field
+- `v1api`: **Improvement:** Add validation for `Description` field
+
 ## v0.4.0
 - `v1api`: **Feature:** Add support for `If-None-Match` header in `CreateOrUpdateFolderTelemetryLink`, `CreateOrUpdateOrganizationTelemetryLink` and `CreateOrUpdateProjectTelemetryLink`
 

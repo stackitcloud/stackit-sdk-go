@@ -9,6 +9,15 @@
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `telemetrylink`:
+  - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
+    - **Improvement:** Add validation for `Description` field
+    - `v1api`: **Improvement:** Add validation for `Description` field 
+- `telemetryrouter`:
+  - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
+    - **Improvement:** Add validation for `Description` field
+    - `v1api`: **Improvement:** Add validation for `Description` field
+
 
 ## Release (2026-07-21)
 
