@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `modelserving`:
+  - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
+    - **Feature:** Add label support for tokens
 - `postgresflex`:
   - [v1.12.0](services/postgresflex/CHANGELOG.md#v1120)
     - **Breaking Change:** The `v3api` replaces the `v2api`.
