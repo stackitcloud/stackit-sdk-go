@@ -1,5 +1,11 @@
 ## Release (2026-MM-DD)
 
+- `alb`
+  - [v0.17.0](services/alb/CHANGELOG.md#v0170)
+    - `v2api`:
+      - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+    - Deprecated SDK layer in root of the module:
+      - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
