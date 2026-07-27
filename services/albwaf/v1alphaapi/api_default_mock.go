@@ -20,12 +20,6 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// Deprecated: CreateCoreRuleSetExecuteMock can be populated to implement the behavior of the CreateCoreRuleSetExecute function of this mock
-	CreateCoreRuleSetExecuteMock *func(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
-	// Deprecated: CreateRulesExecuteMock can be populated to implement the behavior of the CreateRulesExecute function of this mock
-	CreateRulesExecuteMock *func(r ApiCreateRulesRequest) (*CreateRulesResponse, error)
-	// Deprecated: CreateWAFExecuteMock can be populated to implement the behavior of the CreateWAFExecute function of this mock
-	CreateWAFExecuteMock *func(r ApiCreateWAFRequest) (*CreateWAFResponse, error)
 	// Deprecated: DeleteCoreRuleSetExecuteMock can be populated to implement the behavior of the DeleteCoreRuleSetExecute function of this mock
 	DeleteCoreRuleSetExecuteMock *func(r ApiDeleteCoreRuleSetRequest) (map[string]interface{}, error)
 	// Deprecated: DeleteRulesExecuteMock can be populated to implement the behavior of the DeleteRulesExecute function of this mock
@@ -46,74 +40,6 @@ type DefaultAPIServiceMock struct {
 	ListRulesExecuteMock *func(r ApiListRulesRequest) (*ListRulesResponse, error)
 	// Deprecated: ListWAFExecuteMock can be populated to implement the behavior of the ListWAFExecute function of this mock
 	ListWAFExecuteMock *func(r ApiListWAFRequest) (*ListWAFResponse, error)
-	// Deprecated: PatchCoreRuleSetExecuteMock can be populated to implement the behavior of the PatchCoreRuleSetExecute function of this mock
-	PatchCoreRuleSetExecuteMock *func(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
-	// Deprecated: UpdateCoreRuleSetExecuteMock can be populated to implement the behavior of the UpdateCoreRuleSetExecute function of this mock
-	UpdateCoreRuleSetExecuteMock *func(r ApiUpdateCoreRuleSetRequest) (*UpdateCoreRuleSetResponse, error)
-	// Deprecated: UpdateRulesExecuteMock can be populated to implement the behavior of the UpdateRulesExecute function of this mock
-	UpdateRulesExecuteMock *func(r ApiUpdateRulesRequest) (*UpdateRulesResponse, error)
-	// Deprecated: UpdateWAFExecuteMock can be populated to implement the behavior of the UpdateWAFExecute function of this mock
-	UpdateWAFExecuteMock *func(r ApiUpdateWAFRequest) (*UpdateWAFResponse, error)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) CreateCoreRuleSet(ctx context.Context, projectId string, region string) ApiCreateCoreRuleSetRequest {
-	return ApiCreateCoreRuleSetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// Deprecated: CreateCoreRuleSetExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCoreRuleSetExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
-	if a.CreateCoreRuleSetExecuteMock == nil {
-		var localVarReturnValue *GetCoreRuleSetResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.CreateCoreRuleSetExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) CreateRules(ctx context.Context, projectId string, region string) ApiCreateRulesRequest {
-	return ApiCreateRulesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// Deprecated: CreateRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateRulesExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateRulesExecute(r ApiCreateRulesRequest) (*CreateRulesResponse, error) {
-	if a.CreateRulesExecuteMock == nil {
-		var localVarReturnValue *CreateRulesResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.CreateRulesExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) CreateWAF(ctx context.Context, projectId string, region string) ApiCreateWAFRequest {
-	return ApiCreateWAFRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-	}
-}
-
-// Deprecated: CreateWAFExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateWAFExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateWAFExecute(r ApiCreateWAFRequest) (*CreateWAFResponse, error) {
-	if a.CreateWAFExecuteMock == nil {
-		var localVarReturnValue *CreateWAFResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.CreateWAFExecuteMock)(r)
 }
 
 // Deprecated
@@ -320,88 +246,4 @@ func (a DefaultAPIServiceMock) ListWAFExecute(r ApiListWAFRequest) (*ListWAFResp
 	}
 
 	return (*a.ListWAFExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest {
-	return ApiPatchCoreRuleSetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		name:       name,
-	}
-}
-
-// Deprecated: PatchCoreRuleSetExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PatchCoreRuleSetExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
-	if a.PatchCoreRuleSetExecuteMock == nil {
-		var localVarReturnValue *GetCoreRuleSetResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.PatchCoreRuleSetExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) UpdateCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiUpdateCoreRuleSetRequest {
-	return ApiUpdateCoreRuleSetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		name:       name,
-	}
-}
-
-// Deprecated: UpdateCoreRuleSetExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateCoreRuleSetExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateCoreRuleSetExecute(r ApiUpdateCoreRuleSetRequest) (*UpdateCoreRuleSetResponse, error) {
-	if a.UpdateCoreRuleSetExecuteMock == nil {
-		var localVarReturnValue *UpdateCoreRuleSetResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.UpdateCoreRuleSetExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) UpdateRules(ctx context.Context, projectId string, region string, name string) ApiUpdateRulesRequest {
-	return ApiUpdateRulesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		name:       name,
-	}
-}
-
-// Deprecated: UpdateRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateRulesExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateRulesExecute(r ApiUpdateRulesRequest) (*UpdateRulesResponse, error) {
-	if a.UpdateRulesExecuteMock == nil {
-		var localVarReturnValue *UpdateRulesResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.UpdateRulesExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest {
-	return ApiUpdateWAFRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		name:       name,
-	}
-}
-
-// Deprecated: UpdateWAFExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateWAFExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateWAFExecute(r ApiUpdateWAFRequest) (*UpdateWAFResponse, error) {
-	if a.UpdateWAFExecuteMock == nil {
-		var localVarReturnValue *UpdateWAFResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.UpdateWAFExecuteMock)(r)
 }

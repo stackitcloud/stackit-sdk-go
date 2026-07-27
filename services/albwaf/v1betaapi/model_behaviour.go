@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Behaviour type satisfies the MappedNullable interface at compile time
@@ -19,7 +20,7 @@ var _ MappedNullable = &Behaviour{}
 
 // Behaviour struct for Behaviour
 type Behaviour struct {
-	Action *BehaviourAction `json:"action,omitempty"`
+	Action BehaviourAction `json:"action"`
 	// Determines whether an entry should be generated in the security ledger upon a rule hit.
 	Log *bool `json:"log,omitempty"`
 	// Custom notification message string mapped to underlying logdata contexts. Required if log is true.
@@ -33,8 +34,9 @@ type _Behaviour Behaviour
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBehaviour() *Behaviour {
+func NewBehaviour(action BehaviourAction) *Behaviour {
 	this := Behaviour{}
+	this.Action = action
 	return &this
 }
 
@@ -46,36 +48,28 @@ func NewBehaviourWithDefaults() *Behaviour {
 	return &this
 }
 
-// GetAction returns the Action field value if set, zero value otherwise.
+// GetAction returns the Action field value
 func (o *Behaviour) GetAction() BehaviourAction {
-	if o == nil || IsNil(o.Action) {
+	if o == nil {
 		var ret BehaviourAction
 		return ret
 	}
-	return *o.Action
+
+	return o.Action
 }
 
-// GetActionOk returns a tuple with the Action field value if set, nil otherwise
+// GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
 func (o *Behaviour) GetActionOk() (*BehaviourAction, bool) {
-	if o == nil || IsNil(o.Action) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Action, true
+	return &o.Action, true
 }
 
-// HasAction returns a boolean if a field has been set.
-func (o *Behaviour) HasAction() bool {
-	if o != nil && !IsNil(o.Action) {
-		return true
-	}
-
-	return false
-}
-
-// SetAction gets a reference to the given BehaviourAction and assigns it to the Action field.
+// SetAction sets field value
 func (o *Behaviour) SetAction(v BehaviourAction) {
-	o.Action = &v
+	o.Action = v
 }
 
 // GetLog returns the Log field value if set, zero value otherwise.
@@ -152,9 +146,7 @@ func (o Behaviour) MarshalJSON() ([]byte, error) {
 
 func (o Behaviour) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Action) {
-		toSerialize["action"] = o.Action
-	}
+	toSerialize["action"] = o.Action
 	if !IsNil(o.Log) {
 		toSerialize["log"] = o.Log
 	}
@@ -170,6 +162,27 @@ func (o Behaviour) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Behaviour) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varBehaviour := _Behaviour{}
 
 	err = json.Unmarshal(data, &varBehaviour)

@@ -19,7 +19,7 @@ var _ MappedNullable = &MRSRule{}
 
 // MRSRule Rule represents an individual security or validation rule.
 type MRSRule struct {
-	// SQL Injection Attack Detected via libinjection
+	// A description of what this rule covers.
 	Description *string `json:"description,omitempty"`
 	Mode        *Mode   `json:"mode,omitempty"`
 	// Impact level.
