@@ -23,7 +23,27 @@
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
-
+- `vpn`:
+  - [v0.15.0](services/vpn/CHANGELOG.md#v0150)
+    - `v1alpha1api`:
+      - **Breaking change**: Remove `PHASEINTEGRITYALGORITHMSINNER_SHA1`
+      - **Feature**: Introduce `PHASEINTEGRITYALGORITHMSINNER_SHA2_512`
+    - `v1api`:
+      - **Breaking change**:
+        - Remove `PHASEINTEGRITYALGORITHMSINNER_SHA1`
+      - **Feature**:
+        - Add functions for `BGPFilter` and `BGPFilterRule`
+        - Introduce functions for `GatewayBGPFilter` and `GatewayBGPFilterRule`
+        - Introduce `APIERRORDETAILREASON_RESOURCE_IN_USE` for `APIErrorDetailReason`
+        - Add `InboundFilterId` field in `BGPTunnelConfig`
+        - Add `NetworkConfig` field in `Gateway` related structs
+        - Introduce `PHASEINTEGRITYALGORITHMSINNER_SHA2_512`
+    - `v1beta1api`:
+      - **Breaking change**:
+        - Remove `PHASEINTEGRITYALGORITHMSINNER_SHA1`
+      - **Feature**:
+        - Add `NetworkConfig` field in `Gateway` related structs
+        - Introduce `PHASEINTEGRITYALGORITHMSINNER_SHA2_512`
 
 ## Release (2026-07-21)
 
