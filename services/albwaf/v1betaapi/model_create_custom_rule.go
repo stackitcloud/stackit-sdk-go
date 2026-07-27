@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateCustomRule type satisfies the MappedNullable interface at compile time
@@ -19,9 +20,9 @@ var _ MappedNullable = &CreateCustomRule{}
 
 // CreateCustomRule struct for CreateCustomRule
 type CreateCustomRule struct {
-	Behaviour *Behaviour `json:"behaviour,omitempty"`
+	Behaviour Behaviour `json:"behaviour"`
 	// [HINT] Order matters! First condition match triggers execution.
-	Conditions []Condition `json:"conditions,omitempty"`
+	Conditions []Condition `json:"conditions"`
 	// A clear description explaining the threat vector or criteria addressed by this rule.
 	Description          *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,8 +34,10 @@ type _CreateCustomRule CreateCustomRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCustomRule() *CreateCustomRule {
+func NewCreateCustomRule(behaviour Behaviour, conditions []Condition) *CreateCustomRule {
 	this := CreateCustomRule{}
+	this.Behaviour = behaviour
+	this.Conditions = conditions
 	return &this
 }
 
@@ -46,66 +49,50 @@ func NewCreateCustomRuleWithDefaults() *CreateCustomRule {
 	return &this
 }
 
-// GetBehaviour returns the Behaviour field value if set, zero value otherwise.
+// GetBehaviour returns the Behaviour field value
 func (o *CreateCustomRule) GetBehaviour() Behaviour {
-	if o == nil || IsNil(o.Behaviour) {
+	if o == nil {
 		var ret Behaviour
 		return ret
 	}
-	return *o.Behaviour
+
+	return o.Behaviour
 }
 
-// GetBehaviourOk returns a tuple with the Behaviour field value if set, nil otherwise
+// GetBehaviourOk returns a tuple with the Behaviour field value
 // and a boolean to check if the value has been set.
 func (o *CreateCustomRule) GetBehaviourOk() (*Behaviour, bool) {
-	if o == nil || IsNil(o.Behaviour) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Behaviour, true
+	return &o.Behaviour, true
 }
 
-// HasBehaviour returns a boolean if a field has been set.
-func (o *CreateCustomRule) HasBehaviour() bool {
-	if o != nil && !IsNil(o.Behaviour) {
-		return true
-	}
-
-	return false
-}
-
-// SetBehaviour gets a reference to the given Behaviour and assigns it to the Behaviour field.
+// SetBehaviour sets field value
 func (o *CreateCustomRule) SetBehaviour(v Behaviour) {
-	o.Behaviour = &v
+	o.Behaviour = v
 }
 
-// GetConditions returns the Conditions field value if set, zero value otherwise.
+// GetConditions returns the Conditions field value
 func (o *CreateCustomRule) GetConditions() []Condition {
-	if o == nil || IsNil(o.Conditions) {
+	if o == nil {
 		var ret []Condition
 		return ret
 	}
+
 	return o.Conditions
 }
 
-// GetConditionsOk returns a tuple with the Conditions field value if set, nil otherwise
+// GetConditionsOk returns a tuple with the Conditions field value
 // and a boolean to check if the value has been set.
 func (o *CreateCustomRule) GetConditionsOk() ([]Condition, bool) {
-	if o == nil || IsNil(o.Conditions) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Conditions, true
 }
 
-// HasConditions returns a boolean if a field has been set.
-func (o *CreateCustomRule) HasConditions() bool {
-	if o != nil && !IsNil(o.Conditions) {
-		return true
-	}
-
-	return false
-}
-
-// SetConditions gets a reference to the given []Condition and assigns it to the Conditions field.
+// SetConditions sets field value
 func (o *CreateCustomRule) SetConditions(v []Condition) {
 	o.Conditions = v
 }
@@ -152,12 +139,8 @@ func (o CreateCustomRule) MarshalJSON() ([]byte, error) {
 
 func (o CreateCustomRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Behaviour) {
-		toSerialize["behaviour"] = o.Behaviour
-	}
-	if !IsNil(o.Conditions) {
-		toSerialize["conditions"] = o.Conditions
-	}
+	toSerialize["behaviour"] = o.Behaviour
+	toSerialize["conditions"] = o.Conditions
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -170,6 +153,28 @@ func (o CreateCustomRule) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CreateCustomRule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"behaviour",
+		"conditions",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varCreateCustomRule := _CreateCustomRule{}
 
 	err = json.Unmarshal(data, &varCreateCustomRule)

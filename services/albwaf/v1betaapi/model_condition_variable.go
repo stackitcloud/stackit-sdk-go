@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ConditionVariable type satisfies the MappedNullable interface at compile time
@@ -19,7 +20,7 @@ var _ MappedNullable = &ConditionVariable{}
 
 // ConditionVariable struct for ConditionVariable
 type ConditionVariable struct {
-	Type *ConditionVariableType `json:"type,omitempty"`
+	Type ConditionVariableType `json:"type"`
 	// Optional key element context for map variables (e.g., matching a 'Host' header key).
 	Value                *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -31,8 +32,9 @@ type _ConditionVariable ConditionVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConditionVariable() *ConditionVariable {
+func NewConditionVariable(types ConditionVariableType) *ConditionVariable {
 	this := ConditionVariable{}
+	this.Type = types
 	return &this
 }
 
@@ -44,36 +46,28 @@ func NewConditionVariableWithDefaults() *ConditionVariable {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *ConditionVariable) GetType() ConditionVariableType {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret ConditionVariableType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ConditionVariable) GetTypeOk() (*ConditionVariableType, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ConditionVariable) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given ConditionVariableType and assigns it to the Type field.
+// SetType sets field value
 func (o *ConditionVariable) SetType(v ConditionVariableType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
@@ -118,9 +112,7 @@ func (o ConditionVariable) MarshalJSON() ([]byte, error) {
 
 func (o ConditionVariable) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
@@ -133,6 +125,27 @@ func (o ConditionVariable) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ConditionVariable) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varConditionVariable := _ConditionVariable{}
 
 	err = json.Unmarshal(data, &varConditionVariable)

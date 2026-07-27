@@ -12,6 +12,7 @@ package v1betaapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ConditionOperator type satisfies the MappedNullable interface at compile time
@@ -19,7 +20,7 @@ var _ MappedNullable = &ConditionOperator{}
 
 // ConditionOperator struct for ConditionOperator
 type ConditionOperator struct {
-	Type *ConditionOperatorType `json:"type,omitempty"`
+	Type ConditionOperatorType `json:"type"`
 	// The text or rule regex pattern arguments applied inside the operator execution loop.
 	Value                *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -31,8 +32,9 @@ type _ConditionOperator ConditionOperator
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConditionOperator() *ConditionOperator {
+func NewConditionOperator(types ConditionOperatorType) *ConditionOperator {
 	this := ConditionOperator{}
+	this.Type = types
 	return &this
 }
 
@@ -44,36 +46,28 @@ func NewConditionOperatorWithDefaults() *ConditionOperator {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *ConditionOperator) GetType() ConditionOperatorType {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret ConditionOperatorType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ConditionOperator) GetTypeOk() (*ConditionOperatorType, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ConditionOperator) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given ConditionOperatorType and assigns it to the Type field.
+// SetType sets field value
 func (o *ConditionOperator) SetType(v ConditionOperatorType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
@@ -118,9 +112,7 @@ func (o ConditionOperator) MarshalJSON() ([]byte, error) {
 
 func (o ConditionOperator) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
@@ -133,6 +125,27 @@ func (o ConditionOperator) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ConditionOperator) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varConditionOperator := _ConditionOperator{}
 
 	err = json.Unmarshal(data, &varConditionOperator)
