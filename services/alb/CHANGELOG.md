@@ -1,3 +1,9 @@
+## v0.17.0
+  - `v2api`:
+    - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+  - Deprecated SDK layer in root of the module:
+    - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
+
 ## v0.16.0
   - **Breaking change**: Remove `v2beta2api` API
 
