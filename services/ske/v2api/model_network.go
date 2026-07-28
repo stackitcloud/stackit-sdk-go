@@ -19,6 +19,7 @@ var _ MappedNullable = &Network{}
 
 // Network struct for Network
 type Network struct {
+	Cni                  *CNI                   `json:"cni,omitempty"`
 	ControlPlane         *V2ControlPlaneNetwork `json:"controlPlane,omitempty"`
 	Id                   *string                `json:"id,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -41,6 +42,38 @@ func NewNetwork() *Network {
 func NewNetworkWithDefaults() *Network {
 	this := Network{}
 	return &this
+}
+
+// GetCni returns the Cni field value if set, zero value otherwise.
+func (o *Network) GetCni() CNI {
+	if o == nil || IsNil(o.Cni) {
+		var ret CNI
+		return ret
+	}
+	return *o.Cni
+}
+
+// GetCniOk returns a tuple with the Cni field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetCniOk() (*CNI, bool) {
+	if o == nil || IsNil(o.Cni) {
+		return nil, false
+	}
+	return o.Cni, true
+}
+
+// HasCni returns a boolean if a field has been set.
+func (o *Network) HasCni() bool {
+	if o != nil && !IsNil(o.Cni) {
+		return true
+	}
+
+	return false
+}
+
+// SetCni gets a reference to the given CNI and assigns it to the Cni field.
+func (o *Network) SetCni(v CNI) {
+	o.Cni = &v
 }
 
 // GetControlPlane returns the ControlPlane field value if set, zero value otherwise.
@@ -117,6 +150,9 @@ func (o Network) MarshalJSON() ([]byte, error) {
 
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Cni) {
+		toSerialize["cni"] = o.Cni
+	}
 	if !IsNil(o.ControlPlane) {
 		toSerialize["controlPlane"] = o.ControlPlane
 	}
@@ -145,6 +181,7 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cni")
 		delete(additionalProperties, "controlPlane")
 		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties

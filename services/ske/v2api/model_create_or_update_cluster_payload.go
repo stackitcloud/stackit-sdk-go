@@ -20,15 +20,17 @@ var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
-	Access               *Access        `json:"access,omitempty"`
-	Audit                *Audit         `json:"audit,omitempty"`
-	Extensions           *Extension     `json:"extensions,omitempty"`
-	Hibernation          *Hibernation   `json:"hibernation,omitempty"`
-	Kubernetes           Kubernetes     `json:"kubernetes"`
-	Maintenance          *Maintenance   `json:"maintenance,omitempty"`
-	Network              *Network       `json:"network,omitempty"`
-	Nodepools            []Nodepool     `json:"nodepools"`
-	Status               *ClusterStatus `json:"status,omitempty"`
+	Access      *Access      `json:"access,omitempty"`
+	Audit       *Audit       `json:"audit,omitempty"`
+	Extensions  *Extension   `json:"extensions,omitempty"`
+	Hibernation *Hibernation `json:"hibernation,omitempty"`
+	Kubernetes  Kubernetes   `json:"kubernetes"`
+	// Labels are key-value pairs. Keys may contain domain prefix separated by a slash(/) and must begin with an alphanumerical character. Values may be empty and if not empty, they must begin and end with an alphanumerical character. Keys can be between 1-314 characters long, whereas values can be 0-63 characters long.
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Maintenance          *Maintenance       `json:"maintenance,omitempty"`
+	Network              *Network           `json:"network,omitempty"`
+	Nodepools            []Nodepool         `json:"nodepools"`
+	Status               *ClusterStatus     `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -205,6 +207,38 @@ func (o *CreateOrUpdateClusterPayload) SetKubernetes(v Kubernetes) {
 	o.Kubernetes = v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateOrUpdateClusterPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
 func (o *CreateOrUpdateClusterPayload) GetMaintenance() Maintenance {
 	if o == nil || IsNil(o.Maintenance) {
@@ -348,6 +382,9 @@ func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["hibernation"] = o.Hibernation
 	}
 	toSerialize["kubernetes"] = o.Kubernetes
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Maintenance) {
 		toSerialize["maintenance"] = o.Maintenance
 	}
@@ -407,6 +444,7 @@ func (o *CreateOrUpdateClusterPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "hibernation")
 		delete(additionalProperties, "kubernetes")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "maintenance")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "nodepools")

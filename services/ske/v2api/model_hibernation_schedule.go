@@ -20,8 +20,8 @@ var _ MappedNullable = &HibernationSchedule{}
 
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
-	End                  string  `json:"end" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
-	Start                string  `json:"start" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
+	End                  string  `json:"end" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\d+,)+\\\\d+|(\\\\d+(\\/|-)\\\\d+)|\\\\d+|\\\\*) ?){5,7})"`
+	Start                string  `json:"start" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\d+,)+\\\\d+|(\\\\d+(\\/|-)\\\\d+)|\\\\d+|\\\\*) ?){5,7})"`
 	Timezone             *string `json:"timezone,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

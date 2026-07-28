@@ -19,10 +19,11 @@ var _ MappedNullable = &Extension{}
 
 // Extension struct for Extension
 type Extension struct {
-	Acl                  *ACL           `json:"acl,omitempty"`
-	Dns                  *DNS           `json:"dns,omitempty"`
-	Observability        *Observability `json:"observability,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Acl                     *ACL                     `json:"acl,omitempty"`
+	ApplicationLoadBalancer *ApplicationLoadBalancer `json:"applicationLoadBalancer,omitempty"`
+	Dns                     *DNS                     `json:"dns,omitempty"`
+	Observability           *Observability           `json:"observability,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _Extension Extension
@@ -74,6 +75,38 @@ func (o *Extension) HasAcl() bool {
 // SetAcl gets a reference to the given ACL and assigns it to the Acl field.
 func (o *Extension) SetAcl(v ACL) {
 	o.Acl = &v
+}
+
+// GetApplicationLoadBalancer returns the ApplicationLoadBalancer field value if set, zero value otherwise.
+func (o *Extension) GetApplicationLoadBalancer() ApplicationLoadBalancer {
+	if o == nil || IsNil(o.ApplicationLoadBalancer) {
+		var ret ApplicationLoadBalancer
+		return ret
+	}
+	return *o.ApplicationLoadBalancer
+}
+
+// GetApplicationLoadBalancerOk returns a tuple with the ApplicationLoadBalancer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetApplicationLoadBalancerOk() (*ApplicationLoadBalancer, bool) {
+	if o == nil || IsNil(o.ApplicationLoadBalancer) {
+		return nil, false
+	}
+	return o.ApplicationLoadBalancer, true
+}
+
+// HasApplicationLoadBalancer returns a boolean if a field has been set.
+func (o *Extension) HasApplicationLoadBalancer() bool {
+	if o != nil && !IsNil(o.ApplicationLoadBalancer) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationLoadBalancer gets a reference to the given ApplicationLoadBalancer and assigns it to the ApplicationLoadBalancer field.
+func (o *Extension) SetApplicationLoadBalancer(v ApplicationLoadBalancer) {
+	o.ApplicationLoadBalancer = &v
 }
 
 // GetDns returns the Dns field value if set, zero value otherwise.
@@ -153,6 +186,9 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Acl) {
 		toSerialize["acl"] = o.Acl
 	}
+	if !IsNil(o.ApplicationLoadBalancer) {
+		toSerialize["applicationLoadBalancer"] = o.ApplicationLoadBalancer
+	}
 	if !IsNil(o.Dns) {
 		toSerialize["dns"] = o.Dns
 	}
@@ -182,6 +218,7 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "acl")
+		delete(additionalProperties, "applicationLoadBalancer")
 		delete(additionalProperties, "dns")
 		delete(additionalProperties, "observability")
 		o.AdditionalProperties = additionalProperties

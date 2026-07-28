@@ -154,6 +154,33 @@ func setCreateOrUpdateClusterPayloadGetKubernetesAttributeType(arg *CreateOrUpda
 }
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateOrUpdateClusterPayloadGetLabelsAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetLabelsAttributeType) (ret CreateOrUpdateClusterPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateOrUpdateClusterPayloadGetLabelsAttributeType(arg *CreateOrUpdateClusterPayloadGetLabelsAttributeType, val CreateOrUpdateClusterPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for maintenance
 */
 
@@ -269,7 +296,9 @@ type CreateOrUpdateClusterPayload struct {
 	Extensions  CreateOrUpdateClusterPayloadGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation CreateOrUpdateClusterPayloadGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  CreateOrUpdateClusterPayloadGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
+	Kubernetes CreateOrUpdateClusterPayloadGetKubernetesAttributeType `json:"kubernetes" required:"true"`
+	// Labels are key-value pairs. Keys may contain domain prefix separated by a slash(/) and must begin with an alphanumerical character. Values may be empty and if not empty, they must begin and end with an alphanumerical character. Keys can be between 1-314 characters long, whereas values can be 0-63 characters long.
+	Labels      CreateOrUpdateClusterPayloadGetLabelsAttributeType      `json:"labels,omitempty"`
 	Maintenance CreateOrUpdateClusterPayloadGetMaintenanceAttributeType `json:"maintenance,omitempty"`
 	Network     CreateOrUpdateClusterPayloadGetNetworkAttributeType     `json:"network,omitempty"`
 	// REQUIRED
@@ -429,6 +458,33 @@ func (o *CreateOrUpdateClusterPayload) SetKubernetes(v CreateOrUpdateClusterPayl
 	setCreateOrUpdateClusterPayloadGetKubernetesAttributeType(&o.Kubernetes, v)
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetLabels() (res CreateOrUpdateClusterPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetLabelsOk() (ret CreateOrUpdateClusterPayloadGetLabelsRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) SetLabels(v CreateOrUpdateClusterPayloadGetLabelsRetType) {
+	setCreateOrUpdateClusterPayloadGetLabelsAttributeType(&o.Labels, v)
+}
+
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateOrUpdateClusterPayload) GetMaintenance() (res CreateOrUpdateClusterPayloadGetMaintenanceRetType) {
@@ -547,6 +603,9 @@ func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateOrUpdateClusterPayloadGetKubernetesAttributeTypeOk(o.Kubernetes); ok {
 		toSerialize["Kubernetes"] = val
+	}
+	if val, ok := getCreateOrUpdateClusterPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getCreateOrUpdateClusterPayloadGetMaintenanceAttributeTypeOk(o.Maintenance); ok {
 		toSerialize["Maintenance"] = val
