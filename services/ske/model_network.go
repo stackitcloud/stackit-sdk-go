@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &Network{}
 
 /*
+	types and functions for cni
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetCniAttributeType = *CNI
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetCniArgType = CNI
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetCniRetType = CNI
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkGetCniAttributeTypeOk(arg NetworkGetCniAttributeType) (ret NetworkGetCniRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkGetCniAttributeType(arg *NetworkGetCniAttributeType, val NetworkGetCniRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for controlPlane
 */
 
@@ -75,6 +102,7 @@ type NetworkGetIdRetType = string
 // Network struct for Network
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Network struct {
+	Cni          NetworkGetCniAttributeType          `json:"cni,omitempty"`
 	ControlPlane NetworkGetControlPlaneAttributeType `json:"controlPlane,omitempty"`
 	Id           NetworkGetIdAttributeType           `json:"id,omitempty"`
 }
@@ -96,6 +124,33 @@ func NewNetwork() *Network {
 func NewNetworkWithDefaults() *Network {
 	this := Network{}
 	return &this
+}
+
+// GetCni returns the Cni field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetCni() (res NetworkGetCniRetType) {
+	res, _ = o.GetCniOk()
+	return
+}
+
+// GetCniOk returns a tuple with the Cni field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetCniOk() (ret NetworkGetCniRetType, ok bool) {
+	return getNetworkGetCniAttributeTypeOk(o.Cni)
+}
+
+// HasCni returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) HasCni() bool {
+	_, ok := o.GetCniOk()
+	return ok
+}
+
+// SetCni gets a reference to the given CNI and assigns it to the Cni field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) SetCni(v NetworkGetCniRetType) {
+	setNetworkGetCniAttributeType(&o.Cni, v)
 }
 
 // GetControlPlane returns the ControlPlane field value if set, zero value otherwise.
@@ -155,6 +210,9 @@ func (o *Network) SetId(v NetworkGetIdRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getNetworkGetCniAttributeTypeOk(o.Cni); ok {
+		toSerialize["Cni"] = val
+	}
 	if val, ok := getNetworkGetControlPlaneAttributeTypeOk(o.ControlPlane); ok {
 		toSerialize["ControlPlane"] = val
 	}

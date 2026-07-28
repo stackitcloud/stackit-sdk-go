@@ -154,6 +154,33 @@ func setClusterGetKubernetesAttributeType(arg *ClusterGetKubernetesAttributeType
 }
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getClusterGetLabelsAttributeTypeOk(arg ClusterGetLabelsAttributeType) (ret ClusterGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setClusterGetLabelsAttributeType(arg *ClusterGetLabelsAttributeType, val ClusterGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for maintenance
 */
 
@@ -296,7 +323,9 @@ type Cluster struct {
 	Extensions  ClusterGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation ClusterGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
+	Kubernetes ClusterGetKubernetesAttributeType `json:"kubernetes" required:"true"`
+	// Labels are key-value pairs. Keys may contain domain prefix separated by a slash(/) and must begin with an alphanumerical character. Values may be empty and if not empty, they must begin and end with an alphanumerical character. Keys can be between 1-314 characters long, whereas values can be 0-63 characters long.
+	Labels      ClusterGetLabelsAttributeType      `json:"labels,omitempty"`
 	Maintenance ClusterGetMaintenanceAttributeType `json:"maintenance,omitempty"`
 	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 	Name    ClusterGetNameAttributeType    `json:"name,omitempty"`
@@ -458,6 +487,33 @@ func (o *Cluster) SetKubernetes(v ClusterGetKubernetesRetType) {
 	setClusterGetKubernetesAttributeType(&o.Kubernetes, v)
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) GetLabels() (res ClusterGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) GetLabelsOk() (ret ClusterGetLabelsRetType, ok bool) {
+	return getClusterGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Cluster) SetLabels(v ClusterGetLabelsRetType) {
+	setClusterGetLabelsAttributeType(&o.Labels, v)
+}
+
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Cluster) GetMaintenance() (res ClusterGetMaintenanceRetType) {
@@ -603,6 +659,9 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getClusterGetKubernetesAttributeTypeOk(o.Kubernetes); ok {
 		toSerialize["Kubernetes"] = val
+	}
+	if val, ok := getClusterGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getClusterGetMaintenanceAttributeTypeOk(o.Maintenance); ok {
 		toSerialize["Maintenance"] = val

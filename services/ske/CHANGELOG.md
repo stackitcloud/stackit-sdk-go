@@ -1,3 +1,21 @@
+## v1.21.0
+- Package `v1api`:
+  - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
+- Package `v2api`:
+  - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
+  - **Fix:** Update regular expression for the `Version` field of the `MachineImageVersion`
+  - **Feature:** Add model struct for `ApplicationLoadBalancer` and `CNI`
+  - **Feature:** Add fields `Labels` and `Maintenance` to model struct `Cluster` and `CreateOrUpdateClusterPayload`
+  - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
+  - **Feature:** Add field `Cni` to model struct `Network`
+- Deprecated SDK layer in root of the module:
+  - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
+  - **Fix:** Update regular expression for the `Version` field of the `MachineImageVersion`
+  - **Feature:** Add model struct for `ApplicationLoadBalancer` and `CNI`
+  - **Feature:** Add fields `Labels` and `Maintenance` to model struct `Cluster` and `CreateOrUpdateClusterPayload`
+  - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
+  - **Feature:** Add field `Cni` to model struct `Network`
+
 ## v1.20.0
 - Package `v2api`:
   - **Fix:** Increased timeout in `DeleteClusterWaitHandler` to 90 min

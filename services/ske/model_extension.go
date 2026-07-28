@@ -46,6 +46,33 @@ func setExtensionGetAclAttributeType(arg *ExtensionGetAclAttributeType, val Exte
 }
 
 /*
+	types and functions for applicationLoadBalancer
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ExtensionGetApplicationLoadBalancerAttributeType = *ApplicationLoadBalancer
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ExtensionGetApplicationLoadBalancerArgType = ApplicationLoadBalancer
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ExtensionGetApplicationLoadBalancerRetType = ApplicationLoadBalancer
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getExtensionGetApplicationLoadBalancerAttributeTypeOk(arg ExtensionGetApplicationLoadBalancerAttributeType) (ret ExtensionGetApplicationLoadBalancerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setExtensionGetApplicationLoadBalancerAttributeType(arg *ExtensionGetApplicationLoadBalancerAttributeType, val ExtensionGetApplicationLoadBalancerRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for dns
 */
 
@@ -102,9 +129,10 @@ func setExtensionGetObservabilityAttributeType(arg *ExtensionGetObservabilityAtt
 // Extension struct for Extension
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Extension struct {
-	Acl           ExtensionGetAclAttributeType           `json:"acl,omitempty"`
-	Dns           ExtensionGetDnsAttributeType           `json:"dns,omitempty"`
-	Observability ExtensionGetObservabilityAttributeType `json:"observability,omitempty"`
+	Acl                     ExtensionGetAclAttributeType                     `json:"acl,omitempty"`
+	ApplicationLoadBalancer ExtensionGetApplicationLoadBalancerAttributeType `json:"applicationLoadBalancer,omitempty"`
+	Dns                     ExtensionGetDnsAttributeType                     `json:"dns,omitempty"`
+	Observability           ExtensionGetObservabilityAttributeType           `json:"observability,omitempty"`
 }
 
 // NewExtension instantiates a new Extension object
@@ -151,6 +179,33 @@ func (o *Extension) HasAcl() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Extension) SetAcl(v ExtensionGetAclRetType) {
 	setExtensionGetAclAttributeType(&o.Acl, v)
+}
+
+// GetApplicationLoadBalancer returns the ApplicationLoadBalancer field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Extension) GetApplicationLoadBalancer() (res ExtensionGetApplicationLoadBalancerRetType) {
+	res, _ = o.GetApplicationLoadBalancerOk()
+	return
+}
+
+// GetApplicationLoadBalancerOk returns a tuple with the ApplicationLoadBalancer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Extension) GetApplicationLoadBalancerOk() (ret ExtensionGetApplicationLoadBalancerRetType, ok bool) {
+	return getExtensionGetApplicationLoadBalancerAttributeTypeOk(o.ApplicationLoadBalancer)
+}
+
+// HasApplicationLoadBalancer returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Extension) HasApplicationLoadBalancer() bool {
+	_, ok := o.GetApplicationLoadBalancerOk()
+	return ok
+}
+
+// SetApplicationLoadBalancer gets a reference to the given ApplicationLoadBalancer and assigns it to the ApplicationLoadBalancer field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Extension) SetApplicationLoadBalancer(v ExtensionGetApplicationLoadBalancerRetType) {
+	setExtensionGetApplicationLoadBalancerAttributeType(&o.ApplicationLoadBalancer, v)
 }
 
 // GetDns returns the Dns field value if set, zero value otherwise.
@@ -212,6 +267,9 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionGetAclAttributeTypeOk(o.Acl); ok {
 		toSerialize["Acl"] = val
+	}
+	if val, ok := getExtensionGetApplicationLoadBalancerAttributeTypeOk(o.ApplicationLoadBalancer); ok {
+		toSerialize["ApplicationLoadBalancer"] = val
 	}
 	if val, ok := getExtensionGetDnsAttributeTypeOk(o.Dns); ok {
 		toSerialize["Dns"] = val

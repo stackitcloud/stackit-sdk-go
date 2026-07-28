@@ -25,7 +25,9 @@ type Cluster struct {
 	Extensions  *Extension   `json:"extensions,omitempty"`
 	Hibernation *Hibernation `json:"hibernation,omitempty"`
 	Kubernetes  Kubernetes   `json:"kubernetes"`
-	Maintenance *Maintenance `json:"maintenance,omitempty"`
+	// Labels are key-value pairs. Keys may contain domain prefix separated by a slash(/) and must begin with an alphanumerical character. Values may be empty and if not empty, they must begin and end with an alphanumerical character. Keys can be between 1-314 characters long, whereas values can be 0-63 characters long.
+	Labels      *map[string]string `json:"labels,omitempty"`
+	Maintenance *Maintenance       `json:"maintenance,omitempty"`
 	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
 	Name                 *string        `json:"name,omitempty" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,9}[a-z0-9])?$"`
 	Network              *Network       `json:"network,omitempty"`
@@ -207,6 +209,38 @@ func (o *Cluster) SetKubernetes(v Kubernetes) {
 	o.Kubernetes = v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Cluster) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Cluster) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Cluster) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *Cluster) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
 func (o *Cluster) GetMaintenance() Maintenance {
 	if o == nil || IsNil(o.Maintenance) {
@@ -382,6 +416,9 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 		toSerialize["hibernation"] = o.Hibernation
 	}
 	toSerialize["kubernetes"] = o.Kubernetes
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Maintenance) {
 		toSerialize["maintenance"] = o.Maintenance
 	}
@@ -444,6 +481,7 @@ func (o *Cluster) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "hibernation")
 		delete(additionalProperties, "kubernetes")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "maintenance")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network")

@@ -19,6 +19,21 @@
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `ske`:
+  - [v1.21.0](services/ske/CHANGELOG.md#v1210)
+    - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
+    - Package `v2api`:
+      - **Fix:** Update regular expression for `Version` field of the `MachineImageVersion`
+      - **Feature:** Add model struct for `ApplicationLoadBalancer` and `CNI`
+      - **Feature:** Add fields `Labels` and `Maintenance` to model struct `Cluster` and `CreateOrUpdateClusterPayload`
+      - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
+      - **Feature:** Add field `Cni` to model struct `Network`
+    - Deprecated SDK layer in root of the module:
+      - **Fix:** Update regular expression for `Version` field of the `MachineImageVersion`
+      - **Feature:** Add model struct for `ApplicationLoadBalancer` and `CNI`
+      - **Feature:** Add fields `Labels` and `Maintenance` to model struct `Cluster` and `CreateOrUpdateClusterPayload`
+      - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
+      - **Feature:** Add field `Cni` to model struct `Network`
 - `telemetrylink`:
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
