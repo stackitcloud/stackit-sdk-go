@@ -75,6 +75,23 @@ type DefaultAPI interface {
 	CreateRunnerExecute(r ApiCreateRunnerRequest) (*Runner, error)
 
 	/*
+		CreateUser Create an Instance Local/Technical User.
+
+		Creates a new STACKIT Git instance Local/Technical User.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return ApiCreateUserRequest
+	*/
+	CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest
+
+	// CreateUserExecute executes the request
+	//  @return User
+	CreateUserExecute(r ApiCreateUserRequest) (*User, error)
+
+	/*
 		DeleteAuthentication Delete Authentication Source
 
 		Deletes the authentication source associated to this STACKIT Git instance.
@@ -122,6 +139,23 @@ type DefaultAPI interface {
 
 	// DeleteRunnerExecute executes the request
 	DeleteRunnerExecute(r ApiDeleteRunnerRequest) error
+
+	/*
+		DeleteUser Delete Instance User.
+
+		Deletes a STACKIT Git instance User and destroys all associated data.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiDeleteUserRequest
+	*/
+	DeleteUser(ctx context.Context, projectId string, instanceId string, username string) ApiDeleteUserRequest
+
+	// DeleteUserExecute executes the request
+	DeleteUserExecute(r ApiDeleteUserRequest) error
 
 	/*
 		GetAuthentication Get authentication provider
@@ -172,6 +206,39 @@ type DefaultAPI interface {
 	// GetRunnerExecute executes the request
 	//  @return Runner
 	GetRunnerExecute(r ApiGetRunnerRequest) (*Runner, error)
+
+	/*
+		GetUser Get Instance User information.
+
+		Retrieves information about a STACKIT Git instance User.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiGetUserRequest
+	*/
+	GetUser(ctx context.Context, projectId string, instanceId string, username string) ApiGetUserRequest
+
+	// GetUserExecute executes the request
+	GetUserExecute(r ApiGetUserRequest) error
+
+	/*
+		GetUsers Get instance Users.
+
+		Lists all STACKIT Git Users within an instances.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@return ApiGetUsersRequest
+	*/
+	GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest
+
+	// GetUsersExecute executes the request
+	//  @return ListUsers
+	GetUsersExecute(r ApiGetUsersRequest) (*ListUsers, error)
 
 	/*
 		ListAuthentication List authentication sources
@@ -271,6 +338,24 @@ type DefaultAPI interface {
 	// PatchInstanceExecute executes the request
 	//  @return Instance
 	PatchInstanceExecute(r ApiPatchInstanceRequest) (*Instance, error)
+
+	/*
+		PatchUser Patch Instance User.
+
+		Patches the Instance User.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Project identifier.
+		@param instanceId Instance identifier.
+		@param username Instance User identifier.
+		@return ApiPatchUserRequest
+	*/
+	PatchUser(ctx context.Context, projectId string, instanceId string, username string) ApiPatchUserRequest
+
+	// PatchUserExecute executes the request
+	//  @return User
+	PatchUserExecute(r ApiPatchUserRequest) (*User, error)
 }
 
 // DefaultAPIService DefaultAPI service
@@ -813,6 +898,181 @@ func (a *DefaultAPIService) CreateRunnerExecute(r ApiCreateRunnerRequest) (*Runn
 	return localVarReturnValue, nil
 }
 
+type ApiCreateUserRequest struct {
+	ctx               context.Context
+	ApiService        DefaultAPI
+	projectId         string
+	instanceId        string
+	createUserPayload *CreateUserPayload
+}
+
+// Instance User details options.
+func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
+	r.createUserPayload = &createUserPayload
+	return r
+}
+
+func (r ApiCreateUserRequest) Execute() (*User, error) {
+	return r.ApiService.CreateUserExecute(r)
+}
+
+/*
+CreateUser Create an Instance Local/Technical User.
+
+Creates a new STACKIT Git instance Local/Technical User.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@return ApiCreateUserRequest
+*/
+func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
+	return ApiCreateUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return User
+func (a *DefaultAPIService) CreateUserExecute(r ApiCreateUserRequest) (*User, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *User
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateUser")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, reportError("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, reportError("instanceId must have less than 36 elements")
+	}
+	if r.createUserPayload == nil {
+		return localVarReturnValue, reportError("createUserPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createUserPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiDeleteAuthenticationRequest struct {
 	ctx              context.Context
 	ApiService       DefaultAPI
@@ -1295,6 +1555,149 @@ func (a *DefaultAPIService) DeleteRunnerExecute(r ApiDeleteRunnerRequest) error 
 	return nil
 }
 
+type ApiDeleteUserRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	instanceId string
+	username   string
+}
+
+func (r ApiDeleteUserRequest) Execute() error {
+	return r.ApiService.DeleteUserExecute(r)
+}
+
+/*
+DeleteUser Delete Instance User.
+
+Deletes a STACKIT Git instance User and destroys all associated data.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiDeleteUserRequest
+*/
+func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, instanceId string, username string) ApiDeleteUserRequest {
+	return ApiDeleteUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) DeleteUserExecute(r ApiDeleteUserRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteUser")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(parameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return reportError("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return reportError("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
 type ApiGetAuthenticationRequest struct {
 	ctx              context.Context
 	ApiService       DefaultAPI
@@ -1678,6 +2081,312 @@ func (a *DefaultAPIService) GetRunnerExecute(r ApiGetRunnerRequest) (*Runner, er
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/runner"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, reportError("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, reportError("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetUserRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	instanceId string
+	username   string
+}
+
+func (r ApiGetUserRequest) Execute() error {
+	return r.ApiService.GetUserExecute(r)
+}
+
+/*
+GetUser Get Instance User information.
+
+Retrieves information about a STACKIT Git instance User.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiGetUserRequest
+*/
+func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, instanceId string, username string) ApiGetUserRequest {
+	return ApiGetUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetUser")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(parameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return reportError("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return reportError("instanceId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 302 {
+			var v User
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+type ApiGetUsersRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	instanceId string
+}
+
+func (r ApiGetUsersRequest) Execute() (*ListUsers, error) {
+	return r.ApiService.GetUsersExecute(r)
+}
+
+/*
+GetUsers Get instance Users.
+
+Lists all STACKIT Git Users within an instances.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@return ApiGetUsersRequest
+*/
+func (a *DefaultAPIService) GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest {
+	return ApiGetUsersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListUsers
+func (a *DefaultAPIService) GetUsersExecute(r ApiGetUsersRequest) (*ListUsers, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListUsers
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetUsers")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
 
@@ -2673,6 +3382,173 @@ func (a *DefaultAPIService) PatchInstanceExecute(r ApiPatchInstanceRequest) (*In
 	}
 	// body params
 	localVarPostBody = r.patchInstancePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiPatchUserRequest struct {
+	ctx              context.Context
+	ApiService       DefaultAPI
+	projectId        string
+	instanceId       string
+	username         string
+	patchUserPayload *PatchUserPayload
+}
+
+func (r ApiPatchUserRequest) PatchUserPayload(patchUserPayload PatchUserPayload) ApiPatchUserRequest {
+	r.patchUserPayload = &patchUserPayload
+	return r
+}
+
+func (r ApiPatchUserRequest) Execute() (*User, error) {
+	return r.ApiService.PatchUserExecute(r)
+}
+
+/*
+PatchUser Patch Instance User.
+
+Patches the Instance User.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project identifier.
+	@param instanceId Instance identifier.
+	@param username Instance User identifier.
+	@return ApiPatchUserRequest
+*/
+func (a *DefaultAPIService) PatchUser(ctx context.Context, projectId string, instanceId string, username string) ApiPatchUserRequest {
+	return ApiPatchUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// Execute executes the request
+//
+//	@return User
+func (a *DefaultAPIService) PatchUserExecute(r ApiPatchUserRequest) (*User, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *User
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchUser")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/instances/{instanceId}/users/{username}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(parameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, reportError("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, reportError("projectId must have less than 36 elements")
+	}
+	if strlen(r.instanceId) < 36 {
+		return localVarReturnValue, reportError("instanceId must have at least 36 elements")
+	}
+	if strlen(r.instanceId) > 36 {
+		return localVarReturnValue, reportError("instanceId must have less than 36 elements")
+	}
+	if r.patchUserPayload == nil {
+		return localVarReturnValue, reportError("patchUserPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchUserPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err

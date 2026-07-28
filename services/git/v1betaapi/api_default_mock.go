@@ -27,18 +27,26 @@ type DefaultAPIServiceMock struct {
 	CreateInstanceExecuteMock *func(r ApiCreateInstanceRequest) (*Instance, error)
 	// CreateRunnerExecuteMock can be populated to implement the behavior of the CreateRunnerExecute function of this mock
 	CreateRunnerExecuteMock *func(r ApiCreateRunnerRequest) (*Runner, error)
+	// CreateUserExecuteMock can be populated to implement the behavior of the CreateUserExecute function of this mock
+	CreateUserExecuteMock *func(r ApiCreateUserRequest) (*User, error)
 	// DeleteAuthenticationExecuteMock can be populated to implement the behavior of the DeleteAuthenticationExecute function of this mock
 	DeleteAuthenticationExecuteMock *func(r ApiDeleteAuthenticationRequest) error
 	// DeleteInstanceExecuteMock can be populated to implement the behavior of the DeleteInstanceExecute function of this mock
 	DeleteInstanceExecuteMock *func(r ApiDeleteInstanceRequest) error
 	// DeleteRunnerExecuteMock can be populated to implement the behavior of the DeleteRunnerExecute function of this mock
 	DeleteRunnerExecuteMock *func(r ApiDeleteRunnerRequest) error
+	// DeleteUserExecuteMock can be populated to implement the behavior of the DeleteUserExecute function of this mock
+	DeleteUserExecuteMock *func(r ApiDeleteUserRequest) error
 	// GetAuthenticationExecuteMock can be populated to implement the behavior of the GetAuthenticationExecute function of this mock
 	GetAuthenticationExecuteMock *func(r ApiGetAuthenticationRequest) (*Authentication, error)
 	// GetInstanceExecuteMock can be populated to implement the behavior of the GetInstanceExecute function of this mock
 	GetInstanceExecuteMock *func(r ApiGetInstanceRequest) (*Instance, error)
 	// GetRunnerExecuteMock can be populated to implement the behavior of the GetRunnerExecute function of this mock
 	GetRunnerExecuteMock *func(r ApiGetRunnerRequest) (*Runner, error)
+	// GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
+	GetUserExecuteMock *func(r ApiGetUserRequest) error
+	// GetUsersExecuteMock can be populated to implement the behavior of the GetUsersExecute function of this mock
+	GetUsersExecuteMock *func(r ApiGetUsersRequest) (*ListUsers, error)
 	// ListAuthenticationExecuteMock can be populated to implement the behavior of the ListAuthenticationExecute function of this mock
 	ListAuthenticationExecuteMock *func(r ApiListAuthenticationRequest) (*AuthenticationList, error)
 	// ListFlavorsExecuteMock can be populated to implement the behavior of the ListFlavorsExecute function of this mock
@@ -51,6 +59,8 @@ type DefaultAPIServiceMock struct {
 	PatchAuthenticationExecuteMock *func(r ApiPatchAuthenticationRequest) (*Authentication, error)
 	// PatchInstanceExecuteMock can be populated to implement the behavior of the PatchInstanceExecute function of this mock
 	PatchInstanceExecuteMock *func(r ApiPatchInstanceRequest) (*Instance, error)
+	// PatchUserExecuteMock can be populated to implement the behavior of the PatchUserExecute function of this mock
+	PatchUserExecuteMock *func(r ApiPatchUserRequest) (*User, error)
 }
 
 func (a DefaultAPIServiceMock) CreateAuthentication(ctx context.Context, projectId string, instanceId string) ApiCreateAuthenticationRequest {
@@ -109,6 +119,25 @@ func (a DefaultAPIServiceMock) CreateRunnerExecute(r ApiCreateRunnerRequest) (*R
 	return (*a.CreateRunnerExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
+	return ApiCreateUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// CreateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateUserExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateUserExecute(r ApiCreateUserRequest) (*User, error) {
+	if a.CreateUserExecuteMock == nil {
+		var localVarReturnValue *User
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateUserExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) DeleteAuthentication(ctx context.Context, projectId string, instanceId string, authenticationId string) ApiDeleteAuthenticationRequest {
 	return ApiDeleteAuthenticationRequest{
 		ApiService:       a,
@@ -162,6 +191,25 @@ func (a DefaultAPIServiceMock) DeleteRunnerExecute(r ApiDeleteRunnerRequest) err
 	}
 
 	return (*a.DeleteRunnerExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteUser(ctx context.Context, projectId string, instanceId string, username string) ApiDeleteUserRequest {
+	return ApiDeleteUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// DeleteUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteUserExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteUserExecute(r ApiDeleteUserRequest) error {
+	if a.DeleteUserExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteUserExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetAuthentication(ctx context.Context, projectId string, instanceId string, authenticationId string) ApiGetAuthenticationRequest {
@@ -220,6 +268,44 @@ func (a DefaultAPIServiceMock) GetRunnerExecute(r ApiGetRunnerRequest) (*Runner,
 	}
 
 	return (*a.GetRunnerExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetUser(ctx context.Context, projectId string, instanceId string, username string) ApiGetUserRequest {
+	return ApiGetUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// GetUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetUserExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetUserExecute(r ApiGetUserRequest) error {
+	if a.GetUserExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.GetUserExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest {
+	return ApiGetUsersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// GetUsersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetUsersExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetUsersExecute(r ApiGetUsersRequest) (*ListUsers, error) {
+	if a.GetUsersExecuteMock == nil {
+		var localVarReturnValue *ListUsers
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetUsersExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListAuthentication(ctx context.Context, projectId string, instanceId string) ApiListAuthenticationRequest {
@@ -332,4 +418,24 @@ func (a DefaultAPIServiceMock) PatchInstanceExecute(r ApiPatchInstanceRequest) (
 	}
 
 	return (*a.PatchInstanceExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PatchUser(ctx context.Context, projectId string, instanceId string, username string) ApiPatchUserRequest {
+	return ApiPatchUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		username:   username,
+	}
+}
+
+// PatchUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PatchUserExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PatchUserExecute(r ApiPatchUserRequest) (*User, error) {
+	if a.PatchUserExecuteMock == nil {
+		var localVarReturnValue *User
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PatchUserExecuteMock)(r)
 }
