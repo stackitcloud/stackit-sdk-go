@@ -1,4 +1,4 @@
-go 1.25
+go 1.25.9
 
 use (
 	./core
@@ -68,6 +68,7 @@ use (
 	./services/observability
 	./services/opensearch
 	./services/postgresflex
+	./services/pubsub
 	./services/rabbitmq
 	./services/redis
 	./services/resourcemanager
@@ -85,4 +86,5 @@ use (
 	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
+	./tools
 )
