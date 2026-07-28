@@ -1,4 +1,4 @@
-go 1.25
+go 1.25.9
 
 use (
 	./core
@@ -72,6 +72,7 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/runcommand
+	./services/sca
 	./services/scf
 	./services/secretsmanager
 	./services/serverbackup
@@ -85,4 +86,5 @@ use (
 	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
+	./tools
 )
