@@ -1,4 +1,4 @@
-go 1.25
+go 1.25.9
 
 use (
 	./core
@@ -85,4 +85,6 @@ use (
 	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
+	./services/workflows
+	./tools
 )
