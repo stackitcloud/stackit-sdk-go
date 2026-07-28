@@ -1,4 +1,4 @@
-go 1.25
+go 1.25.9
 
 use (
 	./core
@@ -45,6 +45,7 @@ use (
 	./services/archiving
 	./services/auditlog
 	./services/authorization
+	./services/automation
 	./services/cdn
 	./services/certificates
 	./services/cost
@@ -85,4 +86,5 @@ use (
 	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
+	./tools
 )
