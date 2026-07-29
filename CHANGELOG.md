@@ -10,6 +10,10 @@
   - [v0.11.0](services/albwaf/CHANGELOG.md#v0110)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `logme`:
+  - [v1.1.0](services/logme/CHANGELOG.md#v110)
+    - `v2api`: 
+      - **Feature**: Added wait handlers  
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
