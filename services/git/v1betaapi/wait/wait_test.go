@@ -184,6 +184,145 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 	}
 }
 
+func TestUpdateGitInstanceWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc           string
+		getFails       bool
+		wantErr        bool
+		wantResp       bool
+		projectId      string
+		instanceId     string
+		returnInstance bool
+		getGitResponse *git.Instance
+	}{
+
+		{
+			desc:           "Update of an instance succeeded",
+			getFails:       false,
+			wantErr:        false,
+			wantResp:       true,
+			projectId:      uuid.New().String(),
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				State:   git.INSTANCESTATE_READY,
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
+		{
+			desc:           "Update of an instance failed with error",
+			getFails:       true,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      uuid.New().String(),
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				State:   git.INSTANCESTATE_READY,
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
+		{
+			desc:           "Update of an instance with response failed and without error",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       true,
+			projectId:      uuid.New().String(),
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				State:   git.INSTANCESTATE_ERROR,
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
+		{
+			desc:           "Update of an instance failed without id on the response",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: nil,
+		},
+		{
+			desc:           "Update of an instance with a wrong state on the response",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				State:   "wrong-state",
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
+		{
+			desc:           "Update of an instance without state on the response",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:       tt.getFails,
+					projectId:      tt.projectId,
+					instanceId:     tt.instanceId,
+					getGitResponse: tt.getGitResponse,
+					returnInstance: tt.returnInstance,
+				})
+
+				var instanceWanted *git.Instance
+				if tt.wantResp {
+					instanceWanted = tt.getGitResponse
+				}
+
+				handler := UpdateGitInstanceWaitHandler(context.Background(), apiClient, tt.projectId, tt.instanceId)
+
+				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+
+				if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{}), cmpopts.EquateComparable(git.NullableFeatureToggleDefaultEmailNotifications{})) {
+					t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
+				}
+			})
+		})
+	}
+}
+
 func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc                 string

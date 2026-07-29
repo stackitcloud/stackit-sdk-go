@@ -10,6 +10,9 @@
   - [v0.11.0](services/albwaf/CHANGELOG.md#v0110)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `git`
+  - [v0.15.0](services/git/CHANGELOG.md#v0150)
+    - **Feature:** Adds Waiter for updating STACKIT Git instances.
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
