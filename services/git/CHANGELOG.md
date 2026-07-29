@@ -1,3 +1,6 @@
+## v0.15.0
+- **Feature:** Adds Waiter for updating STACKIT Git instances.
+
 ## v0.14.0
 - **Feature:** Introduce enums for various attributes
 
