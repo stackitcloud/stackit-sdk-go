@@ -14,6 +14,10 @@
   - [v1.1.0](services/logme/CHANGELOG.md#v110)
     - `v2api`: 
       - **Feature**: Added wait handlers  
+- `mariadb`:
+  - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
+    - `v2api`:
+      - **Feature**: Added wait handlers
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
