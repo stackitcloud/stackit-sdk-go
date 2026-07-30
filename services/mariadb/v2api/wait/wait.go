@@ -1,0 +1,121 @@
+package wait
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"strings"
+	"time"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
+	mariadb "github.com/stackitcloud/stackit-sdk-go/services/mariadb/v2api"
+)
+
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, a, projectId, region, instanceId)
+}
+
+// PartialUpdateInstanceWaitHandler will wait for instance update
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
+	return createOrUpdateInstanceWaitHandler(ctx, a, projectId, region, instanceId)
+}
+
+// DeleteInstanceWaitHandler will wait for instance deletion
+func DeleteInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
+		if err == nil {
+			if s.Status == nil {
+				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
+			}
+			if *s.Status != mariadb.INSTANCESTATUS_DELETING {
+				return false, nil, nil
+			}
+			if *s.Status == mariadb.INSTANCESTATUS_ACTIVE {
+				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
+					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
+				}
+				return true, nil, nil
+			}
+			return false, nil, nil
+		}
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+		}
+		if oapiErr.StatusCode != http.StatusGone {
+			return false, nil, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// CreateCredentialsWaitHandler will wait for credentials creation
+func CreateCredentialsWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId, credentialsId string) *wait.AsyncActionHandler[mariadb.CredentialsResponse] {
+	handler := wait.New(func() (waitFinished bool, response *mariadb.CredentialsResponse, err error) {
+		s, err := a.GetCredentials(ctx, projectId, region, instanceId, credentialsId).Execute()
+		if err != nil {
+			var oapiErr *oapierror.GenericOpenAPIError
+			ok := errors.As(err, &oapiErr)
+			if !ok {
+				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+			}
+			// If the request returns 404, the credentials have not been created yet
+			if oapiErr.StatusCode == http.StatusNotFound {
+				return false, nil, nil
+			}
+			return false, nil, err
+		}
+		if s.Id == credentialsId {
+			return true, s, nil
+		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
+}
+
+// DeleteCredentialsWaitHandler will wait for credentials deletion
+func DeleteCredentialsWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId, credentialsId string) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetCredentials(ctx, projectId, region, instanceId, credentialsId).Execute()
+		if err == nil {
+			return false, nil, nil
+		}
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+		}
+		if oapiErr.StatusCode != http.StatusNotFound && oapiErr.StatusCode != http.StatusGone {
+			return false, nil, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
+}
+
+func createOrUpdateInstanceWaitHandler(ctx context.Context, a mariadb.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[mariadb.Instance] {
+	waitConfig := wait.WaiterHelper[mariadb.Instance, mariadb.InstanceStatus]{
+		FetchInstance: a.GetInstance(ctx, projectId, region, instanceId).Execute,
+		GetState: func(s *mariadb.Instance) (mariadb.InstanceStatus, error) {
+			if s == nil || s.Status == nil {
+				return "", errors.New("response or status is nil")
+			}
+			return *s.Status, nil
+		},
+		ActiveState: []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []mariadb.InstanceStatus{mariadb.INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
