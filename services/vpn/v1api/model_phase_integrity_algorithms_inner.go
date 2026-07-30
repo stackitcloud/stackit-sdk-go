@@ -20,17 +20,17 @@ type PhaseIntegrityAlgorithmsInner string
 
 // List of Phase_integrityAlgorithms_inner
 const (
-	PHASEINTEGRITYALGORITHMSINNER_SHA1                     PhaseIntegrityAlgorithmsInner = "sha1"
 	PHASEINTEGRITYALGORITHMSINNER_SHA2_256                 PhaseIntegrityAlgorithmsInner = "sha2_256"
 	PHASEINTEGRITYALGORITHMSINNER_SHA2_384                 PhaseIntegrityAlgorithmsInner = "sha2_384"
+	PHASEINTEGRITYALGORITHMSINNER_SHA2_512                 PhaseIntegrityAlgorithmsInner = "sha2_512"
 	PHASEINTEGRITYALGORITHMSINNER_UNKNOWN_DEFAULT_OPEN_API PhaseIntegrityAlgorithmsInner = "unknown_default_open_api"
 )
 
 // All allowed values of PhaseIntegrityAlgorithmsInner enum
 var AllowedPhaseIntegrityAlgorithmsInnerEnumValues = []PhaseIntegrityAlgorithmsInner{
-	"sha1",
 	"sha2_256",
 	"sha2_384",
+	"sha2_512",
 	"unknown_default_open_api",
 }
 
