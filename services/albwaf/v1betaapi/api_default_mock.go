@@ -48,6 +48,8 @@ type DefaultAPIServiceMock struct {
 	ListWAFExecuteMock *func(r ApiListWAFRequest) (*ListWAFResponse, error)
 	// PatchManagedRuleSetExecuteMock can be populated to implement the behavior of the PatchManagedRuleSetExecute function of this mock
 	PatchManagedRuleSetExecuteMock *func(r ApiPatchManagedRuleSetRequest) (*GetManagedRuleSetResponse, error)
+	// UpdateCustomRuleGroupExecuteMock can be populated to implement the behavior of the UpdateCustomRuleGroupExecute function of this mock
+	UpdateCustomRuleGroupExecuteMock *func(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error)
 	// UpdateWAFExecuteMock can be populated to implement the behavior of the UpdateWAFExecute function of this mock
 	UpdateWAFExecuteMock *func(r ApiUpdateWAFRequest) (*GetWAFResponse, error)
 }
@@ -323,6 +325,26 @@ func (a DefaultAPIServiceMock) PatchManagedRuleSetExecute(r ApiPatchManagedRuleS
 	}
 
 	return (*a.PatchManagedRuleSetExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiUpdateCustomRuleGroupRequest {
+	return ApiUpdateCustomRuleGroupRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		name:       name,
+	}
+}
+
+// UpdateCustomRuleGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateCustomRuleGroupExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateCustomRuleGroupExecute(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error) {
+	if a.UpdateCustomRuleGroupExecuteMock == nil {
+		var localVarReturnValue *GetCustomRuleGroupResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateCustomRuleGroupExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest {
