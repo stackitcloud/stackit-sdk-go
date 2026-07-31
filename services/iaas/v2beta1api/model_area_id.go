@@ -14,6 +14,7 @@ package v2beta1api
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 // AreaId - The identifier (ID) of an area.
@@ -44,10 +45,13 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	err = json.Unmarshal(data, &dst.StaticAreaID)
 	if err == nil {
 		jsonStaticAreaID, _ := json.Marshal(dst.StaticAreaID)
-		if string(jsonStaticAreaID) == "{}" { // empty struct
-			dst.StaticAreaID = nil
-		} else {
+		// OVERRIDE: this pattern match is custom
+		regex := `^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
+		isMatched, _ := regexp.MatchString(regex, string(*dst.StaticAreaID))
+		if string(jsonStaticAreaID) != "{}" && isMatched { // empty struct
 			match++
+		} else {
+			dst.StaticAreaID = nil
 		}
 	} else {
 		dst.StaticAreaID = nil
