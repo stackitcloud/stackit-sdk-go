@@ -255,6 +255,23 @@ type DefaultAPI interface {
 	PatchManagedRuleSetExecute(r ApiPatchManagedRuleSetRequest) (*GetManagedRuleSetResponse, error)
 
 	/*
+		UpdateCustomRuleGroup Update a CRG configuration
+
+		Replaces the rules array of an existing CRG. The CRG name is immutable and used as the resource key. Send the complete desired rule set; per-rule partial merge is not supported.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return ApiUpdateCustomRuleGroupRequest
+	*/
+	UpdateCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiUpdateCustomRuleGroupRequest
+
+	// UpdateCustomRuleGroupExecute executes the request
+	//  @return GetCustomRuleGroupResponse
+	UpdateCustomRuleGroupExecute(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error)
+
+	/*
 		UpdateWAF Update a WAF configuration
 
 		The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
@@ -2272,6 +2289,159 @@ func (a *DefaultAPIService) PatchManagedRuleSetExecute(r ApiPatchManagedRuleSetR
 	}
 	// body params
 	localVarPostBody = r.patchManagedRuleSetPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Status
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateCustomRuleGroupRequest struct {
+	ctx                          context.Context
+	ApiService                   DefaultAPI
+	projectId                    string
+	region                       string
+	name                         string
+	updateCustomRuleGroupPayload *UpdateCustomRuleGroupPayload
+}
+
+func (r ApiUpdateCustomRuleGroupRequest) UpdateCustomRuleGroupPayload(updateCustomRuleGroupPayload UpdateCustomRuleGroupPayload) ApiUpdateCustomRuleGroupRequest {
+	r.updateCustomRuleGroupPayload = &updateCustomRuleGroupPayload
+	return r
+}
+
+func (r ApiUpdateCustomRuleGroupRequest) Execute() (*GetCustomRuleGroupResponse, error) {
+	return r.ApiService.UpdateCustomRuleGroupExecute(r)
+}
+
+/*
+UpdateCustomRuleGroup Update a CRG configuration
+
+Replaces the rules array of an existing CRG. The CRG name is immutable and used as the resource key. Send the complete desired rule set; per-rule partial merge is not supported.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param name
+	@return ApiUpdateCustomRuleGroupRequest
+*/
+func (a *DefaultAPIService) UpdateCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiUpdateCustomRuleGroupRequest {
+	return ApiUpdateCustomRuleGroupRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		name:       name,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCustomRuleGroupResponse
+func (a *DefaultAPIService) UpdateCustomRuleGroupExecute(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetCustomRuleGroupResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateCustomRuleGroup")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{region}/custom-rule-groups/{name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateCustomRuleGroupPayload == nil {
+		return localVarReturnValue, reportError("updateCustomRuleGroupPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateCustomRuleGroupPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
