@@ -20,7 +20,7 @@ var _ MappedNullable = &PartialUpdateZonePayload{}
 
 // PartialUpdateZonePayload struct for PartialUpdateZonePayload
 type PartialUpdateZonePayload struct {
-	// access control list
+	// the access control list (note: this field currently has no effect and does not enforce any access restrictions on the DNS zone)
 	Acl *string `json:"acl,omitempty"`
 	// contact e-mail for the zone
 	ContactEmail *string `json:"contactEmail,omitempty"`
