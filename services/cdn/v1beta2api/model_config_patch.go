@@ -25,8 +25,8 @@ type ConfigPatch struct {
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps []string `json:"blockedIps,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
-	DefaultCacheDuration NullableString           `json:"defaultCacheDuration,omitempty"`
-	LogSink              NullableLokiLogSinkPatch `json:"logSink,omitempty"`
+	DefaultCacheDuration NullableString             `json:"defaultCacheDuration,omitempty"`
+	LogSink              NullableConfigPatchLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
 	Optimizer            *OptimizerPatch `json:"optimizer,omitempty"`
@@ -194,9 +194,9 @@ func (o *ConfigPatch) UnsetDefaultCacheDuration() {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ConfigPatch) GetLogSink() LokiLogSinkPatch {
+func (o *ConfigPatch) GetLogSink() ConfigPatchLogSink {
 	if o == nil || IsNil(o.LogSink.Get()) {
-		var ret LokiLogSinkPatch
+		var ret ConfigPatchLogSink
 		return ret
 	}
 	return *o.LogSink.Get()
@@ -205,7 +205,7 @@ func (o *ConfigPatch) GetLogSink() LokiLogSinkPatch {
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConfigPatch) GetLogSinkOk() (*LokiLogSinkPatch, bool) {
+func (o *ConfigPatch) GetLogSinkOk() (*ConfigPatchLogSink, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -221,8 +221,8 @@ func (o *ConfigPatch) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given NullableLokiLogSinkPatch and assigns it to the LogSink field.
-func (o *ConfigPatch) SetLogSink(v LokiLogSinkPatch) {
+// SetLogSink gets a reference to the given NullableConfigPatchLogSink and assigns it to the LogSink field.
+func (o *ConfigPatch) SetLogSink(v ConfigPatchLogSink) {
 	o.LogSink.Set(&v)
 }
 

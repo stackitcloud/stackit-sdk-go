@@ -29,8 +29,8 @@ type CreateDistributionPayload struct {
 	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You can not have a country be assigned to multiple alternative origins.
 	Geofencing *map[string][]string `json:"geofencing,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
-	IntentId *string           `json:"intentId,omitempty"`
-	LogSink  *PatchLokiLogSink `json:"logSink,omitempty"`
+	IntentId *string                           `json:"intentId,omitempty"`
+	LogSink  *CreateDistributionPayloadLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes *int64     `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *Optimizer `json:"optimizer,omitempty"`
@@ -226,9 +226,9 @@ func (o *CreateDistributionPayload) SetIntentId(v string) {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *CreateDistributionPayload) GetLogSink() PatchLokiLogSink {
+func (o *CreateDistributionPayload) GetLogSink() CreateDistributionPayloadLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret PatchLokiLogSink
+		var ret CreateDistributionPayloadLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -236,7 +236,7 @@ func (o *CreateDistributionPayload) GetLogSink() PatchLokiLogSink {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDistributionPayload) GetLogSinkOk() (*PatchLokiLogSink, bool) {
+func (o *CreateDistributionPayload) GetLogSinkOk() (*CreateDistributionPayloadLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -252,8 +252,8 @@ func (o *CreateDistributionPayload) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given PatchLokiLogSink and assigns it to the LogSink field.
-func (o *CreateDistributionPayload) SetLogSink(v PatchLokiLogSink) {
+// SetLogSink gets a reference to the given CreateDistributionPayloadLogSink and assigns it to the LogSink field.
+func (o *CreateDistributionPayload) SetLogSink(v CreateDistributionPayloadLogSink) {
 	o.LogSink = &v
 }
 
