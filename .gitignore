@@ -15,4 +15,7 @@ bin/
 *.vscode/
 
 go.work.sum
+
 custom-gcl
+
+gorelease_report.md
