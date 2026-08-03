@@ -21,7 +21,8 @@ var _ MappedNullable = &CreateUpdatePayload{}
 
 // CreateUpdatePayload struct for CreateUpdatePayload
 type CreateUpdatePayload struct {
-	BackupBeforeUpdate   *bool `json:"backupBeforeUpdate,omitempty"`
+	BackupBeforeUpdate *bool `json:"backupBeforeUpdate,omitempty"`
+	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
 	MaintenanceWindow    int32 `json:"maintenanceWindow"`
 	AdditionalProperties map[string]interface{}
 }
