@@ -40,7 +40,7 @@ type DefaultAPIServiceMock struct {
 	// GetMetricsExecuteMock can be populated to implement the behavior of the GetMetricsExecute function of this mock
 	GetMetricsExecuteMock *func(r ApiGetMetricsRequest) (*GetMetricsResponse, error)
 	// ListBackupsExecuteMock can be populated to implement the behavior of the ListBackupsExecute function of this mock
-	ListBackupsExecuteMock *func(r ApiListBackupsRequest) (*ListBackupsResponse, error)
+	ListBackupsExecuteMock *func(r ApiListBackupsRequest) ([]Backup, error)
 	// ListCredentialsExecuteMock can be populated to implement the behavior of the ListCredentialsExecute function of this mock
 	ListCredentialsExecuteMock *func(r ApiListCredentialsRequest) (*ListCredentialsResponse, error)
 	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
@@ -252,9 +252,9 @@ func (a DefaultAPIServiceMock) ListBackups(ctx context.Context, projectId string
 }
 
 // ListBackupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBackupsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
+func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) ([]Backup, error) {
 	if a.ListBackupsExecuteMock == nil {
-		var localVarReturnValue *ListBackupsResponse
+		var localVarReturnValue []Backup
 		return localVarReturnValue, nil
 	}
 
