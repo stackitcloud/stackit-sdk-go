@@ -20,6 +20,8 @@ var _ MappedNullable = &BGPTunnelConfig{}
 
 // BGPTunnelConfig struct for BGPTunnelConfig
 type BGPTunnelConfig struct {
+	// UUID of the BGPFilter to apply to incoming routes from this tunnel's BGP neighbor. The filter must exist in the same gateway. Multiple tunnels may reference the same BGPFilter; in that case the rules' 'match.peer' field can be used to scope behavior per neighbor. Outbound filtering is not yet supported; use gateway.bgp.overrideAdvertisedRoutes to control what is advertised.
+	InboundFilterId NullableString `json:"inboundFilterId,omitempty"`
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
 	RemoteAsn            int64 `json:"remoteAsn"`
 	AdditionalProperties map[string]interface{}
@@ -43,6 +45,49 @@ func NewBGPTunnelConfig(remoteAsn int64) *BGPTunnelConfig {
 func NewBGPTunnelConfigWithDefaults() *BGPTunnelConfig {
 	this := BGPTunnelConfig{}
 	return &this
+}
+
+// GetInboundFilterId returns the InboundFilterId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BGPTunnelConfig) GetInboundFilterId() string {
+	if o == nil || IsNil(o.InboundFilterId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.InboundFilterId.Get()
+}
+
+// GetInboundFilterIdOk returns a tuple with the InboundFilterId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BGPTunnelConfig) GetInboundFilterIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InboundFilterId.Get(), o.InboundFilterId.IsSet()
+}
+
+// HasInboundFilterId returns a boolean if a field has been set.
+func (o *BGPTunnelConfig) HasInboundFilterId() bool {
+	if o != nil && o.InboundFilterId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInboundFilterId gets a reference to the given NullableString and assigns it to the InboundFilterId field.
+func (o *BGPTunnelConfig) SetInboundFilterId(v string) {
+	o.InboundFilterId.Set(&v)
+}
+
+// SetInboundFilterIdNil sets the value for InboundFilterId to be an explicit nil
+func (o *BGPTunnelConfig) SetInboundFilterIdNil() {
+	o.InboundFilterId.Set(nil)
+}
+
+// UnsetInboundFilterId ensures that no value is present for InboundFilterId, not even an explicit nil
+func (o *BGPTunnelConfig) UnsetInboundFilterId() {
+	o.InboundFilterId.Unset()
 }
 
 // GetRemoteAsn returns the RemoteAsn field value
@@ -79,6 +124,9 @@ func (o BGPTunnelConfig) MarshalJSON() ([]byte, error) {
 
 func (o BGPTunnelConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.InboundFilterId.IsSet() {
+		toSerialize["inboundFilterId"] = o.InboundFilterId.Get()
+	}
 	toSerialize["remoteAsn"] = o.RemoteAsn
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +171,7 @@ func (o *BGPTunnelConfig) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "inboundFilterId")
 		delete(additionalProperties, "remoteAsn")
 		o.AdditionalProperties = additionalProperties
 	}
