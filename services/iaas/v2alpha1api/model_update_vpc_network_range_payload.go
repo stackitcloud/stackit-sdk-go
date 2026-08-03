@@ -16,346 +16,73 @@ import (
 	"fmt"
 )
 
-// checks if the UpdateVPCNetworkRangePayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateVPCNetworkRangePayload{}
-
-// UpdateVPCNetworkRangePayload Object that represents the request body for a VPC network range update.
+// UpdateVPCNetworkRangePayload - Object that represents the request body for a VPC network range update.
 type UpdateVPCNetworkRangePayload struct {
-	// The default prefix length for network ranges in the VPC.
-	DefaultPrefixLen *int64 `json:"defaultPrefixLen,omitempty"`
-	// Description Object. Allows string up to 255 Characters.
-	Description *string                              `json:"description,omitempty"`
-	IpVersion   V1UpdateVPCNetworkRangeIPv4IpVersion `json:"ipVersion"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
-	Labels map[string]interface{} `json:"labels,omitempty"`
-	// The maximal prefix length for network ranges in the VPC.
-	MaxPrefixLen *int64 `json:"maxPrefixLen,omitempty"`
-	// The minimal prefix length for network ranges in the VPC.
-	MinPrefixLen *int64 `json:"minPrefixLen,omitempty"`
-	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers          []string `json:"nameservers,omitempty"`
-	AdditionalProperties map[string]interface{}
+	V1UpdateVPCNetworkRangeIPv4 *V1UpdateVPCNetworkRangeIPv4
 }
 
-type _UpdateVPCNetworkRangePayload UpdateVPCNetworkRangePayload
-
-// NewUpdateVPCNetworkRangePayload instantiates a new UpdateVPCNetworkRangePayload object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateVPCNetworkRangePayload(ipVersion V1UpdateVPCNetworkRangeIPv4IpVersion) *UpdateVPCNetworkRangePayload {
-	this := UpdateVPCNetworkRangePayload{}
-	this.IpVersion = ipVersion
-	return &this
-}
-
-// NewUpdateVPCNetworkRangePayloadWithDefaults instantiates a new UpdateVPCNetworkRangePayload object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateVPCNetworkRangePayloadWithDefaults() *UpdateVPCNetworkRangePayload {
-	this := UpdateVPCNetworkRangePayload{}
-	return &this
-}
-
-// GetDefaultPrefixLen returns the DefaultPrefixLen field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetDefaultPrefixLen() int64 {
-	if o == nil || IsNil(o.DefaultPrefixLen) {
-		var ret int64
-		return ret
+// V1UpdateVPCNetworkRangeIPv4AsUpdateVPCNetworkRangePayload is a convenience function that returns V1UpdateVPCNetworkRangeIPv4 wrapped in UpdateVPCNetworkRangePayload
+func V1UpdateVPCNetworkRangeIPv4AsUpdateVPCNetworkRangePayload(v *V1UpdateVPCNetworkRangeIPv4) UpdateVPCNetworkRangePayload {
+	return UpdateVPCNetworkRangePayload{
+		V1UpdateVPCNetworkRangeIPv4: v,
 	}
-	return *o.DefaultPrefixLen
 }
 
-// GetDefaultPrefixLenOk returns a tuple with the DefaultPrefixLen field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetDefaultPrefixLenOk() (*int64, bool) {
-	if o == nil || IsNil(o.DefaultPrefixLen) {
-		return nil, false
-	}
-	return o.DefaultPrefixLen, true
-}
-
-// HasDefaultPrefixLen returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasDefaultPrefixLen() bool {
-	if o != nil && !IsNil(o.DefaultPrefixLen) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultPrefixLen gets a reference to the given int64 and assigns it to the DefaultPrefixLen field.
-func (o *UpdateVPCNetworkRangePayload) SetDefaultPrefixLen(v int64) {
-	o.DefaultPrefixLen = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *UpdateVPCNetworkRangePayload) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetIpVersion returns the IpVersion field value
-func (o *UpdateVPCNetworkRangePayload) GetIpVersion() V1UpdateVPCNetworkRangeIPv4IpVersion {
-	if o == nil {
-		var ret V1UpdateVPCNetworkRangeIPv4IpVersion
-		return ret
-	}
-
-	return o.IpVersion
-}
-
-// GetIpVersionOk returns a tuple with the IpVersion field value
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetIpVersionOk() (*V1UpdateVPCNetworkRangeIPv4IpVersion, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IpVersion, true
-}
-
-// SetIpVersion sets field value
-func (o *UpdateVPCNetworkRangePayload) SetIpVersion(v V1UpdateVPCNetworkRangeIPv4IpVersion) {
-	o.IpVersion = v
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetLabels() map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetLabelsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return map[string]interface{}{}, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateVPCNetworkRangePayload) SetLabels(v map[string]interface{}) {
-	o.Labels = v
-}
-
-// GetMaxPrefixLen returns the MaxPrefixLen field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetMaxPrefixLen() int64 {
-	if o == nil || IsNil(o.MaxPrefixLen) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxPrefixLen
-}
-
-// GetMaxPrefixLenOk returns a tuple with the MaxPrefixLen field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetMaxPrefixLenOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxPrefixLen) {
-		return nil, false
-	}
-	return o.MaxPrefixLen, true
-}
-
-// HasMaxPrefixLen returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasMaxPrefixLen() bool {
-	if o != nil && !IsNil(o.MaxPrefixLen) {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxPrefixLen gets a reference to the given int64 and assigns it to the MaxPrefixLen field.
-func (o *UpdateVPCNetworkRangePayload) SetMaxPrefixLen(v int64) {
-	o.MaxPrefixLen = &v
-}
-
-// GetMinPrefixLen returns the MinPrefixLen field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetMinPrefixLen() int64 {
-	if o == nil || IsNil(o.MinPrefixLen) {
-		var ret int64
-		return ret
-	}
-	return *o.MinPrefixLen
-}
-
-// GetMinPrefixLenOk returns a tuple with the MinPrefixLen field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetMinPrefixLenOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinPrefixLen) {
-		return nil, false
-	}
-	return o.MinPrefixLen, true
-}
-
-// HasMinPrefixLen returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasMinPrefixLen() bool {
-	if o != nil && !IsNil(o.MinPrefixLen) {
-		return true
-	}
-
-	return false
-}
-
-// SetMinPrefixLen gets a reference to the given int64 and assigns it to the MinPrefixLen field.
-func (o *UpdateVPCNetworkRangePayload) SetMinPrefixLen(v int64) {
-	o.MinPrefixLen = &v
-}
-
-// GetNameservers returns the Nameservers field value if set, zero value otherwise.
-func (o *UpdateVPCNetworkRangePayload) GetNameservers() []string {
-	if o == nil || IsNil(o.Nameservers) {
-		var ret []string
-		return ret
-	}
-	return o.Nameservers
-}
-
-// GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVPCNetworkRangePayload) GetNameserversOk() ([]string, bool) {
-	if o == nil || IsNil(o.Nameservers) {
-		return nil, false
-	}
-	return o.Nameservers, true
-}
-
-// HasNameservers returns a boolean if a field has been set.
-func (o *UpdateVPCNetworkRangePayload) HasNameservers() bool {
-	if o != nil && !IsNil(o.Nameservers) {
-		return true
-	}
-
-	return false
-}
-
-// SetNameservers gets a reference to the given []string and assigns it to the Nameservers field.
-func (o *UpdateVPCNetworkRangePayload) SetNameservers(v []string) {
-	o.Nameservers = v
-}
-
-func (o UpdateVPCNetworkRangePayload) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *UpdateVPCNetworkRangePayload) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o UpdateVPCNetworkRangePayload) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DefaultPrefixLen) {
-		toSerialize["defaultPrefixLen"] = o.DefaultPrefixLen
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	toSerialize["ipVersion"] = o.IpVersion
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
-	}
-	if !IsNil(o.MaxPrefixLen) {
-		toSerialize["maxPrefixLen"] = o.MaxPrefixLen
-	}
-	if !IsNil(o.MinPrefixLen) {
-		toSerialize["minPrefixLen"] = o.MinPrefixLen
-	}
-	if !IsNil(o.Nameservers) {
-		toSerialize["nameservers"] = o.Nameservers
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *UpdateVPCNetworkRangePayload) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"ipVersion",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+	// check if the discriminator value is 'ipv4'
+	if jsonDict["ipVersion"] == "ipv4" {
+		// try to unmarshal JSON data into V1UpdateVPCNetworkRangeIPv4
+		err = json.Unmarshal(data, &dst.V1UpdateVPCNetworkRangeIPv4)
+		if err == nil {
+			return nil // data stored in dst.V1UpdateVPCNetworkRangeIPv4, return on the first match
+		} else {
+			dst.V1UpdateVPCNetworkRangeIPv4 = nil
+			return fmt.Errorf("failed to unmarshal UpdateVPCNetworkRangePayload as V1UpdateVPCNetworkRangeIPv4: %s", err.Error())
 		}
 	}
 
-	varUpdateVPCNetworkRangePayload := _UpdateVPCNetworkRangePayload{}
+	return nil
+}
 
-	err = json.Unmarshal(data, &varUpdateVPCNetworkRangePayload)
-
-	if err != nil {
-		return err
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src UpdateVPCNetworkRangePayload) MarshalJSON() ([]byte, error) {
+	if src.V1UpdateVPCNetworkRangeIPv4 != nil {
+		return json.Marshal(&src.V1UpdateVPCNetworkRangeIPv4)
 	}
 
-	*o = UpdateVPCNetworkRangePayload(varUpdateVPCNetworkRangePayload)
+	return nil, nil // no data in oneOf schemas
+}
 
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "defaultPrefixLen")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "ipVersion")
-		delete(additionalProperties, "labels")
-		delete(additionalProperties, "maxPrefixLen")
-		delete(additionalProperties, "minPrefixLen")
-		delete(additionalProperties, "nameservers")
-		o.AdditionalProperties = additionalProperties
+// Get the actual instance
+func (obj *UpdateVPCNetworkRangePayload) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.V1UpdateVPCNetworkRangeIPv4 != nil {
+		return obj.V1UpdateVPCNetworkRangeIPv4
 	}
 
-	return err
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj UpdateVPCNetworkRangePayload) GetActualInstanceValue() interface{} {
+	if obj.V1UpdateVPCNetworkRangeIPv4 != nil {
+		return *obj.V1UpdateVPCNetworkRangeIPv4
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableUpdateVPCNetworkRangePayload struct {
