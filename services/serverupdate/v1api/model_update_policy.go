@@ -20,12 +20,14 @@ var _ MappedNullable = &UpdatePolicy{}
 
 // UpdatePolicy struct for UpdatePolicy
 type UpdatePolicy struct {
-	Default              *bool   `json:"default,omitempty"`
-	Description          *string `json:"description,omitempty"`
-	Enabled              *bool   `json:"enabled,omitempty"`
-	Id                   *string `json:"id,omitempty"`
-	MaintenanceWindow    *int32  `json:"maintenanceWindow,omitempty"`
-	Name                 *string `json:"name,omitempty"`
+	Default     *bool   `json:"default,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Enabled     *bool   `json:"enabled,omitempty"`
+	Id          *string `json:"id,omitempty"`
+	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
+	MaintenanceWindow *int32  `json:"maintenanceWindow,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
 	Rrule                *string `json:"rrule,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
