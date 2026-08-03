@@ -37,9 +37,10 @@ type Authentication struct {
 	// The Oauth2 provider to use.
 	Provider string `json:"provider"`
 	// Scopes defines the OIDC scopes to request.
-	Scopes string `json:"scopes"`
-	// The current status of the authentication definition.
-	Status               string `json:"status"`
+	Scopes string               `json:"scopes"`
+	Status AuthenticationStatus `json:"status"`
+	// Provides additional information or error details when the status is 'Error'.
+	StatusMessage        *string `json:"status_message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,7 +50,7 @@ type _Authentication Authentication
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthentication(autoDiscoverUrl string, clientId string, createdAt time.Time, iconUrl string, id string, name string, provider string, scopes string, status string) *Authentication {
+func NewAuthentication(autoDiscoverUrl string, clientId string, createdAt time.Time, iconUrl string, id string, name string, provider string, scopes string, status AuthenticationStatus) *Authentication {
 	this := Authentication{}
 	this.AutoDiscoverUrl = autoDiscoverUrl
 	this.ClientId = clientId
@@ -264,9 +265,9 @@ func (o *Authentication) SetScopes(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *Authentication) GetStatus() string {
+func (o *Authentication) GetStatus() AuthenticationStatus {
 	if o == nil {
-		var ret string
+		var ret AuthenticationStatus
 		return ret
 	}
 
@@ -275,7 +276,7 @@ func (o *Authentication) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Authentication) GetStatusOk() (*string, bool) {
+func (o *Authentication) GetStatusOk() (*AuthenticationStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -283,8 +284,40 @@ func (o *Authentication) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Authentication) SetStatus(v string) {
+func (o *Authentication) SetStatus(v AuthenticationStatus) {
 	o.Status = v
+}
+
+// GetStatusMessage returns the StatusMessage field value if set, zero value otherwise.
+func (o *Authentication) GetStatusMessage() string {
+	if o == nil || IsNil(o.StatusMessage) {
+		var ret string
+		return ret
+	}
+	return *o.StatusMessage
+}
+
+// GetStatusMessageOk returns a tuple with the StatusMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Authentication) GetStatusMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.StatusMessage) {
+		return nil, false
+	}
+	return o.StatusMessage, true
+}
+
+// HasStatusMessage returns a boolean if a field has been set.
+func (o *Authentication) HasStatusMessage() bool {
+	if o != nil && !IsNil(o.StatusMessage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusMessage gets a reference to the given string and assigns it to the StatusMessage field.
+func (o *Authentication) SetStatusMessage(v string) {
+	o.StatusMessage = &v
 }
 
 func (o Authentication) MarshalJSON() ([]byte, error) {
@@ -306,6 +339,9 @@ func (o Authentication) ToMap() (map[string]interface{}, error) {
 	toSerialize["provider"] = o.Provider
 	toSerialize["scopes"] = o.Scopes
 	toSerialize["status"] = o.Status
+	if !IsNil(o.StatusMessage) {
+		toSerialize["status_message"] = o.StatusMessage
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -366,6 +402,7 @@ func (o *Authentication) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "scopes")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "status_message")
 		o.AdditionalProperties = additionalProperties
 	}
 
