@@ -15,57 +15,57 @@ import (
 	"fmt"
 )
 
-// Mode The current mode of the rule.
-type Mode string
+// Action The protective stance action. ACTION_DENY forces a 403 status response code.
+type Action string
 
-// List of Mode
+// List of Action
 const (
-	MODE_MODE_ENABLED             Mode = "MODE_ENABLED"
-	MODE_MODE_DISABLED            Mode = "MODE_DISABLED"
-	MODE_MODE_LOG_ONLY            Mode = "MODE_LOG_ONLY"
-	MODE_UNKNOWN_DEFAULT_OPEN_API Mode = "unknown_default_open_api"
+	ACTION_ACTION_DENY              Action = "ACTION_DENY"
+	ACTION_ACTION_PASS              Action = "ACTION_PASS"
+	ACTION_ACTION_ALLOW             Action = "ACTION_ALLOW"
+	ACTION_UNKNOWN_DEFAULT_OPEN_API Action = "unknown_default_open_api"
 )
 
-// All allowed values of Mode enum
-var AllowedModeEnumValues = []Mode{
-	"MODE_ENABLED",
-	"MODE_DISABLED",
-	"MODE_LOG_ONLY",
+// All allowed values of Action enum
+var AllowedActionEnumValues = []Action{
+	"ACTION_DENY",
+	"ACTION_PASS",
+	"ACTION_ALLOW",
 	"unknown_default_open_api",
 }
 
-func (v *Mode) UnmarshalJSON(src []byte) error {
+func (v *Action) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := Mode(value)
-	for _, existing := range AllowedModeEnumValues {
+	enumTypeValue := Action(value)
+	for _, existing := range AllowedActionEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	*v = MODE_UNKNOWN_DEFAULT_OPEN_API
+	*v = ACTION_UNKNOWN_DEFAULT_OPEN_API
 	return nil
 }
 
-// NewModeFromValue returns a pointer to a valid Mode
+// NewActionFromValue returns a pointer to a valid Action
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModeFromValue(v string) (*Mode, error) {
-	ev := Mode(v)
+func NewActionFromValue(v string) (*Action, error) {
+	ev := Action(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for Mode: valid values are %v", v, AllowedModeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for Action: valid values are %v", v, AllowedActionEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
-func (v Mode) IsValid() bool {
-	for _, existing := range AllowedModeEnumValues {
+func (v Action) IsValid() bool {
+	for _, existing := range AllowedActionEnumValues {
 		if existing == v {
 			return true
 		}
@@ -73,43 +73,43 @@ func (v Mode) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to Mode value
-func (v Mode) Ptr() *Mode {
+// Ptr returns reference to Action value
+func (v Action) Ptr() *Action {
 	return &v
 }
 
-type NullableMode struct {
-	value *Mode
+type NullableAction struct {
+	value *Action
 	isSet bool
 }
 
-func (v NullableMode) Get() *Mode {
+func (v NullableAction) Get() *Action {
 	return v.value
 }
 
-func (v *NullableMode) Set(val *Mode) {
+func (v *NullableAction) Set(val *Action) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMode) IsSet() bool {
+func (v NullableAction) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMode) Unset() {
+func (v *NullableAction) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMode(val *Mode) *NullableMode {
-	return &NullableMode{value: val, isSet: true}
+func NewNullableAction(val *Action) *NullableAction {
+	return &NullableAction{value: val, isSet: true}
 }
 
-func (v NullableMode) MarshalJSON() ([]byte, error) {
+func (v NullableAction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMode) UnmarshalJSON(src []byte) error {
+func (v *NullableAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

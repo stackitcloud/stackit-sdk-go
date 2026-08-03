@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -19,7 +19,7 @@ var _ MappedNullable = &PatchMRSRule{}
 
 // PatchMRSRule struct for PatchMRSRule
 type PatchMRSRule struct {
-	Mode                 *Mode1 `json:"mode,omitempty"`
+	Mode                 *Mode `json:"mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,9 +43,9 @@ func NewPatchMRSRuleWithDefaults() *PatchMRSRule {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *PatchMRSRule) GetMode() Mode1 {
+func (o *PatchMRSRule) GetMode() Mode {
 	if o == nil || IsNil(o.Mode) {
-		var ret Mode1
+		var ret Mode
 		return ret
 	}
 	return *o.Mode
@@ -53,7 +53,7 @@ func (o *PatchMRSRule) GetMode() Mode1 {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchMRSRule) GetModeOk() (*Mode1, bool) {
+func (o *PatchMRSRule) GetModeOk() (*Mode, bool) {
 	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *PatchMRSRule) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given Mode1 and assigns it to the Mode field.
-func (o *PatchMRSRule) SetMode(v Mode1) {
+// SetMode gets a reference to the given Mode and assigns it to the Mode field.
+func (o *PatchMRSRule) SetMode(v Mode) {
 	o.Mode = &v
 }
 

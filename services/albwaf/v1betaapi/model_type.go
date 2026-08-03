@@ -15,57 +15,53 @@ import (
 	"fmt"
 )
 
-// Mode The current mode of the rule.
-type Mode string
+// Type Set the managed rule set type.
+type Type string
 
-// List of Mode
+// List of Type
 const (
-	MODE_MODE_ENABLED             Mode = "MODE_ENABLED"
-	MODE_MODE_DISABLED            Mode = "MODE_DISABLED"
-	MODE_MODE_LOG_ONLY            Mode = "MODE_LOG_ONLY"
-	MODE_UNKNOWN_DEFAULT_OPEN_API Mode = "unknown_default_open_api"
+	TYPE_TYPE_OWASP_CRS           Type = "TYPE_OWASP_CRS"
+	TYPE_UNKNOWN_DEFAULT_OPEN_API Type = "unknown_default_open_api"
 )
 
-// All allowed values of Mode enum
-var AllowedModeEnumValues = []Mode{
-	"MODE_ENABLED",
-	"MODE_DISABLED",
-	"MODE_LOG_ONLY",
+// All allowed values of Type enum
+var AllowedTypeEnumValues = []Type{
+	"TYPE_OWASP_CRS",
 	"unknown_default_open_api",
 }
 
-func (v *Mode) UnmarshalJSON(src []byte) error {
+func (v *Type) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := Mode(value)
-	for _, existing := range AllowedModeEnumValues {
+	enumTypeValue := Type(value)
+	for _, existing := range AllowedTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	*v = MODE_UNKNOWN_DEFAULT_OPEN_API
+	*v = TYPE_UNKNOWN_DEFAULT_OPEN_API
 	return nil
 }
 
-// NewModeFromValue returns a pointer to a valid Mode
+// NewTypeFromValue returns a pointer to a valid Type
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModeFromValue(v string) (*Mode, error) {
-	ev := Mode(v)
+func NewTypeFromValue(v string) (*Type, error) {
+	ev := Type(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for Mode: valid values are %v", v, AllowedModeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for Type: valid values are %v", v, AllowedTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
-func (v Mode) IsValid() bool {
-	for _, existing := range AllowedModeEnumValues {
+func (v Type) IsValid() bool {
+	for _, existing := range AllowedTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -73,43 +69,43 @@ func (v Mode) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to Mode value
-func (v Mode) Ptr() *Mode {
+// Ptr returns reference to Type value
+func (v Type) Ptr() *Type {
 	return &v
 }
 
-type NullableMode struct {
-	value *Mode
+type NullableType struct {
+	value *Type
 	isSet bool
 }
 
-func (v NullableMode) Get() *Mode {
+func (v NullableType) Get() *Type {
 	return v.value
 }
 
-func (v *NullableMode) Set(val *Mode) {
+func (v *NullableType) Set(val *Type) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMode) IsSet() bool {
+func (v NullableType) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMode) Unset() {
+func (v *NullableType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMode(val *Mode) *NullableMode {
-	return &NullableMode{value: val, isSet: true}
+func NewNullableType(val *Type) *NullableType {
+	return &NullableType{value: val, isSet: true}
 }
 
-func (v NullableMode) MarshalJSON() ([]byte, error) {
+func (v NullableType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMode) UnmarshalJSON(src []byte) error {
+func (v *NullableType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
