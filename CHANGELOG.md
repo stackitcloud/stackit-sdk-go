@@ -7,6 +7,9 @@
     - Deprecated SDK layer in root of the module:
       - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `albwaf`
+  - [v0.12.0](services/albwaf/CHANGELOG.md#v0120)
+    - `v1alphaapi`: Align package to latest API specification
+    - `v1betaapi`: Align package to latest API specification
   - [v0.11.0](services/albwaf/CHANGELOG.md#v0110)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
