@@ -1,3 +1,8 @@
+## v1.9.2
+- `v1api`: **Feature:** Add `AgentReadyWaitHandler` wait handler for waiting until the server agent has registered and submitting a command
+- `v1api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`)
+- **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+
 ## v1.9.1
 - `v1api`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
