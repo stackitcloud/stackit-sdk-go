@@ -3,15 +3,13 @@ package clients
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
-const (
-	// Service Account Token Flow
-	// Auth flow env variables
-	ServiceAccountToken = "STACKIT_SERVICE_ACCOUNT_TOKEN"
-)
+// Deprecated: use identity.EnvServiceAccountToken instead
+const ServiceAccountToken = identity.EnvServiceAccountToken
 
-// TokenFlow handles auth with SA static token
 type TokenFlow struct {
 	rt     http.RoundTripper
 	config *TokenFlowConfig
