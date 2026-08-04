@@ -13,6 +13,9 @@
   - [v0.11.0](services/albwaf/CHANGELOG.md#v0110)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `auditlog`:
+  - [v0.6.0](services/auditlog/CHANGELOG.md#v060)
+    - **Deprecation:** The `auditlog` SDK module and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK module and API instead.
 - `cost`:
   - [v0.5.0](services/cost/CHANGELOG.md#v050)
     - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
