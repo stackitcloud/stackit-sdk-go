@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -32,11 +32,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateCustomRuleGroupRequest
+
+		Deprecated
 	*/
 	CreateCustomRuleGroup(ctx context.Context, projectId string, region string) ApiCreateCustomRuleGroupRequest
 
 	// CreateCustomRuleGroupExecute executes the request
 	//  @return GetCustomRuleGroupResponse
+	// Deprecated
 	CreateCustomRuleGroupExecute(r ApiCreateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error)
 
 	/*
@@ -48,11 +51,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateManagedRuleSetRequest
+
+		Deprecated
 	*/
 	CreateManagedRuleSet(ctx context.Context, projectId string, region string) ApiCreateManagedRuleSetRequest
 
 	// CreateManagedRuleSetExecute executes the request
 	//  @return GetManagedRuleSetResponse
+	// Deprecated
 	CreateManagedRuleSetExecute(r ApiCreateManagedRuleSetRequest) (*GetManagedRuleSetResponse, error)
 
 	/*
@@ -64,11 +70,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateWAFRequest
+
+		Deprecated
 	*/
 	CreateWAF(ctx context.Context, projectId string, region string) ApiCreateWAFRequest
 
 	// CreateWAFExecute executes the request
 	//  @return GetWAFResponse
+	// Deprecated
 	CreateWAFExecute(r ApiCreateWAFRequest) (*GetWAFResponse, error)
 
 	/*
@@ -81,11 +90,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteCustomRuleGroupRequest
+
+		Deprecated
 	*/
 	DeleteCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiDeleteCustomRuleGroupRequest
 
 	// DeleteCustomRuleGroupExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteCustomRuleGroupExecute(r ApiDeleteCustomRuleGroupRequest) (map[string]interface{}, error)
 
 	/*
@@ -98,11 +110,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteManagedRuleSetRequest
+
+		Deprecated
 	*/
 	DeleteManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiDeleteManagedRuleSetRequest
 
 	// DeleteManagedRuleSetExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteManagedRuleSetExecute(r ApiDeleteManagedRuleSetRequest) (map[string]interface{}, error)
 
 	/*
@@ -115,11 +130,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiDeleteWAFRequest
+
+		Deprecated
 	*/
 	DeleteWAF(ctx context.Context, projectId string, region string, name string) ApiDeleteWAFRequest
 
 	// DeleteWAFExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]interface{}, error)
 
 	/*
@@ -132,11 +150,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetCustomRuleGroupRequest
+
+		Deprecated
 	*/
 	GetCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiGetCustomRuleGroupRequest
 
 	// GetCustomRuleGroupExecute executes the request
 	//  @return GetCustomRuleGroupResponse
+	// Deprecated
 	GetCustomRuleGroupExecute(r ApiGetCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error)
 
 	/*
@@ -149,11 +170,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetManagedRuleSetRequest
+
+		Deprecated
 	*/
 	GetManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiGetManagedRuleSetRequest
 
 	// GetManagedRuleSetExecute executes the request
 	//  @return GetManagedRuleSetResponse
+	// Deprecated
 	GetManagedRuleSetExecute(r ApiGetManagedRuleSetRequest) (*GetManagedRuleSetResponse, error)
 
 	/*
@@ -165,11 +189,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiGetQuotaRequest
+
+		Deprecated
 	*/
 	GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest
 
 	// GetQuotaExecute executes the request
 	//  @return GetQuotaResponse
+	// Deprecated
 	GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
 
 	/*
@@ -182,11 +209,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiGetWAFRequest
+
+		Deprecated
 	*/
 	GetWAF(ctx context.Context, projectId string, region string, name string) ApiGetWAFRequest
 
 	// GetWAFExecute executes the request
 	//  @return GetWAFResponse
+	// Deprecated
 	GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, error)
 
 	/*
@@ -198,11 +228,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListCustomRuleGroupRequest
+
+		Deprecated
 	*/
 	ListCustomRuleGroup(ctx context.Context, projectId string, region string) ApiListCustomRuleGroupRequest
 
 	// ListCustomRuleGroupExecute executes the request
 	//  @return ListCustomRuleGroupResponse
+	// Deprecated
 	ListCustomRuleGroupExecute(r ApiListCustomRuleGroupRequest) (*ListCustomRuleGroupResponse, error)
 
 	/*
@@ -214,11 +247,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListManagedRuleSetsRequest
+
+		Deprecated
 	*/
 	ListManagedRuleSets(ctx context.Context, projectId string, region string) ApiListManagedRuleSetsRequest
 
 	// ListManagedRuleSetsExecute executes the request
 	//  @return ListManagedRuleSetResponse
+	// Deprecated
 	ListManagedRuleSetsExecute(r ApiListManagedRuleSetsRequest) (*ListManagedRuleSetResponse, error)
 
 	/*
@@ -230,11 +266,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListWAFRequest
+
+		Deprecated
 	*/
 	ListWAF(ctx context.Context, projectId string, region string) ApiListWAFRequest
 
 	// ListWAFExecute executes the request
 	//  @return ListWAFResponse
+	// Deprecated
 	ListWAFExecute(r ApiListWAFRequest) (*ListWAFResponse, error)
 
 	/*
@@ -247,11 +286,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiPatchManagedRuleSetRequest
+
+		Deprecated
 	*/
 	PatchManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchManagedRuleSetRequest
 
 	// PatchManagedRuleSetExecute executes the request
 	//  @return GetManagedRuleSetResponse
+	// Deprecated
 	PatchManagedRuleSetExecute(r ApiPatchManagedRuleSetRequest) (*GetManagedRuleSetResponse, error)
 
 	/*
@@ -264,11 +306,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiUpdateCustomRuleGroupRequest
+
+		Deprecated
 	*/
 	UpdateCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiUpdateCustomRuleGroupRequest
 
 	// UpdateCustomRuleGroupExecute executes the request
 	//  @return GetCustomRuleGroupResponse
+	// Deprecated
 	UpdateCustomRuleGroupExecute(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error)
 
 	/*
@@ -281,11 +326,14 @@ type DefaultAPI interface {
 		@param region
 		@param name
 		@return ApiUpdateWAFRequest
+
+		Deprecated
 	*/
 	UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest
 
 	// UpdateWAFExecute executes the request
 	//  @return GetWAFResponse
+	// Deprecated
 	UpdateWAFExecute(r ApiUpdateWAFRequest) (*GetWAFResponse, error)
 }
 
@@ -318,6 +366,8 @@ Creates a structured rule configuration using the abstract CRG. It can be refere
 	@param projectId
 	@param region
 	@return ApiCreateCustomRuleGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCustomRuleGroup(ctx context.Context, projectId string, region string) ApiCreateCustomRuleGroupRequest {
 	return ApiCreateCustomRuleGroupRequest{
@@ -331,6 +381,8 @@ func (a *DefaultAPIService) CreateCustomRuleGroup(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return GetCustomRuleGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCustomRuleGroupExecute(r ApiCreateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -467,6 +519,8 @@ With this endpoint a managed rule set (MRS) configuration is created and stored 
 	@param projectId
 	@param region
 	@return ApiCreateManagedRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateManagedRuleSet(ctx context.Context, projectId string, region string) ApiCreateManagedRuleSetRequest {
 	return ApiCreateManagedRuleSetRequest{
@@ -480,6 +534,8 @@ func (a *DefaultAPIService) CreateManagedRuleSet(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return GetManagedRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateManagedRuleSetExecute(r ApiCreateManagedRuleSetRequest) (*GetManagedRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -616,6 +672,8 @@ This endpoint will create and store a WAF configuration in a project. The name o
 	@param projectId
 	@param region
 	@return ApiCreateWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateWAF(ctx context.Context, projectId string, region string) ApiCreateWAFRequest {
 	return ApiCreateWAFRequest{
@@ -629,6 +687,8 @@ func (a *DefaultAPIService) CreateWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return GetWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateWAFExecute(r ApiCreateWAFRequest) (*GetWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -761,6 +821,8 @@ To delete a custom rule group configuration this endpoint is used, but it is onl
 	@param region
 	@param name
 	@return ApiDeleteCustomRuleGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiDeleteCustomRuleGroupRequest {
 	return ApiDeleteCustomRuleGroupRequest{
@@ -775,6 +837,8 @@ func (a *DefaultAPIService) DeleteCustomRuleGroup(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCustomRuleGroupExecute(r ApiDeleteCustomRuleGroupRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -903,6 +967,8 @@ To delete a managed rule set (MRS) configuration this endpoint is used, but it i
 	@param region
 	@param name
 	@return ApiDeleteManagedRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiDeleteManagedRuleSetRequest {
 	return ApiDeleteManagedRuleSetRequest{
@@ -917,6 +983,8 @@ func (a *DefaultAPIService) DeleteManagedRuleSet(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteManagedRuleSetExecute(r ApiDeleteManagedRuleSetRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1045,6 +1113,8 @@ This will delete the specified WAF configuration, but only if it is not used by 
 	@param region
 	@param name
 	@return ApiDeleteWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteWAF(ctx context.Context, projectId string, region string, name string) ApiDeleteWAFRequest {
 	return ApiDeleteWAFRequest{
@@ -1059,6 +1129,8 @@ func (a *DefaultAPIService) DeleteWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteWAFExecute(r ApiDeleteWAFRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1187,6 +1259,8 @@ Retrieves the specified SecLang custom rule configuration (CRG) structure.
 	@param region
 	@param name
 	@return ApiGetCustomRuleGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiGetCustomRuleGroupRequest {
 	return ApiGetCustomRuleGroupRequest{
@@ -1201,6 +1275,8 @@ func (a *DefaultAPIService) GetCustomRuleGroup(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return GetCustomRuleGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCustomRuleGroupExecute(r ApiGetCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1329,6 +1405,8 @@ To retrieve an existing managed rule set (MRS) configuration this endpoint can b
 	@param region
 	@param name
 	@return ApiGetManagedRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiGetManagedRuleSetRequest {
 	return ApiGetManagedRuleSetRequest{
@@ -1343,6 +1421,8 @@ func (a *DefaultAPIService) GetManagedRuleSet(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return GetManagedRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetManagedRuleSetExecute(r ApiGetManagedRuleSetRequest) (*GetManagedRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1469,6 +1549,8 @@ Retrieves the configured WAF resource quotas for the project. Limit can be chang
 	@param projectId
 	@param region
 	@return ApiGetQuotaRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
 	return ApiGetQuotaRequest{
@@ -1482,6 +1564,8 @@ func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string, regi
 // Execute executes the request
 //
 //	@return GetQuotaResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1609,6 +1693,8 @@ This endpoint will return the specified WAF configuration.
 	@param region
 	@param name
 	@return ApiGetWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetWAF(ctx context.Context, projectId string, region string, name string) ApiGetWAFRequest {
 	return ApiGetWAFRequest{
@@ -1623,6 +1709,8 @@ func (a *DefaultAPIService) GetWAF(ctx context.Context, projectId string, region
 // Execute executes the request
 //
 //	@return GetWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetWAFExecute(r ApiGetWAFRequest) (*GetWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1763,6 +1851,8 @@ List all existing Custom Rule Groups that are stored in the project.
 	@param projectId
 	@param region
 	@return ApiListCustomRuleGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCustomRuleGroup(ctx context.Context, projectId string, region string) ApiListCustomRuleGroupRequest {
 	return ApiListCustomRuleGroupRequest{
@@ -1776,6 +1866,8 @@ func (a *DefaultAPIService) ListCustomRuleGroup(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return ListCustomRuleGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCustomRuleGroupExecute(r ApiListCustomRuleGroupRequest) (*ListCustomRuleGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1921,6 +2013,8 @@ List all existing managed rule set (MRS) configurations that are stored in the p
 	@param projectId
 	@param region
 	@return ApiListManagedRuleSetsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListManagedRuleSets(ctx context.Context, projectId string, region string) ApiListManagedRuleSetsRequest {
 	return ApiListManagedRuleSetsRequest{
@@ -1934,6 +2028,8 @@ func (a *DefaultAPIService) ListManagedRuleSets(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return ListManagedRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListManagedRuleSetsExecute(r ApiListManagedRuleSetsRequest) (*ListManagedRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2079,6 +2175,8 @@ To list all WAF configurations stored in a project, use this endpoint.
 	@param projectId
 	@param region
 	@return ApiListWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListWAF(ctx context.Context, projectId string, region string) ApiListWAFRequest {
 	return ApiListWAFRequest{
@@ -2092,6 +2190,8 @@ func (a *DefaultAPIService) ListWAF(ctx context.Context, projectId string, regio
 // Execute executes the request
 //
 //	@return ListWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListWAFExecute(r ApiListWAFRequest) (*ListWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2231,6 +2331,8 @@ Accepts the same structure as the GET response. Only fields provided with values
 	@param region
 	@param name
 	@return ApiPatchManagedRuleSetRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PatchManagedRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchManagedRuleSetRequest {
 	return ApiPatchManagedRuleSetRequest{
@@ -2245,6 +2347,8 @@ func (a *DefaultAPIService) PatchManagedRuleSet(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return GetManagedRuleSetResponse
+//
+// Deprecated
 func (a *DefaultAPIService) PatchManagedRuleSetExecute(r ApiPatchManagedRuleSetRequest) (*GetManagedRuleSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -2384,6 +2488,8 @@ Replaces the rules array of an existing CRG. The CRG name is immutable and used 
 	@param region
 	@param name
 	@return ApiUpdateCustomRuleGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateCustomRuleGroup(ctx context.Context, projectId string, region string, name string) ApiUpdateCustomRuleGroupRequest {
 	return ApiUpdateCustomRuleGroupRequest{
@@ -2398,6 +2504,8 @@ func (a *DefaultAPIService) UpdateCustomRuleGroup(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return GetCustomRuleGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateCustomRuleGroupExecute(r ApiUpdateCustomRuleGroupRequest) (*GetCustomRuleGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -2537,6 +2645,8 @@ The update endpoint will update a stored WAF configuration in project and not ye
 	@param region
 	@param name
 	@return ApiUpdateWAFRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateWAF(ctx context.Context, projectId string, region string, name string) ApiUpdateWAFRequest {
 	return ApiUpdateWAFRequest{
@@ -2551,6 +2661,8 @@ func (a *DefaultAPIService) UpdateWAF(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return GetWAFResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateWAFExecute(r ApiUpdateWAFRequest) (*GetWAFResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
