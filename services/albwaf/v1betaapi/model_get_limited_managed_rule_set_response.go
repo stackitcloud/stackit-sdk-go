@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -21,7 +21,7 @@ var _ MappedNullable = &GetLimitedManagedRuleSetResponse{}
 type GetLimitedManagedRuleSetResponse struct {
 	// Managed rule set configuration name.
 	Name  *string   `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
-	Type  *MRSType1 `json:"type,omitempty"`
+	Type  *Type     `json:"type,omitempty"`
 	Usage *MRSUsage `json:"usage,omitempty"`
 	// Managed rule set version.
 	Version              *string `json:"version,omitempty" validate:"regexp=^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
@@ -80,9 +80,9 @@ func (o *GetLimitedManagedRuleSetResponse) SetName(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *GetLimitedManagedRuleSetResponse) GetType() MRSType1 {
+func (o *GetLimitedManagedRuleSetResponse) GetType() Type {
 	if o == nil || IsNil(o.Type) {
-		var ret MRSType1
+		var ret Type
 		return ret
 	}
 	return *o.Type
@@ -90,7 +90,7 @@ func (o *GetLimitedManagedRuleSetResponse) GetType() MRSType1 {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLimitedManagedRuleSetResponse) GetTypeOk() (*MRSType1, bool) {
+func (o *GetLimitedManagedRuleSetResponse) GetTypeOk() (*Type, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *GetLimitedManagedRuleSetResponse) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given MRSType1 and assigns it to the Type field.
-func (o *GetLimitedManagedRuleSetResponse) SetType(v MRSType1) {
+// SetType gets a reference to the given Type and assigns it to the Type field.
+func (o *GetLimitedManagedRuleSetResponse) SetType(v Type) {
 	o.Type = &v
 }
 

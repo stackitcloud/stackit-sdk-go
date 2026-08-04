@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -20,7 +20,6 @@ type Mode string
 
 // List of Mode
 const (
-	MODE_MODE_UNSPECIFIED         Mode = "MODE_UNSPECIFIED"
 	MODE_MODE_ENABLED             Mode = "MODE_ENABLED"
 	MODE_MODE_DISABLED            Mode = "MODE_DISABLED"
 	MODE_MODE_LOG_ONLY            Mode = "MODE_LOG_ONLY"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of Mode enum
 var AllowedModeEnumValues = []Mode{
-	"MODE_UNSPECIFIED",
 	"MODE_ENABLED",
 	"MODE_DISABLED",
 	"MODE_LOG_ONLY",

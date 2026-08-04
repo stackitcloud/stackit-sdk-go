@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -22,8 +22,8 @@ var _ MappedNullable = &Condition{}
 type Condition struct {
 	Operator ConditionOperator `json:"operator"`
 	// [HINT] Ordered processing adjustments applied to clean inputs before match checking.
-	Transformations      []ConditionTransformationsInner `json:"transformations,omitempty"`
-	Variable             ConditionVariable               `json:"variable"`
+	Transformations      []Transformation  `json:"transformations,omitempty"`
+	Variable             ConditionVariable `json:"variable"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,9 +73,9 @@ func (o *Condition) SetOperator(v ConditionOperator) {
 }
 
 // GetTransformations returns the Transformations field value if set, zero value otherwise.
-func (o *Condition) GetTransformations() []ConditionTransformationsInner {
+func (o *Condition) GetTransformations() []Transformation {
 	if o == nil || IsNil(o.Transformations) {
-		var ret []ConditionTransformationsInner
+		var ret []Transformation
 		return ret
 	}
 	return o.Transformations
@@ -83,7 +83,7 @@ func (o *Condition) GetTransformations() []ConditionTransformationsInner {
 
 // GetTransformationsOk returns a tuple with the Transformations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Condition) GetTransformationsOk() ([]ConditionTransformationsInner, bool) {
+func (o *Condition) GetTransformationsOk() ([]Transformation, bool) {
 	if o == nil || IsNil(o.Transformations) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *Condition) HasTransformations() bool {
 	return false
 }
 
-// SetTransformations gets a reference to the given []ConditionTransformationsInner and assigns it to the Transformations field.
-func (o *Condition) SetTransformations(v []ConditionTransformationsInner) {
+// SetTransformations gets a reference to the given []Transformation and assigns it to the Transformations field.
+func (o *Condition) SetTransformations(v []Transformation) {
 	o.Transformations = v
 }
 
