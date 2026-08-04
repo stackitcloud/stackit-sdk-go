@@ -62,6 +62,9 @@
       - **Feature:** Add fields `Labels` and `Maintenance` to model struct `Cluster` and `CreateOrUpdateClusterPayload`
       - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
       - **Feature:** Add field `Cni` to model struct `Network`
+- `runcommand`:
+  - [v1.9.0](services/runcommand/CHANGELOG.md#v190)
+    - `v1api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`)
 - `telemetrylink`:
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field

@@ -1,3 +1,7 @@
+## v1.9.0
+- `v1api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`)
+- **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+
 ## v1.8.0
 - **Feature:** Introduce enums for various attributes
 
