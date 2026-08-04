@@ -31,10 +31,12 @@
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
 - `redis`:
-  - [v2.0.0](services/redis/CHANGELOG.md#v200)
-    - **Breaking Change:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+  - [v1.2.0](services/redis/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
     - `v2api`:
-      - **Breaking Change:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
