@@ -13,6 +13,10 @@
   - [v0.11.0](services/albwaf/CHANGELOG.md#v0110)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
+- `cost`:
+  - [v0.5.0](services/cost/CHANGELOG.md#v050)
+    - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
+    - **Feature:** Add field `QuantityDecimal` to `ReportData` model struct
 - `logme`:
   - [v1.1.0](services/logme/CHANGELOG.md#v110)
     - `v2api`: 

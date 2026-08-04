@@ -1,3 +1,7 @@
+## v0.5.0
+- **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
+- **Feature:** Add field `QuantityDecimal` to `ReportData` model struct
+
 ## v0.4.0
 - **Feature:** Introduce enums for various attributes
 
