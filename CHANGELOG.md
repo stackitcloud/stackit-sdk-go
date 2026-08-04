@@ -30,6 +30,13 @@
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `redis`:
+  - [v1.2.0](services/redis/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `resourcemanager`:
   - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
     - Update description of the `Labels` field in model structs
