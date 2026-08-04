@@ -37,6 +37,9 @@
     - `v2api`:
       - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
         The go type now correctly models the actual JSON response, this operation was broken beforehand.
+- `resourcemanager`:
+  - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
+    - Update description of the `Labels` field in model structs
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
