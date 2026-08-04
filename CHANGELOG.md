@@ -30,6 +30,11 @@
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `redis`:
+  - [v2.0.0](services/redis/CHANGELOG.md#v200)
+    - **Breaking Change:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+    - `v2api`:
+      - **Breaking Change:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`

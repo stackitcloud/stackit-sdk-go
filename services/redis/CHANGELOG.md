@@ -1,3 +1,8 @@
+## v2.0.0
+- **Breaking Change:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+- `v2api`:
+  - **Breaking Change:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+
 ## v1.1.1
 - `v1api`:
   - **Improvement**: Improve http error handling
