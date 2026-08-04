@@ -30,6 +30,9 @@
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `resourcemanager`:
+  - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
+    - Update description of the `Labels` field in model structs
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
