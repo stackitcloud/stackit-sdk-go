@@ -1,3 +1,6 @@
+## v0.24.1
+- Update description of the `Labels` field in model structs
+
 ## v0.24.0
 - **Feature:** Introduce enums for various attributes
 
