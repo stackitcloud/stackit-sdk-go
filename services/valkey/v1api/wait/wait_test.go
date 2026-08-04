@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	valkey "github.com/stackitcloud/stackit-sdk-go/services/valkey/v1api"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
+	valkey "github.com/stackitcloud/stackit-sdk-go/services/valkey/v1api"
 )
 
 type mockSettings struct {
