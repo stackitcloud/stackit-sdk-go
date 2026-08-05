@@ -21,10 +21,11 @@ var _ MappedNullable = &TunnelConfigurationPhase2{}
 // TunnelConfigurationPhase2 struct for TunnelConfigurationPhase2
 type TunnelConfigurationPhase2 struct {
 	// The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.
-	DhGroups             []PhaseDhGroupsInner                     `json:"dhGroups,omitempty"`
-	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner         `json:"encryptionAlgorithms"`
-	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner          `json:"integrityAlgorithms"`
-	DpdAction            *TunnelConfigurationPhase2AllOfDpdAction `json:"dpdAction,omitempty"`
+	DhGroups             []PhaseDhGroupsInner             `json:"dhGroups,omitempty"`
+	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner `json:"encryptionAlgorithms"`
+	// Supported integrity algorithms. SHA1 is deprecated and will be removed on 2026-12-31.
+	IntegrityAlgorithms []PhaseIntegrityAlgorithmsInner          `json:"integrityAlgorithms"`
+	DpdAction           *TunnelConfigurationPhase2AllOfDpdAction `json:"dpdAction,omitempty"`
 	// Time to schedule a Child SA re-keying (in seconds).
 	RekeyTime            *int32                                     `json:"rekeyTime,omitempty"`
 	StartAction          *TunnelConfigurationPhase2AllOfStartAction `json:"startAction,omitempty"`
