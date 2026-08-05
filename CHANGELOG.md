@@ -36,6 +36,12 @@
     - `v2api`: 
       - **Feature**: Added wait handlers  
 - `mariadb`:
+  - [v1.2.0](services/mariadb/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
     - `v2api`:
       - **Feature**: Added wait handlers
