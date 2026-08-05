@@ -20,6 +20,11 @@
   - [v0.5.0](services/cost/CHANGELOG.md#v050)
     - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
     - **Feature:** Add field `QuantityDecimal` to `ReportData` model struct
+- `dns`:
+  - [v0.22.0](services/dns/CHANGELOG.md#v0220)
+    - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+    - `v1api`:
+      - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `logme`:
   - [v1.2.0](services/logme/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
