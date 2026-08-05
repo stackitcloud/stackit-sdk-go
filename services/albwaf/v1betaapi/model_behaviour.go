@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -20,7 +20,7 @@ var _ MappedNullable = &Behaviour{}
 
 // Behaviour struct for Behaviour
 type Behaviour struct {
-	Action BehaviourAction `json:"action"`
+	Action Action `json:"action"`
 	// Determines whether an entry should be generated in the security ledger upon a rule hit.
 	Log *bool `json:"log,omitempty"`
 	// Custom notification message string mapped to underlying logdata contexts. Required if log is true.
@@ -34,7 +34,7 @@ type _Behaviour Behaviour
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBehaviour(action BehaviourAction) *Behaviour {
+func NewBehaviour(action Action) *Behaviour {
 	this := Behaviour{}
 	this.Action = action
 	return &this
@@ -49,9 +49,9 @@ func NewBehaviourWithDefaults() *Behaviour {
 }
 
 // GetAction returns the Action field value
-func (o *Behaviour) GetAction() BehaviourAction {
+func (o *Behaviour) GetAction() Action {
 	if o == nil {
-		var ret BehaviourAction
+		var ret Action
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *Behaviour) GetAction() BehaviourAction {
 
 // GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
-func (o *Behaviour) GetActionOk() (*BehaviourAction, bool) {
+func (o *Behaviour) GetActionOk() (*Action, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *Behaviour) GetActionOk() (*BehaviourAction, bool) {
 }
 
 // SetAction sets field value
-func (o *Behaviour) SetAction(v BehaviourAction) {
+func (o *Behaviour) SetAction(v Action) {
 	o.Action = v
 }
 

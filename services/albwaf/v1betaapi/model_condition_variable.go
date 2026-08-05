@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -20,7 +20,7 @@ var _ MappedNullable = &ConditionVariable{}
 
 // ConditionVariable struct for ConditionVariable
 type ConditionVariable struct {
-	Type ConditionVariableType `json:"type"`
+	Type Variable `json:"type"`
 	// Optional key element context for map variables (e.g., matching a 'Host' header key).
 	Value                *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -32,7 +32,7 @@ type _ConditionVariable ConditionVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConditionVariable(types ConditionVariableType) *ConditionVariable {
+func NewConditionVariable(types Variable) *ConditionVariable {
 	this := ConditionVariable{}
 	this.Type = types
 	return &this
@@ -47,9 +47,9 @@ func NewConditionVariableWithDefaults() *ConditionVariable {
 }
 
 // GetType returns the Type field value
-func (o *ConditionVariable) GetType() ConditionVariableType {
+func (o *ConditionVariable) GetType() Variable {
 	if o == nil {
-		var ret ConditionVariableType
+		var ret Variable
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *ConditionVariable) GetType() ConditionVariableType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ConditionVariable) GetTypeOk() (*ConditionVariableType, bool) {
+func (o *ConditionVariable) GetTypeOk() (*Variable, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *ConditionVariable) GetTypeOk() (*ConditionVariableType, bool) {
 }
 
 // SetType sets field value
-func (o *ConditionVariable) SetType(v ConditionVariableType) {
+func (o *ConditionVariable) SetType(v Variable) {
 	o.Type = v
 }
 
