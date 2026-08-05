@@ -101,9 +101,9 @@
       - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
       - **Feature:** Add field `Cni` to model struct `Network`
 - `sqlserverflex`:
-  - [v1.16.2](services/sqlserverflex/CHANGELOG.md#v1162)
+  - [v1.17.0](services/sqlserverflex/CHANGELOG.md#v1170)
     - `v3api`:
-      - **Bugfix:** add missing `DeleteUserWaitHandler` and `CreateUserWaitHandler`
+      - **Feature:** add missing `DeleteUserWaitHandler` and `CreateUserWaitHandler`
 - `telemetrylink`:
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
