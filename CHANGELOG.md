@@ -7,6 +7,13 @@
     - Deprecated SDK layer in root of the module:
       - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `albwaf`
+  - [v0.13.0](services/albwaf/CHANGELOG.md#v0130)
+    - `v1betaapi`:
+      - **Improvement:** The entire `v1betaapi` package is now marked as deprecated. Migrate to `v1api`
+      - **Feature:** Add new models `Operator`, `Severity`, `Transformation`, `Type`, `Variable`, `Action`
+      - **Breaking Change:** Removed models `BehaviourAction`, `ConditionOperatorType`, `ConditionTransformationsInner`, `ConditionVariableType`, `GetBehaviourAction`, `GetBehaviourSeverity`, `Mode1`, `MRSType`, `MRSType1`, `MRSType2`
+      - **Breaking Change:** `PatchMRSRule.Mode` field type changed from `*Mode1` to `*Mode`
+    - `v1api`: New package which can be used to communicate with the albwaf v1 API
   - [v0.12.0](services/albwaf/CHANGELOG.md#v0120)
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
