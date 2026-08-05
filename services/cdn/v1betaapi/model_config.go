@@ -20,14 +20,14 @@ var _ MappedNullable = &Config{}
 
 // Config struct for Config
 type Config struct {
-	Backend HttpBackend `json:"backend"`
+	Backend ConfigBackend `json:"backend"`
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIPs []string `json:"blockedIPs"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
-	LogSink              *LokiLogSink   `json:"logSink,omitempty"`
+	LogSink              *ConfigLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes    NullableInt64 `json:"monthlyLimitBytes,omitempty"`
 	Optimizer            *Optimizer    `json:"optimizer,omitempty"`
@@ -42,7 +42,7 @@ type _Config Config
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfig(backend HttpBackend, blockedCountries []string, blockedIPs []string, regions []Region, waf WafConfig) *Config {
+func NewConfig(backend ConfigBackend, blockedCountries []string, blockedIPs []string, regions []Region, waf WafConfig) *Config {
 	this := Config{}
 	this.Backend = backend
 	this.BlockedCountries = blockedCountries
@@ -61,9 +61,9 @@ func NewConfigWithDefaults() *Config {
 }
 
 // GetBackend returns the Backend field value
-func (o *Config) GetBackend() HttpBackend {
+func (o *Config) GetBackend() ConfigBackend {
 	if o == nil {
-		var ret HttpBackend
+		var ret ConfigBackend
 		return ret
 	}
 
@@ -72,7 +72,7 @@ func (o *Config) GetBackend() HttpBackend {
 
 // GetBackendOk returns a tuple with the Backend field value
 // and a boolean to check if the value has been set.
-func (o *Config) GetBackendOk() (*HttpBackend, bool) {
+func (o *Config) GetBackendOk() (*ConfigBackend, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *Config) GetBackendOk() (*HttpBackend, bool) {
 }
 
 // SetBackend sets field value
-func (o *Config) SetBackend(v HttpBackend) {
+func (o *Config) SetBackend(v ConfigBackend) {
 	o.Backend = v
 }
 
@@ -176,9 +176,9 @@ func (o *Config) UnsetDefaultCacheDuration() {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *Config) GetLogSink() LokiLogSink {
+func (o *Config) GetLogSink() ConfigLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret LokiLogSink
+		var ret ConfigLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -186,7 +186,7 @@ func (o *Config) GetLogSink() LokiLogSink {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Config) GetLogSinkOk() (*LokiLogSink, bool) {
+func (o *Config) GetLogSinkOk() (*ConfigLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *Config) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given LokiLogSink and assigns it to the LogSink field.
-func (o *Config) SetLogSink(v LokiLogSink) {
+// SetLogSink gets a reference to the given ConfigLogSink and assigns it to the LogSink field.
+func (o *Config) SetLogSink(v ConfigLogSink) {
 	o.LogSink = &v
 }
 
