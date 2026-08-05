@@ -1,3 +1,10 @@
+## v1.2.0
+- **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+  The go type now correctly models the actual JSON response, this operation was broken beforehand.
+- `v2api`:
+  - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+    The go type now correctly models the actual JSON response, this operation was broken beforehand.
+
 ## v1.1.1
 - `v1api`:
   - **Improvement**: Improve http error handling
