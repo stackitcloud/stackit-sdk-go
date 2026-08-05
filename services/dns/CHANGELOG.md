@@ -1,3 +1,8 @@
+## v0.22.0
+- **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+- `v1api`:
+  - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+
 ## v0.21.0
 - **Feature:** Introduce enums for various attributes
 

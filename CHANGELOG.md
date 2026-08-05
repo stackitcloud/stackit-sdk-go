@@ -27,23 +27,54 @@
   - [v0.5.0](services/cost/CHANGELOG.md#v050)
     - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
     - **Feature:** Add field `QuantityDecimal` to `ReportData` model struct
+- `dns`:
+  - [v0.22.0](services/dns/CHANGELOG.md#v0220)
+    - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+    - `v1api`:
+      - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `logme`:
+  - [v1.2.0](services/logme/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/logme/CHANGELOG.md#v110)
     - `v2api`: 
       - **Feature**: Added wait handlers  
 - `mariadb`:
+  - [v1.2.0](services/mariadb/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
     - `v2api`:
       - **Feature**: Added wait handlers
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
+- `opensearch`:
+  - [v1.2.0](services/opensearch/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `postgresflex`:
   - [v1.12.0](services/postgresflex/CHANGELOG.md#v1120)
     - **Breaking Change:** The `v3api` replaces the `v2api`.
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
+- `rabbitmq`:
+  - [v1.2.0](services/rabbitmq/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v2api`:
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `redis`:
   - [v1.2.0](services/redis/CHANGELOG.md#v120)
     - **Breaking Change/Fix:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
