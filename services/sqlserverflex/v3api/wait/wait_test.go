@@ -20,6 +20,10 @@ type mockSettings struct {
 	instanceState     sqlserverflex.State
 	instanceIsDeleted bool
 	instanceGetFails  bool
+	userGetFails      bool
+	userId            int64
+	userIsDeleted     bool
+	userStatus        string
 }
 
 // Used for testing instance operations
@@ -41,6 +45,24 @@ func newAPIMock(settings mockSettings) sqlserverflex.DefaultAPI {
 			return &sqlserverflex.GetInstanceResponse{
 				Id:    settings.instanceId,
 				State: settings.instanceState,
+			}, nil
+		}),
+		GetUserExecuteMock: utils.Ptr(func(_ sqlserverflex.ApiGetUserRequest) (*sqlserverflex.GetUserResponse, error) {
+			if settings.userGetFails {
+				return nil, &oapierror.GenericOpenAPIError{
+					StatusCode: 423,
+				}
+			}
+
+			if settings.userIsDeleted {
+				return nil, &oapierror.GenericOpenAPIError{
+					StatusCode: 404,
+				}
+			}
+
+			return &sqlserverflex.GetUserResponse{
+				Id:     settings.userId,
+				Status: settings.userStatus,
 			}, nil
 		}),
 	}
@@ -179,6 +201,126 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				})
 
 				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
+		})
+	}
+}
+
+func TestCreateUserWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                string
+		userGetFails        bool
+		userStatus          string
+		usersGetErrorStatus int
+		wantErr             bool
+		wantResp            bool
+	}{
+		{
+			desc:         "create_succeeded",
+			userGetFails: false,
+			userStatus:   userActiveState,
+			wantErr:      false,
+			wantResp:     true,
+		},
+		{
+			desc:         "user_get_fails",
+			userGetFails: true,
+			wantErr:      true,
+			wantResp:     false,
+		},
+		{
+			desc:                "users_get_fails",
+			userGetFails:        true,
+			usersGetErrorStatus: 423,
+			wantErr:             true,
+			wantResp:            false,
+		},
+		{
+			desc:         "timeout",
+			userGetFails: false,
+			userStatus:   "",
+			wantErr:      true,
+			wantResp:     false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				userId := int64(34)
+
+				apiClient := newAPIMock(mockSettings{
+					userGetFails: tt.userGetFails,
+					userId:       userId,
+					userStatus:   tt.userStatus,
+				})
+
+				var wantRes *sqlserverflex.GetUserResponse
+				if tt.wantResp {
+					wantRes = &sqlserverflex.GetUserResponse{
+						Id:     userId,
+						Status: tt.userStatus,
+					}
+				}
+
+				handler := CreateUserWaitHandler(context.Background(), apiClient, "", "", "", userId)
+
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestDeleteUserWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc        string
+		deleteFails bool
+		getFails    bool
+		wantErr     bool
+	}{
+		{
+			desc:        "delete_succeeded",
+			deleteFails: false,
+			getFails:    false,
+			wantErr:     false,
+		},
+		{
+			desc:        "delete_failed",
+			deleteFails: true,
+			getFails:    false,
+			wantErr:     true,
+		},
+		{
+			desc:        "get_fails",
+			deleteFails: false,
+			getFails:    true,
+			wantErr:     true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				userId := int64(34)
+
+				apiClient := newAPIMock(mockSettings{
+					userGetFails:  tt.getFails,
+					userId:        userId,
+					userIsDeleted: !tt.deleteFails,
+				})
+
+				handler := DeleteUserWaitHandler(context.Background(), apiClient, "", "", "", userId)
 
 				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
