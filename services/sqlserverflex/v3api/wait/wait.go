@@ -11,6 +11,8 @@ import (
 	sqlserverflex "github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3api"
 )
 
+const userActiveState = "PROCESSED"
+
 func createOrUpdateInstanceWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[sqlserverflex.GetInstanceResponse, sqlserverflex.State]{
 		FetchInstance: client.GetInstance(ctx, projectId, region, instanceId).Execute,
@@ -68,8 +70,6 @@ func DeleteInstanceWaitHandler(ctx context.Context, client sqlserverflex.Default
 	return handler
 }
 
-const userActiveState = "PROCESSED"
-
 // CreateUserWaitHandler will wait for user creation
 func CreateUserWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[sqlserverflex.GetUserResponse] {
 	waitConfig := wait.WaiterHelper[sqlserverflex.GetUserResponse, string]{
@@ -101,8 +101,8 @@ func DeleteUserWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, proj
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
+		var oapiErr *oapierror.GenericOpenAPIError
+		if !errors.As(err, &oapiErr) {
 			return false, nil, err
 		}
 		if oapiErr.StatusCode != 404 {
