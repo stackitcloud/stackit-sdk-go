@@ -1,3 +1,7 @@
+## v1.17.0
+- `v3api`:
+  - **Feature:** add missing `DeleteUserWaitHandler` and `CreateUserWaitHandler`
+
 ## v1.16.1
 - **Improvement**: Improve http error handling
 - `v3api`: **Improvement**: Improve http error handling

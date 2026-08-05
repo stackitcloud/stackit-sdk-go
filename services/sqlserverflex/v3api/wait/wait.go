@@ -6,9 +6,12 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	sqlserverflex "github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex/v3api"
 )
+
+const userActiveState = "PROCESSED"
 
 func createOrUpdateInstanceWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[sqlserverflex.GetInstanceResponse] {
 	waitConfig := wait.WaiterHelper[sqlserverflex.GetInstanceResponse, sqlserverflex.State]{
@@ -64,5 +67,49 @@ func DeleteInstanceWaitHandler(ctx context.Context, client sqlserverflex.Default
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// CreateUserWaitHandler will wait for user creation
+func CreateUserWaitHandler(ctx context.Context, client sqlserverflex.DefaultAPI, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[sqlserverflex.GetUserResponse] {
+	waitConfig := wait.WaiterHelper[sqlserverflex.GetUserResponse, string]{
+		FetchInstance: client.GetUser(ctx, projectId, region, instanceId, userId).Execute,
+		GetState: func(resp *sqlserverflex.GetUserResponse) (string, error) {
+			if resp == nil {
+				return "", errors.New("empty response")
+			}
+			if resp.Status == "" {
+				return "", errors.New("state is missing in response")
+			}
+			return resp.Status, nil
+		},
+		ActiveState: []string{userActiveState},
+		ErrorState:  []string{},
+		// The API does not have a dedicated failure state for this resource,
+		// so we rely on the timeout for cases where it never becomes active.
+	}
+	handler := wait.New(waitConfig.Wait())
+	handler.SetSleepBeforeWait(5 * time.Second)
+	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// DeleteUserWaitHandler will wait for user deletion
+func DeleteUserWaitHandler(ctx context.Context, a sqlserverflex.DefaultAPI, projectId, region, instanceId string, userId int64) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetUser(ctx, projectId, region, instanceId, userId).Execute()
+		if err == nil {
+			return false, nil, nil
+		}
+		var oapiErr *oapierror.GenericOpenAPIError
+		if !errors.As(err, &oapiErr) {
+			return false, nil, err
+		}
+		if oapiErr.StatusCode != 404 {
+			return false, nil, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(1 * time.Minute)
 	return handler
 }
