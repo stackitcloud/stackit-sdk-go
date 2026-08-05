@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -19,12 +19,12 @@ var _ MappedNullable = &GetBehaviour{}
 
 // GetBehaviour struct for GetBehaviour
 type GetBehaviour struct {
-	Action *GetBehaviourAction `json:"action,omitempty"`
+	Action *Action `json:"action,omitempty"`
 	// Determines whether an entry should be generated in the security ledger upon a rule hit.
 	Log *bool `json:"log,omitempty"`
 	// Custom notification message string mapped to underlying logdata contexts. Required if log is true.
-	LogMsg               *string               `json:"logMsg,omitempty"`
-	Severity             *GetBehaviourSeverity `json:"severity,omitempty"`
+	LogMsg               *string   `json:"logMsg,omitempty"`
+	Severity             *Severity `json:"severity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,9 +48,9 @@ func NewGetBehaviourWithDefaults() *GetBehaviour {
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *GetBehaviour) GetAction() GetBehaviourAction {
+func (o *GetBehaviour) GetAction() Action {
 	if o == nil || IsNil(o.Action) {
-		var ret GetBehaviourAction
+		var ret Action
 		return ret
 	}
 	return *o.Action
@@ -58,7 +58,7 @@ func (o *GetBehaviour) GetAction() GetBehaviourAction {
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBehaviour) GetActionOk() (*GetBehaviourAction, bool) {
+func (o *GetBehaviour) GetActionOk() (*Action, bool) {
 	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
@@ -74,8 +74,8 @@ func (o *GetBehaviour) HasAction() bool {
 	return false
 }
 
-// SetAction gets a reference to the given GetBehaviourAction and assigns it to the Action field.
-func (o *GetBehaviour) SetAction(v GetBehaviourAction) {
+// SetAction gets a reference to the given Action and assigns it to the Action field.
+func (o *GetBehaviour) SetAction(v Action) {
 	o.Action = &v
 }
 
@@ -144,9 +144,9 @@ func (o *GetBehaviour) SetLogMsg(v string) {
 }
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
-func (o *GetBehaviour) GetSeverity() GetBehaviourSeverity {
+func (o *GetBehaviour) GetSeverity() Severity {
 	if o == nil || IsNil(o.Severity) {
-		var ret GetBehaviourSeverity
+		var ret Severity
 		return ret
 	}
 	return *o.Severity
@@ -154,7 +154,7 @@ func (o *GetBehaviour) GetSeverity() GetBehaviourSeverity {
 
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBehaviour) GetSeverityOk() (*GetBehaviourSeverity, bool) {
+func (o *GetBehaviour) GetSeverityOk() (*Severity, bool) {
 	if o == nil || IsNil(o.Severity) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *GetBehaviour) HasSeverity() bool {
 	return false
 }
 
-// SetSeverity gets a reference to the given GetBehaviourSeverity and assigns it to the Severity field.
-func (o *GetBehaviour) SetSeverity(v GetBehaviourSeverity) {
+// SetSeverity gets a reference to the given Severity and assigns it to the Severity field.
+func (o *GetBehaviour) SetSeverity(v Severity) {
 	o.Severity = &v
 }
 

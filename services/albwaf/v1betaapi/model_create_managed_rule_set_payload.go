@@ -1,7 +1,7 @@
 /*
 STACKIT Application Load Balancer Web Application Firewall API
 
-Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
+### DEPRECATED! Use v1 instead.  Generate a Web Application Firewall (WAF) to use with Application Load Balancers (ALB). The name of the WAF configuration is used in the listener of the ALB. This will activate the WAF for that ALB. An ALB with a WAF can have Managed Rule Set (MRS) and in addition can have Custom Rule Group (CRG). To create a WAF one first needs to create all the configurations that are referenced in the WAF configuration. Currently this only consists of a rule configuration, which is written in Seclang. Once all configurations are created and referenced in the WAF configuration it can be used with an ALB. Currently updating a WAF configuration will not update an existing ALB until the Load Balancer VMs are restarted.
 
 API version: 1beta.0.0
 */
@@ -26,7 +26,7 @@ type CreateManagedRuleSetPayload struct {
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
 	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
-	Type                 MRSType `json:"type"`
+	Type                 Type    `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +36,7 @@ type _CreateManagedRuleSetPayload CreateManagedRuleSetPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateManagedRuleSetPayload(name string, types MRSType) *CreateManagedRuleSetPayload {
+func NewCreateManagedRuleSetPayload(name string, types Type) *CreateManagedRuleSetPayload {
 	this := CreateManagedRuleSetPayload{}
 	this.Name = name
 	this.Type = types
@@ -140,9 +140,9 @@ func (o *CreateManagedRuleSetPayload) SetRegion(v string) {
 }
 
 // GetType returns the Type field value
-func (o *CreateManagedRuleSetPayload) GetType() MRSType {
+func (o *CreateManagedRuleSetPayload) GetType() Type {
 	if o == nil {
-		var ret MRSType
+		var ret Type
 		return ret
 	}
 
@@ -151,7 +151,7 @@ func (o *CreateManagedRuleSetPayload) GetType() MRSType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CreateManagedRuleSetPayload) GetTypeOk() (*MRSType, bool) {
+func (o *CreateManagedRuleSetPayload) GetTypeOk() (*Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *CreateManagedRuleSetPayload) GetTypeOk() (*MRSType, bool) {
 }
 
 // SetType sets field value
-func (o *CreateManagedRuleSetPayload) SetType(v MRSType) {
+func (o *CreateManagedRuleSetPayload) SetType(v Type) {
 	o.Type = v
 }
 
