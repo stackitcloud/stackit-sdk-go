@@ -28,8 +28,8 @@ type CreateDistributionPayload struct {
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration *string `json:"defaultCacheDuration,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
-	IntentId *string            `json:"intentId,omitempty"`
-	LogSink  *LokiLogSinkCreate `json:"logSink,omitempty"`
+	IntentId *string                           `json:"intentId,omitempty"`
+	LogSink  *CreateDistributionPayloadLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes *int64     `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *Optimizer `json:"optimizer,omitempty"`
@@ -213,9 +213,9 @@ func (o *CreateDistributionPayload) SetIntentId(v string) {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *CreateDistributionPayload) GetLogSink() LokiLogSinkCreate {
+func (o *CreateDistributionPayload) GetLogSink() CreateDistributionPayloadLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret LokiLogSinkCreate
+		var ret CreateDistributionPayloadLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -223,7 +223,7 @@ func (o *CreateDistributionPayload) GetLogSink() LokiLogSinkCreate {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDistributionPayload) GetLogSinkOk() (*LokiLogSinkCreate, bool) {
+func (o *CreateDistributionPayload) GetLogSinkOk() (*CreateDistributionPayloadLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *CreateDistributionPayload) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given LokiLogSinkCreate and assigns it to the LogSink field.
-func (o *CreateDistributionPayload) SetLogSink(v LokiLogSinkCreate) {
+// SetLogSink gets a reference to the given CreateDistributionPayloadLogSink and assigns it to the LogSink field.
+func (o *CreateDistributionPayload) SetLogSink(v CreateDistributionPayloadLogSink) {
 	o.LogSink = &v
 }
 
