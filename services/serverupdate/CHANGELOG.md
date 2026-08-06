@@ -1,3 +1,6 @@
+## v1.5.3
+- **Docs:** Add a description to the attributes `Rrule` and `MaintenanceWindow`
+
 ## v1.5.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 

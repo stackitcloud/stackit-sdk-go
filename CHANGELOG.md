@@ -85,6 +85,9 @@
 - `resourcemanager`:
   - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
     - Update description of the `Labels` field in model structs
+- `serverupdate`:
+  - [v1.5.3](services/serverupdate/CHANGELOG.md#v153)
+    - **Docs:** Add a description to the attributes `Rrule` and `MaintenanceWindow`
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
