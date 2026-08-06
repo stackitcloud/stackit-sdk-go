@@ -1,3 +1,6 @@
+## v0.5.0
+- `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
+
 ## v0.4.0
 - `v1alphaapi`: Align package to latest API specification
 
