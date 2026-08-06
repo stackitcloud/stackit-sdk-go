@@ -23,7 +23,7 @@ type CommandTemplateSchema struct {
 	Description          *string           `json:"description,omitempty"`
 	Name                 *string           `json:"name,omitempty"`
 	OsType               []string          `json:"osType,omitempty"`
-	ParameterSchema      *ParametersSchema `json:"parameterSchema,omitempty"`
+	ParametersSchema     *ParametersSchema `json:"parametersSchema,omitempty"`
 	Title                *string           `json:"title,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -143,36 +143,36 @@ func (o *CommandTemplateSchema) SetOsType(v []string) {
 	o.OsType = v
 }
 
-// GetParameterSchema returns the ParameterSchema field value if set, zero value otherwise.
-func (o *CommandTemplateSchema) GetParameterSchema() ParametersSchema {
-	if o == nil || IsNil(o.ParameterSchema) {
+// GetParametersSchema returns the ParametersSchema field value if set, zero value otherwise.
+func (o *CommandTemplateSchema) GetParametersSchema() ParametersSchema {
+	if o == nil || IsNil(o.ParametersSchema) {
 		var ret ParametersSchema
 		return ret
 	}
-	return *o.ParameterSchema
+	return *o.ParametersSchema
 }
 
-// GetParameterSchemaOk returns a tuple with the ParameterSchema field value if set, nil otherwise
+// GetParametersSchemaOk returns a tuple with the ParametersSchema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommandTemplateSchema) GetParameterSchemaOk() (*ParametersSchema, bool) {
-	if o == nil || IsNil(o.ParameterSchema) {
+func (o *CommandTemplateSchema) GetParametersSchemaOk() (*ParametersSchema, bool) {
+	if o == nil || IsNil(o.ParametersSchema) {
 		return nil, false
 	}
-	return o.ParameterSchema, true
+	return o.ParametersSchema, true
 }
 
-// HasParameterSchema returns a boolean if a field has been set.
-func (o *CommandTemplateSchema) HasParameterSchema() bool {
-	if o != nil && !IsNil(o.ParameterSchema) {
+// HasParametersSchema returns a boolean if a field has been set.
+func (o *CommandTemplateSchema) HasParametersSchema() bool {
+	if o != nil && !IsNil(o.ParametersSchema) {
 		return true
 	}
 
 	return false
 }
 
-// SetParameterSchema gets a reference to the given ParametersSchema and assigns it to the ParameterSchema field.
-func (o *CommandTemplateSchema) SetParameterSchema(v ParametersSchema) {
-	o.ParameterSchema = &v
+// SetParametersSchema gets a reference to the given ParametersSchema and assigns it to the ParametersSchema field.
+func (o *CommandTemplateSchema) SetParametersSchema(v ParametersSchema) {
+	o.ParametersSchema = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -226,8 +226,8 @@ func (o CommandTemplateSchema) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OsType) {
 		toSerialize["osType"] = o.OsType
 	}
-	if !IsNil(o.ParameterSchema) {
-		toSerialize["parameterSchema"] = o.ParameterSchema
+	if !IsNil(o.ParametersSchema) {
+		toSerialize["parametersSchema"] = o.ParametersSchema
 	}
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
@@ -257,7 +257,7 @@ func (o *CommandTemplateSchema) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "osType")
-		delete(additionalProperties, "parameterSchema")
+		delete(additionalProperties, "parametersSchema")
 		delete(additionalProperties, "title")
 		o.AdditionalProperties = additionalProperties
 	}
