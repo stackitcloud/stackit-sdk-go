@@ -85,6 +85,9 @@
 - `resourcemanager`:
   - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
     - Update description of the `Labels` field in model structs
+- `runcommand`:
+  - [v1.9.0](services/runcommand/CHANGELOG.md#v190)
+    - `v1api`: **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
 - `serverupdate`:
   - [v1.5.3](services/serverupdate/CHANGELOG.md#v153)
     - **Docs:** Add a description to the attributes `Rrule` and `MaintenanceWindow`

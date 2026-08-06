@@ -1,3 +1,6 @@
+## v1.9.0
+- `v1api`: **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
+
 ## v1.8.0
 - **Feature:** Introduce enums for various attributes
 
