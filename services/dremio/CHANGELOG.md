@@ -1,3 +1,6 @@
+## v0.5.0
+- Add support for v1beta version of the API
+
 ## v0.4.0
 - `v1alphaapi`: Align package to latest API specification
 

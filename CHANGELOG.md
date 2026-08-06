@@ -32,6 +32,10 @@
     - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
     - `v1api`:
       - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+- `dremio`:
+  - [v0.5.0](services/dremio/CHANGELOG.md#v050)
+    - `v1beta`:
+      - Add support for the new api version
 - `logme`:
   - [v1.2.0](services/logme/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
