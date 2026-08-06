@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	projectId := "66b03760-125b-4c63-9624-741e8a418c02" // the uuid of your STACKIT project
-	planId := "65778323-a25f-4cc8-ae87-b17fb051cba1"    // the uuid of the valkey plan
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+	planId := "PLAN_ID"       // the uuid of the valkey plan
 	region := "eu01"
 
 	// Create a new API client, that uses default authentication and configuration
