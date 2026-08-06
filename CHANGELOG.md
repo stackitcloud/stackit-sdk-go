@@ -32,6 +32,20 @@
     - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
     - `v1api`:
       - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
+- `iaas`: [v1.14.0](services/iaas/CHANGELOG.md#v1140)
+  - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.24.0` to `v0.24.1`
+  - `v1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2beta1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.l.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2alpha1api`:
+    - **Breaking Change:** Moved fields in `CreateVPCNetworkRangePayload` to submodel `NetworkRangeIPv4Request`
+    - **Breaking Change:** Moved fields in `UpdateVPCNetworkRangePayload` to submodel `V1UpdateVPCNetworkRangeIPv4`
 - `logme`:
   - [v1.2.0](services/logme/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
