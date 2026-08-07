@@ -20,7 +20,7 @@ var _ MappedNullable = &Kubernetes{}
 
 // Kubernetes For valid versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `kubernetesVersions`.
 type Kubernetes struct {
-	Version              string `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              string `json:"version" validate:"regexp=^\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 
