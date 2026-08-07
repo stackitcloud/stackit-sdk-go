@@ -22,11 +22,11 @@ type ActiveHealthCheck struct {
 	// Healthy threshold of the health checking
 	HealthyThreshold *int32 `json:"healthyThreshold,omitempty"`
 	// Interval duration of health checking in seconds
-	Interval *string `json:"interval,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	Interval *string `json:"interval,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0\\,11})(?:\\.[0-9]{1\\,9})?s$"`
 	// Interval duration threshold of the health checking in seconds
-	IntervalJitter *string `json:"intervalJitter,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	IntervalJitter *string `json:"intervalJitter,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0\\,11})(?:\\.[0-9]{1\\,9})?s$"`
 	// Active health checking timeout duration in seconds
-	Timeout *string `json:"timeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	Timeout *string `json:"timeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0\\,11})(?:\\.[0-9]{1\\,9})?s$"`
 	// Unhealthy threshold of the health checking
 	UnhealthyThreshold   *int32 `json:"unhealthyThreshold,omitempty"`
 	AdditionalProperties map[string]interface{}
