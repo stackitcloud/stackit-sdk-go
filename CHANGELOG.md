@@ -35,6 +35,23 @@
 - `dremio`:
   - [v0.5.0](services/dremio/CHANGELOG.md#v050)
     - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
+- `iaas`: [v1.14.0](services/iaas/CHANGELOG.md#v1140)
+  - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.24.0` to `v0.24.1`
+  - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+  - **Bugfix:** Escape regex in validate tags correctly
+  - **Bugfix:** Fix response decoding into byte slices and readers
+  - `v1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2beta1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2alpha1api`:
+    - **Breaking Change:** Moved fields in `CreateVPCNetworkRangePayload` to submodel `NetworkRangeIPv4Request`
+    - **Breaking Change:** Moved fields in `UpdateVPCNetworkRangePayload` to submodel `V1UpdateVPCNetworkRangeIPv4`
 - `logme`:
   - [v1.2.0](services/logme/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
