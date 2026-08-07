@@ -20,10 +20,10 @@ var _ MappedNullable = &PartialUpdateTokenPayload{}
 
 // PartialUpdateTokenPayload struct for PartialUpdateTokenPayload
 type PartialUpdateTokenPayload struct {
-	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.
-	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 *string            `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Labels               *map[string]*string `json:"labels,omitempty"`
+	Name                 *string             `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,9 +79,9 @@ func (o *PartialUpdateTokenPayload) SetDescription(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateTokenPayload) GetLabels() map[string]string {
+func (o *PartialUpdateTokenPayload) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -89,7 +89,7 @@ func (o *PartialUpdateTokenPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateTokenPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *PartialUpdateTokenPayload) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -105,8 +105,8 @@ func (o *PartialUpdateTokenPayload) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateTokenPayload) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *PartialUpdateTokenPayload) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 

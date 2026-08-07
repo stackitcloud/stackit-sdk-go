@@ -24,12 +24,12 @@ type ChatModelDetails struct {
 	Bits          *ChatModelDetailsBits    `json:"bits,omitempty"`
 	Category      ChatModelDetailsCategory `json:"category"`
 	ContextLength int64                    `json:"contextLength"`
-	Description   string                   `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	DisplayedName string                   `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description   string                   `json:"description" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
+	DisplayedName string                   `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	// generated uuid to identify a model
 	Id string `json:"id"`
 	// huggingface name
-	Name               string                              `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Name               string                              `json:"name" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	QuantizationMethod *ChatModelDetailsQuantizationMethod `json:"quantizationMethod,omitempty"`
 	Region             string                              `json:"region"`
 	// model size in bytes
@@ -37,7 +37,7 @@ type ChatModelDetails struct {
 	Skus []SKU    `json:"skus"`
 	Tags []string `json:"tags"`
 	// url of the model
-	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
