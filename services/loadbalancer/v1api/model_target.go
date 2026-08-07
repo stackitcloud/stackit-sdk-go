@@ -20,7 +20,7 @@ var _ MappedNullable = &Target{}
 // Target struct for Target
 type Target struct {
 	// Target name
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-zA-Z](?:(?:[0-9a-zA-Z]|-){0,61}[0-9a-zA-Z])?$"`
+	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-zA-Z](?:(?:[0-9a-zA-Z]|-){0\\,61}[0-9a-zA-Z])?$"`
 	// Target IP. Must by unique within a target pool.
 	Ip                   *string `json:"ip,omitempty"`
 	AdditionalProperties map[string]interface{}
