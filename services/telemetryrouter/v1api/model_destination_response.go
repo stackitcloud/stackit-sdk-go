@@ -26,7 +26,7 @@ type DestinationResponse struct {
 	CreationTime   time.Time                         `json:"creationTime"`
 	CredentialType DestinationResponseCredentialType `json:"credentialType"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\\\-]*)?$"`
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
 	// A auto generated unique id which identifies the resource.
