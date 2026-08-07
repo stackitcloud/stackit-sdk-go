@@ -1,3 +1,9 @@
+## v1.5.4
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v1.5.3
 - **Docs:** Add a description to the attributes `Rrule` and `MaintenanceWindow`
 

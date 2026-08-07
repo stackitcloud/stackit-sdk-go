@@ -1,3 +1,7 @@
+## v0.22.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.22.0
 - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `v1api`:

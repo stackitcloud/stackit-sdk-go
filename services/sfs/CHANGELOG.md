@@ -1,3 +1,9 @@
+## v0.11.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v1betaapi`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.11.0
 - **Improvement:** Use new WaiterHelper for SFS waiters
 

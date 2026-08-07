@@ -1,3 +1,7 @@
+## v0.20.1
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.20.0
 - **Feature:** Introduce enums for various attributes
 

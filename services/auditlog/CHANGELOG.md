@@ -1,3 +1,7 @@
+## v0.6.1
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.6.0
 - **Deprecation:** The `auditlog` SDK module and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK module and API instead.
 

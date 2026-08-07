@@ -1,3 +1,9 @@
+## v1.2.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v1.2.0
 - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
   The go type now correctly models the actual JSON response, this operation was broken beforehand.
