@@ -26,6 +26,11 @@
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.6.0](services/auditlog/CHANGELOG.md#v060)
     - **Deprecation:** The `auditlog` SDK module and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK module and API instead.
+- `authorization`:
+  - [v0.15.3](services/authorization/CHANGELOG.md#v0153)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `cost`:
   - [v0.5.1](services/cost/CHANGELOG.md#v051)
     - `v3api`:
