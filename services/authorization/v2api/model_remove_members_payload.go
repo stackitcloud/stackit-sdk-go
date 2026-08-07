@@ -22,7 +22,7 @@ var _ MappedNullable = &RemoveMembersPayload{}
 type RemoveMembersPayload struct {
 	ForceRemove          *bool    `json:"forceRemove,omitempty"`
 	Members              []Member `json:"members"`
-	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1\\,63}$"`
 	AdditionalProperties map[string]interface{}
 }
 
