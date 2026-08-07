@@ -23,7 +23,7 @@ type GetCustomDomainResponse struct {
 	Certificate  GetCustomDomainResponseCertificate `json:"certificate"`
 	CustomDomain CustomDomain                       `json:"customDomain"`
 	// Deprecated
-	Domain               string `json:"domain" validate:"regexp=^[.\\\\-A-Za-z0-9]*$"`
+	Domain               string `json:"domain" validate:"regexp=^[.\\-A-Za-z0-9]*$"`
 	AdditionalProperties map[string]interface{}
 }
 
