@@ -22,12 +22,12 @@ var _ MappedNullable = &CreateFolderPayload{}
 type CreateFolderPayload struct {
 	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 	ContainerParentId string `json:"containerParentId"`
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * Either a `\"scope\": \"PUBLIC\"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `\"networkArea\": \"<networkAreaID>\"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	Members []Member `json:"members,omitempty"`
 	// The name of the folder matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0\\,39}$"`
 	AdditionalProperties map[string]interface{}
 }
 

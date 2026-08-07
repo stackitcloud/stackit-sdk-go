@@ -27,7 +27,7 @@ type CreateProjectPayload struct {
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	Members []Member `json:"members"`
 	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0\\,39}$"`
 	AdditionalProperties map[string]interface{}
 }
 
