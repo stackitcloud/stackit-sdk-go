@@ -22,7 +22,7 @@ var _ MappedNullable = &StorageCreate{}
 // StorageCreate The object containing information about the storage size and class.
 type StorageCreate struct {
 	// The storage class for the storage.
-	Class *string `json:"class,omitempty"`
+	Class string `json:"class"`
 	// The storage size in Gigabytes.
 	Size                 int64 `json:"size"`
 	AdditionalProperties map[string]interface{}
@@ -34,8 +34,9 @@ type _StorageCreate StorageCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageCreate(size int64) *StorageCreate {
+func NewStorageCreate(class string, size int64) *StorageCreate {
 	this := StorageCreate{}
+	this.Class = class
 	this.Size = size
 	return &this
 }
@@ -48,36 +49,28 @@ func NewStorageCreateWithDefaults() *StorageCreate {
 	return &this
 }
 
-// GetClass returns the Class field value if set, zero value otherwise.
+// GetClass returns the Class field value
 func (o *StorageCreate) GetClass() string {
-	if o == nil || IsNil(o.Class) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Class
+
+	return o.Class
 }
 
-// GetClassOk returns a tuple with the Class field value if set, nil otherwise
+// GetClassOk returns a tuple with the Class field value
 // and a boolean to check if the value has been set.
 func (o *StorageCreate) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Class, true
+	return &o.Class, true
 }
 
-// HasClass returns a boolean if a field has been set.
-func (o *StorageCreate) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
-}
-
-// SetClass gets a reference to the given string and assigns it to the Class field.
+// SetClass sets field value
 func (o *StorageCreate) SetClass(v string) {
-	o.Class = &v
+	o.Class = v
 }
 
 // GetSize returns the Size field value
@@ -114,9 +107,7 @@ func (o StorageCreate) MarshalJSON() ([]byte, error) {
 
 func (o StorageCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
-	}
+	toSerialize["class"] = o.Class
 	toSerialize["size"] = o.Size
 
 	for key, value := range o.AdditionalProperties {
@@ -131,6 +122,7 @@ func (o *StorageCreate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"class",
 		"size",
 	}
 
