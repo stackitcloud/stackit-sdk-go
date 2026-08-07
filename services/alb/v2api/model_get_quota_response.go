@@ -26,7 +26,7 @@ type GetQuotaResponse struct {
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	// The number of observability credentials that are currently existing in this project.
 	UsedCredentials *int32 `json:"usedCredentials,omitempty"`
 	// The number of load balancing servers that are currently existing in this project.
