@@ -25,7 +25,7 @@ type Cluster struct {
 	Kubernetes  Kubernetes   `json:"kubernetes"`
 	Maintenance *Maintenance `json:"maintenance,omitempty"`
 	// Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.
-	Name                 *string        `json:"name,omitempty" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,9}[a-z0-9])?$"`
+	Name                 *string        `json:"name,omitempty" validate:"regexp=^[a-z0-9]([a-z0-9-]{0\\,9}[a-z0-9])?$"`
 	Network              *Network       `json:"network,omitempty"`
 	Nodepools            []Nodepool     `json:"nodepools"`
 	Status               *ClusterStatus `json:"status,omitempty"`
