@@ -27,7 +27,7 @@ type ServiceStatus struct {
 	Parameters   *Parameters              `json:"parameters,omitempty"`
 	Scope        *ServiceStatusScope      `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId            *string             `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	ServiceId            *string             `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1\\,254}$"`
 	State                *ServiceStatusState `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
