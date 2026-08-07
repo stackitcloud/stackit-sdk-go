@@ -23,7 +23,7 @@ type CreateAccessTokenPayload struct {
 	// The description of the access token.
 	Description *string `json:"description,omitempty"`
 	// The displayed name of the access token.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// A lifetime period for an access token in days. If unset the token will not expire.
 	Lifetime *int32 `json:"lifetime,omitempty"`
 	// The access permissions granted to the access token.
