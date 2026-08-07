@@ -1,3 +1,9 @@
+## v0.24.2
+- `v0api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+  - Update description of the `Labels` field in model structs
+
 ## v0.24.1
 - Update description of the `Labels` field in model structs
 
