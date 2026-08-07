@@ -21,7 +21,7 @@ var _ MappedNullable = &ListRulesResponse{}
 type ListRulesResponse struct {
 	Items []GetRulesResponse `json:"items,omitempty"`
 	// Continue token from the ListRulesResponse with Limit option
-	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 

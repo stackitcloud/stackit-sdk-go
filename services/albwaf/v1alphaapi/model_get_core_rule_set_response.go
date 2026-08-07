@@ -24,11 +24,11 @@ type GetCoreRuleSetResponse struct {
 	// Inventory of all available Core Rule Set groups and their current configuration. The key is the unique Group ID.
 	Groups *map[string]CRSRuleGroup `json:"groups,omitempty"`
 	// Core rule set configuration name.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	// Core rule set version.
-	Version              *string `json:"version,omitempty" validate:"regexp=^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              *string `json:"version,omitempty" validate:"regexp=^v\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 

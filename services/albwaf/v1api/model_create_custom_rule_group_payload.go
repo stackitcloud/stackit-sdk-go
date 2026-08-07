@@ -21,11 +21,11 @@ var _ MappedNullable = &CreateCustomRuleGroupPayload{}
 // CreateCustomRuleGroupPayload Request payload for creating a CRG.
 type CreateCustomRuleGroupPayload struct {
 	// Custom rule group name.
-	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	// The collection of custom rule group SecLang parameters forming this execution group.
 	Rules                []CreateCustomRule `json:"rules"`
 	AdditionalProperties map[string]interface{}

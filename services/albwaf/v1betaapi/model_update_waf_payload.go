@@ -21,17 +21,17 @@ var _ MappedNullable = &UpdateWAFPayload{}
 // UpdateWAFPayload UpdateWAFRequest updates a WAF if rules changed.
 type UpdateWAFPayload struct {
 	// Name of the CRG configuration for that WAF.
-	CustomRuleGroupName *string `json:"customRuleGroupName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	CustomRuleGroupName *string `json:"customRuleGroupName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per WAF.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Name of the managed rule set configuration for that WAF.
-	ManagedRuleSetName *string `json:"managedRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	ManagedRuleSetName *string `json:"managedRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// WAF name
-	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	AdditionalProperties map[string]interface{}
 }
 
