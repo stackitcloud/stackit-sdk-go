@@ -21,7 +21,7 @@ var _ MappedNullable = &OrgManagerDeleteResponse{}
 
 // OrgManagerDeleteResponse struct for OrgManagerDeleteResponse
 type OrgManagerDeleteResponse struct {
-	Message              string `json:"message" validate:"regexp=^[a-zA-Z0-9\\/_]+$"`
+	Message              string `json:"message" validate:"regexp=^[a-zA-Z0-9/_]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
