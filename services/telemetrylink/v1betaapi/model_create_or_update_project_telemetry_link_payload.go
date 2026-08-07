@@ -21,11 +21,11 @@ var _ MappedNullable = &CreateOrUpdateProjectTelemetryLinkPayload{}
 // CreateOrUpdateProjectTelemetryLinkPayload struct for CreateOrUpdateProjectTelemetryLinkPayload
 type CreateOrUpdateProjectTelemetryLinkPayload struct {
 	// The access token.
-	AccessToken string `json:"accessToken" validate:"regexp=^[A-Za-z0-9-_=]+\\\\.[A-Za-z0-9-_=]+\\\\.?[A-Za-z0-9-_.+\\/=]*$"`
+	AccessToken string `json:"accessToken" validate:"regexp=^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
 	// The display name is a short name chosen by the user to identify the resource.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
 	// Indicates whether routing through the link to a telemetry-router is active.
 	Enabled bool `json:"enabled"`
 	// The ID of the telemetry-router to route the telemetry data.
