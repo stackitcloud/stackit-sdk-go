@@ -23,7 +23,7 @@ type CreateIntakeRunnerPayload struct {
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
-	DisplayName string `json:"displayName" validate:"regexp=^[\\\\p{L}\\\\p{N} -]{1,32}$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[\\p{L}\\p{N} -]{1\\,32}$"`
 	// Labels are a set of key-value pairs assigned to resources.
 	Labels map[string]string `json:"labels,omitempty"`
 	// The maximum size of a message in kibibytes (1 KiB = 1024 bytes).
