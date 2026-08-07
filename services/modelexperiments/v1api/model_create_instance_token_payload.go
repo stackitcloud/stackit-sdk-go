@@ -21,10 +21,10 @@ var _ MappedNullable = &CreateInstanceTokenPayload{}
 
 // CreateInstanceTokenPayload struct for CreateInstanceTokenPayload
 type CreateInstanceTokenPayload struct {
-	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]*$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]*$"`
 	// Object that represents the labels of an object. Regex for keys: `^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels *map[string]string `json:"labels,omitempty"`
-	Name   string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Name   string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	// time to live duration. Must be valid duration string. Maximum allowed duration is 6 months. If not set, defaults to 6 months.
 	TtlDuration          *string `json:"ttlDuration,omitempty"`
 	AdditionalProperties map[string]interface{}
