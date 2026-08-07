@@ -38,6 +38,7 @@ use (
 	./examples/sqlserverflex
 	./examples/telemetrylink
 	./examples/telemetryrouter
+	./examples/valkey
 	./examples/vpn
 	./examples/waiter
 	./services/alb
@@ -84,5 +85,6 @@ use (
 	./services/stackitmarketplace
 	./services/telemetrylink
 	./services/telemetryrouter
+	./services/valkey
 	./services/vpn
 )
