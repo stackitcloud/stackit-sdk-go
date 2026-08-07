@@ -22,7 +22,7 @@ type CookiePersistence struct {
 	// Cookie is the name of the cookie to use.
 	Name *string `json:"name,omitempty"`
 	// TTL specifies the time-to-live for the cookie. The default value is 0s, and it acts as a session cookie, expiring when the client session ends.
-	Ttl                  *string `json:"ttl,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	Ttl                  *string `json:"ttl,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0\\,11})(?:\\.[0-9]{1\\,9})?s$"`
 	AdditionalProperties map[string]interface{}
 }
 
