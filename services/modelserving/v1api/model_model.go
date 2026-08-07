@@ -22,8 +22,8 @@ var _ MappedNullable = &Model{}
 // Model struct for Model
 type Model struct {
 	Category      ModelCategory `json:"category"`
-	Description   string        `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	DisplayedName string        `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description   string        `json:"description" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
+	DisplayedName string        `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	// generated uuid to identify a model
 	Id string `json:"id"`
 	// huggingface name
