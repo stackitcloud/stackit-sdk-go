@@ -33,6 +33,8 @@
     - `v1api`:
       - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `dremio`:
+  - [v0.6.0](services/dremio/CHANGELOG.md#v060)
+    - `v1betaapi`: Add waiters for STACKIT dremio v1 beta API
   - [v0.5.0](services/dremio/CHANGELOG.md#v050)
     - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
 - `logme`:

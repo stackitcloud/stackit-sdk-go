@@ -1,3 +1,6 @@
+## v0.6.0
+- `v1betaapi`: Add waiters for STACKIT dremio v1 beta API
+
 ## v0.5.0
 - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
 
