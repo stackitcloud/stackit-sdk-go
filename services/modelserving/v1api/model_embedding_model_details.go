@@ -22,18 +22,18 @@ var _ MappedNullable = &EmbeddingModelDetails{}
 // EmbeddingModelDetails struct for EmbeddingModelDetails
 type EmbeddingModelDetails struct {
 	Category      EmbeddingModelDetailsCategory `json:"category"`
-	Description   string                        `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	DisplayedName string                        `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description   string                        `json:"description" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
+	DisplayedName string                        `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	// generated uuid to identify a model
 	Id string `json:"id"`
 	// huggingface name
-	Name            string   `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Name            string   `json:"name" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	OutputDimension int64    `json:"outputDimension"`
 	Region          string   `json:"region"`
 	Skus            []SKU    `json:"skus"`
 	Tags            []string `json:"tags,omitempty"`
 	// url of the model
-	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
