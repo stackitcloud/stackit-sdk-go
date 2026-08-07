@@ -75,7 +75,16 @@ func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateProtocol)")
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateProtocol): %v", err)
+		} else {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateProtocol)")
+		}
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateProtocol): %v", err)
+		} else {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateProtocol)")
+		}
 	}
 }
 

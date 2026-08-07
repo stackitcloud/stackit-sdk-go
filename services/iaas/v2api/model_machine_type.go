@@ -28,7 +28,7 @@ type MachineType struct {
 	// Properties to control certain aspects or scheduling behavior for an object.
 	ExtraSpecs map[string]interface{} `json:"extraSpecs,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// Size in Megabyte.
 	Ram int64 `json:"ram"`
 	// The number of virtual CPUs of a server.

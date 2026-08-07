@@ -31,7 +31,7 @@ type UpdateImagePayload struct {
 	// Size in Megabyte.
 	MinRam *int64 `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// When true the image is prevented from being deleted.
 	Protected            *bool `json:"protected,omitempty"`
 	AdditionalProperties map[string]interface{}

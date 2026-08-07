@@ -22,12 +22,12 @@ var _ MappedNullable = &NetworkIPv4{}
 // NetworkIPv4 Object that represents the IPv4 part of a network.
 type NetworkIPv4 struct {
 	// The IPv4 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
-	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers []string `json:"nameservers,omitempty"`
 	Prefixes    []string `json:"prefixes"`
 	// String that represents an IPv4 address.
-	PublicIp *string `json:"publicIp,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	PublicIp *string `json:"publicIp,omitempty" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
 	// Universally Unique Identifier (UUID).
 	VpcNetworkRangeId    *string `json:"vpcNetworkRangeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}

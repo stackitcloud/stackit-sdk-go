@@ -25,7 +25,7 @@ type BootVolume struct {
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	PerformanceClass *string `json:"performanceClass,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	PerformanceClass *string `json:"performanceClass,omitempty" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// Size in Gigabyte.
 	Size                 *int64            `json:"size,omitempty"`
 	Source               *BootVolumeSource `json:"source,omitempty"`

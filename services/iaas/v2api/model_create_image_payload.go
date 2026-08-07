@@ -40,7 +40,7 @@ type CreateImagePayload struct {
 	// Size in Megabyte.
 	MinRam *int64 `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// Universally Unique Identifier (UUID).
 	Owner *string `json:"owner,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// When true the image is prevented from being deleted.
