@@ -20,8 +20,8 @@ var _ MappedNullable = &RolesResponse{}
 
 // RolesResponse struct for RolesResponse
 type RolesResponse struct {
-	ResourceId           string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType         string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	ResourceId           string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9/_|\\-=+@.]{1\\,})$"`
+	ResourceType         string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1\\,63}$"`
 	Roles                []Role `json:"roles"`
 	AdditionalProperties map[string]interface{}
 }

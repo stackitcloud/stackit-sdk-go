@@ -20,7 +20,7 @@ var _ MappedNullable = &PermissionRequest{}
 
 // PermissionRequest struct for PermissionRequest
 type PermissionRequest struct {
-	Name                 string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Name                 string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1\\,63}$"`
 	AdditionalProperties map[string]interface{}
 }
 

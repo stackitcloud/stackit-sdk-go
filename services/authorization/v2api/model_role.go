@@ -22,8 +22,8 @@ var _ MappedNullable = &Role{}
 type Role struct {
 	Description          string       `json:"description"`
 	Etag                 *string      `json:"etag,omitempty"`
-	Id                   *string      `json:"id,omitempty" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+]{1,})$"`
-	Name                 string       `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Id                   *string      `json:"id,omitempty" validate:"regexp=^([a-zA-Z0-9/_|\\-=+]{1\\,})$"`
+	Name                 string       `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1\\,63}$"`
 	Permissions          []Permission `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
