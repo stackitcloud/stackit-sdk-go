@@ -20,7 +20,7 @@ var _ MappedNullable = &RemoveInstanceRoleBindingsPayload{}
 
 // RemoveInstanceRoleBindingsPayload struct for RemoveInstanceRoleBindingsPayload
 type RemoveInstanceRoleBindingsPayload struct {
-	Role                 string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Role                 string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1\\,63}$"`
 	Subject              string `json:"subject"`
 	AdditionalProperties map[string]interface{}
 }
