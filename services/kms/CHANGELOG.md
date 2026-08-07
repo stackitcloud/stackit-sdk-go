@@ -1,3 +1,7 @@
+## v1.12.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v1.12.0
 - **Feature:** Add enum "hsm" for key protection. Only as private preview feature available.
 
