@@ -23,7 +23,7 @@ var _ MappedNullable = &DestinationCIDRv4{}
 type DestinationCIDRv4 struct {
 	Type string `json:"type"`
 	// An CIDRv4 string.
-	Value                string `json:"value" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	Value                string `json:"value" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
 	AdditionalProperties map[string]interface{}
 }
 

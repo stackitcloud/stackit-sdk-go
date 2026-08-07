@@ -23,7 +23,7 @@ var _ MappedNullable = &NexthopIPv4{}
 type NexthopIPv4 struct {
 	Type string `json:"type"`
 	// An IPv4 address.
-	Value                string `json:"value" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	Value                string `json:"value" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
 	AdditionalProperties map[string]interface{}
 }
 

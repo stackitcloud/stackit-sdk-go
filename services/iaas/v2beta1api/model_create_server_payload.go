@@ -45,12 +45,12 @@ type CreateServerPayload struct {
 	// Date-time when resource was launched.
 	LaunchedAt *time.Time `json:"launchedAt,omitempty"`
 	// Name of the machine type the server shall belong to.
-	MachineType       string             `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	MachineType       string             `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	MaintenanceWindow *ServerMaintenance `json:"maintenanceWindow,omitempty"`
 	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name for a Server.
-	Name       string                             `json:"name" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
+	Name       string                             `json:"name" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
 	Networking CreateServerPayloadAllOfNetworking `json:"networking"`
 	// The list of network interfaces (NICs) attached to the server. Only shown when detailed information is requested.
 	Nics []ServerNetwork `json:"nics,omitempty"`
@@ -67,8 +67,7 @@ type CreateServerPayload struct {
 	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server. Only shown when detailed information is requested.
 	UserData *string `json:"userData,omitempty"`
 	// The list of volumes attached to the server.
-	Volumes              []string    `json:"volumes,omitempty"`
-	Vtpm                 *ServerVTPM `json:"vtpm,omitempty"`
+	Volumes              []string `json:"volumes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -874,38 +873,6 @@ func (o *CreateServerPayload) SetVolumes(v []string) {
 	o.Volumes = v
 }
 
-// GetVtpm returns the Vtpm field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetVtpm() ServerVTPM {
-	if o == nil || IsNil(o.Vtpm) {
-		var ret ServerVTPM
-		return ret
-	}
-	return *o.Vtpm
-}
-
-// GetVtpmOk returns a tuple with the Vtpm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetVtpmOk() (*ServerVTPM, bool) {
-	if o == nil || IsNil(o.Vtpm) {
-		return nil, false
-	}
-	return o.Vtpm, true
-}
-
-// HasVtpm returns a boolean if a field has been set.
-func (o *CreateServerPayload) HasVtpm() bool {
-	if o != nil && !IsNil(o.Vtpm) {
-		return true
-	}
-
-	return false
-}
-
-// SetVtpm gets a reference to the given ServerVTPM and assigns it to the Vtpm field.
-func (o *CreateServerPayload) SetVtpm(v ServerVTPM) {
-	o.Vtpm = &v
-}
-
 func (o CreateServerPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -985,9 +952,6 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	if !IsNil(o.Vtpm) {
-		toSerialize["vtpm"] = o.Vtpm
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1058,7 +1022,6 @@ func (o *CreateServerPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "userData")
 		delete(additionalProperties, "volumes")
-		delete(additionalProperties, "vtpm")
 		o.AdditionalProperties = additionalProperties
 	}
 
