@@ -23,7 +23,7 @@ type MachineImageVersion struct {
 	Cri                  []CRI      `json:"cri,omitempty"`
 	ExpirationDate       *time.Time `json:"expirationDate,omitempty"`
 	State                *string    `json:"state,omitempty"`
-	Version              *string    `json:"version,omitempty" validate:"regexp=^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"`
+	Version              *string    `json:"version,omitempty" validate:"regexp=^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"`
 	AdditionalProperties map[string]interface{}
 }
 
