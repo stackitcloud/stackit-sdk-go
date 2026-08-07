@@ -154,6 +154,11 @@
 - `resourcemanager`:
   - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
     - Update description of the `Labels` field in model structs
+  - [v0.24.2](services/resourcemanager/CHANGELOG.md#v0242)
+    - `v0api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+      - Update description of the `Labels` field in model structs
 - `runcommand`:
   - [v1.9.1](services/runcommand/CHANGELOG.md#v191)
     - `v1api`:

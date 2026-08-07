@@ -27,7 +27,7 @@ type GetFolderDetailsResponse struct {
 	CreationTime time.Time `json:"creationTime"`
 	// Globally unique folder identifier.
 	FolderId string `json:"folderId"`
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * Either a `\"scope\": \"PUBLIC\"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `\"networkArea\": \"<networkAreaID>\"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Folder name.
 	Name    string            `json:"name"`
