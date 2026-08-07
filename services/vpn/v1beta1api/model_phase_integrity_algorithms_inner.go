@@ -23,6 +23,7 @@ const (
 	PHASEINTEGRITYALGORITHMSINNER_SHA1                     PhaseIntegrityAlgorithmsInner = "sha1"
 	PHASEINTEGRITYALGORITHMSINNER_SHA2_256                 PhaseIntegrityAlgorithmsInner = "sha2_256"
 	PHASEINTEGRITYALGORITHMSINNER_SHA2_384                 PhaseIntegrityAlgorithmsInner = "sha2_384"
+	PHASEINTEGRITYALGORITHMSINNER_SHA2_512                 PhaseIntegrityAlgorithmsInner = "sha2_512"
 	PHASEINTEGRITYALGORITHMSINNER_UNKNOWN_DEFAULT_OPEN_API PhaseIntegrityAlgorithmsInner = "unknown_default_open_api"
 )
 
@@ -31,6 +32,7 @@ var AllowedPhaseIntegrityAlgorithmsInnerEnumValues = []PhaseIntegrityAlgorithmsI
 	"sha1",
 	"sha2_256",
 	"sha2_384",
+	"sha2_512",
 	"unknown_default_open_api",
 }
 

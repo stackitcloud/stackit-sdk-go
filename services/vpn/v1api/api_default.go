@@ -40,6 +40,41 @@ type DefaultAPI interface {
 	CreateGatewayExecute(r ApiCreateGatewayRequest) (*GatewayResponse, error)
 
 	/*
+			CreateGatewayBGPFilter Create a new empty BGP filter.
+
+			Creates the filter metadata. Rules are managed via the nested /rules sub-resource.
+		NOTE: an empty filter attached to a tunnel denies all incoming routes (implicit DENY).
+
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@param gatewayId
+			@return ApiCreateGatewayBGPFilterRequest
+	*/
+	CreateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayBGPFilterRequest
+
+	// CreateGatewayBGPFilterExecute executes the request
+	//  @return BGPFilter
+	CreateGatewayBGPFilterExecute(r ApiCreateGatewayBGPFilterRequest) (*BGPFilter, error)
+
+	/*
+		CreateGatewayBGPFilterRule Add a new rule to a BGP filter.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@return ApiCreateGatewayBGPFilterRuleRequest
+	*/
+	CreateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiCreateGatewayBGPFilterRuleRequest
+
+	// CreateGatewayBGPFilterRuleExecute executes the request
+	//  @return BGPFilterRule
+	CreateGatewayBGPFilterRuleExecute(r ApiCreateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
+
+	/*
 		CreateGatewayConnection Create a new connection on an existing VPN gateway.
 
 		Create a new connection on an existing VPN gateway.
@@ -75,6 +110,43 @@ type DefaultAPI interface {
 	DeleteGatewayExecute(r ApiDeleteGatewayRequest) error
 
 	/*
+			DeleteGatewayBGPFilter Delete a BGP filter.
+
+			Fails with 409 Conflict if the filter is referenced by any connection's tunnel.bgp.inboundFilterId.
+		The error response body's details[] contains one entry per referencing connection with metadata
+		{ connectionId, displayName, tunnel: 'tunnel1'|'tunnel2' } and reason RESOURCE_IN_USE so the caller
+		can detach them first.
+
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@param gatewayId
+			@param filterId
+			@return ApiDeleteGatewayBGPFilterRequest
+	*/
+	DeleteGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiDeleteGatewayBGPFilterRequest
+
+	// DeleteGatewayBGPFilterExecute executes the request
+	DeleteGatewayBGPFilterExecute(r ApiDeleteGatewayBGPFilterRequest) error
+
+	/*
+		DeleteGatewayBGPFilterRule Delete a specific rule.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@param ruleId
+		@return ApiDeleteGatewayBGPFilterRuleRequest
+	*/
+	DeleteGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiDeleteGatewayBGPFilterRuleRequest
+
+	// DeleteGatewayBGPFilterRuleExecute executes the request
+	DeleteGatewayBGPFilterRuleExecute(r ApiDeleteGatewayBGPFilterRuleRequest) error
+
+	/*
 		DeleteGatewayConnection Delete a certain connection from an existing VPN gateway.
 
 		Delete a certain connection from an existing VPN gateway.
@@ -107,6 +179,39 @@ type DefaultAPI interface {
 	// GetGatewayExecute executes the request
 	//  @return GatewayResponse
 	GetGatewayExecute(r ApiGetGatewayRequest) (*GatewayResponse, error)
+
+	/*
+		GetGatewayBGPFilter Get BGP filter metadata.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@return ApiGetGatewayBGPFilterRequest
+	*/
+	GetGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiGetGatewayBGPFilterRequest
+
+	// GetGatewayBGPFilterExecute executes the request
+	//  @return BGPFilter
+	GetGatewayBGPFilterExecute(r ApiGetGatewayBGPFilterRequest) (*BGPFilter, error)
+
+	/*
+		GetGatewayBGPFilterRule Get a specific rule from a BGP filter.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@param ruleId
+		@return ApiGetGatewayBGPFilterRuleRequest
+	*/
+	GetGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiGetGatewayBGPFilterRuleRequest
+
+	// GetGatewayBGPFilterRuleExecute executes the request
+	//  @return BGPFilterRule
+	GetGatewayBGPFilterRuleExecute(r ApiGetGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
 
 	/*
 		GetGatewayConnection Get a certain connection for an existing VPN gateway.
@@ -160,6 +265,37 @@ type DefaultAPI interface {
 	// GetGatewayStatusExecute executes the request
 	//  @return GatewayStatusResponse
 	GetGatewayStatusExecute(r ApiGetGatewayStatusRequest) (*GatewayStatusResponse, error)
+
+	/*
+		ListGatewayBGPFilterRules List all rules inside a specific BGP filter.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@return ApiListGatewayBGPFilterRulesRequest
+	*/
+	ListGatewayBGPFilterRules(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiListGatewayBGPFilterRulesRequest
+
+	// ListGatewayBGPFilterRulesExecute executes the request
+	//  @return BGPFilterRuleList
+	ListGatewayBGPFilterRulesExecute(r ApiListGatewayBGPFilterRulesRequest) (*BGPFilterRuleList, error)
+
+	/*
+		ListGatewayBGPFilters List BGP filters for a gateway.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@return ApiListGatewayBGPFiltersRequest
+	*/
+	ListGatewayBGPFilters(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayBGPFiltersRequest
+
+	// ListGatewayBGPFiltersExecute executes the request
+	//  @return BGPFilterList
+	ListGatewayBGPFiltersExecute(r ApiListGatewayBGPFiltersRequest) (*BGPFilterList, error)
 
 	/*
 		ListGatewayConnections List connections for an existing VPN gateway.
@@ -248,6 +384,41 @@ type DefaultAPI interface {
 	// UpdateGatewayExecute executes the request
 	//  @return GatewayResponse
 	UpdateGatewayExecute(r ApiUpdateGatewayRequest) (*GatewayResponse, error)
+
+	/*
+		UpdateGatewayBGPFilter Update BGP filter metadata (name, description).
+
+		Rules are managed via the nested /rules sub-resource and are not modified by this endpoint.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@return ApiUpdateGatewayBGPFilterRequest
+	*/
+	UpdateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiUpdateGatewayBGPFilterRequest
+
+	// UpdateGatewayBGPFilterExecute executes the request
+	//  @return BGPFilter
+	UpdateGatewayBGPFilterExecute(r ApiUpdateGatewayBGPFilterRequest) (*BGPFilter, error)
+
+	/*
+		UpdateGatewayBGPFilterRule Update a specific rule.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@param filterId
+		@param ruleId
+		@return ApiUpdateGatewayBGPFilterRuleRequest
+	*/
+	UpdateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiUpdateGatewayBGPFilterRuleRequest
+
+	// UpdateGatewayBGPFilterRuleExecute executes the request
+	//  @return BGPFilterRule
+	UpdateGatewayBGPFilterRuleExecute(r ApiUpdateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error)
 
 	/*
 		UpdateGatewayConnection Update a connection on an existing VPN gateway.
@@ -419,6 +590,429 @@ func (a *DefaultAPIService) CreateGatewayExecute(r ApiCreateGatewayRequest) (*Ga
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiCreateGatewayBGPFilterRequest struct {
+	ctx                           context.Context
+	ApiService                    DefaultAPI
+	projectId                     string
+	region                        string
+	gatewayId                     string
+	createGatewayBGPFilterPayload *CreateGatewayBGPFilterPayload
+}
+
+func (r ApiCreateGatewayBGPFilterRequest) CreateGatewayBGPFilterPayload(createGatewayBGPFilterPayload CreateGatewayBGPFilterPayload) ApiCreateGatewayBGPFilterRequest {
+	r.createGatewayBGPFilterPayload = &createGatewayBGPFilterPayload
+	return r
+}
+
+func (r ApiCreateGatewayBGPFilterRequest) Execute() (*BGPFilter, error) {
+	return r.ApiService.CreateGatewayBGPFilterExecute(r)
+}
+
+/*
+CreateGatewayBGPFilter Create a new empty BGP filter.
+
+Creates the filter metadata. Rules are managed via the nested /rules sub-resource.
+NOTE: an empty filter attached to a tunnel denies all incoming routes (implicit DENY).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@return ApiCreateGatewayBGPFilterRequest
+*/
+func (a *DefaultAPIService) CreateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string) ApiCreateGatewayBGPFilterRequest {
+	return ApiCreateGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilter
+func (a *DefaultAPIService) CreateGatewayBGPFilterExecute(r ApiCreateGatewayBGPFilterRequest) (*BGPFilter, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilter
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateGatewayBGPFilter")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createGatewayBGPFilterPayload == nil {
+		return localVarReturnValue, reportError("createGatewayBGPFilterPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createGatewayBGPFilterPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiCreateGatewayBGPFilterRuleRequest struct {
+	ctx                               context.Context
+	ApiService                        DefaultAPI
+	projectId                         string
+	region                            string
+	gatewayId                         string
+	filterId                          string
+	createGatewayBGPFilterRulePayload *CreateGatewayBGPFilterRulePayload
+}
+
+func (r ApiCreateGatewayBGPFilterRuleRequest) CreateGatewayBGPFilterRulePayload(createGatewayBGPFilterRulePayload CreateGatewayBGPFilterRulePayload) ApiCreateGatewayBGPFilterRuleRequest {
+	r.createGatewayBGPFilterRulePayload = &createGatewayBGPFilterRulePayload
+	return r
+}
+
+func (r ApiCreateGatewayBGPFilterRuleRequest) Execute() (*BGPFilterRule, error) {
+	return r.ApiService.CreateGatewayBGPFilterRuleExecute(r)
+}
+
+/*
+CreateGatewayBGPFilterRule Add a new rule to a BGP filter.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@return ApiCreateGatewayBGPFilterRuleRequest
+*/
+func (a *DefaultAPIService) CreateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiCreateGatewayBGPFilterRuleRequest {
+	return ApiCreateGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilterRule
+func (a *DefaultAPIService) CreateGatewayBGPFilterRuleExecute(r ApiCreateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilterRule
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateGatewayBGPFilterRule")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}/rules"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createGatewayBGPFilterRulePayload == nil {
+		return localVarReturnValue, reportError("createGatewayBGPFilterRulePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createGatewayBGPFilterRulePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -794,6 +1388,380 @@ func (a *DefaultAPIService) DeleteGatewayExecute(r ApiDeleteGatewayRequest) erro
 	return nil
 }
 
+type ApiDeleteGatewayBGPFilterRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+	filterId   string
+}
+
+func (r ApiDeleteGatewayBGPFilterRequest) Execute() error {
+	return r.ApiService.DeleteGatewayBGPFilterExecute(r)
+}
+
+/*
+DeleteGatewayBGPFilter Delete a BGP filter.
+
+Fails with 409 Conflict if the filter is referenced by any connection's tunnel.bgp.inboundFilterId.
+The error response body's details[] contains one entry per referencing connection with metadata
+{ connectionId, displayName, tunnel: 'tunnel1'|'tunnel2' } and reason RESOURCE_IN_USE so the caller
+can detach them first.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@return ApiDeleteGatewayBGPFilterRequest
+*/
+func (a *DefaultAPIService) DeleteGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiDeleteGatewayBGPFilterRequest {
+	return ApiDeleteGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) DeleteGatewayBGPFilterExecute(r ApiDeleteGatewayBGPFilterRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteGatewayBGPFilter")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+type ApiDeleteGatewayBGPFilterRuleRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+	filterId   string
+	ruleId     string
+}
+
+func (r ApiDeleteGatewayBGPFilterRuleRequest) Execute() error {
+	return r.ApiService.DeleteGatewayBGPFilterRuleExecute(r)
+}
+
+/*
+DeleteGatewayBGPFilterRule Delete a specific rule.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@param ruleId
+	@return ApiDeleteGatewayBGPFilterRuleRequest
+*/
+func (a *DefaultAPIService) DeleteGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiDeleteGatewayBGPFilterRuleRequest {
+	return ApiDeleteGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) DeleteGatewayBGPFilterRuleExecute(r ApiDeleteGatewayBGPFilterRuleRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteGatewayBGPFilterRule")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}/rules/{ruleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ruleId"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
 type ApiDeleteGatewayConnectionRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
@@ -1015,6 +1983,368 @@ func (a *DefaultAPIService) GetGatewayExecute(r ApiGetGatewayRequest) (*GatewayR
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetGatewayBGPFilterRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+	filterId   string
+}
+
+func (r ApiGetGatewayBGPFilterRequest) Execute() (*BGPFilter, error) {
+	return r.ApiService.GetGatewayBGPFilterExecute(r)
+}
+
+/*
+GetGatewayBGPFilter Get BGP filter metadata.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@return ApiGetGatewayBGPFilterRequest
+*/
+func (a *DefaultAPIService) GetGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiGetGatewayBGPFilterRequest {
+	return ApiGetGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilter
+func (a *DefaultAPIService) GetGatewayBGPFilterExecute(r ApiGetGatewayBGPFilterRequest) (*BGPFilter, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilter
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetGatewayBGPFilter")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetGatewayBGPFilterRuleRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+	filterId   string
+	ruleId     string
+}
+
+func (r ApiGetGatewayBGPFilterRuleRequest) Execute() (*BGPFilterRule, error) {
+	return r.ApiService.GetGatewayBGPFilterRuleExecute(r)
+}
+
+/*
+GetGatewayBGPFilterRule Get a specific rule from a BGP filter.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@param ruleId
+	@return ApiGetGatewayBGPFilterRuleRequest
+*/
+func (a *DefaultAPIService) GetGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiGetGatewayBGPFilterRuleRequest {
+	return ApiGetGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilterRule
+func (a *DefaultAPIService) GetGatewayBGPFilterRuleExecute(r ApiGetGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilterRule
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetGatewayBGPFilterRule")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}/rules/{ruleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ruleId"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1551,6 +2881,360 @@ func (a *DefaultAPIService) GetGatewayStatusExecute(r ApiGetGatewayStatusRequest
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/status"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListGatewayBGPFilterRulesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+	filterId   string
+}
+
+func (r ApiListGatewayBGPFilterRulesRequest) Execute() (*BGPFilterRuleList, error) {
+	return r.ApiService.ListGatewayBGPFilterRulesExecute(r)
+}
+
+/*
+ListGatewayBGPFilterRules List all rules inside a specific BGP filter.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@return ApiListGatewayBGPFilterRulesRequest
+*/
+func (a *DefaultAPIService) ListGatewayBGPFilterRules(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiListGatewayBGPFilterRulesRequest {
+	return ApiListGatewayBGPFilterRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilterRuleList
+func (a *DefaultAPIService) ListGatewayBGPFilterRulesExecute(r ApiListGatewayBGPFilterRulesRequest) (*BGPFilterRuleList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilterRuleList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListGatewayBGPFilterRules")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}/rules"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListGatewayBGPFiltersRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	gatewayId  string
+}
+
+func (r ApiListGatewayBGPFiltersRequest) Execute() (*BGPFilterList, error) {
+	return r.ApiService.ListGatewayBGPFiltersExecute(r)
+}
+
+/*
+ListGatewayBGPFilters List BGP filters for a gateway.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@return ApiListGatewayBGPFiltersRequest
+*/
+func (a *DefaultAPIService) ListGatewayBGPFilters(ctx context.Context, projectId string, region string, gatewayId string) ApiListGatewayBGPFiltersRequest {
+	return ApiListGatewayBGPFiltersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilterList
+func (a *DefaultAPIService) ListGatewayBGPFiltersExecute(r ApiListGatewayBGPFiltersRequest) (*BGPFilterList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilterList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListGatewayBGPFilters")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
@@ -2468,6 +4152,436 @@ func (a *DefaultAPIService) UpdateGatewayExecute(r ApiUpdateGatewayRequest) (*Ga
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateGatewayBGPFilterRequest struct {
+	ctx                           context.Context
+	ApiService                    DefaultAPI
+	projectId                     string
+	region                        string
+	gatewayId                     string
+	filterId                      string
+	updateGatewayBGPFilterPayload *UpdateGatewayBGPFilterPayload
+}
+
+func (r ApiUpdateGatewayBGPFilterRequest) UpdateGatewayBGPFilterPayload(updateGatewayBGPFilterPayload UpdateGatewayBGPFilterPayload) ApiUpdateGatewayBGPFilterRequest {
+	r.updateGatewayBGPFilterPayload = &updateGatewayBGPFilterPayload
+	return r
+}
+
+func (r ApiUpdateGatewayBGPFilterRequest) Execute() (*BGPFilter, error) {
+	return r.ApiService.UpdateGatewayBGPFilterExecute(r)
+}
+
+/*
+UpdateGatewayBGPFilter Update BGP filter metadata (name, description).
+
+Rules are managed via the nested /rules sub-resource and are not modified by this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@return ApiUpdateGatewayBGPFilterRequest
+*/
+func (a *DefaultAPIService) UpdateGatewayBGPFilter(ctx context.Context, projectId string, region string, gatewayId string, filterId string) ApiUpdateGatewayBGPFilterRequest {
+	return ApiUpdateGatewayBGPFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilter
+func (a *DefaultAPIService) UpdateGatewayBGPFilterExecute(r ApiUpdateGatewayBGPFilterRequest) (*BGPFilter, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilter
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateGatewayBGPFilter")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateGatewayBGPFilterPayload == nil {
+		return localVarReturnValue, reportError("updateGatewayBGPFilterPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateGatewayBGPFilterPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateGatewayBGPFilterRuleRequest struct {
+	ctx                               context.Context
+	ApiService                        DefaultAPI
+	projectId                         string
+	region                            string
+	gatewayId                         string
+	filterId                          string
+	ruleId                            string
+	updateGatewayBGPFilterRulePayload *UpdateGatewayBGPFilterRulePayload
+}
+
+func (r ApiUpdateGatewayBGPFilterRuleRequest) UpdateGatewayBGPFilterRulePayload(updateGatewayBGPFilterRulePayload UpdateGatewayBGPFilterRulePayload) ApiUpdateGatewayBGPFilterRuleRequest {
+	r.updateGatewayBGPFilterRulePayload = &updateGatewayBGPFilterRulePayload
+	return r
+}
+
+func (r ApiUpdateGatewayBGPFilterRuleRequest) Execute() (*BGPFilterRule, error) {
+	return r.ApiService.UpdateGatewayBGPFilterRuleExecute(r)
+}
+
+/*
+UpdateGatewayBGPFilterRule Update a specific rule.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param gatewayId
+	@param filterId
+	@param ruleId
+	@return ApiUpdateGatewayBGPFilterRuleRequest
+*/
+func (a *DefaultAPIService) UpdateGatewayBGPFilterRule(ctx context.Context, projectId string, region string, gatewayId string, filterId string, ruleId string) ApiUpdateGatewayBGPFilterRuleRequest {
+	return ApiUpdateGatewayBGPFilterRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
+		filterId:   filterId,
+		ruleId:     ruleId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BGPFilterRule
+func (a *DefaultAPIService) UpdateGatewayBGPFilterRuleExecute(r ApiUpdateGatewayBGPFilterRuleRequest) (*BGPFilterRule, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BGPFilterRule
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateGatewayBGPFilterRule")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/bgp-filters/{filterId}/rules/{ruleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"filterId"+"}", url.PathEscape(parameterValueToString(r.filterId, "filterId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ruleId"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateGatewayBGPFilterRulePayload == nil {
+		return localVarReturnValue, reportError("updateGatewayBGPFilterRulePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateGatewayBGPFilterRulePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
