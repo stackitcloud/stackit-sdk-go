@@ -27,7 +27,7 @@ type Config struct {
 	BlockedIps []string `json:"blockedIps"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
-	LogSink              *LokiLogSink   `json:"logSink,omitempty"`
+	LogSink              *ConfigLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes    NullableInt64 `json:"monthlyLimitBytes,omitempty"`
 	Optimizer            *Optimizer    `json:"optimizer,omitempty"`
@@ -176,9 +176,9 @@ func (o *Config) UnsetDefaultCacheDuration() {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *Config) GetLogSink() LokiLogSink {
+func (o *Config) GetLogSink() ConfigLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret LokiLogSink
+		var ret ConfigLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -186,7 +186,7 @@ func (o *Config) GetLogSink() LokiLogSink {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Config) GetLogSinkOk() (*LokiLogSink, bool) {
+func (o *Config) GetLogSinkOk() (*ConfigLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *Config) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given LokiLogSink and assigns it to the LogSink field.
-func (o *Config) SetLogSink(v LokiLogSink) {
+// SetLogSink gets a reference to the given ConfigLogSink and assigns it to the LogSink field.
+func (o *Config) SetLogSink(v ConfigLogSink) {
 	o.LogSink = &v
 }
 
