@@ -22,7 +22,7 @@ type CRSRuleGroup struct {
 	// A description of what this group covers.
 	Description *string `json:"description,omitempty"`
 	// The name for the rule group.
-	GroupName            *string             `json:"groupName,omitempty" validate:"regexp=^[a-zA-Z\\\\(\\\\) ]+$"`
+	GroupName            *string             `json:"groupName,omitempty" validate:"regexp=^[a-zA-Z\\(\\) ]+$"`
 	Rules                *map[string]CRSRule `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
