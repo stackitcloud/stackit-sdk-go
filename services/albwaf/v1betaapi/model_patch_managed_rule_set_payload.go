@@ -22,11 +22,11 @@ type PatchManagedRuleSetPayload struct {
 	// Map of Managed Rule Set groups to be patched. The key is the Group ID (e.g., 942 for SQL Injection). Only provided rules within the group will be updated; others remain unchanged.
 	Groups *map[string]PatchMRSRuleGroup `json:"groups,omitempty"`
 	// Managed rule set configuration name.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	AdditionalProperties map[string]interface{}
 }
 
