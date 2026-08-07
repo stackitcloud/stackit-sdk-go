@@ -21,21 +21,61 @@
     - `v1alphaapi`: Align package to latest API specification
     - `v1betaapi`: Align package to latest API specification
 - `auditlog`:
+  - [v0.6.1](services/auditlog/CHANGELOG.md#v061)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.6.0](services/auditlog/CHANGELOG.md#v060)
     - **Deprecation:** The `auditlog` SDK module and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK module and API instead.
 - `cost`:
+  - [v0.5.1](services/cost/CHANGELOG.md#v051)
+    - `v3api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.5.0](services/cost/CHANGELOG.md#v050)
     - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
     - **Feature:** Add field `QuantityDecimal` to `ReportData` model struct
 - `dns`:
+  - [v0.22.1](services/dns/CHANGELOG.md#v0221)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.22.0](services/dns/CHANGELOG.md#v0220)
     - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
     - `v1api`:
       - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `dremio`:
+  - [v0.5.1](services/dremio/CHANGELOG.md#v051)
+    - `v1alphaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.5.0](services/dremio/CHANGELOG.md#v050)
     - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
+- `iaas`: [v1.14.0](services/iaas/CHANGELOG.md#v1140)
+  - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.24.0` to `v0.24.1`
+  - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+  - **Bugfix:** Escape regex in validate tags correctly
+  - **Bugfix:** Fix response decoding into byte slices and readers
+  - `v1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2beta1api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2api`:
+    - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
+    - **Bugfix:** Fix parsing of oneOf values in `AreaId` model.
+  - `v2alpha1api`:
+    - **Breaking Change:** Moved fields in `CreateVPCNetworkRangePayload` to submodel `NetworkRangeIPv4Request`
+    - **Breaking Change:** Moved fields in `UpdateVPCNetworkRangePayload` to submodel `V1UpdateVPCNetworkRangeIPv4`
+- `kms`:
+  - [v1.12.1](services/kms/CHANGELOG.md#v1121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `logme`:
+  - [v1.2.1](services/logme/CHANGELOG.md#v121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.2.0](services/logme/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
@@ -46,6 +86,11 @@
     - `v2api`: 
       - **Feature**: Added wait handlers  
 - `mariadb`:
+  - [v1.2.1](services/mariadb/CHANGELOG.md#v121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.2.0](services/mariadb/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
@@ -58,7 +103,18 @@
 - `modelserving`:
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
+- `objectstorage`:
+  - [v1.9.1](services/objectstorage/CHANGELOG.md#v191)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `opensearch`:
+  - [v1.2.1](services/opensearch/CHANGELOG.md#v121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.2.0](services/opensearch/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
@@ -72,6 +128,11 @@
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
 - `rabbitmq`:
+  - [v1.2.1](services/rabbitmq/CHANGELOG.md#v121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.2.0](services/rabbitmq/CHANGELOG.md#v120)
     - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
@@ -79,6 +140,11 @@
       - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
         The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `redis`:
+  - [v1.2.1](services/redis/CHANGELOG.md#v121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.2.0](services/redis/CHANGELOG.md#v120)
     - **Breaking Change/Fix:**  `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
@@ -89,11 +155,41 @@
   - [v0.24.1](services/resourcemanager/CHANGELOG.md#v0241)
     - Update description of the `Labels` field in model structs
 - `runcommand`:
+  - [v1.9.1](services/runcommand/CHANGELOG.md#v191)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.9.0](services/runcommand/CHANGELOG.md#v190)
     - `v1api`: **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
+- `serverbackup`:
+  - [v1.7.1](services/serverbackup/CHANGELOG.md#v171)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `serverupdate`:
+  - [v1.5.4](services/serverupdate/CHANGELOG.md#v154)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.5.3](services/serverupdate/CHANGELOG.md#v153)
     - **Docs:** Add a description to the attributes `Rrule` and `MaintenanceWindow`
+- `serviceaccount`:
+  - [v0.20.1](services/serviceaccount/CHANGELOG.md#v0201)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `sfs`:
+  - [v0.11.1](services/sfs/CHANGELOG.md#v0111)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `ske`:
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
@@ -122,6 +218,11 @@
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
 - `valkey`:
+  - [v0.1.1](services/valkey/CHANGELOG.md#v011)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.1.0](services/valkey/CHANGELOG.md#v010)
     - New service `valkey`:
       Valkey is a fork of redis under the Linux Foundation. The API in this SDK is mostly compatible with v1.2.0 of the

@@ -1,3 +1,7 @@
+## v0.5.1
+- `v3api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.5.0
 - **Feature:** Add field `TotalQuantityDecimal` to `DetailedServiceCost` model struct
 - **Feature:** Add field `QuantityDecimal` to `ReportData` model struct

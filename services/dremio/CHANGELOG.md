@@ -1,3 +1,9 @@
+## v0.5.1
+- `v1alphaapi`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v1betaapi`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.5.0
 - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
 
