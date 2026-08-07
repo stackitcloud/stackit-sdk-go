@@ -19,14 +19,14 @@ var _ MappedNullable = &ConfigPatch{}
 
 // ConfigPatch struct for ConfigPatch
 type ConfigPatch struct {
-	Backend *HttpBackendPatch `json:"backend,omitempty"`
+	Backend *ConfigPatchBackend `json:"backend,omitempty"`
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIPs []string `json:"blockedIPs,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
-	DefaultCacheDuration NullableString           `json:"defaultCacheDuration,omitempty"`
-	LogSink              NullablePatchLokiLogSink `json:"logSink,omitempty"`
+	DefaultCacheDuration NullableString             `json:"defaultCacheDuration,omitempty"`
+	LogSink              NullableConfigPatchLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
 	Optimizer            *OptimizerPatch `json:"optimizer,omitempty"`
@@ -55,9 +55,9 @@ func NewConfigPatchWithDefaults() *ConfigPatch {
 }
 
 // GetBackend returns the Backend field value if set, zero value otherwise.
-func (o *ConfigPatch) GetBackend() HttpBackendPatch {
+func (o *ConfigPatch) GetBackend() ConfigPatchBackend {
 	if o == nil || IsNil(o.Backend) {
-		var ret HttpBackendPatch
+		var ret ConfigPatchBackend
 		return ret
 	}
 	return *o.Backend
@@ -65,7 +65,7 @@ func (o *ConfigPatch) GetBackend() HttpBackendPatch {
 
 // GetBackendOk returns a tuple with the Backend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConfigPatch) GetBackendOk() (*HttpBackendPatch, bool) {
+func (o *ConfigPatch) GetBackendOk() (*ConfigPatchBackend, bool) {
 	if o == nil || IsNil(o.Backend) {
 		return nil, false
 	}
@@ -81,8 +81,8 @@ func (o *ConfigPatch) HasBackend() bool {
 	return false
 }
 
-// SetBackend gets a reference to the given HttpBackendPatch and assigns it to the Backend field.
-func (o *ConfigPatch) SetBackend(v HttpBackendPatch) {
+// SetBackend gets a reference to the given ConfigPatchBackend and assigns it to the Backend field.
+func (o *ConfigPatch) SetBackend(v ConfigPatchBackend) {
 	o.Backend = &v
 }
 
@@ -194,9 +194,9 @@ func (o *ConfigPatch) UnsetDefaultCacheDuration() {
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ConfigPatch) GetLogSink() PatchLokiLogSink {
+func (o *ConfigPatch) GetLogSink() ConfigPatchLogSink {
 	if o == nil || IsNil(o.LogSink.Get()) {
-		var ret PatchLokiLogSink
+		var ret ConfigPatchLogSink
 		return ret
 	}
 	return *o.LogSink.Get()
@@ -205,7 +205,7 @@ func (o *ConfigPatch) GetLogSink() PatchLokiLogSink {
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConfigPatch) GetLogSinkOk() (*PatchLokiLogSink, bool) {
+func (o *ConfigPatch) GetLogSinkOk() (*ConfigPatchLogSink, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -221,8 +221,8 @@ func (o *ConfigPatch) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given NullablePatchLokiLogSink and assigns it to the LogSink field.
-func (o *ConfigPatch) SetLogSink(v PatchLokiLogSink) {
+// SetLogSink gets a reference to the given NullableConfigPatchLogSink and assigns it to the LogSink field.
+func (o *ConfigPatch) SetLogSink(v ConfigPatchLogSink) {
 	o.LogSink.Set(&v)
 }
 
