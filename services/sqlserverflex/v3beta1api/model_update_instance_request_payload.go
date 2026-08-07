@@ -26,7 +26,7 @@ type UpdateInstanceRequestPayload struct {
 	// The id of the instance flavor.
 	FlavorId string `json:"flavorId"`
 	// A dictionary of user-defined key-value pairs used to categorize or organize the resource.  **Rules for Keys:** * Must be between 1 and 63 characters long. * Must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$` * **Restriction:** The prefix `stackit-` is strictly reserved and cannot be used.  **Rules for Values:** * Must be between 0 (empty string) and 63 characters long. * If not empty, must begin and end with an alphanumeric character. * May contain dashes (`-`), underscores (`_`), and dots (`.`). * **Regex:** `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels *map[string]*string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name     string                              `json:"name"`
 	Network  UpdateInstanceRequestPayloadNetwork `json:"network"`
@@ -114,9 +114,9 @@ func (o *UpdateInstanceRequestPayload) SetFlavorId(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateInstanceRequestPayload) GetLabels() map[string]string {
+func (o *UpdateInstanceRequestPayload) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -124,7 +124,7 @@ func (o *UpdateInstanceRequestPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstanceRequestPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *UpdateInstanceRequestPayload) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -140,8 +140,8 @@ func (o *UpdateInstanceRequestPayload) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *UpdateInstanceRequestPayload) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *UpdateInstanceRequestPayload) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 
