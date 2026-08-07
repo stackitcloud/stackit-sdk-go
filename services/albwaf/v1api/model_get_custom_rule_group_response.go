@@ -21,7 +21,7 @@ var _ MappedNullable = &GetCustomRuleGroupResponse{}
 // GetCustomRuleGroupResponse Response payload delivering the detailed CRG configuration name and it's rule content.
 type GetCustomRuleGroupResponse struct {
 	// Custom rule group configuration name.
-	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name string `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Enriched rules containing auto-generated IDs and computed severity values.
 	Rules                []GetCustomRule `json:"rules"`
 	Usage                *CRGUsage       `json:"usage,omitempty"`

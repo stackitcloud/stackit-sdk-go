@@ -20,11 +20,11 @@ var _ MappedNullable = &GetLimitedManagedRuleSetResponse{}
 // GetLimitedManagedRuleSetResponse struct for GetLimitedManagedRuleSetResponse
 type GetLimitedManagedRuleSetResponse struct {
 	// Managed rule set configuration name.
-	Name  *string   `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name  *string   `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	Type  *Type     `json:"type,omitempty"`
 	Usage *MRSUsage `json:"usage,omitempty"`
 	// Managed rule set version.
-	Version              *string `json:"version,omitempty" validate:"regexp=^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              *string `json:"version,omitempty" validate:"regexp=^v\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 

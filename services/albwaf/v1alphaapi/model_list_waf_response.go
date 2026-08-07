@@ -21,7 +21,7 @@ var _ MappedNullable = &ListWAFResponse{}
 type ListWAFResponse struct {
 	Items []GetWAFResponse `json:"items,omitempty"`
 	// Continue token from the ListWAFResponse with Limit option
-	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 
