@@ -23,7 +23,7 @@ type CreateIntakeUserPayload struct {
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
-	DisplayName string `json:"displayName" validate:"regexp=^[\\\\p{L}\\\\p{N} -]{1,32}$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[\\p{L}\\p{N} -]{1\\,32}$"`
 	// Labels are key-value pairs associated with the resource.
 	Labels map[string]string `json:"labels,omitempty"`
 	// A password chosen by the user.  The password must consist of at least of each of these categories: * lower case letter * upper case letter * number * other character
