@@ -20,13 +20,13 @@ var _ MappedNullable = &GetWAFResponse{}
 // GetWAFResponse GetWAFResponse returns detailed information about the WAF, which includes the identifying name, references to MRS/CRG and usage.
 type GetWAFResponse struct {
 	// Name of the CRG configuration for that WAF.
-	CustomRuleGroupName *string `json:"customRuleGroupName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	CustomRuleGroupName *string `json:"customRuleGroupName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per WAF.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Name of the managed rule set configuration for that WAF.
-	ManagedRuleSetName *string `json:"managedRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	ManagedRuleSetName *string `json:"managedRuleSetName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// WAF name
-	Name                 *string   `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name                 *string   `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	Usage                *WAFUsage `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

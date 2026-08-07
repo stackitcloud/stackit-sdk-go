@@ -22,9 +22,9 @@ type GetLimitedCoreRuleSetResponse struct {
 	// Indicates if the OWASP core rule set is active.
 	Active *bool `json:"active,omitempty"`
 	// Core rule set configuration name.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Region
-	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2\\,4}[0-9]{2}$"`
 	AdditionalProperties map[string]interface{}
 }
 
