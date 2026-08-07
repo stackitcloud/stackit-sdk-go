@@ -21,11 +21,11 @@ var _ MappedNullable = &GetCertificateResponse{}
 type GetCertificateResponse struct {
 	Data *Data `json:"data,omitempty"`
 	// The certificates resource id
-	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
+	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,251}[0-9a-z])?$"`
 	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Certificate display name
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,251}[0-9a-z])?$"`
 	// The PEM encoded public key part
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
