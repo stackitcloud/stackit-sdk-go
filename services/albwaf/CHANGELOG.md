@@ -1,11 +1,3 @@
-## v0.13.0
-- `v1betaapi`:
-  - **Improvement:** The entire `v1betaapi` package is now marked as deprecated. Migrate to `v1api`
-  - **Feature:** Add new models `Operator`, `Severity`, `Transformation`, `Type`, `Variable`, `Action`
-  - **Breaking Change:** Removed models `BehaviourAction`, `ConditionOperatorType`, `ConditionTransformationsInner`, `ConditionVariableType`, `GetBehaviourAction`, `GetBehaviourSeverity`, `Mode1`, `MRSType`, `MRSType1`, `MRSType2`
-  - **Breaking Change:** `PatchMRSRule.Mode` field type changed from `*Mode1` to `*Mode`
-- `v1api`: New package which can be used to communicate with the albwaf v1 API
-
 ## v0.12.0
 - `v1alphaapi`: Align package to latest API specification
 - `v1betaapi`: Align package to latest API specification
