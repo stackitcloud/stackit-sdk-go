@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateTargetPoolPayload{}
 type UpdateTargetPoolPayload struct {
 	ActiveHealthCheck *ActiveHealthCheck `json:"activeHealthCheck,omitempty"`
 	// Target pool name
-	Name               *string             `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name               *string             `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	SessionPersistence *SessionPersistence `json:"sessionPersistence,omitempty"`
 	// The number identifying the port where each target listens for traffic.
 	TargetPort *int32 `json:"targetPort,omitempty"`

@@ -20,7 +20,7 @@ var _ MappedNullable = &CreateCredentialsPayload{}
 // CreateCredentialsPayload struct for CreateCredentialsPayload
 type CreateCredentialsPayload struct {
 	// Credential name
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
+	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,251}[0-9a-z])?$"`
 	// A valid password used for an existing ARGUS instance, which is used during basic auth.
 	Password *string `json:"password,omitempty"`
 	// A valid username used for an existing ARGUS instance, which is used during basic auth.
