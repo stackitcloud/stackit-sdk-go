@@ -934,6 +934,13 @@
     - **Improvement:** Use new WaiterHelper for serviceenablement waiters
   - [v1.7.0](services/serviceenablement/CHANGELOG.md#v170)
     - **Feature:** Introduce enums for various attributes
+  - [v1.7.1](services/serviceenablement/CHANGELOG.md#v171)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

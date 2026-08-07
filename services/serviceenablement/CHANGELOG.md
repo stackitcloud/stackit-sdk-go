@@ -1,3 +1,11 @@
+## v1.7.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v1.7.0
 - **Feature:** Introduce enums for various attributes
 
