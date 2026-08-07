@@ -23,7 +23,7 @@ type CloudService struct {
 	Labels       *map[string]string `json:"labels,omitempty"`
 	Scope        *CloudServiceScope `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1\\,254}$"`
 	AdditionalProperties map[string]interface{}
 }
 
