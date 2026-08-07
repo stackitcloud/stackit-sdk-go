@@ -21,8 +21,8 @@ var _ MappedNullable = &ListMembersResponse{}
 // ListMembersResponse struct for ListMembersResponse
 type ListMembersResponse struct {
 	Members              []Member `json:"members"`
-	ResourceId           string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	ResourceId           string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9/_|\\-=+@.]{1\\,})$"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1\\,63}$"`
 	AdditionalProperties map[string]interface{}
 }
 

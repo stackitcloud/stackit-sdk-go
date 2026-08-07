@@ -21,7 +21,7 @@ var _ MappedNullable = &ExistingPermission{}
 // ExistingPermission struct for ExistingPermission
 type ExistingPermission struct {
 	Description          string `json:"description"`
-	Name                 string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Name                 string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1\\,63}$"`
 	AdditionalProperties map[string]interface{}
 }
 
