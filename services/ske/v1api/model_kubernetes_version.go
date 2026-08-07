@@ -23,7 +23,7 @@ type KubernetesVersion struct {
 	ExpirationDate       *time.Time         `json:"expirationDate,omitempty"`
 	FeatureGates         *map[string]string `json:"featureGates,omitempty"`
 	State                *string            `json:"state,omitempty"`
-	Version              *string            `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              *string            `json:"version,omitempty" validate:"regexp=^\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 
