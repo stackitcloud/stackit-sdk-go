@@ -25,7 +25,7 @@ type CreateLogsInstancePayload struct {
 	// The description of the access token.
 	Description *string `json:"description,omitempty"`
 	// The displayed name to distinguish multiple Logs instances.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// The log retention time in days.
 	RetentionDays        int32 `json:"retentionDays"`
 	AdditionalProperties map[string]interface{}
