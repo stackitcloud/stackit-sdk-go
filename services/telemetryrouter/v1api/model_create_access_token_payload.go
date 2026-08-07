@@ -21,9 +21,9 @@ var _ MappedNullable = &CreateAccessTokenPayload{}
 // CreateAccessTokenPayload struct for CreateAccessTokenPayload
 type CreateAccessTokenPayload struct {
 	// The description of the access token.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
 	// The selected display name of the access token.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
 	// The time-to-live (TTL) in days for the access token. If not set, token will not expire.
 	Ttl                  NullableInt32 `json:"ttl,omitempty"`
 	AdditionalProperties map[string]interface{}
