@@ -26,7 +26,7 @@ type TunnelConfiguration struct {
 	Phase2  TunnelConfigurationPhase2 `json:"phase2"`
 	// A Pre-Shared Key for authentication.  Required in create-requests, optional in update-requests and omitted in every response.
 	PreSharedKey         *string `json:"preSharedKey,omitempty"`
-	RemoteAddress        string  `json:"remoteAddress" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	RemoteAddress        string  `json:"remoteAddress" validate:"regexp=^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$"`
 	AdditionalProperties map[string]interface{}
 }
 
