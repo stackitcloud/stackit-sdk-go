@@ -21,7 +21,7 @@ var _ MappedNullable = &AddMembersPayload{}
 // AddMembersPayload struct for AddMembersPayload
 type AddMembersPayload struct {
 	Members              []Member `json:"members"`
-	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1\\,63}$"`
 	AdditionalProperties map[string]interface{}
 }
 

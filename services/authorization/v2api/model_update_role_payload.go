@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateRolePayload{}
 type UpdateRolePayload struct {
 	Description          string              `json:"description"`
 	Etag                 *string             `json:"etag,omitempty"`
-	Name                 string              `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Name                 string              `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1\\,63}$"`
 	Permissions          []PermissionRequest `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
