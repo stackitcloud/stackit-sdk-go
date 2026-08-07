@@ -22,7 +22,7 @@ type CredentialsResponse struct {
 	// The credentials reference can be used for observability of the Application Load Balancer.
 	CredentialsRef *string `json:"credentialsRef,omitempty"`
 	// Credential name
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Region of the Credential
 	Region *string `json:"region,omitempty"`
 	// The username used for the STACKIT Observability instance

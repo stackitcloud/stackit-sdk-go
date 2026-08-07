@@ -22,12 +22,12 @@ type Listener struct {
 	Http  *ProtocolOptionsHTTP  `json:"http,omitempty"`
 	Https *ProtocolOptionsHTTPS `json:"https,omitempty"`
 	// A unique listener name.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// Port number on which the listener receives incoming traffic.
 	Port     *int32            `json:"port,omitempty"`
 	Protocol *ListenerProtocol `json:"protocol,omitempty"`
 	// Enable Web Application Firewall (WAF), referenced by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
-	WafConfigName        *string `json:"wafConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	WafConfigName        *string `json:"wafConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 

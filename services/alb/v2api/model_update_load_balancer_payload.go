@@ -32,7 +32,7 @@ type UpdateLoadBalancerPayload struct {
 	// Security Group permitting network traffic from the LoadBalancer to the targets. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.
 	LoadBalancerSecurityGroup *SecurityGroup `json:"loadBalancerSecurityGroup,omitempty"`
 	// Application Load Balancer name. Not changeable after creation.
-	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
 	Networks []Network            `json:"networks,omitempty"`
 	Options  *LoadBalancerOptions `json:"options,omitempty"`
