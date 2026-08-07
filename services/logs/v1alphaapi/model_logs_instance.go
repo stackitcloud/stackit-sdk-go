@@ -30,7 +30,7 @@ type LogsInstance struct {
 	// The description of the Logs instance.
 	Description *string `json:"description,omitempty"`
 	// The displayed name of the Logs instance.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// A auto generated unique id which identifies the Logs instance.
 	Id string `json:"id"`
 	// The Logs instance's ingest logs via OTLP URL
