@@ -24,7 +24,7 @@ type CreateIntakePayload struct {
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
-	DisplayName string `json:"displayName" validate:"regexp=^[\\\\p{L}\\\\p{N} -]{1,32}$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[\\p{L}\\p{N} -]{1\\,32}$"`
 	// The unique id of the intake runner this intake should run on.
 	IntakeRunnerId string `json:"intakeRunnerId"`
 	// Labels are a set of key-value pairs assigned to resources.
