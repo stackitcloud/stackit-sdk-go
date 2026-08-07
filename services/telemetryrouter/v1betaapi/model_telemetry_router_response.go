@@ -24,7 +24,7 @@ type TelemetryRouterResponse struct {
 	// The point in time the resource was created.
 	CreationTime time.Time `json:"creationTime"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\\\-]*)?$"`
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName string        `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
 	Filter      *ConfigFilter `json:"filter,omitempty"`
