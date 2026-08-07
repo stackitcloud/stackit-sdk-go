@@ -24,7 +24,7 @@ type ImageFromVolumePayload struct {
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	DiskFormat string `json:"diskFormat"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// When true the created image is prevented from being deleted.
 	Protected            *bool `json:"protected,omitempty"`
 	AdditionalProperties map[string]interface{}

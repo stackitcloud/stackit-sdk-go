@@ -25,7 +25,7 @@ type UpdateServerPayload struct {
 	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name for a Server.
-	Name                 *string `json:"name,omitempty" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
 	AdditionalProperties map[string]interface{}
 }
 

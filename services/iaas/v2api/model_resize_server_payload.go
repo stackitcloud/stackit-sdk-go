@@ -22,7 +22,7 @@ var _ MappedNullable = &ResizeServerPayload{}
 // ResizeServerPayload struct for ResizeServerPayload
 type ResizeServerPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
-	MachineType          string `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	MachineType          string `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -14,6 +14,7 @@ package v2api
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 // AreaId - The identifier (ID) of an area.
@@ -44,7 +45,8 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	err = json.Unmarshal(data, &dst.StaticAreaID)
 	if err == nil {
 		jsonStaticAreaID, _ := json.Marshal(dst.StaticAreaID)
-		if string(jsonStaticAreaID) == "{}" { // empty struct
+		// OVERRIDE: added expr after ||
+		if string(jsonStaticAreaID) == "{}" || *dst.StaticAreaID == STATICAREAID_UNKNOWN_DEFAULT_OPEN_API { // empty struct or unknown fallback enum
 			dst.StaticAreaID = nil
 		} else {
 			match++
@@ -57,10 +59,13 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	err = json.Unmarshal(data, &dst.String)
 	if err == nil {
 		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
-		} else {
+		// OVERRIDE: this pattern match is custom
+		regex := `^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
+		isMatched, _ := regexp.MatchString(regex, *dst.String)
+		if string(jsonString) != "{}" && isMatched { // empty struct
 			match++
+		} else {
+			dst.String = nil
 		}
 	} else {
 		dst.String = nil
@@ -75,7 +80,11 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(AreaId)")
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(AreaId): %v", err)
+		} else {
+			return fmt.Errorf("data failed to match schemas in oneOf(AreaId)")
+		}
 	}
 }
 
