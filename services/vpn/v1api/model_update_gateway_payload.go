@@ -25,7 +25,8 @@ type UpdateGatewayPayload struct {
 	// A user-friendly name for the VPN gateway.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
 	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels        *map[string]string `json:"labels,omitempty"`
+	NetworkConfig *NetworkConfig     `json:"networkConfig,omitempty"`
 	// The service plan identifier.
 	PlanId               string      `json:"planId"`
 	RoutingType          RoutingType `json:"routingType"`
@@ -167,6 +168,38 @@ func (o *UpdateGatewayPayload) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
+// GetNetworkConfig returns the NetworkConfig field value if set, zero value otherwise.
+func (o *UpdateGatewayPayload) GetNetworkConfig() NetworkConfig {
+	if o == nil || IsNil(o.NetworkConfig) {
+		var ret NetworkConfig
+		return ret
+	}
+	return *o.NetworkConfig
+}
+
+// GetNetworkConfigOk returns a tuple with the NetworkConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateGatewayPayload) GetNetworkConfigOk() (*NetworkConfig, bool) {
+	if o == nil || IsNil(o.NetworkConfig) {
+		return nil, false
+	}
+	return o.NetworkConfig, true
+}
+
+// HasNetworkConfig returns a boolean if a field has been set.
+func (o *UpdateGatewayPayload) HasNetworkConfig() bool {
+	if o != nil && !IsNil(o.NetworkConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkConfig gets a reference to the given NetworkConfig and assigns it to the NetworkConfig field.
+func (o *UpdateGatewayPayload) SetNetworkConfig(v NetworkConfig) {
+	o.NetworkConfig = &v
+}
+
 // GetPlanId returns the PlanId field value
 func (o *UpdateGatewayPayload) GetPlanId() string {
 	if o == nil {
@@ -233,6 +266,9 @@ func (o UpdateGatewayPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+	if !IsNil(o.NetworkConfig) {
+		toSerialize["networkConfig"] = o.NetworkConfig
+	}
 	toSerialize["planId"] = o.PlanId
 	toSerialize["routingType"] = o.RoutingType
 
@@ -285,6 +321,7 @@ func (o *UpdateGatewayPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bgp")
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "labels")
+		delete(additionalProperties, "networkConfig")
 		delete(additionalProperties, "planId")
 		delete(additionalProperties, "routingType")
 		o.AdditionalProperties = additionalProperties
