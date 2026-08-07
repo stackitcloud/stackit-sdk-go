@@ -22,11 +22,11 @@ var _ MappedNullable = &CreateNetworkIPv4WithPrefix{}
 // CreateNetworkIPv4WithPrefix The create request for an IPv4 network with a specified prefix.
 type CreateNetworkIPv4WithPrefix struct {
 	// The IPv4 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
-	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers []string `json:"nameservers,omitempty"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
-	Prefix string `json:"prefix" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	Prefix string `json:"prefix" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
 	// Universally Unique Identifier (UUID).
 	VpcNetworkRangeId    *string `json:"vpcNetworkRangeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}

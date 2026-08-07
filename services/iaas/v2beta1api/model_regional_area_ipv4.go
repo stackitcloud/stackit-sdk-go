@@ -31,7 +31,7 @@ type RegionalAreaIPv4 struct {
 	// A list of network area network ranges.
 	NetworkRanges []NetworkRange `json:"networkRanges"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
-	TransferNetwork      string `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	TransferNetwork      string `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
 	AdditionalProperties map[string]interface{}
 }
 

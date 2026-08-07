@@ -31,7 +31,7 @@ type Keypair struct {
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9@._-]*$"`
 	// Object that represents a public SSH key.
-	PublicKey string `json:"publicKey" validate:"regexp=^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\\\\s+[A-Za-z0-9+\\/]+[=]{0,3}(\\\\s+.+)?\\\\s*$"`
+	PublicKey string `json:"publicKey" validate:"regexp=^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\\s+[A-Za-z0-9+/]+[=]{0\\,3}(\\s+.+)?\\s*$"`
 	// Date-time when resource was last updated.
 	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
 	AdditionalProperties map[string]interface{}
