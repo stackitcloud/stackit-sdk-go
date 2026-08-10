@@ -28,7 +28,7 @@ type AccessToken struct {
 	// The description of the access token.
 	Description *string `json:"description,omitempty"`
 	// The displayed name of the access token.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// Indicates if the access token can expire.
 	Expires bool `json:"expires"`
 	// An auto generated unique id which identifies the access token.
