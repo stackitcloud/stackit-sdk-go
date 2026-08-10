@@ -23,16 +23,16 @@ var _ MappedNullable = &Instance{}
 type Instance struct {
 	BucketName *string `json:"bucketName,omitempty" validate:"regexp=^model-experiments-[a-zA-Z0-9]+$"`
 	// The duration to retain experiments marked for deletion before they are permanently purged. Min: 1d, Max: 90d.
-	DeletedExperimentRetention *string `json:"deletedExperimentRetention,omitempty" validate:"regexp=^([0-9]+(\\\\.[0-9]+)?d)?([0-9]+(\\\\.[0-9]+)?h)?([0-9]+(\\\\.[0-9]+)?m)?([0-9]+(\\\\.[0-9]+)?s)?$"`
-	Description                *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	DeletedExperimentRetention *string `json:"deletedExperimentRetention,omitempty" validate:"regexp=^([0-9]+(\\.[0-9]+)?d)?([0-9]+(\\.[0-9]+)?h)?([0-9]+(\\.[0-9]+)?m)?([0-9]+(\\.[0-9]+)?s)?$"`
+	Description                *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	ErrorMessage               *string `json:"errorMessage,omitempty"`
 	Id                         string  `json:"id"`
 	// Object that represents the labels of an object. Regex for keys: `^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Name                 string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	Region               *string            `json:"region,omitempty"`
 	State                InstanceState      `json:"state"`
-	Url                  string             `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Url                  string             `json:"url" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
