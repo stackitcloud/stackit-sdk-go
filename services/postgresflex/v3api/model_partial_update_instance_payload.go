@@ -25,7 +25,7 @@ type PartialUpdateInstancePayload struct {
 	// The id of the instance flavor.
 	FlavorId *string `json:"flavorId,omitempty"`
 	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels *map[string]*string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name    *string             `json:"name,omitempty"`
 	Network *InstanceNetworkOpt `json:"network,omitempty"`
@@ -121,9 +121,9 @@ func (o *PartialUpdateInstancePayload) SetFlavorId(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetLabels() map[string]string {
+func (o *PartialUpdateInstancePayload) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -131,7 +131,7 @@ func (o *PartialUpdateInstancePayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -147,8 +147,8 @@ func (o *PartialUpdateInstancePayload) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateInstancePayload) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *PartialUpdateInstancePayload) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 
