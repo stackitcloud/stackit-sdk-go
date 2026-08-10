@@ -1,3 +1,8 @@
+## v0.17.1
+  - `v2api`:
+    - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v0.17.0
   - `v2api`:
     - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`

@@ -22,7 +22,7 @@ type UpdateAccessTokenPayload struct {
 	// The description of the access token.
 	Description *string `json:"description,omitempty"`
 	// The displayed name of the access token.
-	DisplayName          *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName          *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -24,7 +24,7 @@ type UpdateLogsInstancePayload struct {
 	// The description of the Logs instance.
 	Description *string `json:"description,omitempty"`
 	// The displayed name to distinguish multiple Logs instances.
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// The log retention time in days.
 	RetentionDays        *int32 `json:"retentionDays,omitempty"`
 	AdditionalProperties map[string]interface{}

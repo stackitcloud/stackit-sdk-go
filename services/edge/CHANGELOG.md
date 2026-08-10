@@ -1,3 +1,7 @@
+## v0.13.1
+- `v1beta1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## v0.13.0
 - `v1beta1api`:
   - **Feature**: New field `Acl` in `Instance` model struct

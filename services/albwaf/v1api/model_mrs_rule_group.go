@@ -23,7 +23,7 @@ type MRSRuleGroup struct {
 	// A description of what this group covers.
 	Description string `json:"description"`
 	// The name for the rule group.
-	GroupName            string              `json:"groupName" validate:"regexp=^[a-zA-Z\\\\(\\\\) ]+$"`
+	GroupName            string              `json:"groupName" validate:"regexp=^[a-zA-Z\\(\\) ]+$"`
 	Rules                *map[string]MRSRule `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

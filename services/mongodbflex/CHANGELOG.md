@@ -1,3 +1,11 @@
+## v1.12.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v1.12.0
 - `v1api`:
    - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to the `v2api`.

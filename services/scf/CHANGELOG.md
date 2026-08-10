@@ -1,3 +1,8 @@
+## v0.10.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v0.10.0
   - **Breaking Change**: Remove the unused methods `OrgRoleCreateBff`, `OrganizationCreateBff` and `SpaceRoleCreateBff`
 

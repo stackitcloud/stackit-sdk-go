@@ -19,8 +19,8 @@ var _ MappedNullable = &UpdateAccessTokenPayload{}
 
 // UpdateAccessTokenPayload struct for UpdateAccessTokenPayload
 type UpdateAccessTokenPayload struct {
-	Description          NullableString `json:"description,omitempty"`
-	DisplayName          NullableString `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\\\-]*$"`
+	Description          NullableString `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
+	DisplayName          NullableString `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,3 +1,9 @@
+## v0.13.0
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+  - **Breaking Change:** `Labels` field of `PartialUpdateTokenPayload` changed from `map[string]string` to `map[string]*string`
+
 ## v0.12.0
 - **Feature:** Add label support for tokens
 

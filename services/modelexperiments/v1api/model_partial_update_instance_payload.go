@@ -21,11 +21,11 @@ var _ MappedNullable = &PartialUpdateInstancePayload{}
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
 	// The duration to retain experiments marked for deletion before they are permanently purged. Min: 1d, Max: 90d.
-	DeletedExperimentRetention *string `json:"deletedExperimentRetention,omitempty" validate:"regexp=^([0-9]+(\\\\.[0-9]+)?d)?([0-9]+(\\\\.[0-9]+)?h)?([0-9]+(\\\\.[0-9]+)?m)?([0-9]+(\\\\.[0-9]+)?s)?$"`
-	Description                *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]*$"`
+	DeletedExperimentRetention *string `json:"deletedExperimentRetention,omitempty" validate:"regexp=^([0-9]+(\\.[0-9]+)?d)?([0-9]+(\\.[0-9]+)?h)?([0-9]+(\\.[0-9]+)?m)?([0-9]+(\\.[0-9]+)?s)?$"`
+	Description                *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]*$"`
 	// Object that represents the labels of an object. Regex for keys: `^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
-	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 *string            `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s_-]*$"`
+	Labels               *map[string]*string `json:"labels,omitempty"`
+	Name                 *string             `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\s_-]*$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,9 +113,9 @@ func (o *PartialUpdateInstancePayload) SetDescription(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetLabels() map[string]string {
+func (o *PartialUpdateInstancePayload) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -123,7 +123,7 @@ func (o *PartialUpdateInstancePayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *PartialUpdateInstancePayload) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateInstancePayload) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *PartialUpdateInstancePayload) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 

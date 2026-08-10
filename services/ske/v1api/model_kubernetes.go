@@ -22,7 +22,7 @@ var _ MappedNullable = &Kubernetes{}
 type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
 	AllowPrivilegedContainers *bool  `json:"allowPrivilegedContainers,omitempty"`
-	Version                   string `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version                   string `json:"version" validate:"regexp=^\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties      map[string]interface{}
 }
 

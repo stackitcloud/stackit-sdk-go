@@ -1,3 +1,20 @@
+## v1.18.0
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v3alpha1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v3api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
+- `v3beta1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Breaking Change:** `Labels` field of `CreateInstanceRequestPayload`/`GetInstanceResponse`/`UpdateInstancePartiallyRequestPayload`/`UpdateInstanceRequestPayload` changed from `map[string]string` to `map[string]*string` value
+- `v3beta2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
+
 ## v1.17.0
 - `v3api`:
   - **Feature:** add missing `DeleteUserWaitHandler` and `CreateUserWaitHandler`

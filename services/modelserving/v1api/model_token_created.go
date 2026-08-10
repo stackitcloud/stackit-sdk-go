@@ -22,12 +22,12 @@ var _ MappedNullable = &TokenCreated{}
 
 // TokenCreated struct for TokenCreated
 type TokenCreated struct {
-	Content     string  `json:"content" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Content     string  `json:"content" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\s.:/\\-]+$"`
 	Id          string  `json:"id"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.
 	Labels               *map[string]string `json:"labels,omitempty"`
-	Name                 string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Name                 string             `json:"name" validate:"regexp=^[0-9a-zA-Z\\s_-]+$"`
 	Region               string             `json:"region"`
 	State                TokenCreatedState  `json:"state"`
 	ValidUntil           time.Time          `json:"validUntil"`

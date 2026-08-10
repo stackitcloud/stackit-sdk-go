@@ -23,11 +23,11 @@ type GetManagedRuleSetResponse struct {
 	// Inventory of all available Managed Rule Set groups and their current configuration. The key is the unique Group ID.
 	Groups *map[string]MRSRuleGroup `json:"groups,omitempty"`
 	// Managed rule set configuration name.
-	Name  string    `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	Name  string    `json:"name" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	Type  Type      `json:"type"`
 	Usage *MRSUsage `json:"usage,omitempty"`
 	// Managed rule set version.
-	Version              string `json:"version" validate:"regexp=^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              string `json:"version" validate:"regexp=^v\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 

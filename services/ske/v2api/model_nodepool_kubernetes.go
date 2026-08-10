@@ -20,7 +20,7 @@ var _ MappedNullable = &NodepoolKubernetes{}
 // NodepoolKubernetes struct for NodepoolKubernetes
 type NodepoolKubernetes struct {
 	// Override the Kubernetes version for the Kubelet of this Nodepool. Version must be equal or lower than the version of the cluster. Only one minor version difference to the version of the cluster is allowed. Downgrade of existing Nodepools is prohibited.
-	Version              *string `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              *string `json:"version,omitempty" validate:"regexp=^\\d+\\.\\d+\\.\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 

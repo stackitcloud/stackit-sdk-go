@@ -1,12 +1,26 @@
 ## Release (2026-MM-DD)
 
 - `alb`
+  - [v0.17.1](services/alb/CHANGELOG.md#v0171)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
   - [v0.17.0](services/alb/CHANGELOG.md#v0170)
     - `v2api`:
       - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
     - Deprecated SDK layer in root of the module:
       - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `albwaf`
+  - [v0.13.1](services/albwaf/CHANGELOG.md#v0131)
+    - `v1alphaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
   - [v0.13.0](services/albwaf/CHANGELOG.md#v0130)
     - `v1betaapi`:
       - **Improvement:** The entire `v1betaapi` package is now marked as deprecated. Migrate to `v1api`
@@ -29,6 +43,11 @@
 - `authorization`:
   - [v0.15.3](services/authorization/CHANGELOG.md#v0153)
     - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+- `certificates`:
+  - [v1.9.1](services/certificates/CHANGELOG.md#v191)
+    - `v2api`
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
       - **Fix:** Escape regex in validate tags of model structs correctly
 - `cost`:
@@ -54,6 +73,10 @@
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v0.5.0](services/dremio/CHANGELOG.md#v050)
     - `v1betaapi`: New package which can be used for communication with the STACKIT dremio v1 beta API
+- `edge`:
+  - [v0.13.1](services/edge/CHANGELOG.md#v0131)
+    - `v1beta1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `iaas`: [v1.14.0](services/iaas/CHANGELOG.md#v1140)
   - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.24.0` to `v0.24.1`
   - **Breaking Change:** Removed the `ServerVTPM` model and the corresponding `vtpm` field from the `Server` model, as this functionality was unintentionally released and non-functional.
@@ -71,10 +94,23 @@
   - `v2alpha1api`:
     - **Breaking Change:** Moved fields in `CreateVPCNetworkRangePayload` to submodel `NetworkRangeIPv4Request`
     - **Breaking Change:** Moved fields in `UpdateVPCNetworkRangePayload` to submodel `V1UpdateVPCNetworkRangeIPv4`
+- `intake`:
+  - [v0.11.1](services/intake/CHANGELOG.md#v0111)
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `kms`:
   - [v1.12.1](services/kms/CHANGELOG.md#v1121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `loadbalancer`:
+  - [v1.15.1](services/loadbalancer/CHANGELOG.md#v1151)
+    - `v1api`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v2api`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `logme`:
   - [v1.2.1](services/logme/CHANGELOG.md#v121)
     - `v1api`:
@@ -90,6 +126,17 @@
   - [v1.1.0](services/logme/CHANGELOG.md#v110)
     - `v2api`: 
       - **Feature**: Added wait handlers  
+- `logs`:
+  - [v0.10.1](services/logs/CHANGELOG.md#v0101)
+    - `v1alphaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `mariadb`:
   - [v1.2.1](services/mariadb/CHANGELOG.md#v121)
     - `v1api`:
@@ -105,9 +152,28 @@
   - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
     - `v2api`:
       - **Feature**: Added wait handlers
+- `modelexperiments`:
+  - [v0.3.0](services/modelexperiments/CHANGELOG.md#v030)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+      - **Breaking Change:** `Labels` field of `PartialUpdateInstancePayload`/`PartialUpdateInstanceTokenPayload` changed from `map[string]string` to `map[string]*string`
 - `modelserving`:
+  - [v0.13.0](services/modelserving/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+      - **Breaking Change:** `Labels` field of `PartialUpdateTokenPayload` changed from `map[string]string` to `map[string]*string`
   - [v0.12.0](services/modelserving/CHANGELOG.md#v0120)
     - **Feature:** Add label support for tokens
+- `mongodbflex`:
+  - [v1.12.1](services/mongodbflex/CHANGELOG.md#v1121)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
 - `objectstorage`:
   - [v1.9.1](services/objectstorage/CHANGELOG.md#v191)
     - `v1api`:
@@ -176,6 +242,18 @@
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
   - [v1.9.0](services/runcommand/CHANGELOG.md#v190)
     - `v1api`: **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
+- `scf`:
+  - [v0.10.1](services/scf/CHANGELOG.md#v0101)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+- `secretsmanager`:
+  - [v0.18.2](services/secretsmanager/CHANGELOG.md#v0182)
+    - `v1alphaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `serverbackup`:
   - [v1.7.1](services/serverbackup/CHANGELOG.md#v171)
     - `v1api`:
@@ -201,6 +279,13 @@
     - `v1betaapi`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `ske`:
+  - [v1.21.1](services/ske/CHANGELOG.md#v1211)
+    - Package `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - Package `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
   - [v1.21.0](services/ske/CHANGELOG.md#v1210)
     - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`
     - Package `v2api`:
@@ -216,14 +301,44 @@
       - **Feature:** Add field `ApplicationLoadBalancer` to model struct `Extension`
       - **Feature:** Add field `Cni` to model struct `Network`
 - `sqlserverflex`:
+  - [v1.18.0](services/sqlserverflex/CHANGELOG.md#v1180)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v3alpha1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v3api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
+    - `v3beta1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** `Labels` field of `CreateInstanceRequestPayload`/`GetInstanceResponse`/`UpdateInstancePartiallyRequestPayload`/`UpdateInstanceRequestPayload` changed from `map[string]string` to `map[string]*string`
+    - `v3beta2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
   - [v1.17.0](services/sqlserverflex/CHANGELOG.md#v1170)
     - `v3api`:
       - **Feature:** add missing `DeleteUserWaitHandler` and `CreateUserWaitHandler`
 - `telemetrylink`:
+  - [v0.5.1](services/telemetrylink/CHANGELOG.md#v051)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field 
 - `telemetryrouter`:
+  - [v0.5.1](services/telemetryrouter/CHANGELOG.md#v051)
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1betaapi`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
