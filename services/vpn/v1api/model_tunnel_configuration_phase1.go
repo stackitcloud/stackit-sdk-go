@@ -23,7 +23,8 @@ type TunnelConfigurationPhase1 struct {
 	// The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.
 	DhGroups             []PhaseDhGroupsInner             `json:"dhGroups,omitempty"`
 	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner `json:"encryptionAlgorithms"`
-	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner  `json:"integrityAlgorithms"`
+	// Supported integrity algorithms. SHA1 is deprecated and will be removed on 2026-12-31.
+	IntegrityAlgorithms []PhaseIntegrityAlgorithmsInner `json:"integrityAlgorithms"`
 	// Time to schedule a IKE re-keying (in seconds).
 	RekeyTime            *int32 `json:"rekeyTime,omitempty"`
 	AdditionalProperties map[string]interface{}
