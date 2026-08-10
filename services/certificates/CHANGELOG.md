@@ -1,3 +1,8 @@
+## v1.9.1
+- `v2api`
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v1.9.0
 - `v2api`
   - **Improvement**: Update descriptions in `Usage` and `UsageItem` model structs

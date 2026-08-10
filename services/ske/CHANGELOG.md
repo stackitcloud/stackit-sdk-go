@@ -1,3 +1,11 @@
+## v1.21.1
+- Package `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+- Package `v2api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v1.21.0
 - Package `v1api`:
   - **Fix:** Update regular expression for `Start` and `End` field of the `HibernationSchedule`

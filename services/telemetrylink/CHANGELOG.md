@@ -1,3 +1,11 @@
+## v0.5.1
+- `v1api`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+- `v1betaapi`:
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+
 ## v0.5.0
 - **Improvement:** Add validation for `Description` field
 - `v1api`: **Improvement:** Add validation for `Description` field
