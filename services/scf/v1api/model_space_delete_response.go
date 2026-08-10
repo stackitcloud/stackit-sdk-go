@@ -21,7 +21,7 @@ var _ MappedNullable = &SpaceDeleteResponse{}
 
 // SpaceDeleteResponse struct for SpaceDeleteResponse
 type SpaceDeleteResponse struct {
-	Message              string `json:"message" validate:"regexp=^[a-zA-Z0-9\\/_]+$"`
+	Message              string `json:"message" validate:"regexp=^[a-zA-Z0-9/_]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
