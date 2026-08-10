@@ -22,7 +22,7 @@ type CredentialsResponse struct {
 	// The credentials reference can be used for observability of the Load Balancer.
 	CredentialsRef *string `json:"credentialsRef,omitempty"`
 	// Credential name
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	// The username used for the ARGUS instance
 	Username             *string `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{}
