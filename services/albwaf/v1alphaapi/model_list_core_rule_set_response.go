@@ -21,7 +21,7 @@ var _ MappedNullable = &ListCoreRuleSetResponse{}
 type ListCoreRuleSetResponse struct {
 	Items []GetLimitedCoreRuleSetResponse `json:"items,omitempty"`
 	// Continue token from the ListCoreRuleSetResponse with Limit option
-	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 
