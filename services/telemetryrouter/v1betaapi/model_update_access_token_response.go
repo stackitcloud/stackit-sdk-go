@@ -24,7 +24,7 @@ type UpdateAccessTokenResponse struct {
 	// The user ID of the creator of the access token.
 	CreatorId string `json:"creatorId"`
 	// The description of the access token.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
 	// The selected display name of the access token.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 ]*$"`
 	// The date and time until the access token is valid to (inclusively).
