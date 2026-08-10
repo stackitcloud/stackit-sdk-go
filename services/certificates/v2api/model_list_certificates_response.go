@@ -21,7 +21,7 @@ var _ MappedNullable = &ListCertificatesResponse{}
 type ListCertificatesResponse struct {
 	Items []GetCertificateResponse `json:"items,omitempty"`
 	// Continue token from the ListCertificatesResponse with Limit option
-	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 
