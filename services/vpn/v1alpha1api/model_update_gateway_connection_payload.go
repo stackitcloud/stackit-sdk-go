@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateGatewayConnectionPayload{}
 // UpdateGatewayConnectionPayload struct for UpdateGatewayConnectionPayload
 type UpdateGatewayConnectionPayload struct {
 	// A user-friendly name for the connection.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0\\,61}[a-zA-Z0-9])?$"`
 	// This flag decides whether this connection should be enabled or disabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
