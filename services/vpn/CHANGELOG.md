@@ -1,3 +1,14 @@
+## v0.15.0
+  - `v1api`:
+    - **Feature:** Add BGP filter management endpoints: `CreateGatewayBGPFilter`, `DeleteGatewayBGPFilter`, `GetGatewayBGPFilter`, `ListGatewayBGPFilters`, `UpdateGatewayBGPFilter`
+    - **Feature:** Add BGP filter rule management endpoints: `CreateGatewayBGPFilterRule`, `DeleteGatewayBGPFilterRule`, `GetGatewayBGPFilterRule`, `ListGatewayBGPFilterRules`, `UpdateGatewayBGPFilterRule`
+    - **Feature:** Add `InboundFilterId` field to `BGPTunnelConfig` to reference a BGP filter for incoming route filtering
+    - **Feature:** Add `NetworkConfig` field to `CreateGatewayPayload` and `Gateway`
+    - **Improvement:** Add deprecation notice for SHA1 integrity algorithm in `TunnelConfigurationPhase1` and `TunnelConfigurationPhase2`
+    - **Fix:** Correct regex escaping in validate tags of model structs
+  - `v1beta1api`: Align package to latest API specification
+  - `v1alpha1api`: Align package to latest API specification
+
 ## v0.14.0
   - `v1api`:
     - **Feature:** Add `ErrorMessage` field to `GatewayStatusResponse`
