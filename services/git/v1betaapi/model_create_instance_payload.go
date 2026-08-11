@@ -25,7 +25,7 @@ type CreateInstancePayload struct {
 	Acl    []string                     `json:"acl,omitempty"`
 	Flavor *CreateInstancePayloadFlavor `json:"flavor,omitempty"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
-	Name                 string `json:"name" validate:"regexp=^[a-z]([a-z0-9\\\\-]){0,30}[a-z0-9]+$"`
+	Name                 string `json:"name" validate:"regexp=^[a-z]([a-z0-9\\-]){0\\,30}[a-z0-9]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
