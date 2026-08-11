@@ -23,7 +23,8 @@ type Phase struct {
 	// The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.
 	DhGroups             []PhaseDhGroupsInner             `json:"dhGroups,omitempty"`
 	EncryptionAlgorithms []PhaseEncryptionAlgorithmsInner `json:"encryptionAlgorithms"`
-	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner  `json:"integrityAlgorithms"`
+	// Supported integrity algorithms. SHA1 is deprecated and will be removed on 2026-12-31.
+	IntegrityAlgorithms  []PhaseIntegrityAlgorithmsInner `json:"integrityAlgorithms"`
 	AdditionalProperties map[string]interface{}
 }
 
