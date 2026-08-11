@@ -359,7 +359,23 @@
       - `valkey/v1api` changed the return type of the `ListBackups` operation from `*ListBackupsResponse` to `[]Backup`
         when compared to `redis/v1api`. This change was only done for `redis/v2api`.
       - `wait` remove deprecated constants like `wait.INSTANCESTATUS_ACTIVE` when compared to `redis`
-
+- `vpn`:
+  - [v0.15.0](services/vpn/CHANGELOG.md#v0150)
+    - `v1api`:
+      - **Feature:** Add BGP filter management endpoints: `CreateGatewayBGPFilter`, `DeleteGatewayBGPFilter`, `GetGatewayBGPFilter`, `ListGatewayBGPFilters`, `UpdateGatewayBGPFilter`
+      - **Feature:** Add BGP filter rule management endpoints: `CreateGatewayBGPFilterRule`, `DeleteGatewayBGPFilterRule`, `GetGatewayBGPFilterRule`, `ListGatewayBGPFilterRules`, `UpdateGatewayBGPFilterRule`
+      - **Feature:** Add `InboundFilterId` field to `BGPTunnelConfig`
+      - **Feature:** Add `NetworkConfig` field to `CreateGatewayPayload` and `Gateway`
+      - **Improvement:** Add deprecation notice for SHA1 integrity algorithm
+      - **Fix:** Correct regex escaping in validate tags of model structs
+    - `v1beta1api`: Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+  - [v0.14.0](services/vpn/CHANGELOG.md#v0140)
+    - `v1api`:
+      - **Feature:** Add `ErrorMessage` field to `GatewayStatusResponse`
+      - **Improvement:** Add description that `RoutingType` can only be set at the creation
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-07-21)
 
