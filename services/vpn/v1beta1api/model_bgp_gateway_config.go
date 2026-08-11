@@ -22,7 +22,7 @@ var _ MappedNullable = &BGPGatewayConfig{}
 type BGPGatewayConfig struct {
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
 	LocalAsn int64 `json:"localAsn"`
-	// A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised.
+	// A list of IPv4 Prefixes to advertise via BGP. If omitted, the SNA network ranges will be advertised.
 	OverrideAdvertisedRoutes []string `json:"overrideAdvertisedRoutes,omitempty"`
 	AdditionalProperties     map[string]interface{}
 }
