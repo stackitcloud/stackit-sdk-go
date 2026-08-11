@@ -173,8 +173,8 @@ type DefaultAPI interface {
 	ListBackups(ctx context.Context, instanceId string, projectId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
-	//  @return ListBackupsResponse
-	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error)
+	//  @return []Backup
+	ListBackupsExecute(r ApiListBackupsRequest) ([]Backup, error)
 
 	/*
 		ListCredentials get list of credentials ids
@@ -1699,7 +1699,7 @@ type ApiListBackupsRequest struct {
 	projectId  string
 }
 
-func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
+func (r ApiListBackupsRequest) Execute() ([]Backup, error) {
 	return r.ApiService.ListBackupsExecute(r)
 }
 
@@ -1722,13 +1722,13 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, instanceId string, 
 
 // Execute executes the request
 //
-//	@return ListBackupsResponse
-func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
+//	@return []Backup
+func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) ([]Backup, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListBackupsResponse
+		localVarReturnValue []Backup
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackups")
