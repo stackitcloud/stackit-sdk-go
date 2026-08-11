@@ -21,7 +21,7 @@ var _ MappedNullable = &ConnectionResponse{}
 // ConnectionResponse struct for ConnectionResponse
 type ConnectionResponse struct {
 	// A user-friendly name for the connection.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0\\,61}[a-zA-Z0-9])?$"`
 	// This flag decides whether this connection should be enabled or disabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// UUID of the Gateway instance.
