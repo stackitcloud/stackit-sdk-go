@@ -8,13 +8,19 @@
     - "services/certificates/*"
     - "services/loadbalancer/*"
     - "services/vpn/*"
-# runtimes
-"domain:Runtimes":
+# kubernetes
+"domain:Kubernetes":
 - changed-files:
   - any-glob-to-any-file:
     - "services/ske/*"
-    - "services/scf/*"
     - "services/edge/*"
+# serverless
+"domain:Serverless":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/scf/*"
+    - "services/sca/*"
+    - "services/functions/*"
 # support
 # no support domain sdk modules available yet
 # central services
@@ -41,6 +47,7 @@
     - "services/ufw/*"
     - "services/workflows/*"
     - "services/valkey/*"
+    - "services/pubsub/*"
 # databases
 "domain:Databases":
 - changed-files:
@@ -70,3 +77,8 @@
     - "services/serviceaccount/*"
     - "services/serviceenablement/*"
     - "services/cost/*"
+# marketplace
+"domain:Marketplace":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/stackitmarketplace/*"
