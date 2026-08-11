@@ -27,8 +27,10 @@ type ConfigPatch struct {
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
-	ForwardHostHeader *bool                    `json:"forwardHostHeader,omitempty"`
-	LogSink           NullableLokiLogSinkPatch `json:"logSink,omitempty"`
+	ForwardHostHeader *bool `json:"forwardHostHeader,omitempty"`
+	// Labels are key-value string pairs that can be attached to a distribution. JSON Merge Patch is supported, meaning setting a key to null will remove it.
+	Labels  *map[string]*string        `json:"labels,omitempty"`
+	LogSink NullableConfigPatchLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *OptimizerPatch `json:"optimizer,omitempty"`
@@ -231,10 +233,42 @@ func (o *ConfigPatch) SetForwardHostHeader(v bool) {
 	o.ForwardHostHeader = &v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *ConfigPatch) GetLabels() map[string]*string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *ConfigPatch) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *ConfigPatch) SetLabels(v map[string]*string) {
+	o.Labels = &v
+}
+
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ConfigPatch) GetLogSink() LokiLogSinkPatch {
+func (o *ConfigPatch) GetLogSink() ConfigPatchLogSink {
 	if o == nil || IsNil(o.LogSink.Get()) {
-		var ret LokiLogSinkPatch
+		var ret ConfigPatchLogSink
 		return ret
 	}
 	return *o.LogSink.Get()
@@ -243,7 +277,7 @@ func (o *ConfigPatch) GetLogSink() LokiLogSinkPatch {
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConfigPatch) GetLogSinkOk() (*LokiLogSinkPatch, bool) {
+func (o *ConfigPatch) GetLogSinkOk() (*ConfigPatchLogSink, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -259,8 +293,8 @@ func (o *ConfigPatch) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given NullableLokiLogSinkPatch and assigns it to the LogSink field.
-func (o *ConfigPatch) SetLogSink(v LokiLogSinkPatch) {
+// SetLogSink gets a reference to the given NullableConfigPatchLogSink and assigns it to the LogSink field.
+func (o *ConfigPatch) SetLogSink(v ConfigPatchLogSink) {
 	o.LogSink.Set(&v)
 }
 
@@ -534,6 +568,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ForwardHostHeader) {
 		toSerialize["forwardHostHeader"] = o.ForwardHostHeader
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if o.LogSink.IsSet() {
 		toSerialize["logSink"] = o.LogSink.Get()
 	}
@@ -585,6 +622,7 @@ func (o *ConfigPatch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
