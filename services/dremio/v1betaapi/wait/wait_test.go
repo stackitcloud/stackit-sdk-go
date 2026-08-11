@@ -10,7 +10,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi"
+	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1betaapi"
 )
 
 type mockSettings struct {

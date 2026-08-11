@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
-	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi"
+	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1betaapi"
 )
 
 const (

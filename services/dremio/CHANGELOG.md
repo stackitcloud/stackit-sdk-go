@@ -1,5 +1,6 @@
 ## v0.6.0
--`v1betaapi`: Added wait handlers
+-`v1betaapi`:
+  - **Feature**: Added wait handlers
 
 ## v0.5.1
 - `v1alphaapi`:
