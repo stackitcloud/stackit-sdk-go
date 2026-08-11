@@ -158,6 +158,33 @@ func setConfigPatchgetForwardHostHeaderAttributeType(arg *ConfigPatchgetForwardH
 }
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigPatchGetLabelsAttributeTypeOk(arg ConfigPatchGetLabelsAttributeType) (ret ConfigPatchGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigPatchGetLabelsAttributeType(arg *ConfigPatchGetLabelsAttributeType, val ConfigPatchGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for logSink
 */
 
@@ -385,7 +412,9 @@ type ConfigPatch struct {
 	DefaultCacheDuration ConfigPatchGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
 	ForwardHostHeader ConfigPatchgetForwardHostHeaderAttributeType `json:"forwardHostHeader,omitempty"`
-	LogSink           ConfigPatchGetLogSinkAttributeType           `json:"logSink,omitempty"`
+	// Labels are key-value string pairs that can be attached to a distribution. JSON Merge Patch is supported, meaning setting a key to null will remove it.
+	Labels  ConfigPatchGetLabelsAttributeType  `json:"labels,omitempty"`
+	LogSink ConfigPatchGetLogSinkAttributeType `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -562,6 +591,33 @@ func (o *ConfigPatch) HasForwardHostHeader() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ConfigPatch) SetForwardHostHeader(v ConfigPatchgetForwardHostHeaderRetType) {
 	setConfigPatchgetForwardHostHeaderAttributeType(&o.ForwardHostHeader, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetLabels() (res ConfigPatchGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetLabelsOk() (ret ConfigPatchGetLabelsRetType, ok bool) {
+	return getConfigPatchGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) SetLabels(v ConfigPatchGetLabelsRetType) {
+	setConfigPatchGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -823,6 +879,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchgetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader); ok {
 		toSerialize["ForwardHostHeader"] = val
+	}
+	if val, ok := getConfigPatchGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getConfigPatchGetLogSinkAttributeTypeOk(o.LogSink); ok {
 		toSerialize["LogSink"] = val
