@@ -28,7 +28,7 @@ type GetInstanceResponse struct {
 	IsUpdatable          *bool                 `json:"isUpdatable,omitempty"`
 	Message              string                `json:"message"`
 	Name                 *string               `json:"name,omitempty"`
-	Parameters           *map[string]string    `json:"parameters,omitempty"`
+	Parameters           *map[string]*string   `json:"parameters,omitempty"`
 	PlanId               string                `json:"planId"`
 	PlanName             string                `json:"planName"`
 	PlanSchema           *string               `json:"planSchema,omitempty"`
@@ -276,9 +276,9 @@ func (o *GetInstanceResponse) SetName(v string) {
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *GetInstanceResponse) GetParameters() map[string]string {
+func (o *GetInstanceResponse) GetParameters() map[string]*string {
 	if o == nil || IsNil(o.Parameters) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Parameters
@@ -286,7 +286,7 @@ func (o *GetInstanceResponse) GetParameters() map[string]string {
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetInstanceResponse) GetParametersOk() (*map[string]string, bool) {
+func (o *GetInstanceResponse) GetParametersOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Parameters) {
 		return nil, false
 	}
@@ -302,8 +302,8 @@ func (o *GetInstanceResponse) HasParameters() bool {
 	return false
 }
 
-// SetParameters gets a reference to the given map[string]string and assigns it to the Parameters field.
-func (o *GetInstanceResponse) SetParameters(v map[string]string) {
+// SetParameters gets a reference to the given map[string]*string and assigns it to the Parameters field.
+func (o *GetInstanceResponse) SetParameters(v map[string]*string) {
 	o.Parameters = &v
 }
 
