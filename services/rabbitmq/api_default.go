@@ -46,11 +46,11 @@ type DefaultApi interface {
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@param instanceId Instance id
-		@return []CreateBackupResponseItem
+		@return CreateBackupResponseItem
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
-	CreateBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string) ([]CreateBackupResponseItem, error)
+	CreateBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*CreateBackupResponseItem, error)
 	/*
 		CreateCredentials create new credentials
 		Create new service credentials
@@ -482,7 +482,7 @@ type DefaultApi interface {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiCreateBackupRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	Execute() ([]CreateBackupResponseItem, error)
+	Execute() (*CreateBackupResponseItem, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -619,12 +619,12 @@ type CreateBackupRequest struct {
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (r CreateBackupRequest) Execute() ([]CreateBackupResponseItem, error) {
+func (r CreateBackupRequest) Execute() (*CreateBackupResponseItem, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []CreateBackupResponseItem
+		localVarReturnValue *CreateBackupResponseItem
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -774,7 +774,7 @@ func (a *APIClient) CreateBackup(ctx context.Context, projectId string, regionId
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (a *APIClient) CreateBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string) ([]CreateBackupResponseItem, error) {
+func (a *APIClient) CreateBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*CreateBackupResponseItem, error) {
 	r := CreateBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
