@@ -66,6 +66,9 @@
     - `v1api`:
       - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` changed from `string` to `*string` and is no longer required. `NewLabel`/`NewCreateLabelPayload` drop the `value` param
 - `dremio`:
+  - [v0.6.0](services/dremio/CHANGELOG.md#v060)
+    - `v1betaapi`:
+      - **Feature:** Added wait handlers
   - [v0.5.1](services/dremio/CHANGELOG.md#v051)
     - `v1alphaapi`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
