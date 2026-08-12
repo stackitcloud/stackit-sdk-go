@@ -346,6 +346,10 @@
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
 - `valkey`:
+  - [v0.2.0](services/valkey/CHANGELOG.md#v020)
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v0.1.1](services/valkey/CHANGELOG.md#v011)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
