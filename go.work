@@ -43,7 +43,6 @@ use (
 	./examples/waiter
 	./services/alb
 	./services/albwaf
-	./services/archiving
 	./services/auditlog
 	./services/authorization
 	./services/cdn
@@ -87,4 +86,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./tools
 )
