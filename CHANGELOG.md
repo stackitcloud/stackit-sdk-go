@@ -115,6 +115,17 @@
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
       - **Fix:** Escape regex in validate tags of model structs correctly
 - `logme`:
+  - [v1.3.0](services/logme/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v1.2.0.
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.2.1](services/logme/CHANGELOG.md#v121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
@@ -141,6 +152,17 @@
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
       - **Fix:** Escape regex in validate tags of model structs correctly
 - `mariadb`:
+  - [v1.3.0](services/mariadb/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v1.2.0.
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.2.1](services/mariadb/CHANGELOG.md#v121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
@@ -184,6 +206,17 @@
     - `v2api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
 - `opensearch`:
+  - [v1.3.0](services/opensearch/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v1.2.0.
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.2.1](services/opensearch/CHANGELOG.md#v121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
@@ -202,6 +235,17 @@
     - `v2api`: **Deprecated:** `v2api` is deprecated, use instead `v3api`
     - `v3beta1api`: **Deprecated:** `v3beta1api` is deprecated, use instead `v3api`
 - `rabbitmq`:
+  - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v1.2.0.
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.2.1](services/rabbitmq/CHANGELOG.md#v121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
@@ -214,6 +258,17 @@
       - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
         The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `redis`:
+  - [v1.3.0](services/redis/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+      The go type now correctly models the actual JSON response, this operation was broken beforehand.
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
+      - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v1.2.0.
+    - `v2api`:
+      - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.2.1](services/redis/CHANGELOG.md#v121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
