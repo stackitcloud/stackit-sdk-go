@@ -158,6 +158,33 @@ func setConfiggetForwardHostHeaderAttributeType(arg *ConfiggetForwardHostHeaderA
 }
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigGetLabelsAttributeTypeOk(arg ConfigGetLabelsAttributeType) (ret ConfigGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigGetLabelsAttributeType(arg *ConfigGetLabelsAttributeType, val ConfigGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for logSink
 */
 
@@ -389,7 +416,9 @@ type Config struct {
 	// Enabling this allows the 'Host' header to be passed through to the origin.
 	// REQUIRED
 	ForwardHostHeader ConfiggetForwardHostHeaderAttributeType `json:"forwardHostHeader" required:"true"`
-	LogSink           ConfigGetLogSinkAttributeType           `json:"logSink,omitempty"`
+	// Labels are key-value string pairs that can be attached to a distribution.
+	Labels  ConfigGetLabelsAttributeType  `json:"labels,omitempty"`
+	LogSink ConfigGetLogSinkAttributeType `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -553,6 +582,33 @@ func (o *Config) GetForwardHostHeaderOk() (ret ConfiggetForwardHostHeaderRetType
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Config) SetForwardHostHeader(v ConfiggetForwardHostHeaderRetType) {
 	setConfiggetForwardHostHeaderAttributeType(&o.ForwardHostHeader, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) GetLabels() (res ConfigGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) GetLabelsOk() (ret ConfigGetLabelsRetType, ok bool) {
+	return getConfigGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) SetLabels(v ConfigGetLabelsRetType) {
+	setConfigGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
@@ -773,6 +829,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfiggetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader); ok {
 		toSerialize["ForwardHostHeader"] = val
+	}
+	if val, ok := getConfigGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getConfigGetLogSinkAttributeTypeOk(o.LogSink); ok {
 		toSerialize["LogSink"] = val
