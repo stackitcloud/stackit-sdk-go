@@ -34,8 +34,9 @@ type WrappingKey struct {
 	// A auto generated unique id which identifies the wrapping keys.
 	Id string `json:"id"`
 	// The unique id of the key ring this wrapping key is assigned to.
-	KeyRingId  string     `json:"keyRingId"`
-	Protection Protection `json:"protection"`
+	KeyRingId string `json:"keyRingId"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
+	Protection string `json:"protection"`
 	// The public key of the wrapping key.
 	PublicKey            *string          `json:"publicKey,omitempty"`
 	Purpose              WrappingPurpose  `json:"purpose"`
@@ -49,7 +50,7 @@ type _WrappingKey WrappingKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection Protection, purpose WrappingPurpose, state WrappingKeyState) *WrappingKey {
+func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection string, purpose WrappingPurpose, state WrappingKeyState) *WrappingKey {
 	this := WrappingKey{}
 	this.AccessScope = accessScope
 	this.Algorithm = algorithm
@@ -275,9 +276,9 @@ func (o *WrappingKey) SetKeyRingId(v string) {
 }
 
 // GetProtection returns the Protection field value
-func (o *WrappingKey) GetProtection() Protection {
+func (o *WrappingKey) GetProtection() string {
 	if o == nil {
-		var ret Protection
+		var ret string
 		return ret
 	}
 
@@ -286,7 +287,7 @@ func (o *WrappingKey) GetProtection() Protection {
 
 // GetProtectionOk returns a tuple with the Protection field value
 // and a boolean to check if the value has been set.
-func (o *WrappingKey) GetProtectionOk() (*Protection, bool) {
+func (o *WrappingKey) GetProtectionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -294,7 +295,7 @@ func (o *WrappingKey) GetProtectionOk() (*Protection, bool) {
 }
 
 // SetProtection sets field value
-func (o *WrappingKey) SetProtection(v Protection) {
+func (o *WrappingKey) SetProtection(v string) {
 	o.Protection = v
 }
 

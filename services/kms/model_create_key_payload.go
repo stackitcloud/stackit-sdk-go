@@ -157,15 +157,9 @@ func setCreateKeyPayloadgetImportOnlyAttributeType(arg *CreateKeyPayloadgetImpor
 	types and functions for protection
 */
 
-// isEnumRef
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateKeyPayloadGetProtectionAttributeType = *Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateKeyPayloadGetProtectionArgType = Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateKeyPayloadGetProtectionRetType = Protection
+type CreateKeyPayloadGetProtectionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getCreateKeyPayloadGetProtectionAttributeTypeOk(arg CreateKeyPayloadGetProtectionAttributeType) (ret CreateKeyPayloadGetProtectionRetType, ok bool) {
@@ -179,6 +173,12 @@ func getCreateKeyPayloadGetProtectionAttributeTypeOk(arg CreateKeyPayloadGetProt
 func setCreateKeyPayloadGetProtectionAttributeType(arg *CreateKeyPayloadGetProtectionAttributeType, val CreateKeyPayloadGetProtectionRetType) {
 	*arg = &val
 }
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateKeyPayloadGetProtectionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateKeyPayloadGetProtectionRetType = string
 
 /*
 	types and functions for purpose
@@ -220,6 +220,7 @@ type CreateKeyPayload struct {
 	DisplayName CreateKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// States whether versions can be created or only imported.
 	ImportOnly CreateKeyPayloadgetImportOnlyAttributeType `json:"importOnly,omitempty"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
 	// REQUIRED
 	Protection CreateKeyPayloadGetProtectionAttributeType `json:"protection" required:"true"`
 	// REQUIRED

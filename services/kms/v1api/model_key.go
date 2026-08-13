@@ -36,10 +36,11 @@ type Key struct {
 	// States whether versions can be created or only imported.
 	ImportOnly bool `json:"importOnly"`
 	// The unique id of the key ring this key is assigned to.
-	KeyRingId            string     `json:"keyRingId"`
-	Protection           Protection `json:"protection"`
-	Purpose              Purpose    `json:"purpose"`
-	State                KeyState   `json:"state"`
+	KeyRingId string `json:"keyRingId"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
+	Protection           string   `json:"protection"`
+	Purpose              Purpose  `json:"purpose"`
+	State                KeyState `json:"state"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,7 +50,7 @@ type _Key Key
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKey(accessScope AccessScope, algorithm Algorithm, createdAt time.Time, displayName string, id string, importOnly bool, keyRingId string, protection Protection, purpose Purpose, state KeyState) *Key {
+func NewKey(accessScope AccessScope, algorithm Algorithm, createdAt time.Time, displayName string, id string, importOnly bool, keyRingId string, protection string, purpose Purpose, state KeyState) *Key {
 	this := Key{}
 	this.AccessScope = accessScope
 	this.Algorithm = algorithm
@@ -309,9 +310,9 @@ func (o *Key) SetKeyRingId(v string) {
 }
 
 // GetProtection returns the Protection field value
-func (o *Key) GetProtection() Protection {
+func (o *Key) GetProtection() string {
 	if o == nil {
-		var ret Protection
+		var ret string
 		return ret
 	}
 
@@ -320,7 +321,7 @@ func (o *Key) GetProtection() Protection {
 
 // GetProtectionOk returns a tuple with the Protection field value
 // and a boolean to check if the value has been set.
-func (o *Key) GetProtectionOk() (*Protection, bool) {
+func (o *Key) GetProtectionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -328,7 +329,7 @@ func (o *Key) GetProtectionOk() (*Protection, bool) {
 }
 
 // SetProtection sets field value
-func (o *Key) SetProtection(v Protection) {
+func (o *Key) SetProtection(v string) {
 	o.Protection = v
 }
 

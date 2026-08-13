@@ -27,9 +27,10 @@ type CreateKeyPayload struct {
 	// The display name to distinguish multiple keys. Valid characters: letters, digits, underscores and hyphens.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
 	// States whether versions can be created or only imported.
-	ImportOnly           *bool      `json:"importOnly,omitempty"`
-	Protection           Protection `json:"protection"`
-	Purpose              Purpose    `json:"purpose"`
+	ImportOnly *bool `json:"importOnly,omitempty"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
+	Protection           string  `json:"protection"`
+	Purpose              Purpose `json:"purpose"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,7 +40,7 @@ type _CreateKeyPayload CreateKeyPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateKeyPayload(algorithm Algorithm, displayName string, protection Protection, purpose Purpose) *CreateKeyPayload {
+func NewCreateKeyPayload(algorithm Algorithm, displayName string, protection string, purpose Purpose) *CreateKeyPayload {
 	this := CreateKeyPayload{}
 	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
 	this.AccessScope = &accessScope
@@ -209,9 +210,9 @@ func (o *CreateKeyPayload) SetImportOnly(v bool) {
 }
 
 // GetProtection returns the Protection field value
-func (o *CreateKeyPayload) GetProtection() Protection {
+func (o *CreateKeyPayload) GetProtection() string {
 	if o == nil {
-		var ret Protection
+		var ret string
 		return ret
 	}
 
@@ -220,7 +221,7 @@ func (o *CreateKeyPayload) GetProtection() Protection {
 
 // GetProtectionOk returns a tuple with the Protection field value
 // and a boolean to check if the value has been set.
-func (o *CreateKeyPayload) GetProtectionOk() (*Protection, bool) {
+func (o *CreateKeyPayload) GetProtectionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -228,7 +229,7 @@ func (o *CreateKeyPayload) GetProtectionOk() (*Protection, bool) {
 }
 
 // SetProtection sets field value
-func (o *CreateKeyPayload) SetProtection(v Protection) {
+func (o *CreateKeyPayload) SetProtection(v string) {
 	o.Protection = v
 }
 
