@@ -76,7 +76,8 @@ func setStorageCreateGetSizeAttributeType(arg *StorageCreateGetSizeAttributeType
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type StorageCreate struct {
 	// The storage class for the storage.
-	Class StorageCreateGetClassAttributeType `json:"class,omitempty"`
+	// REQUIRED
+	Class StorageCreateGetClassAttributeType `json:"class" required:"true"`
 	// The storage size in Gigabytes.
 	// REQUIRED
 	Size StorageCreateGetSizeAttributeType `json:"size" required:"true"`
@@ -90,8 +91,9 @@ type _StorageCreate StorageCreate
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewStorageCreate(size StorageCreateGetSizeArgType) *StorageCreate {
+func NewStorageCreate(class StorageCreateGetClassArgType, size StorageCreateGetSizeArgType) *StorageCreate {
 	this := StorageCreate{}
+	setStorageCreateGetClassAttributeType(&this.Class, class)
 	setStorageCreateGetSizeAttributeType(&this.Size, size)
 	return &this
 }
@@ -105,28 +107,21 @@ func NewStorageCreateWithDefaults() *StorageCreate {
 	return &this
 }
 
-// GetClass returns the Class field value if set, zero value otherwise.
+// GetClass returns the Class field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *StorageCreate) GetClass() (res StorageCreateGetClassRetType) {
-	res, _ = o.GetClassOk()
-	return
+func (o *StorageCreate) GetClass() (ret StorageCreateGetClassRetType) {
+	ret, _ = o.GetClassOk()
+	return ret
 }
 
-// GetClassOk returns a tuple with the Class field value if set, nil otherwise
+// GetClassOk returns a tuple with the Class field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *StorageCreate) GetClassOk() (ret StorageCreateGetClassRetType, ok bool) {
 	return getStorageCreateGetClassAttributeTypeOk(o.Class)
 }
 
-// HasClass returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *StorageCreate) HasClass() bool {
-	_, ok := o.GetClassOk()
-	return ok
-}
-
-// SetClass gets a reference to the given string and assigns it to the Class field.
+// SetClass sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *StorageCreate) SetClass(v StorageCreateGetClassRetType) {
 	setStorageCreateGetClassAttributeType(&o.Class, v)
