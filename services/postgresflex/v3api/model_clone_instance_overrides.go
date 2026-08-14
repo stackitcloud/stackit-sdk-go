@@ -22,7 +22,7 @@ var _ MappedNullable = &CloneInstanceOverrides{}
 // CloneInstanceOverrides struct for CloneInstanceOverrides
 type CloneInstanceOverrides struct {
 	// The storage class for the storage.
-	Class *string `json:"class,omitempty"`
+	Class string `json:"class"`
 	// The name of the cloned instance. If not provided, the default naming behavior of appending '-clone' to the source instance name is used.
 	Name *string `json:"name,omitempty"`
 	// The storage size in Gigabytes.
@@ -36,8 +36,9 @@ type _CloneInstanceOverrides CloneInstanceOverrides
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloneInstanceOverrides(size int64) *CloneInstanceOverrides {
+func NewCloneInstanceOverrides(class string, size int64) *CloneInstanceOverrides {
 	this := CloneInstanceOverrides{}
+	this.Class = class
 	this.Size = size
 	return &this
 }
@@ -50,36 +51,28 @@ func NewCloneInstanceOverridesWithDefaults() *CloneInstanceOverrides {
 	return &this
 }
 
-// GetClass returns the Class field value if set, zero value otherwise.
+// GetClass returns the Class field value
 func (o *CloneInstanceOverrides) GetClass() string {
-	if o == nil || IsNil(o.Class) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Class
+
+	return o.Class
 }
 
-// GetClassOk returns a tuple with the Class field value if set, nil otherwise
+// GetClassOk returns a tuple with the Class field value
 // and a boolean to check if the value has been set.
 func (o *CloneInstanceOverrides) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Class, true
+	return &o.Class, true
 }
 
-// HasClass returns a boolean if a field has been set.
-func (o *CloneInstanceOverrides) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
-}
-
-// SetClass gets a reference to the given string and assigns it to the Class field.
+// SetClass sets field value
 func (o *CloneInstanceOverrides) SetClass(v string) {
-	o.Class = &v
+	o.Class = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -148,9 +141,7 @@ func (o CloneInstanceOverrides) MarshalJSON() ([]byte, error) {
 
 func (o CloneInstanceOverrides) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
-	}
+	toSerialize["class"] = o.Class
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -168,6 +159,7 @@ func (o *CloneInstanceOverrides) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"class",
 		"size",
 	}
 
