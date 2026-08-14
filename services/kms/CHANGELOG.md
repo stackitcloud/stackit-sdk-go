@@ -1,7 +1,3 @@
-## v1.13.0
-- **Breaking change:** Remove enum `Protection`
-- **Breaking change:** Change type of `Protection` attribute from `Protection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model
-
 ## v1.12.1
 - `v1api`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
