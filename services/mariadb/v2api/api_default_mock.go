@@ -22,7 +22,7 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
 	// CreateBackupExecuteMock can be populated to implement the behavior of the CreateBackupExecute function of this mock
-	CreateBackupExecuteMock *func(r ApiCreateBackupRequest) ([]CreateBackupResponseItem, error)
+	CreateBackupExecuteMock *func(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error)
 	// CreateCredentialsExecuteMock can be populated to implement the behavior of the CreateCredentialsExecute function of this mock
 	CreateCredentialsExecuteMock *func(r ApiCreateCredentialsRequest) (*CredentialsResponse, error)
 	// CreateInstanceExecuteMock can be populated to implement the behavior of the CreateInstanceExecute function of this mock
@@ -72,9 +72,9 @@ func (a DefaultAPIServiceMock) CreateBackup(ctx context.Context, projectId strin
 }
 
 // CreateBackupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateBackupExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateBackupExecute(r ApiCreateBackupRequest) ([]CreateBackupResponseItem, error) {
+func (a DefaultAPIServiceMock) CreateBackupExecute(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error) {
 	if a.CreateBackupExecuteMock == nil {
-		var localVarReturnValue []CreateBackupResponseItem
+		var localVarReturnValue *CreateBackupResponseItem
 		return localVarReturnValue, nil
 	}
 
