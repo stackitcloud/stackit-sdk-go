@@ -130,15 +130,9 @@ type CreateWrappingKeyPayloadGetDisplayNameRetType = string
 	types and functions for protection
 */
 
-// isEnumRef
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateWrappingKeyPayloadGetProtectionAttributeType = *Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateWrappingKeyPayloadGetProtectionArgType = Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateWrappingKeyPayloadGetProtectionRetType = Protection
+type CreateWrappingKeyPayloadGetProtectionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getCreateWrappingKeyPayloadGetProtectionAttributeTypeOk(arg CreateWrappingKeyPayloadGetProtectionAttributeType) (ret CreateWrappingKeyPayloadGetProtectionRetType, ok bool) {
@@ -152,6 +146,12 @@ func getCreateWrappingKeyPayloadGetProtectionAttributeTypeOk(arg CreateWrappingK
 func setCreateWrappingKeyPayloadGetProtectionAttributeType(arg *CreateWrappingKeyPayloadGetProtectionAttributeType, val CreateWrappingKeyPayloadGetProtectionRetType) {
 	*arg = &val
 }
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateWrappingKeyPayloadGetProtectionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateWrappingKeyPayloadGetProtectionRetType = string
 
 /*
 	types and functions for purpose
@@ -191,6 +191,7 @@ type CreateWrappingKeyPayload struct {
 	// The display name to distinguish multiple wrapping keys. Valid characters: letters, digits, underscores and hyphens.
 	// REQUIRED
 	DisplayName CreateWrappingKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
 	// REQUIRED
 	Protection CreateWrappingKeyPayloadGetProtectionAttributeType `json:"protection" required:"true"`
 	// REQUIRED

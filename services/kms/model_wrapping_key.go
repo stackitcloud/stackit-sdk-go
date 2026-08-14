@@ -240,15 +240,9 @@ type WrappingKeyGetKeyRingIdRetType = string
 	types and functions for protection
 */
 
-// isEnumRef
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type WrappingKeyGetProtectionAttributeType = *Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type WrappingKeyGetProtectionArgType = Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type WrappingKeyGetProtectionRetType = Protection
+type WrappingKeyGetProtectionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getWrappingKeyGetProtectionAttributeTypeOk(arg WrappingKeyGetProtectionAttributeType) (ret WrappingKeyGetProtectionRetType, ok bool) {
@@ -262,6 +256,12 @@ func getWrappingKeyGetProtectionAttributeTypeOk(arg WrappingKeyGetProtectionAttr
 func setWrappingKeyGetProtectionAttributeType(arg *WrappingKeyGetProtectionAttributeType, val WrappingKeyGetProtectionRetType) {
 	*arg = &val
 }
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type WrappingKeyGetProtectionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type WrappingKeyGetProtectionRetType = string
 
 /*
 	types and functions for publicKey
@@ -497,6 +497,7 @@ type WrappingKey struct {
 	// The unique id of the key ring this wrapping key is assigned to.
 	// REQUIRED
 	KeyRingId WrappingKeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
 	// REQUIRED
 	Protection WrappingKeyGetProtectionAttributeType `json:"protection" required:"true"`
 	// The public key of the wrapping key.
