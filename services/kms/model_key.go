@@ -267,15 +267,9 @@ type KeyGetKeyRingIdRetType = string
 	types and functions for protection
 */
 
-// isEnumRef
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type KeyGetProtectionAttributeType = *Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type KeyGetProtectionArgType = Protection
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type KeyGetProtectionRetType = Protection
+type KeyGetProtectionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getKeyGetProtectionAttributeTypeOk(arg KeyGetProtectionAttributeType) (ret KeyGetProtectionRetType, ok bool) {
@@ -289,6 +283,12 @@ func getKeyGetProtectionAttributeTypeOk(arg KeyGetProtectionAttributeType) (ret 
 func setKeyGetProtectionAttributeType(arg *KeyGetProtectionAttributeType, val KeyGetProtectionRetType) {
 	*arg = &val
 }
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type KeyGetProtectionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type KeyGetProtectionRetType = string
 
 /*
 	types and functions for purpose
@@ -502,6 +502,7 @@ type Key struct {
 	// The unique id of the key ring this key is assigned to.
 	// REQUIRED
 	KeyRingId KeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
 	// REQUIRED
 	Protection KeyGetProtectionAttributeType `json:"protection" required:"true"`
 	// REQUIRED

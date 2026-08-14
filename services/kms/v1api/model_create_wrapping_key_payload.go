@@ -25,8 +25,9 @@ type CreateWrappingKeyPayload struct {
 	// A user chosen description to distinguish multiple wrapping keys.
 	Description *string `json:"description,omitempty"`
 	// The display name to distinguish multiple wrapping keys. Valid characters: letters, digits, underscores and hyphens.
-	DisplayName          string          `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
-	Protection           Protection      `json:"protection"`
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
+	// The underlying system that is responsible for protecting the key material. Possible values are \"software\" or \"hsm\"
+	Protection           string          `json:"protection"`
 	Purpose              WrappingPurpose `json:"purpose"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,7 +38,7 @@ type _CreateWrappingKeyPayload CreateWrappingKeyPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWrappingKeyPayload(algorithm WrappingAlgorithm, displayName string, protection Protection, purpose WrappingPurpose) *CreateWrappingKeyPayload {
+func NewCreateWrappingKeyPayload(algorithm WrappingAlgorithm, displayName string, protection string, purpose WrappingPurpose) *CreateWrappingKeyPayload {
 	this := CreateWrappingKeyPayload{}
 	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
 	this.AccessScope = &accessScope
@@ -171,9 +172,9 @@ func (o *CreateWrappingKeyPayload) SetDisplayName(v string) {
 }
 
 // GetProtection returns the Protection field value
-func (o *CreateWrappingKeyPayload) GetProtection() Protection {
+func (o *CreateWrappingKeyPayload) GetProtection() string {
 	if o == nil {
-		var ret Protection
+		var ret string
 		return ret
 	}
 
@@ -182,7 +183,7 @@ func (o *CreateWrappingKeyPayload) GetProtection() Protection {
 
 // GetProtectionOk returns a tuple with the Protection field value
 // and a boolean to check if the value has been set.
-func (o *CreateWrappingKeyPayload) GetProtectionOk() (*Protection, bool) {
+func (o *CreateWrappingKeyPayload) GetProtectionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,7 +191,7 @@ func (o *CreateWrappingKeyPayload) GetProtectionOk() (*Protection, bool) {
 }
 
 // SetProtection sets field value
-func (o *CreateWrappingKeyPayload) SetProtection(v Protection) {
+func (o *CreateWrappingKeyPayload) SetProtection(v string) {
 	o.Protection = v
 }
 
