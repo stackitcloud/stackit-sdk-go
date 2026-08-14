@@ -75,7 +75,7 @@ type PartialUpdateOrganizationPayloadGetNameRetType = string
 // PartialUpdateOrganizationPayload struct for PartialUpdateOrganizationPayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PartialUpdateOrganizationPayload struct {
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label's value to `null` removes/deletes that label from the resource.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`, or be `null` to delete the label  > Note: Additional naming restrictions may apply depending on your specific organization.*
 	Labels PartialUpdateOrganizationPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name PartialUpdateOrganizationPayloadGetNameAttributeType `json:"name,omitempty"`
