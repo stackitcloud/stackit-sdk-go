@@ -46,6 +46,33 @@ func setPatchInstancePayloadGetAclAttributeType(arg *PatchInstancePayloadGetAclA
 }
 
 /*
+	types and functions for admin_login
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadgetAdminLoginAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadgetAdminLoginArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadgetAdminLoginRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPatchInstancePayloadgetAdminLoginAttributeTypeOk(arg PatchInstancePayloadgetAdminLoginAttributeType) (ret PatchInstancePayloadgetAdminLoginRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPatchInstancePayloadgetAdminLoginAttributeType(arg *PatchInstancePayloadgetAdminLoginAttributeType, val PatchInstancePayloadgetAdminLoginRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for feature_toggle
 */
 
@@ -72,12 +99,43 @@ func setPatchInstancePayloadGetFeatureToggleAttributeType(arg *PatchInstancePayl
 	*arg = &val
 }
 
+/*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PatchInstancePayloadGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPatchInstancePayloadGetLabelsAttributeTypeOk(arg PatchInstancePayloadGetLabelsAttributeType) (ret PatchInstancePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPatchInstancePayloadGetLabelsAttributeType(arg *PatchInstancePayloadGetLabelsAttributeType, val PatchInstancePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
 // PatchInstancePayload Properties to patch on an instance. All fields are optional.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PatchInstancePayload struct {
 	// A list of CIDR network addresses that are allowed to access the instance.
-	Acl           PatchInstancePayloadGetAclAttributeType           `json:"acl,omitempty"`
+	Acl PatchInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
+	// Enable Admin IdP
+	AdminLogin    PatchInstancePayloadgetAdminLoginAttributeType    `json:"admin_login,omitempty"`
 	FeatureToggle PatchInstancePayloadGetFeatureToggleAttributeType `json:"feature_toggle,omitempty"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.
+	Labels PatchInstancePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 }
 
 // NewPatchInstancePayload instantiates a new PatchInstancePayload object
@@ -127,6 +185,33 @@ func (o *PatchInstancePayload) SetAcl(v PatchInstancePayloadGetAclRetType) {
 	setPatchInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
+// GetAdminLogin returns the AdminLogin field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) GetAdminLogin() (res PatchInstancePayloadgetAdminLoginRetType) {
+	res, _ = o.GetAdminLoginOk()
+	return
+}
+
+// GetAdminLoginOk returns a tuple with the AdminLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) GetAdminLoginOk() (ret PatchInstancePayloadgetAdminLoginRetType, ok bool) {
+	return getPatchInstancePayloadgetAdminLoginAttributeTypeOk(o.AdminLogin)
+}
+
+// HasAdminLogin returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) HasAdminLogin() bool {
+	_, ok := o.GetAdminLoginOk()
+	return ok
+}
+
+// SetAdminLogin gets a reference to the given bool and assigns it to the AdminLogin field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) SetAdminLogin(v PatchInstancePayloadgetAdminLoginRetType) {
+	setPatchInstancePayloadgetAdminLoginAttributeType(&o.AdminLogin, v)
+}
+
 // GetFeatureToggle returns the FeatureToggle field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *PatchInstancePayload) GetFeatureToggle() (res PatchInstancePayloadGetFeatureToggleRetType) {
@@ -154,14 +239,47 @@ func (o *PatchInstancePayload) SetFeatureToggle(v PatchInstancePayloadGetFeature
 	setPatchInstancePayloadGetFeatureToggleAttributeType(&o.FeatureToggle, v)
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) GetLabels() (res PatchInstancePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) GetLabelsOk() (ret PatchInstancePayloadGetLabelsRetType, ok bool) {
+	return getPatchInstancePayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PatchInstancePayload) SetLabels(v PatchInstancePayloadGetLabelsRetType) {
+	setPatchInstancePayloadGetLabelsAttributeType(&o.Labels, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o PatchInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPatchInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
 		toSerialize["Acl"] = val
 	}
+	if val, ok := getPatchInstancePayloadgetAdminLoginAttributeTypeOk(o.AdminLogin); ok {
+		toSerialize["AdminLogin"] = val
+	}
 	if val, ok := getPatchInstancePayloadGetFeatureToggleAttributeTypeOk(o.FeatureToggle); ok {
 		toSerialize["FeatureToggle"] = val
+	}
+	if val, ok := getPatchInstancePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	return toSerialize, nil
 }
