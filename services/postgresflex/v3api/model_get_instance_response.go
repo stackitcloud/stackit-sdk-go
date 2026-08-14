@@ -32,7 +32,7 @@ type GetInstanceResponse struct {
 	// Whether the instance can be deleted or not.
 	IsDeletable bool `json:"isDeletable"`
 	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels *map[string]*string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name    string          `json:"name"`
 	Network InstanceNetwork `json:"network"`
@@ -228,9 +228,9 @@ func (o *GetInstanceResponse) SetIsDeletable(v bool) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *GetInstanceResponse) GetLabels() map[string]string {
+func (o *GetInstanceResponse) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -238,7 +238,7 @@ func (o *GetInstanceResponse) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetInstanceResponse) GetLabelsOk() (*map[string]string, bool) {
+func (o *GetInstanceResponse) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -254,8 +254,8 @@ func (o *GetInstanceResponse) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *GetInstanceResponse) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *GetInstanceResponse) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 
