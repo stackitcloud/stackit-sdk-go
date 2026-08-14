@@ -105,7 +105,7 @@
 - `kms`:
   - [v1.13.0](services/kms/CHANGELOG.md#v1130)
     - **Breaking change:** Remove enum `Protection`
-    - **Breaking change:** Change type of `Protection` attribute from `Projection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model
+    - **Breaking change:** Change type of `Protection` attribute from `Protection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model
   - [v1.12.1](services/kms/CHANGELOG.md#v1121)
     - `v1api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)

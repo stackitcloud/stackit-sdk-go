@@ -1,6 +1,6 @@
 ## v1.13.0
 - **Breaking change:** Remove enum `Protection`
-- **Breaking change:** Change type of `Protection` attribute from `Projection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model
+- **Breaking change:** Change type of `Protection` attribute from `Protection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model
 
 ## v1.12.1
 - `v1api`:
