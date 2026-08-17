@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.5.0
+	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.6.1
 )
 
 require (
