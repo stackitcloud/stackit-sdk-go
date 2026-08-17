@@ -103,7 +103,8 @@ func setCloneInstanceOverridesGetSizeAttributeType(arg *CloneInstanceOverridesGe
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CloneInstanceOverrides struct {
 	// The storage class for the storage.
-	Class CloneInstanceOverridesGetClassAttributeType `json:"class,omitempty"`
+	// REQUIRED
+	Class CloneInstanceOverridesGetClassAttributeType `json:"class" required:"true"`
 	// The name of the cloned instance. If not provided, the default naming behavior of appending '-clone' to the source instance name is used.
 	Name CloneInstanceOverridesGetNameAttributeType `json:"name,omitempty"`
 	// The storage size in Gigabytes.
@@ -119,8 +120,9 @@ type _CloneInstanceOverrides CloneInstanceOverrides
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewCloneInstanceOverrides(size CloneInstanceOverridesGetSizeArgType) *CloneInstanceOverrides {
+func NewCloneInstanceOverrides(class CloneInstanceOverridesGetClassArgType, size CloneInstanceOverridesGetSizeArgType) *CloneInstanceOverrides {
 	this := CloneInstanceOverrides{}
+	setCloneInstanceOverridesGetClassAttributeType(&this.Class, class)
 	setCloneInstanceOverridesGetSizeAttributeType(&this.Size, size)
 	return &this
 }
@@ -134,28 +136,21 @@ func NewCloneInstanceOverridesWithDefaults() *CloneInstanceOverrides {
 	return &this
 }
 
-// GetClass returns the Class field value if set, zero value otherwise.
+// GetClass returns the Class field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CloneInstanceOverrides) GetClass() (res CloneInstanceOverridesGetClassRetType) {
-	res, _ = o.GetClassOk()
-	return
+func (o *CloneInstanceOverrides) GetClass() (ret CloneInstanceOverridesGetClassRetType) {
+	ret, _ = o.GetClassOk()
+	return ret
 }
 
-// GetClassOk returns a tuple with the Class field value if set, nil otherwise
+// GetClassOk returns a tuple with the Class field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CloneInstanceOverrides) GetClassOk() (ret CloneInstanceOverridesGetClassRetType, ok bool) {
 	return getCloneInstanceOverridesGetClassAttributeTypeOk(o.Class)
 }
 
-// HasClass returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CloneInstanceOverrides) HasClass() bool {
-	_, ok := o.GetClassOk()
-	return ok
-}
-
-// SetClass gets a reference to the given string and assigns it to the Class field.
+// SetClass sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CloneInstanceOverrides) SetClass(v CloneInstanceOverridesGetClassRetType) {
 	setCloneInstanceOverridesGetClassAttributeType(&o.Class, v)
