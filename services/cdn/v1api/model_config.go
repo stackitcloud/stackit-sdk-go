@@ -28,8 +28,10 @@ type Config struct {
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
-	ForwardHostHeader bool         `json:"forwardHostHeader"`
-	LogSink           *LokiLogSink `json:"logSink,omitempty"`
+	ForwardHostHeader bool `json:"forwardHostHeader"`
+	// Labels are key-value string pairs that can be attached to a distribution.
+	Labels  *map[string]string `json:"labels,omitempty"`
+	LogSink *ConfigLogSink     `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *Optimizer      `json:"optimizer,omitempty"`
@@ -208,10 +210,42 @@ func (o *Config) SetForwardHostHeader(v bool) {
 	o.ForwardHostHeader = v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Config) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Config) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Config) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *Config) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *Config) GetLogSink() LokiLogSink {
+func (o *Config) GetLogSink() ConfigLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret LokiLogSink
+		var ret ConfigLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -219,7 +253,7 @@ func (o *Config) GetLogSink() LokiLogSink {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Config) GetLogSinkOk() (*LokiLogSink, bool) {
+func (o *Config) GetLogSinkOk() (*ConfigLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -235,8 +269,8 @@ func (o *Config) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given LokiLogSink and assigns it to the LogSink field.
-func (o *Config) SetLogSink(v LokiLogSink) {
+// SetLogSink gets a reference to the given ConfigLogSink and assigns it to the LogSink field.
+func (o *Config) SetLogSink(v ConfigLogSink) {
 	o.LogSink = &v
 }
 
@@ -460,6 +494,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
 	}
 	toSerialize["forwardHostHeader"] = o.ForwardHostHeader
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.LogSink) {
 		toSerialize["logSink"] = o.LogSink
 	}
@@ -531,6 +568,7 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
