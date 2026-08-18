@@ -30,8 +30,10 @@ type CreateDistributionPayload struct {
 	// Enabling this allows the 'Host' header to be passed through to the origin.
 	ForwardHostHeader *bool `json:"forwardHostHeader,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
-	IntentId *string            `json:"intentId,omitempty"`
-	LogSink  *LokiLogSinkCreate `json:"logSink,omitempty"`
+	IntentId *string `json:"intentId,omitempty"`
+	// Labels are key-value string pairs that can be attached to a distribution.
+	Labels  *map[string]string                `json:"labels,omitempty"`
+	LogSink *CreateDistributionPayloadLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes *int64          `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *Optimizer      `json:"optimizer,omitempty"`
@@ -250,10 +252,42 @@ func (o *CreateDistributionPayload) SetIntentId(v string) {
 	o.IntentId = &v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateDistributionPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
-func (o *CreateDistributionPayload) GetLogSink() LokiLogSinkCreate {
+func (o *CreateDistributionPayload) GetLogSink() CreateDistributionPayloadLogSink {
 	if o == nil || IsNil(o.LogSink) {
-		var ret LokiLogSinkCreate
+		var ret CreateDistributionPayloadLogSink
 		return ret
 	}
 	return *o.LogSink
@@ -261,7 +295,7 @@ func (o *CreateDistributionPayload) GetLogSink() LokiLogSinkCreate {
 
 // GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDistributionPayload) GetLogSinkOk() (*LokiLogSinkCreate, bool) {
+func (o *CreateDistributionPayload) GetLogSinkOk() (*CreateDistributionPayloadLogSink, bool) {
 	if o == nil || IsNil(o.LogSink) {
 		return nil, false
 	}
@@ -277,8 +311,8 @@ func (o *CreateDistributionPayload) HasLogSink() bool {
 	return false
 }
 
-// SetLogSink gets a reference to the given LokiLogSinkCreate and assigns it to the LogSink field.
-func (o *CreateDistributionPayload) SetLogSink(v LokiLogSinkCreate) {
+// SetLogSink gets a reference to the given CreateDistributionPayloadLogSink and assigns it to the LogSink field.
+func (o *CreateDistributionPayload) SetLogSink(v CreateDistributionPayloadLogSink) {
 	o.LogSink = &v
 }
 
@@ -524,6 +558,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IntentId) {
 		toSerialize["intentId"] = o.IntentId
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.LogSink) {
 		toSerialize["logSink"] = o.LogSink
 	}
@@ -596,6 +633,7 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "intentId")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
