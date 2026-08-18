@@ -21,8 +21,8 @@ var _ MappedNullable = &PartialUpdateFolderPayload{}
 type PartialUpdateFolderPayload struct {
 	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
 	ContainerParentId *string `json:"containerParentId,omitempty"`
-	// Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * Either a `\"scope\": \"PUBLIC\"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `\"networkArea\": \"<networkAreaID>\"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.
-	Labels *map[string]string `json:"labels,omitempty"`
+	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label's value to `null` removes/deletes that label from the resource.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`, or be `null` to delete the label  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	Labels *map[string]*string `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name                 *string `json:"name,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0\\,39}$"`
 	AdditionalProperties map[string]interface{}
@@ -80,9 +80,9 @@ func (o *PartialUpdateFolderPayload) SetContainerParentId(v string) {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateFolderPayload) GetLabels() map[string]string {
+func (o *PartialUpdateFolderPayload) GetLabels() map[string]*string {
 	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Labels
@@ -90,7 +90,7 @@ func (o *PartialUpdateFolderPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateFolderPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *PartialUpdateFolderPayload) GetLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *PartialUpdateFolderPayload) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateFolderPayload) SetLabels(v map[string]string) {
+// SetLabels gets a reference to the given map[string]*string and assigns it to the Labels field.
+func (o *PartialUpdateFolderPayload) SetLabels(v map[string]*string) {
 	o.Labels = &v
 }
 
