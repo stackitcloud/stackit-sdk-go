@@ -41,6 +41,7 @@ use (
 	./examples/valkey
 	./examples/vpn
 	./examples/waiter
+	./examples/workflows
 	./services/alb
 	./services/albwaf
 	./services/archiving
@@ -87,4 +88,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./services/workflows
 )
