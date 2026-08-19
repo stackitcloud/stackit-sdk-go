@@ -20,6 +20,10 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		cfg.ServiceAccountEmail = email
 	}
 
+	if cfg.TokenProvider != nil {
+		return newTokenProviderRoundTripper(cfg.TokenProvider, getTransportFromConfig(cfg)), nil
+	}
+
 	if cfg.CustomAuth != nil {
 		return cfg.CustomAuth, nil
 	} else if cfg.NoAuth {
@@ -67,6 +71,10 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
+	}
+
+	if cfg.TokenProvider != nil {
+		return newTokenProviderRoundTripper(cfg.TokenProvider, getTransportFromConfig(cfg)), nil
 	}
 
 	providers := []identity.TokenProvider{}

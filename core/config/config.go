@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 )
 
@@ -97,6 +98,7 @@ type Configuration struct {
 	Resources                              []string                   `json:"resources,omitempty"`
 	Region                                 string                     `json:"region,omitempty"`
 	CustomAuth                             http.RoundTripper
+	TokenProvider                          identity.TokenProvider
 	Servers                                ServerConfigurations
 	OperationServers                       map[string]ServerConfigurations
 	HTTPClient                             *http.Client
@@ -346,6 +348,7 @@ func WithMiddleware(m Middleware) ConfigurationOption {
 // The goroutine is killed whenever the given context is canceled.
 //
 // Only has effect for key flow
+// Deprecated: This option is deprecated and will be removed in a future release
 func WithBackgroundTokenRefresh(ctx context.Context) ConfigurationOption {
 	return func(c *Configuration) error {
 		if ctx == nil {
@@ -392,6 +395,14 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 // Deprecated: Use runtime.WithCaptureHTTPResponse instead
 func WithCaptureHTTPResponse(parent context.Context, resp **http.Response) context.Context {
 	return context.WithValue(parent, ContextHTTPResponse, resp)
+}
+
+// WithTokenProvider returns a ConfigurationOption that sets a custom TokenProvider for the client.
+func WithTokenProvider(tp identity.TokenProvider) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.TokenProvider = tp
+		return nil
+	}
 }
 
 // ServerVariable stores the information about a server variable
