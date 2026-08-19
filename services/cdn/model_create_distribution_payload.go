@@ -181,6 +181,33 @@ type CreateDistributionPayloadGetIntentIdArgType = string
 type CreateDistributionPayloadGetIntentIdRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateDistributionPayloadGetLabelsAttributeTypeOk(arg CreateDistributionPayloadGetLabelsAttributeType) (ret CreateDistributionPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateDistributionPayloadGetLabelsAttributeType(arg *CreateDistributionPayloadGetLabelsAttributeType, val CreateDistributionPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for logSink
 */
 
@@ -411,7 +438,9 @@ type CreateDistributionPayload struct {
 	ForwardHostHeader CreateDistributionPayloadgetForwardHostHeaderAttributeType `json:"forwardHostHeader,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
-	LogSink  CreateDistributionPayloadGetLogSinkAttributeType  `json:"logSink,omitempty"`
+	// Labels are key-value string pairs that can be attached to a distribution.
+	Labels  CreateDistributionPayloadGetLabelsAttributeType  `json:"labels,omitempty"`
+	LogSink CreateDistributionPayloadGetLogSinkAttributeType `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes CreateDistributionPayloadGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         CreateDistributionPayloadGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -602,6 +631,33 @@ func (o *CreateDistributionPayload) HasIntentId() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateDistributionPayload) SetIntentId(v CreateDistributionPayloadGetIntentIdRetType) {
 	setCreateDistributionPayloadGetIntentIdAttributeType(&o.IntentId, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetLabels() (res CreateDistributionPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetLabelsOk() (ret CreateDistributionPayloadGetLabelsRetType, ok bool) {
+	return getCreateDistributionPayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) SetLabels(v CreateDistributionPayloadGetLabelsRetType) {
+	setCreateDistributionPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
@@ -833,6 +889,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetLogSinkAttributeTypeOk(o.LogSink); ok {
 		toSerialize["LogSink"] = val
