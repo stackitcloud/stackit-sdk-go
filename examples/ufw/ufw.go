@@ -38,7 +38,7 @@ func main() {
 		Description: &description,
 	}
 
-	createdRuleResponse, err := createFirewallRule(ctx, ufwClient, projectId, region, rulePayloadToCreate)
+	createdRuleResponse, err := createFirewallRule(ctx, ufwClient, projectId, region, &rulePayloadToCreate)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[UFW] Error when creating firewall rule: %v\n", err)
@@ -95,7 +95,7 @@ func main() {
 		return
 	}
 
-	testGetRule, err = getFirewallRule(ctx, ufwClient, projectId, region, *updatedRuleResponse.RefId)
+	_, err = getFirewallRule(ctx, ufwClient, projectId, region, *updatedRuleResponse.RefId)
 	if !strings.Contains(err.Error(), "404") {
 		fmt.Fprintf(os.Stderr, "[UFW] Error while verifying deleted rule: %v\n", err)
 		return
@@ -115,8 +115,8 @@ func listUFWRules(ctx context.Context, ufwClient *ufw.APIClient, projectId, regi
 	}
 
 	fmt.Println("List of firewall rules:")
-	for _, rule := range listRulesResponse.Rules {
-		fmt.Printf("%+v\n", rule)
+	for i := range listRulesResponse.Rules {
+		fmt.Printf("%+v\n", listRulesResponse.Rules[i])
 	}
 }
 
@@ -124,8 +124,8 @@ func getFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, r
 	return ufwClient.DefaultAPI.GetRule(ctx, projectId, region, ruleId).Execute()
 }
 
-func createFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region string, payload ufw.CreateRulePayload) (*ufw.SecurityRuleSuccessfullyCreatedResponse, error) {
-	createdFirewallRule, err := ufwClient.DefaultAPI.CreateRule(ctx, projectId, region).CreateRulePayload(payload).Execute()
+func createFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region string, payload *ufw.CreateRulePayload) (*ufw.SecurityRuleSuccessfullyCreatedResponse, error) {
+	createdFirewallRule, err := ufwClient.DefaultAPI.CreateRule(ctx, projectId, region).CreateRulePayload(*payload).Execute()
 	if err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func deleteFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId
 	return nil
 }
 
-func verifyPayloadMatch(actual any, expected any) error {
+func verifyPayloadMatch(actual, expected any) error {
 	var mismatches []string
 
 	actualVal := reflect.ValueOf(actual)
