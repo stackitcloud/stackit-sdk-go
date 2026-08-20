@@ -28,6 +28,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	// List all firewall rules
+	listUFWRules(ctx, ufwClient, projectId, region)
+
 	// Create a new firewall rule
 	description := "Created from SDK"
 	rulePayloadToCreate := ufw.CreateRulePayload{
@@ -100,9 +103,6 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[UFW] Error while verifying deleted rule: %v\n", err)
 		return
 	}
-
-	// List all firewall rules
-	listUFWRules(ctx, ufwClient, projectId, region)
 
 	fmt.Println("All firewall rules successfully tested and cleaned up.")
 }
