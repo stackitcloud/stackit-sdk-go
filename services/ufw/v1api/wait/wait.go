@@ -13,70 +13,34 @@ import (
 type RuleStatus string
 
 const (
-	RuleStatusActive   RuleStatus = "Active"
-	RuleStatusCreating RuleStatus = "Creating"
-	RuleStatusUpdating RuleStatus = "Updating"
-	RuleStatusPending  RuleStatus = "Pending"
-	RuleStatusDeleting RuleStatus = "Deleting"
-	RuleStatusError    RuleStatus = "Error"
+	RuleStatusActive RuleStatus = "Active"
+	RuleStatusError  RuleStatus = "Error"
 )
 
 func CreateRuleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string) *wait.AsyncActionHandler[ufw.RuleResponse] {
-	waitConfig := wait.WaiterHelper[ufw.RuleResponse, RuleStatus]{
-		FetchInstance: a.GetRule(ctx, projectId, region, ruleId).Execute,
-		GetState: func(ruleResp *ufw.RuleResponse) (RuleStatus, error) {
-			if ruleResp == nil {
-				return "", errors.New("empty response")
-			}
-			if ruleResp.Status == nil {
-				return "", errors.New("status is missing")
-			}
-			return RuleStatus(*ruleResp.Status), nil
-		},
-		ActiveState: []RuleStatus{RuleStatusActive},
-		ErrorState:  []RuleStatus{RuleStatusError},
-	}
-
-	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(5 * time.Minute)
-	return handler
+	return ruleWaitHandler(ctx, a, projectId, region, ruleId, []RuleStatus{RuleStatusActive}, nil)
 }
 
 func UpdateRuleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string) *wait.AsyncActionHandler[ufw.RuleResponse] {
-	waitConfig := wait.WaiterHelper[ufw.RuleResponse, RuleStatus]{
-		FetchInstance: a.GetRule(ctx, projectId, region, ruleId).Execute,
-		GetState: func(ruleResp *ufw.RuleResponse) (RuleStatus, error) {
-			if ruleResp == nil {
-				return "", errors.New("empty response")
-			}
-			if ruleResp.Status == nil {
-				return "", errors.New("status is missing")
-			}
-			return RuleStatus(*ruleResp.Status), nil
-		},
-		ActiveState: []RuleStatus{RuleStatusActive},
-		ErrorState:  []RuleStatus{RuleStatusError},
-	}
-
-	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(5 * time.Minute)
-	return handler
+	return ruleWaitHandler(ctx, a, projectId, region, ruleId, []RuleStatus{RuleStatusActive}, nil)
 }
 
 func DeleteRuleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string) *wait.AsyncActionHandler[ufw.RuleResponse] {
+	return ruleWaitHandler(ctx, a, projectId, region, ruleId, nil, []int{http.StatusNotFound})
+}
+
+func ruleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string, activeStates []RuleStatus, deleteHttpErrorStatusCodes []int) *wait.AsyncActionHandler[ufw.RuleResponse] {
 	waitConfig := wait.WaiterHelper[ufw.RuleResponse, RuleStatus]{
 		FetchInstance: a.GetRule(ctx, projectId, region, ruleId).Execute,
 		GetState: func(ruleResp *ufw.RuleResponse) (RuleStatus, error) {
 			if ruleResp == nil {
 				return "", errors.New("empty response")
 			}
-			if ruleResp.Status == nil {
-				return "", errors.New("status is missing")
-			}
 			return RuleStatus(*ruleResp.Status), nil
 		},
+		ActiveState:                activeStates,
 		ErrorState:                 []RuleStatus{RuleStatusError},
-		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+		DeleteHttpErrorStatusCodes: deleteHttpErrorStatusCodes,
 	}
 
 	handler := wait.New(waitConfig.Wait())
