@@ -16,7 +16,7 @@ import (
 type mockSettings struct {
 	isDeleted     bool
 	getFails      bool
-	resourceState string
+	resourceState ufw.RuleResponseStatus
 }
 
 func newAPIMock(settings mockSettings) ufw.DefaultAPI {
@@ -46,21 +46,21 @@ func TestCreateRuleWaitHandler(t *testing.T) {
 	tests := []struct {
 		description   string
 		getFails      bool
-		resourceState string
+		resourceState ufw.RuleResponseStatus
 		wantError     bool
 		wantResponse  bool
 	}{
 		{
 			description:   "create_succeeded",
 			getFails:      false,
-			resourceState: string(RuleStatusActive),
+			resourceState: ufw.RULERESPONSESTATUS_ACTIVE,
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "create_failed",
 			getFails:      false,
-			resourceState: string(RuleStatusError),
+			resourceState: ufw.RULERESPONSESTATUS_ERROR,
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -114,21 +114,21 @@ func TestUpdateRuleWaitHandler(t *testing.T) {
 	tests := []struct {
 		description   string
 		getFails      bool
-		resourceState string
+		resourceState ufw.RuleResponseStatus
 		wantError     bool
 		wantResponse  bool
 	}{
 		{
 			description:   "update_succeeded",
 			getFails:      false,
-			resourceState: string(RuleStatusActive),
+			resourceState: ufw.RULERESPONSESTATUS_ACTIVE,
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "update_failed",
 			getFails:      false,
-			resourceState: string(RuleStatusError),
+			resourceState: ufw.RULERESPONSESTATUS_ERROR,
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -183,7 +183,7 @@ func TestDeleteRuleWaitHandler(t *testing.T) {
 		description   string
 		isDeleted     bool
 		getFails      bool
-		resourceState string
+		resourceState ufw.RuleResponseStatus
 		wantError     bool
 		wantResponse  bool
 	}{
@@ -199,7 +199,7 @@ func TestDeleteRuleWaitHandler(t *testing.T) {
 			description:   "delete_failed",
 			isDeleted:     false,
 			getFails:      false,
-			resourceState: string(RuleStatusError),
+			resourceState: ufw.RULERESPONSESTATUS_ERROR,
 			wantError:     true,
 			wantResponse:  true,
 		},
