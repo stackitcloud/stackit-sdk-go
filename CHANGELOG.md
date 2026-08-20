@@ -45,6 +45,21 @@
     - `v2api`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
       - **Fix:** Escape regex in validate tags of model structs correctly
+- `cdn`:
+  - [v1.20.0](services/cdn/CHANGELOG.md#v1200)
+    - `v1api`:
+      - **Feature:** Add field `Labels` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+      - **Breaking Change:** `LogSink` fields changed to new polymorphic wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`, `CreateDistributionPayloadLogSink`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v1betaapi`:
+      - **Breaking Change:** `Backend` and `LogSink` fields changed to new polymorphic wrapper types: `ConfigBackend`, `ConfigPatchBackend`, `ConfigLogSink`, `ConfigPatchLogSink`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Fix:** Escape regex in validate tags of model structs correctly
+    - `v1beta2api`:
+      - **Breaking Change:** `LogSink` fields changed to new polymorphic wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add field `Labels` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
 - `certificates`:
   - [v1.9.1](services/certificates/CHANGELOG.md#v191)
     - `v2api`

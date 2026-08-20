@@ -1,3 +1,18 @@
+## v1.20.0
+- `v1api`:
+  - **Feature:** Add field `Labels` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+  - **Breaking Change:** `LogSink` fields changed to new polymorphic wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`, `CreateDistributionPayloadLogSink`
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `v1betaapi`:
+  - **Breaking Change:** `Backend` and `LogSink` fields changed to new polymorphic wrapper types: `ConfigBackend`, `ConfigPatchBackend`, `ConfigLogSink`, `ConfigPatchLogSink`
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+  - **Fix:** Escape regex in validate tags of model structs correctly
+- `v1beta2api`:
+  - **Breaking Change:** `LogSink` fields changed to new polymorphic wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`
+  - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- Deprecated SDK layer in root of the module:
+  - **Feature:** Add field `Labels` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+
 ## v1.19.0
 - `v1api`:
   - **Improvement**: Represent available types of `HttpBackend`, `BucketBackend` and `LokiLogSink` with explicit enums instead of strings
