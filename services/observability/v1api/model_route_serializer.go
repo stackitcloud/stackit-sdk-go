@@ -21,16 +21,16 @@ var _ MappedNullable = &RouteSerializer{}
 
 // RouteSerializer struct for RouteSerializer
 type RouteSerializer struct {
-	Continue             *bool               `json:"continue,omitempty"`
-	GroupBy              []string            `json:"groupBy,omitempty"`
-	GroupInterval        *string             `json:"groupInterval,omitempty"`
-	GroupWait            *string             `json:"groupWait,omitempty"`
-	Match                *map[string]string  `json:"match,omitempty"`
-	MatchRe              *map[string]string  `json:"matchRe,omitempty"`
-	Matchers             []string            `json:"matchers,omitempty"`
-	Receiver             string              `json:"receiver"`
-	RepeatInterval       *string             `json:"repeatInterval,omitempty"`
-	Routes               []map[string]string `json:"routes,omitempty"`
+	Continue             *bool                `json:"continue,omitempty"`
+	GroupBy              []string             `json:"groupBy,omitempty"`
+	GroupInterval        *string              `json:"groupInterval,omitempty"`
+	GroupWait            *string              `json:"groupWait,omitempty"`
+	Match                *map[string]string   `json:"match,omitempty"`
+	MatchRe              *map[string]string   `json:"matchRe,omitempty"`
+	Matchers             []string             `json:"matchers,omitempty"`
+	Receiver             string               `json:"receiver"`
+	RepeatInterval       *string              `json:"repeatInterval,omitempty"`
+	Routes               []map[string]*string `json:"routes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -351,9 +351,9 @@ func (o *RouteSerializer) SetRepeatInterval(v string) {
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
-func (o *RouteSerializer) GetRoutes() []map[string]string {
+func (o *RouteSerializer) GetRoutes() []map[string]*string {
 	if o == nil || IsNil(o.Routes) {
-		var ret []map[string]string
+		var ret []map[string]*string
 		return ret
 	}
 	return o.Routes
@@ -361,7 +361,7 @@ func (o *RouteSerializer) GetRoutes() []map[string]string {
 
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetRoutesOk() ([]map[string]string, bool) {
+func (o *RouteSerializer) GetRoutesOk() ([]map[string]*string, bool) {
 	if o == nil || IsNil(o.Routes) {
 		return nil, false
 	}
@@ -377,8 +377,8 @@ func (o *RouteSerializer) HasRoutes() bool {
 	return false
 }
 
-// SetRoutes gets a reference to the given []map[string]string and assigns it to the Routes field.
-func (o *RouteSerializer) SetRoutes(v []map[string]string) {
+// SetRoutes gets a reference to the given []map[string]*string and assigns it to the Routes field.
+func (o *RouteSerializer) SetRoutes(v []map[string]*string) {
 	o.Routes = v
 }
 
