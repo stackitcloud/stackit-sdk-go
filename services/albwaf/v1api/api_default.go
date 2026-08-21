@@ -274,7 +274,7 @@ type DefaultAPI interface {
 	/*
 		UpdateWAF Update a WAF configuration
 
-		The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
+		The update endpoint will update a stored WAF configuration in project and also for all the Load Balancers that have it referenced.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -2530,7 +2530,7 @@ func (r ApiUpdateWAFRequest) Execute() (*GetWAFResponse, error) {
 /*
 UpdateWAF Update a WAF configuration
 
-The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
+The update endpoint will update a stored WAF configuration in project and also for all the Load Balancers that have it referenced.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
