@@ -1,7 +1,7 @@
 /*
-STACKIT Redis API
+[DEPRECATED] STACKIT Redis API
 
-The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
+&#x26A0; WARNING: THIS API/Service IS DEPRECATED - migrate to valkey! The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
 API version: 1.2.0
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT Redis API API v1.2.0
+// APIClient manages communication with the [DEPRECATED] STACKIT Redis API API v1.2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration

@@ -1,7 +1,7 @@
 /*
-STACKIT Redis API
+[DEPRECATED] STACKIT Redis API
 
-The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
+&#x26A0; WARNING: THIS API/Service IS DEPRECATED - migrate to valkey! The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
 API version: 2.1.0
 */

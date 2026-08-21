@@ -1,7 +1,7 @@
 /*
-STACKIT Redis API
+[DEPRECATED] STACKIT Redis API
 
-The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
+&#x26A0; WARNING: THIS API/Service IS DEPRECATED - migrate to valkey! The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
 API version: 2.1.0
 */
@@ -53,7 +53,7 @@ type DefaultApi interface {
 	CreateBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*CreateBackupResponseItem, error)
 	/*
 		CreateCredentials create new credentials
-		Create new service credentials
+		Deprecated: Create new service credentials
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -78,7 +78,7 @@ type DefaultApi interface {
 	CreateCredentialsExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*CredentialsResponse, error)
 	/*
 		CreateInstance provision
-		Provision a service instance.
+		Deprecated: Provision a service instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -101,7 +101,7 @@ type DefaultApi interface {
 	CreateInstanceExecute(ctx context.Context, projectId string, regionId string) (*CreateInstanceResponse, error)
 	/*
 		DeleteCredentials delete credentials by id
-		Delete a service credentials.
+		Deprecated: Delete a service credentials.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -121,7 +121,7 @@ type DefaultApi interface {
 	DeleteCredentialsExecute(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) error
 	/*
 		DeleteInstance delete service instance
-		Deprovision a service instance.
+		Deprecated: Deprovision a service instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -166,7 +166,7 @@ type DefaultApi interface {
 	DownloadBackupExecute(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) (*os.File, error)
 	/*
 		GetCredentials get credentials by id
-		get a service credentials by credentials id
+		Deprecated: get a service credentials by credentials id
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -193,7 +193,7 @@ type DefaultApi interface {
 	GetCredentialsExecute(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) (*CredentialsResponse, error)
 	/*
 		GetInstance get a service instance
-		get a service instance
+		Deprecated: get a service instance
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -266,7 +266,7 @@ type DefaultApi interface {
 	ListBackupsExecute(ctx context.Context, projectId string, regionId string, instanceId string) ([]Backup, error)
 	/*
 		ListCredentials get list of credentials ids
-		get list all credentials ids for instance
+		Deprecated: get list all credentials ids for instance
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -291,7 +291,7 @@ type DefaultApi interface {
 	ListCredentialsExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*ListCredentialsResponse, error)
 	/*
 		ListInstances get service instances list
-		Get a list of available instances
+		Deprecated: Get a list of available instances
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -314,7 +314,7 @@ type DefaultApi interface {
 	ListInstancesExecute(ctx context.Context, projectId string, regionId string) (*ListInstancesResponse, error)
 	/*
 		ListOfferings get the service offerings
-		Get the service offerings that the service broker offers.
+		Deprecated: Get the service offerings that the service broker offers.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -361,7 +361,8 @@ type DefaultApi interface {
 	ListRestoresExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*ListRestoresResponse, error)
 	/*
 		PartialUpdateInstance update a service instance
-		Update a service instance. This could be a sgw acl update or a plan upgrade.
+		Deprecated: Update a service instance. This could be a sgw acl update or a plan upgrade.
+
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
@@ -454,7 +455,7 @@ type DefaultApi interface {
 	TriggerRestoreExecute(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) (*TriggerRestoreResponse, error)
 	/*
 		UpdateBackupsConfig backups configuration update
-		Update the configuration for backups for your instance.
+		Deprecated: Update the configuration for backups for your instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
