@@ -54,7 +54,6 @@ use (
 	./services/edge
 	./services/git
 	./services/iaas
-	./services/iaasalpha
 	./services/intake
 	./services/kms
 	./services/lbapplication
@@ -87,4 +86,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./tools
 )
