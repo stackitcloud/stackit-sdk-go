@@ -52,6 +52,7 @@ use (
 	./services/dns
 	./services/dremio
 	./services/edge
+	./services/functions
 	./services/git
 	./services/iaas
 	./services/iaasalpha
@@ -87,4 +88,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./tools
 )
