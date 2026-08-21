@@ -21,10 +21,10 @@ var _ MappedNullable = &ServiceKeysList{}
 
 // ServiceKeysList struct for ServiceKeysList
 type ServiceKeysList struct {
-	CredentialsInfo      *map[string]string `json:"credentialsInfo,omitempty"`
-	Description          *string            `json:"description,omitempty"`
-	Id                   string             `json:"id"`
-	Name                 string             `json:"name"`
+	CredentialsInfo      *map[string]*string `json:"credentialsInfo,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	Id                   string              `json:"id"`
+	Name                 string              `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -50,9 +50,9 @@ func NewServiceKeysListWithDefaults() *ServiceKeysList {
 }
 
 // GetCredentialsInfo returns the CredentialsInfo field value if set, zero value otherwise.
-func (o *ServiceKeysList) GetCredentialsInfo() map[string]string {
+func (o *ServiceKeysList) GetCredentialsInfo() map[string]*string {
 	if o == nil || IsNil(o.CredentialsInfo) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.CredentialsInfo
@@ -60,7 +60,7 @@ func (o *ServiceKeysList) GetCredentialsInfo() map[string]string {
 
 // GetCredentialsInfoOk returns a tuple with the CredentialsInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceKeysList) GetCredentialsInfoOk() (*map[string]string, bool) {
+func (o *ServiceKeysList) GetCredentialsInfoOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.CredentialsInfo) {
 		return nil, false
 	}
@@ -76,8 +76,8 @@ func (o *ServiceKeysList) HasCredentialsInfo() bool {
 	return false
 }
 
-// SetCredentialsInfo gets a reference to the given map[string]string and assigns it to the CredentialsInfo field.
-func (o *ServiceKeysList) SetCredentialsInfo(v map[string]string) {
+// SetCredentialsInfo gets a reference to the given map[string]*string and assigns it to the CredentialsInfo field.
+func (o *ServiceKeysList) SetCredentialsInfo(v map[string]*string) {
 	o.CredentialsInfo = &v
 }
 
