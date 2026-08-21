@@ -8,7 +8,6 @@ import (
 	"encoding/pem"
 	"net/http"
 	"os"
-	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -16,26 +15,26 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
 func setTemporaryHome(t *testing.T) {
-	old := userHomeDir
+	old := identity.UserHomeDir
 	t.Cleanup(func() {
-		userHomeDir = old
+		identity.UserHomeDir = old
 	})
-	userHomeDir = func() (string, error) {
+	identity.UserHomeDir = func() (string, error) {
 		return t.TempDir(), nil
 	}
 }
 
-func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) *clients.ServiceAccountKeyResponse {
+func fixtureServiceAccountKey(mods ...func(*identity.ServiceAccountJson)) *identity.ServiceAccountJson {
 	validUntil := time.Now().Add(time.Hour)
-	serviceAccountKeyResponse := &clients.ServiceAccountKeyResponse{
+	serviceAccountKeyResponse := &identity.ServiceAccountJson{
 		Active:    true,
 		CreatedAt: time.Now(),
-		Credentials: &clients.ServiceAccountKeyCredentials{
+		Credentials: &identity.ServiceAccountKeyCredentials{
 			Aud: "https://stackit-service-account-prod.apps.01.cf.eu01.stackit.cloud",
 			Iss: "stackit@sa.stackit.cloud",
 			Kid: uuid.New().String(),
@@ -60,6 +59,15 @@ func createCredentialsKeyJson(serviceAccountKey, privateKey string) ([]byte, err
 	tempMap["STACKIT_SERVICE_ACCOUNT_KEY"] = serviceAccountKey
 	tempMap["STACKIT_PRIVATE_KEY"] = privateKey
 	return json.Marshal(tempMap)
+}
+
+// helper function to create a valid JWT token for testing
+func createValidJWT() (string, error) {
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
+		Subject:   "test-subject",
+	}).SignedString([]byte("test-secret"))
+	return token, err
 }
 
 // Error cases are tested in the NoAuth, KeyAuth, TokenAuth and DefaultAuth functions
@@ -171,6 +179,36 @@ func TestSetupAuth(t *testing.T) {
 		t.Fatalf("Writing credentials json to temporary file: %s", err)
 	}
 
+	// Create a valid JWT for token-based authentication
+	validToken, err := createValidJWT()
+	if err != nil {
+		t.Fatalf("Creating valid JWT: %s", err)
+	}
+
+	// Create a credentials file with valid JWT token
+	credentialsTokenFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary credentials token file: %s", err)
+	}
+	defer func() {
+		_ = credentialsTokenFile.Close()
+		err := os.Remove(credentialsTokenFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary credentials token file: %s", err)
+		}
+	}()
+
+	credTokenJson, err := json.Marshal(map[string]interface{}{
+		"STACKIT_SERVICE_ACCOUNT_TOKEN": validToken,
+	})
+	if err != nil {
+		t.Fatalf("Creating credentials token JSON: %s", err)
+	}
+	_, errs = credentialsTokenFile.WriteString(string(credTokenJson))
+	if errs != nil {
+		t.Fatalf("Writing credentials token file: %s", err)
+	}
+
 	for _, test := range []struct {
 		desc                        string
 		config                      *config.Configuration
@@ -228,7 +266,7 @@ func TestSetupAuth(t *testing.T) {
 		{
 			desc: "custom_config_token",
 			config: &config.Configuration{
-				Token: "token",
+				Token: validToken,
 			},
 			setToken:                    false,
 			setCredentialsFilePathToken: false,
@@ -246,6 +284,15 @@ func TestSetupAuth(t *testing.T) {
 	} {
 		t.Run(test.desc, func(t *testing.T) {
 			setTemporaryHome(t)
+
+			// For custom_config_path test, use the dynamic credentials token file
+			cfg := test.config
+			if test.desc == "custom_config_path" {
+				cfg = &config.Configuration{
+					CredentialsFilePath: credentialsTokenFile.Name(),
+				}
+			}
+
 			if test.setKeys {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", string(saKey))
 				t.Setenv("STACKIT_PRIVATE_KEY", privateKey)
@@ -263,13 +310,13 @@ func TestSetupAuth(t *testing.T) {
 			}
 
 			if test.setToken {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "test-token")
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", validToken)
 			} else {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			}
 
 			if test.setCredentialsFilePathToken {
-				t.Setenv("STACKIT_CREDENTIALS_PATH", "test_resources/test_credentials_bar.json")
+				t.Setenv("STACKIT_CREDENTIALS_PATH", credentialsTokenFile.Name())
 			} else if test.setCredentialsFilePathKey {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", credentialsKeyFile.Name())
 			} else {
@@ -284,7 +331,7 @@ func TestSetupAuth(t *testing.T) {
 
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
 
-			authRoundTripper, err := SetupAuth(test.config)
+			authRoundTripper, err := SetupAuth(cfg)
 
 			if err != nil && test.isValid {
 				t.Fatalf("Test returned error on valid test case: %v", err)
@@ -306,7 +353,7 @@ func TestReadCredentials(t *testing.T) {
 		desc               string
 		path               string
 		pathEnv            string
-		credentialType     credentialType
+		credentialType     identity.CredentialType
 		isValid            bool
 		expectedCredential string
 	}{
@@ -314,7 +361,7 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "valid_path_argument_token",
 			path:               "test_resources/test_credentials_bar.json",
 			pathEnv:            "",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
@@ -322,7 +369,7 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "valid_path_env",
 			path:               "",
 			pathEnv:            "test_resources/test_credentials_bar.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
@@ -330,14 +377,14 @@ func TestReadCredentials(t *testing.T) {
 			desc:               "path_over_env",
 			path:               "test_resources/test_credentials_bar.json",
 			pathEnv:            "test_resources/test_credentials_foo.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			isValid:            true,
 			expectedCredential: "bar_token",
 		},
 		{
 			desc:               "invalid_structure",
 			path:               "test_resources/test_invalid_structure.json",
-			credentialType:     tokenCredentialType,
+			credentialType:     identity.CredentialTypeToken,
 			pathEnv:            "",
 			isValid:            false,
 			expectedCredential: "",
@@ -348,9 +395,9 @@ func TestReadCredentials(t *testing.T) {
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.pathEnv)
 
 			var credential string
-			credentials, err := readCredentialsFile(test.path)
+			credentials, err := identity.ReadCredentialsFile(test.path)
 			if err == nil {
-				credential, err = readCredential(test.credentialType, credentials)
+				credential, err = identity.ReadCredential(test.credentialType, credentials)
 			}
 
 			if err != nil && test.isValid {
@@ -371,7 +418,7 @@ func TestReadCredentials(t *testing.T) {
 func TestReadCredentialsFileErrorMessage(t *testing.T) {
 	setTemporaryHome(t)
 
-	_, err := readCredentialsFile("test_resources/test_invalid_structure.json")
+	_, err := identity.ReadCredentialsFile("test_resources/test_invalid_structure.json")
 	if err == nil {
 		t.Fatalf("error expected")
 	}
@@ -482,6 +529,36 @@ func TestDefaultAuth(t *testing.T) {
 		t.Fatalf("Writing credentials json to temporary file: %s", err)
 	}
 
+	// Create a valid JWT for static token-based authentication
+	validStaticToken, err := createValidJWT()
+	if err != nil {
+		t.Fatalf("Creating valid JWT: %s", err)
+	}
+
+	// Create a credentials file with valid JWT token
+	credentialsTokenFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary credentials token file: %s", err)
+	}
+	defer func() {
+		_ = credentialsTokenFile.Close()
+		err := os.Remove(credentialsTokenFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary credentials token file: %s", err)
+		}
+	}()
+
+	credTokenJson, err := json.Marshal(map[string]interface{}{
+		"STACKIT_SERVICE_ACCOUNT_TOKEN": validStaticToken,
+	})
+	if err != nil {
+		t.Fatalf("Creating credentials token JSON: %s", err)
+	}
+	_, errs = credentialsTokenFile.WriteString(string(credTokenJson))
+	if errs != nil {
+		t.Fatalf("Writing credentials token file: %s", err)
+	}
+
 	for _, test := range []struct {
 		desc                      string
 		setToken                  bool
@@ -559,7 +636,7 @@ func TestDefaultAuth(t *testing.T) {
 			}
 
 			if test.setToken {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "test-token")
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", validStaticToken)
 			} else {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			}
@@ -570,7 +647,12 @@ func TestDefaultAuth(t *testing.T) {
 				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "")
 			}
 
-			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
+			// For no_credentials test, ensure no IMS is attempted by not setting email
+			if test.desc == "no_credentials" {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "")
+			} else {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
+			}
 
 			// Get the default authentication client and ensure that it's not nil
 			authClient, err := DefaultAuth(nil)
@@ -587,19 +669,17 @@ func TestDefaultAuth(t *testing.T) {
 				if authClient == nil {
 					t.Fatalf("Client returned is nil for valid test case")
 				}
-				switch test.expectedFlow {
-				case "token":
-					if _, ok := authClient.(*clients.TokenFlow); !ok {
-						t.Fatalf("Expected token flow, got %s", reflect.TypeOf(authClient))
-					}
-				case "key":
-					if _, ok := authClient.(*clients.KeyFlow); !ok {
-						t.Fatalf("Expected key flow, got %s", reflect.TypeOf(authClient))
-					}
-				case "wif":
-					if _, ok := authClient.(*clients.WorkloadIdentityFederationFlow); !ok {
-						t.Fatalf("Expected key flow, got %s", reflect.TypeOf(authClient))
-					}
+				// DefaultAuth now always returns a tokenProviderRoundTripper with ChainedProvider
+				rt, ok := authClient.(*tokenProviderRoundTripper)
+				if !ok {
+					t.Fatalf("Expected token provider round tripper")
+				}
+				chained, ok := rt.provider.(*identity.ChainedProvider)
+				if !ok {
+					t.Fatalf("Expected chained provider, got %T", rt.provider)
+				}
+				if chained == nil {
+					t.Fatalf("ChainedProvider is nil")
 				}
 			}
 		})
@@ -607,6 +687,12 @@ func TestDefaultAuth(t *testing.T) {
 }
 
 func TestTokenAuth(t *testing.T) {
+	// Generate a valid JWT token for testing
+	validToken, err := createValidJWT()
+	if err != nil {
+		t.Fatalf("Failed to create valid JWT: %v", err)
+	}
+
 	for _, test := range []struct {
 		desc    string
 		token   string
@@ -614,7 +700,7 @@ func TestTokenAuth(t *testing.T) {
 	}{
 		{
 			desc:    "valid_case",
-			token:   "token",
+			token:   validToken,
 			isValid: true,
 		},
 		{
@@ -661,7 +747,7 @@ func TestKeyAuth(t *testing.T) {
 
 	for _, test := range []struct {
 		desc                 string
-		serviceAccountKey    *clients.ServiceAccountKeyResponse
+		serviceAccountKey    *identity.ServiceAccountJson
 		includedPrivateKey   *string
 		configuredPrivateKey string
 		envVarPrivateKey     string
@@ -755,13 +841,15 @@ func TestKeyAuth(t *testing.T) {
 				if authClient == nil {
 					t.Fatalf("Client returned is nil for valid test case")
 				}
-
-				keyFlow, ok := authClient.(*clients.KeyFlow)
+				rt, ok := authClient.(*tokenProviderRoundTripper)
 				if !ok {
-					t.Fatalf("Could not convert authClient to KeyFlow")
+					t.Fatalf("Expected token provider round tripper")
 				}
-				if keyFlow.GetConfig().PrivateKey != test.expectedPrivateKey {
-					t.Fatalf("The private key is wrong: expected %s, got %s", test.expectedPrivateKey, keyFlow.GetConfig().PrivateKey)
+				if _, ok := rt.provider.(*identity.ServiceAccountKeyProvider); !ok {
+					t.Fatalf("Expected identity service account key provider")
+				}
+				if cfg.PrivateKey != test.expectedPrivateKey {
+					t.Fatalf("The private key is wrong: expected %s, got %s", test.expectedPrivateKey, cfg.PrivateKey)
 				}
 			}
 		})
@@ -776,8 +864,8 @@ func TestKeyAuthPemInsteadOfJsonKeyErrorHandling(t *testing.T) {
 	if err == nil {
 		t.Fatalf("error expected")
 	}
-	if !strings.HasSuffix(err.Error(), "Please provide it in JSON format.") {
-		t.Fatalf("expected to end with JSON format hint: %s", err)
+	if !strings.Contains(err.Error(), "parse service account key JSON") {
+		t.Fatalf("expected parse service account key JSON error: %s", err)
 	}
 }
 
