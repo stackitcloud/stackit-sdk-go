@@ -1,5 +1,10 @@
 ## Release (2026-MM-DD)
 
+- `runcommand`:
+  - [v1.9.2](services/runcommand/CHANGELOG.md#v192)
+    - `v1api`: **Feature:** Add `AgentReadyWaitHandler` wait handler for waiting until the server agent has registered and submitting a command
+    - `v1api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`)
+    - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
 - `alb`
   - [v0.17.1](services/alb/CHANGELOG.md#v0171)
     - `v2api`:

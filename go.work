@@ -29,6 +29,7 @@ use (
 	./examples/rabbitmq
 	./examples/redis
 	./examples/resourcemanager
+	./examples/runcommand
 	./examples/runtime
 	./examples/secretsmanager
 	./examples/serviceaccount
