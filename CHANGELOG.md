@@ -250,6 +250,22 @@
       - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
         The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `postgresflex`:
+  - [v1.13.0](services/postgresflex/CHANGELOG.md#v1130)
+    - **Breaking Change:** Property `Class` in `CloneInstanceOverrides` and `StorageCreate` is required now
+    - `v1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v2api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+    - `v3alpha1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** `Labels` field of `CreateInstanceRequestPayload`/`GetInstanceResponse`/`UpdateInstancePartiallyRequestPayload`/`UpdateInstanceRequestPayload` changed from `map[string]string` to `map[string]*string`
+    - `v3api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** Property `Class` in `CloneInstanceOverrides` and `StorageCreate` is required now
+      - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
+    - `v3beta1api`:
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+      - **Breaking Change:** `Labels` field of `CreateInstancePayload`/`GetInstanceResponse`/`PartialUpdateInstancePayload`/`UpdateInstancePayload` changed from `map[string]string` to `map[string]*string`
   - [v1.12.0](services/postgresflex/CHANGELOG.md#v1120)
     - **Breaking Change:** The `v3api` replaces the `v2api`.
     - `v3api`: **New:** New package which can be used for communication with the postgresflex v3 API

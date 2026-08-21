@@ -50,7 +50,7 @@ func main() {
 			Acl: []string{"1.2.3.4/32"},
 		},
 		Storage: postgresflex.StorageCreate{
-			Class: utils.Ptr("premium-perf2-stackit"),
+			Class: "premium-perf2-stackit",
 			Size:  5,
 		},
 	}
