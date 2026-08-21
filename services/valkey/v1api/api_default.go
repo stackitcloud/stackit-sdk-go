@@ -35,8 +35,8 @@ type DefaultAPI interface {
 	CreateBackup(ctx context.Context, instanceId string, projectId string) ApiCreateBackupRequest
 
 	// CreateBackupExecute executes the request
-	//  @return []CreateBackupResponseItem
-	CreateBackupExecute(r ApiCreateBackupRequest) ([]CreateBackupResponseItem, error)
+	//  @return CreateBackupResponseItem
+	CreateBackupExecute(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error)
 
 	/*
 		CreateCredentials create new credentials
@@ -241,6 +241,7 @@ type DefaultAPI interface {
 
 		Update a service instance. This could be a sgw acl update or a plan upgrade.
 
+
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param instanceId id of the instance being updated
@@ -321,7 +322,7 @@ type ApiCreateBackupRequest struct {
 	projectId  string
 }
 
-func (r ApiCreateBackupRequest) Execute() ([]CreateBackupResponseItem, error) {
+func (r ApiCreateBackupRequest) Execute() (*CreateBackupResponseItem, error) {
 	return r.ApiService.CreateBackupExecute(r)
 }
 
@@ -344,13 +345,13 @@ func (a *DefaultAPIService) CreateBackup(ctx context.Context, instanceId string,
 
 // Execute executes the request
 //
-//	@return []CreateBackupResponseItem
-func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) ([]CreateBackupResponseItem, error) {
+//	@return CreateBackupResponseItem
+func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []CreateBackupResponseItem
+		localVarReturnValue *CreateBackupResponseItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateBackup")
