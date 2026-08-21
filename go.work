@@ -73,6 +73,7 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/runcommand
+	./services/sca
 	./services/scf
 	./services/secretsmanager
 	./services/serverbackup
@@ -87,4 +88,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./tools
 )
