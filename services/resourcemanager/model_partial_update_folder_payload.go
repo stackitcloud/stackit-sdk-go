@@ -104,7 +104,7 @@ type PartialUpdateFolderPayloadGetNameRetType = string
 type PartialUpdateFolderPayload struct {
 	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
 	ContainerParentId PartialUpdateFolderPayloadGetContainerParentIdAttributeType `json:"containerParentId,omitempty"`
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label's value to `null` removes/deletes that label from the resource.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`, or be `null` to delete the label  > Note: Additional naming restrictions may apply depending on your specific organization.*
 	Labels PartialUpdateFolderPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name PartialUpdateFolderPayloadGetNameAttributeType `json:"name,omitempty"`
