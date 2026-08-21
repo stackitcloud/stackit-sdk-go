@@ -21,8 +21,8 @@ var _ MappedNullable = &Error{}
 
 // Error struct for Error
 type Error struct {
-	Errors               []map[string]string `json:"errors,omitempty"`
-	Message              string              `json:"message"`
+	Errors               []map[string]*string `json:"errors,omitempty"`
+	Message              string               `json:"message"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,9 +47,9 @@ func NewErrorWithDefaults() *Error {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *Error) GetErrors() []map[string]string {
+func (o *Error) GetErrors() []map[string]*string {
 	if o == nil || IsNil(o.Errors) {
-		var ret []map[string]string
+		var ret []map[string]*string
 		return ret
 	}
 	return o.Errors
@@ -57,7 +57,7 @@ func (o *Error) GetErrors() []map[string]string {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetErrorsOk() ([]map[string]string, bool) {
+func (o *Error) GetErrorsOk() ([]map[string]*string, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *Error) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []map[string]string and assigns it to the Errors field.
-func (o *Error) SetErrors(v []map[string]string) {
+// SetErrors gets a reference to the given []map[string]*string and assigns it to the Errors field.
+func (o *Error) SetErrors(v []map[string]*string) {
 	o.Errors = v
 }
 
