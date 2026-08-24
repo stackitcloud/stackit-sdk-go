@@ -29,7 +29,7 @@ func ruleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, r
 			if ruleResp == nil {
 				return "", errors.New("empty response")
 			}
-			return *ruleResp.Status, nil
+			return ruleResp.Status, nil
 		},
 		ActiveState:                activeStates,
 		ErrorState:                 []ufw.RuleResponseStatus{ufw.RULERESPONSESTATUS_ERROR},

@@ -35,7 +35,7 @@ func newAPIMock(settings mockSettings) ufw.DefaultAPI {
 				}
 
 				return &ufw.RuleResponse{
-					Status: utils.Ptr(settings.resourceState),
+					Status: settings.resourceState,
 				}, nil
 			},
 		),
@@ -91,7 +91,7 @@ func TestCreateRuleWaitHandler(t *testing.T) {
 				var expectedResponse *ufw.RuleResponse
 				if currentTest.wantResponse {
 					expectedResponse = &ufw.RuleResponse{
-						Status: utils.Ptr(currentTest.resourceState),
+						Status: currentTest.resourceState,
 					}
 				}
 
@@ -159,7 +159,7 @@ func TestUpdateRuleWaitHandler(t *testing.T) {
 				var expectedResponse *ufw.RuleResponse
 				if currentTest.wantResponse {
 					expectedResponse = &ufw.RuleResponse{
-						Status: utils.Ptr(currentTest.resourceState),
+						Status: currentTest.resourceState,
 					}
 				}
 
@@ -232,7 +232,7 @@ func TestDeleteRuleWaitHandler(t *testing.T) {
 				var expectedResponse *ufw.RuleResponse
 				if currentTest.wantResponse {
 					expectedResponse = &ufw.RuleResponse{
-						Status: utils.Ptr(currentTest.resourceState),
+						Status: currentTest.resourceState,
 					}
 				}
 
