@@ -11,6 +11,9 @@
     - Deprecated SDK layer in root of the module:
       - **Improvement**: Introduce `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` errors for `LoadBalancerErrorType`
 - `albwaf`
+  - [v0.13.2](services/albwaf/CHANGELOG.md#v0132)
+    - `v1api`:
+      - **Improvement:** Update description of `UpdateWAF` method to reflect that updating a WAF configuration now also applies to all Load Balancers that reference it
   - [v0.13.1](services/albwaf/CHANGELOG.md#v0131)
     - `v1alphaapi`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
