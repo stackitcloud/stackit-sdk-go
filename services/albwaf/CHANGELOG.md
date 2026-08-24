@@ -1,3 +1,7 @@
+## v0.13.2
+- `v1api`:
+  - **Improvement:** Update description of `UpdateWAF` method to reflect that updating a WAF configuration now also applies to all Load Balancers that reference it
+
 ## v0.13.1
 - `v1alphaapi`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
