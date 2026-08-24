@@ -437,6 +437,10 @@
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
+- `ufw`:
+  - [v1.0.0](services/ufw/CHANGELOG.md#v100)
+    - **New:** STACKIT UFW service
+    - **Feature:** Add waiter and example methods for the API
 - `valkey`:
   - [v0.2.0](services/valkey/CHANGELOG.md#v020)
     - `v2api`:
