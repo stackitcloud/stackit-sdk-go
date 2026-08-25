@@ -11,7 +11,7 @@ import (
 )
 
 func CreateRuleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string) *wait.AsyncActionHandler[ufw.RuleResponse] {
-	return createOrUpdateInstanceWaitHandler(ctx, a, projectId, region, ruleId, []ufw.RuleResponseStatus{ufw.RULERESPONSESTATUS_ACTIVE}, nil)
+	return createOrUpdateRuleWaitHandler(ctx, a, projectId, region, ruleId, []ufw.RuleResponseStatus{ufw.RULERESPONSESTATUS_ACTIVE}, nil)
 }
 
 func UpdateRuleWaitHandler(ctx context.Context, a ufw.DefaultAPI, projectId, region, ruleId string) *wait.AsyncActionHandler[ufw.RuleResponse] {
