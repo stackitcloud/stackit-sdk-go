@@ -457,6 +457,10 @@
     - `v1betaapi`:
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
       - **Fix:** Escape regex in validate tags of model structs correctly
+  - `ufw`:
+    - [v0.1.0](services/ufw/CHANGELOG.md#v100)
+      - **New:** STACKIT UFW service
+      - **Feature:** Add waiter and example methods for the API
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field

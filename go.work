@@ -39,6 +39,7 @@ use (
 	./examples/sqlserverflex
 	./examples/telemetrylink
 	./examples/telemetryrouter
+	./examples/ufw
 	./examples/valkey
 	./examples/vpn
 	./examples/waiter
