@@ -1,3 +1,11 @@
+/*
+	DEPRECATED
+	Redis service have been deprecated and will be removed after 2027-08-25.
+	Please use the Key Value Store (valkey) service instead.
+	Migration guide for migrating the data from Redis to a Key Value Store instance can be found under:
+	https://docs.stackit.cloud/products/databases/key-value-store/tutorials/migrate-data-to-a-new-instance/
+*/
+
 package main
 
 import (

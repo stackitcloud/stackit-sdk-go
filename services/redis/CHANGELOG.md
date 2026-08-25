@@ -1,3 +1,6 @@
+## v1.4.0
+- **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
+
 ## v1.3.0
 - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
   The go type now correctly models the actual JSON response, this operation was broken beforehand.
