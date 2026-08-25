@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-08-25)
 
 - `alb`
   - [v0.17.1](services/alb/CHANGELOG.md#v0171)
