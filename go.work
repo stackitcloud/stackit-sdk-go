@@ -2,7 +2,6 @@ go 1.25.9
 
 use (
 	./core
-	./examples/auditlog
 	./examples/authentication
 	./examples/authorization
 	./examples/backgroundrefresh
@@ -44,7 +43,6 @@ use (
 	./services/alb
 	./services/albwaf
 	./services/archiving
-	./services/auditlog
 	./services/authorization
 	./services/cdn
 	./services/certificates
@@ -87,4 +85,5 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./tools
 )
