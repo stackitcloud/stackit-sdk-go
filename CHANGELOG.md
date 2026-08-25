@@ -459,7 +459,7 @@
       - **Fix:** Escape regex in validate tags of model structs correctly
   - `ufw`:
     - [v0.1.0](services/ufw/CHANGELOG.md#v100)
-      - **New:** STACKIT UFW service
+      - **New:** STACKIT Unified Firewall (UFW)
       - **Feature:** Add waiter and example methods for the API
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
