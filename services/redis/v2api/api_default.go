@@ -1,7 +1,7 @@
 /*
-STACKIT Redis API
+[DEPRECATED] STACKIT Redis API
 
-The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
+⚠️ WARNING: THIS API/Service IS DEPRECATED - migrate to valkey! The STACKIT Redis API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
 API version: 2.1.0
 */
@@ -32,11 +32,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiCreateBackupRequest
+
+		Deprecated
 	*/
 	CreateBackup(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateBackupRequest
 
 	// CreateBackupExecute executes the request
 	//  @return CreateBackupResponseItem
+	// Deprecated
 	CreateBackupExecute(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error)
 
 	/*
@@ -49,11 +52,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiCreateCredentialsRequest
+
+		Deprecated
 	*/
 	CreateCredentials(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateCredentialsRequest
 
 	// CreateCredentialsExecute executes the request
 	//  @return CredentialsResponse
+	// Deprecated
 	CreateCredentialsExecute(r ApiCreateCredentialsRequest) (*CredentialsResponse, error)
 
 	/*
@@ -65,11 +71,14 @@ type DefaultAPI interface {
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@return ApiCreateInstanceRequest
+
+		Deprecated
 	*/
 	CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return CreateInstanceResponse
+	// Deprecated
 	CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error)
 
 	/*
@@ -83,10 +92,13 @@ type DefaultAPI interface {
 		@param instanceId Instance id
 		@param credentialsId Id of the credentials being deleted
 		@return ApiDeleteCredentialsRequest
+
+		Deprecated
 	*/
 	DeleteCredentials(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) ApiDeleteCredentialsRequest
 
 	// DeleteCredentialsExecute executes the request
+	// Deprecated
 	DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) error
 
 	/*
@@ -99,10 +111,13 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiDeleteInstanceRequest
+
+		Deprecated
 	*/
 	DeleteInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
+	// Deprecated
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
 
 	/*
@@ -114,11 +129,14 @@ type DefaultAPI interface {
 		@param instanceId Instance id
 		@param backupId Backup id
 		@return ApiDownloadBackupRequest
+
+		Deprecated
 	*/
 	DownloadBackup(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) ApiDownloadBackupRequest
 
 	// DownloadBackupExecute executes the request
 	//  @return *os.File
+	// Deprecated
 	DownloadBackupExecute(r ApiDownloadBackupRequest) (*os.File, error)
 
 	/*
@@ -132,11 +150,14 @@ type DefaultAPI interface {
 		@param instanceId Instance id
 		@param credentialsId Credentials id of credentials to fetch
 		@return ApiGetCredentialsRequest
+
+		Deprecated
 	*/
 	GetCredentials(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) ApiGetCredentialsRequest
 
 	// GetCredentialsExecute executes the request
 	//  @return CredentialsResponse
+	// Deprecated
 	GetCredentialsExecute(r ApiGetCredentialsRequest) (*CredentialsResponse, error)
 
 	/*
@@ -149,11 +170,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiGetInstanceRequest
+
+		Deprecated
 	*/
 	GetInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return Instance
+	// Deprecated
 	GetInstanceExecute(r ApiGetInstanceRequest) (*Instance, error)
 
 	/*
@@ -164,11 +188,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiGetMetricsRequest
+
+		Deprecated
 	*/
 	GetMetrics(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetMetricsRequest
 
 	// GetMetricsExecute executes the request
 	//  @return GetMetricsResponse
+	// Deprecated
 	GetMetricsExecute(r ApiGetMetricsRequest) (*GetMetricsResponse, error)
 
 	/*
@@ -179,11 +206,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiListBackupsRequest
+
+		Deprecated
 	*/
 	ListBackups(ctx context.Context, projectId string, regionId string, instanceId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
 	//  @return []Backup
+	// Deprecated
 	ListBackupsExecute(r ApiListBackupsRequest) ([]Backup, error)
 
 	/*
@@ -196,11 +226,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiListCredentialsRequest
+
+		Deprecated
 	*/
 	ListCredentials(ctx context.Context, projectId string, regionId string, instanceId string) ApiListCredentialsRequest
 
 	// ListCredentialsExecute executes the request
 	//  @return ListCredentialsResponse
+	// Deprecated
 	ListCredentialsExecute(r ApiListCredentialsRequest) (*ListCredentialsResponse, error)
 
 	/*
@@ -212,11 +245,14 @@ type DefaultAPI interface {
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@return ApiListInstancesRequest
+
+		Deprecated
 	*/
 	ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return ListInstancesResponse
+	// Deprecated
 	ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error)
 
 	/*
@@ -228,11 +264,14 @@ type DefaultAPI interface {
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@return ApiListOfferingsRequest
+
+		Deprecated
 	*/
 	ListOfferings(ctx context.Context, projectId string, regionId string) ApiListOfferingsRequest
 
 	// ListOfferingsExecute executes the request
 	//  @return ListOfferingsResponse
+	// Deprecated
 	ListOfferingsExecute(r ApiListOfferingsRequest) (*ListOfferingsResponse, error)
 
 	/*
@@ -243,11 +282,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiListRestoresRequest
+
+		Deprecated
 	*/
 	ListRestores(ctx context.Context, projectId string, regionId string, instanceId string) ApiListRestoresRequest
 
 	// ListRestoresExecute executes the request
 	//  @return ListRestoresResponse
+	// Deprecated
 	ListRestoresExecute(r ApiListRestoresRequest) (*ListRestoresResponse, error)
 
 	/*
@@ -255,15 +297,19 @@ type DefaultAPI interface {
 
 		Update a service instance. This could be a sgw acl update or a plan upgrade.
 
+
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project id on which user has permissions
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiPartialUpdateInstanceRequest
+
+		Deprecated
 	*/
 	PartialUpdateInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiPartialUpdateInstanceRequest
 
 	// PartialUpdateInstanceExecute executes the request
+	// Deprecated
 	PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error
 
 	/*
@@ -274,11 +320,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiTriggerRecreateRequest
+
+		Deprecated
 	*/
 	TriggerRecreate(ctx context.Context, projectId string, regionId string, instanceId string) ApiTriggerRecreateRequest
 
 	// TriggerRecreateExecute executes the request
 	//  @return CreateInstanceResponse
+	// Deprecated
 	TriggerRecreateExecute(r ApiTriggerRecreateRequest) (*CreateInstanceResponse, error)
 
 	/*
@@ -289,11 +338,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiTriggerRestartRequest
+
+		Deprecated
 	*/
 	TriggerRestart(ctx context.Context, projectId string, regionId string, instanceId string) ApiTriggerRestartRequest
 
 	// TriggerRestartExecute executes the request
 	//  @return CreateInstanceResponse
+	// Deprecated
 	TriggerRestartExecute(r ApiTriggerRestartRequest) (*CreateInstanceResponse, error)
 
 	/*
@@ -305,11 +357,14 @@ type DefaultAPI interface {
 		@param instanceId Instance id
 		@param backupId Backup id
 		@return ApiTriggerRestoreRequest
+
+		Deprecated
 	*/
 	TriggerRestore(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) ApiTriggerRestoreRequest
 
 	// TriggerRestoreExecute executes the request
 	//  @return TriggerRestoreResponse
+	// Deprecated
 	TriggerRestoreExecute(r ApiTriggerRestoreRequest) (*TriggerRestoreResponse, error)
 
 	/*
@@ -322,11 +377,14 @@ type DefaultAPI interface {
 		@param regionId region in which the project resides
 		@param instanceId Instance id
 		@return ApiUpdateBackupsConfigRequest
+
+		Deprecated
 	*/
 	UpdateBackupsConfig(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateBackupsConfigRequest
 
 	// UpdateBackupsConfigExecute executes the request
 	//  @return UpdateBackupsConfigResponse
+	// Deprecated
 	UpdateBackupsConfigExecute(r ApiUpdateBackupsConfigRequest) (*UpdateBackupsConfigResponse, error)
 }
 
@@ -353,6 +411,8 @@ CreateBackup create a backup
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiCreateBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateBackup(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateBackupRequest {
 	return ApiCreateBackupRequest{
@@ -367,6 +427,8 @@ func (a *DefaultAPIService) CreateBackup(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return CreateBackupResponseItem
+//
+// Deprecated
 func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*CreateBackupResponseItem, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -526,6 +588,8 @@ Create new service credentials
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiCreateCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCredentials(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateCredentialsRequest {
 	return ApiCreateCredentialsRequest{
@@ -540,6 +604,8 @@ func (a *DefaultAPIService) CreateCredentials(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return CredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsRequest) (*CredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -677,6 +743,8 @@ Provision a service instance.
 	@param projectId Project id on which user has permissions
 	@param regionId region in which the project resides
 	@return ApiCreateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
@@ -690,6 +758,8 @@ func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CreateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -837,6 +907,8 @@ Delete a service credentials.
 	@param instanceId Instance id
 	@param credentialsId Id of the credentials being deleted
 	@return ApiDeleteCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCredentials(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) ApiDeleteCredentialsRequest {
 	return ApiDeleteCredentialsRequest{
@@ -850,6 +922,7 @@ func (a *DefaultAPIService) DeleteCredentials(ctx context.Context, projectId str
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -981,6 +1054,8 @@ Deprovision a service instance.
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiDeleteInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
@@ -993,6 +1068,7 @@ func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1123,6 +1199,8 @@ DownloadBackup download backup
 	@param instanceId Instance id
 	@param backupId Backup id
 	@return ApiDownloadBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DownloadBackup(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) ApiDownloadBackupRequest {
 	return ApiDownloadBackupRequest{
@@ -1138,6 +1216,8 @@ func (a *DefaultAPIService) DownloadBackup(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return *os.File
+//
+// Deprecated
 func (a *DefaultAPIService) DownloadBackupExecute(r ApiDownloadBackupRequest) (*os.File, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1293,6 +1373,8 @@ get a service credentials by credentials id
 	@param instanceId Instance id
 	@param credentialsId Credentials id of credentials to fetch
 	@return ApiGetCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCredentials(ctx context.Context, projectId string, regionId string, instanceId string, credentialsId string) ApiGetCredentialsRequest {
 	return ApiGetCredentialsRequest{
@@ -1308,6 +1390,8 @@ func (a *DefaultAPIService) GetCredentials(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*CredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1450,6 +1534,8 @@ get a service instance
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiGetInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
@@ -1464,6 +1550,8 @@ func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return Instance
+//
+// Deprecated
 func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*Instance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1614,6 +1702,8 @@ GetMetrics get latest metrics for cpu load, memory and disk usage
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiGetMetricsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetMetrics(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetMetricsRequest {
 	return ApiGetMetricsRequest{
@@ -1628,6 +1718,8 @@ func (a *DefaultAPIService) GetMetrics(ctx context.Context, projectId string, re
 // Execute executes the request
 //
 //	@return GetMetricsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetMetricsExecute(r ApiGetMetricsRequest) (*GetMetricsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1767,6 +1859,8 @@ ListBackups get latest backup information for provided instanceId
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiListBackupsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, regionId string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
@@ -1781,6 +1875,8 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return []Backup
+//
+// Deprecated
 func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) ([]Backup, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1922,6 +2018,8 @@ get list all credentials ids for instance
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiListCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCredentials(ctx context.Context, projectId string, regionId string, instanceId string) ApiListCredentialsRequest {
 	return ApiListCredentialsRequest{
@@ -1936,6 +2034,8 @@ func (a *DefaultAPIService) ListCredentials(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return ListCredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) (*ListCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2075,6 +2175,8 @@ Get a list of available instances
 	@param projectId Project id on which user has permissions
 	@param regionId region in which the project resides
 	@return ApiListInstancesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
@@ -2088,6 +2190,8 @@ func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return ListInstancesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2226,6 +2330,8 @@ Get the service offerings that the service broker offers.
 	@param projectId Project id on which user has permissions
 	@param regionId region in which the project resides
 	@return ApiListOfferingsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListOfferings(ctx context.Context, projectId string, regionId string) ApiListOfferingsRequest {
 	return ApiListOfferingsRequest{
@@ -2239,6 +2345,8 @@ func (a *DefaultAPIService) ListOfferings(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return ListOfferingsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListOfferingsExecute(r ApiListOfferingsRequest) (*ListOfferingsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2377,6 +2485,8 @@ ListRestores get latest restore information for provided instanceId
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiListRestoresRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListRestores(ctx context.Context, projectId string, regionId string, instanceId string) ApiListRestoresRequest {
 	return ApiListRestoresRequest{
@@ -2391,6 +2501,8 @@ func (a *DefaultAPIService) ListRestores(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return ListRestoresResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListRestoresExecute(r ApiListRestoresRequest) (*ListRestoresResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2539,6 +2651,8 @@ Update a service instance. This could be a sgw acl update or a plan upgrade.
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiPartialUpdateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
@@ -2551,6 +2665,7 @@ func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPatch
@@ -2684,6 +2799,8 @@ TriggerRecreate trigger a recreate
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiTriggerRecreateRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) TriggerRecreate(ctx context.Context, projectId string, regionId string, instanceId string) ApiTriggerRecreateRequest {
 	return ApiTriggerRecreateRequest{
@@ -2698,6 +2815,8 @@ func (a *DefaultAPIService) TriggerRecreate(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return CreateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) TriggerRecreateExecute(r ApiTriggerRecreateRequest) (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -2848,6 +2967,8 @@ TriggerRestart trigger a restart
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiTriggerRestartRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) TriggerRestart(ctx context.Context, projectId string, regionId string, instanceId string) ApiTriggerRestartRequest {
 	return ApiTriggerRestartRequest{
@@ -2862,6 +2983,8 @@ func (a *DefaultAPIService) TriggerRestart(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CreateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) TriggerRestartExecute(r ApiTriggerRestartRequest) (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -3014,6 +3137,8 @@ TriggerRestore trigger a restore
 	@param instanceId Instance id
 	@param backupId Backup id
 	@return ApiTriggerRestoreRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) TriggerRestore(ctx context.Context, projectId string, regionId string, instanceId string, backupId int32) ApiTriggerRestoreRequest {
 	return ApiTriggerRestoreRequest{
@@ -3029,6 +3154,8 @@ func (a *DefaultAPIService) TriggerRestore(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return TriggerRestoreResponse
+//
+// Deprecated
 func (a *DefaultAPIService) TriggerRestoreExecute(r ApiTriggerRestoreRequest) (*TriggerRestoreResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -3189,6 +3316,8 @@ Update the configuration for backups for your instance.
 	@param regionId region in which the project resides
 	@param instanceId Instance id
 	@return ApiUpdateBackupsConfigRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateBackupsConfig(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateBackupsConfigRequest {
 	return ApiUpdateBackupsConfigRequest{
@@ -3203,6 +3332,8 @@ func (a *DefaultAPIService) UpdateBackupsConfig(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return UpdateBackupsConfigResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateBackupsConfigExecute(r ApiUpdateBackupsConfigRequest) (*UpdateBackupsConfigResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
