@@ -440,6 +440,10 @@
   - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
     - **Improvement:** Add validation for `Description` field
     - `v1api`: **Improvement:** Add validation for `Description` field
+- `ufw`:
+  - [v0.1.0](services/ufw/CHANGELOG.md#v010)
+    - **New:** STACKIT Unified Firewall (UFW)
+    - **Feature:** Add waiter and example methods for the API
 - `valkey`:
   - [v0.2.0](services/valkey/CHANGELOG.md#v020)
     - `v2api`:
@@ -478,10 +482,6 @@
       - **Improvement:** Add description that `RoutingType` can only be set at the creation
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
-- `ufw`:
-  - [v0.1.0](services/ufw/CHANGELOG.md#v010)
-    - **New:** STACKIT Unified Firewall (UFW)
-    - **Feature:** Add waiter and example methods for the API
 
 ## Release (2026-07-21)
 
