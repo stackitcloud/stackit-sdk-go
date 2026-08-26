@@ -84,5 +84,6 @@ use (
 	./services/telemetryrouter
 	./services/valkey
 	./services/vpn
+	./services/workflows
 	./tools
 )
