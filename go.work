@@ -56,7 +56,6 @@ use (
 	./services/iaas
 	./services/intake
 	./services/kms
-	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
 	./services/logs
