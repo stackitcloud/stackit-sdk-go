@@ -54,7 +54,6 @@ use (
 	./services/edge
 	./services/git
 	./services/iaas
-	./services/iaasalpha
 	./services/intake
 	./services/kms
 	./services/loadbalancer
