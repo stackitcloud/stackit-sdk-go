@@ -2,7 +2,6 @@ go 1.25.9
 
 use (
 	./core
-	./examples/auditlog
 	./examples/authentication
 	./examples/authorization
 	./examples/backgroundrefresh
@@ -43,7 +42,6 @@ use (
 	./examples/waiter
 	./services/alb
 	./services/albwaf
-	./services/auditlog
 	./services/authorization
 	./services/cdn
 	./services/certificates
