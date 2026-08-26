@@ -53,10 +53,8 @@ use (
 	./services/edge
 	./services/git
 	./services/iaas
-	./services/iaasalpha
 	./services/intake
 	./services/kms
-	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
 	./services/logs
