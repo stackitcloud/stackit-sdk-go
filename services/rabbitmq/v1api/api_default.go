@@ -241,6 +241,7 @@ type DefaultAPI interface {
 
 		Update a service instance. This could be a sgw acl update or a plan upgrade.
 
+
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param instanceId id of the instance being updated
