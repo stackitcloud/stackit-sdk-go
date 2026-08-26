@@ -45,6 +45,7 @@ use (
 	./services/albwaf
 	./services/auditlog
 	./services/authorization
+	./services/automation
 	./services/cdn
 	./services/certificates
 	./services/cost
