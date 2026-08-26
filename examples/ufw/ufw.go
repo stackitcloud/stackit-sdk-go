@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -48,7 +50,11 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Created firewall rule response: %+v\n", createdRuleResponse)
+	prettyJSON, err := json.MarshalIndent(createdRuleResponse, "", "  ")
+	if err != nil {
+		log.Printf("Failed to marshal rule: %v\n", err)
+	}
+	fmt.Printf("Created firewall rule response: %s\n", string(prettyJSON))
 
 	// Get the firewall rule
 	testGetRule, err := getFirewallRule(ctx, ufwClient, projectId, region, *createdRuleResponse.RefId)
@@ -57,7 +63,11 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Firewall rule details: %+v\n", testGetRule)
+	prettyJSON, err = json.MarshalIndent(testGetRule, "", "  ")
+	if err != nil {
+		log.Printf("Failed to marshal rule: %v\n", err)
+	}
+	fmt.Printf("Firewall rule details: %s\n", string(prettyJSON))
 
 	if err := verifyPayloadMatch(testGetRule, rulePayloadToCreate); err != nil {
 		fmt.Fprintf(os.Stderr, "[UFW] Verification failed after creation:\n%v\n", err)
@@ -77,7 +87,11 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Updated firewall rule details: %+v\n", updatedRuleResponse)
+	prettyJSON, err = json.MarshalIndent(updatedRuleResponse, "", "  ")
+	if err != nil {
+		log.Printf("Failed to marshal rule: %v\n", err)
+	}
+	fmt.Printf("Updated firewall rule details: %s\n", string(prettyJSON))
 
 	testGetRule, err = getFirewallRule(ctx, ufwClient, projectId, region, *updatedRuleResponse.RefId)
 	if err != nil {
@@ -116,7 +130,12 @@ func listUFWRules(ctx context.Context, ufwClient *ufw.APIClient, projectId, regi
 
 	fmt.Println("List of firewall rules:")
 	for i := range listRulesResponse.Rules {
-		fmt.Printf("%+v\n", listRulesResponse.Rules[i])
+		prettyJSON, err := json.MarshalIndent(listRulesResponse.Rules[i], "", "  ")
+		if err != nil {
+			log.Printf("Failed to marshal rule: %v\n", err)
+			continue
+		}
+		fmt.Println(string(prettyJSON))
 	}
 }
 
