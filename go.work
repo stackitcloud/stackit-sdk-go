@@ -5,6 +5,7 @@ use (
 	./examples/auditlog
 	./examples/authentication
 	./examples/authorization
+	./examples/automation
 	./examples/backgroundrefresh
 	./examples/configuration
 	./examples/cost
@@ -45,6 +46,7 @@ use (
 	./services/albwaf
 	./services/auditlog
 	./services/authorization
+	./services/automation
 	./services/cdn
 	./services/certificates
 	./services/cost
