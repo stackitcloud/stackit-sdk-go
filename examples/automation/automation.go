@@ -14,8 +14,8 @@ import (
 func main() {
 	ctx := context.Background()
 
-	region := "eu01"                                    // Region where the resources will be created
-	projectId := "66b03760-125b-4c63-9624-741e8a418c02" // the uuid of your STACKIT project
+	region := "eu01"          // Region where the resources will be created
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 
 	// Create a new API client, that uses default authentication and configuration
 	automationClient, err := automation.NewAPIClient()
