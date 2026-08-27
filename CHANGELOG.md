@@ -1,3 +1,12 @@
+## Release (2026-MM-DD)
+
+- `observability`:
+  - [v0.25.0](services/observability/CHANGELOG.md#v0250)
+    - `v1api`:
+      - **Breaking Change:** Removed model `Status1`; `ProjectInstanceFull.Status` field type changed from `Status1` to `Status`
+      - **Breaking Change:** Field types for nullable map values changed from `map[string]string` to `map[string]*string` in `Error.Errors`, `GetCredentialsResponse.CredentialsInfo`, `GetInstanceResponse.Parameters`, `RouteSerializer.Routes`, `ServiceKeysList.CredentialsInfo`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+
 ## Release (2026-08-25)
 
 - `alb`
