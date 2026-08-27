@@ -6,6 +6,11 @@
       - **Breaking Change:** Removed model `Status1`; `ProjectInstanceFull.Status` field type changed from `Status1` to `Status`
       - **Breaking Change:** Field types for nullable map values changed from `map[string]string` to `map[string]*string` in `Error.Errors`, `GetCredentialsResponse.CredentialsInfo`, `GetInstanceResponse.Parameters`, `RouteSerializer.Routes`, `ServiceKeysList.CredentialsInfo`
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `valkey`:
+  - [v0.3.0](services/valkey/CHANGELOG.md#v030)
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
 
 ## Release (2026-08-25)
 

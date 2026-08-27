@@ -1,3 +1,9 @@
+## v0.3.0
+
+- `v1api`:
+  - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
+    The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
+
 ## v0.2.0
 
 - `v2api`:
