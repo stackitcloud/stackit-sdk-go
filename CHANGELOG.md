@@ -11,6 +11,12 @@
     - `v1api`:
       - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
         The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
+## Release (2026-mm-dd)
+
+- `automation`:
+  - [v0.1.0](services/automation/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Automation
+    - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/automation)
 
 ## Release (2026-08-25)
 
