@@ -25,7 +25,10 @@ func main() {
 	}
 	aipCompliantExample(ctx, projectId)
 	fmt.Print("\n\n")
-	adapterExample(ctx, projectId)
+	err := adapterExample(ctx, projectId)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func aipCompliantExample(ctx context.Context, projectId string) {
@@ -45,11 +48,11 @@ func aipCompliantExample(ctx context.Context, projectId string) {
 	fmt.Printf("%+v\n", items)
 }
 
-func adapterExample(ctx context.Context, projectId string) {
+func adapterExample(ctx context.Context, projectId string) error {
 	// setup
 	client, err := albwaf.NewAPIClient()
 	if err != nil {
-		log.Fatal("create albwaf client: ", err)
+		return fmt.Errorf("create albwaf client: %w", err)
 	}
 	teardown, err := setup(ctx, client, projectId)
 	defer func() {
@@ -59,22 +62,23 @@ func adapterExample(ctx context.Context, projectId string) {
 		}
 	}()
 	if err != nil {
-		log.Fatal("setup: ", err)
+		return fmt.Errorf("setup: %w", err)
 	}
 
 	// list items
 	fmt.Println("listing albwaf managed rule sets")
 	req := client.DefaultAPI.ListManagedRuleSets(ctx, projectId, region)
 	for item, err := range paginate.Items(
-		listManagedRuleSetsAdapter{request: req},
+		&listManagedRuleSetsAdapter{request: req},
 		paginate.WithLimit(5),
 		paginate.WithPageSize(2),
 	) {
 		if err != nil {
-			log.Fatal("list items: ", err)
+			return fmt.Errorf("list items: %w", err)
 		}
 		fmt.Printf("%+v\n", item)
 	}
+	return nil
 }
 
 func setup(ctx context.Context, client *albwaf.APIClient, projectId string) (teardown func() error, err error) {
@@ -108,17 +112,17 @@ type listManagedRuleSetsAdapter struct {
 	request albwaf.ApiListManagedRuleSetsRequest
 }
 
-func (a listManagedRuleSetsAdapter) PageSize(pageSize int32) listManagedRuleSetsAdapter {
+func (a *listManagedRuleSetsAdapter) PageSize(pageSize int32) *listManagedRuleSetsAdapter {
 	a.request = a.request.PageSize(strconv.Itoa(int(pageSize)))
 	return a
 }
 
-func (a listManagedRuleSetsAdapter) PageToken(pageToken string) listManagedRuleSetsAdapter {
+func (a *listManagedRuleSetsAdapter) PageToken(pageToken string) *listManagedRuleSetsAdapter {
 	a.request = a.request.PageId(pageToken)
 	return a
 }
 
-func (a listManagedRuleSetsAdapter) Execute() (listManagedRuleSetsResponse, error) {
+func (a *listManagedRuleSetsAdapter) Execute() (listManagedRuleSetsResponse, error) {
 	resp, err := a.request.Execute()
 	if err != nil {
 		return listManagedRuleSetsResponse{}, err
