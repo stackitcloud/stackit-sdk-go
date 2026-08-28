@@ -316,6 +316,8 @@
       - **Breaking Change/Fix:** `ListBackups` operation now returns `[]Backup` instead of `*ListBackupsResponse` (response type also removed)
         The go type now correctly models the actual JSON response, this operation was broken beforehand.
 - `redis`:
+  - [v1.4.0](services/redis/CHANGELOG.md#v140)
+    - **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
   - [v1.3.0](services/redis/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
       The go type now correctly models the actual JSON response, this operation was broken beforehand.
