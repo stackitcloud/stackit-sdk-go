@@ -17,10 +17,12 @@ import (
 // checks if the LoadbalancerOptionAccessControl type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoadbalancerOptionAccessControl{}
 
-// LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the Application Load Balancer.
+// LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the Application Load Balancer.  Only one of `allowed_source_ranges` or `ip_block_list_name` may be set at the same time.
 type LoadbalancerOptionAccessControl struct {
-	// Application Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges  []string `json:"allowedSourceRanges,omitempty"`
+	// Application Load Balancer is accessible only from an IP address in this range. Mutually exclusive with `ipBlockListName`.
+	AllowedSourceRanges []string `json:"allowedSourceRanges,omitempty"`
+	// Reference to an IP block list by name. Traffic originating from any IP in the referenced list is denied access to the Application Load Balancer. See \"IP Lists API\" for how to manage IP block lists. Mutually exclusive with `allowedSourceRanges`.
+	IpBlockListName      *string `json:"ipBlockListName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0\\,49}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,6 +77,38 @@ func (o *LoadbalancerOptionAccessControl) SetAllowedSourceRanges(v []string) {
 	o.AllowedSourceRanges = v
 }
 
+// GetIpBlockListName returns the IpBlockListName field value if set, zero value otherwise.
+func (o *LoadbalancerOptionAccessControl) GetIpBlockListName() string {
+	if o == nil || IsNil(o.IpBlockListName) {
+		var ret string
+		return ret
+	}
+	return *o.IpBlockListName
+}
+
+// GetIpBlockListNameOk returns a tuple with the IpBlockListName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoadbalancerOptionAccessControl) GetIpBlockListNameOk() (*string, bool) {
+	if o == nil || IsNil(o.IpBlockListName) {
+		return nil, false
+	}
+	return o.IpBlockListName, true
+}
+
+// HasIpBlockListName returns a boolean if a field has been set.
+func (o *LoadbalancerOptionAccessControl) HasIpBlockListName() bool {
+	if o != nil && !IsNil(o.IpBlockListName) {
+		return true
+	}
+
+	return false
+}
+
+// SetIpBlockListName gets a reference to the given string and assigns it to the IpBlockListName field.
+func (o *LoadbalancerOptionAccessControl) SetIpBlockListName(v string) {
+	o.IpBlockListName = &v
+}
+
 func (o LoadbalancerOptionAccessControl) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -87,6 +121,9 @@ func (o LoadbalancerOptionAccessControl) ToMap() (map[string]interface{}, error)
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowedSourceRanges) {
 		toSerialize["allowedSourceRanges"] = o.AllowedSourceRanges
+	}
+	if !IsNil(o.IpBlockListName) {
+		toSerialize["ipBlockListName"] = o.IpBlockListName
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -111,6 +148,7 @@ func (o *LoadbalancerOptionAccessControl) UnmarshalJSON(data []byte) (err error)
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowedSourceRanges")
+		delete(additionalProperties, "ipBlockListName")
 		o.AdditionalProperties = additionalProperties
 	}
 
