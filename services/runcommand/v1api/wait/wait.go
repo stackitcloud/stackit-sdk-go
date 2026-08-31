@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -39,11 +40,11 @@ func RunCommandWaitHandler(ctx context.Context, a runcommand.DefaultAPI, project
 		FetchInstance: a.GetCommand(ctx, projectId, serverId, commandId).Execute,
 		GetState: func(d *runcommand.CommandDetails) (runcommand.CommandDetailsStatus, error) {
 			if d == nil {
-				return "", errors.New("empty response")
+				return "", fmt.Errorf("failed to get command %s: empty response", commandId)
 			}
 			status, ok := d.GetStatusOk()
 			if !ok {
-				return "", errors.New("no status in response")
+				return "", fmt.Errorf("command %s: status missing in response", commandId)
 			}
 			return *status, nil
 		},
@@ -55,6 +56,6 @@ func RunCommandWaitHandler(ctx context.Context, a runcommand.DefaultAPI, project
 	}
 
 	handler := wait.New(waitConfig.Wait())
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
