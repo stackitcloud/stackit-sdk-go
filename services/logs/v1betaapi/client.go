@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1beta.0.4
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT Logs API API v1beta.0.4
+// APIClient manages communication with the STACKIT Logs API (Deprecated) API v1beta.0.4
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration
