@@ -16,10 +16,7 @@ const region = "eu01"
 
 func main() {
 	ctx := context.Background()
-	projectId := ""
-	if projectId == "" {
-		projectId = os.Getenv("PROJECT_ID")
-	}
+	projectId := os.Getenv("PROJECT_ID")
 	if projectId == "" {
 		log.Fatal("projectId is required")
 	}

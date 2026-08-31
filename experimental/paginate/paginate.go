@@ -14,16 +14,20 @@ type Response[Item any] interface {
 	GetNextPageToken() string
 }
 
-// Request defines the methods needed for pagination on te request side.
+// Request defines the methods needed for pagination on the request side.
 type Request[Self, Resp any] interface {
 	PageSize(pageSize int32) Self
 	PageToken(pageToken string) Self
 	Execute() (Resp, error)
 }
 
-type Option func(*options) error
+// Option configures pagination behavior.
+//
+// Options are applied sequentially in the order provided; if the same option is
+// specified multiple times, the last one takes precedence.
+type Option func(*config) error
 
-type options struct {
+type config struct {
 	pageSize int32
 	limit    *int
 	maxPages *int
@@ -33,11 +37,11 @@ type options struct {
 // service may return fewer items. A value of zero does not override the page
 // size already set on the supplied request.
 func WithPageSize(pageSize int32) Option {
-	return func(o *options) error {
+	return func(c *config) error {
 		if pageSize < 0 {
 			return fmt.Errorf("page size must not be negative: %d", pageSize)
 		}
-		o.pageSize = pageSize
+		c.pageSize = pageSize
 		return nil
 	}
 }
@@ -45,11 +49,11 @@ func WithPageSize(pageSize int32) Option {
 // WithLimit sets the maximum number of items yielded across all pages. A zero
 // limit performs no requests and yields no items.
 func WithLimit(limit int) Option {
-	return func(o *options) error {
+	return func(c *config) error {
 		if limit < 0 {
 			return fmt.Errorf("limit must not be negative: %d", limit)
 		}
-		o.limit = &limit
+		c.limit = &limit
 		return nil
 	}
 }
@@ -57,16 +61,16 @@ func WithLimit(limit int) Option {
 // WithMaxPages sets the maximum number of pages fetched. A zero maximum
 // performs no requests. Reaching the maximum is not an error.
 func WithMaxPages(maxPages int) Option {
-	return func(o *options) error {
+	return func(c *config) error {
 		if maxPages < 0 {
 			return fmt.Errorf("maximum pages must not be negative: %d", maxPages)
 		}
-		o.maxPages = &maxPages
+		c.maxPages = &maxPages
 		return nil
 	}
 }
 
-// Items returns a lazy iterator over the items of pageable ist operation.
+// Items returns a lazy iterator over the items of pageable list operation.
 // No request is made until the iterator is consumed. Each successful item is
 // yielded with a nil error. If a request or option fails, the error is yielded
 // once with the zero value of Item and iteration stops.
@@ -81,7 +85,7 @@ func Items[
 	return func(yield func(Item, error) bool) {
 		var zero Item
 
-		cfg, err := applyOptions(opts)
+		cfg, err := buildConfig(opts)
 		if err != nil {
 			yield(zero, fmt.Errorf("paginate: invalid option: %w", err))
 			return
@@ -175,14 +179,14 @@ func All[
 	return items, nil
 }
 
-func applyOptions(opts []Option) (options, error) {
-	var cfg options
+func buildConfig(opts []Option) (config, error) {
+	var cfg config
 	for i, opt := range opts {
 		if opt == nil {
-			return options{}, fmt.Errorf("option %d is nil", i+1)
+			return config{}, fmt.Errorf("option %d is nil", i+1)
 		}
 		if err := opt(&cfg); err != nil {
-			return options{}, err
+			return config{}, err
 		}
 	}
 	return cfg, nil

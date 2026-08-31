@@ -1,4 +1,4 @@
-module paginate
+module github.com/stackitcloud/stackit-sdk-go/examples/paginate
 
 go 1.25
 

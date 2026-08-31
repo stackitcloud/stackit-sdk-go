@@ -320,6 +320,25 @@ func TestAllZeroLimitsDoNotRequest(t *testing.T) {
 	}
 }
 
+func TestAllOptionPrecedence(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		_ = json.NewEncoder(w).Encode(testResponse{
+			Items: []testItem{{1}, {2}, {3}, {4}, {5}},
+		})
+	}))
+	defer server.Close()
+
+	// Later option overrides earlier option
+	got, err := paginate.All(newTestRequest(server), paginate.WithLimit(1), paginate.WithLimit(3))
+	if err != nil {
+		t.Fatalf("All() error = %v", err)
+	}
+	want := []testItem{{1}, {2}, {3}}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("All() mismatch (-want +got):\n%s", diff)
+	}
+}
+
 func TestItemsStopsOnRepeatedPageToken(t *testing.T) {
 	requests := 0
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
