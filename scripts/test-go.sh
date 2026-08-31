@@ -16,6 +16,7 @@ fi
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GOTEST_ARGS="-timeout=5m -cover -count=1"
 CORE_PATH="${ROOT_DIR}/core"
+EXPERIMENTAL_PATH="${ROOT_DIR}/experimental"
 SERVICES_PATH="${ROOT_DIR}/services"
 
 if type -p go >/dev/null; then
@@ -44,6 +45,11 @@ else
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
         echo ">> Testing core"
         go test ${CORE_PATH}/... ${GOTEST_ARGS}
+
+        if [ -d "${EXPERIMENTAL_PATH}" ]; then
+            echo ">> Testing experimental"
+            go test ${EXPERIMENTAL_PATH}/... ${GOTEST_ARGS}
+        fi
     fi
 
     for service_dir in ${SERVICES_PATH}/*; do

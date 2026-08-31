@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/paginate"
+	"github.com/stackitcloud/stackit-sdk-go/experimental/paginate"
 	albwaf "github.com/stackitcloud/stackit-sdk-go/services/albwaf/v1api"
 	automation "github.com/stackitcloud/stackit-sdk-go/services/automation/v1betaapi"
 )

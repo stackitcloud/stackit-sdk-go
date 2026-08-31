@@ -13,7 +13,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/paginate"
+	"github.com/stackitcloud/stackit-sdk-go/experimental/paginate"
 )
 
 type testItem struct {

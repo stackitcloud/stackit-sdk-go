@@ -43,6 +43,7 @@ use (
 	./examples/valkey
 	./examples/vpn
 	./examples/waiter
+	./experimental
 	./services/alb
 	./services/albwaf
 	./services/auditlog
