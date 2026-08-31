@@ -21,8 +21,8 @@ var _ MappedNullable = &DomainObservabilityExtension{}
 
 // DomainObservabilityExtension struct for DomainObservabilityExtension
 type DomainObservabilityExtension struct {
-	ObservabilityInstanceId string  `json:"observabilityInstanceId"`
-	State                   *string `json:"state,omitempty"`
+	ObservabilityInstanceId string                             `json:"observabilityInstanceId"`
+	State                   *DomainObservabilityExtensionState `json:"state,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -71,9 +71,9 @@ func (o *DomainObservabilityExtension) SetObservabilityInstanceId(v string) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *DomainObservabilityExtension) GetState() string {
+func (o *DomainObservabilityExtension) GetState() DomainObservabilityExtensionState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret DomainObservabilityExtensionState
 		return ret
 	}
 	return *o.State
@@ -81,7 +81,7 @@ func (o *DomainObservabilityExtension) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainObservabilityExtension) GetStateOk() (*string, bool) {
+func (o *DomainObservabilityExtension) GetStateOk() (*DomainObservabilityExtensionState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *DomainObservabilityExtension) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *DomainObservabilityExtension) SetState(v string) {
+// SetState gets a reference to the given DomainObservabilityExtensionState and assigns it to the State field.
+func (o *DomainObservabilityExtension) SetState(v DomainObservabilityExtensionState) {
 	o.State = &v
 }
 
