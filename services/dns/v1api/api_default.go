@@ -775,10 +775,17 @@ func (a *DefaultAPIService) CreateLabelExecute(r ApiCreateLabelRequest) (*Create
 }
 
 type ApiCreateMoveCodeRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	zoneId     string
+	ctx                   context.Context
+	ApiService            DefaultAPI
+	projectId             string
+	zoneId                string
+	createMoveCodePayload *CreateMoveCodePayload
+}
+
+// information about the movecode
+func (r ApiCreateMoveCodeRequest) CreateMoveCodePayload(createMoveCodePayload CreateMoveCodePayload) ApiCreateMoveCodeRequest {
+	r.createMoveCodePayload = &createMoveCodePayload
+	return r
 }
 
 func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
@@ -829,7 +836,7 @@ func (a *DefaultAPIService) CreateMoveCodeExecute(r ApiCreateMoveCodeRequest) (*
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -845,6 +852,8 @@ func (a *DefaultAPIService) CreateMoveCodeExecute(r ApiCreateMoveCodeRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.createMoveCodePayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
