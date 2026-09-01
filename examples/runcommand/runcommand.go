@@ -2,13 +2,17 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	runcommand "github.com/stackitcloud/stackit-sdk-go/services/runcommand/v1api"
-	"github.com/stackitcloud/stackit-sdk-go/services/runcommand/v1api/wait"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	runcommand "github.com/stackitcloud/stackit-sdk-go/services/runcommand/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/runcommand/v2api/wait"
 )
 
 func main() {
@@ -16,10 +20,11 @@ func main() {
 
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 	serverId := "SERVER_ID"   // the uuid of the server to run the command on
+	region := "eu01"          // the region of the server
 
 	// Create a new API client, that uses default authentication and configuration
 	client, err := runcommand.NewAPIClient(
-		config.WithRegion("eu01"),
+		config.WithRegion(region),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Run Command API] Creating API client: %v\n", err)
@@ -44,33 +49,48 @@ func main() {
 		"script": "echo 'Hello from STACKIT Run Commands!'",
 	})
 
-	// AgentReadyWaitHandler submits the command and retries until the server agent
-	// has registered. The API returns 404 while the agent is still booting after
-	// server creation. The returned response already contains the command ID.
-	fmt.Printf("[Run Command API] Waiting for agent on server %q and submitting command...\n", serverId)
+	// Submit the command.
+	fmt.Printf("[Run Command API] Submitting command on server %q...\n", serverId)
 
-	createResp, err := wait.AgentReadyWaitHandler(ctx, client.DefaultAPI, projectId, serverId, *payload).
-		WaitWithContext(ctx)
+	var createResp *runcommand.NewCommandResponse
+	for attempt := range 60 {
+		createResp, err = client.DefaultAPI.CreateCommand(ctx, projectId, serverId, region).CreateCommandPayload(*payload).Execute()
+		if err == nil {
+			break
+		}
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
+		if !ok || oapiErr.StatusCode != http.StatusNotFound {
+			fmt.Fprintf(os.Stderr, "[Run Command API] Error when calling `CreateCommand`: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("[Run Command API] Agent not yet ready, retrying (%d/60)...\n", attempt+1)
+		time.Sleep(10 * time.Second)
+	}
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[Run Command API] Error when submitting command: %v\n", err)
+		fmt.Fprintf(os.Stderr, "[Run Command API] Agent did not become ready within timeout\n")
 		os.Exit(1)
 	}
 
 	commandId := strconv.Itoa(int(createResp.GetId()))
 	fmt.Printf("[Run Command API] Command submitted with ID %s.\n", commandId)
 
-	// RunCommandWaitHandler polls until the command reaches a terminal state.
-	// Both COMPLETED and FAILED are terminal; inspect the status to distinguish them.
 	fmt.Printf("[Run Command API] Waiting for command %s to finish...\n", commandId)
 
-	details, err := wait.RunCommandWaitHandler(ctx, client.DefaultAPI, projectId, serverId, commandId).
+	details, err := wait.RunCommandWaitHandler(ctx, client.DefaultAPI, projectId, serverId, region, commandId).
 		WaitWithContext(ctx)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[Run Command API] Error when waiting for command: %v\n", err)
+		exitCode := int32(0)
+		output := ""
+		if details != nil {
+			exitCode = details.GetExitCode()
+			output = details.GetOutput()
+		}
+		fmt.Fprintf(os.Stderr, "[Run Command API] Command %s failed (exit code: %d).\nOutput:\n%s\nError: %v\n",
+			commandId, exitCode, output, err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("[Run Command API] Command %s finished with status %q (exit code: %d).\n",
-		commandId, details.GetStatus(), details.GetExitCode())
+	fmt.Printf("[Run Command API] Command %s completed successfully.\n", commandId)
 	fmt.Printf("[Run Command API] Output:\n%s\n", details.GetOutput())
 }

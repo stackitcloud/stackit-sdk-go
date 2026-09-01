@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/runcommand => ../../serv
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/runcommand v1.4.3
+	github.com/stackitcloud/stackit-sdk-go/services/runcommand v1.10.0
 )
 
 require (

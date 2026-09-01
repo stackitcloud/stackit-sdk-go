@@ -1,6 +1,5 @@
-## v1.9.2
-- `v1api`: **Feature:** Add `AgentReadyWaitHandler` wait handler for waiting until the server agent has registered and submitting a command
-- `v1api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`)
+## v1.10.0
+- `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`). `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails` so callers can surface the exit code and output.
 - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
 
 ## v1.9.1
