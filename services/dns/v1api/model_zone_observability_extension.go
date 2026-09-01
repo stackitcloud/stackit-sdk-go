@@ -21,8 +21,7 @@ var _ MappedNullable = &ZoneObservabilityExtension{}
 
 // ZoneObservabilityExtension struct for ZoneObservabilityExtension
 type ZoneObservabilityExtension struct {
-	ObservabilityInstanceId string  `json:"observabilityInstanceId"`
-	State                   *string `json:"state,omitempty"`
+	ObservabilityInstanceId string `json:"observabilityInstanceId"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -70,38 +69,6 @@ func (o *ZoneObservabilityExtension) SetObservabilityInstanceId(v string) {
 	o.ObservabilityInstanceId = v
 }
 
-// GetState returns the State field value if set, zero value otherwise.
-func (o *ZoneObservabilityExtension) GetState() string {
-	if o == nil || IsNil(o.State) {
-		var ret string
-		return ret
-	}
-	return *o.State
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ZoneObservabilityExtension) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
-}
-
-// HasState returns a boolean if a field has been set.
-func (o *ZoneObservabilityExtension) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
-}
-
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *ZoneObservabilityExtension) SetState(v string) {
-	o.State = &v
-}
-
 func (o ZoneObservabilityExtension) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -113,9 +80,6 @@ func (o ZoneObservabilityExtension) MarshalJSON() ([]byte, error) {
 func (o ZoneObservabilityExtension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["observabilityInstanceId"] = o.ObservabilityInstanceId
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -160,7 +124,6 @@ func (o *ZoneObservabilityExtension) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "observabilityInstanceId")
-		delete(additionalProperties, "state")
 		o.AdditionalProperties = additionalProperties
 	}
 
