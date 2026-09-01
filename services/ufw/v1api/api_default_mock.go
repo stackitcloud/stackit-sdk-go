@@ -12,6 +12,7 @@ package v1api
 
 import (
 	"context"
+	"os"
 )
 
 // assert the implementation matches the interface
@@ -21,21 +22,29 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
 	// CreateRuleExecuteMock can be populated to implement the behavior of the CreateRuleExecute function of this mock
-	CreateRuleExecuteMock *func(r ApiCreateRuleRequest) (*CreateRuleResponse, error)
+	CreateRuleExecuteMock *func(r ApiCreateRuleRequest) (*SecurityRuleSuccessfullyCreatedResponse, error)
 	// DeleteRuleExecuteMock can be populated to implement the behavior of the DeleteRuleExecute function of this mock
-	DeleteRuleExecuteMock *func(r ApiDeleteRuleRequest) (*DeleteRuleResponse, error)
+	DeleteRuleExecuteMock *func(r ApiDeleteRuleRequest) (*SecurityRuleResponse, error)
+	// ExportFolderRulesExecuteMock can be populated to implement the behavior of the ExportFolderRulesExecute function of this mock
+	ExportFolderRulesExecuteMock *func(r ApiExportFolderRulesRequest) (*os.File, error)
+	// ExportOrganizationRulesExecuteMock can be populated to implement the behavior of the ExportOrganizationRulesExecute function of this mock
+	ExportOrganizationRulesExecuteMock *func(r ApiExportOrganizationRulesRequest) (*os.File, error)
+	// ExportRulesExecuteMock can be populated to implement the behavior of the ExportRulesExecute function of this mock
+	ExportRulesExecuteMock *func(r ApiExportRulesRequest) (*os.File, error)
 	// GetRuleExecuteMock can be populated to implement the behavior of the GetRuleExecute function of this mock
 	GetRuleExecuteMock *func(r ApiGetRuleRequest) (*RuleResponse, error)
 	// ListFolderContainersExecuteMock can be populated to implement the behavior of the ListFolderContainersExecute function of this mock
 	ListFolderContainersExecuteMock *func(r ApiListFolderContainersRequest) (*ListContainersResponse, error)
+	// ListInstancesForServiceExecuteMock can be populated to implement the behavior of the ListInstancesForServiceExecute function of this mock
+	ListInstancesForServiceExecuteMock *func(r ApiListInstancesForServiceRequest) ([]ServicesResponse, error)
 	// ListOrganizationContainersExecuteMock can be populated to implement the behavior of the ListOrganizationContainersExecute function of this mock
 	ListOrganizationContainersExecuteMock *func(r ApiListOrganizationContainersRequest) (*ListContainersResponse, error)
 	// ListProviderOptionsExecuteMock can be populated to implement the behavior of the ListProviderOptionsExecute function of this mock
 	ListProviderOptionsExecuteMock *func(r ApiListProviderOptionsRequest) ([]ProviderOptionsResponse, error)
 	// ListRulesExecuteMock can be populated to implement the behavior of the ListRulesExecute function of this mock
-	ListRulesExecuteMock *func(r ApiListRulesRequest) (*ListRulesResponse, error)
+	ListRulesExecuteMock *func(r ApiListRulesRequest) (*SecurityRulesResponse, error)
 	// UpdateRuleExecuteMock can be populated to implement the behavior of the UpdateRuleExecute function of this mock
-	UpdateRuleExecuteMock *func(r ApiUpdateRuleRequest) (*UpdateRuleResponse, error)
+	UpdateRuleExecuteMock *func(r ApiUpdateRuleRequest) (*SecurityRuleSuccessfullyCreatedResponse, error)
 }
 
 func (a DefaultAPIServiceMock) CreateRule(ctx context.Context, projectId string, regionId string) ApiCreateRuleRequest {
@@ -48,9 +57,9 @@ func (a DefaultAPIServiceMock) CreateRule(ctx context.Context, projectId string,
 }
 
 // CreateRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateRuleExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateRuleExecute(r ApiCreateRuleRequest) (*CreateRuleResponse, error) {
+func (a DefaultAPIServiceMock) CreateRuleExecute(r ApiCreateRuleRequest) (*SecurityRuleSuccessfullyCreatedResponse, error) {
 	if a.CreateRuleExecuteMock == nil {
-		var localVarReturnValue *CreateRuleResponse
+		var localVarReturnValue *SecurityRuleSuccessfullyCreatedResponse
 		return localVarReturnValue, nil
 	}
 
@@ -68,13 +77,70 @@ func (a DefaultAPIServiceMock) DeleteRule(ctx context.Context, projectId string,
 }
 
 // DeleteRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteRuleExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) DeleteRuleExecute(r ApiDeleteRuleRequest) (*DeleteRuleResponse, error) {
+func (a DefaultAPIServiceMock) DeleteRuleExecute(r ApiDeleteRuleRequest) (*SecurityRuleResponse, error) {
 	if a.DeleteRuleExecuteMock == nil {
-		var localVarReturnValue *DeleteRuleResponse
+		var localVarReturnValue *SecurityRuleResponse
 		return localVarReturnValue, nil
 	}
 
 	return (*a.DeleteRuleExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ExportFolderRules(ctx context.Context, folderId string, regionId string) ApiExportFolderRulesRequest {
+	return ApiExportFolderRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		folderId:   folderId,
+		regionId:   regionId,
+	}
+}
+
+// ExportFolderRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ExportFolderRulesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ExportFolderRulesExecute(r ApiExportFolderRulesRequest) (*os.File, error) {
+	if a.ExportFolderRulesExecuteMock == nil {
+		var localVarReturnValue *os.File
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ExportFolderRulesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ExportOrganizationRules(ctx context.Context, organizationId string, regionId string) ApiExportOrganizationRulesRequest {
+	return ApiExportOrganizationRulesRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+	}
+}
+
+// ExportOrganizationRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ExportOrganizationRulesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ExportOrganizationRulesExecute(r ApiExportOrganizationRulesRequest) (*os.File, error) {
+	if a.ExportOrganizationRulesExecuteMock == nil {
+		var localVarReturnValue *os.File
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ExportOrganizationRulesExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ExportRules(ctx context.Context, projectId string, regionId string) ApiExportRulesRequest {
+	return ApiExportRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+// ExportRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ExportRulesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ExportRulesExecute(r ApiExportRulesRequest) (*os.File, error) {
+	if a.ExportRulesExecuteMock == nil {
+		var localVarReturnValue *os.File
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ExportRulesExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetRule(ctx context.Context, projectId string, regionId string, ruleId string) ApiGetRuleRequest {
@@ -113,6 +179,26 @@ func (a DefaultAPIServiceMock) ListFolderContainersExecute(r ApiListFolderContai
 	}
 
 	return (*a.ListFolderContainersExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListInstancesForService(ctx context.Context, projectId string, regionId string, serviceId string) ApiListInstancesForServiceRequest {
+	return ApiListInstancesForServiceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		serviceId:  serviceId,
+	}
+}
+
+// ListInstancesForServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListInstancesForServiceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListInstancesForServiceExecute(r ApiListInstancesForServiceRequest) ([]ServicesResponse, error) {
+	if a.ListInstancesForServiceExecuteMock == nil {
+		var localVarReturnValue []ServicesResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListInstancesForServiceExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListOrganizationContainers(ctx context.Context, organizationId string) ApiListOrganizationContainersRequest {
@@ -161,9 +247,9 @@ func (a DefaultAPIServiceMock) ListRules(ctx context.Context, projectId string, 
 }
 
 // ListRulesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListRulesExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListRulesExecute(r ApiListRulesRequest) (*ListRulesResponse, error) {
+func (a DefaultAPIServiceMock) ListRulesExecute(r ApiListRulesRequest) (*SecurityRulesResponse, error) {
 	if a.ListRulesExecuteMock == nil {
-		var localVarReturnValue *ListRulesResponse
+		var localVarReturnValue *SecurityRulesResponse
 		return localVarReturnValue, nil
 	}
 
@@ -181,9 +267,9 @@ func (a DefaultAPIServiceMock) UpdateRule(ctx context.Context, projectId string,
 }
 
 // UpdateRuleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateRuleExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateRuleExecute(r ApiUpdateRuleRequest) (*UpdateRuleResponse, error) {
+func (a DefaultAPIServiceMock) UpdateRuleExecute(r ApiUpdateRuleRequest) (*SecurityRuleSuccessfullyCreatedResponse, error) {
 	if a.UpdateRuleExecuteMock == nil {
-		var localVarReturnValue *UpdateRuleResponse
+		var localVarReturnValue *SecurityRuleSuccessfullyCreatedResponse
 		return localVarReturnValue, nil
 	}
 
