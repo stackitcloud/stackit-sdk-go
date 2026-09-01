@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `experimental`:
+  - [v0.1.0](experimental/CHANGELOG.md#v010)
+    - Added experimental `paginate` package for AIP compliant pagination
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation

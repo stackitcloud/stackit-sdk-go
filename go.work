@@ -26,6 +26,7 @@ use (
 	./examples/objectstorage
 	./examples/observability
 	./examples/opensearch
+	./examples/paginate
 	./examples/postgresflex
 	./examples/rabbitmq
 	./examples/redis
@@ -42,6 +43,7 @@ use (
 	./examples/valkey
 	./examples/vpn
 	./examples/waiter
+	./experimental
 	./services/alb
 	./services/albwaf
 	./services/auditlog
