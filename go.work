@@ -55,6 +55,7 @@ use (
 	./services/dns
 	./services/dremio
 	./services/edge
+	./services/functions
 	./services/git
 	./services/iaas
 	./services/intake
