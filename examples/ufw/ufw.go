@@ -143,7 +143,7 @@ func getFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, r
 	return ufwClient.DefaultAPI.GetRule(ctx, projectId, region, ruleId).Execute()
 }
 
-func createFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region string, payload *ufw.CreateRulePayload) (*ufw.SecurityRuleSuccessfullyCreatedResponse, error) {
+func createFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region string, payload *ufw.CreateRulePayload) (*ufw.CreateRuleResponse, error) {
 	createdFirewallRule, err := ufwClient.DefaultAPI.CreateRule(ctx, projectId, region).CreateRulePayload(*payload).Execute()
 	if err != nil {
 		return nil, err
@@ -160,7 +160,7 @@ func createFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId
 	return createdFirewallRule, nil
 }
 
-func updateFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region, ruleId string, payload ufw.UpdateRulePayload) (*ufw.SecurityRuleSuccessfullyCreatedResponse, error) {
+func updateFirewallRule(ctx context.Context, ufwClient *ufw.APIClient, projectId, region, ruleId string, payload ufw.UpdateRulePayload) (*ufw.UpdateRuleResponse, error) {
 	updatedFirewallRule, err := ufwClient.DefaultAPI.UpdateRule(ctx, projectId, region, ruleId).UpdateRulePayload(payload).Execute()
 	if err != nil {
 		return nil, err
