@@ -70,6 +70,7 @@ use (
 	./services/observability
 	./services/opensearch
 	./services/postgresflex
+	./services/pubsub
 	./services/rabbitmq
 	./services/redis
 	./services/resourcemanager
