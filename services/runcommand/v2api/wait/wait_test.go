@@ -61,13 +61,10 @@ func TestRunCommandWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:          "unknown status returns error and details",
+			desc:          "unknown status times out",
 			resourceState: runcommand.COMMANDDETAILSSTATUS_UNKNOWN_DEFAULT_OPEN_API,
 			wantErr:       true,
-			wantResp: &runcommand.CommandDetails{
-				Id:     utils.Ptr(int32(1)),
-				Status: utils.Ptr(runcommand.COMMANDDETAILSSTATUS_UNKNOWN_DEFAULT_OPEN_API),
-			},
+			wantResp:      nil,
 		},
 		{
 			desc:     "get fails",

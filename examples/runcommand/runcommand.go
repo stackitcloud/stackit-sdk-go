@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	runcommand "github.com/stackitcloud/stackit-sdk-go/services/runcommand/v2api"
 	"github.com/stackitcloud/stackit-sdk-go/services/runcommand/v2api/wait"
@@ -22,10 +21,8 @@ func main() {
 	serverId := "SERVER_ID"   // the uuid of the server to run the command on
 	region := "eu01"          // the region of the server
 
-	// Create a new API client, that uses default authentication and configuration
-	client, err := runcommand.NewAPIClient(
-		config.WithRegion(region),
-	)
+	// Create a new API client, that uses default authentication and configuration.
+	client, err := runcommand.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Run Command API] Creating API client: %v\n", err)
 		os.Exit(1)

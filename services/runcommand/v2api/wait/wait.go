@@ -32,7 +32,6 @@ func RunCommandWaitHandler(ctx context.Context, a runcommand.DefaultAPI, project
 		},
 		ErrorState: []runcommand.CommandDetailsStatus{
 			runcommand.COMMANDDETAILSSTATUS_FAILED,
-			runcommand.COMMANDDETAILSSTATUS_UNKNOWN_DEFAULT_OPEN_API,
 		},
 	}
 
