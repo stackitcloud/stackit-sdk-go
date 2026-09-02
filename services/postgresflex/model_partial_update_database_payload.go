@@ -75,7 +75,7 @@ type PartialUpdateDatabasePayloadGetOwnerRetType = string
 // PartialUpdateDatabasePayload struct for PartialUpdateDatabasePayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PartialUpdateDatabasePayload struct {
-	// The name of the database.
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
 	Name PartialUpdateDatabasePayloadGetNameAttributeType `json:"name,omitempty"`
 	// The owner of the database.
 	Owner PartialUpdateDatabasePayloadGetOwnerAttributeType `json:"owner,omitempty"`
