@@ -7,6 +7,7 @@ set -eo pipefail
 # Global flags
 ROOT_DIR=$(git rev-parse --show-toplevel)
 CORE_PATH="${ROOT_DIR}/core"
+EXPERIMENTAL_PATH="${ROOT_DIR}/experimental"
 SERVICES_PATH="${ROOT_DIR}/services"
 EXAMPLES_PATH="${ROOT_DIR}/examples"
 GOLANG_CI_YAML_PATH="${ROOT_DIR}/golang-ci.yaml"
@@ -45,6 +46,12 @@ else
         echo ">> Linting core"
         cd ${CORE_PATH}
         ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
+
+        if [ -d "${EXPERIMENTAL_PATH}" ]; then
+            echo ">> Linting experimental"
+            cd ${EXPERIMENTAL_PATH}
+            ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
+        fi
     fi
 
     for service_dir in ${SERVICES_PATH}/*; do

@@ -4,6 +4,7 @@ set -eo pipefail
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 CORE_PATH="${ROOT_DIR}/core"
+EXPERIMENTAL_PATH="${ROOT_DIR}/experimental"
 SERVICES_PATH="${ROOT_DIR}/services"
 EXAMPLES_PATH="${ROOT_DIR}/examples"
 
@@ -12,6 +13,11 @@ go work sync
 
 cd ${CORE_PATH}
 go mod tidy
+
+if [ -d "${EXPERIMENTAL_PATH}" ]; then
+    cd ${EXPERIMENTAL_PATH}
+    go mod tidy
+fi
 
 for service_dir in ${SERVICES_PATH}/*; do
     cd ${service_dir}
