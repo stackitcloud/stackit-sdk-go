@@ -21,8 +21,8 @@ var _ MappedNullable = &CreateDatabasePayload{}
 
 // CreateDatabasePayload struct for CreateDatabasePayload
 type CreateDatabasePayload struct {
-	// The name of the database.
-	Name string `json:"name"`
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
+	Name string `json:"name" validate:"regexp=^[a-z_][a-z0-9_]*$"`
 	// The owner of the database.
 	Owner                *string `json:"owner,omitempty"`
 	AdditionalProperties map[string]interface{}

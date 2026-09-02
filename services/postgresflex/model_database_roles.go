@@ -75,7 +75,7 @@ func setDatabaseRolesGetRolesAttributeType(arg *DatabaseRolesGetRolesAttributeTy
 // DatabaseRoles The name and the roles for a database for a user.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DatabaseRoles struct {
-	// The name of the database.
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
 	// REQUIRED
 	Name DatabaseRolesGetNameAttributeType `json:"name" required:"true"`
 	// The name and the roles for a database
