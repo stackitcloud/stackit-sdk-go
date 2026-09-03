@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// InstanceNetworkAccessScope The access scope of the instance. It defines if the instance is public or airgapped.
+// InstanceNetworkAccessScope The access scope of the instance. It defines if the instance is public or airgapped.  ⚠️ **Note:** \"SNA\" value for the \"network.accessScope\" field is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type InstanceNetworkAccessScope string
 

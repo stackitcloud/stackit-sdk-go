@@ -105,7 +105,7 @@ type ListDatabase struct {
 	// The id of the database.
 	// REQUIRED
 	Id ListDatabaseGetIdAttributeType `json:"id" required:"true"`
-	// The name of the database.
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
 	// REQUIRED
 	Name ListDatabaseGetNameAttributeType `json:"name" required:"true"`
 	// The owner of the database.

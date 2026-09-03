@@ -21,8 +21,8 @@ var _ MappedNullable = &DatabaseRoles{}
 
 // DatabaseRoles The name and the roles for a database for a user.
 type DatabaseRoles struct {
-	// The name of the database.
-	Name string `json:"name"`
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
+	Name string `json:"name" validate:"regexp=^[a-z_][a-z0-9_]*$"`
 	// The name and the roles for a database
 	Roles                []string `json:"roles"`
 	AdditionalProperties map[string]interface{}

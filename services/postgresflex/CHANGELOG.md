@@ -1,3 +1,16 @@
+## v1.14.0
+- **Improvement:** Document naming constraints for the `Name` field of database model structs
+- **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` (`network.accessScope`) is only permitted for enabled accounts; the request is rejected otherwise
+- `v3alpha1api`:
+  - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabaseRequestPayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `UpdateDatabasePartiallyRequestPayload`, `UpdateDatabaseRequestPayload`
+  - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+- `v3api`:
+  - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
+  - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+- `v3beta1api`:
+  - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
+  - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+
 ## v1.13.0
 - **Breaking Change:** Property `Class` in `CloneInstanceOverrides` and `StorageCreate` is required now
 - `v1api`:
