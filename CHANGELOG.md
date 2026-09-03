@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `runcommand`:
+    - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
+        - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
+        - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
 - `experimental`:
   - [v0.1.0](experimental/CHANGELOG.md#v010)
     - Added experimental `paginate` package for AIP compliant pagination
