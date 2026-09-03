@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `albwaf`
+  - [v0.13.3](services/albwaf/CHANGELOG.md#v0133)
+    - `v1api`:
+      - **Improvement:** Align package description with latest API specification
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation
