@@ -1,3 +1,8 @@
+## v0.19.0
+- **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+- `v1api`:
+  - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+
 ## v0.18.2
 - `v1alphaapi`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)

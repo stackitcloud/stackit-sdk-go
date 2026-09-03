@@ -31,7 +31,11 @@
       - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
       - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values `CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
       - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
-      
+- `secretsmanager`:
+  - [v0.19.0](services/secretsmanager/CHANGELOG.md#v0190)
+    - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+    - `v1api`:
+      - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
 
 ## Release (2026-08-25)
 
