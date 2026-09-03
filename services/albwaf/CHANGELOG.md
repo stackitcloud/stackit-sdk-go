@@ -1,3 +1,7 @@
+## v0.13.3
+- `v1api`:
+  - **Improvement:** Align package description with latest API specification
+
 ## v0.13.2
 - `v1api`:
   - **Improvement:** Update description of `UpdateWAF` method to reflect that updating a WAF configuration now also applies to all Load Balancers that reference it
