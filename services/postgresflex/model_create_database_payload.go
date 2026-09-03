@@ -75,7 +75,7 @@ type CreateDatabasePayloadGetOwnerRetType = string
 // CreateDatabasePayload struct for CreateDatabasePayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateDatabasePayload struct {
-	// The name of the database.
+	// \"The name of the database.\" \"Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores.\"
 	// REQUIRED
 	Name CreateDatabasePayloadGetNameAttributeType `json:"name" required:"true"`
 	// The owner of the database.
