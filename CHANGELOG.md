@@ -1,27 +1,9 @@
 ## Release (2026-MM-DD)
 
-- `runcommand`:
-    - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
-        - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
-        - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
-- `experimental`:
-  - [v0.1.0](experimental/CHANGELOG.md#v010)
-    - Added experimental `paginate` package for AIP compliant pagination
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/automation)
-- `observability`:
-  - [v0.25.0](services/observability/CHANGELOG.md#v0250)
-    - `v1api`:
-      - **Breaking Change:** Removed model `Status1`; `ProjectInstanceFull.Status` field type changed from `Status1` to `Status`
-      - **Breaking Change:** Field types for nullable map values changed from `map[string]string` to `map[string]*string` in `Error.Errors`, `GetCredentialsResponse.CredentialsInfo`, `GetInstanceResponse.Parameters`, `RouteSerializer.Routes`, `ServiceKeysList.CredentialsInfo`
-      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
-- `valkey`:
-  - [v0.3.0](services/valkey/CHANGELOG.md#v030)
-    - `v1api`:
-      - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
-        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
 - `dns`:
   - [v0.23.0](services/dns/CHANGELOG.md#v0230)
     - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
@@ -31,11 +13,42 @@
       - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
       - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values `CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
       - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+- `experimental`:
+  - [v0.1.0](experimental/CHANGELOG.md#v010)
+    - Added experimental `paginate` package for AIP compliant pagination
+- `observability`:
+  - [v0.25.0](services/observability/CHANGELOG.md#v0250)
+    - `v1api`:
+      - **Breaking Change:** Removed model `Status1`; `ProjectInstanceFull.Status` field type changed from `Status1` to `Status`
+      - **Breaking Change:** Field types for nullable map values changed from `map[string]string` to `map[string]*string` in `Error.Errors`, `GetCredentialsResponse.CredentialsInfo`, `GetInstanceResponse.Parameters`, `RouteSerializer.Routes`, `ServiceKeysList.CredentialsInfo`
+      - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `postgresflex`:
+  - [v1.14.0](services/postgresflex/CHANGELOG.md#v1140)
+    - **Improvement:** Document naming constraints for the `Name` field of database model structs
+    - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` (`network.accessScope`) is only permitted for enabled accounts; the request is rejected otherwise
+    - `v3alpha1api`:
+      - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabaseRequestPayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `UpdateDatabasePartiallyRequestPayload`, `UpdateDatabaseRequestPayload`
+      - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+    - `v3api`:
+      - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
+      - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+    - `v3beta1api`:
+      - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
+      - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+- `runcommand`:
+    - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
+        - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
+        - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
 - `secretsmanager`:
   - [v0.19.0](services/secretsmanager/CHANGELOG.md#v0190)
     - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
     - `v1api`:
       - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+- `valkey`:
+  - [v0.3.0](services/valkey/CHANGELOG.md#v030)
+    - `v1api`:
+      - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
+        The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
 
 ## Release (2026-08-25)
 
