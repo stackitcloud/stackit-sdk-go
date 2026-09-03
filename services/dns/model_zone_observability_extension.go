@@ -45,39 +45,11 @@ type ZoneObservabilityExtensionGetObservabilityInstanceIdArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ZoneObservabilityExtensionGetObservabilityInstanceIdRetType = string
 
-/*
-	types and functions for state
-*/
-
-// isNotNullableString
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ZoneObservabilityExtensionGetStateAttributeType = *string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getZoneObservabilityExtensionGetStateAttributeTypeOk(arg ZoneObservabilityExtensionGetStateAttributeType) (ret ZoneObservabilityExtensionGetStateRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setZoneObservabilityExtensionGetStateAttributeType(arg *ZoneObservabilityExtensionGetStateAttributeType, val ZoneObservabilityExtensionGetStateRetType) {
-	*arg = &val
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ZoneObservabilityExtensionGetStateArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ZoneObservabilityExtensionGetStateRetType = string
-
 // ZoneObservabilityExtension struct for ZoneObservabilityExtension
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ZoneObservabilityExtension struct {
 	// REQUIRED
 	ObservabilityInstanceId ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId" required:"true"`
-	State                   ZoneObservabilityExtensionGetStateAttributeType                   `json:"state,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -123,41 +95,11 @@ func (o *ZoneObservabilityExtension) SetObservabilityInstanceId(v ZoneObservabil
 	setZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType(&o.ObservabilityInstanceId, v)
 }
 
-// GetState returns the State field value if set, zero value otherwise.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ZoneObservabilityExtension) GetState() (res ZoneObservabilityExtensionGetStateRetType) {
-	res, _ = o.GetStateOk()
-	return
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ZoneObservabilityExtension) GetStateOk() (ret ZoneObservabilityExtensionGetStateRetType, ok bool) {
-	return getZoneObservabilityExtensionGetStateAttributeTypeOk(o.State)
-}
-
-// HasState returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ZoneObservabilityExtension) HasState() bool {
-	_, ok := o.GetStateOk()
-	return ok
-}
-
-// SetState gets a reference to the given string and assigns it to the State field.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ZoneObservabilityExtension) SetState(v ZoneObservabilityExtensionGetStateRetType) {
-	setZoneObservabilityExtensionGetStateAttributeType(&o.State, v)
-}
-
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o ZoneObservabilityExtension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getZoneObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(o.ObservabilityInstanceId); ok {
 		toSerialize["ObservabilityInstanceId"] = val
-	}
-	if val, ok := getZoneObservabilityExtensionGetStateAttributeTypeOk(o.State); ok {
-		toSerialize["State"] = val
 	}
 	return toSerialize, nil
 }
