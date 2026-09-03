@@ -22,7 +22,7 @@ var _ MappedNullable = &BGPTunnelConfig{}
 type BGPTunnelConfig struct {
 	// UUID of the BGPFilter to apply to incoming routes from this tunnel's BGP neighbor. The filter must exist in the same gateway. Multiple tunnels may reference the same BGPFilter; in that case the rules' 'match.peer' field can be used to scope behavior per neighbor. Outbound filtering is not yet supported; use gateway.bgp.overrideAdvertisedRoutes to control what is advertised.
 	InboundFilterId NullableString `json:"inboundFilterId,omitempty"`
-	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
+	// Number of an Autonomous System. Both 16Bit and 32Bit ranges are supported, excluding values reserved by:   * RFC 7607 (0)   * RFC 6793 (23456, AS_TRANS)   * RFC 7300 (65535 and 4294967295, the \"Last ASNs\")
 	RemoteAsn            int64 `json:"remoteAsn"`
 	AdditionalProperties map[string]interface{}
 }
