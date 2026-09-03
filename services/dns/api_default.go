@@ -606,6 +606,9 @@ type ApiCreateLabelRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiCreateMoveCodeRequest interface {
+	// information about the movecode
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	CreateMoveCodePayload(createMoveCodePayload CreateMoveCodePayload) ApiCreateMoveCodeRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*MoveCodeResponse, error)
 }
@@ -1384,10 +1387,18 @@ func (a *APIClient) CreateLabelExecute(ctx context.Context, projectId string, zo
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateMoveCodeRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	zoneId     string
+	ctx                   context.Context
+	apiService            *DefaultApiService
+	projectId             string
+	zoneId                string
+	createMoveCodePayload *CreateMoveCodePayload
+}
+
+// information about the movecode
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r CreateMoveCodeRequest) CreateMoveCodePayload(createMoveCodePayload CreateMoveCodePayload) ApiCreateMoveCodeRequest {
+	r.createMoveCodePayload = &createMoveCodePayload
+	return r
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -1417,7 +1428,7 @@ func (r CreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1433,6 +1444,8 @@ func (r CreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.createMoveCodePayload
 	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err

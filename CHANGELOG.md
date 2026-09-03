@@ -22,6 +22,16 @@
     - `v1api`:
       - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
         The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
+- `dns`:
+  - [v0.23.0](services/dns/CHANGELOG.md#v0230)
+    - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
+    - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
+    - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+    - `v1api`:
+      - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
+      - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values `CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
+      - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+      
 
 ## Release (2026-08-25)
 

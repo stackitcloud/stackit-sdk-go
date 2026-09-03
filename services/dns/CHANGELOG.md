@@ -1,3 +1,12 @@
+## v0.23.0
+- **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
+- **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
+- **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+- `v1api`:
+  - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
+  - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values `CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
+  - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+
 ## v0.22.1
 - `v1api`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
