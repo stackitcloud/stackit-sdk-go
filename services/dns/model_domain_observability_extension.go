@@ -13,6 +13,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DomainObservabilityExtension type satisfies the MappedNullable interface at compile time
@@ -49,9 +50,138 @@ type DomainObservabilityExtensionGetObservabilityInstanceIdRetType = string
 	types and functions for state
 */
 
-// isNotNullableString
+// isEnum
+
+// DomainObservabilityExtensionState the model 'DomainObservabilityExtension'
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DomainObservabilityExtensionGetStateAttributeType = *string
+type DomainObservabilityExtensionState string
+
+// List of State
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DOMAINOBSERVABILITYEXTENSIONSTATE_CREATING DomainObservabilityExtensionState = "CREATING"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DOMAINOBSERVABILITYEXTENSIONSTATE_CREATE_SUCCEEDED DomainObservabilityExtensionState = "CREATE_SUCCEEDED"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DOMAINOBSERVABILITYEXTENSIONSTATE_ERROR DomainObservabilityExtensionState = "ERROR"
+)
+
+// All allowed values of DomainObservabilityExtension enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedDomainObservabilityExtensionStateEnumValues = []DomainObservabilityExtensionState{
+	"CREATING",
+	"CREATE_SUCCEEDED",
+	"ERROR",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *DomainObservabilityExtensionState) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson DomainObservabilityExtensionState
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := DomainObservabilityExtensionState(value)
+	for _, existing := range AllowedDomainObservabilityExtensionStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid DomainObservabilityExtension", value)
+}
+
+// NewDomainObservabilityExtensionStateFromValue returns a pointer to a valid DomainObservabilityExtensionState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewDomainObservabilityExtensionStateFromValue(v DomainObservabilityExtensionState) (*DomainObservabilityExtensionState, error) {
+	ev := DomainObservabilityExtensionState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DomainObservabilityExtensionState: valid values are %v", v, AllowedDomainObservabilityExtensionStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DomainObservabilityExtensionState) IsValid() bool {
+	for _, existing := range AllowedDomainObservabilityExtensionStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DomainObservabilityExtensionState) Ptr() *DomainObservabilityExtensionState {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableDomainObservabilityExtensionState struct {
+	value *DomainObservabilityExtensionState
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainObservabilityExtensionState) Get() *DomainObservabilityExtensionState {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainObservabilityExtensionState) Set(val *DomainObservabilityExtensionState) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainObservabilityExtensionState) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainObservabilityExtensionState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableDomainObservabilityExtensionState(val *DomainObservabilityExtensionState) *NullableDomainObservabilityExtensionState {
+	return &NullableDomainObservabilityExtensionState{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainObservabilityExtensionState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainObservabilityExtensionState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainObservabilityExtensionGetStateAttributeType = *DomainObservabilityExtensionState
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainObservabilityExtensionGetStateArgType = DomainObservabilityExtensionState
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainObservabilityExtensionGetStateRetType = DomainObservabilityExtensionState
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getDomainObservabilityExtensionGetStateAttributeTypeOk(arg DomainObservabilityExtensionGetStateAttributeType) (ret DomainObservabilityExtensionGetStateRetType, ok bool) {
@@ -65,12 +195,6 @@ func getDomainObservabilityExtensionGetStateAttributeTypeOk(arg DomainObservabil
 func setDomainObservabilityExtensionGetStateAttributeType(arg *DomainObservabilityExtensionGetStateAttributeType, val DomainObservabilityExtensionGetStateRetType) {
 	*arg = &val
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DomainObservabilityExtensionGetStateArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DomainObservabilityExtensionGetStateRetType = string
 
 // DomainObservabilityExtension struct for DomainObservabilityExtension
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
