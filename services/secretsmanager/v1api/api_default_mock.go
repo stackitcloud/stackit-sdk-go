@@ -22,24 +22,40 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 type DefaultAPIServiceMock struct {
 	// CreateACLExecuteMock can be populated to implement the behavior of the CreateACLExecute function of this mock
 	CreateACLExecuteMock *func(r ApiCreateACLRequest) (*ACL, error)
+	// CreateApproleExecuteMock can be populated to implement the behavior of the CreateApproleExecute function of this mock
+	CreateApproleExecuteMock *func(r ApiCreateApproleRequest) (*Approle, error)
+	// CreateApproleSecretIdExecuteMock can be populated to implement the behavior of the CreateApproleSecretIdExecute function of this mock
+	CreateApproleSecretIdExecuteMock *func(r ApiCreateApproleSecretIdRequest) (*ApproleSecret, error)
 	// CreateInstanceExecuteMock can be populated to implement the behavior of the CreateInstanceExecute function of this mock
 	CreateInstanceExecuteMock *func(r ApiCreateInstanceRequest) (*Instance, error)
 	// CreateUserExecuteMock can be populated to implement the behavior of the CreateUserExecute function of this mock
 	CreateUserExecuteMock *func(r ApiCreateUserRequest) (*User, error)
 	// DeleteACLExecuteMock can be populated to implement the behavior of the DeleteACLExecute function of this mock
 	DeleteACLExecuteMock *func(r ApiDeleteACLRequest) error
+	// DeleteApproleExecuteMock can be populated to implement the behavior of the DeleteApproleExecute function of this mock
+	DeleteApproleExecuteMock *func(r ApiDeleteApproleRequest) error
+	// DeleteApproleSecretIdExecuteMock can be populated to implement the behavior of the DeleteApproleSecretIdExecute function of this mock
+	DeleteApproleSecretIdExecuteMock *func(r ApiDeleteApproleSecretIdRequest) error
 	// DeleteInstanceExecuteMock can be populated to implement the behavior of the DeleteInstanceExecute function of this mock
 	DeleteInstanceExecuteMock *func(r ApiDeleteInstanceRequest) error
 	// DeleteUserExecuteMock can be populated to implement the behavior of the DeleteUserExecute function of this mock
 	DeleteUserExecuteMock *func(r ApiDeleteUserRequest) error
 	// GetACLExecuteMock can be populated to implement the behavior of the GetACLExecute function of this mock
 	GetACLExecuteMock *func(r ApiGetACLRequest) (*ACL, error)
+	// GetApproleExecuteMock can be populated to implement the behavior of the GetApproleExecute function of this mock
+	GetApproleExecuteMock *func(r ApiGetApproleRequest) (*Approle, error)
+	// GetApproleSecretIdExecuteMock can be populated to implement the behavior of the GetApproleSecretIdExecute function of this mock
+	GetApproleSecretIdExecuteMock *func(r ApiGetApproleSecretIdRequest) (*ApproleSecret, error)
+	// GetApprolesExecuteMock can be populated to implement the behavior of the GetApprolesExecute function of this mock
+	GetApprolesExecuteMock *func(r ApiGetApprolesRequest) (*ApproleList, error)
 	// GetInstanceExecuteMock can be populated to implement the behavior of the GetInstanceExecute function of this mock
 	GetInstanceExecuteMock *func(r ApiGetInstanceRequest) (*Instance, error)
 	// GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
 	GetUserExecuteMock *func(r ApiGetUserRequest) (*User, error)
 	// ListACLsExecuteMock can be populated to implement the behavior of the ListACLsExecute function of this mock
 	ListACLsExecuteMock *func(r ApiListACLsRequest) (*ListACLsResponse, error)
+	// ListApproleSecretIdsExecuteMock can be populated to implement the behavior of the ListApproleSecretIdsExecute function of this mock
+	ListApproleSecretIdsExecuteMock *func(r ApiListApproleSecretIdsRequest) (*ApproleSecretList, error)
 	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
 	ListInstancesExecuteMock *func(r ApiListInstancesRequest) (*ListInstancesResponse, error)
 	// ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
@@ -48,6 +64,10 @@ type DefaultAPIServiceMock struct {
 	UpdateACLExecuteMock *func(r ApiUpdateACLRequest) error
 	// UpdateACLsExecuteMock can be populated to implement the behavior of the UpdateACLsExecute function of this mock
 	UpdateACLsExecuteMock *func(r ApiUpdateACLsRequest) error
+	// UpdateApproleExecuteMock can be populated to implement the behavior of the UpdateApproleExecute function of this mock
+	UpdateApproleExecuteMock *func(r ApiUpdateApproleRequest) (*Approle, error)
+	// UpdateApproleSecretIdExecuteMock can be populated to implement the behavior of the UpdateApproleSecretIdExecute function of this mock
+	UpdateApproleSecretIdExecuteMock *func(r ApiUpdateApproleSecretIdRequest) (*ApproleSecret, error)
 	// UpdateInstanceExecuteMock can be populated to implement the behavior of the UpdateInstanceExecute function of this mock
 	UpdateInstanceExecuteMock *func(r ApiUpdateInstanceRequest) error
 	// UpdateUserExecuteMock can be populated to implement the behavior of the UpdateUserExecute function of this mock
@@ -71,6 +91,45 @@ func (a DefaultAPIServiceMock) CreateACLExecute(r ApiCreateACLRequest) (*ACL, er
 	}
 
 	return (*a.CreateACLExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateApprole(ctx context.Context, projectId string, instanceId string) ApiCreateApproleRequest {
+	return ApiCreateApproleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// CreateApproleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateApproleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateApproleExecute(r ApiCreateApproleRequest) (*Approle, error) {
+	if a.CreateApproleExecuteMock == nil {
+		var localVarReturnValue *Approle
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateApproleExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string) ApiCreateApproleSecretIdRequest {
+	return ApiCreateApproleSecretIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		roleId:     roleId,
+	}
+}
+
+// CreateApproleSecretIdExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateApproleSecretIdExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateApproleSecretIdExecute(r ApiCreateApproleSecretIdRequest) (*ApproleSecret, error) {
+	if a.CreateApproleSecretIdExecuteMock == nil {
+		var localVarReturnValue *ApproleSecret
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateApproleSecretIdExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
@@ -127,6 +186,45 @@ func (a DefaultAPIServiceMock) DeleteACLExecute(r ApiDeleteACLRequest) error {
 	}
 
 	return (*a.DeleteACLExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteApprole(ctx context.Context, projectId string, instanceId string, roleId string) ApiDeleteApproleRequest {
+	return ApiDeleteApproleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		roleId:     roleId,
+	}
+}
+
+// DeleteApproleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteApproleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteApproleExecute(r ApiDeleteApproleRequest) error {
+	if a.DeleteApproleExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteApproleExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiDeleteApproleSecretIdRequest {
+	return ApiDeleteApproleSecretIdRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		projectId:       projectId,
+		instanceId:      instanceId,
+		roleId:          roleId,
+		secretIdVersion: secretIdVersion,
+	}
+}
+
+// DeleteApproleSecretIdExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteApproleSecretIdExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteApproleSecretIdExecute(r ApiDeleteApproleSecretIdRequest) error {
+	if a.DeleteApproleSecretIdExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteApproleSecretIdExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest {
@@ -186,6 +284,66 @@ func (a DefaultAPIServiceMock) GetACLExecute(r ApiGetACLRequest) (*ACL, error) {
 	return (*a.GetACLExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) GetApprole(ctx context.Context, projectId string, instanceId string, roleId string) ApiGetApproleRequest {
+	return ApiGetApproleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		roleId:     roleId,
+	}
+}
+
+// GetApproleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetApproleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetApproleExecute(r ApiGetApproleRequest) (*Approle, error) {
+	if a.GetApproleExecuteMock == nil {
+		var localVarReturnValue *Approle
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetApproleExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiGetApproleSecretIdRequest {
+	return ApiGetApproleSecretIdRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		projectId:       projectId,
+		instanceId:      instanceId,
+		roleId:          roleId,
+		secretIdVersion: secretIdVersion,
+	}
+}
+
+// GetApproleSecretIdExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetApproleSecretIdExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetApproleSecretIdExecute(r ApiGetApproleSecretIdRequest) (*ApproleSecret, error) {
+	if a.GetApproleSecretIdExecuteMock == nil {
+		var localVarReturnValue *ApproleSecret
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetApproleSecretIdExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetApproles(ctx context.Context, projectId string, instanceId string) ApiGetApprolesRequest {
+	return ApiGetApprolesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+// GetApprolesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetApprolesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetApprolesExecute(r ApiGetApprolesRequest) (*ApproleList, error) {
+	if a.GetApprolesExecuteMock == nil {
+		var localVarReturnValue *ApproleList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetApprolesExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
@@ -242,6 +400,26 @@ func (a DefaultAPIServiceMock) ListACLsExecute(r ApiListACLsRequest) (*ListACLsR
 	}
 
 	return (*a.ListACLsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListApproleSecretIds(ctx context.Context, projectId string, instanceId string, roleId string) ApiListApproleSecretIdsRequest {
+	return ApiListApproleSecretIdsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		roleId:     roleId,
+	}
+}
+
+// ListApproleSecretIdsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListApproleSecretIdsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListApproleSecretIdsExecute(r ApiListApproleSecretIdsRequest) (*ApproleSecretList, error) {
+	if a.ListApproleSecretIdsExecuteMock == nil {
+		var localVarReturnValue *ApproleSecretList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListApproleSecretIdsExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
@@ -316,6 +494,47 @@ func (a DefaultAPIServiceMock) UpdateACLsExecute(r ApiUpdateACLsRequest) error {
 	}
 
 	return (*a.UpdateACLsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateApprole(ctx context.Context, projectId string, instanceId string, roleId string) ApiUpdateApproleRequest {
+	return ApiUpdateApproleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		roleId:     roleId,
+	}
+}
+
+// UpdateApproleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateApproleExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateApproleExecute(r ApiUpdateApproleRequest) (*Approle, error) {
+	if a.UpdateApproleExecuteMock == nil {
+		var localVarReturnValue *Approle
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateApproleExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiUpdateApproleSecretIdRequest {
+	return ApiUpdateApproleSecretIdRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		projectId:       projectId,
+		instanceId:      instanceId,
+		roleId:          roleId,
+		secretIdVersion: secretIdVersion,
+	}
+}
+
+// UpdateApproleSecretIdExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateApproleSecretIdExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateApproleSecretIdExecute(r ApiUpdateApproleSecretIdRequest) (*ApproleSecret, error) {
+	if a.UpdateApproleSecretIdExecuteMock == nil {
+		var localVarReturnValue *ApproleSecret
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateApproleSecretIdExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest {
