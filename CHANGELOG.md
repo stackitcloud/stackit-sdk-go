@@ -60,6 +60,9 @@
     - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
     - `v1api`:
       - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+- `serviceenablement`:
+  - [v1.7.2](services/serviceenablement/CHANGELOG.md#v172)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `valkey`:
   - [v0.3.0](services/valkey/CHANGELOG.md#v030)
     - `v1api`:
