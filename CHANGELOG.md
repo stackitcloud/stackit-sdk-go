@@ -11,6 +11,9 @@
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/automation)
+- `cost`:
+  - [v0.5.2](services/cost/CHANGELOG.md#v052)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `dns`:
   - [v0.23.0](services/dns/CHANGELOG.md#v0230)
     - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
