@@ -1,3 +1,7 @@
+## v0.25.0
+- `v0api`: 
+  - **Breaking change:** Labels are nullable now, therefore the `Labels` field in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` struct changed from `*map[string]string` to `*map[string]*string`
+
 ## v0.24.2
 - `v0api`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)

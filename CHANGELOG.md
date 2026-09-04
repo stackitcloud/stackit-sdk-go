@@ -39,6 +39,10 @@
     - `v3beta1api`:
       - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
       - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+- `resourcemanager`:
+  - [v0.25.0](services/resourcemanager/CHANGELOG.md#v025.0)
+    - `v0api`: 
+      - **Breaking change:** Labels are nullable now, therefore the `Labels` field in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` struct changed from `*map[string]string` to `*map[string]*string`
 - `runcommand`:
     - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
         - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
