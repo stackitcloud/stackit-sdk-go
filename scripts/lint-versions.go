@@ -15,7 +15,7 @@ const (
 )
 
 var (
-	targetDirs = []string{"services", "core", "experimental"}
+	targetDirs = []string{"services", "core"}
 )
 
 func main() {

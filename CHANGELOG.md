@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `core`: 
+  - [v0.27.0](core/CHANGELOG.md#v0270)
+    - **Feature:** Added experimental paginate package for AIP compliant pagination
 - `albwaf`
   - [v0.13.3](services/albwaf/CHANGELOG.md#v0133)
     - `v1api`:

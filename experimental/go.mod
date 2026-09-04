@@ -1,3 +1,4 @@
+// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental package from the STACKIT SDK core module instead.
 module github.com/stackitcloud/stackit-sdk-go/experimental
 
 go 1.25

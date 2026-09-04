@@ -1,7 +1,5 @@
 // Package paginate provides lazy and eager pagination for list operations that
 // follow AIP-158.
-
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
 package paginate
 
 import (
@@ -10,20 +8,23 @@ import (
 	"math"
 )
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// Response defines the methods needed for pagination. The result of Request.Execute() must implement this interface.
 type Response[Item any] interface {
 	GetItems() []Item
 	GetNextPageToken() string
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// Request defines the methods needed for pagination on the request side.
 type Request[Self, Resp any] interface {
 	PageSize(pageSize int32) Self
 	PageToken(pageToken string) Self
 	Execute() (Resp, error)
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// Option configures pagination behavior.
+//
+// Options are applied sequentially in the order provided; if the same option is
+// specified multiple times, the last one takes precedence.
 type Option func(*config) error
 
 type config struct {
@@ -32,7 +33,9 @@ type config struct {
 	maxPages *int
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// WithPageSize sets the preferred number of items requested per page. The
+// service may return fewer items. A value of zero does not override the page
+// size already set on the supplied request.
 func WithPageSize(pageSize int32) Option {
 	return func(c *config) error {
 		if pageSize < 0 {
@@ -43,7 +46,8 @@ func WithPageSize(pageSize int32) Option {
 	}
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// WithLimit sets the maximum number of items yielded across all pages. A zero
+// limit performs no requests and yields no items.
 func WithLimit(limit int) Option {
 	return func(c *config) error {
 		if limit < 0 {
@@ -54,7 +58,8 @@ func WithLimit(limit int) Option {
 	}
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// WithMaxPages sets the maximum number of pages fetched. A zero maximum
+// performs no requests. Reaching the maximum is not an error.
 func WithMaxPages(maxPages int) Option {
 	return func(c *config) error {
 		if maxPages < 0 {
@@ -65,7 +70,13 @@ func WithMaxPages(maxPages int) Option {
 	}
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// Items returns a lazy iterator over the items of pageable list operation.
+// No request is made until the iterator is consumed. Each successful item is
+// yielded with a nil error. If a request or option fails, the error is yielded
+// once with the zero value of Item and iteration stops.
+//
+// Iteration also stops when the consumer returns false, the configured item or
+// page limit is reached, or the service returns an empty next page token.
 func Items[
 	Item any,
 	Resp Response[Item],
@@ -151,7 +162,8 @@ func Items[
 	}
 }
 
-// Deprecated: Use the github.com/stackitcloud/stackit-sdk-go/core/experimental/paginate package from the STACKIT SDK core module instead.
+// All retrieves and returns all items yielded by Items. If pagination fails,
+// All returns the items retrieved before the failure together with the error.
 func All[
 	Item any,
 	Resp Response[Item],

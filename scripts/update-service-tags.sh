@@ -7,7 +7,7 @@ set -e
 # in the following format e.g. v0.3.0
 
 # Check all version files which have changed
-for file in $(find . -print | sed 's|^./||' | grep -E "(^services/[^/]+/VERSION$|^core/VERSION$|^experimental/VERSION$)"); do
+for file in $(find . -print | sed 's|^./||' | grep -E "(^services/[^/]+/VERSION$|^core/VERSION$)"); do
 
     # Extract the current version and build the expected tag
     dirpath=$(dirname "$file")
