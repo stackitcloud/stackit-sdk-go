@@ -45,11 +45,40 @@ func setLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType(arg *
 	*arg = &val
 }
 
-// LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the Application Load Balancer.
+/*
+	types and functions for ipBlockListName
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LoadbalancerOptionAccessControlGetIpBlockListNameAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getLoadbalancerOptionAccessControlGetIpBlockListNameAttributeTypeOk(arg LoadbalancerOptionAccessControlGetIpBlockListNameAttributeType) (ret LoadbalancerOptionAccessControlGetIpBlockListNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setLoadbalancerOptionAccessControlGetIpBlockListNameAttributeType(arg *LoadbalancerOptionAccessControlGetIpBlockListNameAttributeType, val LoadbalancerOptionAccessControlGetIpBlockListNameRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LoadbalancerOptionAccessControlGetIpBlockListNameArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type LoadbalancerOptionAccessControlGetIpBlockListNameRetType = string
+
+// LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the Application Load Balancer.  `allowed_source_ranges` and `ip_block_list_name` may be set together. When both are set,  `allowed_source_ranges` is evaluated first, then `ip_block_list_name` is evaluated.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type LoadbalancerOptionAccessControl struct {
-	// Application Load Balancer is accessible only from an IP address in this range
+	// Application Load Balancer is accessible only from an IP address in this range. May be combined with `ipBlockListName`; `allowedSourceRanges` is evaluated first, then `ipBlockListName`.
 	AllowedSourceRanges LoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType `json:"allowedSourceRanges,omitempty"`
+	// Reference to an IP block list by name. Traffic originating from any IP in the referenced list is denied access to the Application Load Balancer. See \"IP Lists API\" for how to manage IP block lists. May be combined with `allowedSourceRanges`; `allowedSourceRanges` is evaluated first, then `ipBlockListName`.
+	IpBlockListName LoadbalancerOptionAccessControlGetIpBlockListNameAttributeType `json:"ipBlockListName,omitempty"`
 }
 
 // NewLoadbalancerOptionAccessControl instantiates a new LoadbalancerOptionAccessControl object
@@ -98,11 +127,41 @@ func (o *LoadbalancerOptionAccessControl) SetAllowedSourceRanges(v LoadbalancerO
 	setLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType(&o.AllowedSourceRanges, v)
 }
 
+// GetIpBlockListName returns the IpBlockListName field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *LoadbalancerOptionAccessControl) GetIpBlockListName() (res LoadbalancerOptionAccessControlGetIpBlockListNameRetType) {
+	res, _ = o.GetIpBlockListNameOk()
+	return
+}
+
+// GetIpBlockListNameOk returns a tuple with the IpBlockListName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *LoadbalancerOptionAccessControl) GetIpBlockListNameOk() (ret LoadbalancerOptionAccessControlGetIpBlockListNameRetType, ok bool) {
+	return getLoadbalancerOptionAccessControlGetIpBlockListNameAttributeTypeOk(o.IpBlockListName)
+}
+
+// HasIpBlockListName returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *LoadbalancerOptionAccessControl) HasIpBlockListName() bool {
+	_, ok := o.GetIpBlockListNameOk()
+	return ok
+}
+
+// SetIpBlockListName gets a reference to the given string and assigns it to the IpBlockListName field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *LoadbalancerOptionAccessControl) SetIpBlockListName(v LoadbalancerOptionAccessControlGetIpBlockListNameRetType) {
+	setLoadbalancerOptionAccessControlGetIpBlockListNameAttributeType(&o.IpBlockListName, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o LoadbalancerOptionAccessControl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeTypeOk(o.AllowedSourceRanges); ok {
 		toSerialize["AllowedSourceRanges"] = val
+	}
+	if val, ok := getLoadbalancerOptionAccessControlGetIpBlockListNameAttributeTypeOk(o.IpBlockListName); ok {
+		toSerialize["IpBlockListName"] = val
 	}
 	return toSerialize, nil
 }
