@@ -9,25 +9,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-)
-
-const (
-	clientIDEnv           = "STACKIT_SERVICE_ACCOUNT_EMAIL"
-	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"         //nolint:gosec // This is not a secret, just the env variable name
-	wifTokenEndpointEnv   = "STACKIT_IDP_TOKEN_ENDPOINT"           //nolint:gosec // This is not a secret, just the env variable name
-	wifTokenExpirationEnv = "STACKIT_IDP_TOKEN_EXPIRATION_SECONDS" //nolint:gosec // This is not a secret, just the env variable name
-
-	wifClientAssertionType    = "urn:schwarz:params:oauth:client-assertion-type:workload-jwt"
-	wifGrantType              = "client_credentials"
-	defaultWifTokenEndpoint   = "https://accounts.stackit.cloud/oauth/v2/token"       //nolint:gosec // This is not a secret, just the public endpoint for default value
-	defaultFederatedTokenPath = "/var/run/secrets/stackit.cloud/serviceaccount/token" //nolint:gosec // This is not a secret, just the default path for workload identity token
-	defaultWifExpirationToken = "1h"
-)
-
-var (
-	_ = utils.GetEnvOrDefault(wifTokenExpirationEnv, defaultWifExpirationToken) // Not used yet
 )
 
 var _ AuthFlow = &WorkloadIdentityFederationFlow{}
@@ -126,15 +110,15 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 	c.config = cfg
 
 	if c.config.TokenUrl == "" {
-		c.config.TokenUrl = utils.GetEnvOrDefault(wifTokenEndpointEnv, defaultWifTokenEndpoint)
+		c.config.TokenUrl = utils.GetEnvOrDefault(identity.EnvIdpTokenEndpoint, identity.WifDefaultTokenEndpoint)
 	}
 
 	if c.config.ClientID == "" {
-		c.config.ClientID = utils.GetEnvOrDefault(clientIDEnv, "")
+		c.config.ClientID = utils.GetEnvOrDefault(identity.EnvServiceAccountEmail, "")
 	}
 
 	if c.config.FederatedTokenFunction == nil {
-		c.config.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
+		c.config.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(identity.EnvFederatedTokenFile, identity.WifDefaultFederatedTokenPath))
 	}
 
 	c.tokenExpirationLeeway = defaultTokenExpirationLeeway
@@ -207,8 +191,8 @@ func (c *WorkloadIdentityFederationFlow) createAccessToken() error {
 
 func (c *WorkloadIdentityFederationFlow) requestToken(clientID, assertion string) (*http.Response, error) {
 	body := url.Values{}
-	body.Set("grant_type", wifGrantType)
-	body.Set("client_assertion_type", wifClientAssertionType)
+	body.Set("grant_type", identity.WifGrantType)
+	body.Set("client_assertion_type", identity.WifClientAssertionType)
 	body.Set("client_assertion", assertion)
 	body.Set("client_id", clientID)
 
