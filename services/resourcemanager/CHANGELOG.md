@@ -1,3 +1,6 @@
+## v0.25.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v0.25.0
 - `v0api`: 
   - **Breaking change:** Labels are nullable now, therefore the `Labels` field in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` struct changed from `*map[string]string` to `*map[string]*string`
