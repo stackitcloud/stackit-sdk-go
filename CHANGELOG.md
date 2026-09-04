@@ -60,6 +60,18 @@
     - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
     - `v1api`:
       - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+- `serviceaccount`:
+  - [v0.21.0](services/serviceaccount/CHANGELOG.md#v0210)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+    - `v2api`:
+      - **Breaking change:** Removal of API client methods: `CreateAccessToken`, `CreateAccessTokenExecute`, `DeleteAccessToken`, `DeleteAccessTokenExecute`, `ListAccessTokens`, `ListAccessTokensExecute`
+      - **Breaking change:** Removal of request structs: `ApiCreateAccessTokenRequest`, `ApiDeleteAccessTokenRequest`, `ApiListAccessTokensRequest`
+      - **Breaking change:** Removal of model structs: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`
+    - Deprecated SDK layer in root of the module:
+      - **Breaking change:** Removal of API client methods: `CreateAccessToken`, `CreateAccessTokenExecute`, `DeleteAccessToken`, `DeleteAccessTokenExecute`, `ListAccessTokens`, `ListAccessTokensExecute`
+      - **Breaking change:** Removal of request interfaces: `ApiCreateAccessTokenRequest`, `ApiDeleteAccessTokenRequest`, `ApiListAccessTokensRequest`
+      - **Breaking change:** Removal of request structs: `CreateAccessTokenRequest`, `DeleteAccessTokenRequest`, `ListAccessTokensRequest`
+      - **Breaking change:** Removal of model structs: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`
 - `serviceenablement`:
   - [v1.7.2](services/serviceenablement/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
