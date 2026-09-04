@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1alpha.0.4
 */
