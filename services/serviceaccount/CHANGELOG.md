@@ -1,3 +1,15 @@
+## v0.21.0
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `v2api`:
+  - **Breaking change:** Removal of API client methods: `CreateAccessToken`, `CreateAccessTokenExecute`, `DeleteAccessToken`, `DeleteAccessTokenExecute`, `ListAccessTokens`, `ListAccessTokensExecute`
+  - **Breaking change:** Removal of request structs: `ApiCreateAccessTokenRequest`, `ApiDeleteAccessTokenRequest`, `ApiListAccessTokensRequest`
+  - **Breaking change:** Removal of model structs: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`
+- Deprecated SDK layer in root of the module:
+  - **Breaking change:** Removal of API client methods: `CreateAccessToken`, `CreateAccessTokenExecute`, `DeleteAccessToken`, `DeleteAccessTokenExecute`, `ListAccessTokens`, `ListAccessTokensExecute`
+  - **Breaking change:** Removal of request interfaces: `ApiCreateAccessTokenRequest`, `ApiDeleteAccessTokenRequest`, `ApiListAccessTokensRequest`
+  - **Breaking change:** Removal of request structs: `CreateAccessTokenRequest`, `DeleteAccessTokenRequest`, `ListAccessTokensRequest`
+  - **Breaking change:** Removal of model structs: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`
+
 ## v0.20.1
 - `v2api`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
