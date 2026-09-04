@@ -2,7 +2,6 @@ go 1.25.9
 
 use (
 	./core
-	./examples/auditlog
 	./examples/authentication
 	./examples/authorization
 	./examples/automation
@@ -48,7 +47,6 @@ use (
 	./experimental
 	./services/alb
 	./services/albwaf
-	./services/auditlog
 	./services/authorization
 	./services/automation
 	./services/cdn
