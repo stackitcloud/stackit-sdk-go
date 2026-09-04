@@ -20,8 +20,6 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CreateAccessTokenExecuteMock can be populated to implement the behavior of the CreateAccessTokenExecute function of this mock
-	CreateAccessTokenExecuteMock *func(r ApiCreateAccessTokenRequest) (*AccessToken, error)
 	// CreateFederatedIdentityProviderExecuteMock can be populated to implement the behavior of the CreateFederatedIdentityProviderExecute function of this mock
 	CreateFederatedIdentityProviderExecuteMock *func(r ApiCreateFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 	// CreateServiceAccountExecuteMock can be populated to implement the behavior of the CreateServiceAccountExecute function of this mock
@@ -30,8 +28,6 @@ type DefaultAPIServiceMock struct {
 	CreateServiceAccountKeyExecuteMock *func(r ApiCreateServiceAccountKeyRequest) (*CreateServiceAccountKeyResponse, error)
 	// CreateShortLivedAccessTokenExecuteMock can be populated to implement the behavior of the CreateShortLivedAccessTokenExecute function of this mock
 	CreateShortLivedAccessTokenExecuteMock *func(r ApiCreateShortLivedAccessTokenRequest) (*CreateShortLivedAccessTokenResponse, error)
-	// DeleteAccessTokenExecuteMock can be populated to implement the behavior of the DeleteAccessTokenExecute function of this mock
-	DeleteAccessTokenExecuteMock *func(r ApiDeleteAccessTokenRequest) error
 	// DeleteServiceAccountExecuteMock can be populated to implement the behavior of the DeleteServiceAccountExecute function of this mock
 	DeleteServiceAccountExecuteMock *func(r ApiDeleteServiceAccountRequest) error
 	// DeleteServiceAccountKeyExecuteMock can be populated to implement the behavior of the DeleteServiceAccountKeyExecute function of this mock
@@ -44,8 +40,6 @@ type DefaultAPIServiceMock struct {
 	GetJWKSExecuteMock *func(r ApiGetJWKSRequest) (*JWKS, error)
 	// GetServiceAccountKeyExecuteMock can be populated to implement the behavior of the GetServiceAccountKeyExecute function of this mock
 	GetServiceAccountKeyExecuteMock *func(r ApiGetServiceAccountKeyRequest) (*GetServiceAccountKeyResponse, error)
-	// ListAccessTokensExecuteMock can be populated to implement the behavior of the ListAccessTokensExecute function of this mock
-	ListAccessTokensExecuteMock *func(r ApiListAccessTokensRequest) (*ListAccessTokensResponse, error)
 	// ListFederatedIdentityProvidersExecuteMock can be populated to implement the behavior of the ListFederatedIdentityProvidersExecute function of this mock
 	ListFederatedIdentityProvidersExecuteMock *func(r ApiListFederatedIdentityProvidersRequest) (*FederatedListFederatedIdentityProvidersResponse, error)
 	// ListServiceAccountKeysExecuteMock can be populated to implement the behavior of the ListServiceAccountKeysExecute function of this mock
@@ -56,25 +50,6 @@ type DefaultAPIServiceMock struct {
 	PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock *func(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 	// PartialUpdateServiceAccountKeyExecuteMock can be populated to implement the behavior of the PartialUpdateServiceAccountKeyExecute function of this mock
 	PartialUpdateServiceAccountKeyExecuteMock *func(r ApiPartialUpdateServiceAccountKeyRequest) (*PartialUpdateServiceAccountKeyResponse, error)
-}
-
-func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateAccessTokenRequest {
-	return ApiCreateAccessTokenRequest{
-		ApiService:          a,
-		ctx:                 ctx,
-		projectId:           projectId,
-		serviceAccountEmail: serviceAccountEmail,
-	}
-}
-
-// CreateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateAccessTokenExecute(r ApiCreateAccessTokenRequest) (*AccessToken, error) {
-	if a.CreateAccessTokenExecuteMock == nil {
-		var localVarReturnValue *AccessToken
-		return localVarReturnValue, nil
-	}
-
-	return (*a.CreateAccessTokenExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) CreateFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateFederatedIdentityProviderRequest {
@@ -148,25 +123,6 @@ func (a DefaultAPIServiceMock) CreateShortLivedAccessTokenExecute(r ApiCreateSho
 	}
 
 	return (*a.CreateShortLivedAccessTokenExecuteMock)(r)
-}
-
-func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, serviceAccountEmail string, accessTokenId string) ApiDeleteAccessTokenRequest {
-	return ApiDeleteAccessTokenRequest{
-		ApiService:          a,
-		ctx:                 ctx,
-		projectId:           projectId,
-		serviceAccountEmail: serviceAccountEmail,
-		accessTokenId:       accessTokenId,
-	}
-}
-
-// DeleteAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error {
-	if a.DeleteAccessTokenExecuteMock == nil {
-		return nil
-	}
-
-	return (*a.DeleteAccessTokenExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) DeleteServiceAccount(ctx context.Context, projectId string, serviceAccountEmail string) ApiDeleteServiceAccountRequest {
@@ -281,25 +237,6 @@ func (a DefaultAPIServiceMock) GetServiceAccountKeyExecute(r ApiGetServiceAccoun
 	}
 
 	return (*a.GetServiceAccountKeyExecuteMock)(r)
-}
-
-func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, serviceAccountEmail string) ApiListAccessTokensRequest {
-	return ApiListAccessTokensRequest{
-		ApiService:          a,
-		ctx:                 ctx,
-		projectId:           projectId,
-		serviceAccountEmail: serviceAccountEmail,
-	}
-}
-
-// ListAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListAccessTokensExecute(r ApiListAccessTokensRequest) (*ListAccessTokensResponse, error) {
-	if a.ListAccessTokensExecuteMock == nil {
-		var localVarReturnValue *ListAccessTokensResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.ListAccessTokensExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListFederatedIdentityProviders(ctx context.Context, projectId string, serviceAccountEmail string) ApiListFederatedIdentityProvidersRequest {
