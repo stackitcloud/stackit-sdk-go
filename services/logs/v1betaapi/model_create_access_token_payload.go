@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1beta.0.4
 */
@@ -26,7 +26,7 @@ type CreateAccessTokenPayload struct {
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\w -]*$"`
 	// A lifetime period for an access token in days. If unset the token will not expire.
 	Lifetime *int32 `json:"lifetime,omitempty"`
-	// The access permissions granted to the access token.
+	// The access permissions granted to the access token or access policy.
 	Permissions          []PermissionsInner `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
