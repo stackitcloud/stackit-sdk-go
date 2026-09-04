@@ -7,6 +7,9 @@
   - [v0.13.3](services/albwaf/CHANGELOG.md#v0133)
     - `v1api`:
       - **Improvement:** Align package description with latest API specification
+- `authorization`:
+  - [v0.15.4](services/authorization/CHANGELOG.md#v0154)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation
