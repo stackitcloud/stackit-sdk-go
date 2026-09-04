@@ -43,7 +43,9 @@
       - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
       - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
 - `resourcemanager`:
-  - [v0.25.0](services/resourcemanager/CHANGELOG.md#v025.0)
+  - [v0.25.1](services/resourcemanager/CHANGELOG.md#v0251)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+  - [v0.25.0](services/resourcemanager/CHANGELOG.md#v0250)
     - `v0api`: 
       - **Breaking change:** Labels are nullable now, therefore the `Labels` field in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` struct changed from `*map[string]string` to `*map[string]*string`
 - `runcommand`:
