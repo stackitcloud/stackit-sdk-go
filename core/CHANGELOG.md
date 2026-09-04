@@ -1,3 +1,6 @@
+## v0.27.0
+- **Feature:** Added experimental paginate package for AIP compliant pagination
+
 ## v0.26.0
 - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 
