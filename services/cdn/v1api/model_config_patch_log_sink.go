@@ -18,12 +18,20 @@ import (
 // ConfigPatchLogSink - struct for ConfigPatchLogSink
 type ConfigPatchLogSink struct {
 	LokiLogSinkPatch *LokiLogSinkPatch
+	OtlpLogSinkPatch *OtlpLogSinkPatch
 }
 
 // LokiLogSinkPatchAsConfigPatchLogSink is a convenience function that returns LokiLogSinkPatch wrapped in ConfigPatchLogSink
 func LokiLogSinkPatchAsConfigPatchLogSink(v *LokiLogSinkPatch) ConfigPatchLogSink {
 	return ConfigPatchLogSink{
 		LokiLogSinkPatch: v,
+	}
+}
+
+// OtlpLogSinkPatchAsConfigPatchLogSink is a convenience function that returns OtlpLogSinkPatch wrapped in ConfigPatchLogSink
+func OtlpLogSinkPatchAsConfigPatchLogSink(v *OtlpLogSinkPatch) ConfigPatchLogSink {
+	return ConfigPatchLogSink{
+		OtlpLogSinkPatch: v,
 	}
 }
 
@@ -54,6 +62,18 @@ func (dst *ConfigPatchLogSink) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'otlp'
+	if jsonDict["type"] == "otlp" {
+		// try to unmarshal JSON data into OtlpLogSinkPatch
+		err = json.Unmarshal(data, &dst.OtlpLogSinkPatch)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkPatch, return on the first match
+		} else {
+			dst.OtlpLogSinkPatch = nil
+			return fmt.Errorf("failed to unmarshal ConfigPatchLogSink as OtlpLogSinkPatch: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -61,6 +81,10 @@ func (dst *ConfigPatchLogSink) UnmarshalJSON(data []byte) error {
 func (src ConfigPatchLogSink) MarshalJSON() ([]byte, error) {
 	if src.LokiLogSinkPatch != nil {
 		return json.Marshal(&src.LokiLogSinkPatch)
+	}
+
+	if src.OtlpLogSinkPatch != nil {
+		return json.Marshal(&src.OtlpLogSinkPatch)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -75,6 +99,10 @@ func (obj *ConfigPatchLogSink) GetActualInstance() interface{} {
 		return obj.LokiLogSinkPatch
 	}
 
+	if obj.OtlpLogSinkPatch != nil {
+		return obj.OtlpLogSinkPatch
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -83,6 +111,10 @@ func (obj *ConfigPatchLogSink) GetActualInstance() interface{} {
 func (obj ConfigPatchLogSink) GetActualInstanceValue() interface{} {
 	if obj.LokiLogSinkPatch != nil {
 		return *obj.LokiLogSinkPatch
+	}
+
+	if obj.OtlpLogSinkPatch != nil {
+		return *obj.OtlpLogSinkPatch
 	}
 
 	// all schemas are nil
