@@ -17,7 +17,7 @@ import (
 )
 
 // Replicas Deprecated: Use flavorId instead, -replica in flavorId means 3 replicas. How many replicas the instance should have.
-type Replicas uint32
+type Replicas int32
 
 // List of replicas
 const (
@@ -34,7 +34,7 @@ var AllowedReplicasEnumValues = []Replicas{
 }
 
 func (v *Replicas) UnmarshalJSON(src []byte) error {
-	var value uint32
+	var value int32
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
@@ -53,7 +53,7 @@ func (v *Replicas) UnmarshalJSON(src []byte) error {
 
 // NewReplicasFromValue returns a pointer to a valid Replicas
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewReplicasFromValue(v uint32) (*Replicas, error) {
+func NewReplicasFromValue(v int32) (*Replicas, error) {
 	ev := Replicas(v)
 	if ev.IsValid() {
 		return &ev, nil
