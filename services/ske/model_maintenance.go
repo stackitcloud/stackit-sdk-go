@@ -75,24 +75,17 @@ func setMaintenanceGetTimeWindowAttributeType(arg *MaintenanceGetTimeWindowAttri
 // Maintenance struct for Maintenance
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Maintenance struct {
-	// REQUIRED
-	AutoUpdate MaintenanceGetAutoUpdateAttributeType `json:"autoUpdate" required:"true"`
-	// REQUIRED
-	TimeWindow MaintenanceGetTimeWindowAttributeType `json:"timeWindow" required:"true"`
+	AutoUpdate MaintenanceGetAutoUpdateAttributeType `json:"autoUpdate,omitempty"`
+	TimeWindow MaintenanceGetTimeWindowAttributeType `json:"timeWindow,omitempty"`
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _Maintenance Maintenance
 
 // NewMaintenance instantiates a new Maintenance object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewMaintenance(autoUpdate MaintenanceGetAutoUpdateArgType, timeWindow MaintenanceGetTimeWindowArgType) *Maintenance {
+func NewMaintenance() *Maintenance {
 	this := Maintenance{}
-	setMaintenanceGetAutoUpdateAttributeType(&this.AutoUpdate, autoUpdate)
-	setMaintenanceGetTimeWindowAttributeType(&this.TimeWindow, timeWindow)
 	return &this
 }
 
@@ -105,41 +98,55 @@ func NewMaintenanceWithDefaults() *Maintenance {
 	return &this
 }
 
-// GetAutoUpdate returns the AutoUpdate field value
+// GetAutoUpdate returns the AutoUpdate field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Maintenance) GetAutoUpdate() (ret MaintenanceGetAutoUpdateRetType) {
-	ret, _ = o.GetAutoUpdateOk()
-	return ret
+func (o *Maintenance) GetAutoUpdate() (res MaintenanceGetAutoUpdateRetType) {
+	res, _ = o.GetAutoUpdateOk()
+	return
 }
 
-// GetAutoUpdateOk returns a tuple with the AutoUpdate field value
+// GetAutoUpdateOk returns a tuple with the AutoUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Maintenance) GetAutoUpdateOk() (ret MaintenanceGetAutoUpdateRetType, ok bool) {
 	return getMaintenanceGetAutoUpdateAttributeTypeOk(o.AutoUpdate)
 }
 
-// SetAutoUpdate sets field value
+// HasAutoUpdate returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Maintenance) HasAutoUpdate() bool {
+	_, ok := o.GetAutoUpdateOk()
+	return ok
+}
+
+// SetAutoUpdate gets a reference to the given MaintenanceAutoUpdate and assigns it to the AutoUpdate field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Maintenance) SetAutoUpdate(v MaintenanceGetAutoUpdateRetType) {
 	setMaintenanceGetAutoUpdateAttributeType(&o.AutoUpdate, v)
 }
 
-// GetTimeWindow returns the TimeWindow field value
+// GetTimeWindow returns the TimeWindow field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Maintenance) GetTimeWindow() (ret MaintenanceGetTimeWindowRetType) {
-	ret, _ = o.GetTimeWindowOk()
-	return ret
+func (o *Maintenance) GetTimeWindow() (res MaintenanceGetTimeWindowRetType) {
+	res, _ = o.GetTimeWindowOk()
+	return
 }
 
-// GetTimeWindowOk returns a tuple with the TimeWindow field value
+// GetTimeWindowOk returns a tuple with the TimeWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Maintenance) GetTimeWindowOk() (ret MaintenanceGetTimeWindowRetType, ok bool) {
 	return getMaintenanceGetTimeWindowAttributeTypeOk(o.TimeWindow)
 }
 
-// SetTimeWindow sets field value
+// HasTimeWindow returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Maintenance) HasTimeWindow() bool {
+	_, ok := o.GetTimeWindowOk()
+	return ok
+}
+
+// SetTimeWindow gets a reference to the given TimeWindow and assigns it to the TimeWindow field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Maintenance) SetTimeWindow(v MaintenanceGetTimeWindowRetType) {
 	setMaintenanceGetTimeWindowAttributeType(&o.TimeWindow, v)
