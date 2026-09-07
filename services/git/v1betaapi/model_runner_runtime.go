@@ -23,7 +23,7 @@ var _ MappedNullable = &RunnerRuntime{}
 type RunnerRuntime struct {
 	// Indicates the availability of the runner label
 	Availability string `json:"availability"`
-	// Human-friendly description of the runtime and it's capabilities.
+	// Human-friendly description of the runtime and its capabilities.
 	Description string `json:"description"`
 	// Human-friendly name of the runtime.
 	DisplayName string `json:"display_name"`
