@@ -23,7 +23,8 @@ type ConfigPatch struct {
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
-	BlockedIps []string `json:"blockedIps,omitempty"`
+	BlockedIps  []string          `json:"blockedIps,omitempty"`
+	CacheConfig *CacheConfigPatch `json:"cacheConfig,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
@@ -156,6 +157,38 @@ func (o *ConfigPatch) HasBlockedIps() bool {
 // SetBlockedIps gets a reference to the given []string and assigns it to the BlockedIps field.
 func (o *ConfigPatch) SetBlockedIps(v []string) {
 	o.BlockedIps = v
+}
+
+// GetCacheConfig returns the CacheConfig field value if set, zero value otherwise.
+func (o *ConfigPatch) GetCacheConfig() CacheConfigPatch {
+	if o == nil || IsNil(o.CacheConfig) {
+		var ret CacheConfigPatch
+		return ret
+	}
+	return *o.CacheConfig
+}
+
+// GetCacheConfigOk returns a tuple with the CacheConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetCacheConfigOk() (*CacheConfigPatch, bool) {
+	if o == nil || IsNil(o.CacheConfig) {
+		return nil, false
+	}
+	return o.CacheConfig, true
+}
+
+// HasCacheConfig returns a boolean if a field has been set.
+func (o *ConfigPatch) HasCacheConfig() bool {
+	if o != nil && !IsNil(o.CacheConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetCacheConfig gets a reference to the given CacheConfigPatch and assigns it to the CacheConfig field.
+func (o *ConfigPatch) SetCacheConfig(v CacheConfigPatch) {
+	o.CacheConfig = &v
 }
 
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -562,6 +595,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BlockedIps) {
 		toSerialize["blockedIps"] = o.BlockedIps
 	}
+	if !IsNil(o.CacheConfig) {
+		toSerialize["cacheConfig"] = o.CacheConfig
+	}
 	if o.DefaultCacheDuration.IsSet() {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
 	}
@@ -620,6 +656,7 @@ func (o *ConfigPatch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "backend")
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
+		delete(additionalProperties, "cacheConfig")
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "labels")
