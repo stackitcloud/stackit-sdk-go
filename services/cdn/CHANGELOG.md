@@ -1,3 +1,6 @@
+## v1.20.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v1.20.0
 - `v1api`:
   - **Feature:** Add field `Labels` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`

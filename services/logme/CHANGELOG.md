@@ -1,3 +1,6 @@
+## v1.3.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v1.3.0
 - **Breaking Change/Fix:** `CreateBackup` operation now returns `*CreateBackupResponseItem` instead of `[]CreateBackupResponseItem`
   The go type now correctly models the actual JSON response, this operation was broken beforehand.
