@@ -73,8 +73,7 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 }
 
 // DefaultAuth will search for a valid service account key or token in several locations.
-// It will first try to use the instance metadata service (IMS), which is available on STACKIT VMs.
-// If IMS is not available, it will try the workload identity federation (WIF) flow.
+// It will first try the workload identity federation (WIF) flow.
 // If WIF is not available, it will try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
 // STACKIT_PRIVATE_KEY and STACKIT_PRIVATE_KEY_PATH. If the keys cannot be retrieved, it will check the credentials file located in STACKIT_CREDENTIALS_PATH, if specified, or in
 // $HOME/.stackit/credentials.json as a fallback. If the key are found and are valid, the KeyAuth flow is used.
@@ -91,18 +90,12 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		return newTokenProviderRoundTripper(cfg.TokenProvider, getTransportFromConfig(cfg)), nil
 	}
 
+	// The resolution order below intentionally matches the legacy behaviour of this
+	// function (WIF, then key flow, then static token). identity.InstanceMetadataProvider
+	// is deliberately not part of this chain: ambient VM identity must not silently take
+	// precedence over explicitly configured credentials. Consumers that want it can
+	// compose it themselves with identity.NewChainedProvider.
 	providers := []identity.TokenProvider{}
-
-	// Try Instance Metadata Service (IMS) with aggressive timeout to fail fast if not in cloud
-	email := getServiceAccountEmail(cfg)
-	if email != "" {
-		if imsProvider, err := identity.NewInstanceMetadataProvider(&identity.InstanceMetadataProviderConfig{
-			ServiceAccountEmail: email,
-			HTTPClient:          cfg.HTTPClient,
-		}); err == nil {
-			providers = append(providers, imsProvider)
-		}
-	}
 
 	// Try Workload Identity Federation - provider handles client cleanup internally
 	if wifProvider, err := identity.NewWorkloadIdentityFederationProvider(&identity.WorkloadIdentityFederationProviderConfig{
