@@ -25,3 +25,12 @@ func getTokenExpiration(accessToken string, expiresIn int) (time.Time, error) {
 	}
 	return exp.Time, nil
 }
+
+// tokenType normalizes the token_type of an OAuth2 response. Sources that do not report
+// one are treated as DefaultTokenType, which is what every STACKIT flow issues today.
+func tokenType(reported string) string {
+	if reported == "" {
+		return DefaultTokenType
+	}
+	return reported
+}

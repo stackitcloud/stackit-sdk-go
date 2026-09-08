@@ -143,7 +143,9 @@ func (p *InstanceMetadataProvider) requestToken(ctx context.Context) (Token, err
 
 	return Token{
 		AccessToken: tokenResponse.Token,
-		ExpiresOn:   expiresAt,
-		RefreshOn:   expiresAt,
+		// The instance metadata service does not report a token type.
+		TokenType: DefaultTokenType,
+		ExpiresOn: expiresAt,
+		RefreshOn: expiresAt,
 	}, nil
 }

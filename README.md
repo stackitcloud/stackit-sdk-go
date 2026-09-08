@@ -134,15 +134,114 @@ For each authentication method, the try order is:
 
 ### Modular Identity Package (Initial)
 
-An initial modular identity package is available at `core/identity`.
+An initial modular identity package is available at `core/identity`. It exposes a minimal
+token contract, one provider per authentication flow, and primitives to compose them:
 
-It introduces a minimal token contract and composable providers:
+- `identity.TokenProvider` — the contract: `Token(ctx, options) (Token, error)`
+- `identity.StaticTokenProvider` — a pre-issued token
+- `identity.ServiceAccountKeyProvider` — the service account key flow
+- `identity.WorkloadIdentityFederationProvider` — workload identity federation
+- `identity.InstanceMetadataProvider` — the service account attached to a STACKIT VM
+- `identity.CLIProvider` — the session of a logged-in STACKIT CLI, for developer machines
+- `identity.ChainedProvider` — tries providers in order until one succeeds
+- `identity.DefaultProvider` — the opinionated chain, see below
 
-- `identity.TokenProvider` with `Token(ctx, options)`
-- `identity.ServiceAccountKeyProvider`
-- `identity.WorkloadIdentityFederationProvider`
-- `identity.InstanceMetadataProvider`
-- `identity.ChainedProvider`
+#### Using the default chain
+
+`identity.NewDefaultProvider` builds the credential chain the SDK ships out of the box.
+Every field of `DefaultProviderConfig` is optional: whatever you leave empty is resolved
+from environment variables and then from the credentials file
+(`STACKIT_CREDENTIALS_PATH`, falling back to `~/.stackit/credentials.json`).
+
+```go
+package main
+
+import (
+   "context"
+   "fmt"
+   "os"
+
+   "github.com/stackitcloud/stackit-sdk-go/core/config"
+   "github.com/stackitcloud/stackit-sdk-go/core/identity"
+   dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
+)
+
+func main() {
+   // Anything left empty here falls back to the environment and the credentials file.
+   tokenProvider, err := identity.NewDefaultProvider()
+   if err != nil {
+      fmt.Fprintf(os.Stderr, "Creating token provider: %v\n", err)
+      os.Exit(1)
+   }
+
+   // Hand the provider to any SDK client.
+   dnsClient, err := dns.NewAPIClient(config.WithTokenProvider(tokenProvider))
+   if err != nil {
+      fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+      os.Exit(1)
+   }
+   _ = dnsClient
+
+   // Or get the raw access token, for data plane APIs and any client outside this SDK.
+   token, err := tokenProvider.Token(context.Background(), identity.TokenRequestOptions{})
+   if err != nil {
+      fmt.Fprintf(os.Stderr, "Getting token: %v\n", err)
+      os.Exit(1)
+   }
+   fmt.Println("Authorization: Bearer " + token.AccessToken)
+}
+```
+
+The chain tries, in order:
+
+1. `StaticTokenProvider` — a pre-issued token
+2. `ServiceAccountKeyProvider` — the service account key flow
+3. `WorkloadIdentityFederationProvider` — workload identity federation
+4. `InstanceMetadataProvider` — the service account attached to the STACKIT VM
+5. `CLIProvider` — the session of a STACKIT CLI that has run `stackit auth login`
+
+Explicitly configured credentials always take precedence over the ambient identity of the
+machine and over local developer tooling, which are only consulted once everything else
+has failed. Steps that are unavailable are skipped: on a CI runner with no STACKIT CLI
+installed, step 5 costs nothing.
+
+The chain never starts an interactive login. Obtaining a session is an explicit operation
+(`stackit auth login`), so that no program can unexpectedly open a browser.
+
+The CLI step can be switched off, either from the environment or in code:
+
+```bash
+STACKIT_USE_CLI=false
+```
+
+```go
+identity.NewDefaultProvider(&identity.DefaultProviderConfig{DisableCLI: true})
+```
+
+Either switch is enough, and neither re-enables what the other turned off: application
+code cannot override an operator's decision to keep the CLI out of the loop. Constructing
+an `identity.CLIProvider` yourself is unaffected.
+
+#### Building your own chain
+
+The providers are independent, so you can assemble your own order — or plug in a source of
+your own by implementing `identity.TokenProvider`:
+
+```go
+keyProvider, err := identity.NewServiceAccountKeyProvider(&identity.ServiceAccountKeyProviderConfig{
+   ServiceAccountKey: keyJSON,
+   PrivateKey:        privateKeyPEM,
+})
+if err != nil {
+   return err
+}
+
+// myVaultProvider is any type implementing identity.TokenProvider.
+tokenProvider, err := identity.NewChainedProvider(myVaultProvider, keyProvider)
+if err != nil {
+   return err
+}
+```
 
 
 ### Using the Workload Identity Fedearion Flow

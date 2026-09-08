@@ -30,11 +30,11 @@ const (
 type ServiceAccountKeyProviderConfig struct {
 	// ServiceAccountKey is the service account key as a JSON string.
 	// If empty, attempts to read from STACKIT_SERVICE_ACCOUNT_KEY environment variable,
-	// then from STACKIT_SERVICE_ACCOUNT_KEY_PATH, then optionally from credentials file if CredentialsFilePath is set.
+	// then from STACKIT_SERVICE_ACCOUNT_KEY_PATH, then from the credentials file.
 	ServiceAccountKey string
 	// PrivateKey is the RSA private key as a PEM-encoded string.
 	// If empty, attempts to read from STACKIT_PRIVATE_KEY environment variable,
-	// then from STACKIT_PRIVATE_KEY_PATH, then optionally from credentials file if CredentialsFilePath is set.
+	// then from STACKIT_PRIVATE_KEY_PATH, then from the credentials file.
 	PrivateKey string
 	// TokenURL overrides the token endpoint. If empty, the value from the service account key is used,
 	// falling back to the default STACKIT token endpoint.
@@ -44,11 +44,9 @@ type ServiceAccountKeyProviderConfig struct {
 	TokenRefreshLeeway time.Duration
 	// HTTPClient is used for token requests. If nil, a default client with a 1-minute timeout is used.
 	HTTPClient *http.Client
-	// CredentialsFilePath is a pointer to the path to the credentials file. When set (not nil), it enables
-	// automatic resolution of key/private key from the credentials file if they are not found in config or
-	// environment variables. If the pointer is nil, credentials file resolution is skipped.
-	// When set to a pointer to an empty string, uses the default credentials file path (~/.stackit/credentials.json).
-	CredentialsFilePath *string
+	// CredentialsFilePath overrides the credentials file location. If empty, the path from
+	// STACKIT_CREDENTIALS_PATH is used, falling back to ~/.stackit/credentials.json.
+	CredentialsFilePath string
 	// Optional scopes to request for the access token
 	Scopes []string
 	// Optional resources to request for the access token
@@ -74,6 +72,7 @@ type ServiceAccountKeyProvider struct {
 
 type oauthTokenResponse struct {
 	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
 	ExpiresIn   int    `json:"expires_in"`
 }
 
@@ -96,9 +95,9 @@ func NewServiceAccountKeyProvider(cfg *ServiceAccountKeyProviderConfig) (*Servic
 				return nil, fmt.Errorf("%s: read service account key from path: %w", serviceAccountKeyErrorPrefix, err)
 			}
 			serviceAccountKeyJSON = string(data)
-		} else if cfg.CredentialsFilePath != nil {
-			// Try credentials file if pointer is set (not nil)
-			credentials, err := ReadCredentialsFile(*cfg.CredentialsFilePath)
+		} else {
+			// Try the credentials file
+			credentials, err := ReadCredentialsFile(cfg.CredentialsFilePath)
 			if err == nil {
 				if key, err := ReadCredential(CredentialTypeServiceAccountKey, credentials); err == nil {
 					serviceAccountKeyJSON = key
@@ -137,9 +136,9 @@ func NewServiceAccountKeyProvider(cfg *ServiceAccountKeyProviderConfig) (*Servic
 		} else if serviceAccountKey.Credentials.PrivateKey != nil {
 			// Try private key embedded in service account key
 			privateKeyPEM = *serviceAccountKey.Credentials.PrivateKey
-		} else if cfg.CredentialsFilePath != nil {
-			// Try credentials file if pointer is set and not found elsewhere
-			credentials, err := ReadCredentialsFile(*cfg.CredentialsFilePath)
+		} else {
+			// Try the credentials file
+			credentials, err := ReadCredentialsFile(cfg.CredentialsFilePath)
 			if err == nil {
 				if key, err := ReadCredential(CredentialTypePrivateKey, credentials); err == nil {
 					privateKeyPEM = key
@@ -276,6 +275,7 @@ func (p *ServiceAccountKeyProvider) requestToken(ctx context.Context, opt TokenR
 	refreshOn := expiresOn.Add(-p.tokenLeeway)
 	return Token{
 		AccessToken: tokenResponse.AccessToken,
+		TokenType:   tokenType(tokenResponse.TokenType),
 		ExpiresOn:   expiresOn,
 		RefreshOn:   refreshOn,
 	}, nil

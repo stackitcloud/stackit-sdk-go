@@ -78,3 +78,27 @@ func TestTokenProviderRoundTripperProviderError(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 }
+
+// TestTokenProviderRoundTripperUsesTokenType checks that the Authorization scheme comes
+// from the token rather than being assumed to be Bearer, which is what makes tokens such
+// as RFC 9449 (DPoP) presentable.
+func TestTokenProviderRoundTripperUsesTokenType(t *testing.T) {
+	rt := newTokenProviderRoundTripper(&tokenProviderStub{
+		token: identity.Token{AccessToken: "token-value", TokenType: "DPoP", RefreshOn: time.Now().Add(time.Hour)},
+	}, roundTripperStub(func(req *http.Request) (*http.Response, error) {
+		if got := req.Header.Get("Authorization"); got != "DPoP token-value" {
+			t.Fatalf("unexpected authorization header: %s", got)
+		}
+		return &http.Response{StatusCode: http.StatusOK, Body: io.NopCloser(strings.NewReader("ok")), Header: make(http.Header)}, nil
+	}))
+
+	req, err := http.NewRequest(http.MethodGet, "https://example.com", http.NoBody)
+	if err != nil {
+		t.Fatalf("create request: %v", err)
+	}
+	res, err := rt.RoundTrip(req)
+	if err != nil {
+		t.Fatalf("round trip: %v", err)
+	}
+	_ = res.Body.Close()
+}
