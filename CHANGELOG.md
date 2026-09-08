@@ -3,7 +3,12 @@
 - `core`: 
   - [v0.27.0](core/CHANGELOG.md#v0270)
     - **Feature:** Added experimental paginate package for AIP compliant pagination
+- `alb`: 
+  - [v0.17.2](services/alb/CHANGELOG.md#v0172)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `albwaf`
+  - [v0.13.4](services/albwaf/CHANGELOG.md#v0134)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0` 
   - [v0.13.3](services/albwaf/CHANGELOG.md#v0133)
     - `v1api`:
       - **Improvement:** Align package description with latest API specification
@@ -11,13 +16,23 @@
   - [v0.15.4](services/authorization/CHANGELOG.md#v0154)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `automation`:
+  - [v0.1.1](services/automation/CHANGELOG.md#v011)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - **New**: API for STACKIT Automation
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/automation)
+- `cdn`:
+  - [v1.20.1](services/cdn/CHANGELOG.md#v1201)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `certificates`:
+  - [v1.9.2](services/certificates/CHANGELOG.md#v192)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `cost`:
   - [v0.5.2](services/cost/CHANGELOG.md#v052)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `dns`:
+  - [v0.23.1](services/dns/CHANGELOG.md#v0231)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0` 
   - [v0.23.0](services/dns/CHANGELOG.md#v0230)
     - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
     - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
@@ -26,16 +41,66 @@
       - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
       - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values `CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
       - **Breaking Change:** Removed `State` field from `ZoneObservabilityExtension`
+- `dremio`:
+  - [v0.6.1](services/dremio/CHANGELOG.md#v061)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `edge`:
+  - [v0.13.2](services/edge/CHANGELOG.md#v0132)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `experimental`:
   - [v0.1.0](experimental/CHANGELOG.md#v010)
     - Added experimental `paginate` package for AIP compliant pagination
+- `git`:
+  - [v0.14.1](services/git/CHANGELOG.md#v0141)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `iaas`:
+  - [v1.14.2](services/iaas/CHANGELOG.md#v1142)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.24.2` to `v0.25.1`
+- `intake`:
+  - [v0.11.2](services/intake/CHANGELOG.md#v0112)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `kms`:
+  - [v1.13.1](services/kms/CHANGELOG.md#v1131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `loadbalancer`:
+  - [v1.15.2](services/loadbalancer/CHANGELOG.md#v1152)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `logme`:
+  - [v1.3.1](services/logme/CHANGELOG.md#v131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `logs`:
+  - [v0.10.2](services/logs/CHANGELOG.md#v0102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `mariadb`:
+  - [v1.3.1](services/mariadb/CHANGELOG.md#v131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `modelexperiments`:
+  - [v0.3.1](services/modelexperiments/CHANGELOG.md#v031)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `modelserving`:
+  - [v0.13.1](services/modelserving/CHANGELOG.md#v0131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `mongodbflex`:
+  - [v1.12.2](services/mongodbflex/CHANGELOG.md#v1122)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `objectstorage`:
+  - [v1.9.2](services/objectstorage/CHANGELOG.md#v192)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `observability`:
+  - [v0.25.1](services/observability/CHANGELOG.md#v0251)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.25.0](services/observability/CHANGELOG.md#v0250)
     - `v1api`:
       - **Breaking Change:** Removed model `Status1`; `ProjectInstanceFull.Status` field type changed from `Status1` to `Status`
       - **Breaking Change:** Field types for nullable map values changed from `map[string]string` to `map[string]*string` in `Error.Errors`, `GetCredentialsResponse.CredentialsInfo`, `GetInstanceResponse.Parameters`, `RouteSerializer.Routes`, `ServiceKeysList.CredentialsInfo`
       - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)
+- `opensearch`:
+  - [v1.3.1](services/opensearch/CHANGELOG.md#v131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `postgresflex`:
+  - [v1.14.1](services/postgresflex/CHANGELOG.md#v1141)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v1.14.0](services/postgresflex/CHANGELOG.md#v1140)
     - **Improvement:** Document naming constraints for the `Name` field of database model structs
     - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` (`network.accessScope`) is only permitted for enabled accounts; the request is rejected otherwise
@@ -48,6 +113,12 @@
     - `v3beta1api`:
       - **Improvement:** Add validation (`validate:"regexp=^[a-z_][a-z0-9_]*$"`) to `Name` field of model structs `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload`, `UpdateDatabasePayload`
       - **Improvement:** Document that the `SNA` value of `InstanceNetworkAccessScope` is only permitted for enabled accounts
+- `rabbitmq`:
+  - [v1.3.1](services/rabbitmq/CHANGELOG.md#v131)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `redis`:
+  - [v1.4.1](services/redis/CHANGELOG.md#v141)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `resourcemanager`:
   - [v0.25.1](services/resourcemanager/CHANGELOG.md#v0251)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
@@ -55,14 +126,27 @@
     - `v0api`: 
       - **Breaking change:** Labels are nullable now, therefore the `Labels` field in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` struct changed from `*map[string]string` to `*map[string]*string`
 - `runcommand`:
-    - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
-        - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
-        - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+  - [v1.10.1](services/runcommand/CHANGELOG.md#v1101)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+  - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
+    - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
+    - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+- `scf`:
+  - [v0.10.2](services/scf/CHANGELOG.md#v0102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `secretsmanager`:
+  - [v0.19.1](services/secretsmanager/CHANGELOG.md#v0191)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.19.0](services/secretsmanager/CHANGELOG.md#v0190)
     - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
     - `v1api`:
       - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `CreateApprole`, `GetApprole`, `GetApproles`, `UpdateApprole`, `DeleteApprole`, `CreateApproleSecretId`, `GetApproleSecretId`, `ListApproleSecretIds`, `UpdateApproleSecretId` and `DeleteApproleSecretId` operations
+- `serverbackup`:
+  - [v1.7.2](services/serverbackup/CHANGELOG.md#v172)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `serverupdate`:
+  - [v1.5.5](services/serverupdate/CHANGELOG.md#v155)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `serviceaccount`:
   - [v0.21.0](services/serviceaccount/CHANGELOG.md#v0210)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
@@ -78,11 +162,37 @@
 - `serviceenablement`:
   - [v1.7.2](services/serviceenablement/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `sfs`:
+  - [v0.11.2](services/sfs/CHANGELOG.md#v0112)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `ske`:
+  - [v1.21.2](services/ske/CHANGELOG.md#v1212)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `sqlserverflex`:
+  - [v1.18.1](services/sqlserverflex/CHANGELOG.md#v1181)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `stackitmarketplace`:
+  - [v1.18.2](services/stackitmarketplace/CHANGELOG.md#v1182)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `telemetrylink`:
+  - [v0.5.2](services/telemetrylink/CHANGELOG.md#v052)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `telemetryrouter`:
+  - [v0.5.2](services/telemetryrouter/CHANGELOG.md#v052)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+- `ufw`:
+  - [v0.1.1](services/ufw/CHANGELOG.md#v011)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `valkey`:
+  - [v0.3.1](services/valkey/CHANGELOG.md#v031)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.3.0](services/valkey/CHANGELOG.md#v030)
     - `v1api`:
       - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
         The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
+- `vpn`:
+  - [v0.15.1](services/vpn/CHANGELOG.md#v0151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
 ## Release (2026-08-25)
 
