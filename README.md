@@ -132,9 +132,9 @@ For each authentication method, the try order is:
 2. Key Flow
 3. Token Flow
 
-### Modular Identity Package (Initial)
+### Modular Identity Package
 
-An initial modular identity package is available at `core/identity`. It exposes a minimal
+The modular identity package is available at `core/identity`. It exposes a minimal
 token contract, one provider per authentication flow, and primitives to compose them:
 
 - `identity.TokenProvider` — the contract: `Token(ctx, options) (Token, error)`

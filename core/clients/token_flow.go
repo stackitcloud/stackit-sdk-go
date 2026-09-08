@@ -10,12 +10,17 @@ import (
 // Deprecated: use identity.EnvServiceAccountToken instead
 const ServiceAccountToken = identity.EnvServiceAccountToken
 
+// TokenFlow handles auth with SA static token
+//
+// Deprecated: use identity.StaticTokenProvider instead.
 type TokenFlow struct {
 	rt     http.RoundTripper
 	config *TokenFlowConfig
 }
 
 // TokenFlowConfig is the flow config
+//
+// Deprecated: use identity.StaticTokenProviderConfig instead.
 type TokenFlowConfig struct {
 	// Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 	ServiceAccountEmail string

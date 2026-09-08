@@ -20,6 +20,8 @@ const FederatedTokenFileEnv = identity.EnvFederatedTokenFile
 var _ AuthFlow = &WorkloadIdentityFederationFlow{}
 
 // WorkloadIdentityFlow handles auth with Workload Identity Federation
+//
+// Deprecated: use identity.WorkloadIdentityFederationProvider instead.
 type WorkloadIdentityFederationFlow struct {
 	rt         http.RoundTripper
 	authClient *http.Client
@@ -33,7 +35,9 @@ type WorkloadIdentityFederationFlow struct {
 	tokenExpirationLeeway time.Duration
 }
 
-// KeyFlowConfig is the flow config
+// WorkloadIdentityFederationFlowConfig is the flow config
+//
+// Deprecated: use identity.WorkloadIdentityFederationProviderConfig instead.
 type WorkloadIdentityFederationFlowConfig struct {
 	TokenUrl                      string
 	ClientID                      string

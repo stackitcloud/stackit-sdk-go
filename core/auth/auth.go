@@ -21,6 +21,10 @@ type Credentials struct {
 	STACKIT_PRIVATE_KEY              string
 }
 
+// Deprecated: build an identity.TokenProvider and pass it with config.WithTokenProvider
+// instead. identity.NewDefaultProvider is the equivalent of the default resolution
+// performed here.
+//
 // SetupAuth sets up authentication based on the configuration. The different options are
 // custom authentication, no authentication, explicit key flow, explicit token flow or default authentication
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
@@ -68,6 +72,10 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	return authRoundTripper, nil
 }
 
+// Deprecated: use identity.NewDefaultProvider instead. Note that its resolution order
+// differs: it tries explicitly configured credentials before the ambient identity of the
+// machine, whereas this function preserves the historical order for compatibility.
+//
 // DefaultAuth will search for a valid service account key or token in several locations.
 // It will first try the workload identity federation (WIF) flow.
 // If WIF is not available, it will try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
@@ -153,6 +161,8 @@ func NoAuth(cfgs ...*config.Configuration) (rt http.RoundTripper, err error) {
 	return noAuthRoundTripper, nil
 }
 
+// Deprecated: use identity.NewStaticTokenProvider instead.
+//
 // TokenAuth configures the token flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using a token
 func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
@@ -179,6 +189,8 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	return newTokenProviderRoundTripper(provider, getTransportFromConfig(cfg)), nil
 }
 
+// Deprecated: use identity.NewServiceAccountKeyProvider instead.
+//
 // KeyAuth configures the key flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token.
 // The KeyFlow requires a service account key and a private key.
@@ -211,6 +223,8 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	return newTokenProviderRoundTripper(provider, getTransportFromConfig(cfg)), nil
 }
 
+// Deprecated: use identity.NewWorkloadIdentityFederationProvider instead.
+//
 // WorkloadIdentityFederationAuth configures the wif flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
 func WorkloadIdentityFederationAuth(cfg *config.Configuration) (http.RoundTripper, error) {

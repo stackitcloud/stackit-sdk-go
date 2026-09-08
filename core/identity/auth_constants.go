@@ -14,13 +14,8 @@ const (
 	WifDefaultFederatedTokenPath = "/var/run/secrets/stackit.cloud/serviceaccount/token"
 )
 
-// Service Account Key Flow constants
+// Token constants
 const (
-	// Service Account Key API endpoint
-	// nolint:gosec // G101 False positive: This is a constant URL, not a credential
-	KeyFlowTokenAPI = "https://accounts.stackit.cloud/oauth/v2/token"
-	// Default token type for Bearer token
+	// DefaultTokenType is the authorization scheme of every token STACKIT issues today.
 	DefaultTokenType = "Bearer"
-	// Default scope for token requests
-	DefaultScope = ""
 )

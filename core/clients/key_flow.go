@@ -22,6 +22,12 @@ import (
 )
 
 const (
+	// nolint:gosec // G101 False positive: This is a constant URL, not a credential
+	tokenAPI     = "https://accounts.stackit.cloud/oauth/v2/token"
+	defaultScope = ""
+)
+
+const (
 	// Deprecated: use identity.EnvServiceAccountKey instead
 	ServiceAccountKey = identity.EnvServiceAccountKey
 	// Deprecated: use identity.EnvPrivateKey instead
@@ -35,6 +41,8 @@ const (
 var _ AuthFlow = &KeyFlow{}
 
 // KeyFlow handles auth with SA key
+//
+// Deprecated: use identity.ServiceAccountKeyProvider instead.
 type KeyFlow struct {
 	rt            http.RoundTripper
 	authClient    *http.Client
@@ -52,6 +60,8 @@ type KeyFlow struct {
 }
 
 // KeyFlowConfig is the flow config
+//
+// Deprecated: use identity.ServiceAccountKeyProviderConfig instead.
 type KeyFlowConfig struct {
 	ServiceAccountKey *ServiceAccountKeyResponse
 	PrivateKey        string
@@ -107,11 +117,11 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 // getCredentialsTokenEndpoint returns the token endpoint from credentials or a default fallback
 func (cfg *KeyFlowConfig) getCredentialsTokenEndpoint() string {
 	if cfg.ServiceAccountKey == nil || cfg.ServiceAccountKey.Credentials == nil {
-		return identity.KeyFlowTokenAPI
+		return tokenAPI
 	}
 
 	if cfg.ServiceAccountKey.Credentials.TokenEndpoint == "" {
-		return identity.KeyFlowTokenAPI
+		return tokenAPI
 	}
 
 	return cfg.ServiceAccountKey.Credentials.TokenEndpoint
@@ -171,7 +181,7 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 		AccessToken:  accessToken,
 		ExpiresIn:    int(exp.Unix()),
 		RefreshToken: refreshToken,
-		Scope:        identity.DefaultScope,
+		Scope:        defaultScope,
 		TokenType:    identity.DefaultTokenType,
 	}
 	c.tokenMutex.Unlock()

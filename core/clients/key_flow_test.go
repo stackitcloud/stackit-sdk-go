@@ -17,8 +17,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/identity"
-
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
@@ -85,7 +83,7 @@ func TestKeyFlowInit(t *testing.T) {
 			serviceAccountKey: fixtureServiceAccountKey(),
 			genPrivateKey:     true,
 			wantErr:           false,
-			wantTokenUrl:      identity.KeyFlowTokenAPI,
+			wantTokenUrl:      tokenAPI,
 		},
 		{
 			name:              "missing_private_key",

@@ -17,6 +17,7 @@ const (
 	defaultTokenExpirationLeeway = time.Second * 5
 )
 
+// Deprecated: use identity.TokenProvider instead.
 type AuthFlow interface {
 	RoundTrip(req *http.Request) (*http.Response, error)
 	GetAccessToken() (string, error)
@@ -26,6 +27,8 @@ type AuthFlow interface {
 
 // TokenResponseBody is the API response
 // when requesting a new token
+//
+// Deprecated: use identity.Token instead.
 type TokenResponseBody struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
