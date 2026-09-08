@@ -21,6 +21,17 @@ import (
 	"github.com/google/uuid"
 )
 
+const (
+	// Deprecated: use identity.EnvServiceAccountKey instead
+	ServiceAccountKey = identity.EnvServiceAccountKey
+	// Deprecated: use identity.EnvPrivateKey instead
+	PrivateKey = identity.EnvPrivateKey
+	// Deprecated: use identity.EnvServiceAccountKeyPath instead
+	ServiceAccountKeyPath = identity.EnvServiceAccountKeyPath
+	// Deprecated: use identity.EnvPrivateKeyPath instead
+	PrivateKeyPath = identity.EnvPrivateKeyPath
+)
+
 var _ AuthFlow = &KeyFlow{}
 
 // KeyFlow handles auth with SA key
@@ -55,7 +66,7 @@ type KeyFlowConfig struct {
 // ServiceAccountKeyResponse is the API response
 // when creating a new SA key
 //
-// Deprecated: use identity.ServiceAccountKeyResponse.
+// Deprecated: use identity.ServiceAccountJson instead
 type ServiceAccountKeyResponse = identity.ServiceAccountJson
 
 // Deprecated: use identity.ServiceAccountKeyCredentials.

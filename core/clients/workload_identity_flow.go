@@ -14,6 +14,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
+// Deprecated: use identity.EnvFederatedTokenFile instead
+const FederatedTokenFileEnv = identity.EnvFederatedTokenFile
+
 var _ AuthFlow = &WorkloadIdentityFederationFlow{}
 
 // WorkloadIdentityFlow handles auth with Workload Identity Federation

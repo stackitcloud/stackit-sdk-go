@@ -55,13 +55,6 @@ func NewChainedProviderWithOptions(options ChainedProviderOptions, providers ...
 	}, nil
 }
 
-// NewChainWithOptions creates a chain using the provided options.
-//
-// Deprecated: use NewChainedProviderWithOptions.
-func NewChainWithOptions(options ChainedProviderOptions, providers ...TokenProvider) (*ChainedProvider, error) {
-	return NewChainedProviderWithOptions(options, providers...)
-}
-
 // Token returns the first token retrieved successfully from the configured providers.
 func (c *ChainedProvider) Token(ctx context.Context, options TokenRequestOptions) (Token, error) {
 	if !c.retrySources {

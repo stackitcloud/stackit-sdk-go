@@ -11,6 +11,20 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
+// Credentials represents the structure of the credentials file.
+//
+// Deprecated: use identity.Credentials instead. Note that identity.Credentials
+// uses idiomatic Go field names (ServiceAccountKey, PrivateKey, ...) while
+// keeping the same JSON representation.
+type Credentials struct {
+	STACKIT_SERVICE_ACCOUNT_EMAIL    string // Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
+	STACKIT_SERVICE_ACCOUNT_TOKEN    string
+	STACKIT_SERVICE_ACCOUNT_KEY_PATH string
+	STACKIT_PRIVATE_KEY_PATH         string
+	STACKIT_SERVICE_ACCOUNT_KEY      string
+	STACKIT_PRIVATE_KEY              string
+}
+
 // SetupAuth sets up authentication based on the configuration. The different options are
 // custom authentication, no authentication, explicit key flow, explicit token flow or default authentication
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
