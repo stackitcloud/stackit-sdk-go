@@ -55,9 +55,9 @@ func (dst *AllowedAddressesInner) UnmarshalJSON(data []byte) error {
 	} else { // no match
 		if err != nil {
 			return fmt.Errorf("data failed to match schemas in oneOf(AllowedAddressesInner): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(AllowedAddressesInner)")
 		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(AllowedAddressesInner)")
 	}
 }
 
