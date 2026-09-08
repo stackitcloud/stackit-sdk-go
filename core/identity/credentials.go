@@ -32,15 +32,13 @@ const (
 	CredentialTypePrivateKeyPath        CredentialType = "private_key_path"
 )
 
-var UserHomeDir = os.UserHomeDir
-
 // ReadCredentialsFile reads the credentials file from the specified path
 func ReadCredentialsFile(path string) (*Credentials, error) {
 	if path == "" {
 		customPath, customPathSet := os.LookupEnv(EnvCredentialsPath)
 		if !customPathSet || customPath == "" {
 			path = credentialsFilePath
-			home, err := UserHomeDir()
+			home, err := os.UserHomeDir()
 			if err != nil {
 				return nil, fmt.Errorf("getting home directory: %w", err)
 			}
@@ -118,7 +116,7 @@ func warnOnInsecureCredentialsFile(path string) {
 		return
 	}
 	if perm := info.Mode().Perm(); perm&0o077 != 0 {
-		WarnContext(context.Background(),
+		warnContext(context.Background(),
 			"identity: credentials file is readable by other users",
 			"path", path, "permissions", fmt.Sprintf("%#o", perm), "recommended", "0600")
 	}

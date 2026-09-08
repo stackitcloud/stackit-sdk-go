@@ -52,7 +52,7 @@ func TestServiceAccountKeyToken(t *testing.T) {
 	defer server.Close()
 
 	// Create service account key as JSON
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",
@@ -126,7 +126,7 @@ func TestServiceAccountKeyWithScopes(t *testing.T) {
 	}))
 	defer server.Close()
 
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",
@@ -189,7 +189,7 @@ func TestServiceAccountKeyWithResources(t *testing.T) {
 	}))
 	defer server.Close()
 
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",
@@ -259,7 +259,7 @@ func TestServiceAccountKeyWithScopesAndResources(t *testing.T) {
 	}))
 	defer server.Close()
 
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",
@@ -335,7 +335,7 @@ func TestServiceAccountKeyWithEmptyScopesAndResources(t *testing.T) {
 	}))
 	defer server.Close()
 
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",
@@ -489,7 +489,7 @@ func TestServiceAccountKeyScopesAndResourcesOverride(t *testing.T) {
 			}))
 			defer server.Close()
 
-			saKey := ServiceAccountJson{
+			saKey := ServiceAccountJSON{
 				Credentials: &ServiceAccountKeyCredentials{
 					Aud: server.URL,
 					Iss: "service-account@sa.stackit.cloud",

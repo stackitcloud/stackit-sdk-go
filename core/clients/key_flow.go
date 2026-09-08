@@ -66,10 +66,10 @@ type KeyFlowConfig struct {
 // ServiceAccountKeyResponse is the API response
 // when creating a new SA key
 //
-// Deprecated: use identity.ServiceAccountJson instead
-type ServiceAccountKeyResponse = identity.ServiceAccountJson
+// Deprecated: use identity.ServiceAccountJSON instead
+type ServiceAccountKeyResponse = identity.ServiceAccountJSON
 
-// Deprecated: use identity.ServiceAccountKeyCredentials.
+// Deprecated: use identity.ServiceAccountKeyCredentials instead
 type ServiceAccountKeyCredentials = identity.ServiceAccountKeyCredentials
 
 // GetConfig returns the flow configuration

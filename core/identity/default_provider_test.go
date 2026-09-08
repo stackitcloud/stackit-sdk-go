@@ -94,7 +94,7 @@ func TestDefaultProviderPrefersStaticOverServiceAccountKey(t *testing.T) {
 	}))
 	defer server.Close()
 
-	saKey := ServiceAccountJson{
+	saKey := ServiceAccountJSON{
 		Credentials: &ServiceAccountKeyCredentials{
 			Aud: server.URL,
 			Iss: "service-account@sa.stackit.cloud",

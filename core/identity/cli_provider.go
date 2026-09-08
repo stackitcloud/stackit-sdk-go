@@ -134,7 +134,7 @@ func (p *CLIProvider) Token(ctx context.Context, _ TokenRequestOptions) (Token, 
 	if err != nil {
 		return Token{}, err
 	}
-	DebugContext(ctx, "identity: authenticated", "provider", p.name)
+	debugContext(ctx, "identity: authenticated", "provider", p.name)
 
 	p.tokenMutex.Lock()
 	p.token = fresh

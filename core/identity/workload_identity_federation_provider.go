@@ -129,7 +129,7 @@ func (p *WorkloadIdentityFederationProvider) Token(ctx context.Context, opt Toke
 	if err != nil {
 		return Token{}, err
 	}
-	DebugContext(ctx, "identity: authenticated", "provider", p.name)
+	debugContext(ctx, "identity: authenticated", "provider", p.name)
 	p.tokenMutex.Lock()
 	p.token = fresh
 	p.tokenMutex.Unlock()

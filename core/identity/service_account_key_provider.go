@@ -60,7 +60,7 @@ type ServiceAccountKeyProvider struct {
 	name       string
 	httpClient *http.Client
 	tokenURL   string
-	json       *ServiceAccountJson
+	json       *ServiceAccountJSON
 	privateKey *rsa.PrivateKey
 
 	tokenLeeway time.Duration
@@ -111,7 +111,7 @@ func NewServiceAccountKeyProvider(cfg *ServiceAccountKeyProviderConfig) (*Servic
 	}
 
 	// Parse service account key JSON
-	var serviceAccountKey = &ServiceAccountJson{}
+	var serviceAccountKey = &ServiceAccountJSON{}
 	if err := json.Unmarshal([]byte(serviceAccountKeyJSON), serviceAccountKey); err != nil {
 		return nil, fmt.Errorf("%s: parse service account key JSON: %w", serviceAccountKeyErrorPrefix, err)
 	}
@@ -208,7 +208,7 @@ func (p *ServiceAccountKeyProvider) Token(ctx context.Context, opt TokenRequestO
 	if err != nil {
 		return Token{}, err
 	}
-	DebugContext(ctx, "identity: authenticated", "provider", p.name)
+	debugContext(ctx, "identity: authenticated", "provider", p.name)
 	p.tokenMutex.Lock()
 	p.token = fresh
 	p.tokenMutex.Unlock()
@@ -255,7 +255,7 @@ func (p *ServiceAccountKeyProvider) requestToken(ctx context.Context, opt TokenR
 
 	if res.StatusCode != http.StatusOK {
 		bodyRaw, _ := io.ReadAll(res.Body)
-		ErrorContext(ctx, "identity: token request failed", "status", res.StatusCode, "body", string(bodyRaw))
+		errorContext(ctx, "identity: token request failed", "status", res.StatusCode, "body", string(bodyRaw))
 		return Token{}, fmt.Errorf("%s: token request failed with status %d: %s", serviceAccountKeyErrorPrefix, res.StatusCode, string(bodyRaw))
 	}
 

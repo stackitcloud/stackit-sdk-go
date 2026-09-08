@@ -12,8 +12,6 @@ const (
 	// WIF default federated token file path in Kubernetes
 	// nolint:gosec // G101 False positive: This is a constant path, not a credential
 	WifDefaultFederatedTokenPath = "/var/run/secrets/stackit.cloud/serviceaccount/token"
-	// WIF default token expiration leeway
-	WifDefaultTokenExpiration = "1h"
 )
 
 // Service Account Key Flow constants

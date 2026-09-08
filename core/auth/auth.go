@@ -351,7 +351,7 @@ func getServiceAccountKeyAndPrivateKeyWithFallback(cfg *config.Configuration) er
 
 	// If private key is still empty, try to extract from service account key JSON
 	if cfg.PrivateKey == "" && cfg.ServiceAccountKey != "" {
-		var serviceAccountKey = &identity.ServiceAccountJson{}
+		var serviceAccountKey = &identity.ServiceAccountJSON{}
 		if err := json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey); err == nil {
 			if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
 				cfg.PrivateKey = *serviceAccountKey.Credentials.PrivateKey

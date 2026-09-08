@@ -5,7 +5,7 @@
 - **New:** Added `config.WithTokenProvider` and the `Configuration.TokenProvider` field, so any `identity.TokenProvider` can authenticate a client. This also exposes raw access tokens for data plane APIs and non-SDK clients.
 - **Feature:** The service account key flow now falls back to `https://accounts.stackit.cloud/oauth/v2/token` instead of `https://service-account.api.stackit.cloud/token` when the service account key carries no token endpoint. Explicitly configured endpoints and endpoints embedded in the key are unaffected.
 - **Improvement:** A warning is now logged when the credentials file is readable by users other than its owner. Logging is opt-in via `identity.SetLogger`.
-- **Deprecated:** `auth.Credentials`, `clients.ServiceAccountKeyResponse` and `clients.ServiceAccountKeyCredentials`, along with the `clients` environment variable name constants, in favour of their `identity` equivalents.
+- **Deprecated:** `auth.Credentials`, `clients.ServiceAccountKeyResponse` (now an alias of `identity.ServiceAccountJSON`) and `clients.ServiceAccountKeyCredentials`, along with the `clients` environment variable name constants, in favour of their `identity` equivalents.
 
 ## v0.26.0
 - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.

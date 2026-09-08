@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// ServiceAccountJson is the API response when creating a STACKIT service account key.
-type ServiceAccountJson struct {
+// ServiceAccountJSON is the API response when creating a STACKIT service account key.
+type ServiceAccountJSON struct {
 	Active       bool                          `json:"active"`
 	CreatedAt    time.Time                     `json:"createdAt"`
 	Credentials  *ServiceAccountKeyCredentials `json:"credentials"`
@@ -19,7 +19,7 @@ type ServiceAccountJson struct {
 	ValidUntil   *time.Time                    `json:"validUntil,omitempty"`
 }
 
-// ServiceAccountKeyCredentials contains the credential fields embedded in a ServiceAccountKeyResponse.
+// ServiceAccountKeyCredentials contains the credential fields embedded in a ServiceAccountJSON.
 type ServiceAccountKeyCredentials struct {
 	Aud           string    `json:"aud"`
 	Iss           string    `json:"iss"`

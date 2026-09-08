@@ -94,7 +94,7 @@ func (p *InstanceMetadataProvider) Token(ctx context.Context, _ TokenRequestOpti
 	if err != nil {
 		return Token{}, err
 	}
-	DebugContext(ctx, "identity: authenticated", "provider", p.name)
+	debugContext(ctx, "identity: authenticated", "provider", p.name)
 
 	p.tokenMutex.Lock()
 	p.token = fresh

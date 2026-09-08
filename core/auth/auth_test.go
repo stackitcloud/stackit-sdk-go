@@ -19,19 +19,19 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
+// setTemporaryHome points the home directory at an empty temporary one, so that the tests
+// never read the credentials file of whoever runs them. os.UserHomeDir reads HOME on unix
+// and USERPROFILE on Windows.
 func setTemporaryHome(t *testing.T) {
-	old := identity.UserHomeDir
-	t.Cleanup(func() {
-		identity.UserHomeDir = old
-	})
-	identity.UserHomeDir = func() (string, error) {
-		return t.TempDir(), nil
-	}
+	t.Helper()
+	home := t.TempDir()
+	t.Setenv("HOME", home)
+	t.Setenv("USERPROFILE", home)
 }
 
-func fixtureServiceAccountKey(mods ...func(*identity.ServiceAccountJson)) *identity.ServiceAccountJson {
+func fixtureServiceAccountKey(mods ...func(*identity.ServiceAccountJSON)) *identity.ServiceAccountJSON {
 	validUntil := time.Now().Add(time.Hour)
-	serviceAccountKeyResponse := &identity.ServiceAccountJson{
+	serviceAccountKeyResponse := &identity.ServiceAccountJSON{
 		Active:    true,
 		CreatedAt: time.Now(),
 		Credentials: &identity.ServiceAccountKeyCredentials{
@@ -747,7 +747,7 @@ func TestKeyAuth(t *testing.T) {
 
 	for _, test := range []struct {
 		desc                 string
-		serviceAccountKey    *identity.ServiceAccountJson
+		serviceAccountKey    *identity.ServiceAccountJSON
 		includedPrivateKey   *string
 		configuredPrivateKey string
 		envVarPrivateKey     string

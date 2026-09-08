@@ -87,16 +87,16 @@ func (c *ChainedProvider) Token(ctx context.Context, options TokenRequestOptions
 			if token.AccessToken == "" {
 				msg := fmt.Sprintf("%s (%d): returned empty access token", providerName(provider), index)
 				errorsByProvider = append(errorsByProvider, msg)
-				DebugContext(ctx, "identity: provider returned empty access token", "chain", c.name, "provider", providerName(provider), "index", index)
+				debugContext(ctx, "identity: provider returned empty access token", "chain", c.name, "provider", providerName(provider), "index", index)
 				err = fmt.Errorf("%s: %s", chainedProviderErrorPrefix, msg)
 				continue
 			}
-			DebugContext(ctx, "identity: authenticated", "chain", c.name, "provider", providerName(provider))
+			debugContext(ctx, "identity: authenticated", "chain", c.name, "provider", providerName(provider))
 			successfulProvider = provider
 			break
 		}
 		msg := fmt.Sprintf("%s (%d): %v", providerName(provider), index, err)
-		DebugContext(ctx, "identity: provider failed", "chain", c.name, "provider", providerName(provider), "index", index, "error", err)
+		debugContext(ctx, "identity: provider failed", "chain", c.name, "provider", providerName(provider), "index", index, "error", err)
 		errorsByProvider = append(errorsByProvider, msg)
 	}
 
@@ -111,7 +111,7 @@ func (c *ChainedProvider) Token(ctx context.Context, options TokenRequestOptions
 	if err == nil && successfulProvider != nil {
 		return token, nil
 	}
-	ErrorContext(ctx, "identity: all chain providers failed", "chain", c.name, "errors", strings.Join(errorsByProvider, "; "))
+	errorContext(ctx, "identity: all chain providers failed", "chain", c.name, "errors", strings.Join(errorsByProvider, "; "))
 	return Token{}, fmt.Errorf("%s: all chain providers failed: %s", chainedProviderErrorPrefix, strings.Join(errorsByProvider, "; "))
 }
 
