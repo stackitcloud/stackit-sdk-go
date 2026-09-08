@@ -77,14 +77,9 @@ func (dst *ServerNetworking) UnmarshalJSON(data []byte) error {
 	} else { // no match
 		if err != nil {
 			return fmt.Errorf("data failed to match schemas in oneOf(ServerNetworking): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(ServerNetworking)")
 		}
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(ServerNetworking): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(ServerNetworking)")
-		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(ServerNetworking)")
 	}
 }
 
