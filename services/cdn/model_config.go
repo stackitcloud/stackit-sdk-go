@@ -100,6 +100,33 @@ func setConfigGetBlockedIpsAttributeType(arg *ConfigGetBlockedIpsAttributeType, 
 }
 
 /*
+	types and functions for cacheConfig
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetCacheConfigAttributeType = *CacheConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetCacheConfigArgType = CacheConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigGetCacheConfigRetType = CacheConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigGetCacheConfigAttributeTypeOk(arg ConfigGetCacheConfigAttributeType) (ret ConfigGetCacheConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigGetCacheConfigAttributeType(arg *ConfigGetCacheConfigAttributeType, val ConfigGetCacheConfigRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for defaultCacheDuration
 */
 
@@ -411,6 +438,8 @@ type Config struct {
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	// REQUIRED
 	BlockedIps ConfigGetBlockedIpsAttributeType `json:"blockedIps" required:"true"`
+	// REQUIRED
+	CacheConfig ConfigGetCacheConfigAttributeType `json:"cacheConfig" required:"true"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration ConfigGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
@@ -442,11 +471,12 @@ type _Config Config
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewConfig(backend ConfigGetBackendArgType, blockedCountries ConfigGetBlockedCountriesArgType, blockedIps ConfigGetBlockedIpsArgType, forwardHostHeader ConfiggetForwardHostHeaderArgType, regions ConfigGetRegionsArgType, stripResponseCookies ConfiggetStripResponseCookiesArgType, tls ConfigGetTlsArgType, waf ConfigGetWafArgType) *Config {
+func NewConfig(backend ConfigGetBackendArgType, blockedCountries ConfigGetBlockedCountriesArgType, blockedIps ConfigGetBlockedIpsArgType, cacheConfig ConfigGetCacheConfigArgType, forwardHostHeader ConfiggetForwardHostHeaderArgType, regions ConfigGetRegionsArgType, stripResponseCookies ConfiggetStripResponseCookiesArgType, tls ConfigGetTlsArgType, waf ConfigGetWafArgType) *Config {
 	this := Config{}
 	setConfigGetBackendAttributeType(&this.Backend, backend)
 	setConfigGetBlockedCountriesAttributeType(&this.BlockedCountries, blockedCountries)
 	setConfigGetBlockedIpsAttributeType(&this.BlockedIps, blockedIps)
+	setConfigGetCacheConfigAttributeType(&this.CacheConfig, cacheConfig)
 	setConfiggetForwardHostHeaderAttributeType(&this.ForwardHostHeader, forwardHostHeader)
 	setConfigGetRegionsAttributeType(&this.Regions, regions)
 	setConfiggetStripResponseCookiesAttributeType(&this.StripResponseCookies, stripResponseCookies)
@@ -522,6 +552,26 @@ func (o *Config) GetBlockedIpsOk() (ret ConfigGetBlockedIpsRetType, ok bool) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Config) SetBlockedIps(v ConfigGetBlockedIpsRetType) {
 	setConfigGetBlockedIpsAttributeType(&o.BlockedIps, v)
+}
+
+// GetCacheConfig returns the CacheConfig field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) GetCacheConfig() (ret ConfigGetCacheConfigRetType) {
+	ret, _ = o.GetCacheConfigOk()
+	return ret
+}
+
+// GetCacheConfigOk returns a tuple with the CacheConfig field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) GetCacheConfigOk() (ret ConfigGetCacheConfigRetType, ok bool) {
+	return getConfigGetCacheConfigAttributeTypeOk(o.CacheConfig)
+}
+
+// SetCacheConfig sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Config) SetCacheConfig(v ConfigGetCacheConfigRetType) {
+	setConfigGetCacheConfigAttributeType(&o.CacheConfig, v)
 }
 
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -823,6 +873,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigGetBlockedIpsAttributeTypeOk(o.BlockedIps); ok {
 		toSerialize["BlockedIps"] = val
+	}
+	if val, ok := getConfigGetCacheConfigAttributeTypeOk(o.CacheConfig); ok {
+		toSerialize["CacheConfig"] = val
 	}
 	if val, ok := getConfigGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
