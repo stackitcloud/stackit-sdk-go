@@ -1,3 +1,6 @@
+## v0.23.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v0.23.0
 - **Feature:** `CreateMoveCode` now accepts an optional `CreateMoveCodePayload` request body (field `Ttl`) to configure the move code's validity duration
 - **Breaking Change:** `DomainObservabilityExtension.State` field type changed from `*string` to `*DomainObservabilityExtensionState` (new enum type with values CREATING`, `CREATE_SUCCEEDED`, `ERROR`)
