@@ -1,3 +1,6 @@
+## v0.11.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v0.11.1
 - `v1betaapi`:
   - **Fix:** Response decoding now supports `*io.Reader` and `*[]byte` target types (previously only `string`, `*os.File`, and JSON were supported)

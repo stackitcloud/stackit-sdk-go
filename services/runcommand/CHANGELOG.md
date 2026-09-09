@@ -1,3 +1,6 @@
+## v1.10.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v1.10.0
 - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state (`completed` or `failed`). `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails` so callers can surface the exit code and output.
 - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`

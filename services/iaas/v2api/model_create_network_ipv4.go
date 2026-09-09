@@ -77,14 +77,9 @@ func (dst *CreateNetworkIPv4) UnmarshalJSON(data []byte) error {
 	} else { // no match
 		if err != nil {
 			return fmt.Errorf("data failed to match schemas in oneOf(CreateNetworkIPv4): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateNetworkIPv4)")
 		}
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateNetworkIPv4): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateNetworkIPv4)")
-		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateNetworkIPv4)")
 	}
 }
 
