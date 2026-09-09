@@ -1,3 +1,6 @@
+## v1.13.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v1.13.0
 - **Breaking change:** Remove enum `Protection`
 - **Breaking change:** Change type of `Protection` attribute from `Protection` to `string` in `CreateWrappingKey`, `WrappingKey` and `Key` model

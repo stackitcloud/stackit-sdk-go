@@ -26,12 +26,15 @@ import (
 type DefaultAPI interface {
 
 	/*
-		CreateFolder Create Folder
+			CreateFolder Create Folder
 
-		Create a new folder.
+			Creates a new folder within a parent organization or folder.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateFolderRequest
+		Authorization & Permissions:
+		- Evaluated on Target Parent Container: resource-manager.folder.create (required permission on the target parent organization or folder to create a folder).
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiCreateFolderRequest
 	*/
 	CreateFolder(ctx context.Context) ApiCreateFolderRequest
 
@@ -42,9 +45,12 @@ type DefaultAPI interface {
 	/*
 			CreateProject Create Project
 
-			Create a new project.
-		- The request is synchronous, but the workflow-based creation is asynchronous.
-		- Lifecycle state remains in CREATING, until workflow completes
+			Creates a new project within a parent container.
+		- Creation request returns synchronously, while underlying resource provisioning runs asynchronously.
+		- Initial lifecycle state is CREATING until provisioning completes.
+
+		Authorization & Permissions:
+		- Evaluated on Target Parent Container: resource-manager.project.create (required permission on the target parent organization or folder to create a project).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiCreateProjectRequest
@@ -59,8 +65,10 @@ type DefaultAPI interface {
 			DeleteFolder Delete Folder
 
 			Delete a folder and its metadata.
-		- Folder must not be parent of any other container
-		- A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+		- Folder must not contain active child containers unless force deletion is enabled without attached projects.
+
+		Authorization & Permissions:
+		- Evaluated on Target Folder: resource-manager.folder.delete (required permission on the target folder to delete it).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -74,9 +82,10 @@ type DefaultAPI interface {
 	/*
 			DeleteFolderLabels Delete Folder Labels
 
-			Deletes all folder labels by given keys.
-		- Specific labels may be deleted by key(s)
-		- If no key is specified, all labels will be deleted!
+			Deletes folder labels by specified keys, or removes all labels if no key is provided.
+
+		Authorization & Permissions:
+		- Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to delete its labels).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -90,9 +99,10 @@ type DefaultAPI interface {
 	/*
 			DeleteOrganizationLabels Delete Organization Labels
 
-			Deletes all organization labels by given keys.
-		- Specific labels may be deleted by key(s)
-		- If no key is specified, all labels will be deleted!
+			Deletes organization labels by specified keys, or removes all labels if no key is provided.
+
+		Authorization & Permissions:
+		- Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to delete labels).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param containerId Organization identifier - containerId as well as UUID identifier is supported.
@@ -107,8 +117,11 @@ type DefaultAPI interface {
 			DeleteProject Delete Project
 
 			Triggers the deletion of a project.
-		- The request is synchronous, but the workflow-based deletion is asynchronous
-		- Lifecycle state remains in DELETING, until workflow completes
+		- Request returns synchronously, while deletion process runs asynchronously.
+		- Initial lifecycle state is DELETING until workflow completes.
+
+		Authorization & Permissions:
+		- Evaluated on Target Project: resource-manager.project.delete (required permission on the project to delete it).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param id Project identifier - containerId as well as UUID identifier is supported.
@@ -122,9 +135,10 @@ type DefaultAPI interface {
 	/*
 			DeleteProjectLabels Delete Project Labels
 
-			Deletes all project labels by given keys.
-		- Specific labels may be deleted by key(s)
-		- If no key is specified, all labels will be deleted!
+			Deletes project labels by specified keys, or removes all labels if no key is provided.
+
+		Authorization & Permissions:
+		- Evaluated on Target Project: resource-manager.project.edit (required permission on the project to delete its labels).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param containerId Project identifier - containerId as well as UUID identifier is supported.
@@ -136,13 +150,17 @@ type DefaultAPI interface {
 	DeleteProjectLabelsExecute(r ApiDeleteProjectLabelsRequest) error
 
 	/*
-		GetFolderDetails Get Folder Details
+			GetFolderDetails Get Folder Details
 
-		Returns all metadata for a specific folder.
+			Returns metadata for a specific folder.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
-		@return ApiGetFolderDetailsRequest
+		Authorization & Permissions:
+		- Evaluated on Target Folder: resource-manager.folder.get (required primary permission to retrieve folder details).
+		- Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get implicitly to resolve parent hierarchy details.
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+			@return ApiGetFolderDetailsRequest
 	*/
 	GetFolderDetails(ctx context.Context, containerId string) ApiGetFolderDetailsRequest
 
@@ -151,13 +169,16 @@ type DefaultAPI interface {
 	GetFolderDetailsExecute(r ApiGetFolderDetailsRequest) (*GetFolderDetailsResponse, error)
 
 	/*
-		GetOrganization Get Organization Details
+			GetOrganization Get Organization Details
 
-		Returns the organization and its metadata.
+			Returns metadata for a specific organization.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Organization identifier - containerId as well as UUID identifier is supported.
-		@return ApiGetOrganizationRequest
+		Authorization & Permissions:
+		- Evaluated on Target Organization: resource-manager.organization.get (required permission on the organization to view its details).
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param id Organization identifier - containerId as well as UUID identifier is supported.
+			@return ApiGetOrganizationRequest
 	*/
 	GetOrganization(ctx context.Context, id string) ApiGetOrganizationRequest
 
@@ -166,13 +187,17 @@ type DefaultAPI interface {
 	GetOrganizationExecute(r ApiGetOrganizationRequest) (*OrganizationResponse, error)
 
 	/*
-		GetProject Get Project Details
+			GetProject Get Project Details
 
-		Returns the project and its metadata.
+			Returns the project and its metadata.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id Project identifier - containerId as well as UUID identifier is supported.
-		@return ApiGetProjectRequest
+		Authorization & Permissions:
+		- Evaluated on Target Project: resource-manager.project.get (required primary permission to view project details).
+		- Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get on parent organizations/folders implicitly to resolve and include parent metadata in the response hierarchy.
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param id Project identifier - containerId as well as UUID identifier is supported.
+			@return ApiGetProjectRequest
 	*/
 	GetProject(ctx context.Context, id string) ApiGetProjectRequest
 
@@ -194,6 +219,11 @@ type DefaultAPI interface {
 		- If member and containerParentId are given, both are used for filtering
 		- If member is given, containers must not point to the same container parent
 
+		Authorization & Permissions:
+		- When filtering by member: resource-manager.folder.direct.get is evaluated on target folders for the member; if caller differs from target member, system-level resource-manager.folder.get is required.
+		- When filtering by containerParentId: resource-manager.folder.list is evaluated on the parent container.
+		- When filtering by containerIds: resource-manager.folder.get is evaluated on the parent container of requested folders.
+
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiListFoldersRequest
@@ -205,14 +235,13 @@ type DefaultAPI interface {
 	ListFoldersExecute(r ApiListFoldersRequest) (*ListFoldersResponse, error)
 
 	/*
-			ListOrganizations Get All Organizations
+			ListOrganizations Get all organizations of member
 
-			Returns all organizations and their metadata.
-		- If no containerIds are specified, all organizations are returned, if permitted
-		- ContainerIds may be set to filter
-		- Member may be set to filter
-		- If member and containerIds are given, both are used for filtering
+			Returns all organizations and their metadata accessible to the caller.
+		- Filterable by containerIds or member.
 
+		Authorization & Permissions:
+		- Evaluated on Target Organizations: resource-manager.organization.list and/or (depending if containerIDs was used in the request) resource-manager.organization.get to filter and list accessible organizations.
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiListOrganizationsRequest
@@ -224,7 +253,7 @@ type DefaultAPI interface {
 	ListOrganizationsExecute(r ApiListOrganizationsRequest) (*ListOrganizationsResponse, error)
 
 	/*
-			ListProjects Get All Projects
+			ListProjects Get All Projects of a member.
 
 			Returns all projects and their metadata that:
 		- Are children of the specific containerParentId
@@ -236,6 +265,9 @@ type DefaultAPI interface {
 		- If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent
 		- If member and containerParentId are given, both are used for filtering
 		- If member is given, containers must not point to the same container parent
+
+		Authorization & Permissions:
+		- Evaluated on Target Projects: resource-manager.project.get, resource-manager.project.list, or resource-manager.project.direct.get to filter and return accessible projects.
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiListProjectsRequest
@@ -249,10 +281,10 @@ type DefaultAPI interface {
 	/*
 			PartialUpdateFolder Update Folder
 
-			Update the folder and its metadata.
-		- Update folder name
-		- Update folder labels
-		- Update folder parent (folder or organization)
+			Update the folder and its metadata (name, labels, parent container).
+
+		Authorization & Permissions:
+		- Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to modify its details, labels, or parent).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -267,9 +299,10 @@ type DefaultAPI interface {
 	/*
 			PartialUpdateOrganization Update Organization
 
-			Update the organization and its metadata.
-		- Update organization name
-		- Update organization labels
+			Updates organization metadata (name, labels).
+
+		Authorization & Permissions:
+		- Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to update metadata and labels).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param id Organization identifier - containerId as well as UUID identifier is supported.
@@ -284,10 +317,10 @@ type DefaultAPI interface {
 	/*
 			PartialUpdateProject Update Project
 
-			Update the project and its metadata.
-		- Update project name
-		- Update project labels
-		- Update project parent (folder or organization)
+			Updates project metadata (name, labels, or parent hierarchy).
+
+		Authorization & Permissions:
+		- Evaluated on Target Project: resource-manager.project.edit (required permission on the project to modify its details, labels, or parent).
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param id Project identifier - containerId as well as UUID identifier is supported.
@@ -321,7 +354,10 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 /*
 CreateFolder Create Folder
 
-Create a new folder.
+Creates a new folder within a parent organization or folder.
+
+Authorization & Permissions:
+- Evaluated on Target Parent Container: resource-manager.folder.create (required permission on the target parent organization or folder to create a folder).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateFolderRequest
@@ -472,9 +508,12 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 /*
 CreateProject Create Project
 
-Create a new project.
-- The request is synchronous, but the workflow-based creation is asynchronous.
-- Lifecycle state remains in CREATING, until workflow completes
+Creates a new project within a parent container.
+- Creation request returns synchronously, while underlying resource provisioning runs asynchronously.
+- Initial lifecycle state is CREATING until provisioning completes.
+
+Authorization & Permissions:
+- Evaluated on Target Parent Container: resource-manager.project.create (required permission on the target parent organization or folder to create a project).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateProjectRequest
@@ -628,8 +667,10 @@ func (r ApiDeleteFolderRequest) Execute() error {
 DeleteFolder Delete Folder
 
 Delete a folder and its metadata.
-- Folder must not be parent of any other container
-- A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+- Folder must not contain active child containers unless force deletion is enabled without attached projects.
+
+Authorization & Permissions:
+- Evaluated on Target Folder: resource-manager.folder.delete (required permission on the target folder to delete it).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -766,9 +807,10 @@ func (r ApiDeleteFolderLabelsRequest) Execute() error {
 /*
 DeleteFolderLabels Delete Folder Labels
 
-Deletes all folder labels by given keys.
-- Specific labels may be deleted by key(s)
-- If no key is specified, all labels will be deleted!
+Deletes folder labels by specified keys, or removes all labels if no key is provided.
+
+Authorization & Permissions:
+- Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to delete its labels).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -898,9 +940,10 @@ func (r ApiDeleteOrganizationLabelsRequest) Execute() error {
 /*
 DeleteOrganizationLabels Delete Organization Labels
 
-Deletes all organization labels by given keys.
-- Specific labels may be deleted by key(s)
-- If no key is specified, all labels will be deleted!
+Deletes organization labels by specified keys, or removes all labels if no key is provided.
+
+Authorization & Permissions:
+- Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to delete labels).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Organization identifier - containerId as well as UUID identifier is supported.
@@ -1024,8 +1067,11 @@ func (r ApiDeleteProjectRequest) Execute() error {
 DeleteProject Delete Project
 
 Triggers the deletion of a project.
-- The request is synchronous, but the workflow-based deletion is asynchronous
-- Lifecycle state remains in DELETING, until workflow completes
+- Request returns synchronously, while deletion process runs asynchronously.
+- Initial lifecycle state is DELETING until workflow completes.
+
+Authorization & Permissions:
+- Evaluated on Target Project: resource-manager.project.delete (required permission on the project to delete it).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Project identifier - containerId as well as UUID identifier is supported.
@@ -1144,9 +1190,10 @@ func (r ApiDeleteProjectLabelsRequest) Execute() error {
 /*
 DeleteProjectLabels Delete Project Labels
 
-Deletes all project labels by given keys.
-- Specific labels may be deleted by key(s)
-- If no key is specified, all labels will be deleted!
+Deletes project labels by specified keys, or removes all labels if no key is provided.
+
+Authorization & Permissions:
+- Evaluated on Target Project: resource-manager.project.edit (required permission on the project to delete its labels).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Project identifier - containerId as well as UUID identifier is supported.
@@ -1275,7 +1322,11 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 /*
 GetFolderDetails Get Folder Details
 
-Returns all metadata for a specific folder.
+Returns metadata for a specific folder.
+
+Authorization & Permissions:
+- Evaluated on Target Folder: resource-manager.folder.get (required primary permission to retrieve folder details).
+- Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get implicitly to resolve parent hierarchy details.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -1418,7 +1469,10 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 /*
 GetOrganization Get Organization Details
 
-Returns the organization and its metadata.
+Returns metadata for a specific organization.
+
+Authorization & Permissions:
+- Evaluated on Target Organization: resource-manager.organization.get (required permission on the organization to view its details).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Organization identifier - containerId as well as UUID identifier is supported.
@@ -1550,6 +1604,10 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 GetProject Get Project Details
 
 Returns the project and its metadata.
+
+Authorization & Permissions:
+- Evaluated on Target Project: resource-manager.project.get (required primary permission to view project details).
+- Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get on parent organizations/folders implicitly to resolve and include parent metadata in the response hierarchy.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Project identifier - containerId as well as UUID identifier is supported.
@@ -1743,6 +1801,11 @@ Filter:
 - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent
 - If member and containerParentId are given, both are used for filtering
 - If member is given, containers must not point to the same container parent
+
+Authorization & Permissions:
+- When filtering by member: resource-manager.folder.direct.get is evaluated on target folders for the member; if caller differs from target member, system-level resource-manager.folder.get is required.
+- When filtering by containerParentId: resource-manager.folder.list is evaluated on the parent container.
+- When filtering by containerIds: resource-manager.folder.get is evaluated on the parent container of requested folders.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListFoldersRequest
@@ -1952,13 +2015,13 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 }
 
 /*
-ListOrganizations Get All Organizations
+ListOrganizations Get all organizations of member
 
-Returns all organizations and their metadata.
-- If no containerIds are specified, all organizations are returned, if permitted
-- ContainerIds may be set to filter
-- Member may be set to filter
-- If member and containerIds are given, both are used for filtering
+Returns all organizations and their metadata accessible to the caller.
+- Filterable by containerIds or member.
+
+Authorization & Permissions:
+- Evaluated on Target Organizations: resource-manager.organization.list and/or (depending if containerIDs was used in the request) resource-manager.organization.get to filter and list accessible organizations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListOrganizationsRequest
@@ -2161,7 +2224,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 }
 
 /*
-ListProjects Get All Projects
+ListProjects Get All Projects of a member.
 
 Returns all projects and their metadata that:
 - Are children of the specific containerParentId
@@ -2173,6 +2236,9 @@ Filter:
 - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent
 - If member and containerParentId are given, both are used for filtering
 - If member is given, containers must not point to the same container parent
+
+Authorization & Permissions:
+- Evaluated on Target Projects: resource-manager.project.get, resource-manager.project.list, or resource-manager.project.direct.get to filter and return accessible projects.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListProjectsRequest
@@ -2345,10 +2411,10 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 /*
 PartialUpdateFolder Update Folder
 
-Update the folder and its metadata.
-- Update folder name
-- Update folder labels
-- Update folder parent (folder or organization)
+Update the folder and its metadata (name, labels, parent container).
+
+Authorization & Permissions:
+- Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to modify its details, labels, or parent).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Folder identifier - containerId as well as UUID identifier is supported.
@@ -2503,9 +2569,10 @@ func (r ApiPartialUpdateOrganizationRequest) Execute() (*OrganizationResponse, e
 /*
 PartialUpdateOrganization Update Organization
 
-Update the organization and its metadata.
-- Update organization name
-- Update organization labels
+Updates organization metadata (name, labels).
+
+Authorization & Permissions:
+- Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to update metadata and labels).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Organization identifier - containerId as well as UUID identifier is supported.
@@ -2649,10 +2716,10 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 /*
 PartialUpdateProject Update Project
 
-Update the project and its metadata.
-- Update project name
-- Update project labels
-- Update project parent (folder or organization)
+Updates project metadata (name, labels, or parent hierarchy).
+
+Authorization & Permissions:
+- Evaluated on Target Project: resource-manager.project.edit (required permission on the project to modify its details, labels, or parent).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Project identifier - containerId as well as UUID identifier is supported.
