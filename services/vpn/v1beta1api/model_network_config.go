@@ -20,7 +20,7 @@ var _ MappedNullable = &NetworkConfig{}
 // NetworkConfig struct for NetworkConfig
 type NetworkConfig struct {
 	// The IPv4 network prefix (CIDR notation) allocated for the VPN gateway. Must have a prefix length of /28 or larger. Once the gateway is created, is not possible to change this attribute.
-	PredefinedNetworkPrefix []string `json:"predefinedNetworkPrefix,omitempty"`
+	PredefinedNetworkPrefix *string `json:"predefinedNetworkPrefix,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}(/([0-9]|[1-2][0-9]|3[0-2]))?$"`
 	// Custom routing table ID for the VPN gateway
 	RoutingTableId       *string `json:"routingTableId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -46,17 +46,17 @@ func NewNetworkConfigWithDefaults() *NetworkConfig {
 }
 
 // GetPredefinedNetworkPrefix returns the PredefinedNetworkPrefix field value if set, zero value otherwise.
-func (o *NetworkConfig) GetPredefinedNetworkPrefix() []string {
+func (o *NetworkConfig) GetPredefinedNetworkPrefix() string {
 	if o == nil || IsNil(o.PredefinedNetworkPrefix) {
-		var ret []string
+		var ret string
 		return ret
 	}
-	return o.PredefinedNetworkPrefix
+	return *o.PredefinedNetworkPrefix
 }
 
 // GetPredefinedNetworkPrefixOk returns a tuple with the PredefinedNetworkPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkConfig) GetPredefinedNetworkPrefixOk() ([]string, bool) {
+func (o *NetworkConfig) GetPredefinedNetworkPrefixOk() (*string, bool) {
 	if o == nil || IsNil(o.PredefinedNetworkPrefix) {
 		return nil, false
 	}
@@ -72,9 +72,9 @@ func (o *NetworkConfig) HasPredefinedNetworkPrefix() bool {
 	return false
 }
 
-// SetPredefinedNetworkPrefix gets a reference to the given []string and assigns it to the PredefinedNetworkPrefix field.
-func (o *NetworkConfig) SetPredefinedNetworkPrefix(v []string) {
-	o.PredefinedNetworkPrefix = v
+// SetPredefinedNetworkPrefix gets a reference to the given string and assigns it to the PredefinedNetworkPrefix field.
+func (o *NetworkConfig) SetPredefinedNetworkPrefix(v string) {
+	o.PredefinedNetworkPrefix = &v
 }
 
 // GetRoutingTableId returns the RoutingTableId field value if set, zero value otherwise.

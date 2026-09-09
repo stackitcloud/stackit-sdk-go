@@ -1,3 +1,11 @@
+## v0.15.2
+- `v1api`:
+  - **Fix:** `NetworkConfig.PredefinedNetworkPrefix` field type changed from `[]string` to `*string` (the API expects a single CIDR string, not an array)
+  - **Feature:** Add `ASNNot` enum type (values `23456`, `65535`) to represent ASN values excluded from use
+  - **Improvement:** Update description of `BGPTunnelConfig.RemoteAsn` to reflect excluded ASN values
+- `v1beta1api`: Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
 ## v0.15.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
