@@ -51,6 +51,8 @@
   - [v0.1.0](experimental/CHANGELOG.md#v010)
     - Added experimental `paginate` package for AIP compliant pagination
 - `git`:
+  - [v0.14.2](services/git/CHANGELOG.md#v0142)
+    - **Improvement:** Add usage examples for the STACKIT Git service.
   - [v0.14.1](services/git/CHANGELOG.md#v0141)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `iaas`:
