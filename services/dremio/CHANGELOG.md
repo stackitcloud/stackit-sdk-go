@@ -1,3 +1,6 @@
+## v0.6.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
+
 ## v0.6.0
 -`v1betaapi`:
   - **Feature**: Added wait handlers
