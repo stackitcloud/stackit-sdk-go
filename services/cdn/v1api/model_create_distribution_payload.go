@@ -24,7 +24,8 @@ type CreateDistributionPayload struct {
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
-	BlockedIps []string `json:"blockedIps,omitempty"`
+	BlockedIps  []string           `json:"blockedIps,omitempty"`
+	CacheConfig *CacheConfigCreate `json:"cacheConfig,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration *string `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
@@ -154,6 +155,38 @@ func (o *CreateDistributionPayload) HasBlockedIps() bool {
 // SetBlockedIps gets a reference to the given []string and assigns it to the BlockedIps field.
 func (o *CreateDistributionPayload) SetBlockedIps(v []string) {
 	o.BlockedIps = v
+}
+
+// GetCacheConfig returns the CacheConfig field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetCacheConfig() CacheConfigCreate {
+	if o == nil || IsNil(o.CacheConfig) {
+		var ret CacheConfigCreate
+		return ret
+	}
+	return *o.CacheConfig
+}
+
+// GetCacheConfigOk returns a tuple with the CacheConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetCacheConfigOk() (*CacheConfigCreate, bool) {
+	if o == nil || IsNil(o.CacheConfig) {
+		return nil, false
+	}
+	return o.CacheConfig, true
+}
+
+// HasCacheConfig returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasCacheConfig() bool {
+	if o != nil && !IsNil(o.CacheConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetCacheConfig gets a reference to the given CacheConfigCreate and assigns it to the CacheConfig field.
+func (o *CreateDistributionPayload) SetCacheConfig(v CacheConfigCreate) {
+	o.CacheConfig = &v
 }
 
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise.
@@ -549,6 +582,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BlockedIps) {
 		toSerialize["blockedIps"] = o.BlockedIps
 	}
+	if !IsNil(o.CacheConfig) {
+		toSerialize["cacheConfig"] = o.CacheConfig
+	}
 	if !IsNil(o.DefaultCacheDuration) {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration
 	}
@@ -630,6 +666,7 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "backend")
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
+		delete(additionalProperties, "cacheConfig")
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "intentId")
