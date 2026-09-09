@@ -100,6 +100,33 @@ func setCreateDistributionPayloadGetBlockedIpsAttributeType(arg *CreateDistribut
 }
 
 /*
+	types and functions for cacheConfig
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetCacheConfigAttributeType = *CacheConfigCreate
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetCacheConfigArgType = CacheConfigCreate
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetCacheConfigRetType = CacheConfigCreate
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateDistributionPayloadGetCacheConfigAttributeTypeOk(arg CreateDistributionPayloadGetCacheConfigAttributeType) (ret CreateDistributionPayloadGetCacheConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateDistributionPayloadGetCacheConfigAttributeType(arg *CreateDistributionPayloadGetCacheConfigAttributeType, val CreateDistributionPayloadGetCacheConfigRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for defaultCacheDuration
 */
 
@@ -431,7 +458,8 @@ type CreateDistributionPayload struct {
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries CreateDistributionPayloadGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
-	BlockedIps CreateDistributionPayloadGetBlockedIpsAttributeType `json:"blockedIps,omitempty"`
+	BlockedIps  CreateDistributionPayloadGetBlockedIpsAttributeType  `json:"blockedIps,omitempty"`
+	CacheConfig CreateDistributionPayloadGetCacheConfigAttributeType `json:"cacheConfig,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration CreateDistributionPayloadGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
@@ -550,6 +578,33 @@ func (o *CreateDistributionPayload) HasBlockedIps() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateDistributionPayload) SetBlockedIps(v CreateDistributionPayloadGetBlockedIpsRetType) {
 	setCreateDistributionPayloadGetBlockedIpsAttributeType(&o.BlockedIps, v)
+}
+
+// GetCacheConfig returns the CacheConfig field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetCacheConfig() (res CreateDistributionPayloadGetCacheConfigRetType) {
+	res, _ = o.GetCacheConfigOk()
+	return
+}
+
+// GetCacheConfigOk returns a tuple with the CacheConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetCacheConfigOk() (ret CreateDistributionPayloadGetCacheConfigRetType, ok bool) {
+	return getCreateDistributionPayloadGetCacheConfigAttributeTypeOk(o.CacheConfig)
+}
+
+// HasCacheConfig returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) HasCacheConfig() bool {
+	_, ok := o.GetCacheConfigOk()
+	return ok
+}
+
+// SetCacheConfig gets a reference to the given CacheConfigCreate and assigns it to the CacheConfig field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) SetCacheConfig(v CreateDistributionPayloadGetCacheConfigRetType) {
+	setCreateDistributionPayloadGetCacheConfigAttributeType(&o.CacheConfig, v)
 }
 
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise.
@@ -880,6 +935,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetBlockedIpsAttributeTypeOk(o.BlockedIps); ok {
 		toSerialize["BlockedIps"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetCacheConfigAttributeTypeOk(o.CacheConfig); ok {
+		toSerialize["CacheConfig"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
