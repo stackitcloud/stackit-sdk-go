@@ -6,7 +6,7 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/telemetrylink => ../../services/telemetrylink
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.0
 	github.com/stackitcloud/stackit-sdk-go/services/telemetrylink v0.5.1
 )
 
