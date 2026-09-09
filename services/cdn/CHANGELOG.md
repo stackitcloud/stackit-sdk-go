@@ -1,3 +1,18 @@
+## v1.21.0
+- `v1api`:
+  - **Feature:** Add field `CacheConfig` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+  - **Feature:** New models `CacheConfig`, `CacheConfigCreate`, `CacheConfigPatch`
+  - **Feature:** Add support for OTLP log sinks: `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink` now support `OtlpLogSink`
+  - **Feature:** New OTLP models `OtlpLogSink`, `OtlpLogSinkCreate`, `OtlpLogSinkPatch`, `OtlpLogSinkBasicCredentials`, `OtlpLogSinkBearerCredentials`, `OtlpLogSinkCreateCredentials`, `OtlpLogSinkPatchCredentials`
+  - **Breaking Change:** `NewConfig` constructor now requires a `cacheConfig` parameter
+- Deprecated SDK layer in root of the module:
+  - **Feature:** Add field `CacheConfig` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+  - **Feature:** New models `CacheConfig`, `CacheConfigCreate`, `CacheConfigPatch`
+  - **Feature:** Add support for OTLP log sinks: `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink` now support `OtlpLogSink`
+  - **Feature:** New OTLP models `OtlpLogSink`, `OtlpLogSinkCreate`, `OtlpLogSinkPatch`, `OtlpLogSinkBasicCredentials`, `OtlpLogSinkBearerCredentials`, `OtlpLogSinkCreateCredentials`, `OtlpLogSinkPatchCredentials`
+  - **Breaking Change:** `NewConfig` constructor now requires a `cacheConfig` parameter
+- **Breaking Change:** Removed deprecated packages `v1betaapi` and `v1beta2api`
+
 ## v1.20.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
