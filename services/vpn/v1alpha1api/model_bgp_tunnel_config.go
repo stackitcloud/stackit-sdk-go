@@ -20,7 +20,7 @@ var _ MappedNullable = &BGPTunnelConfig{}
 
 // BGPTunnelConfig struct for BGPTunnelConfig
 type BGPTunnelConfig struct {
-	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
+	// Number of an Autonomous System. Both 16Bit and 32Bit ranges are supported, excluding values reserved by:   * RFC 7607 (0)   * RFC 6793 (23456, AS_TRANS)   * RFC 7300 (65535 and 4294967295, the \"Last ASNs\")
 	RemoteAsn            int64 `json:"remoteAsn"`
 	AdditionalProperties map[string]interface{}
 }
