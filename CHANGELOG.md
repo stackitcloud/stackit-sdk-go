@@ -22,6 +22,20 @@
     - **New**: API for STACKIT Automation
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/automation)
 - `cdn`:
+  - [v1.21.0](services/cdn/CHANGELOG.md#v1210)
+    - `v1api`:
+      - **Feature:** Add field `CacheConfig` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+      - **Feature:** New models `CacheConfig`, `CacheConfigCreate`, `CacheConfigPatch`
+      - **Feature:** Add support for OTLP log sinks: `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink` now support `OtlpLogSink`
+      - **Feature:** New OTLP models `OtlpLogSink`, `OtlpLogSinkCreate`, `OtlpLogSinkPatch`, `OtlpLogSinkBasicCredentials`, `OtlpLogSinkBearerCredentials`, `OtlpLogSinkCreateCredentials`, `OtlpLogSinkPatchCredentials`
+      - **Breaking Change:** `NewConfig` constructor now requires a `cacheConfig` parameter
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add field `CacheConfig` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
+      - **Feature:** New models `CacheConfig`, `CacheConfigCreate`, `CacheConfigPatch`
+      - **Feature:** Add support for OTLP log sinks: `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink` now support `OtlpLogSink`
+      - **Feature:** New OTLP models `OtlpLogSink`, `OtlpLogSinkCreate`, `OtlpLogSinkPatch`, `OtlpLogSinkBasicCredentials`, `OtlpLogSinkBearerCredentials`, `OtlpLogSinkCreateCredentials`, `OtlpLogSinkPatchCredentials`
+      - **Breaking Change:** `NewConfig` constructor now requires a `cacheConfig` parameter
+    - **Breaking Change:** Removed deprecated packages `v1betaapi` and `v1beta2api`
   - [v1.20.1](services/cdn/CHANGELOG.md#v1201)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `certificates`:
@@ -122,6 +136,15 @@
   - [v1.4.1](services/redis/CHANGELOG.md#v141)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `resourcemanager`:
+  - [v0.26.0](services/resourcemanager/CHANGELOG.md#v0260)
+    - `v0api`: 
+      - Updated the godoc comments of the API client methods
+      - **Breaking change:** Removal of unused model struct `ContainerSearchResult`
+      - **Breaking change:** Removal of unused enum type `ContainerSearchResultContainerType` with enum constants `CONTAINERSEARCHRESULTCONTAINERTYPE_PROJECT` and `CONTAINERSEARCHRESULTCONTAINERTYPE_FOLDER`
+    - Deprecated SDK layer in root of the module:
+      - Updated the godoc comments of the API client methods
+      - **Breaking change:** Removal of unused model struct `ContainerSearchResult`
+      - **Breaking change:** Removal of unused enum type `ContainerSearchResultContainerType` with enum constants `CONTAINERSEARCHRESULTCONTAINER_TYPE_PROJECT` and `CONTAINERSEARCHRESULTCONTAINER_TYPE_FOLDER`
   - [v0.25.1](services/resourcemanager/CHANGELOG.md#v0251)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.25.0](services/resourcemanager/CHANGELOG.md#v0250)
@@ -193,6 +216,13 @@
       - **Breaking Change/Fix:** `CreateBackupExecute` return type changed from `([]CreateBackupResponseItem, error)` to `(*CreateBackupResponseItem, error)`
         The go type now correctly models the actual JSON response, this operation was broken beforehand. This aligns `v1api` with the fix already applied to `v2api` in v0.2.0.
 - `vpn`:
+  - [v0.15.2](services/vpn/CHANGELOG.md#v0152)
+    - `v1api`:
+      - **Fix:** `NetworkConfig.PredefinedNetworkPrefix` field type changed from `[]string` to `*string` (the API expects a single CIDR string, not an array)
+      - **Feature:** Add `ASNNot` enum type (values `23456`, `65535`) to represent ASN values excluded from use
+      - **Improvement:** Update description of `BGPTunnelConfig.RemoteAsn` to reflect excluded ASN values
+    - `v1beta1api`: Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
   - [v0.15.1](services/vpn/CHANGELOG.md#v0151)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
