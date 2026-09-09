@@ -82,9 +82,9 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	} else { // no match
 		if err != nil {
 			return fmt.Errorf("data failed to match schemas in oneOf(AreaId): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(AreaId)")
 		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(AreaId)")
 	}
 }
 
