@@ -18,12 +18,20 @@ import (
 // CreateDistributionPayloadLogSink - struct for CreateDistributionPayloadLogSink
 type CreateDistributionPayloadLogSink struct {
 	LokiLogSinkCreate *LokiLogSinkCreate
+	OtlpLogSinkCreate *OtlpLogSinkCreate
 }
 
 // LokiLogSinkCreateAsCreateDistributionPayloadLogSink is a convenience function that returns LokiLogSinkCreate wrapped in CreateDistributionPayloadLogSink
 func LokiLogSinkCreateAsCreateDistributionPayloadLogSink(v *LokiLogSinkCreate) CreateDistributionPayloadLogSink {
 	return CreateDistributionPayloadLogSink{
 		LokiLogSinkCreate: v,
+	}
+}
+
+// OtlpLogSinkCreateAsCreateDistributionPayloadLogSink is a convenience function that returns OtlpLogSinkCreate wrapped in CreateDistributionPayloadLogSink
+func OtlpLogSinkCreateAsCreateDistributionPayloadLogSink(v *OtlpLogSinkCreate) CreateDistributionPayloadLogSink {
+	return CreateDistributionPayloadLogSink{
+		OtlpLogSinkCreate: v,
 	}
 }
 
@@ -49,6 +57,18 @@ func (dst *CreateDistributionPayloadLogSink) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'otlp'
+	if jsonDict["type"] == "otlp" {
+		// try to unmarshal JSON data into OtlpLogSinkCreate
+		err = json.Unmarshal(data, &dst.OtlpLogSinkCreate)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkCreate, return on the first match
+		} else {
+			dst.OtlpLogSinkCreate = nil
+			return fmt.Errorf("failed to unmarshal CreateDistributionPayloadLogSink as OtlpLogSinkCreate: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -56,6 +76,10 @@ func (dst *CreateDistributionPayloadLogSink) UnmarshalJSON(data []byte) error {
 func (src CreateDistributionPayloadLogSink) MarshalJSON() ([]byte, error) {
 	if src.LokiLogSinkCreate != nil {
 		return json.Marshal(&src.LokiLogSinkCreate)
+	}
+
+	if src.OtlpLogSinkCreate != nil {
+		return json.Marshal(&src.OtlpLogSinkCreate)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -70,6 +94,10 @@ func (obj *CreateDistributionPayloadLogSink) GetActualInstance() interface{} {
 		return obj.LokiLogSinkCreate
 	}
 
+	if obj.OtlpLogSinkCreate != nil {
+		return obj.OtlpLogSinkCreate
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -78,6 +106,10 @@ func (obj *CreateDistributionPayloadLogSink) GetActualInstance() interface{} {
 func (obj CreateDistributionPayloadLogSink) GetActualInstanceValue() interface{} {
 	if obj.LokiLogSinkCreate != nil {
 		return *obj.LokiLogSinkCreate
+	}
+
+	if obj.OtlpLogSinkCreate != nil {
+		return *obj.OtlpLogSinkCreate
 	}
 
 	// all schemas are nil
