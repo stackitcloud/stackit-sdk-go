@@ -1,3 +1,13 @@
+## v0.26.0
+- `v0api`: 
+  - Updated the godoc comments of the API client methods
+  - **Breaking change:** Removal of unused model struct `ContainerSearchResult`
+  - **Breaking change:** Removal of unused enum type `ContainerSearchResultContainerType` with enum constants `CONTAINERSEARCHRESULTCONTAINERTYPE_PROJECT` and `CONTAINERSEARCHRESULTCONTAINERTYPE_FOLDER`
+- Deprecated SDK layer in root of the module:
+  - Updated the godoc comments of the API client methods
+  - **Breaking change:** Removal of unused model struct `ContainerSearchResult`
+  - **Breaking change:** Removal of unused enum type `ContainerSearchResultContainerType` with enum constants `CONTAINERSEARCHRESULTCONTAINER_TYPE_PROJECT` and `CONTAINERSEARCHRESULTCONTAINER_TYPE_FOLDER`
+
 ## v0.25.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 

@@ -24,7 +24,8 @@ type Config struct {
 	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g. DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
-	BlockedIps []string `json:"blockedIps"`
+	BlockedIps  []string    `json:"blockedIps"`
+	CacheConfig CacheConfig `json:"cacheConfig"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
@@ -50,11 +51,12 @@ type _Config Config
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfig(backend ConfigBackend, blockedCountries []string, blockedIps []string, forwardHostHeader bool, regions []Region, stripResponseCookies bool, tls TlsConfig, waf WafConfig) *Config {
+func NewConfig(backend ConfigBackend, blockedCountries []string, blockedIps []string, cacheConfig CacheConfig, forwardHostHeader bool, regions []Region, stripResponseCookies bool, tls TlsConfig, waf WafConfig) *Config {
 	this := Config{}
 	this.Backend = backend
 	this.BlockedCountries = blockedCountries
 	this.BlockedIps = blockedIps
+	this.CacheConfig = cacheConfig
 	this.ForwardHostHeader = forwardHostHeader
 	this.Regions = regions
 	this.StripResponseCookies = stripResponseCookies
@@ -141,6 +143,30 @@ func (o *Config) GetBlockedIpsOk() ([]string, bool) {
 // SetBlockedIps sets field value
 func (o *Config) SetBlockedIps(v []string) {
 	o.BlockedIps = v
+}
+
+// GetCacheConfig returns the CacheConfig field value
+func (o *Config) GetCacheConfig() CacheConfig {
+	if o == nil {
+		var ret CacheConfig
+		return ret
+	}
+
+	return o.CacheConfig
+}
+
+// GetCacheConfigOk returns a tuple with the CacheConfig field value
+// and a boolean to check if the value has been set.
+func (o *Config) GetCacheConfigOk() (*CacheConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CacheConfig, true
+}
+
+// SetCacheConfig sets field value
+func (o *Config) SetCacheConfig(v CacheConfig) {
+	o.CacheConfig = v
 }
 
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -490,6 +516,7 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	toSerialize["backend"] = o.Backend
 	toSerialize["blockedCountries"] = o.BlockedCountries
 	toSerialize["blockedIps"] = o.BlockedIps
+	toSerialize["cacheConfig"] = o.CacheConfig
 	if o.DefaultCacheDuration.IsSet() {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
 	}
@@ -529,6 +556,7 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		"backend",
 		"blockedCountries",
 		"blockedIps",
+		"cacheConfig",
 		"forwardHostHeader",
 		"regions",
 		"stripResponseCookies",
@@ -566,6 +594,7 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "backend")
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
+		delete(additionalProperties, "cacheConfig")
 		delete(additionalProperties, "defaultCacheDuration")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "labels")

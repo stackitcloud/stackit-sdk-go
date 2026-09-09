@@ -20,6 +20,7 @@ import (
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ConfigPatchLogSink struct {
 	LokiLogSinkPatch *LokiLogSinkPatch
+	OtlpLogSinkPatch *OtlpLogSinkPatch
 }
 
 // LokiLogSinkPatchAsConfigPatchLogSink is a convenience function that returns LokiLogSinkPatch wrapped in ConfigPatchLogSink
@@ -27,6 +28,14 @@ type ConfigPatchLogSink struct {
 func LokiLogSinkPatchAsConfigPatchLogSink(v *LokiLogSinkPatch) ConfigPatchLogSink {
 	return ConfigPatchLogSink{
 		LokiLogSinkPatch: v,
+	}
+}
+
+// OtlpLogSinkPatchAsConfigPatchLogSink is a convenience function that returns OtlpLogSinkPatch wrapped in ConfigPatchLogSink
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func OtlpLogSinkPatchAsConfigPatchLogSink(v *OtlpLogSinkPatch) ConfigPatchLogSink {
+	return ConfigPatchLogSink{
+		OtlpLogSinkPatch: v,
 	}
 }
 
@@ -58,6 +67,18 @@ func (dst *ConfigPatchLogSink) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'OtlpLogSinkPatch'
+	if jsonDict["type"] == "OtlpLogSinkPatch" {
+		// try to unmarshal JSON data into OtlpLogSinkPatch
+		err = json.Unmarshal(data, &dst.OtlpLogSinkPatch)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkPatch, return on the first match
+		} else {
+			dst.OtlpLogSinkPatch = nil
+			return fmt.Errorf("failed to unmarshal ConfigPatchLogSink as OtlpLogSinkPatch: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'loki'
 	if jsonDict["type"] == "loki" {
 		// try to unmarshal JSON data into LokiLogSinkPatch
@@ -67,6 +88,18 @@ func (dst *ConfigPatchLogSink) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.LokiLogSinkPatch = nil
 			return fmt.Errorf("failed to unmarshal ConfigPatchLogSink as LokiLogSinkPatch: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'otlp'
+	if jsonDict["type"] == "otlp" {
+		// try to unmarshal JSON data into OtlpLogSinkPatch
+		err = json.Unmarshal(data, &dst.OtlpLogSinkPatch)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkPatch, return on the first match
+		} else {
+			dst.OtlpLogSinkPatch = nil
+			return fmt.Errorf("failed to unmarshal ConfigPatchLogSink as OtlpLogSinkPatch: %s", err.Error())
 		}
 	}
 
@@ -80,6 +113,10 @@ func (src ConfigPatchLogSink) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LokiLogSinkPatch)
 	}
 
+	if src.OtlpLogSinkPatch != nil {
+		return json.Marshal(&src.OtlpLogSinkPatch)
+	}
+
 	return []byte("{}"), nil // no data in oneOf schemas => empty JSON object
 }
 
@@ -91,6 +128,10 @@ func (obj *ConfigPatchLogSink) GetActualInstance() interface{} {
 	}
 	if obj.LokiLogSinkPatch != nil {
 		return obj.LokiLogSinkPatch
+	}
+
+	if obj.OtlpLogSinkPatch != nil {
+		return obj.OtlpLogSinkPatch
 	}
 
 	// all schemas are nil
