@@ -18,12 +18,20 @@ import (
 // ConfigLogSink - struct for ConfigLogSink
 type ConfigLogSink struct {
 	LokiLogSink *LokiLogSink
+	OtlpLogSink *OtlpLogSink
 }
 
 // LokiLogSinkAsConfigLogSink is a convenience function that returns LokiLogSink wrapped in ConfigLogSink
 func LokiLogSinkAsConfigLogSink(v *LokiLogSink) ConfigLogSink {
 	return ConfigLogSink{
 		LokiLogSink: v,
+	}
+}
+
+// OtlpLogSinkAsConfigLogSink is a convenience function that returns OtlpLogSink wrapped in ConfigLogSink
+func OtlpLogSinkAsConfigLogSink(v *OtlpLogSink) ConfigLogSink {
+	return ConfigLogSink{
+		OtlpLogSink: v,
 	}
 }
 
@@ -49,6 +57,18 @@ func (dst *ConfigLogSink) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'otlp'
+	if jsonDict["type"] == "otlp" {
+		// try to unmarshal JSON data into OtlpLogSink
+		err = json.Unmarshal(data, &dst.OtlpLogSink)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSink, return on the first match
+		} else {
+			dst.OtlpLogSink = nil
+			return fmt.Errorf("failed to unmarshal ConfigLogSink as OtlpLogSink: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -56,6 +76,10 @@ func (dst *ConfigLogSink) UnmarshalJSON(data []byte) error {
 func (src ConfigLogSink) MarshalJSON() ([]byte, error) {
 	if src.LokiLogSink != nil {
 		return json.Marshal(&src.LokiLogSink)
+	}
+
+	if src.OtlpLogSink != nil {
+		return json.Marshal(&src.OtlpLogSink)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -70,6 +94,10 @@ func (obj *ConfigLogSink) GetActualInstance() interface{} {
 		return obj.LokiLogSink
 	}
 
+	if obj.OtlpLogSink != nil {
+		return obj.OtlpLogSink
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -78,6 +106,10 @@ func (obj *ConfigLogSink) GetActualInstance() interface{} {
 func (obj ConfigLogSink) GetActualInstanceValue() interface{} {
 	if obj.LokiLogSink != nil {
 		return *obj.LokiLogSink
+	}
+
+	if obj.OtlpLogSink != nil {
+		return *obj.OtlpLogSink
 	}
 
 	// all schemas are nil

@@ -20,6 +20,7 @@ import (
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateDistributionPayloadLogSink struct {
 	LokiLogSinkCreate *LokiLogSinkCreate
+	OtlpLogSinkCreate *OtlpLogSinkCreate
 }
 
 // LokiLogSinkCreateAsCreateDistributionPayloadLogSink is a convenience function that returns LokiLogSinkCreate wrapped in CreateDistributionPayloadLogSink
@@ -27,6 +28,14 @@ type CreateDistributionPayloadLogSink struct {
 func LokiLogSinkCreateAsCreateDistributionPayloadLogSink(v *LokiLogSinkCreate) CreateDistributionPayloadLogSink {
 	return CreateDistributionPayloadLogSink{
 		LokiLogSinkCreate: v,
+	}
+}
+
+// OtlpLogSinkCreateAsCreateDistributionPayloadLogSink is a convenience function that returns OtlpLogSinkCreate wrapped in CreateDistributionPayloadLogSink
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func OtlpLogSinkCreateAsCreateDistributionPayloadLogSink(v *OtlpLogSinkCreate) CreateDistributionPayloadLogSink {
+	return CreateDistributionPayloadLogSink{
+		OtlpLogSinkCreate: v,
 	}
 }
 
@@ -53,6 +62,18 @@ func (dst *CreateDistributionPayloadLogSink) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'OtlpLogSinkCreate'
+	if jsonDict["type"] == "OtlpLogSinkCreate" {
+		// try to unmarshal JSON data into OtlpLogSinkCreate
+		err = json.Unmarshal(data, &dst.OtlpLogSinkCreate)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkCreate, return on the first match
+		} else {
+			dst.OtlpLogSinkCreate = nil
+			return fmt.Errorf("failed to unmarshal CreateDistributionPayloadLogSink as OtlpLogSinkCreate: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'loki'
 	if jsonDict["type"] == "loki" {
 		// try to unmarshal JSON data into LokiLogSinkCreate
@@ -62,6 +83,18 @@ func (dst *CreateDistributionPayloadLogSink) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.LokiLogSinkCreate = nil
 			return fmt.Errorf("failed to unmarshal CreateDistributionPayloadLogSink as LokiLogSinkCreate: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'otlp'
+	if jsonDict["type"] == "otlp" {
+		// try to unmarshal JSON data into OtlpLogSinkCreate
+		err = json.Unmarshal(data, &dst.OtlpLogSinkCreate)
+		if err == nil {
+			return nil // data stored in dst.OtlpLogSinkCreate, return on the first match
+		} else {
+			dst.OtlpLogSinkCreate = nil
+			return fmt.Errorf("failed to unmarshal CreateDistributionPayloadLogSink as OtlpLogSinkCreate: %s", err.Error())
 		}
 	}
 
@@ -75,6 +108,10 @@ func (src CreateDistributionPayloadLogSink) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LokiLogSinkCreate)
 	}
 
+	if src.OtlpLogSinkCreate != nil {
+		return json.Marshal(&src.OtlpLogSinkCreate)
+	}
+
 	return []byte("{}"), nil // no data in oneOf schemas => empty JSON object
 }
 
@@ -86,6 +123,10 @@ func (obj *CreateDistributionPayloadLogSink) GetActualInstance() interface{} {
 	}
 	if obj.LokiLogSinkCreate != nil {
 		return obj.LokiLogSinkCreate
+	}
+
+	if obj.OtlpLogSinkCreate != nil {
+		return obj.OtlpLogSinkCreate
 	}
 
 	// all schemas are nil
