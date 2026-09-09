@@ -4,8 +4,8 @@ go 1.25
 
 require (
 	github.com/google/go-cmp v0.7.0
-	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.24.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.0
+	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.25.1
 )
 
 require (
