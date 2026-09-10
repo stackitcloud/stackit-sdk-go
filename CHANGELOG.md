@@ -104,6 +104,8 @@
   - [v1.9.2](services/objectstorage/CHANGELOG.md#v192)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `observability`:
+  - [v0.25.2](services/observability/CHANGELOG.md#v0252)
+    - **Fix:** Removed duplicate/dead error-handling branch in `UnmarshalJSON` for `oneOf` response models (`Create*Check400Response`)
   - [v0.25.1](services/observability/CHANGELOG.md#v0251)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v0.25.0](services/observability/CHANGELOG.md#v0250)
