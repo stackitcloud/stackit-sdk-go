@@ -11,11 +11,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/identity"
 )
 
-// Credentials represents the structure of the credentials file.
-//
-// Deprecated: use identity.Credentials instead. Note that identity.Credentials
-// uses idiomatic Go field names (ServiceAccountKey, PrivateKey, ...) while
-// keeping the same JSON representation.
+// Deprecated: use identity.Credentials instead
 type Credentials struct {
 	STACKIT_SERVICE_ACCOUNT_EMAIL    string // Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 	STACKIT_SERVICE_ACCOUNT_TOKEN    string
@@ -98,11 +94,6 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		return newTokenProviderRoundTripper(cfg.TokenProvider, getTransportFromConfig(cfg)), nil
 	}
 
-	// The resolution order below intentionally matches the legacy behaviour of this
-	// function (WIF, then key flow, then static token). identity.InstanceMetadataProvider
-	// is deliberately not part of this chain: ambient VM identity must not silently take
-	// precedence over explicitly configured credentials. Consumers that want it can
-	// compose it themselves with identity.NewChainedProvider.
 	providers := []identity.TokenProvider{}
 
 	// Try Workload Identity Federation - provider handles client cleanup internally
@@ -123,7 +114,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		PrivateKey:          cfg.PrivateKey,
 		TokenURL:            cfg.TokenCustomUrl,
 		HTTPClient:          cfg.HTTPClient,
-		CredentialsFilePath: &cfg.CredentialsFilePath,
+		CredentialsFilePath: cfg.CredentialsFilePath,
 		Scopes:              cfg.Scopes,
 		Resources:           cfg.Resources,
 	}); err == nil {
@@ -133,7 +124,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	// Try Static Token - provider handles env var resolution and credentials file resolution
 	if staticProvider, err := identity.NewStaticTokenProvider(&identity.StaticTokenProviderConfig{
 		Token:               cfg.Token,
-		CredentialsFilePath: &cfg.CredentialsFilePath,
+		CredentialsFilePath: cfg.CredentialsFilePath,
 	}); err == nil {
 		providers = append(providers, staticProvider)
 	}
@@ -189,7 +180,7 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 	provider, err := identity.NewStaticTokenProvider(&identity.StaticTokenProviderConfig{
 		Token:               token,
-		CredentialsFilePath: &cfg.CredentialsFilePath,
+		CredentialsFilePath: cfg.CredentialsFilePath,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("error initializing static token provider: %w", err)
@@ -223,7 +214,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		PrivateKey:          cfg.PrivateKey,
 		TokenURL:            cfg.TokenCustomUrl,
 		HTTPClient:          cfg.HTTPClient,
-		CredentialsFilePath: &cfg.CredentialsFilePath,
+		CredentialsFilePath: cfg.CredentialsFilePath,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)

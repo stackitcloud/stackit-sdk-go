@@ -59,6 +59,7 @@ type WorkloadIdentityFederationProvider struct {
 
 type workloadIdentityTokenResponse struct {
 	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
 	ExpiresIn   int    `json:"expires_in"`
 }
 
@@ -194,6 +195,7 @@ func (p *WorkloadIdentityFederationProvider) requestToken(ctx context.Context, o
 	refreshOn := expiresOn.Add(-p.tokenLeeway)
 	return Token{
 		AccessToken: tokenResponse.AccessToken,
+		TokenType:   tokenType(tokenResponse.TokenType),
 		ExpiresOn:   expiresOn,
 		RefreshOn:   refreshOn,
 	}, nil
