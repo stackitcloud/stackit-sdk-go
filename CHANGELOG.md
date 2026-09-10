@@ -117,6 +117,8 @@
   - [v1.3.1](services/opensearch/CHANGELOG.md#v131)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `postgresflex`:
+  - [v1.15.0](services/postgresflex/CHANGELOG.md#v1150)
+    - `v3alpha1api`: Align package to latest API specification
   - [v1.14.1](services/postgresflex/CHANGELOG.md#v1141)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
   - [v1.14.0](services/postgresflex/CHANGELOG.md#v1140)
