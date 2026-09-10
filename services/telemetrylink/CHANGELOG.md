@@ -1,3 +1,9 @@
+## v0.6.0
+- `v1api`:
+  - **Breaking Change:** `Enabled` field in `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from required `bool` to optional `*bool` (server now defaults to `true` when omitted); `New*` constructors no longer take an `enabled` parameter
+- `v1betaapi`:
+  - **Breaking Change:** `Enabled` field in `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from required `bool` to optional `*bool` (server now defaults to `true` when omitted); `New*` constructors no longer take an `enabled` parameter
+
 ## v0.5.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
