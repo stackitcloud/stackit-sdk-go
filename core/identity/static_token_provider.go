@@ -12,12 +12,14 @@ var _ TokenProvider = (*StaticTokenProvider)(nil)
 
 // StaticTokenProviderConfig contains configuration for StaticTokenProvider.
 type StaticTokenProviderConfig struct {
-	// Token is the static access token. If empty, it is resolved from the
-	// STACKIT_SERVICE_ACCOUNT_TOKEN env var and then from the credentials file.
+	// Token is the static access token. If empty, will attempt to resolve from STACKIT_SERVICE_ACCOUNT_TOKEN env var
+	// or from credentials file if CredentialsFilePath is set.
 	Token string
-	// CredentialsFilePath overrides the credentials file location. If empty, the path from
-	// STACKIT_CREDENTIALS_PATH is used, falling back to ~/.stackit/credentials.json.
-	CredentialsFilePath string
+	// CredentialsFilePath is a pointer to the path to the credentials file. When set (not nil), it enables
+	// automatic resolution of token from the credentials file if it is not found in config or environment variables.
+	// If the pointer is nil, credentials file resolution is skipped.
+	// When set to a pointer to an empty string, uses the default credentials file path (~/.stackit/credentials.json).
+	CredentialsFilePath *string
 }
 
 // StaticTokenProvider provides a static access token.
@@ -35,9 +37,9 @@ func NewStaticTokenProvider(cfg *StaticTokenProviderConfig) (*StaticTokenProvide
 	if token == "" {
 		if val, found := os.LookupEnv(EnvServiceAccountToken); found && val != "" {
 			token = val
-		} else {
-			// Try the credentials file
-			credentials, err := ReadCredentialsFile(cfg.CredentialsFilePath)
+		} else if cfg.CredentialsFilePath != nil {
+			// Try credentials file if pointer is set (not nil)
+			credentials, err := ReadCredentialsFile(*cfg.CredentialsFilePath)
 			if err == nil {
 				if credToken, err := ReadCredential(CredentialTypeToken, credentials); err == nil {
 					token = credToken
@@ -56,10 +58,8 @@ func NewStaticTokenProvider(cfg *StaticTokenProviderConfig) (*StaticTokenProvide
 
 	accessToken := Token{
 		AccessToken: token,
-		// A pre-issued token carries no type of its own.
-		TokenType: DefaultTokenType,
-		ExpiresOn: expiresOn,
-		RefreshOn: expiresOn,
+		ExpiresOn:   expiresOn,
+		RefreshOn:   expiresOn,
 	}
 
 	return &StaticTokenProvider{

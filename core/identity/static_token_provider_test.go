@@ -28,8 +28,6 @@ func TestStaticTokenProvider(t *testing.T) {
 }
 
 func TestStaticTokenProviderEmpty(t *testing.T) {
-	isolateCredentialsFile(t)
-
 	_, err := NewStaticTokenProvider(&StaticTokenProviderConfig{Token: ""})
 	if err == nil {
 		t.Fatalf("expected error for empty token")

@@ -40,15 +40,7 @@ func (r *tokenProviderRoundTripper) RoundTrip(req *http.Request) (*http.Response
 		return nil, fmt.Errorf("token provider returned empty access token")
 	}
 
-	// Use the scheme the token was issued with rather than assuming Bearer, so that a
-	// provider issuing e.g. an RFC 9449 (DPoP) token is presented correctly. A custom
-	// TokenProvider may leave it unset, so fall back to Bearer.
-	scheme := token.TokenType
-	if scheme == "" {
-		scheme = authorizationSchemeBearer
-	}
-
 	requestCopy := req.Clone(req.Context())
-	requestCopy.Header.Set("Authorization", fmt.Sprintf("%s %s", scheme, token.AccessToken))
+	requestCopy.Header.Set("Authorization", fmt.Sprintf("%s %s", authorizationSchemeBearer, token.AccessToken))
 	return r.rt.RoundTrip(requestCopy)
 }

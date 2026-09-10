@@ -26,12 +26,6 @@ type TokenRequestOptions struct {
 // Token is a normalized access token response.
 type Token struct {
 	AccessToken string
-	// TokenType is the authorization scheme the token is presented with, taken from the
-	// token_type of the OAuth2 response. It is "Bearer" for every flow STACKIT issues
-	// today, but callers building their own Authorization header must use this rather
-	// than assuming.
-	// Providers whose source does not report a type default to DefaultTokenType.
-	TokenType string
-	ExpiresOn time.Time
-	RefreshOn time.Time
+	ExpiresOn   time.Time
+	RefreshOn   time.Time
 }

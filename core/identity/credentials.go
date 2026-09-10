@@ -1,12 +1,10 @@
 package identity
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
-	"runtime"
 )
 
 // CredentialType represents a specific credential field type
@@ -32,13 +30,15 @@ const (
 	CredentialTypePrivateKeyPath        CredentialType = "private_key_path"
 )
 
+var UserHomeDir = os.UserHomeDir
+
 // ReadCredentialsFile reads the credentials file from the specified path
 func ReadCredentialsFile(path string) (*Credentials, error) {
 	if path == "" {
 		customPath, customPathSet := os.LookupEnv(EnvCredentialsPath)
 		if !customPathSet || customPath == "" {
 			path = credentialsFilePath
-			home, err := os.UserHomeDir()
+			home, err := UserHomeDir()
 			if err != nil {
 				return nil, fmt.Errorf("getting home directory: %w", err)
 			}
@@ -47,8 +47,6 @@ func ReadCredentialsFile(path string) (*Credentials, error) {
 			path = customPath
 		}
 	}
-
-	warnOnInsecureCredentialsFile(path)
 
 	credentialsRaw, err := os.ReadFile(path)
 	if err != nil {
@@ -97,27 +95,4 @@ func ReadCredential(cred CredentialType, credentials *Credentials) (string, erro
 	}
 
 	return credentialValue, nil
-}
-
-// warnOnInsecureCredentialsFile warns when the credentials file can be read by users other
-// than its owner. The file may hold a service account token or a private key in clear text,
-// and nothing creates it automatically, so its permissions are whatever the user's umask
-// produced. This only warns: the format predates this package and is shared with the other
-// STACKIT SDKs and the Terraform provider, so refusing to read it would break callers.
-// Logging is opt-in, so this is silent unless SetLogger was called.
-func warnOnInsecureCredentialsFile(path string) {
-	if runtime.GOOS == "windows" {
-		// Go synthesises permission bits on Windows, so they say nothing about access.
-		return
-	}
-	info, err := os.Stat(path)
-	if err != nil {
-		// Let the read report the real problem.
-		return
-	}
-	if perm := info.Mode().Perm(); perm&0o077 != 0 {
-		warnContext(context.Background(),
-			"identity: credentials file is readable by other users",
-			"path", path, "permissions", fmt.Sprintf("%#o", perm), "recommended", "0600")
-	}
 }
