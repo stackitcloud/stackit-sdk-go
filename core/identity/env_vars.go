@@ -20,11 +20,6 @@ const (
 	// nolint:gosec // G101 False positive: This is a constant env var name, not a credential
 	EnvIdpTokenExpirationSec = "STACKIT_IDP_TOKEN_EXPIRATION_SECONDS"
 
-	// Chain control
-	// EnvUseCLI switches off the CLI session step of the default chain when set to a
-	// false value. The step is enabled by default.
-	EnvUseCLI = "STACKIT_USE_CLI"
-
 	// Token endpoint
 	// nolint:gosec // G101 False positive: This is a constant env var name, not a credential
 	EnvTokenBaseUrl = "STACKIT_TOKEN_BASEURL"

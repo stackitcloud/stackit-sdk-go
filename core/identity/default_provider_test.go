@@ -30,9 +30,6 @@ func clearCredentialEnv(t *testing.T) {
 		t.Setenv(env, "")
 	}
 	isolateCredentialsFile(t)
-	// Empty PATH so CLIProvider is deterministically skipped: whether the chain includes
-	// it must not depend on the STACKIT CLI being installed on the machine running tests.
-	t.Setenv("PATH", t.TempDir())
 }
 
 // isolateCredentialsFile points the credentials file at a path that does not exist, so
@@ -50,7 +47,7 @@ func TestDefaultProviderNoCredentials(t *testing.T) {
 		t.Fatalf("expected error when no credentials are available")
 	}
 	// The error must explain why each provider was skipped, not just that it failed.
-	for _, want := range []string{"StaticTokenProvider", "ServiceAccountKeyProvider", "WorkloadIdentityFederationProvider", "CLIProvider"} {
+	for _, want := range []string{"StaticTokenProvider", "ServiceAccountKeyProvider", "WorkloadIdentityFederationProvider", "InstanceMetadataProvider"} {
 		if !strings.Contains(err.Error(), want) {
 			t.Fatalf("expected error to mention %s, got: %v", want, err)
 		}
@@ -229,145 +226,5 @@ func TestDefaultProviderResolvesTokenFromCredentialsFile(t *testing.T) {
 	}
 	if token.AccessToken != accessToken {
 		t.Fatalf("expected the token from the credentials file, got %s", token.AccessToken)
-	}
-}
-
-// TestDefaultProviderCLIIsLast pins the last step of the documented chain: the CLI session
-// is available but never outranks anything else.
-func TestDefaultProviderCLIIsLast(t *testing.T) {
-	clearCredentialEnv(t)
-
-	// A stand-in for the STACKIT CLI, so the test does not depend on it being installed.
-	fakeCLIPath := filepath.Join(t.TempDir(), "stackit")
-	if err := os.WriteFile(fakeCLIPath, []byte("#!/bin/sh\nexit 1\n"), 0o700); err != nil {
-		t.Fatalf("write fake cli: %v", err)
-	}
-
-	provider, err := NewDefaultProvider(&DefaultProviderConfig{
-		Token:      testCLIAccessToken,
-		CLICommand: fakeCLIPath,
-	})
-	if err != nil {
-		t.Fatalf("expected no error: %v", err)
-	}
-
-	providers := provider.chain.providers
-	if len(providers) != 2 {
-		t.Fatalf("expected 2 providers in the chain, got %d", len(providers))
-	}
-	if _, ok := providers[0].(*StaticTokenProvider); !ok {
-		t.Fatalf("expected StaticTokenProvider first, got %T", providers[0])
-	}
-	if _, ok := providers[len(providers)-1].(*CLIProvider); !ok {
-		t.Fatalf("expected CLIProvider last, got %T", providers[len(providers)-1])
-	}
-
-	// The fake CLI always fails, so the static token must win without it being invoked.
-	token, err := provider.Token(context.Background(), TokenRequestOptions{})
-	if err != nil {
-		t.Fatalf("expected no error: %v", err)
-	}
-	if token.AccessToken != testCLIAccessToken {
-		t.Fatalf("expected the static token to win, got %s", token.AccessToken)
-	}
-}
-
-// TestDefaultProviderCLIDisabled covers the STACKIT_USE_CLI escape hatch.
-func TestDefaultProviderCLIDisabled(t *testing.T) {
-	clearCredentialEnv(t)
-	t.Setenv(EnvUseCLI, "false")
-
-	fakeCLIPath := filepath.Join(t.TempDir(), "stackit")
-	if err := os.WriteFile(fakeCLIPath, []byte("#!/bin/sh\nexit 1\n"), 0o700); err != nil {
-		t.Fatalf("write fake cli: %v", err)
-	}
-
-	provider, err := NewDefaultProvider(&DefaultProviderConfig{
-		Token:      testCLIAccessToken,
-		CLICommand: fakeCLIPath,
-	})
-	if err != nil {
-		t.Fatalf("expected no error: %v", err)
-	}
-
-	for _, p := range provider.chain.providers {
-		if _, ok := p.(*CLIProvider); ok {
-			t.Fatalf("expected no CLIProvider when %s is false", EnvUseCLI)
-		}
-	}
-}
-
-// TestDefaultProviderCLIEnabledByDefault guards against the switch defaulting the wrong way.
-func TestDefaultProviderCLIEnabledByDefault(t *testing.T) {
-	clearCredentialEnv(t)
-
-	fakeCLIPath := filepath.Join(t.TempDir(), "stackit")
-	if err := os.WriteFile(fakeCLIPath, []byte("#!/bin/sh\nexit 1\n"), 0o700); err != nil {
-		t.Fatalf("write fake cli: %v", err)
-	}
-
-	for _, value := range []string{"", "true", "not-a-bool"} {
-		t.Setenv(EnvUseCLI, value)
-		provider, err := NewDefaultProvider(&DefaultProviderConfig{
-			Token:      testCLIAccessToken,
-			CLICommand: fakeCLIPath,
-		})
-		if err != nil {
-			t.Fatalf("expected no error: %v", err)
-		}
-		last := provider.chain.providers[len(provider.chain.providers)-1]
-		if _, ok := last.(*CLIProvider); !ok {
-			t.Fatalf("%s=%q: expected CLIProvider to be present, got %T last", EnvUseCLI, value, last)
-		}
-	}
-}
-
-// TestDefaultProviderCLIDisabledByConfig covers the programmatic half of the switch, and
-// that an operator's STACKIT_USE_CLI=false cannot be overridden from code.
-func TestDefaultProviderCLIDisabledByConfig(t *testing.T) {
-	fakeCLIPath := filepath.Join(t.TempDir(), "stackit")
-	if err := os.WriteFile(fakeCLIPath, []byte("#!/bin/sh\nexit 1\n"), 0o700); err != nil {
-		t.Fatalf("write fake cli: %v", err)
-	}
-
-	tests := []struct {
-		name       string
-		env        string
-		disableCLI bool
-		wantCLI    bool
-	}{
-		{name: "enabled by default", wantCLI: true},
-		{name: "disabled in code", disableCLI: true, wantCLI: false},
-		{name: "disabled in the environment", env: "false", wantCLI: false},
-		{name: "code cannot re-enable what the environment disabled", env: "false", disableCLI: false, wantCLI: false},
-		{name: "both disabled", env: "false", disableCLI: true, wantCLI: false},
-	}
-
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			clearCredentialEnv(t)
-			if test.env != "" {
-				t.Setenv(EnvUseCLI, test.env)
-			}
-
-			provider, err := NewDefaultProvider(&DefaultProviderConfig{
-				Token:      testCLIAccessToken,
-				CLICommand: fakeCLIPath,
-				DisableCLI: test.disableCLI,
-			})
-			if err != nil {
-				t.Fatalf("expected no error: %v", err)
-			}
-
-			var found bool
-			for _, p := range provider.chain.providers {
-				if _, ok := p.(*CLIProvider); ok {
-					found = true
-				}
-			}
-			if found != test.wantCLI {
-				t.Fatalf("expected CLIProvider present=%v, got %v", test.wantCLI, found)
-			}
-		})
 	}
 }

@@ -142,7 +142,6 @@ token contract, one provider per authentication flow, and primitives to compose 
 - `identity.ServiceAccountKeyProvider` — the service account key flow
 - `identity.WorkloadIdentityFederationProvider` — workload identity federation
 - `identity.InstanceMetadataProvider` — the service account attached to a STACKIT VM
-- `identity.CLIProvider` — the session of a logged-in STACKIT CLI, for developer machines
 - `identity.ChainedProvider` — tries providers in order until one succeeds
 - `identity.DefaultProvider` — the opinionated chain, see below
 
@@ -198,29 +197,8 @@ The chain tries, in order:
 2. `ServiceAccountKeyProvider` — the service account key flow
 3. `WorkloadIdentityFederationProvider` — workload identity federation
 4. `InstanceMetadataProvider` — the service account attached to the STACKIT VM
-5. `CLIProvider` — the session of a STACKIT CLI that has run `stackit auth login`
-
-Explicitly configured credentials always take precedence over the ambient identity of the
-machine and over local developer tooling, which are only consulted once everything else
-has failed. Steps that are unavailable are skipped: on a CI runner with no STACKIT CLI
-installed, step 5 costs nothing.
-
-The chain never starts an interactive login. Obtaining a session is an explicit operation
-(`stackit auth login`), so that no program can unexpectedly open a browser.
-
-The CLI step can be switched off, either from the environment or in code:
-
-```bash
-STACKIT_USE_CLI=false
-```
-
-```go
-identity.NewDefaultProvider(&identity.DefaultProviderConfig{DisableCLI: true})
-```
-
-Either switch is enough, and neither re-enables what the other turned off: application
-code cannot override an operator's decision to keep the CLI out of the loop. Constructing
-an `identity.CLIProvider` yourself is unaffected.
+Explicitly configured credentials always take precedence over the ambient VM identity, which
+is only consulted once everything else has failed.
 
 #### Building your own chain
 

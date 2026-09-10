@@ -3,7 +3,7 @@
 // Everything builds on one contract, TokenProvider, which returns an access token and
 // nothing else. Each authentication flow ships as its own provider implementing it:
 // StaticTokenProvider, ServiceAccountKeyProvider, WorkloadIdentityFederationProvider,
-// InstanceMetadataProvider and CLIProvider. ChainedProvider composes providers in order,
+// InstanceMetadataProvider. ChainedProvider composes providers in order,
 // and NewDefaultProvider assembles the opinionated chain the SDK uses by default.
 //
 // Implementations are safe for concurrent use and cache and refresh their own tokens, so
