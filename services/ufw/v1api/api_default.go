@@ -115,8 +115,8 @@ type DefaultAPI interface {
 	ListProviderOptions(ctx context.Context, regionId string) ApiListProviderOptionsRequest
 
 	// ListProviderOptionsExecute executes the request
-	//  @return []ProviderOptionsResponse
-	ListProviderOptionsExecute(r ApiListProviderOptionsRequest) ([]ProviderOptionsResponse, error)
+	//  @return ProviderOptionsResponse
+	ListProviderOptionsExecute(r ApiListProviderOptionsRequest) (*ProviderOptionsResponse, error)
 
 	/*
 		ListRules Get rules for a project
@@ -1119,7 +1119,7 @@ type ApiListProviderOptionsRequest struct {
 	regionId   string
 }
 
-func (r ApiListProviderOptionsRequest) Execute() ([]ProviderOptionsResponse, error) {
+func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptionsResponse, error) {
 	return r.ApiService.ListProviderOptionsExecute(r)
 }
 
@@ -1142,13 +1142,13 @@ func (a *DefaultAPIService) ListProviderOptions(ctx context.Context, regionId st
 
 // Execute executes the request
 //
-//	@return []ProviderOptionsResponse
-func (a *DefaultAPIService) ListProviderOptionsExecute(r ApiListProviderOptionsRequest) ([]ProviderOptionsResponse, error) {
+//	@return ProviderOptionsResponse
+func (a *DefaultAPIService) ListProviderOptionsExecute(r ApiListProviderOptionsRequest) (*ProviderOptionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []ProviderOptionsResponse
+		localVarReturnValue *ProviderOptionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListProviderOptions")
