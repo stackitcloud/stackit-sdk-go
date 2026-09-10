@@ -173,33 +173,6 @@ func setFeatureToggleGetDefaultEmailNotificationsAttributeType(arg *FeatureToggl
 }
 
 /*
-	types and functions for enable_commit_signatures
-*/
-
-// isBoolean
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FeatureTogglegetEnableCommitSignaturesAttributeType = *bool
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FeatureTogglegetEnableCommitSignaturesArgType = *bool
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FeatureTogglegetEnableCommitSignaturesRetType = *bool
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFeatureTogglegetEnableCommitSignaturesAttributeTypeOk(arg FeatureTogglegetEnableCommitSignaturesAttributeType) (ret FeatureTogglegetEnableCommitSignaturesRetType, ok bool) {
-	if arg == nil {
-		return nil, false
-	}
-	return arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFeatureTogglegetEnableCommitSignaturesAttributeType(arg *FeatureTogglegetEnableCommitSignaturesAttributeType, val FeatureTogglegetEnableCommitSignaturesRetType) {
-	*arg = val
-}
-
-/*
 	types and functions for enable_local_login
 */
 
@@ -226,15 +199,41 @@ func setFeatureTogglegetEnableLocalLoginAttributeType(arg *FeatureTogglegetEnabl
 	*arg = val
 }
 
+/*
+	types and functions for pipelines
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type FeatureToggleGetPipelinesAttributeType = *Pipelines
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type FeatureToggleGetPipelinesArgType = Pipelines
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type FeatureToggleGetPipelinesRetType = Pipelines
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getFeatureToggleGetPipelinesAttributeTypeOk(arg FeatureToggleGetPipelinesAttributeType) (ret FeatureToggleGetPipelinesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setFeatureToggleGetPipelinesAttributeType(arg *FeatureToggleGetPipelinesAttributeType, val FeatureToggleGetPipelinesRetType) {
+	*arg = &val
+}
+
 // FeatureToggle Feature toggles for the instance.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type FeatureToggle struct {
 	// Default email notifications.
 	DefaultEmailNotifications FeatureToggleGetDefaultEmailNotificationsAttributeType `json:"default_email_notifications,omitempty"`
-	// Enable commit signatures.
-	EnableCommitSignatures FeatureTogglegetEnableCommitSignaturesAttributeType `json:"enable_commit_signatures,omitempty"`
 	// Enable local login.
 	EnableLocalLogin FeatureTogglegetEnableLocalLoginAttributeType `json:"enable_local_login,omitempty"`
+	Pipelines        FeatureToggleGetPipelinesAttributeType        `json:"pipelines,omitempty"`
 }
 
 // NewFeatureToggle instantiates a new FeatureToggle object
@@ -296,46 +295,6 @@ func (o *FeatureToggle) UnsetDefaultEmailNotifications() {
 	o.DefaultEmailNotifications = nil
 }
 
-// GetEnableCommitSignatures returns the EnableCommitSignatures field value if set, zero value otherwise (both if not set or set to explicit null).
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) GetEnableCommitSignatures() (res FeatureTogglegetEnableCommitSignaturesRetType) {
-	res, _ = o.GetEnableCommitSignaturesOk()
-	return
-}
-
-// GetEnableCommitSignaturesOk returns a tuple with the EnableCommitSignatures field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) GetEnableCommitSignaturesOk() (ret FeatureTogglegetEnableCommitSignaturesRetType, ok bool) {
-	return getFeatureTogglegetEnableCommitSignaturesAttributeTypeOk(o.EnableCommitSignatures)
-}
-
-// HasEnableCommitSignatures returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) HasEnableCommitSignatures() bool {
-	_, ok := o.GetEnableCommitSignaturesOk()
-	return ok
-}
-
-// SetEnableCommitSignatures gets a reference to the given bool and assigns it to the EnableCommitSignatures field.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) SetEnableCommitSignatures(v FeatureTogglegetEnableCommitSignaturesRetType) {
-	setFeatureTogglegetEnableCommitSignaturesAttributeType(&o.EnableCommitSignatures, v)
-}
-
-// SetEnableCommitSignaturesNil sets the value for EnableCommitSignatures to be an explicit nil
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) SetEnableCommitSignaturesNil() {
-	o.EnableCommitSignatures = nil
-}
-
-// UnsetEnableCommitSignatures ensures that no value is present for EnableCommitSignatures, not even an explicit nil
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FeatureToggle) UnsetEnableCommitSignatures() {
-	o.EnableCommitSignatures = nil
-}
-
 // GetEnableLocalLogin returns the EnableLocalLogin field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *FeatureToggle) GetEnableLocalLogin() (res FeatureTogglegetEnableLocalLoginRetType) {
@@ -376,17 +335,44 @@ func (o *FeatureToggle) UnsetEnableLocalLogin() {
 	o.EnableLocalLogin = nil
 }
 
+// GetPipelines returns the Pipelines field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *FeatureToggle) GetPipelines() (res FeatureToggleGetPipelinesRetType) {
+	res, _ = o.GetPipelinesOk()
+	return
+}
+
+// GetPipelinesOk returns a tuple with the Pipelines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *FeatureToggle) GetPipelinesOk() (ret FeatureToggleGetPipelinesRetType, ok bool) {
+	return getFeatureToggleGetPipelinesAttributeTypeOk(o.Pipelines)
+}
+
+// HasPipelines returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *FeatureToggle) HasPipelines() bool {
+	_, ok := o.GetPipelinesOk()
+	return ok
+}
+
+// SetPipelines gets a reference to the given Pipelines and assigns it to the Pipelines field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *FeatureToggle) SetPipelines(v FeatureToggleGetPipelinesRetType) {
+	setFeatureToggleGetPipelinesAttributeType(&o.Pipelines, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o FeatureToggle) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFeatureToggleGetDefaultEmailNotificationsAttributeTypeOk(o.DefaultEmailNotifications); ok {
 		toSerialize["DefaultEmailNotifications"] = val
 	}
-	if val, ok := getFeatureTogglegetEnableCommitSignaturesAttributeTypeOk(o.EnableCommitSignatures); ok {
-		toSerialize["EnableCommitSignatures"] = val
-	}
 	if val, ok := getFeatureTogglegetEnableLocalLoginAttributeTypeOk(o.EnableLocalLogin); ok {
 		toSerialize["EnableLocalLogin"] = val
+	}
+	if val, ok := getFeatureToggleGetPipelinesAttributeTypeOk(o.Pipelines); ok {
+		toSerialize["Pipelines"] = val
 	}
 	return toSerialize, nil
 }
