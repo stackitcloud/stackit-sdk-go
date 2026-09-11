@@ -31,7 +31,7 @@ type DefaultAPIServiceMock struct {
 	// ListOrganizationContainersExecuteMock can be populated to implement the behavior of the ListOrganizationContainersExecute function of this mock
 	ListOrganizationContainersExecuteMock *func(r ApiListOrganizationContainersRequest) (*ListContainersResponse, error)
 	// ListProviderOptionsExecuteMock can be populated to implement the behavior of the ListProviderOptionsExecute function of this mock
-	ListProviderOptionsExecuteMock *func(r ApiListProviderOptionsRequest) ([]ProviderOptionsResponse, error)
+	ListProviderOptionsExecuteMock *func(r ApiListProviderOptionsRequest) (*ProviderOptionsResponse, error)
 	// ListRulesExecuteMock can be populated to implement the behavior of the ListRulesExecute function of this mock
 	ListRulesExecuteMock *func(r ApiListRulesRequest) (*ListRulesResponse, error)
 	// UpdateRuleExecuteMock can be populated to implement the behavior of the UpdateRuleExecute function of this mock
@@ -142,9 +142,9 @@ func (a DefaultAPIServiceMock) ListProviderOptions(ctx context.Context, regionId
 }
 
 // ListProviderOptionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListProviderOptionsExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListProviderOptionsExecute(r ApiListProviderOptionsRequest) ([]ProviderOptionsResponse, error) {
+func (a DefaultAPIServiceMock) ListProviderOptionsExecute(r ApiListProviderOptionsRequest) (*ProviderOptionsResponse, error) {
 	if a.ListProviderOptionsExecuteMock == nil {
-		var localVarReturnValue []ProviderOptionsResponse
+		var localVarReturnValue *ProviderOptionsResponse
 		return localVarReturnValue, nil
 	}
 
