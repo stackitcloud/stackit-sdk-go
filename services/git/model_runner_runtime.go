@@ -159,7 +159,7 @@ type RunnerRuntime struct {
 	// Indicates the availability of the runner label
 	// REQUIRED
 	Availability RunnerRuntimeGetAvailabilityAttributeType `json:"availability" required:"true"`
-	// Human-friendly description of the runtime and it's capabilities.
+	// Human-friendly description of the runtime and its capabilities.
 	// REQUIRED
 	Description RunnerRuntimeGetDescriptionAttributeType `json:"description" required:"true"`
 	// Human-friendly name of the runtime.
