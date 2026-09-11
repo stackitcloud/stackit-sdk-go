@@ -27,7 +27,7 @@ type CreateOrUpdateProjectTelemetryLinkPayload struct {
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
 	// Indicates whether routing through the link to a telemetry-router is active.
-	Enabled bool `json:"enabled"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// The ID of the telemetry-router to route the telemetry data.
 	TelemetryRouterId    string `json:"telemetryRouterId"`
 	AdditionalProperties map[string]interface{}
@@ -39,11 +39,12 @@ type _CreateOrUpdateProjectTelemetryLinkPayload CreateOrUpdateProjectTelemetryLi
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrUpdateProjectTelemetryLinkPayload(accessToken string, displayName string, enabled bool, telemetryRouterId string) *CreateOrUpdateProjectTelemetryLinkPayload {
+func NewCreateOrUpdateProjectTelemetryLinkPayload(accessToken string, displayName string, telemetryRouterId string) *CreateOrUpdateProjectTelemetryLinkPayload {
 	this := CreateOrUpdateProjectTelemetryLinkPayload{}
 	this.AccessToken = accessToken
 	this.DisplayName = displayName
-	this.Enabled = enabled
+	var enabled bool = true
+	this.Enabled = &enabled
 	this.TelemetryRouterId = telemetryRouterId
 	return &this
 }
@@ -54,7 +55,7 @@ func NewCreateOrUpdateProjectTelemetryLinkPayload(accessToken string, displayNam
 func NewCreateOrUpdateProjectTelemetryLinkPayloadWithDefaults() *CreateOrUpdateProjectTelemetryLinkPayload {
 	this := CreateOrUpdateProjectTelemetryLinkPayload{}
 	var enabled bool = true
-	this.Enabled = enabled
+	this.Enabled = &enabled
 	return &this
 }
 
@@ -138,28 +139,36 @@ func (o *CreateOrUpdateProjectTelemetryLinkPayload) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
-// GetEnabled returns the Enabled field value
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CreateOrUpdateProjectTelemetryLinkPayload) GetEnabled() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
-
-	return o.Enabled
+	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrUpdateProjectTelemetryLinkPayload) GetEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
-// SetEnabled sets field value
+// HasEnabled returns a boolean if a field has been set.
+func (o *CreateOrUpdateProjectTelemetryLinkPayload) HasEnabled() bool {
+	if o != nil && !IsNil(o.Enabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 func (o *CreateOrUpdateProjectTelemetryLinkPayload) SetEnabled(v bool) {
-	o.Enabled = v
+	o.Enabled = &v
 }
 
 // GetTelemetryRouterId returns the TelemetryRouterId field value
@@ -201,7 +210,9 @@ func (o CreateOrUpdateProjectTelemetryLinkPayload) ToMap() (map[string]interface
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["displayName"] = o.DisplayName
-	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["telemetryRouterId"] = o.TelemetryRouterId
 
 	for key, value := range o.AdditionalProperties {
@@ -218,7 +229,6 @@ func (o *CreateOrUpdateProjectTelemetryLinkPayload) UnmarshalJSON(data []byte) (
 	requiredProperties := []string{
 		"accessToken",
 		"displayName",
-		"enabled",
 		"telemetryRouterId",
 	}
 
