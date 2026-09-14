@@ -1,3 +1,7 @@
+## v0.6.0
+- `v1api`:
+  - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+
 ## v0.5.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
