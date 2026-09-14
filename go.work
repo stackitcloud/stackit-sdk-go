@@ -32,6 +32,7 @@ use (
 	./examples/resourcemanager
 	./examples/runcommand
 	./examples/runtime
+	./examples/sca
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/serviceenablement
