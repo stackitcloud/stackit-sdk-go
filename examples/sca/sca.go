@@ -85,12 +85,12 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplication`: %v\n", err)
 	} else {
-		fmt.Printf("Triggered application creation whit id %q\n", app.GetId())
+		fmt.Printf("Triggered application creation with id %q\n", app.GetId())
 	}
 
 	_, err = wait.CreateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CreateOrUpdateCluster`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplicationWaitHandler`: %v\n", err)
 	} else {
 		fmt.Printf("Application created witht id %q\n", app.GetId())
 	}
@@ -136,6 +136,13 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdateApplication`: %v\n", err)
 	} else {
 		fmt.Printf("Updated application with id %q\n", updateAppResp.GetId())
+	}
+
+	_, err = wait.UpdateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpdatedApplicationWaitHandler`: %v\n", err)
+	} else {
+		fmt.Printf("Application updated with id %q\n", app.GetId())
 	}
 
 	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
