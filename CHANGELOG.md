@@ -160,6 +160,10 @@
   - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
     - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
     - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+- `sca`:
+  - [v0.1.0](services/sca/CHANGELOG.md#v010)
+    - **New:** SDK module for STACKIT Container Applications (SCA) service.
+    - `v1alphaapi`: New package which can be used for communication with the sca v1 alpha API
 - `scf`:
   - [v0.10.2](services/scf/CHANGELOG.md#v0102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
