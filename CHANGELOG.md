@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-09-14)
 
 - `core`: 
   - [v0.27.0](core/CHANGELOG.md#v0270)
