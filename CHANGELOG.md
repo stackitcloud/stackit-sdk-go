@@ -1,5 +1,18 @@
 ## Release (2026-MM-DD)
 
+- `telemetrylink`:
+  - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
+    - `v1api`:
+      - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param
+    - `v1betaapi`:
+      - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param
+- `telemetryrouter`:
+  - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
+    - `v1api`:
+      - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+
+## Release (2026-09-14)
+
 - `core`: 
   - [v0.27.0](core/CHANGELOG.md#v0270)
     - **Feature:** Added experimental paginate package for AIP compliant pagination

@@ -21,6 +21,7 @@ var _ MappedNullable = &ConfigFilter{}
 // ConfigFilter struct for ConfigFilter
 type ConfigFilter struct {
 	Attributes           []ConfigFilterAttributes `json:"attributes"`
+	Disabled             *bool                    `json:"disabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -68,6 +69,38 @@ func (o *ConfigFilter) SetAttributes(v []ConfigFilterAttributes) {
 	o.Attributes = v
 }
 
+// GetDisabled returns the Disabled field value if set, zero value otherwise.
+func (o *ConfigFilter) GetDisabled() bool {
+	if o == nil || IsNil(o.Disabled) {
+		var ret bool
+		return ret
+	}
+	return *o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigFilter) GetDisabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.Disabled) {
+		return nil, false
+	}
+	return o.Disabled, true
+}
+
+// HasDisabled returns a boolean if a field has been set.
+func (o *ConfigFilter) HasDisabled() bool {
+	if o != nil && !IsNil(o.Disabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
+func (o *ConfigFilter) SetDisabled(v bool) {
+	o.Disabled = &v
+}
+
 func (o ConfigFilter) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -79,6 +112,9 @@ func (o ConfigFilter) MarshalJSON() ([]byte, error) {
 func (o ConfigFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["attributes"] = o.Attributes
+	if !IsNil(o.Disabled) {
+		toSerialize["disabled"] = o.Disabled
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,6 +159,7 @@ func (o *ConfigFilter) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "disabled")
 		o.AdditionalProperties = additionalProperties
 	}
 
