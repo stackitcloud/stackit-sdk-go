@@ -15,8 +15,7 @@ func main() {
 	projectID := "PROJECT_ID" // the uuid of your STACKIT project
 
 	// Create a new API client, that uses default authentication and configuration
-	token := "TOKEN"
-	scaClient, err := sca.NewAPIClient(config.WithRegion(region), config.WithToken(token))
+	scaClient, err := sca.NewAPIClient(config.WithRegion(region))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
