@@ -32,13 +32,14 @@ type RuleResponse struct {
 	PortRange             *string            `json:"portRange,omitempty"`
 	Product               string             `json:"product"`
 	Protocol              *string            `json:"protocol,omitempty"`
+	RefId                 *string            `json:"refId,omitempty"`
 	Region                *string            `json:"region,omitempty"`
 	RemoteSecurityGroupId *string            `json:"remoteSecurityGroupId,omitempty"`
 	SecurityGroup         *string            `json:"securityGroup,omitempty"`
 	SecurityGroupId       *string            `json:"securityGroupId,omitempty"`
 	SourceIP              string             `json:"sourceIP"`
 	Status                RuleResponseStatus `json:"status"`
-	Type                  string             `json:"type"`
+	Type                  RuleResponseType   `json:"type"`
 	AdditionalProperties  map[string]interface{}
 }
 
@@ -48,7 +49,7 @@ type _RuleResponse RuleResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRuleResponse(destination string, instanceId string, product string, sourceIP string, status RuleResponseStatus, types string) *RuleResponse {
+func NewRuleResponse(destination string, instanceId string, product string, sourceIP string, status RuleResponseStatus, types RuleResponseType) *RuleResponse {
 	this := RuleResponse{}
 	this.Destination = destination
 	this.InstanceId = instanceId
@@ -427,6 +428,38 @@ func (o *RuleResponse) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
+// GetRefId returns the RefId field value if set, zero value otherwise.
+func (o *RuleResponse) GetRefId() string {
+	if o == nil || IsNil(o.RefId) {
+		var ret string
+		return ret
+	}
+	return *o.RefId
+}
+
+// GetRefIdOk returns a tuple with the RefId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleResponse) GetRefIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RefId) {
+		return nil, false
+	}
+	return o.RefId, true
+}
+
+// HasRefId returns a boolean if a field has been set.
+func (o *RuleResponse) HasRefId() bool {
+	if o != nil && !IsNil(o.RefId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRefId gets a reference to the given string and assigns it to the RefId field.
+func (o *RuleResponse) SetRefId(v string) {
+	o.RefId = &v
+}
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *RuleResponse) GetRegion() string {
 	if o == nil || IsNil(o.Region) {
@@ -604,9 +637,9 @@ func (o *RuleResponse) SetStatus(v RuleResponseStatus) {
 }
 
 // GetType returns the Type field value
-func (o *RuleResponse) GetType() string {
+func (o *RuleResponse) GetType() RuleResponseType {
 	if o == nil {
-		var ret string
+		var ret RuleResponseType
 		return ret
 	}
 
@@ -615,7 +648,7 @@ func (o *RuleResponse) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RuleResponse) GetTypeOk() (*string, bool) {
+func (o *RuleResponse) GetTypeOk() (*RuleResponseType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -623,7 +656,7 @@ func (o *RuleResponse) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *RuleResponse) SetType(v string) {
+func (o *RuleResponse) SetType(v RuleResponseType) {
 	o.Type = v
 }
 
@@ -666,6 +699,9 @@ func (o RuleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["product"] = o.Product
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.RefId) {
+		toSerialize["refId"] = o.RefId
 	}
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
@@ -742,6 +778,7 @@ func (o *RuleResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portRange")
 		delete(additionalProperties, "product")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "refId")
 		delete(additionalProperties, "region")
 		delete(additionalProperties, "remoteSecurityGroupId")
 		delete(additionalProperties, "securityGroup")
