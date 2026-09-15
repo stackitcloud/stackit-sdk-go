@@ -29,6 +29,7 @@ func main() {
 		CreateEnvironmentPayload(createEnvironmentPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateEnvironment`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Created environment with id %q\n", env.GetId())
 	}
@@ -37,6 +38,7 @@ func main() {
 	getEnvResp, err := scaClient.DefaultAPI.GetEnvironment(context.Background(), projectID, env.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetEnvironment`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Got environment with id %q\n", getEnvResp.GetId())
 	}
@@ -45,6 +47,7 @@ func main() {
 	listEnvsResp, err := scaClient.DefaultAPI.ListEnvironments(context.Background(), projectID).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListEnvironments`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Number of environments in project: %d\n", len(listEnvsResp.Items))
 	}
@@ -53,6 +56,7 @@ func main() {
 	listAppsResp, err := scaClient.DefaultAPI.ListProjectApplications(context.Background(), projectID).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListProjectApplications`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Number of applications in project: %d\n", len(listAppsResp.Items))
 	}
@@ -83,6 +87,7 @@ func main() {
 		CreateApplicationPayload(createApplicationPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplication`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Triggered application creation with id %q\n", app.GetId())
 	}
@@ -90,6 +95,7 @@ func main() {
 	_, err = wait.CreateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Application created with id %q\n", app.GetId())
 	}
@@ -98,6 +104,7 @@ func main() {
 	getAppResp, err := scaClient.DefaultAPI.GetApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetApplication`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Got application with id %q\n", getAppResp.GetId())
 	}
@@ -106,6 +113,7 @@ func main() {
 	listEnvAppsResp, err := scaClient.DefaultAPI.ListApplications(context.Background(), projectID, environmentID).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListApplications`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Number of applications in environment: %d\n", len(listEnvAppsResp.Items))
 	}
@@ -133,6 +141,7 @@ func main() {
 		UpdateApplicationPayload(updateApplicationPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdateApplication`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Updated application with id %q\n", updateAppResp.GetId())
 	}
@@ -140,6 +149,7 @@ func main() {
 	_, err = wait.UpdateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdatedApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Triggered application update with id %q\n", app.GetId())
 	}
@@ -147,6 +157,7 @@ func main() {
 	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplication`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Triggered application deletion with id %q\n", *deleteApplicationResp.Id)
 	}
@@ -154,6 +165,7 @@ func main() {
 	_, err = wait.DeleteApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
 	} else {
 		fmt.Printf("Application deleted with id %q\n", app.GetId())
 	}
