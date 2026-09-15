@@ -10,10 +10,12 @@ import (
 	sca "github.com/stackitcloud/stackit-sdk-go/services/sca/v1alphaapi"
 )
 
+// CreateApplicationWaitHandler will wait for application creation
 func CreateApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI, projectID, environmentID, applicationID string) *wait.AsyncActionHandler[sca.Application] {
 	return createOrUpdateApplicationWaitHandler(ctx, a, projectID, environmentID, applicationID)
 }
 
+// UpdateApplicationWaitHandler will wait for application update
 func UpdateApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI, projectID, environmentID, applicationID string) *wait.AsyncActionHandler[sca.Application] {
 	return createOrUpdateApplicationWaitHandler(ctx, a, projectID, environmentID, applicationID)
 }
@@ -40,6 +42,7 @@ func getApplicationState(app *sca.Application) (sca.CurrentStatus, error) {
 	return *app.RuntimeStatus.CurrentStatus, nil
 }
 
+// DeleteApplicationWaitHandler will wait for application deletion
 func DeleteApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI, projectID, environmentID, applicationID string) *wait.AsyncActionHandler[sca.Application] {
 	waitConfig := wait.WaiterHelper[sca.Application, sca.CurrentStatus]{
 		FetchInstance:              a.GetApplication(ctx, projectID, environmentID, applicationID).Execute,

@@ -76,6 +76,14 @@ func TestCreateOrUpdateApplicationWaitHandler(t *testing.T) {
 			},
 			wantErr: true,
 		},
+		{
+			desc: "create_failed",
+			mockSettings: mockSettings{
+				getFails:      false,
+				resourceState: sca.CURRENTSTATUS_CURRENT_STATUS_FAILED,
+			},
+			wantErr: true,
+		},
 	}
 
 	handlers := map[string]func(context.Context, sca.DefaultAPI, string, string, string) *wait.AsyncActionHandler[sca.Application]{
