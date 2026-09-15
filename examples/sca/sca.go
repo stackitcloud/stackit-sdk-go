@@ -58,7 +58,7 @@ func main() {
 	}
 
 	// Create an application within an environment
-	environmentID := "ENVIRONMENT_ID"
+	environmentID := env.GetId()
 	createApplicationPayload := sca.CreateApplicationPayload{
 		DisplayName: "application-name",
 		Containers: []sca.Container{{
@@ -91,7 +91,7 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplicationWaitHandler`: %v\n", err)
 	} else {
-		fmt.Printf("Application created witht id %q\n", app.GetId())
+		fmt.Printf("Application created with id %q\n", app.GetId())
 	}
 
 	// Get application's details
@@ -141,13 +141,20 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdatedApplicationWaitHandler`: %v\n", err)
 	} else {
-		fmt.Printf("Application updated with id %q\n", app.GetId())
+		fmt.Printf("Triggered application update with id %q\n", app.GetId())
 	}
 
 	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplication`: %v\n", err)
 	} else {
-		fmt.Printf("Deleted application with id %q\n", *deleteApplicationResp.Id)
+		fmt.Printf("Triggered application deletion with id %q\n", *deleteApplicationResp.Id)
+	}
+
+	_, err = wait.DeleteApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplicationWaitHandler`: %v\n", err)
+	} else {
+		fmt.Printf("Application deleted with id %q\n", app.GetId())
 	}
 }
