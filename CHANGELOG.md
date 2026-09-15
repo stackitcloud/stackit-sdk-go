@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `functions`:
+  - [v0.1.0](services/functions/CHANGELOG.md#v010)
+    - `v1alphaapi`:
+      - **Feature**: initial release
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
