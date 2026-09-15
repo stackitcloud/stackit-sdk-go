@@ -1,3 +1,6 @@
+## v0.27.1
+- **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error. `WaiterHelper.Wait()` now correctly returns `waitFinished = false` on generic fetch errors
+
 ## v0.27.0
 - **Feature:** Added experimental paginate package for AIP compliant pagination
 

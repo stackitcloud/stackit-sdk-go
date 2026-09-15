@@ -102,6 +102,10 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 			if err != nil {
 				return res, err
 			}
+			// the error was retryable and got swallowed by h.handleError, so done represents a failed
+			// fetch rather than a finished action - poll again instead of returning
+			// otherwise we might return (nil, nil)
+			done = false
 		}
 		if done {
 			return res, nil
