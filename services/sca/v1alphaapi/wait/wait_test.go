@@ -46,7 +46,6 @@ func TestCreateOrUpdateApplicationWaitHandler(t *testing.T) {
 		desc         string
 		mockSettings mockSettings
 		wantErr      bool
-		wantRes      bool
 	}{
 		{
 			desc: "create_succeeded",
@@ -58,7 +57,7 @@ func TestCreateOrUpdateApplicationWaitHandler(t *testing.T) {
 		{
 			desc: "create_idle_succeeded",
 			mockSettings: mockSettings{
-				resourceState: sca.CURRENTSTATUS_CURRENT_STATUS_RUNNING,
+				resourceState: sca.CURRENTSTATUS_CURRENT_STATUS_IDLE,
 				getFails:      false,
 			},
 		},
@@ -107,7 +106,6 @@ func TestDeleteApplicationWaitHandler(t *testing.T) {
 		desc         string
 		mockSettings mockSettings
 		wantErr      bool
-		wantRes      bool
 	}{
 		{
 			desc: "delete_succeeded",
