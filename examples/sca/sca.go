@@ -22,6 +22,7 @@ func main() {
 	}
 
 	// Create environment
+	// WARNING: Keep in mind that there is no endpoint to delete environments right now.
 	createEnvironmentPayload := sca.CreateEnvironmentPayload{
 		DisplayName: "environment-name",
 	}
