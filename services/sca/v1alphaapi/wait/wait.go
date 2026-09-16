@@ -25,7 +25,7 @@ func createOrUpdateApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI,
 		FetchInstance: a.GetApplication(ctx, projectID, environmentID, applicationID).Execute,
 		GetState:      getApplicationState,
 		ActiveState:   []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_RUNNING, sca.CURRENTSTATUS_CURRENT_STATUS_IDLE},
-		ErrorState:    []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_FAILED},
+		// ErrorState:    []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_FAILED},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)

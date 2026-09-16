@@ -69,8 +69,8 @@ func main() {
 		Containers: []sca.Container{{
 			Name:   "nginx-container",
 			Image:  "nginxinc/nginx-unprivileged",
-			Memory: sca.PtrInt32(100),
-			Cpu:    sca.PtrInt32(100),
+			Memory: sca.PtrInt32(1000),
+			Cpu:    sca.PtrInt32(1000),
 		}},
 		Network: sca.Network{
 			PublicIngress: true,
@@ -119,9 +119,13 @@ func main() {
 
 	fmt.Printf("Number of applications in environment: %d\n", len(listEnvAppsResp.Items))
 
-	logs, err := scaClient.DefaultAPI.GetApplicationLogs(context.Background(), projectID, environmentID, app.GetId()).Execute()
+	logs, err := scaClient.DefaultAPI.GetApplicationLogs(context.Background(), projectID, environmentID, app.GetId()).
+		Instance(getAppResp.RuntimeStatus.Instances[0].GetName()).
+		Container(getAppResp.Containers[0].GetName()).
+		Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetApplicationLogs`: %v\n", err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("Found %d logs for application %q\n", len(logs.GetLogs()), app.GetId())
@@ -129,6 +133,7 @@ func main() {
 	events, err := scaClient.DefaultAPI.GetApplicationEvents(context.Background(), projectID, environmentID, app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetApplicationEvents`: %v\n", err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("Found %d events for application %q\n", len(events.GetEvents()), app.GetId())
