@@ -17,7 +17,7 @@ import (
 )
 
 // ReplicasOpt Deprecated: Use flavorId instead, -replica in flavorId means 3 replicas. How many replicas the instance should have.
-type ReplicasOpt uint32
+type ReplicasOpt int32
 
 // List of replicas.opt
 const (
@@ -34,7 +34,7 @@ var AllowedReplicasOptEnumValues = []ReplicasOpt{
 }
 
 func (v *ReplicasOpt) UnmarshalJSON(src []byte) error {
-	var value uint32
+	var value int32
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
@@ -53,7 +53,7 @@ func (v *ReplicasOpt) UnmarshalJSON(src []byte) error {
 
 // NewReplicasOptFromValue returns a pointer to a valid ReplicasOpt
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewReplicasOptFromValue(v uint32) (*ReplicasOpt, error) {
+func NewReplicasOptFromValue(v int32) (*ReplicasOpt, error) {
 	ev := ReplicasOpt(v)
 	if ev.IsValid() {
 		return &ev, nil

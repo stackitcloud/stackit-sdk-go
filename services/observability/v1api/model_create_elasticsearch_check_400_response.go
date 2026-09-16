@@ -77,14 +77,9 @@ func (dst *CreateElasticsearchCheck400Response) UnmarshalJSON(data []byte) error
 	} else { // no match
 		if err != nil {
 			return fmt.Errorf("data failed to match schemas in oneOf(CreateElasticsearchCheck400Response): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateElasticsearchCheck400Response)")
 		}
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateElasticsearchCheck400Response): %v", err)
-		} else {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateElasticsearchCheck400Response)")
-		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateElasticsearchCheck400Response)")
 	}
 }
 

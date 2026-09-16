@@ -1,3 +1,6 @@
+## v0.25.2
+- **Fix:** Removed duplicate/dead error-handling branch in `UnmarshalJSON` for `oneOf` response models (`Create*Check400Response`)
+
 ## v0.25.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
