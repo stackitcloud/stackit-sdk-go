@@ -28,22 +28,22 @@ var _ MappedNullable = &CreateAccessKeyPayload{}
 type CreateAccessKeyPayloadGetExpiresAttributeType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateAccessKeyPayloadGetExpiresArgType = time.Time
+type CreateAccessKeyPayloadGetExpiresArgType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateAccessKeyPayloadGetExpiresRetType = time.Time
+type CreateAccessKeyPayloadGetExpiresRetType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(arg CreateAccessKeyPayloadGetExpiresAttributeType) (ret CreateAccessKeyPayloadGetExpiresRetType, ok bool) {
 	if arg == nil {
-		return ret, false
+		return nil, false
 	}
-	return *arg, true
+	return arg, true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setCreateAccessKeyPayloadGetExpiresAttributeType(arg *CreateAccessKeyPayloadGetExpiresAttributeType, val CreateAccessKeyPayloadGetExpiresRetType) {
-	*arg = &val
+	*arg = val
 }
 
 // CreateAccessKeyPayload struct for CreateAccessKeyPayload
@@ -72,7 +72,7 @@ func NewCreateAccessKeyPayloadWithDefaults() *CreateAccessKeyPayload {
 	return &this
 }
 
-// GetExpires returns the Expires field value if set, zero value otherwise.
+// GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateAccessKeyPayload) GetExpires() (res CreateAccessKeyPayloadGetExpiresRetType) {
 	res, _ = o.GetExpiresOk()
@@ -81,6 +81,7 @@ func (o *CreateAccessKeyPayload) GetExpires() (res CreateAccessKeyPayloadGetExpi
 
 // GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateAccessKeyPayload) GetExpiresOk() (ret CreateAccessKeyPayloadGetExpiresRetType, ok bool) {
 	return getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(o.Expires)
@@ -97,6 +98,18 @@ func (o *CreateAccessKeyPayload) HasExpires() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateAccessKeyPayload) SetExpires(v CreateAccessKeyPayloadGetExpiresRetType) {
 	setCreateAccessKeyPayloadGetExpiresAttributeType(&o.Expires, v)
+}
+
+// SetExpiresNil sets the value for Expires to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateAccessKeyPayload) SetExpiresNil() {
+	o.Expires = nil
+}
+
+// UnsetExpires ensures that no value is present for Expires, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateAccessKeyPayload) UnsetExpires() {
+	o.Expires = nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
