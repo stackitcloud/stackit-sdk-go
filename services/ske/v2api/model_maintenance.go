@@ -12,7 +12,6 @@ package v2api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Maintenance type satisfies the MappedNullable interface at compile time
@@ -20,8 +19,8 @@ var _ MappedNullable = &Maintenance{}
 
 // Maintenance struct for Maintenance
 type Maintenance struct {
-	AutoUpdate           MaintenanceAutoUpdate `json:"autoUpdate"`
-	TimeWindow           TimeWindow            `json:"timeWindow"`
+	AutoUpdate           *MaintenanceAutoUpdate `json:"autoUpdate,omitempty"`
+	TimeWindow           *TimeWindow            `json:"timeWindow,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,10 +30,8 @@ type _Maintenance Maintenance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMaintenance(autoUpdate MaintenanceAutoUpdate, timeWindow TimeWindow) *Maintenance {
+func NewMaintenance() *Maintenance {
 	this := Maintenance{}
-	this.AutoUpdate = autoUpdate
-	this.TimeWindow = timeWindow
 	return &this
 }
 
@@ -46,52 +43,68 @@ func NewMaintenanceWithDefaults() *Maintenance {
 	return &this
 }
 
-// GetAutoUpdate returns the AutoUpdate field value
+// GetAutoUpdate returns the AutoUpdate field value if set, zero value otherwise.
 func (o *Maintenance) GetAutoUpdate() MaintenanceAutoUpdate {
-	if o == nil {
+	if o == nil || IsNil(o.AutoUpdate) {
 		var ret MaintenanceAutoUpdate
 		return ret
 	}
-
-	return o.AutoUpdate
+	return *o.AutoUpdate
 }
 
-// GetAutoUpdateOk returns a tuple with the AutoUpdate field value
+// GetAutoUpdateOk returns a tuple with the AutoUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Maintenance) GetAutoUpdateOk() (*MaintenanceAutoUpdate, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AutoUpdate) {
 		return nil, false
 	}
-	return &o.AutoUpdate, true
+	return o.AutoUpdate, true
 }
 
-// SetAutoUpdate sets field value
+// HasAutoUpdate returns a boolean if a field has been set.
+func (o *Maintenance) HasAutoUpdate() bool {
+	if o != nil && !IsNil(o.AutoUpdate) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoUpdate gets a reference to the given MaintenanceAutoUpdate and assigns it to the AutoUpdate field.
 func (o *Maintenance) SetAutoUpdate(v MaintenanceAutoUpdate) {
-	o.AutoUpdate = v
+	o.AutoUpdate = &v
 }
 
-// GetTimeWindow returns the TimeWindow field value
+// GetTimeWindow returns the TimeWindow field value if set, zero value otherwise.
 func (o *Maintenance) GetTimeWindow() TimeWindow {
-	if o == nil {
+	if o == nil || IsNil(o.TimeWindow) {
 		var ret TimeWindow
 		return ret
 	}
-
-	return o.TimeWindow
+	return *o.TimeWindow
 }
 
-// GetTimeWindowOk returns a tuple with the TimeWindow field value
+// GetTimeWindowOk returns a tuple with the TimeWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Maintenance) GetTimeWindowOk() (*TimeWindow, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TimeWindow) {
 		return nil, false
 	}
-	return &o.TimeWindow, true
+	return o.TimeWindow, true
 }
 
-// SetTimeWindow sets field value
+// HasTimeWindow returns a boolean if a field has been set.
+func (o *Maintenance) HasTimeWindow() bool {
+	if o != nil && !IsNil(o.TimeWindow) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeWindow gets a reference to the given TimeWindow and assigns it to the TimeWindow field.
 func (o *Maintenance) SetTimeWindow(v TimeWindow) {
-	o.TimeWindow = v
+	o.TimeWindow = &v
 }
 
 func (o Maintenance) MarshalJSON() ([]byte, error) {
@@ -104,8 +117,12 @@ func (o Maintenance) MarshalJSON() ([]byte, error) {
 
 func (o Maintenance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["autoUpdate"] = o.AutoUpdate
-	toSerialize["timeWindow"] = o.TimeWindow
+	if !IsNil(o.AutoUpdate) {
+		toSerialize["autoUpdate"] = o.AutoUpdate
+	}
+	if !IsNil(o.TimeWindow) {
+		toSerialize["timeWindow"] = o.TimeWindow
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -115,28 +132,6 @@ func (o Maintenance) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Maintenance) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"autoUpdate",
-		"timeWindow",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMaintenance := _Maintenance{}
 
 	err = json.Unmarshal(data, &varMaintenance)
