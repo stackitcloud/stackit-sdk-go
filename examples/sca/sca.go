@@ -63,7 +63,6 @@ func main() {
 	fmt.Printf("Number of applications in project: %d\n", len(listAppsResp.Items))
 
 	// Create an application within an environment
-	environmentID := env.GetId()
 	createApplicationPayload := sca.CreateApplicationPayload{
 		DisplayName: "application-name",
 		Containers: []sca.Container{{
@@ -84,7 +83,7 @@ func main() {
 		},
 	}
 
-	app, err := scaClient.DefaultAPI.CreateApplication(context.Background(), projectID, environmentID).
+	app, err := scaClient.DefaultAPI.CreateApplication(context.Background(), projectID, env.GetId()).
 		CreateApplicationPayload(createApplicationPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplication`: %v\n", err)
@@ -93,7 +92,7 @@ func main() {
 
 	fmt.Printf("Triggered application creation with id %q\n", app.GetId())
 
-	_, err = wait.CreateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
+	_, err = wait.CreateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplicationWaitHandler`: %v\n", err)
 		os.Exit(1)
@@ -102,7 +101,7 @@ func main() {
 	fmt.Printf("Application created with id %q\n", app.GetId())
 
 	// Get application's details
-	getAppResp, err := scaClient.DefaultAPI.GetApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
+	getAppResp, err := scaClient.DefaultAPI.GetApplication(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetApplication`: %v\n", err)
 		os.Exit(1)
@@ -111,7 +110,7 @@ func main() {
 	fmt.Printf("Got application with id %q\n", getAppResp.GetId())
 
 	// List applications in an environment
-	listEnvAppsResp, err := scaClient.DefaultAPI.ListApplications(context.Background(), projectID, environmentID).Execute()
+	listEnvAppsResp, err := scaClient.DefaultAPI.ListApplications(context.Background(), projectID, env.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListApplications`: %v\n", err)
 		os.Exit(1)
@@ -119,7 +118,7 @@ func main() {
 
 	fmt.Printf("Number of applications in environment: %d\n", len(listEnvAppsResp.Items))
 
-	logs, err := scaClient.DefaultAPI.GetApplicationLogs(context.Background(), projectID, environmentID, app.GetId()).
+	logs, err := scaClient.DefaultAPI.GetApplicationLogs(context.Background(), projectID, env.GetId(), app.GetId()).
 		Instance(getAppResp.RuntimeStatus.Instances[0].GetName()).
 		Container(getAppResp.Containers[0].GetName()).
 		Execute()
@@ -130,7 +129,7 @@ func main() {
 
 	fmt.Printf("Found %d logs for application %q\n", len(logs.GetLogs()), app.GetId())
 
-	events, err := scaClient.DefaultAPI.GetApplicationEvents(context.Background(), projectID, environmentID, app.GetId()).Execute()
+	events, err := scaClient.DefaultAPI.GetApplicationEvents(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetApplicationEvents`: %v\n", err)
 		os.Exit(1)
@@ -157,7 +156,7 @@ func main() {
 			},
 		},
 	}
-	updateAppResp, err := scaClient.DefaultAPI.UpdateApplication(context.Background(), projectID, environmentID, app.GetId()).
+	updateAppResp, err := scaClient.DefaultAPI.UpdateApplication(context.Background(), projectID, env.GetId(), app.GetId()).
 		UpdateApplicationPayload(updateApplicationPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdateApplication`: %v\n", err)
@@ -166,7 +165,7 @@ func main() {
 
 	fmt.Printf("Triggered application update with id %q\n", app.GetId())
 
-	_, err = wait.UpdateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
+	_, err = wait.UpdateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdatedApplicationWaitHandler`: %v\n", err)
 		os.Exit(1)
@@ -174,7 +173,7 @@ func main() {
 
 	fmt.Printf("Updated application with id %q\n", updateAppResp.GetId())
 
-	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, environmentID, app.GetId()).Execute()
+	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplication`: %v\n", err)
 		os.Exit(1)
@@ -182,7 +181,7 @@ func main() {
 
 	fmt.Printf("Triggered application deletion with id %q\n", *deleteApplicationResp.Id)
 
-	_, err = wait.DeleteApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, environmentID, app.GetId()).WaitWithContext(context.Background())
+	_, err = wait.DeleteApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplicationWaitHandler`: %v\n", err)
 		os.Exit(1)
