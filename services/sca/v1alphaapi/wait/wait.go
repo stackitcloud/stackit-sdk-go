@@ -25,6 +25,8 @@ func createOrUpdateApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI,
 		FetchInstance: a.GetApplication(ctx, projectID, environmentID, applicationID).Execute,
 		GetState:      getApplicationState,
 		ActiveState:   []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_RUNNING, sca.CURRENTSTATUS_CURRENT_STATUS_IDLE},
+		// There is an issue where the API reports a transient FAILED status during the startup of applications.
+		// It will be solved before the beta.
 		// ErrorState:    []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_FAILED},
 	}
 	handler := wait.New(waitConfig.Wait())

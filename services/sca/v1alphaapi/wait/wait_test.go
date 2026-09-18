@@ -23,7 +23,7 @@ type mockSettings struct {
 
 func newAPIMock(settings mockSettings) sca.DefaultAPI {
 	return &sca.DefaultAPIServiceMock{
-		GetApplicationExecuteMock: utils.Ptr(func(r sca.ApiGetApplicationRequest) (*sca.Application, error) {
+		GetApplicationExecuteMock: utils.Ptr(func(_ sca.ApiGetApplicationRequest) (*sca.Application, error) {
 			if settings.getFails {
 				return nil, &oapierror.GenericOpenAPIError{
 					StatusCode: settings.getErrorCode,
