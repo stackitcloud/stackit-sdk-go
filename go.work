@@ -71,6 +71,7 @@ use (
 	./services/postgresflex
 	./services/rabbitmq
 	./services/redis
+	./services/registry
 	./services/resourcemanager
 	./services/runcommand
 	./services/scf
