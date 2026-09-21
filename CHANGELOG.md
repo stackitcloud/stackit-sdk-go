@@ -1,5 +1,10 @@
 ## Release (2026-MM-DD)
 
+- `automation`:
+  - [v0.2.0](services/automation/CHANGELOG.md#v020)
+    - `v1api`:
+      - **New:** Add package which can be used for communication with the STACKIT automation v1 API
+      - **Feature:** Add waiter method for the API
 - `iaas`:
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
