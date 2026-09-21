@@ -48,6 +48,33 @@ func setInstanceGetAclAttributeType(arg *InstanceGetAclAttributeType, val Instan
 }
 
 /*
+	types and functions for admin_login
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstancegetAdminLoginAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstancegetAdminLoginArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstancegetAdminLoginRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getInstancegetAdminLoginAttributeTypeOk(arg InstancegetAdminLoginAttributeType) (ret InstancegetAdminLoginRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setInstancegetAdminLoginAttributeType(arg *InstancegetAdminLoginAttributeType, val InstancegetAdminLoginRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for consumed_disk
 */
 
@@ -208,6 +235,33 @@ type InstanceGetIdArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type InstanceGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getInstanceGetLabelsAttributeTypeOk(arg InstanceGetLabelsAttributeType) (ret InstanceGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setInstanceGetLabelsAttributeType(arg *InstanceGetLabelsAttributeType, val InstanceGetLabelsRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for name
@@ -455,6 +509,9 @@ type Instance struct {
 	// Restricted ACL for instance access.
 	// REQUIRED
 	Acl InstanceGetAclAttributeType `json:"acl" required:"true"`
+	// Enable or disable Admin Idp
+	// REQUIRED
+	AdminLogin InstancegetAdminLoginAttributeType `json:"admin_login" required:"true"`
 	// How many bytes of disk space is consumed. Read Only.
 	// REQUIRED
 	ConsumedDisk InstanceGetConsumedDiskAttributeType `json:"consumed_disk" required:"true"`
@@ -472,6 +529,8 @@ type Instance struct {
 	// A auto generated unique id which identifies the STACKIT Git instances.
 	// REQUIRED
 	Id InstanceGetIdAttributeType `json:"id" required:"true"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.
+	Labels InstanceGetLabelsAttributeType `json:"labels,omitempty"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
 	// REQUIRED
 	Name InstanceGetNameAttributeType `json:"name" required:"true"`
@@ -494,9 +553,10 @@ type _Instance Instance
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, created InstanceGetCreatedArgType, featureToggle InstanceGetFeatureToggleArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
+func NewInstance(acl InstanceGetAclArgType, adminLogin InstancegetAdminLoginArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, created InstanceGetCreatedArgType, featureToggle InstanceGetFeatureToggleArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
 	this := Instance{}
 	setInstanceGetAclAttributeType(&this.Acl, acl)
+	setInstancegetAdminLoginAttributeType(&this.AdminLogin, adminLogin)
 	setInstanceGetConsumedDiskAttributeType(&this.ConsumedDisk, consumedDisk)
 	setInstanceGetConsumedObjectStorageAttributeType(&this.ConsumedObjectStorage, consumedObjectStorage)
 	setInstanceGetCreatedAttributeType(&this.Created, created)
@@ -516,6 +576,8 @@ func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDisk
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
+	var adminLogin bool = false
+	this.AdminLogin = &adminLogin
 	return &this
 }
 
@@ -537,6 +599,26 @@ func (o *Instance) GetAclOk() (ret InstanceGetAclRetType, ok bool) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Instance) SetAcl(v InstanceGetAclRetType) {
 	setInstanceGetAclAttributeType(&o.Acl, v)
+}
+
+// GetAdminLogin returns the AdminLogin field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetAdminLogin() (ret InstancegetAdminLoginRetType) {
+	ret, _ = o.GetAdminLoginOk()
+	return ret
+}
+
+// GetAdminLoginOk returns a tuple with the AdminLogin field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetAdminLoginOk() (ret InstancegetAdminLoginRetType, ok bool) {
+	return getInstancegetAdminLoginAttributeTypeOk(o.AdminLogin)
+}
+
+// SetAdminLogin sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) SetAdminLogin(v InstancegetAdminLoginRetType) {
+	setInstancegetAdminLoginAttributeType(&o.AdminLogin, v)
 }
 
 // GetConsumedDisk returns the ConsumedDisk field value
@@ -659,6 +741,33 @@ func (o *Instance) SetId(v InstanceGetIdRetType) {
 	setInstanceGetIdAttributeType(&o.Id, v)
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetLabels() (res InstanceGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) GetLabelsOk() (ret InstanceGetLabelsRetType, ok bool) {
+	return getInstanceGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Instance) SetLabels(v InstanceGetLabelsRetType) {
+	setInstanceGetLabelsAttributeType(&o.Labels, v)
+}
+
 // GetName returns the Name field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Instance) GetName() (ret InstanceGetNameRetType) {
@@ -745,6 +854,9 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if val, ok := getInstanceGetAclAttributeTypeOk(o.Acl); ok {
 		toSerialize["Acl"] = val
 	}
+	if val, ok := getInstancegetAdminLoginAttributeTypeOk(o.AdminLogin); ok {
+		toSerialize["AdminLogin"] = val
+	}
 	if val, ok := getInstanceGetConsumedDiskAttributeTypeOk(o.ConsumedDisk); ok {
 		toSerialize["ConsumedDisk"] = val
 	}
@@ -762,6 +874,9 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getInstanceGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getInstanceGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
