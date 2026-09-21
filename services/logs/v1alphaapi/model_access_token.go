@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1alpha.0.4
 */
@@ -33,7 +33,7 @@ type AccessToken struct {
 	Expires bool `json:"expires"`
 	// An auto generated unique id which identifies the access token.
 	Id string `json:"id"`
-	// The access permissions granted to the access token.
+	// The access permissions granted to the access token or access policy.
 	Permissions []PermissionsInner `json:"permissions"`
 	Status      AccessTokenStatus  `json:"status"`
 	// The date and time util an access token is valid to (inclusively).
