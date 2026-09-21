@@ -3,6 +3,24 @@
 - `iaas`:
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `objectstorage`:
+  - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
+    - `v1api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyResponse` model is now `NullableString`
+    - `v2api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
