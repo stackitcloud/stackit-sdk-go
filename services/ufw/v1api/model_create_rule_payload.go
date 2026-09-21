@@ -37,9 +37,13 @@ type CreateRulePayload struct {
 	// The network protocol (e.g., \"TCP\", \"UDP\", \"ICMP\").
 	Protocol *string `json:"protocol,omitempty"`
 	// The ID of the Group.
+	RemoteSecurityGroupId *string `json:"remoteSecurityGroupId,omitempty"`
+	// The ID of the Group.
 	SecurityGroupId *string `json:"securityGroupId,omitempty"`
 	// The IP (CIDR) to which the rule applies.
 	SourceIP string `json:"sourceIP"`
+	// Indicates whether the security group rule is stateful or stateless (used only for security groups, default value for them will be true).
+	Stateful *bool `json:"stateful,omitempty"`
 	// The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -308,6 +312,38 @@ func (o *CreateRulePayload) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
+// GetRemoteSecurityGroupId returns the RemoteSecurityGroupId field value if set, zero value otherwise.
+func (o *CreateRulePayload) GetRemoteSecurityGroupId() string {
+	if o == nil || IsNil(o.RemoteSecurityGroupId) {
+		var ret string
+		return ret
+	}
+	return *o.RemoteSecurityGroupId
+}
+
+// GetRemoteSecurityGroupIdOk returns a tuple with the RemoteSecurityGroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRulePayload) GetRemoteSecurityGroupIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RemoteSecurityGroupId) {
+		return nil, false
+	}
+	return o.RemoteSecurityGroupId, true
+}
+
+// HasRemoteSecurityGroupId returns a boolean if a field has been set.
+func (o *CreateRulePayload) HasRemoteSecurityGroupId() bool {
+	if o != nil && !IsNil(o.RemoteSecurityGroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSecurityGroupId gets a reference to the given string and assigns it to the RemoteSecurityGroupId field.
+func (o *CreateRulePayload) SetRemoteSecurityGroupId(v string) {
+	o.RemoteSecurityGroupId = &v
+}
+
 // GetSecurityGroupId returns the SecurityGroupId field value if set, zero value otherwise.
 func (o *CreateRulePayload) GetSecurityGroupId() string {
 	if o == nil || IsNil(o.SecurityGroupId) {
@@ -364,6 +400,38 @@ func (o *CreateRulePayload) SetSourceIP(v string) {
 	o.SourceIP = v
 }
 
+// GetStateful returns the Stateful field value if set, zero value otherwise.
+func (o *CreateRulePayload) GetStateful() bool {
+	if o == nil || IsNil(o.Stateful) {
+		var ret bool
+		return ret
+	}
+	return *o.Stateful
+}
+
+// GetStatefulOk returns a tuple with the Stateful field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRulePayload) GetStatefulOk() (*bool, bool) {
+	if o == nil || IsNil(o.Stateful) {
+		return nil, false
+	}
+	return o.Stateful, true
+}
+
+// HasStateful returns a boolean if a field has been set.
+func (o *CreateRulePayload) HasStateful() bool {
+	if o != nil && !IsNil(o.Stateful) {
+		return true
+	}
+
+	return false
+}
+
+// SetStateful gets a reference to the given bool and assigns it to the Stateful field.
+func (o *CreateRulePayload) SetStateful(v bool) {
+	o.Stateful = &v
+}
+
 // GetType returns the Type field value
 func (o *CreateRulePayload) GetType() string {
 	if o == nil {
@@ -418,10 +486,16 @@ func (o CreateRulePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
+	if !IsNil(o.RemoteSecurityGroupId) {
+		toSerialize["remoteSecurityGroupId"] = o.RemoteSecurityGroupId
+	}
 	if !IsNil(o.SecurityGroupId) {
 		toSerialize["securityGroupId"] = o.SecurityGroupId
 	}
 	toSerialize["sourceIP"] = o.SourceIP
+	if !IsNil(o.Stateful) {
+		toSerialize["stateful"] = o.Stateful
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -477,8 +551,10 @@ func (o *CreateRulePayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portRange")
 		delete(additionalProperties, "product")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "remoteSecurityGroupId")
 		delete(additionalProperties, "securityGroupId")
 		delete(additionalProperties, "sourceIP")
+		delete(additionalProperties, "stateful")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
