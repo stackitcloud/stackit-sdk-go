@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1alpha.0.4
 */
@@ -22,6 +22,23 @@ import (
 )
 
 type DefaultAPI interface {
+
+	/*
+		CreateAccessPolicy Create Access Policy
+
+		Create a new access policy for Logs instance
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@return ApiCreateAccessPolicyRequest
+	*/
+	CreateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessPolicyRequest
+
+	// CreateAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	CreateAccessPolicyExecute(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error)
 
 	/*
 		CreateAccessToken Create Access Token
@@ -57,6 +74,23 @@ type DefaultAPI interface {
 	CreateLogsInstanceExecute(r ApiCreateLogsInstanceRequest) (*LogsInstance, error)
 
 	/*
+		DeleteAccessPolicy Delete Access Policy
+
+		Deletes a Logs instance access policy
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@param pId The access policy unique id.
+		@return ApiDeleteAccessPolicyRequest
+	*/
+	DeleteAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiDeleteAccessPolicyRequest
+
+	// DeleteAccessPolicyExecute executes the request
+	DeleteAccessPolicyExecute(r ApiDeleteAccessPolicyRequest) error
+
+	/*
 		DeleteAccessToken Delete Access Token
 
 		Deletes a Logs instance access token
@@ -72,6 +106,23 @@ type DefaultAPI interface {
 
 	// DeleteAccessTokenExecute executes the request
 	DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error
+
+	/*
+		DeleteAllAccessPolicies Delete All Access Policies
+
+		Deletes all access policies for a Logs instance
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@return ApiDeleteAllAccessPoliciesRequest
+	*/
+	DeleteAllAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessPoliciesRequest
+
+	// DeleteAllAccessPoliciesExecute executes the request
+	//  @return AccessPolicyList
+	DeleteAllAccessPoliciesExecute(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error)
 
 	/*
 		DeleteAllAccessTokens Delete All Access Tokens
@@ -124,6 +175,24 @@ type DefaultAPI interface {
 	DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceRequest) error
 
 	/*
+		GetAccessPolicy Get Access Policy
+
+		Get the information of the given access policy.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@param pId The access policy unique id.
+		@return ApiGetAccessPolicyRequest
+	*/
+	GetAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiGetAccessPolicyRequest
+
+	// GetAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	GetAccessPolicyExecute(r ApiGetAccessPolicyRequest) (*AccessPolicy, error)
+
+	/*
 		GetAccessToken Get Access Token
 
 		Get the information of the given access token.
@@ -159,6 +228,23 @@ type DefaultAPI interface {
 	GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) (*LogsInstance, error)
 
 	/*
+		ListAccessPolicies List Access Policies
+
+		Returns a list of access policies created for a Logs instance
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@return ApiListAccessPoliciesRequest
+	*/
+	ListAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessPoliciesRequest
+
+	// ListAccessPoliciesExecute executes the request
+	//  @return AccessPolicyList
+	ListAccessPoliciesExecute(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error)
+
+	/*
 		ListAccessTokens List Access Tokens
 
 		Returns a list of access tokens created for a Logs instance
@@ -190,6 +276,24 @@ type DefaultAPI interface {
 	// ListLogsInstancesExecute executes the request
 	//  @return LogsInstancesList
 	ListLogsInstancesExecute(r ApiListLogsInstancesRequest) (*LogsInstancesList, error)
+
+	/*
+		UpdateAccessPolicy Update Access Policy
+
+		Updates the given access policy.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param instanceId The Logs Instance UUID.
+		@param pId The access policy unique id.
+		@return ApiUpdateAccessPolicyRequest
+	*/
+	UpdateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiUpdateAccessPolicyRequest
+
+	// UpdateAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	UpdateAccessPolicyExecute(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error)
 
 	/*
 		UpdateAccessToken Update Access Token
@@ -228,6 +332,151 @@ type DefaultAPI interface {
 
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
+
+type ApiCreateAccessPolicyRequest struct {
+	ctx                       context.Context
+	ApiService                DefaultAPI
+	projectId                 string
+	regionId                  string
+	instanceId                string
+	createAccessPolicyPayload *CreateAccessPolicyPayload
+}
+
+func (r ApiCreateAccessPolicyRequest) CreateAccessPolicyPayload(createAccessPolicyPayload CreateAccessPolicyPayload) ApiCreateAccessPolicyRequest {
+	r.createAccessPolicyPayload = &createAccessPolicyPayload
+	return r
+}
+
+func (r ApiCreateAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.CreateAccessPolicyExecute(r)
+}
+
+/*
+CreateAccessPolicy Create Access Policy
+
+Create a new access policy for Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiCreateAccessPolicyRequest
+*/
+func (a *DefaultAPIService) CreateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessPolicyRequest {
+	return ApiCreateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+func (a *DefaultAPIService) CreateAccessPolicyExecute(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createAccessPolicyPayload == nil {
+		return localVarReturnValue, reportError("createAccessPolicyPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createAccessPolicyPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
 
 type ApiCreateAccessTokenRequest struct {
 	ctx                      context.Context
@@ -515,6 +764,131 @@ func (a *DefaultAPIService) CreateLogsInstanceExecute(r ApiCreateLogsInstanceReq
 	return localVarReturnValue, nil
 }
 
+type ApiDeleteAccessPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+	pId        string
+}
+
+func (r ApiDeleteAccessPolicyRequest) Execute() error {
+	return r.ApiService.DeleteAccessPolicyExecute(r)
+}
+
+/*
+DeleteAccessPolicy Delete Access Policy
+
+Deletes a Logs instance access policy
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiDeleteAccessPolicyRequest
+*/
+func (a *DefaultAPIService) DeleteAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiDeleteAccessPolicyRequest {
+	return ApiDeleteAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) DeleteAccessPolicyExecute(r ApiDeleteAccessPolicyRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAccessPolicy")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		return newErr
+	}
+
+	return nil
+}
+
 type ApiDeleteAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -638,6 +1012,140 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 	}
 
 	return nil
+}
+
+type ApiDeleteAllAccessPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+}
+
+func (r ApiDeleteAllAccessPoliciesRequest) Execute() (*AccessPolicyList, error) {
+	return r.ApiService.DeleteAllAccessPoliciesExecute(r)
+}
+
+/*
+DeleteAllAccessPolicies Delete All Access Policies
+
+Deletes all access policies for a Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiDeleteAllAccessPoliciesRequest
+*/
+func (a *DefaultAPIService) DeleteAllAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessPoliciesRequest {
+	return ApiDeleteAllAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicyList
+func (a *DefaultAPIService) DeleteAllAccessPoliciesExecute(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicyList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAllAccessPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
 }
 
 type ApiDeleteAllAccessTokensRequest struct {
@@ -1029,6 +1537,144 @@ func (a *DefaultAPIService) DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceReq
 	return nil
 }
 
+type ApiGetAccessPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+	pId        string
+}
+
+func (r ApiGetAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.GetAccessPolicyExecute(r)
+}
+
+/*
+GetAccessPolicy Get Access Policy
+
+Get the information of the given access policy.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiGetAccessPolicyRequest
+*/
+func (a *DefaultAPIService) GetAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiGetAccessPolicyRequest {
+	return ApiGetAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+func (a *DefaultAPIService) GetAccessPolicyExecute(r ApiGetAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1217,6 +1863,140 @@ func (a *DefaultAPIService) GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListAccessPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+}
+
+func (r ApiListAccessPoliciesRequest) Execute() (*AccessPolicyList, error) {
+	return r.ApiService.ListAccessPoliciesExecute(r)
+}
+
+/*
+ListAccessPolicies List Access Policies
+
+Returns a list of access policies created for a Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiListAccessPoliciesRequest
+*/
+func (a *DefaultAPIService) ListAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessPoliciesRequest {
+	return ApiListAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicyList
+func (a *DefaultAPIService) ListAccessPoliciesExecute(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicyList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListAccessPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
@@ -1506,6 +2286,155 @@ func (a *DefaultAPIService) ListLogsInstancesExecute(r ApiListLogsInstancesReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateAccessPolicyRequest struct {
+	ctx                       context.Context
+	ApiService                DefaultAPI
+	projectId                 string
+	regionId                  string
+	instanceId                string
+	pId                       string
+	updateAccessPolicyPayload *UpdateAccessPolicyPayload
+}
+
+func (r ApiUpdateAccessPolicyRequest) UpdateAccessPolicyPayload(updateAccessPolicyPayload UpdateAccessPolicyPayload) ApiUpdateAccessPolicyRequest {
+	r.updateAccessPolicyPayload = &updateAccessPolicyPayload
+	return r
+}
+
+func (r ApiUpdateAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.UpdateAccessPolicyExecute(r)
+}
+
+/*
+UpdateAccessPolicy Update Access Policy
+
+Updates the given access policy.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiUpdateAccessPolicyRequest
+*/
+func (a *DefaultAPIService) UpdateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiUpdateAccessPolicyRequest {
+	return ApiUpdateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+func (a *DefaultAPIService) UpdateAccessPolicyExecute(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAccessPolicyPayload == nil {
+		return localVarReturnValue, reportError("updateAccessPolicyPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateAccessPolicyPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
