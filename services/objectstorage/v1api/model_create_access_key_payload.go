@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAccessKeyPayload{}
 // CreateAccessKeyPayload struct for CreateAccessKeyPayload
 type CreateAccessKeyPayload struct {
 	// Expiration date. Null means never expires.
-	Expires              *time.Time `json:"expires,omitempty"`
+	Expires              NullableTime `json:"expires,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,36 +44,47 @@ func NewCreateAccessKeyPayloadWithDefaults() *CreateAccessKeyPayload {
 	return &this
 }
 
-// GetExpires returns the Expires field value if set, zero value otherwise.
+// GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateAccessKeyPayload) GetExpires() time.Time {
-	if o == nil || IsNil(o.Expires) {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.Expires
+	return *o.Expires.Get()
 }
 
 // GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAccessKeyPayload) GetExpiresOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Expires) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Expires, true
+	return o.Expires.Get(), o.Expires.IsSet()
 }
 
 // HasExpires returns a boolean if a field has been set.
 func (o *CreateAccessKeyPayload) HasExpires() bool {
-	if o != nil && !IsNil(o.Expires) {
+	if o != nil && o.Expires.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
+// SetExpires gets a reference to the given NullableTime and assigns it to the Expires field.
 func (o *CreateAccessKeyPayload) SetExpires(v time.Time) {
-	o.Expires = &v
+	o.Expires.Set(&v)
+}
+
+// SetExpiresNil sets the value for Expires to be an explicit nil
+func (o *CreateAccessKeyPayload) SetExpiresNil() {
+	o.Expires.Set(nil)
+}
+
+// UnsetExpires ensures that no value is present for Expires, not even an explicit nil
+func (o *CreateAccessKeyPayload) UnsetExpires() {
+	o.Expires.Unset()
 }
 
 func (o CreateAccessKeyPayload) MarshalJSON() ([]byte, error) {
@@ -86,8 +97,8 @@ func (o CreateAccessKeyPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateAccessKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Expires) {
-		toSerialize["expires"] = o.Expires
+	if o.Expires.IsSet() {
+		toSerialize["expires"] = o.Expires.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {

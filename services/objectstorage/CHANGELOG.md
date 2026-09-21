@@ -1,3 +1,21 @@
+## v1.10.0
+- `v1api`:
+  - **Feature:** New model struct `RateLimitError`
+  - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+  - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+  - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+  - **Breaking Change:** Field `Expires` in `CreateAccessKeyResponse` model is now `NullableString`
+- `v2api`:
+  - **Feature:** New model struct `RateLimitError`
+  - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+  - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+  - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+- Deprecated SDK layer in root of the module:
+  - **Feature:** New model struct `RateLimitError`
+  - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+  - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+  - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+
 ## v1.9.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
