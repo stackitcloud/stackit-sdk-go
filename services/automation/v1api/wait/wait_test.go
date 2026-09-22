@@ -119,7 +119,7 @@ func TestCreateVolumeExecutionWaitHandler(t *testing.T) {
 					executionResponses: tt.responses,
 				})
 
-				handler := CreateVolumeExecutionWaitHandler(ctx, client, testProject, testRegion, testAutomation, testExecutionId)
+				handler := VolumeExecutionWaitHandler(ctx, client, testProject, testRegion, testAutomation, testExecutionId)
 				got, err := handler.WaitWithContext(ctx)
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)

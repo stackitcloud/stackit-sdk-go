@@ -9,8 +9,8 @@ import (
 	automation "github.com/stackitcloud/stackit-sdk-go/services/automation/v1api"
 )
 
-// CreateVolumeExecutionWaitHandler will wait for a volume automation execution to finish.
-func CreateVolumeExecutionWaitHandler(ctx context.Context, client automation.DefaultAPI, projectId, region, automationId, executionId string) *wait.AsyncActionHandler[automation.VolumeExecutionResponse] {
+// VolumeExecutionWaitHandler will wait for a volume automation execution to finish.
+func VolumeExecutionWaitHandler(ctx context.Context, client automation.DefaultAPI, projectId, region, automationId, executionId string) *wait.AsyncActionHandler[automation.VolumeExecutionResponse] {
 	waitConfig := wait.WaiterHelper[automation.VolumeExecutionResponse, automation.VolumeExecutionResponseStatus]{
 		FetchInstance: client.GetVolumeExecution(ctx, projectId, region, automationId, executionId).Execute,
 		GetState: func(response *automation.VolumeExecutionResponse) (automation.VolumeExecutionResponseStatus, error) {

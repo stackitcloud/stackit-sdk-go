@@ -86,7 +86,7 @@ func main() {
 	fmt.Printf("[Automation API] Triggered execution with id %q (status: %s).\n", executionResp.Id, executionResp.Status)
 
 	// Wait for the execution to finish, otherwise the deletion below fails
-	waitResp, err := wait.CreateVolumeExecutionWaitHandler(ctx, automationClient.DefaultAPI, projectId, region, automationId, executionResp.Id).
+	waitResp, err := wait.VolumeExecutionWaitHandler(ctx, automationClient.DefaultAPI, projectId, region, automationId, executionResp.Id).
 		SetTimeout(10 * time.Minute).
 		WaitWithContext(ctx)
 	if err != nil {
