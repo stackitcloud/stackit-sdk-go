@@ -49,7 +49,7 @@ func (w *WaiterHelper[T, S]) Wait() AsyncActionCheck[T] {
 
 		state, err := w.GetState(instance)
 		if err != nil {
-			return true, nil, err
+			return false, nil, err
 		}
 
 		// 1. Check if the operation succeeded

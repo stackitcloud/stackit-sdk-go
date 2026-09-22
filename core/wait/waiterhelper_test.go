@@ -122,7 +122,7 @@ func TestWaiterHelper_Wait(t *testing.T) {
 			name:         "Failure - GetState failed",
 			fetchResult:  &MockResource{Error: fmt.Errorf("can not read state")},
 			activeStates: []string{"READY"},
-			wantFinished: true,
+			wantFinished: false,
 			wantErr:      true,
 		},
 	}
@@ -186,6 +186,18 @@ func TestWaiterHelper_WaitWithContext(t *testing.T) {
 			name: "Success - Retryable 502 Gateway Error followed by Active State",
 			fetchResponses: []fetchResponse{
 				{res: nil, err: &oapierror.GenericOpenAPIError{StatusCode: http.StatusBadGateway}},
+				{res: &MockResource{Status: "ACTIVE"}, err: nil},
+			},
+			activeStates: []string{"ACTIVE"},
+			errorStates:  []string{"ERROR"},
+			wantCalls:    2,
+			wantErr:      false,
+			wantResponse: &MockResource{Status: "ACTIVE"},
+		},
+		{
+			name: "Success - Retryable 504 Error followed by Active State",
+			fetchResponses: []fetchResponse{
+				{res: nil, err: &oapierror.GenericOpenAPIError{StatusCode: http.StatusGatewayTimeout}},
 				{res: &MockResource{Status: "ACTIVE"}, err: nil},
 			},
 			activeStates: []string{"ACTIVE"},
