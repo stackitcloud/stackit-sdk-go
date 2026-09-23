@@ -1,3 +1,6 @@
+## v1.14.4
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+
 ## v1.14.3
 - **Internal:** Remove duplicate error checks in oneOf models. 
 

@@ -33,6 +33,7 @@ use (
 	./examples/resourcemanager
 	./examples/runcommand
 	./examples/runtime
+	./examples/sca
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/serviceenablement
@@ -75,6 +76,7 @@ use (
 	./services/registry
 	./services/resourcemanager
 	./services/runcommand
+	./services/sca
 	./services/scf
 	./services/secretsmanager
 	./services/serverbackup

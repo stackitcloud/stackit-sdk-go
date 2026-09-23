@@ -1,5 +1,37 @@
 ## Release (2026-MM-DD)
 
+- `alb`:
+  - [v0.18.0](services/alb/CHANGELOG.md#v0180)
+    - `v2api`:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+- `automation`:
+  - [v0.2.0](services/automation/CHANGELOG.md#v020)
+    - `v1api`:
+      - **New:** Add package which can be used for communication with the STACKIT automation v1 API
+      - **Feature:** Add waiter method for the API
+- `iaas`:
+  - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `objectstorage`:
+  - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
+    - `v1api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyResponse` model is now `NullableString`
+    - `v2api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
@@ -173,6 +205,10 @@
   - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
     - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
     - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+- `sca`:
+  - [v0.1.0](services/sca/CHANGELOG.md#v010)
+    - **New:** SDK module for STACKIT Container Applications (SCA) service.
+    - `v1alphaapi`: New package which can be used for communication with the sca v1 alpha API
 - `scf`:
   - [v0.10.2](services/scf/CHANGELOG.md#v0102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
