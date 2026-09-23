@@ -1,5 +1,11 @@
 ## Release (2026-MM-DD)
 
+- `alb`:
+  - [v0.18.0](services/alb/CHANGELOG.md#v0180)
+    - `v2api`:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
 - `automation`:
   - [v0.2.0](services/automation/CHANGELOG.md#v020)
     - `v1api`:
