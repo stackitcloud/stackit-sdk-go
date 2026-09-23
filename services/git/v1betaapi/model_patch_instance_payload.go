@@ -21,8 +21,12 @@ var _ MappedNullable = &PatchInstancePayload{}
 // PatchInstancePayload Properties to patch on an instance. All fields are optional.
 type PatchInstancePayload struct {
 	// A list of CIDR network addresses that are allowed to access the instance.
-	Acl                  []string       `json:"acl,omitempty"`
-	FeatureToggle        *FeatureToggle `json:"feature_toggle,omitempty"`
+	Acl []string `json:"acl,omitempty"`
+	// Enable Admin IdP
+	AdminLogin    *bool          `json:"admin_login,omitempty"`
+	FeatureToggle *FeatureToggle `json:"feature_toggle,omitempty"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.
+	Labels               *map[string]string `json:"labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,6 +82,38 @@ func (o *PatchInstancePayload) SetAcl(v []string) {
 	o.Acl = v
 }
 
+// GetAdminLogin returns the AdminLogin field value if set, zero value otherwise.
+func (o *PatchInstancePayload) GetAdminLogin() bool {
+	if o == nil || IsNil(o.AdminLogin) {
+		var ret bool
+		return ret
+	}
+	return *o.AdminLogin
+}
+
+// GetAdminLoginOk returns a tuple with the AdminLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchInstancePayload) GetAdminLoginOk() (*bool, bool) {
+	if o == nil || IsNil(o.AdminLogin) {
+		return nil, false
+	}
+	return o.AdminLogin, true
+}
+
+// HasAdminLogin returns a boolean if a field has been set.
+func (o *PatchInstancePayload) HasAdminLogin() bool {
+	if o != nil && !IsNil(o.AdminLogin) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdminLogin gets a reference to the given bool and assigns it to the AdminLogin field.
+func (o *PatchInstancePayload) SetAdminLogin(v bool) {
+	o.AdminLogin = &v
+}
+
 // GetFeatureToggle returns the FeatureToggle field value if set, zero value otherwise.
 func (o *PatchInstancePayload) GetFeatureToggle() FeatureToggle {
 	if o == nil || IsNil(o.FeatureToggle) {
@@ -110,6 +146,38 @@ func (o *PatchInstancePayload) SetFeatureToggle(v FeatureToggle) {
 	o.FeatureToggle = &v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *PatchInstancePayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchInstancePayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *PatchInstancePayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *PatchInstancePayload) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 func (o PatchInstancePayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -123,8 +191,14 @@ func (o PatchInstancePayload) ToMap() (map[string]interface{}, error) {
 	if o.Acl != nil {
 		toSerialize["acl"] = o.Acl
 	}
+	if !IsNil(o.AdminLogin) {
+		toSerialize["admin_login"] = o.AdminLogin
+	}
 	if !IsNil(o.FeatureToggle) {
 		toSerialize["feature_toggle"] = o.FeatureToggle
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,7 +223,9 @@ func (o *PatchInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "acl")
+		delete(additionalProperties, "admin_login")
 		delete(additionalProperties, "feature_toggle")
+		delete(additionalProperties, "labels")
 		o.AdditionalProperties = additionalProperties
 	}
 

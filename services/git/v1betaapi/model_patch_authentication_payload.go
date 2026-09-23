@@ -21,13 +21,13 @@ var _ MappedNullable = &PatchAuthenticationPayload{}
 // PatchAuthenticationPayload Properties to patch on an authentication. All fields are optional.
 type PatchAuthenticationPayload struct {
 	// The well-known configuration url to use for this authentication definition.
-	AutoDiscoverUrl *string `json:"auto_discover_url,omitempty" validate:"regexp=^https:\\/\\/[a-zA-Z0-9\\\\-\\\\.]+(\\\\.[a-zA-Z]{2,})+(\\/.*)?$"`
+	AutoDiscoverUrl *string `json:"auto_discover_url,omitempty" validate:"regexp=^https://[a-zA-Z0-9\\-\\.]+(\\.[a-zA-Z]{2\\,})+(/.*)?$"`
 	// The IDP client id to use.
 	ClientId *string `json:"client_id,omitempty"`
 	// The IDP client secret to use.
 	ClientSecret *string `json:"client_secret,omitempty"`
 	// The url of the icon to use for this authentication definition.
-	IconUrl *string `json:"icon_url,omitempty" validate:"regexp=^https:\\/\\/[a-zA-Z0-9\\\\-\\\\.]+(\\\\.[a-zA-Z]{2,})+(\\/.*)?$"`
+	IconUrl *string `json:"icon_url,omitempty" validate:"regexp=^https://[a-zA-Z0-9\\-\\.]+(\\.[a-zA-Z]{2\\,})+(/.*)?$"`
 	// The Oauth2 provider to use.
 	Provider *string `json:"provider,omitempty"`
 	// Scopes defines the OIDC scopes to request.
