@@ -50,8 +50,8 @@ type DefaultApi interface {
 	*/
 	CloneZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error)
 	/*
-		CreateLabel Create or update label
-		Create or update label
+		CreateLabel Create or update label [DEPRECATED]
+		Deprecated: Create or update label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -140,8 +140,8 @@ type DefaultApi interface {
 	*/
 	CreateZoneExecute(ctx context.Context, projectId string) (*ZoneResponse, error)
 	/*
-		DeleteLabel Delete a label
-		Delete a label
+		DeleteLabel Delete a label [DEPRECATED]
+		Deprecated: Delete a label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -330,8 +330,8 @@ type DefaultApi interface {
 	*/
 	ImportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ImportRecordSetsResponse, error)
 	/*
-		ListLabels Get all labels
-		All Labels
+		ListLabels Get all labels [DEPRECATED]
+		Deprecated: All Labels DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -1356,7 +1356,7 @@ func (r CreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 }
 
 /*
-CreateLabel: Create or update label
+CreateLabel: Create or update label [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
@@ -2110,7 +2110,7 @@ func (r DeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 }
 
 /*
-DeleteLabel: Delete a label
+DeleteLabel: Delete a label [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
@@ -3547,7 +3547,7 @@ func (r ListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 }
 
 /*
-ListLabels: Get all labels
+ListLabels: Get all labels [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
