@@ -22,13 +22,13 @@ var _ MappedNullable = &CreateAuthenticationPayload{}
 // CreateAuthenticationPayload Properties to patch on an authentication. All fields are optional.
 type CreateAuthenticationPayload struct {
 	// The well-known configuration url to use for this authentication definition.
-	AutoDiscoverUrl string `json:"auto_discover_url" validate:"regexp=^https:\\/\\/[a-zA-Z0-9\\\\-\\\\.]+(\\\\.[a-zA-Z]{2,})+(\\/.*)?$"`
+	AutoDiscoverUrl string `json:"auto_discover_url" validate:"regexp=^https://[a-zA-Z0-9\\-\\.]+(\\.[a-zA-Z]{2\\,})+(/.*)?$"`
 	// The IDP client id to use.
 	ClientId string `json:"client_id"`
 	// The IDP client secret to use.
 	ClientSecret string `json:"client_secret"`
 	// The url of the icon to use for this authentication definition.
-	IconUrl *string `json:"icon_url,omitempty" validate:"regexp=^https:\\/\\/[a-zA-Z0-9\\\\-\\\\.]+(\\\\.[a-zA-Z]{2,})+(\\/.*)?$"`
+	IconUrl *string `json:"icon_url,omitempty" validate:"regexp=^https://[a-zA-Z0-9\\-\\.]+(\\.[a-zA-Z]{2\\,})+(/.*)?$"`
 	// The name to identify an authentication definition associated with a STACKIT Git instance.
 	Name string `json:"name"`
 	// The Oauth2 provider to use.
