@@ -23,7 +23,7 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 type DefaultAPIServiceMock struct {
 	// CloneZoneExecuteMock can be populated to implement the behavior of the CloneZoneExecute function of this mock
 	CloneZoneExecuteMock *func(r ApiCloneZoneRequest) (*ZoneResponse, error)
-	// CreateLabelExecuteMock can be populated to implement the behavior of the CreateLabelExecute function of this mock
+	// Deprecated: CreateLabelExecuteMock can be populated to implement the behavior of the CreateLabelExecute function of this mock
 	CreateLabelExecuteMock *func(r ApiCreateLabelRequest) (*CreateLabelResponse, error)
 	// CreateMoveCodeExecuteMock can be populated to implement the behavior of the CreateMoveCodeExecute function of this mock
 	CreateMoveCodeExecuteMock *func(r ApiCreateMoveCodeRequest) (*MoveCodeResponse, error)
@@ -31,7 +31,7 @@ type DefaultAPIServiceMock struct {
 	CreateRecordSetExecuteMock *func(r ApiCreateRecordSetRequest) (*RecordSetResponse, error)
 	// CreateZoneExecuteMock can be populated to implement the behavior of the CreateZoneExecute function of this mock
 	CreateZoneExecuteMock *func(r ApiCreateZoneRequest) (*ZoneResponse, error)
-	// DeleteLabelExecuteMock can be populated to implement the behavior of the DeleteLabelExecute function of this mock
+	// Deprecated: DeleteLabelExecuteMock can be populated to implement the behavior of the DeleteLabelExecute function of this mock
 	DeleteLabelExecuteMock *func(r ApiDeleteLabelRequest) (*DeleteLabelResponse, error)
 	// DeleteMoveCodeExecuteMock can be populated to implement the behavior of the DeleteMoveCodeExecute function of this mock
 	DeleteMoveCodeExecuteMock *func(r ApiDeleteMoveCodeRequest) (*Message, error)
@@ -47,7 +47,7 @@ type DefaultAPIServiceMock struct {
 	GetZoneExecuteMock *func(r ApiGetZoneRequest) (*ZoneResponse, error)
 	// ImportRecordSetsExecuteMock can be populated to implement the behavior of the ImportRecordSetsExecute function of this mock
 	ImportRecordSetsExecuteMock *func(r ApiImportRecordSetsRequest) (*ImportRecordSetsResponse, error)
-	// ListLabelsExecuteMock can be populated to implement the behavior of the ListLabelsExecute function of this mock
+	// Deprecated: ListLabelsExecuteMock can be populated to implement the behavior of the ListLabelsExecute function of this mock
 	ListLabelsExecuteMock *func(r ApiListLabelsRequest) (*ListLabelsResponse, error)
 	// ListRecordSetsExecuteMock can be populated to implement the behavior of the ListRecordSetsExecute function of this mock
 	ListRecordSetsExecuteMock *func(r ApiListRecordSetsRequest) (*ListRecordSetsResponse, error)
@@ -90,6 +90,7 @@ func (a DefaultAPIServiceMock) CloneZoneExecute(r ApiCloneZoneRequest) (*ZoneRes
 	return (*a.CloneZoneExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateLabel(ctx context.Context, projectId string, zoneId string) ApiCreateLabelRequest {
 	return ApiCreateLabelRequest{
 		ApiService: a,
@@ -99,7 +100,7 @@ func (a DefaultAPIServiceMock) CreateLabel(ctx context.Context, projectId string
 	}
 }
 
-// CreateLabelExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLabelExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateLabelExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLabelExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateLabelExecute(r ApiCreateLabelRequest) (*CreateLabelResponse, error) {
 	if a.CreateLabelExecuteMock == nil {
 		var localVarReturnValue *CreateLabelResponse
@@ -165,6 +166,7 @@ func (a DefaultAPIServiceMock) CreateZoneExecute(r ApiCreateZoneRequest) (*ZoneR
 	return (*a.CreateZoneExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteLabel(ctx context.Context, projectId string, zoneId string, key string) ApiDeleteLabelRequest {
 	return ApiDeleteLabelRequest{
 		ApiService: a,
@@ -175,7 +177,7 @@ func (a DefaultAPIServiceMock) DeleteLabel(ctx context.Context, projectId string
 	}
 }
 
-// DeleteLabelExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLabelExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteLabelExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLabelExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteLabelExecute(r ApiDeleteLabelRequest) (*DeleteLabelResponse, error) {
 	if a.DeleteLabelExecuteMock == nil {
 		var localVarReturnValue *DeleteLabelResponse
@@ -320,6 +322,7 @@ func (a DefaultAPIServiceMock) ImportRecordSetsExecute(r ApiImportRecordSetsRequ
 	return (*a.ImportRecordSetsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListLabels(ctx context.Context, projectId string, zoneId string) ApiListLabelsRequest {
 	return ApiListLabelsRequest{
 		ApiService: a,
@@ -329,7 +332,7 @@ func (a DefaultAPIServiceMock) ListLabels(ctx context.Context, projectId string,
 	}
 }
 
-// ListLabelsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLabelsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListLabelsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLabelsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListLabelsExecute(r ApiListLabelsRequest) (*ListLabelsResponse, error) {
 	if a.ListLabelsExecuteMock == nil {
 		var localVarReturnValue *ListLabelsResponse
