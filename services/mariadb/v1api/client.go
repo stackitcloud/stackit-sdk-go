@@ -1,7 +1,7 @@
 /*
-STACKIT MariaDB API
+[DEPRECATED] STACKIT MariaDB API
 
-The STACKIT MariaDB API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
+⚠️ This global API version is deprecated. Use the regional v2 API with a region in the request path. Planned retirement: 1 October 2027 at 00:00 UTC. The STACKIT MariaDB API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
 API version: 1.1.0
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT MariaDB API API v1.1.0
+// APIClient manages communication with the [DEPRECATED] STACKIT MariaDB API API v1.1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration
