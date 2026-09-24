@@ -11,6 +11,8 @@
     - `v1api`:
       - **New:** Add package which can be used for communication with the STACKIT automation v1 API
       - **Feature:** Add waiter method for the API
+- `core`: [v0.27.1](core/CHANGELOG.md#v0271)
+  - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
 - `iaas`:
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
