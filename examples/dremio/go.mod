@@ -6,7 +6,7 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/dremio => ../../services/dremio
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.27.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
 	github.com/stackitcloud/stackit-sdk-go/services/dremio v0.0.0-00010101000000-000000000000
 )
 

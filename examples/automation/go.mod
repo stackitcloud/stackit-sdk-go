@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/automation => ../../services/automation
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.27.0
-	github.com/stackitcloud/stackit-sdk-go/services/automation v0.1.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
+	github.com/stackitcloud/stackit-sdk-go/services/automation v0.2.0
 )
 
 require (
