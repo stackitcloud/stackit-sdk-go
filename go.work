@@ -29,6 +29,7 @@ use (
 	./examples/postgresflex
 	./examples/rabbitmq
 	./examples/redis
+	./examples/registry
 	./examples/resourcemanager
 	./examples/runcommand
 	./examples/runtime
@@ -72,6 +73,7 @@ use (
 	./services/postgresflex
 	./services/rabbitmq
 	./services/redis
+	./services/registry
 	./services/resourcemanager
 	./services/runcommand
 	./services/sca
