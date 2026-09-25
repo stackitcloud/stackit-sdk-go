@@ -244,7 +244,7 @@ type Project struct {
 	// Timestamp at which the project was created.
 	// REQUIRED
 	CreationTime ProjectGetCreationTimeAttributeType `json:"creationTime" required:"true"`
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.).  > Note: Additional naming restrictions may apply depending on your specific organization.*
 	Labels ProjectGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	LifecycleState ProjectGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`

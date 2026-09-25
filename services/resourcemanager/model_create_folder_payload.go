@@ -132,7 +132,7 @@ type CreateFolderPayload struct {
 	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 	// REQUIRED
 	ContainerParentId CreateFolderPayloadGetContainerParentIdAttributeType `json:"containerParentId" required:"true"`
-	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*
+	// Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.).  > Note: Additional naming restrictions may apply depending on your specific organization.*
 	Labels CreateFolderPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	Members CreateFolderPayloadGetMembersAttributeType `json:"members,omitempty"`
