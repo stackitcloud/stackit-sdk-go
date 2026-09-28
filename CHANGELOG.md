@@ -7,6 +7,8 @@
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
 - `automation`:
+  - [v0.2.1](services/automation/CHANGELOG.md#v021)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v0.2.0](services/automation/CHANGELOG.md#v020)
     - `v1api`:
       - **New:** Add package which can be used for communication with the STACKIT automation v1 API
@@ -14,9 +16,13 @@
 - `core`: [v0.27.1](core/CHANGELOG.md#v0271)
   - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
 - `iaas`:
+  - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
 - `objectstorage`:
+  - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
   - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
     - `v1api`:
       - **Feature:** New model struct `RateLimitError`
@@ -34,6 +40,18 @@
       - **Improvement:** Add HTTP 429 rate limit error responses in API operations
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `runcommand`:
+  - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serverbackup`:
+  - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serverupdate`:
+  - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sfs`:
+  - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
