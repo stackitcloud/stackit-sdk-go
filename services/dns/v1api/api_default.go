@@ -41,19 +41,22 @@ type DefaultAPI interface {
 	CloneZoneExecute(r ApiCloneZoneRequest) (*ZoneResponse, error)
 
 	/*
-		CreateLabel Create or update label
+		CreateLabel Create or update label [DEPRECATED]
 
-		Create or update label
+		Create or update label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@param zoneId zone id
 		@return ApiCreateLabelRequest
+
+		Deprecated
 	*/
 	CreateLabel(ctx context.Context, projectId string, zoneId string) ApiCreateLabelRequest
 
 	// CreateLabelExecute executes the request
 	//  @return CreateLabelResponse
+	// Deprecated
 	CreateLabelExecute(r ApiCreateLabelRequest) (*CreateLabelResponse, error)
 
 	/*
@@ -104,20 +107,23 @@ type DefaultAPI interface {
 	CreateZoneExecute(r ApiCreateZoneRequest) (*ZoneResponse, error)
 
 	/*
-		DeleteLabel Delete a label
+		DeleteLabel Delete a label [DEPRECATED]
 
-		Delete a label
+		Delete a label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@param zoneId zone id
 		@param key key of the label
 		@return ApiDeleteLabelRequest
+
+		Deprecated
 	*/
 	DeleteLabel(ctx context.Context, projectId string, zoneId string, key string) ApiDeleteLabelRequest
 
 	// DeleteLabelExecute executes the request
 	//  @return DeleteLabelResponse
+	// Deprecated
 	DeleteLabelExecute(r ApiDeleteLabelRequest) (*DeleteLabelResponse, error)
 
 	/*
@@ -235,19 +241,22 @@ type DefaultAPI interface {
 	ImportRecordSetsExecute(r ApiImportRecordSetsRequest) (*ImportRecordSetsResponse, error)
 
 	/*
-		ListLabels Get all labels
+		ListLabels Get all labels [DEPRECATED]
 
-		All Labels
+		All Labels DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@param zoneId zone id
 		@return ApiListLabelsRequest
+
+		Deprecated
 	*/
 	ListLabels(ctx context.Context, projectId string, zoneId string) ApiListLabelsRequest
 
 	// ListLabelsExecute executes the request
 	//  @return ListLabelsResponse
+	// Deprecated
 	ListLabelsExecute(r ApiListLabelsRequest) (*ListLabelsResponse, error)
 
 	/*
@@ -619,14 +628,16 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 }
 
 /*
-CreateLabel Create or update label
+CreateLabel Create or update label [DEPRECATED]
 
-Create or update label
+Create or update label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param zoneId zone id
 	@return ApiCreateLabelRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateLabel(ctx context.Context, projectId string, zoneId string) ApiCreateLabelRequest {
 	return ApiCreateLabelRequest{
@@ -640,6 +651,8 @@ func (a *DefaultAPIService) CreateLabel(ctx context.Context, projectId string, z
 // Execute executes the request
 //
 //	@return CreateLabelResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateLabelExecute(r ApiCreateLabelRequest) (*CreateLabelResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1324,15 +1337,17 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 }
 
 /*
-DeleteLabel Delete a label
+DeleteLabel Delete a label [DEPRECATED]
 
-Delete a label
+Delete a label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param zoneId zone id
 	@param key key of the label
 	@return ApiDeleteLabelRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteLabel(ctx context.Context, projectId string, zoneId string, key string) ApiDeleteLabelRequest {
 	return ApiDeleteLabelRequest{
@@ -1347,6 +1362,8 @@ func (a *DefaultAPIService) DeleteLabel(ctx context.Context, projectId string, z
 // Execute executes the request
 //
 //	@return DeleteLabelResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteLabelExecute(r ApiDeleteLabelRequest) (*DeleteLabelResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -2683,14 +2700,16 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 }
 
 /*
-ListLabels Get all labels
+ListLabels Get all labels [DEPRECATED]
 
-All Labels
+All Labels DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param zoneId zone id
 	@return ApiListLabelsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListLabels(ctx context.Context, projectId string, zoneId string) ApiListLabelsRequest {
 	return ApiListLabelsRequest{
@@ -2704,6 +2723,8 @@ func (a *DefaultAPIService) ListLabels(ctx context.Context, projectId string, zo
 // Execute executes the request
 //
 //	@return ListLabelsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListLabelsExecute(r ApiListLabelsRequest) (*ListLabelsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
