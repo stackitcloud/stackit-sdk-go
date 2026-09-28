@@ -43,6 +43,9 @@
 - `runcommand`:
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serverbackup`:
+  - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
