@@ -1,3 +1,6 @@
+## v0.2.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+
 ## v0.2.0
 - `v1api`:
   - **New:** Add package which can be used for communication with the STACKIT automation v1 API
