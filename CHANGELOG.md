@@ -40,6 +40,9 @@
       - **Improvement:** Add HTTP 429 rate limit error responses in API operations
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `runcommand`:
+  - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
