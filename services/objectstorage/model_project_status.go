@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &ProjectStatus{}
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectStatusGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectStatusGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectStatusGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getProjectStatusGetLabelsAttributeTypeOk(arg ProjectStatusGetLabelsAttributeType) (ret ProjectStatusGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setProjectStatusGetLabelsAttributeType(arg *ProjectStatusGetLabelsAttributeType, val ProjectStatusGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for project
 */
 
@@ -75,6 +102,8 @@ func setProjectStatusGetScopeAttributeType(arg *ProjectStatusGetScopeAttributeTy
 // ProjectStatus struct for ProjectStatus
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ProjectStatus struct {
+	// Project labels
+	Labels ProjectStatusGetLabelsAttributeType `json:"labels,omitempty"`
 	// Project ID
 	// REQUIRED
 	Project ProjectStatusGetProjectAttributeType `json:"project" required:"true"`
@@ -104,6 +133,33 @@ func NewProjectStatus(project ProjectStatusGetProjectArgType, scope ProjectStatu
 func NewProjectStatusWithDefaults() *ProjectStatus {
 	this := ProjectStatus{}
 	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ProjectStatus) GetLabels() (res ProjectStatusGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ProjectStatus) GetLabelsOk() (ret ProjectStatusGetLabelsRetType, ok bool) {
+	return getProjectStatusGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ProjectStatus) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ProjectStatus) SetLabels(v ProjectStatusGetLabelsRetType) {
+	setProjectStatusGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetProject returns the Project field value
@@ -149,6 +205,9 @@ func (o *ProjectStatus) SetScope(v ProjectStatusGetScopeRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o ProjectStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getProjectStatusGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
 	if val, ok := getProjectStatusGetProjectAttributeTypeOk(o.Project); ok {
 		toSerialize["Project"] = val
 	}
