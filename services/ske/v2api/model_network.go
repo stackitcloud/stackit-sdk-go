@@ -19,9 +19,13 @@ var _ MappedNullable = &Network{}
 
 // Network struct for Network
 type Network struct {
-	Cni                  *CNI                   `json:"cni,omitempty"`
-	ControlPlane         *V2ControlPlaneNetwork `json:"controlPlane,omitempty"`
-	Id                   *string                `json:"id,omitempty"`
+	Cni          *CNI                   `json:"cni,omitempty"`
+	ControlPlane *V2ControlPlaneNetwork `json:"controlPlane,omitempty"`
+	Id           *string                `json:"id,omitempty"`
+	// PodAddressRanges contains the CIDRs that are used to allocate Pod IPs from. Currently only 1 range is allowed. Immutable after creation.
+	PodAddressRanges []string `json:"podAddressRanges,omitempty"`
+	// ServiceAddressRanges contains the CIDRs that are used to allocate Service ClusterIPs from. Currently only 1 range is allowed. Immutable after creation.
+	ServiceAddressRanges []string `json:"serviceAddressRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,6 +144,70 @@ func (o *Network) SetId(v string) {
 	o.Id = &v
 }
 
+// GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
+func (o *Network) GetPodAddressRanges() []string {
+	if o == nil || IsNil(o.PodAddressRanges) {
+		var ret []string
+		return ret
+	}
+	return o.PodAddressRanges
+}
+
+// GetPodAddressRangesOk returns a tuple with the PodAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetPodAddressRangesOk() ([]string, bool) {
+	if o == nil || IsNil(o.PodAddressRanges) {
+		return nil, false
+	}
+	return o.PodAddressRanges, true
+}
+
+// HasPodAddressRanges returns a boolean if a field has been set.
+func (o *Network) HasPodAddressRanges() bool {
+	if o != nil && !IsNil(o.PodAddressRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetPodAddressRanges gets a reference to the given []string and assigns it to the PodAddressRanges field.
+func (o *Network) SetPodAddressRanges(v []string) {
+	o.PodAddressRanges = v
+}
+
+// GetServiceAddressRanges returns the ServiceAddressRanges field value if set, zero value otherwise.
+func (o *Network) GetServiceAddressRanges() []string {
+	if o == nil || IsNil(o.ServiceAddressRanges) {
+		var ret []string
+		return ret
+	}
+	return o.ServiceAddressRanges
+}
+
+// GetServiceAddressRangesOk returns a tuple with the ServiceAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetServiceAddressRangesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ServiceAddressRanges) {
+		return nil, false
+	}
+	return o.ServiceAddressRanges, true
+}
+
+// HasServiceAddressRanges returns a boolean if a field has been set.
+func (o *Network) HasServiceAddressRanges() bool {
+	if o != nil && !IsNil(o.ServiceAddressRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAddressRanges gets a reference to the given []string and assigns it to the ServiceAddressRanges field.
+func (o *Network) SetServiceAddressRanges(v []string) {
+	o.ServiceAddressRanges = v
+}
+
 func (o Network) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -158,6 +226,12 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.PodAddressRanges) {
+		toSerialize["podAddressRanges"] = o.PodAddressRanges
+	}
+	if !IsNil(o.ServiceAddressRanges) {
+		toSerialize["serviceAddressRanges"] = o.ServiceAddressRanges
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -184,6 +258,8 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cni")
 		delete(additionalProperties, "controlPlane")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "podAddressRanges")
+		delete(additionalProperties, "serviceAddressRanges")
 		o.AdditionalProperties = additionalProperties
 	}
 
