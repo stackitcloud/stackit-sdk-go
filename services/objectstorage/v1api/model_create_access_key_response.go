@@ -25,7 +25,7 @@ type CreateAccessKeyResponse struct {
 	// Obfuscated access key
 	DisplayName string `json:"displayName"`
 	// Expiration date. Null means never expires.
-	Expires string `json:"expires"`
+	Expires NullableString `json:"expires"`
 	// Identifies the pair of access key and secret access key for deletion
 	KeyId string `json:"keyId"`
 	// Project ID
@@ -41,7 +41,7 @@ type _CreateAccessKeyResponse CreateAccessKeyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccessKeyResponse(accessKey string, displayName string, expires string, keyId string, project string, secretAccessKey string) *CreateAccessKeyResponse {
+func NewCreateAccessKeyResponse(accessKey string, displayName string, expires NullableString, keyId string, project string, secretAccessKey string) *CreateAccessKeyResponse {
 	this := CreateAccessKeyResponse{}
 	this.AccessKey = accessKey
 	this.DisplayName = displayName
@@ -109,27 +109,29 @@ func (o *CreateAccessKeyResponse) SetDisplayName(v string) {
 }
 
 // GetExpires returns the Expires field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateAccessKeyResponse) GetExpires() string {
-	if o == nil {
+	if o == nil || o.Expires.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Expires
+	return *o.Expires.Get()
 }
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAccessKeyResponse) GetExpiresOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Expires, true
+	return o.Expires.Get(), o.Expires.IsSet()
 }
 
 // SetExpires sets field value
 func (o *CreateAccessKeyResponse) SetExpires(v string) {
-	o.Expires = v
+	o.Expires.Set(&v)
 }
 
 // GetKeyId returns the KeyId field value
@@ -216,7 +218,7 @@ func (o CreateAccessKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accessKey"] = o.AccessKey
 	toSerialize["displayName"] = o.DisplayName
-	toSerialize["expires"] = o.Expires
+	toSerialize["expires"] = o.Expires.Get()
 	toSerialize["keyId"] = o.KeyId
 	toSerialize["project"] = o.Project
 	toSerialize["secretAccessKey"] = o.SecretAccessKey

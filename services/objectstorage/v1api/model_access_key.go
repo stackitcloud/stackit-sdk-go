@@ -20,8 +20,8 @@ var _ MappedNullable = &AccessKey{}
 
 // AccessKey struct for AccessKey
 type AccessKey struct {
-	DisplayName string `json:"displayName"`
-	Expires     string `json:"expires"`
+	DisplayName string         `json:"displayName"`
+	Expires     NullableString `json:"expires"`
 	// Identifies the pair of access key and secret access key for deletion
 	KeyId                string `json:"keyId"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _AccessKey AccessKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessKey(displayName string, expires string, keyId string) *AccessKey {
+func NewAccessKey(displayName string, expires NullableString, keyId string) *AccessKey {
 	this := AccessKey{}
 	this.DisplayName = displayName
 	this.Expires = expires
@@ -74,27 +74,29 @@ func (o *AccessKey) SetDisplayName(v string) {
 }
 
 // GetExpires returns the Expires field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *AccessKey) GetExpires() string {
-	if o == nil {
+	if o == nil || o.Expires.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Expires
+	return *o.Expires.Get()
 }
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccessKey) GetExpiresOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Expires, true
+	return o.Expires.Get(), o.Expires.IsSet()
 }
 
 // SetExpires sets field value
 func (o *AccessKey) SetExpires(v string) {
-	o.Expires = v
+	o.Expires.Set(&v)
 }
 
 // GetKeyId returns the KeyId field value
@@ -132,7 +134,7 @@ func (o AccessKey) MarshalJSON() ([]byte, error) {
 func (o AccessKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["displayName"] = o.DisplayName
-	toSerialize["expires"] = o.Expires
+	toSerialize["expires"] = o.Expires.Get()
 	toSerialize["keyId"] = o.KeyId
 
 	for key, value := range o.AdditionalProperties {

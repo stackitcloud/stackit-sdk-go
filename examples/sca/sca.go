@@ -1,0 +1,191 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
+	sca "github.com/stackitcloud/stackit-sdk-go/services/sca/v1alphaapi"
+	"github.com/stackitcloud/stackit-sdk-go/services/sca/v1alphaapi/wait"
+)
+
+func main() {
+	region := "eu01"          // Region where the resources will be created
+	projectID := "PROJECT_ID" // the uuid of your STACKIT project
+
+	// Create a new API client, that uses default authentication and configuration
+	scaClient, err := sca.NewAPIClient(config.WithRegion(region))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Create environment
+	// WARNING: Keep in mind that there is no endpoint to delete environments right now.
+	createEnvironmentPayload := sca.CreateEnvironmentPayload{
+		DisplayName: "environment-name",
+	}
+	env, err := scaClient.DefaultAPI.CreateEnvironment(context.Background(), projectID).
+		CreateEnvironmentPayload(createEnvironmentPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateEnvironment`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Created environment with id %q\n", env.GetId())
+
+	// Get environment
+	getEnvResp, err := scaClient.DefaultAPI.GetEnvironment(context.Background(), projectID, env.GetId()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GetEnvironment`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Got environment with id %q\n", getEnvResp.GetId())
+
+	// List environments
+	listEnvsResp, err := scaClient.DefaultAPI.ListEnvironments(context.Background(), projectID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ListEnvironments`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Number of environments in project: %d\n", len(listEnvsResp.Items))
+
+	// List all applications of a given project
+	listAppsResp, err := scaClient.DefaultAPI.ListProjectApplications(context.Background(), projectID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ListProjectApplications`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Number of applications in project: %d\n", len(listAppsResp.Items))
+
+	// Create an application within an environment
+	createApplicationPayload := sca.CreateApplicationPayload{
+		DisplayName: "application-name",
+		Containers: []sca.Container{{
+			Name:   "nginx-container",
+			Image:  "nginxinc/nginx-unprivileged",
+			Memory: sca.PtrInt32(1000),
+			Cpu:    sca.PtrInt32(1000),
+		}},
+		Network: sca.Network{
+			PublicIngress: true,
+			Port:          sca.PtrInt32(8080),
+		},
+		Scaling: sca.Scaling{
+			Type: sca.SCALINGTYPE_SCALING_TYPE_MANUAL,
+			ManualScaling: &sca.ManualScaling{
+				Instances: 1,
+			},
+		},
+	}
+
+	app, err := scaClient.DefaultAPI.CreateApplication(context.Background(), projectID, env.GetId()).
+		CreateApplicationPayload(createApplicationPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplication`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Triggered application creation with id %q\n", app.GetId())
+
+	_, err = wait.CreateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Application created with id %q\n", app.GetId())
+
+	// Get application's details
+	getAppResp, err := scaClient.DefaultAPI.GetApplication(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GetApplication`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Got application with id %q\n", getAppResp.GetId())
+
+	// List applications in an environment
+	listEnvAppsResp, err := scaClient.DefaultAPI.ListApplications(context.Background(), projectID, env.GetId()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ListApplications`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Number of applications in environment: %d\n", len(listEnvAppsResp.Items))
+
+	logs, err := scaClient.DefaultAPI.GetApplicationLogs(context.Background(), projectID, env.GetId(), app.GetId()).
+		Instance(getAppResp.RuntimeStatus.Instances[0].GetName()).
+		Container(getAppResp.Containers[0].GetName()).
+		Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GetApplicationLogs`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Found %d logs for application %q\n", len(logs.GetLogs()), app.GetId())
+
+	events, err := scaClient.DefaultAPI.GetApplicationEvents(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GetApplicationEvents`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Found %d events for application %q\n", len(events.GetEvents()), app.GetId())
+
+	// Update application
+	updateApplicationPayload := sca.UpdateApplicationPayload{
+		Scaling: &sca.Scaling{
+			Type: sca.SCALINGTYPE_SCALING_TYPE_AUTO,
+			AutoScaling: &sca.AutoScaling{
+				AllowScaleToZero: sca.PtrBool(true),
+				MinInstances:     1,
+				MaxInstances:     2,
+				Rules: []sca.ScaleRule{{
+					Name: "http-scaling-rule",
+					Type: sca.RULETYPE_RULE_TYPE_HTTP,
+					HttpRule: &sca.HttpScaleRule{
+						Concurrency: sca.PtrInt32(10),
+						Rps:         sca.PtrInt32(10),
+					},
+				}},
+			},
+		},
+	}
+	updateAppResp, err := scaClient.DefaultAPI.UpdateApplication(context.Background(), projectID, env.GetId(), app.GetId()).
+		UpdateApplicationPayload(updateApplicationPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpdateApplication`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Triggered application update with id %q\n", app.GetId())
+
+	_, err = wait.UpdateApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpdatedApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Updated application with id %q\n", updateAppResp.GetId())
+
+	deleteApplicationResp, err := scaClient.DefaultAPI.DeleteApplication(context.Background(), projectID, env.GetId(), app.GetId()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplication`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Triggered application deletion with id %q\n", *deleteApplicationResp.Id)
+
+	_, err = wait.DeleteApplicationWaitHandler(context.Background(), scaClient.DefaultAPI, projectID, env.GetId(), app.GetId()).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DeleteApplicationWaitHandler`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Application deleted with id %q\n", app.GetId())
+}

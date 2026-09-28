@@ -49,28 +49,32 @@ type AccessKeyGetDisplayNameRetType = string
 	types and functions for expires
 */
 
-// isNotNullableString
+// isNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessKeyGetExpiresAttributeType = *string
+type AccessKeyGetExpiresAttributeType = *NullableString
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getAccessKeyGetExpiresAttributeTypeOk(arg AccessKeyGetExpiresAttributeType) (ret AccessKeyGetExpiresRetType, ok bool) {
 	if arg == nil {
-		return ret, false
+		return nil, false
 	}
-	return *arg, true
+	return arg.Get(), true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setAccessKeyGetExpiresAttributeType(arg *AccessKeyGetExpiresAttributeType, val AccessKeyGetExpiresRetType) {
-	*arg = &val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessKeyGetExpiresArgType = string
+type AccessKeyGetExpiresArgType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessKeyGetExpiresRetType = string
+type AccessKeyGetExpiresRetType = *string
 
 /*
 	types and functions for keyId
@@ -157,6 +161,7 @@ func (o *AccessKey) SetDisplayName(v AccessKeyGetDisplayNameRetType) {
 }
 
 // GetExpires returns the Expires field value
+// If the value is explicit nil, the zero value for string will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *AccessKey) GetExpires() (ret AccessKeyGetExpiresRetType) {
 	ret, _ = o.GetExpiresOk()
@@ -165,6 +170,7 @@ func (o *AccessKey) GetExpires() (ret AccessKeyGetExpiresRetType) {
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *AccessKey) GetExpiresOk() (ret AccessKeyGetExpiresRetType, ok bool) {
 	return getAccessKeyGetExpiresAttributeTypeOk(o.Expires)

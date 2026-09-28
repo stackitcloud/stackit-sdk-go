@@ -1,3 +1,9 @@
+## v0.18.0
+  - `v2api`:
+    - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+  - Deprecated SDK layer in root of the module:
+    - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+
 ## v0.17.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 

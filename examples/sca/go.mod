@@ -1,0 +1,16 @@
+module github.com/stackitcloud/stackit-sdk-go/examples/sca
+
+go 1.25
+
+// This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
+replace github.com/stackitcloud/stackit-sdk-go/services/sca => ../../services/sca
+
+require (
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.0
+	github.com/stackitcloud/stackit-sdk-go/services/sca v0.15.0
+)
+
+require (
+	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
+	github.com/google/uuid v1.6.0 // indirect
+)
