@@ -91,5 +91,6 @@ use (
 	./services/ufw
 	./services/valkey
 	./services/vpn
+	./services/workflows
 	./tools
 )
