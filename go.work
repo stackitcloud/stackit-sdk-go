@@ -13,9 +13,11 @@ use (
 	./examples/edge
 	./examples/errorhandling
 	./examples/experimental
+	./examples/git
 	./examples/iaas
 	./examples/intake
 	./examples/kms
+	./examples/lbiplists
 	./examples/loadbalancer
 	./examples/logme
 	./examples/logs
@@ -60,6 +62,7 @@ use (
 	./services/iaas
 	./services/intake
 	./services/kms
+	./services/lbiplists
 	./services/loadbalancer
 	./services/logme
 	./services/logs

@@ -386,6 +386,46 @@ func TestWaitWithContext(t *testing.T) {
 	}
 }
 
+// TestWaitWithContext_RetryableErrorReportedAsDone is a regression test for a bug where a checkFn
+// that reports waitFinished=true alongside a retryable error caused WaitWithContext to return (nil, nil)
+// instead of retrying, because `done` stayed true even after handleError swallowed the error.
+func TestWaitWithContext_RetryableErrorReportedAsDone(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		type respType struct{ Name string }
+
+		numberCheckFnCalls := 0
+		checkFn := func() (waitFinished bool, response *respType, err error) {
+			numberCheckFnCalls++
+			if numberCheckFnCalls == 1 {
+				// here the return true is the offending line => should be false
+				return true, nil, &oapierror.GenericOpenAPIError{
+					StatusCode:   RetryHttpErrorStatusCodes[0],
+					ErrorMessage: "temporary error",
+				}
+			}
+			return true, &respType{Name: "my-resource"}, nil
+		}
+		handler := AsyncActionHandler[respType]{
+			checkFn:           checkFn,
+			throttle:          10 * time.Millisecond,
+			timeout:           5 * time.Second,
+			tempErrRetryLimit: 5,
+		}
+
+		resp, err := handler.WaitWithContext(context.Background())
+
+		if err != nil {
+			t.Errorf("expected no error, got %v", err)
+		}
+		if resp == nil || resp.Name != "my-resource" {
+			t.Errorf("expected a resolved response, got %v", resp)
+		}
+		if numberCheckFnCalls != 2 {
+			t.Errorf("expected checkFn to be called twice (initial + retry), got %d calls", numberCheckFnCalls)
+		}
+	})
+}
+
 func TestHandleError(t *testing.T) {
 	for _, tt := range []struct {
 		desc              string

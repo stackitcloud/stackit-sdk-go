@@ -102,8 +102,7 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 			if err != nil {
 				return res, err
 			}
-		}
-		if done {
+		} else if done {
 			return res, nil
 		}
 
