@@ -20,6 +20,10 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `lbiplists`:
+  - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
+    - **New**: Load Balancer IP Lists Service SDK
+    - **New**: Examples for the API
 - `objectstorage`:
   - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
