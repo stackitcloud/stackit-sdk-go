@@ -17,6 +17,7 @@ use (
 	./examples/iaas
 	./examples/intake
 	./examples/kms
+	./examples/lbiplists
 	./examples/loadbalancer
 	./examples/logme
 	./examples/logs
