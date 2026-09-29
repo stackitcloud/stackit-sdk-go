@@ -37,7 +37,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadIPList`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Created IP list \"%s\" with %d CIDR entries.\n", createIPListResp.Name, *createIPListResp.NumberOfIps)
+	fmt.Printf("Created IP list %q with %d CIDR entries.\n", createIPListResp.Name, *createIPListResp.NumberOfIps)
 
 	// List the IP lists for your project
 	listIPListsResp, err := lbiplistsClient.DefaultAPI.ListIPLists(ctx, projectId, region).Execute()
@@ -53,7 +53,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetIPList`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Fetched IP list \"%s\" with content hash \"%s\".\n", getIPListResp.Name, *getIPListResp.ContentHash)
+	fmt.Printf("Fetched IP list %q with content hash %q.\n", getIPListResp.Name, *getIPListResp.ContentHash)
 
 	// UploadIPList is limited to 1 request per minute; wait before updating
 	// the list we just created to avoid a 429 Too Many Requests error.
@@ -71,7 +71,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadIPList`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Updated IP list \"%s\", now containing %d CIDR entries.\n", updateIPListResp.Name, *updateIPListResp.NumberOfIps)
+	fmt.Printf("Updated IP list %q, now containing %d CIDR entries.\n", updateIPListResp.Name, *updateIPListResp.NumberOfIps)
 
 	// Get the IP list again to show the update
 	getUpdatedIPListResp, err := lbiplistsClient.DefaultAPI.GetIPList(ctx, projectId, region, name).Execute()
@@ -79,7 +79,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetIPList`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Fetched updated IP list \"%s\" with new content hash \"%s\" and labels %v.\n", getUpdatedIPListResp.Name, *getUpdatedIPListResp.ContentHash, *getUpdatedIPListResp.Labels)
+	fmt.Printf("Fetched updated IP list %q with new content hash %q and labels %v.\n", getUpdatedIPListResp.Name, *getUpdatedIPListResp.ContentHash, *getUpdatedIPListResp.Labels)
 
 	// Delete the IP list
 	_, err = lbiplistsClient.DefaultAPI.DeleteIPList(ctx, projectId, region, name).Execute()
@@ -87,7 +87,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteIPList`: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Deleted IP list \"%s\".\n", name)
+	fmt.Printf("Deleted IP list %q.\n", name)
 
 	// List the IP lists again to show the clean slate
 	listIPListsResp, err = lbiplistsClient.DefaultAPI.ListIPLists(ctx, projectId, region).Execute()
