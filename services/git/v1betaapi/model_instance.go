@@ -24,6 +24,8 @@ var _ MappedNullable = &Instance{}
 type Instance struct {
 	// Restricted ACL for instance access.
 	Acl []string `json:"acl"`
+	// Enable or disable Admin Idp
+	AdminLogin bool `json:"admin_login"`
 	// How many bytes of disk space is consumed. Read Only.
 	ConsumedDisk string `json:"consumed_disk"`
 	// How many bytes of Object Storage is consumed. Read Only.
@@ -35,6 +37,8 @@ type Instance struct {
 	Flavor string `json:"flavor"`
 	// A auto generated unique id which identifies the STACKIT Git instances.
 	Id string `json:"id"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
 	Name  string        `json:"name"`
 	State InstanceState `json:"state"`
@@ -51,9 +55,10 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(acl []string, consumedDisk string, consumedObjectStorage string, created time.Time, featureToggle FeatureToggle, flavor string, id string, name string, state InstanceState, url string, version string) *Instance {
+func NewInstance(acl []string, adminLogin bool, consumedDisk string, consumedObjectStorage string, created time.Time, featureToggle FeatureToggle, flavor string, id string, name string, state InstanceState, url string, version string) *Instance {
 	this := Instance{}
 	this.Acl = acl
+	this.AdminLogin = adminLogin
 	this.ConsumedDisk = consumedDisk
 	this.ConsumedObjectStorage = consumedObjectStorage
 	this.Created = created
@@ -72,6 +77,8 @@ func NewInstance(acl []string, consumedDisk string, consumedObjectStorage string
 // but it doesn't guarantee that properties required by API are set
 func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
+	var adminLogin bool = false
+	this.AdminLogin = adminLogin
 	return &this
 }
 
@@ -97,6 +104,30 @@ func (o *Instance) GetAclOk() ([]string, bool) {
 // SetAcl sets field value
 func (o *Instance) SetAcl(v []string) {
 	o.Acl = v
+}
+
+// GetAdminLogin returns the AdminLogin field value
+func (o *Instance) GetAdminLogin() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AdminLogin
+}
+
+// GetAdminLoginOk returns a tuple with the AdminLogin field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetAdminLoginOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdminLogin, true
+}
+
+// SetAdminLogin sets field value
+func (o *Instance) SetAdminLogin(v bool) {
+	o.AdminLogin = v
 }
 
 // GetConsumedDisk returns the ConsumedDisk field value
@@ -243,6 +274,38 @@ func (o *Instance) SetId(v string) {
 	o.Id = v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Instance) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Instance) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *Instance) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetName returns the Name field value
 func (o *Instance) GetName() string {
 	if o == nil {
@@ -350,12 +413,16 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acl"] = o.Acl
+	toSerialize["admin_login"] = o.AdminLogin
 	toSerialize["consumed_disk"] = o.ConsumedDisk
 	toSerialize["consumed_object_storage"] = o.ConsumedObjectStorage
 	toSerialize["created"] = o.Created
 	toSerialize["feature_toggle"] = o.FeatureToggle
 	toSerialize["flavor"] = o.Flavor
 	toSerialize["id"] = o.Id
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["state"] = o.State
 	toSerialize["url"] = o.Url
@@ -374,6 +441,7 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"acl",
+		"admin_login",
 		"consumed_disk",
 		"consumed_object_storage",
 		"created",
@@ -414,12 +482,14 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "acl")
+		delete(additionalProperties, "admin_login")
 		delete(additionalProperties, "consumed_disk")
 		delete(additionalProperties, "consumed_object_storage")
 		delete(additionalProperties, "created")
 		delete(additionalProperties, "feature_toggle")
 		delete(additionalProperties, "flavor")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "url")
