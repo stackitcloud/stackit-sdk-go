@@ -102,7 +102,7 @@ func setCreateShareExportPolicyPayloadGetRulesAttributeType(arg *CreateShareExpo
 // CreateShareExportPolicyPayload struct for CreateShareExportPolicyPayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateShareExportPolicyPayload struct {
-	// An optional object that represents the labels associated with the share export policy  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the share export policy.
 	Labels CreateShareExportPolicyPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the Share Export Policy
 	// REQUIRED
