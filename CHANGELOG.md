@@ -6,6 +6,9 @@
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+- `authorization`:
+  - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `automation`:
   - [v0.2.1](services/automation/CHANGELOG.md#v021)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -15,6 +18,9 @@
       - **Feature:** Add waiter method for the API
 - `core`: [v0.27.1](core/CHANGELOG.md#v0271)
   - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
+- `cost`:
+  - [v0.5.3](services/cost/CHANGELOG.md#v053)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -52,6 +58,12 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverupdate`:
   - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serviceaccount`:
+  - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serviceenablement`:
+  - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
