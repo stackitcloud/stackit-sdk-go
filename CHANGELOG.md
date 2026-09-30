@@ -15,6 +15,9 @@
       - **Feature:** Add waiter method for the API
 - `core`: [v0.27.1](core/CHANGELOG.md#v0271)
   - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
+- `cost`:
+  - [v0.5.3](services/cost/CHANGELOG.md#v053)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
