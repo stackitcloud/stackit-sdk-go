@@ -53,6 +53,9 @@
 - `serverupdate`:
   - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serviceaccount`:
+  - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceenablement`:
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
