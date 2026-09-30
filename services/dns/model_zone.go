@@ -398,6 +398,33 @@ func setZoneGetLabelsAttributeType(arg *ZoneGetLabelsAttributeType, val ZoneGetL
 }
 
 /*
+	types and functions for labelsMap
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ZoneGetLabelsMapAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ZoneGetLabelsMapArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ZoneGetLabelsMapRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getZoneGetLabelsMapAttributeTypeOk(arg ZoneGetLabelsMapAttributeType) (ret ZoneGetLabelsMapRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setZoneGetLabelsMapAttributeType(arg *ZoneGetLabelsMapAttributeType, val ZoneGetLabelsMapRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -1163,6 +1190,8 @@ type Zone struct {
 	// if the zone is a reverse zone or not
 	IsReverseZone ZonegetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
 	Labels        ZoneGetLabelsAttributeType        `json:"labels,omitempty"`
+	// labels for the zone
+	LabelsMap ZoneGetLabelsMapAttributeType `json:"labelsMap,omitempty"`
 	// user given name
 	// REQUIRED
 	Name ZoneGetNameAttributeType `json:"name" required:"true"`
@@ -1576,6 +1605,33 @@ func (o *Zone) SetLabels(v ZoneGetLabelsRetType) {
 	setZoneGetLabelsAttributeType(&o.Labels, v)
 }
 
+// GetLabelsMap returns the LabelsMap field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Zone) GetLabelsMap() (res ZoneGetLabelsMapRetType) {
+	res, _ = o.GetLabelsMapOk()
+	return
+}
+
+// GetLabelsMapOk returns a tuple with the LabelsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Zone) GetLabelsMapOk() (ret ZoneGetLabelsMapRetType, ok bool) {
+	return getZoneGetLabelsMapAttributeTypeOk(o.LabelsMap)
+}
+
+// HasLabelsMap returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Zone) HasLabelsMap() bool {
+	_, ok := o.GetLabelsMapOk()
+	return ok
+}
+
+// SetLabelsMap gets a reference to the given map[string]string and assigns it to the LabelsMap field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Zone) SetLabelsMap(v ZoneGetLabelsMapRetType) {
+	setZoneGetLabelsMapAttributeType(&o.LabelsMap, v)
+}
+
 // GetName returns the Name field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Zone) GetName() (ret ZoneGetNameRetType) {
@@ -1894,6 +1950,9 @@ func (o Zone) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getZoneGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
+	}
+	if val, ok := getZoneGetLabelsMapAttributeTypeOk(o.LabelsMap); ok {
+		toSerialize["LabelsMap"] = val
 	}
 	if val, ok := getZoneGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
