@@ -39,6 +39,8 @@ type DefaultAPIServiceMock struct {
 	CreateVPCRegionExecuteMock *func(r ApiCreateVPCRegionRequest) (*RegionalVPC, error)
 	// DeleteNetworkExecuteMock can be populated to implement the behavior of the DeleteNetworkExecute function of this mock
 	DeleteNetworkExecuteMock *func(r ApiDeleteNetworkRequest) error
+	// DeletePrefixListExecuteMock can be populated to implement the behavior of the DeletePrefixListExecute function of this mock
+	DeletePrefixListExecuteMock *func(r ApiDeletePrefixListRequest) error
 	// DeleteRouteFromRoutingTableExecuteMock can be populated to implement the behavior of the DeleteRouteFromRoutingTableExecute function of this mock
 	DeleteRouteFromRoutingTableExecuteMock *func(r ApiDeleteRouteFromRoutingTableRequest) error
 	// DeleteRoutingTableFromAreaExecuteMock can be populated to implement the behavior of the DeleteRoutingTableFromAreaExecute function of this mock
@@ -55,6 +57,10 @@ type DefaultAPIServiceMock struct {
 	DeleteVPCStaticRouteExecuteMock *func(r ApiDeleteVPCStaticRouteRequest) error
 	// GetNetworkExecuteMock can be populated to implement the behavior of the GetNetworkExecute function of this mock
 	GetNetworkExecuteMock *func(r ApiGetNetworkRequest) (*Network, error)
+	// GetPrefixListExecuteMock can be populated to implement the behavior of the GetPrefixListExecute function of this mock
+	GetPrefixListExecuteMock *func(r ApiGetPrefixListRequest) (*PrefixList, error)
+	// GetPrefixListEntriesExecuteMock can be populated to implement the behavior of the GetPrefixListEntriesExecute function of this mock
+	GetPrefixListEntriesExecuteMock *func(r ApiGetPrefixListEntriesRequest) (*PrefixEntries, error)
 	// GetRouteOfRoutingTableExecuteMock can be populated to implement the behavior of the GetRouteOfRoutingTableExecute function of this mock
 	GetRouteOfRoutingTableExecuteMock *func(r ApiGetRouteOfRoutingTableRequest) (*Route, error)
 	// GetRoutingTableOfAreaExecuteMock can be populated to implement the behavior of the GetRoutingTableOfAreaExecute function of this mock
@@ -69,10 +75,14 @@ type DefaultAPIServiceMock struct {
 	GetVPCRoutingTableExecuteMock *func(r ApiGetVPCRoutingTableRequest) (*VPCRoutingTable, error)
 	// GetVPCStaticRouteExecuteMock can be populated to implement the behavior of the GetVPCStaticRouteExecute function of this mock
 	GetVPCStaticRouteExecuteMock *func(r ApiGetVPCStaticRouteRequest) (*Route, error)
+	// ListAllRoutesOfRoutingTableExecuteMock can be populated to implement the behavior of the ListAllRoutesOfRoutingTableExecute function of this mock
+	ListAllRoutesOfRoutingTableExecuteMock *func(r ApiListAllRoutesOfRoutingTableRequest) (*AllRouteListResponse, error)
 	// ListNetworksExecuteMock can be populated to implement the behavior of the ListNetworksExecute function of this mock
 	ListNetworksExecuteMock *func(r ApiListNetworksRequest) (*NetworkListResponse, error)
 	// ListNetworksOfRoutingTableExecuteMock can be populated to implement the behavior of the ListNetworksOfRoutingTableExecute function of this mock
 	ListNetworksOfRoutingTableExecuteMock *func(r ApiListNetworksOfRoutingTableRequest) (*NetworkListResponse, error)
+	// ListPrefixListsExecuteMock can be populated to implement the behavior of the ListPrefixListsExecute function of this mock
+	ListPrefixListsExecuteMock *func(r ApiListPrefixListsRequest) (*PrefixListListResponse, error)
 	// ListRoutesOfRoutingTableExecuteMock can be populated to implement the behavior of the ListRoutesOfRoutingTableExecute function of this mock
 	ListRoutesOfRoutingTableExecuteMock *func(r ApiListRoutesOfRoutingTableRequest) (*RouteListResponse, error)
 	// ListRoutingTablesOfAreaExecuteMock can be populated to implement the behavior of the ListRoutingTablesOfAreaExecute function of this mock
@@ -91,6 +101,8 @@ type DefaultAPIServiceMock struct {
 	PartialUpdateNetworkExecuteMock *func(r ApiPartialUpdateNetworkRequest) error
 	// PartialUpdateVPCExecuteMock can be populated to implement the behavior of the PartialUpdateVPCExecute function of this mock
 	PartialUpdateVPCExecuteMock *func(r ApiPartialUpdateVPCRequest) (*VPC, error)
+	// RetypeVolumeExecuteMock can be populated to implement the behavior of the RetypeVolumeExecute function of this mock
+	RetypeVolumeExecuteMock *func(r ApiRetypeVolumeRequest) error
 	// UpdateRouteOfRoutingTableExecuteMock can be populated to implement the behavior of the UpdateRouteOfRoutingTableExecute function of this mock
 	UpdateRouteOfRoutingTableExecuteMock *func(r ApiUpdateRouteOfRoutingTableRequest) (*Route, error)
 	// UpdateRoutingTableOfAreaExecuteMock can be populated to implement the behavior of the UpdateRoutingTableOfAreaExecute function of this mock
@@ -283,6 +295,25 @@ func (a DefaultAPIServiceMock) DeleteNetworkExecute(r ApiDeleteNetworkRequest) e
 	return (*a.DeleteNetworkExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) DeletePrefixList(ctx context.Context, projectId string, region string, prefixListId string) ApiDeletePrefixListRequest {
+	return ApiDeletePrefixListRequest{
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		prefixListId: prefixListId,
+	}
+}
+
+// DeletePrefixListExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeletePrefixListExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeletePrefixListExecute(r ApiDeletePrefixListRequest) error {
+	if a.DeletePrefixListExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeletePrefixListExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) DeleteRouteFromRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string, routeId string) ApiDeleteRouteFromRoutingTableRequest {
 	return ApiDeleteRouteFromRoutingTableRequest{
 		ApiService:     a,
@@ -442,6 +473,46 @@ func (a DefaultAPIServiceMock) GetNetworkExecute(r ApiGetNetworkRequest) (*Netwo
 	return (*a.GetNetworkExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) GetPrefixList(ctx context.Context, projectId string, region string, prefixListId string) ApiGetPrefixListRequest {
+	return ApiGetPrefixListRequest{
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		prefixListId: prefixListId,
+	}
+}
+
+// GetPrefixListExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetPrefixListExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetPrefixListExecute(r ApiGetPrefixListRequest) (*PrefixList, error) {
+	if a.GetPrefixListExecuteMock == nil {
+		var localVarReturnValue *PrefixList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetPrefixListExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetPrefixListEntries(ctx context.Context, projectId string, region string, prefixListId string) ApiGetPrefixListEntriesRequest {
+	return ApiGetPrefixListEntriesRequest{
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		prefixListId: prefixListId,
+	}
+}
+
+// GetPrefixListEntriesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetPrefixListEntriesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetPrefixListEntriesExecute(r ApiGetPrefixListEntriesRequest) (*PrefixEntries, error) {
+	if a.GetPrefixListEntriesExecuteMock == nil {
+		var localVarReturnValue *PrefixEntries
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetPrefixListEntriesExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) GetRouteOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string, routeId string) ApiGetRouteOfRoutingTableRequest {
 	return ApiGetRouteOfRoutingTableRequest{
 		ApiService:     a,
@@ -588,6 +659,27 @@ func (a DefaultAPIServiceMock) GetVPCStaticRouteExecute(r ApiGetVPCStaticRouteRe
 	return (*a.GetVPCStaticRouteExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) ListAllRoutesOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) ApiListAllRoutesOfRoutingTableRequest {
+	return ApiListAllRoutesOfRoutingTableRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+// ListAllRoutesOfRoutingTableExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAllRoutesOfRoutingTableExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListAllRoutesOfRoutingTableExecute(r ApiListAllRoutesOfRoutingTableRequest) (*AllRouteListResponse, error) {
+	if a.ListAllRoutesOfRoutingTableExecuteMock == nil {
+		var localVarReturnValue *AllRouteListResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListAllRoutesOfRoutingTableExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) ListNetworks(ctx context.Context, projectId string, region string) ApiListNetworksRequest {
 	return ApiListNetworksRequest{
 		ApiService: a,
@@ -626,6 +718,25 @@ func (a DefaultAPIServiceMock) ListNetworksOfRoutingTableExecute(r ApiListNetwor
 	}
 
 	return (*a.ListNetworksOfRoutingTableExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListPrefixLists(ctx context.Context, projectId string, region string) ApiListPrefixListsRequest {
+	return ApiListPrefixListsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// ListPrefixListsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListPrefixListsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListPrefixListsExecute(r ApiListPrefixListsRequest) (*PrefixListListResponse, error) {
+	if a.ListPrefixListsExecuteMock == nil {
+		var localVarReturnValue *PrefixListListResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListPrefixListsExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListRoutesOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) ApiListRoutesOfRoutingTableRequest {
@@ -803,6 +914,25 @@ func (a DefaultAPIServiceMock) PartialUpdateVPCExecute(r ApiPartialUpdateVPCRequ
 	}
 
 	return (*a.PartialUpdateVPCExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) RetypeVolume(ctx context.Context, projectId string, region string, volumeId string) ApiRetypeVolumeRequest {
+	return ApiRetypeVolumeRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		volumeId:   volumeId,
+	}
+}
+
+// RetypeVolumeExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the RetypeVolumeExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) RetypeVolumeExecute(r ApiRetypeVolumeRequest) error {
+	if a.RetypeVolumeExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.RetypeVolumeExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateRouteOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string, routeId string) ApiUpdateRouteOfRoutingTableRequest {
