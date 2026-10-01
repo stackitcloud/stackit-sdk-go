@@ -15,60 +15,60 @@ import (
 	"fmt"
 )
 
-// checks if the AccessTokenList type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AccessTokenList{}
+// checks if the AccessPolicyList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessPolicyList{}
 
-// AccessTokenList struct for AccessTokenList
-type AccessTokenList struct {
-	Tokens               []AccessToken `json:"tokens"`
+// AccessPolicyList struct for AccessPolicyList
+type AccessPolicyList struct {
+	Policies             []AccessPolicy `json:"policies"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _AccessTokenList AccessTokenList
+type _AccessPolicyList AccessPolicyList
 
-// NewAccessTokenList instantiates a new AccessTokenList object
+// NewAccessPolicyList instantiates a new AccessPolicyList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessTokenList(tokens []AccessToken) *AccessTokenList {
-	this := AccessTokenList{}
-	this.Tokens = tokens
+func NewAccessPolicyList(policies []AccessPolicy) *AccessPolicyList {
+	this := AccessPolicyList{}
+	this.Policies = policies
 	return &this
 }
 
-// NewAccessTokenListWithDefaults instantiates a new AccessTokenList object
+// NewAccessPolicyListWithDefaults instantiates a new AccessPolicyList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAccessTokenListWithDefaults() *AccessTokenList {
-	this := AccessTokenList{}
+func NewAccessPolicyListWithDefaults() *AccessPolicyList {
+	this := AccessPolicyList{}
 	return &this
 }
 
-// GetTokens returns the Tokens field value
-func (o *AccessTokenList) GetTokens() []AccessToken {
+// GetPolicies returns the Policies field value
+func (o *AccessPolicyList) GetPolicies() []AccessPolicy {
 	if o == nil {
-		var ret []AccessToken
+		var ret []AccessPolicy
 		return ret
 	}
 
-	return o.Tokens
+	return o.Policies
 }
 
-// GetTokensOk returns a tuple with the Tokens field value
+// GetPoliciesOk returns a tuple with the Policies field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenList) GetTokensOk() ([]AccessToken, bool) {
+func (o *AccessPolicyList) GetPoliciesOk() ([]AccessPolicy, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Tokens, true
+	return o.Policies, true
 }
 
-// SetTokens sets field value
-func (o *AccessTokenList) SetTokens(v []AccessToken) {
-	o.Tokens = v
+// SetPolicies sets field value
+func (o *AccessPolicyList) SetPolicies(v []AccessPolicy) {
+	o.Policies = v
 }
 
-func (o AccessTokenList) MarshalJSON() ([]byte, error) {
+func (o AccessPolicyList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -76,9 +76,9 @@ func (o AccessTokenList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AccessTokenList) ToMap() (map[string]interface{}, error) {
+func (o AccessPolicyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["tokens"] = o.Tokens
+	toSerialize["policies"] = o.Policies
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -87,12 +87,12 @@ func (o AccessTokenList) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AccessTokenList) UnmarshalJSON(data []byte) (err error) {
+func (o *AccessPolicyList) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"tokens",
+		"policies",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -109,58 +109,58 @@ func (o *AccessTokenList) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAccessTokenList := _AccessTokenList{}
+	varAccessPolicyList := _AccessPolicyList{}
 
-	err = json.Unmarshal(data, &varAccessTokenList)
+	err = json.Unmarshal(data, &varAccessPolicyList)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AccessTokenList(varAccessTokenList)
+	*o = AccessPolicyList(varAccessPolicyList)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "tokens")
+		delete(additionalProperties, "policies")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableAccessTokenList struct {
-	value *AccessTokenList
+type NullableAccessPolicyList struct {
+	value *AccessPolicyList
 	isSet bool
 }
 
-func (v NullableAccessTokenList) Get() *AccessTokenList {
+func (v NullableAccessPolicyList) Get() *AccessPolicyList {
 	return v.value
 }
 
-func (v *NullableAccessTokenList) Set(val *AccessTokenList) {
+func (v *NullableAccessPolicyList) Set(val *AccessPolicyList) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAccessTokenList) IsSet() bool {
+func (v NullableAccessPolicyList) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAccessTokenList) Unset() {
+func (v *NullableAccessPolicyList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAccessTokenList(val *AccessTokenList) *NullableAccessTokenList {
-	return &NullableAccessTokenList{value: val, isSet: true}
+func NewNullableAccessPolicyList(val *AccessPolicyList) *NullableAccessPolicyList {
+	return &NullableAccessPolicyList{value: val, isSet: true}
 }
 
-func (v NullableAccessTokenList) MarshalJSON() ([]byte, error) {
+func (v NullableAccessPolicyList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAccessTokenList) UnmarshalJSON(src []byte) error {
+func (v *NullableAccessPolicyList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
