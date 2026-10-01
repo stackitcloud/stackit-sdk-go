@@ -21,6 +21,10 @@
 - `cost`:
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `functions`:
+  - [v0.1.0](services/functions/CHANGELOG.md#v010)
+    - `v1alphaapi`:
+      - **Feature**: initial release
 - `iaas`:
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
