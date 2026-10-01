@@ -21,7 +21,7 @@ var _ MappedNullable = &NexthopInternet{}
 
 // NexthopInternet Object that represents a route to the internet.
 type NexthopInternet struct {
-	Type                 string `json:"type"`
+	Type                 NexthopInternetType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _NexthopInternet NexthopInternet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNexthopInternet(types string) *NexthopInternet {
+func NewNexthopInternet(types NexthopInternetType) *NexthopInternet {
 	this := NexthopInternet{}
 	this.Type = types
 	return &this
@@ -46,9 +46,9 @@ func NewNexthopInternetWithDefaults() *NexthopInternet {
 }
 
 // GetType returns the Type field value
-func (o *NexthopInternet) GetType() string {
+func (o *NexthopInternet) GetType() NexthopInternetType {
 	if o == nil {
-		var ret string
+		var ret NexthopInternetType
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *NexthopInternet) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NexthopInternet) GetTypeOk() (*string, bool) {
+func (o *NexthopInternet) GetTypeOk() (*NexthopInternetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *NexthopInternet) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *NexthopInternet) SetType(v string) {
+func (o *NexthopInternet) SetType(v NexthopInternetType) {
 	o.Type = v
 }
 
