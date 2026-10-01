@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the NexthopBlackhole type satisfies the MappedNullable interface at compile time
@@ -22,9 +23,132 @@ var _ MappedNullable = &NexthopBlackhole{}
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// NexthopBlackholeTypes the model 'NexthopBlackhole'
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopBlackholeGetTypeAttributeType = *string
+type NexthopBlackholeTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	NEXTHOPBLACKHOLETYPE_BLACKHOLE NexthopBlackholeTypes = "blackhole"
+)
+
+// All allowed values of NexthopBlackhole enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedNexthopBlackholeTypesEnumValues = []NexthopBlackholeTypes{
+	"blackhole",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NexthopBlackholeTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson NexthopBlackholeTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := NexthopBlackholeTypes(value)
+	for _, existing := range AllowedNexthopBlackholeTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid NexthopBlackhole", value)
+}
+
+// NewNexthopBlackholeTypesFromValue returns a pointer to a valid NexthopBlackholeTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNexthopBlackholeTypesFromValue(v NexthopBlackholeTypes) (*NexthopBlackholeTypes, error) {
+	ev := NexthopBlackholeTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for NexthopBlackholeTypes: valid values are %v", v, AllowedNexthopBlackholeTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopBlackholeTypes) IsValid() bool {
+	for _, existing := range AllowedNexthopBlackholeTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopBlackholeTypes) Ptr() *NexthopBlackholeTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableNexthopBlackholeTypes struct {
+	value *NexthopBlackholeTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopBlackholeTypes) Get() *NexthopBlackholeTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopBlackholeTypes) Set(val *NexthopBlackholeTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopBlackholeTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopBlackholeTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableNexthopBlackholeTypes(val *NexthopBlackholeTypes) *NullableNexthopBlackholeTypes {
+	return &NullableNexthopBlackholeTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopBlackholeTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopBlackholeTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopBlackholeGetTypeAttributeType = *NexthopBlackholeTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopBlackholeGetTypeArgType = NexthopBlackholeTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopBlackholeGetTypeRetType = NexthopBlackholeTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getNexthopBlackholeGetTypeAttributeTypeOk(arg NexthopBlackholeGetTypeAttributeType) (ret NexthopBlackholeGetTypeRetType, ok bool) {
@@ -38,12 +162,6 @@ func getNexthopBlackholeGetTypeAttributeTypeOk(arg NexthopBlackholeGetTypeAttrib
 func setNexthopBlackholeGetTypeAttributeType(arg *NexthopBlackholeGetTypeAttributeType, val NexthopBlackholeGetTypeRetType) {
 	*arg = &val
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopBlackholeGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopBlackholeGetTypeRetType = string
 
 // NexthopBlackhole Object that represents a blackhole route.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
