@@ -19,7 +19,7 @@ var _ MappedNullable = &UpdateShareExportPolicyPayload{}
 
 // UpdateShareExportPolicyPayload struct for UpdateShareExportPolicyPayload
 type UpdateShareExportPolicyPayload struct {
-	// An optional object that represents the labels associated with the share export policy  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the share export policy.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// List of rules of the Share Export Policy. The order of the rules within the array does not matter - what matters  is the field \"order\" within each rule. The whole set of rules needs to be sent in the same request, e.g. if 1 rule  is sent, the share export policy will have just that 1 rule, as opposed to extending the existing set of rules with  the 1 rule that was sent   Important note: the array of rules passed always overwrites the rule array (i.e. sending an empty array removes all rules)
 	Rules                []UpdateShareExportPolicyBodyRule `json:"rules,omitempty"`
