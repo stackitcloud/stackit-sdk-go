@@ -49,6 +49,7 @@
     - "services/workflows/*"
     - "services/valkey/*"
     - "services/pubsub/*"
+    - "services/registry/*"
 # databases
 "domain:Databases":
 - changed-files:
