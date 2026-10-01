@@ -21,7 +21,7 @@ var _ MappedNullable = &NexthopBlackhole{}
 
 // NexthopBlackhole Object that represents a blackhole route.
 type NexthopBlackhole struct {
-	Type                 string `json:"type"`
+	Type                 NexthopBlackholeType `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _NexthopBlackhole NexthopBlackhole
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNexthopBlackhole(types string) *NexthopBlackhole {
+func NewNexthopBlackhole(types NexthopBlackholeType) *NexthopBlackhole {
 	this := NexthopBlackhole{}
 	this.Type = types
 	return &this
@@ -46,9 +46,9 @@ func NewNexthopBlackholeWithDefaults() *NexthopBlackhole {
 }
 
 // GetType returns the Type field value
-func (o *NexthopBlackhole) GetType() string {
+func (o *NexthopBlackhole) GetType() NexthopBlackholeType {
 	if o == nil {
-		var ret string
+		var ret NexthopBlackholeType
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *NexthopBlackhole) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NexthopBlackhole) GetTypeOk() (*string, bool) {
+func (o *NexthopBlackhole) GetTypeOk() (*NexthopBlackholeType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *NexthopBlackhole) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *NexthopBlackhole) SetType(v string) {
+func (o *NexthopBlackhole) SetType(v NexthopBlackholeType) {
 	o.Type = v
 }
 

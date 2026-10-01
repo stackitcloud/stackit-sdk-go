@@ -46,6 +46,33 @@ type ImageFromVolumePayloadGetDiskFormatArgType = string
 type ImageFromVolumePayloadGetDiskFormatRetType = string
 
 /*
+	types and functions for force
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ImageFromVolumePayloadgetForceAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ImageFromVolumePayloadgetForceArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ImageFromVolumePayloadgetForceRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getImageFromVolumePayloadgetForceAttributeTypeOk(arg ImageFromVolumePayloadgetForceAttributeType) (ret ImageFromVolumePayloadgetForceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setImageFromVolumePayloadgetForceAttributeType(arg *ImageFromVolumePayloadgetForceAttributeType, val ImageFromVolumePayloadgetForceRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -105,6 +132,8 @@ type ImageFromVolumePayload struct {
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
 	DiskFormat ImageFromVolumePayloadGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
+	// When true the image is force created from a volume is currently being used.
+	Force ImageFromVolumePayloadgetForceAttributeType `json:"force,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
 	Name ImageFromVolumePayloadGetNameAttributeType `json:"name" required:"true"`
@@ -133,6 +162,8 @@ func NewImageFromVolumePayload(diskFormat ImageFromVolumePayloadGetDiskFormatArg
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func NewImageFromVolumePayloadWithDefaults() *ImageFromVolumePayload {
 	this := ImageFromVolumePayload{}
+	var force bool = false
+	this.Force = &force
 	var protected bool = false
 	this.Protected = &protected
 	return &this
@@ -156,6 +187,33 @@ func (o *ImageFromVolumePayload) GetDiskFormatOk() (ret ImageFromVolumePayloadGe
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ImageFromVolumePayload) SetDiskFormat(v ImageFromVolumePayloadGetDiskFormatRetType) {
 	setImageFromVolumePayloadGetDiskFormatAttributeType(&o.DiskFormat, v)
+}
+
+// GetForce returns the Force field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ImageFromVolumePayload) GetForce() (res ImageFromVolumePayloadgetForceRetType) {
+	res, _ = o.GetForceOk()
+	return
+}
+
+// GetForceOk returns a tuple with the Force field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ImageFromVolumePayload) GetForceOk() (ret ImageFromVolumePayloadgetForceRetType, ok bool) {
+	return getImageFromVolumePayloadgetForceAttributeTypeOk(o.Force)
+}
+
+// HasForce returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ImageFromVolumePayload) HasForce() bool {
+	_, ok := o.GetForceOk()
+	return ok
+}
+
+// SetForce gets a reference to the given bool and assigns it to the Force field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ImageFromVolumePayload) SetForce(v ImageFromVolumePayloadgetForceRetType) {
+	setImageFromVolumePayloadgetForceAttributeType(&o.Force, v)
 }
 
 // GetName returns the Name field value
@@ -210,6 +268,9 @@ func (o ImageFromVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getImageFromVolumePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat); ok {
 		toSerialize["DiskFormat"] = val
+	}
+	if val, ok := getImageFromVolumePayloadgetForceAttributeTypeOk(o.Force); ok {
+		toSerialize["Force"] = val
 	}
 	if val, ok := getImageFromVolumePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
