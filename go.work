@@ -14,9 +14,11 @@ use (
 	./examples/errorhandling
 	./examples/experimental
 	./examples/functions
+	./examples/git
 	./examples/iaas
 	./examples/intake
 	./examples/kms
+	./examples/lbiplists
 	./examples/loadbalancer
 	./examples/logme
 	./examples/logs
@@ -33,6 +35,7 @@ use (
 	./examples/resourcemanager
 	./examples/runcommand
 	./examples/runtime
+	./examples/sca
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/serviceenablement
@@ -60,6 +63,7 @@ use (
 	./services/iaas
 	./services/intake
 	./services/kms
+	./services/lbiplists
 	./services/loadbalancer
 	./services/logme
 	./services/logs
@@ -75,6 +79,7 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/runcommand
+	./services/sca
 	./services/scf
 	./services/secretsmanager
 	./services/serverbackup

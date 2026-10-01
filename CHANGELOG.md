@@ -1,9 +1,84 @@
 ## Release (2026-MM-DD)
 
+- `alb`:
+  - [v0.18.0](services/alb/CHANGELOG.md#v0180)
+    - `v2api`:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+- `authorization`:
+  - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `automation`:
+  - [v0.2.1](services/automation/CHANGELOG.md#v021)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+  - [v0.2.0](services/automation/CHANGELOG.md#v020)
+    - `v1api`:
+      - **New:** Add package which can be used for communication with the STACKIT automation v1 API
+      - **Feature:** Add waiter method for the API
+- `core`: [v0.27.1](core/CHANGELOG.md#v0271)
+  - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
+- `cost`:
+  - [v0.5.3](services/cost/CHANGELOG.md#v053)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `functions`:
   - [v0.1.0](services/functions/CHANGELOG.md#v010)
     - `v1alphaapi`:
       - **Feature**: initial release
+- `iaas`:
+  - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+  - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `lbiplists`:
+  - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
+    - **New**: Load Balancer IP Lists Service SDK
+    - **New**: Examples for the API
+- `objectstorage`:
+  - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
+  - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
+    - `v1api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyResponse` model is now `NullableString`
+    - `v2api`:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now `NullableTime`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New model struct `RateLimitError`
+      - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+      - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
+      - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `resourcemanager`:
+  - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v0api`: 
+      - Updated the godoc comments of the `Labels` fields in the model structs
+    - Deprecated SDK layer in root of the module:
+      - Updated the godoc comments of the `Labels` fields in the model structs
+- `runcommand`:
+  - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serverbackup`:
+  - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serverupdate`:
+  - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serviceaccount`:
+  - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `serviceenablement`:
+  - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sfs`:
+  - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
@@ -82,6 +157,8 @@
   - [v0.1.0](experimental/CHANGELOG.md#v010)
     - Added experimental `paginate` package for AIP compliant pagination
 - `git`:
+  - [v0.14.2](services/git/CHANGELOG.md#v0142)
+    - **Improvement:** Add usage examples for the STACKIT Git service.
   - [v0.14.1](services/git/CHANGELOG.md#v0141)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `iaas`:
@@ -177,6 +254,10 @@
   - [v1.10.0](services/runcommand/CHANGELOG.md#v1100)
     - `v2api`: **Feature:** Add `RunCommandWaitHandler` wait handler for polling a command until it reaches a terminal state. `failed` is an error state; the handler returns a non-nil error along with the `CommandDetails`.
     - **Dependencies:** Add `github.com/google/go-cmp v0.7.0`
+- `sca`:
+  - [v0.1.0](services/sca/CHANGELOG.md#v010)
+    - **New:** SDK module for STACKIT Container Applications (SCA) service.
+    - `v1alphaapi`: New package which can be used for communication with the sca v1 alpha API
 - `scf`:
   - [v0.10.2](services/scf/CHANGELOG.md#v0102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`

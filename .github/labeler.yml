@@ -6,6 +6,7 @@
     - "services/albwaf/*"
     - "services/cdn/*"
     - "services/certificates/*"
+    - "services/lbiplists/*"
     - "services/loadbalancer/*"
     - "services/vpn/*"
 # kubernetes
@@ -48,6 +49,7 @@
     - "services/workflows/*"
     - "services/valkey/*"
     - "services/pubsub/*"
+    - "services/registry/*"
 # databases
 "domain:Databases":
 - changed-files:
