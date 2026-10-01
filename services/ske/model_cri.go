@@ -20,6 +20,33 @@ import (
 var _ MappedNullable = &CRI{}
 
 /*
+	types and functions for kata
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CRIGetKataAttributeType = *Kata
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CRIGetKataArgType = Kata
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CRIGetKataRetType = Kata
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCRIGetKataAttributeTypeOk(arg CRIGetKataAttributeType) (ret CRIGetKataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCRIGetKataAttributeType(arg *CRIGetKataAttributeType, val CRIGetKataRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -166,6 +193,7 @@ func setCRIGetNameAttributeType(arg *CRIGetNameAttributeType, val CRIGetNameRetT
 // CRI struct for CRI
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CRI struct {
+	Kata CRIGetKataAttributeType `json:"kata,omitempty"`
 	Name CRIGetNameAttributeType `json:"name,omitempty"`
 }
 
@@ -186,6 +214,33 @@ func NewCRI() *CRI {
 func NewCRIWithDefaults() *CRI {
 	this := CRI{}
 	return &this
+}
+
+// GetKata returns the Kata field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CRI) GetKata() (res CRIGetKataRetType) {
+	res, _ = o.GetKataOk()
+	return
+}
+
+// GetKataOk returns a tuple with the Kata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CRI) GetKataOk() (ret CRIGetKataRetType, ok bool) {
+	return getCRIGetKataAttributeTypeOk(o.Kata)
+}
+
+// HasKata returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CRI) HasKata() bool {
+	_, ok := o.GetKataOk()
+	return ok
+}
+
+// SetKata gets a reference to the given Kata and assigns it to the Kata field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CRI) SetKata(v CRIGetKataRetType) {
+	setCRIGetKataAttributeType(&o.Kata, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -218,6 +273,9 @@ func (o *CRI) SetName(v CRIGetNameRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CRI) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCRIGetKataAttributeTypeOk(o.Kata); ok {
+		toSerialize["Kata"] = val
+	}
 	if val, ok := getCRIGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}
