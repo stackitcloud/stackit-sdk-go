@@ -37,6 +37,8 @@ type CreateZonePayload struct {
 	Extensions *ZoneExtensions `json:"extensions,omitempty"`
 	// if the zone is a reverse zone or not
 	IsReverseZone *bool `json:"isReverseZone,omitempty"`
+	// labels for the zone - max 64 items. Keys: 1-314 chars (up to 250 prefix, 1 for slash, 1-63 the actual key). Values: 0-63 chars.
+	LabelsMap *map[string]string `json:"labelsMap,omitempty"`
 	// user given name
 	Name string `json:"name"`
 	// negative caching
@@ -352,6 +354,38 @@ func (o *CreateZonePayload) SetIsReverseZone(v bool) {
 	o.IsReverseZone = &v
 }
 
+// GetLabelsMap returns the LabelsMap field value if set, zero value otherwise.
+func (o *CreateZonePayload) GetLabelsMap() map[string]string {
+	if o == nil || IsNil(o.LabelsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.LabelsMap
+}
+
+// GetLabelsMapOk returns a tuple with the LabelsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateZonePayload) GetLabelsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.LabelsMap) {
+		return nil, false
+	}
+	return o.LabelsMap, true
+}
+
+// HasLabelsMap returns a boolean if a field has been set.
+func (o *CreateZonePayload) HasLabelsMap() bool {
+	if o != nil && !IsNil(o.LabelsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelsMap gets a reference to the given map[string]string and assigns it to the LabelsMap field.
+func (o *CreateZonePayload) SetLabelsMap(v map[string]string) {
+	o.LabelsMap = &v
+}
+
 // GetName returns the Name field value
 func (o *CreateZonePayload) GetName() string {
 	if o == nil {
@@ -568,6 +602,9 @@ func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsReverseZone) {
 		toSerialize["isReverseZone"] = o.IsReverseZone
 	}
+	if !IsNil(o.LabelsMap) {
+		toSerialize["labelsMap"] = o.LabelsMap
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.NegativeCache) {
 		toSerialize["negativeCache"] = o.NegativeCache
@@ -636,6 +673,7 @@ func (o *CreateZonePayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "expireTime")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "isReverseZone")
+		delete(additionalProperties, "labelsMap")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "negativeCache")
 		delete(additionalProperties, "primaries")
