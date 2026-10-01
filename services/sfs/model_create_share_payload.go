@@ -135,7 +135,7 @@ func setCreateSharePayloadGetSpaceHardLimitGigabytesAttributeType(arg *CreateSha
 type CreateSharePayload struct {
 	// Name of the Share Export Policy to use in the Share.   Note that if this is not set, the Share can only be mounted in read only by clients with IPs matching the  IP ACL of the Resource Pool hosting this Share. You can also assign a Share Export Policy after creating  the Share
 	ExportPolicyName CreateSharePayloadGetExportPolicyNameAttributeType `json:"exportPolicyName,omitempty"`
-	// An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the share.
 	Labels CreateSharePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the Share
 	// REQUIRED
