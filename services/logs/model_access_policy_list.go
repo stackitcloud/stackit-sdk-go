@@ -15,25 +15,25 @@ import (
 	"encoding/json"
 )
 
-// checks if the AccessTokenList type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AccessTokenList{}
+// checks if the AccessPolicyList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessPolicyList{}
 
 /*
-	types and functions for tokens
+	types and functions for policies
 */
 
 // isArray
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessTokenListGetTokensAttributeType = *[]AccessToken
+type AccessPolicyListGetPoliciesAttributeType = *[]AccessPolicy
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessTokenListGetTokensArgType = []AccessToken
+type AccessPolicyListGetPoliciesArgType = []AccessPolicy
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessTokenListGetTokensRetType = []AccessToken
+type AccessPolicyListGetPoliciesRetType = []AccessPolicy
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getAccessTokenListGetTokensAttributeTypeOk(arg AccessTokenListGetTokensAttributeType) (ret AccessTokenListGetTokensRetType, ok bool) {
+func getAccessPolicyListGetPoliciesAttributeTypeOk(arg AccessPolicyListGetPoliciesAttributeType) (ret AccessPolicyListGetPoliciesRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,109 +41,109 @@ func getAccessTokenListGetTokensAttributeTypeOk(arg AccessTokenListGetTokensAttr
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setAccessTokenListGetTokensAttributeType(arg *AccessTokenListGetTokensAttributeType, val AccessTokenListGetTokensRetType) {
+func setAccessPolicyListGetPoliciesAttributeType(arg *AccessPolicyListGetPoliciesAttributeType, val AccessPolicyListGetPoliciesRetType) {
 	*arg = &val
 }
 
-// AccessTokenList struct for AccessTokenList
+// AccessPolicyList struct for AccessPolicyList
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AccessTokenList struct {
+type AccessPolicyList struct {
 	// REQUIRED
-	Tokens AccessTokenListGetTokensAttributeType `json:"tokens" required:"true"`
+	Policies AccessPolicyListGetPoliciesAttributeType `json:"policies" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _AccessTokenList AccessTokenList
+type _AccessPolicyList AccessPolicyList
 
-// NewAccessTokenList instantiates a new AccessTokenList object
+// NewAccessPolicyList instantiates a new AccessPolicyList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewAccessTokenList(tokens AccessTokenListGetTokensArgType) *AccessTokenList {
-	this := AccessTokenList{}
-	setAccessTokenListGetTokensAttributeType(&this.Tokens, tokens)
+func NewAccessPolicyList(policies AccessPolicyListGetPoliciesArgType) *AccessPolicyList {
+	this := AccessPolicyList{}
+	setAccessPolicyListGetPoliciesAttributeType(&this.Policies, policies)
 	return &this
 }
 
-// NewAccessTokenListWithDefaults instantiates a new AccessTokenList object
+// NewAccessPolicyListWithDefaults instantiates a new AccessPolicyList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewAccessTokenListWithDefaults() *AccessTokenList {
-	this := AccessTokenList{}
+func NewAccessPolicyListWithDefaults() *AccessPolicyList {
+	this := AccessPolicyList{}
 	return &this
 }
 
-// GetTokens returns the Tokens field value
+// GetPolicies returns the Policies field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *AccessTokenList) GetTokens() (ret AccessTokenListGetTokensRetType) {
-	ret, _ = o.GetTokensOk()
+func (o *AccessPolicyList) GetPolicies() (ret AccessPolicyListGetPoliciesRetType) {
+	ret, _ = o.GetPoliciesOk()
 	return ret
 }
 
-// GetTokensOk returns a tuple with the Tokens field value
+// GetPoliciesOk returns a tuple with the Policies field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *AccessTokenList) GetTokensOk() (ret AccessTokenListGetTokensRetType, ok bool) {
-	return getAccessTokenListGetTokensAttributeTypeOk(o.Tokens)
+func (o *AccessPolicyList) GetPoliciesOk() (ret AccessPolicyListGetPoliciesRetType, ok bool) {
+	return getAccessPolicyListGetPoliciesAttributeTypeOk(o.Policies)
 }
 
-// SetTokens sets field value
+// SetPolicies sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *AccessTokenList) SetTokens(v AccessTokenListGetTokensRetType) {
-	setAccessTokenListGetTokensAttributeType(&o.Tokens, v)
+func (o *AccessPolicyList) SetPolicies(v AccessPolicyListGetPoliciesRetType) {
+	setAccessPolicyListGetPoliciesAttributeType(&o.Policies, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o AccessTokenList) ToMap() (map[string]interface{}, error) {
+func (o AccessPolicyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getAccessTokenListGetTokensAttributeTypeOk(o.Tokens); ok {
-		toSerialize["Tokens"] = val
+	if val, ok := getAccessPolicyListGetPoliciesAttributeTypeOk(o.Policies); ok {
+		toSerialize["Policies"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableAccessTokenList struct {
-	value *AccessTokenList
+type NullableAccessPolicyList struct {
+	value *AccessPolicyList
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableAccessTokenList) Get() *AccessTokenList {
+func (v NullableAccessPolicyList) Get() *AccessPolicyList {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableAccessTokenList) Set(val *AccessTokenList) {
+func (v *NullableAccessPolicyList) Set(val *AccessPolicyList) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableAccessTokenList) IsSet() bool {
+func (v NullableAccessPolicyList) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableAccessTokenList) Unset() {
+func (v *NullableAccessPolicyList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableAccessTokenList(val *AccessTokenList) *NullableAccessTokenList {
-	return &NullableAccessTokenList{value: val, isSet: true}
+func NewNullableAccessPolicyList(val *AccessPolicyList) *NullableAccessPolicyList {
+	return &NullableAccessPolicyList{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableAccessTokenList) MarshalJSON() ([]byte, error) {
+func (v NullableAccessPolicyList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableAccessTokenList) UnmarshalJSON(src []byte) error {
+func (v *NullableAccessPolicyList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
