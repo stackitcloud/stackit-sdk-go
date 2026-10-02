@@ -21,7 +21,7 @@ var _ MappedNullable = &NexthopIPv6{}
 
 // NexthopIPv6 Object that represents an IPv6 address.
 type NexthopIPv6 struct {
-	Type string `json:"type"`
+	Type NexthopIPv6Type `json:"type"`
 	// An IPv6 address.
 	Value                string `json:"value" validate:"regexp=^\\s*((([0-9a-f]{1\\,4}:){7}([0-9a-f]{1\\,4}|:))|(([0-9a-f]{1\\,4}:){6}(:[0-9a-f]{1\\,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){5}(((:[0-9a-f]{1\\,4}){1\\,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){4}(((:[0-9a-f]{1\\,4}){1\\,3})|((:[0-9a-f]{1\\,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){3}(((:[0-9a-f]{1\\,4}){1\\,4})|((:[0-9a-f]{1\\,4}){0\\,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){2}(((:[0-9a-f]{1\\,4}){1\\,5})|((:[0-9a-f]{1\\,4}){0\\,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){1}(((:[0-9a-f]{1\\,4}){1\\,6})|((:[0-9a-f]{1\\,4}){0\\,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1\\,4}){1\\,7})|((:[0-9a-f]{1\\,4}){0\\,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _NexthopIPv6 NexthopIPv6
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNexthopIPv6(types string, value string) *NexthopIPv6 {
+func NewNexthopIPv6(types NexthopIPv6Type, value string) *NexthopIPv6 {
 	this := NexthopIPv6{}
 	this.Type = types
 	this.Value = value
@@ -49,9 +49,9 @@ func NewNexthopIPv6WithDefaults() *NexthopIPv6 {
 }
 
 // GetType returns the Type field value
-func (o *NexthopIPv6) GetType() string {
+func (o *NexthopIPv6) GetType() NexthopIPv6Type {
 	if o == nil {
-		var ret string
+		var ret NexthopIPv6Type
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *NexthopIPv6) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NexthopIPv6) GetTypeOk() (*string, bool) {
+func (o *NexthopIPv6) GetTypeOk() (*NexthopIPv6Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *NexthopIPv6) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *NexthopIPv6) SetType(v string) {
+func (o *NexthopIPv6) SetType(v NexthopIPv6Type) {
 	o.Type = v
 }
 
