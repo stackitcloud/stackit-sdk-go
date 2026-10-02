@@ -19,6 +19,7 @@ var _ MappedNullable = &CRI{}
 
 // CRI struct for CRI
 type CRI struct {
+	Kata                 *Kata                `json:"kata,omitempty"`
 	Name                 *NameOfTheCriLibrary `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -40,6 +41,38 @@ func NewCRI() *CRI {
 func NewCRIWithDefaults() *CRI {
 	this := CRI{}
 	return &this
+}
+
+// GetKata returns the Kata field value if set, zero value otherwise.
+func (o *CRI) GetKata() Kata {
+	if o == nil || IsNil(o.Kata) {
+		var ret Kata
+		return ret
+	}
+	return *o.Kata
+}
+
+// GetKataOk returns a tuple with the Kata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CRI) GetKataOk() (*Kata, bool) {
+	if o == nil || IsNil(o.Kata) {
+		return nil, false
+	}
+	return o.Kata, true
+}
+
+// HasKata returns a boolean if a field has been set.
+func (o *CRI) HasKata() bool {
+	if o != nil && !IsNil(o.Kata) {
+		return true
+	}
+
+	return false
+}
+
+// SetKata gets a reference to the given Kata and assigns it to the Kata field.
+func (o *CRI) SetKata(v Kata) {
+	o.Kata = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -84,6 +117,9 @@ func (o CRI) MarshalJSON() ([]byte, error) {
 
 func (o CRI) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Kata) {
+		toSerialize["kata"] = o.Kata
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -109,6 +145,7 @@ func (o *CRI) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kata")
 		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
