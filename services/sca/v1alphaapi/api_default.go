@@ -81,7 +81,7 @@ type DefaultAPI interface {
 	GetApplicationExecute(r ApiGetApplicationRequest) (*Application, error)
 
 	/*
-		GetApplicationEvents GetApplicationEvents retrieves events of an application.
+		GetApplicationEvents Retrieves events of an application.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project to fetch the application from.
@@ -96,7 +96,7 @@ type DefaultAPI interface {
 	GetApplicationEventsExecute(r ApiGetApplicationEventsRequest) (*GetApplicationEventsResponse, error)
 
 	/*
-		GetApplicationLogs GetApplicationLogs retrieves logs of an application.
+		GetApplicationLogs Retrieves logs of an application.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project to fetch the application from.
@@ -125,7 +125,7 @@ type DefaultAPI interface {
 	GetEnvironmentExecute(r ApiGetEnvironmentRequest) (*Environment, error)
 
 	/*
-		GetOverview Method for GetOverview
+		GetOverview Retrieves the overview for an environment.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Parent project resource name to list under.
@@ -855,7 +855,7 @@ func (r ApiGetApplicationEventsRequest) Execute() (*GetApplicationEventsResponse
 }
 
 /*
-GetApplicationEvents GetApplicationEvents retrieves events of an application.
+GetApplicationEvents Retrieves events of an application.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project to fetch the application from.
@@ -1029,7 +1029,7 @@ func (r ApiGetApplicationLogsRequest) Execute() (*GetApplicationLogsResponse, er
 }
 
 /*
-GetApplicationLogs GetApplicationLogs retrieves logs of an application.
+GetApplicationLogs Retrieves logs of an application.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project to fetch the application from.
@@ -1351,7 +1351,7 @@ func (r ApiGetOverviewRequest) Execute() (*GetOverviewResponse, error) {
 }
 
 /*
-GetOverview Method for GetOverview
+GetOverview Retrieves the overview for an environment.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Parent project resource name to list under.
