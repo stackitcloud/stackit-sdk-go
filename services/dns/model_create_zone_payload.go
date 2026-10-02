@@ -236,6 +236,33 @@ func setCreateZonePayloadgetIsReverseZoneAttributeType(arg *CreateZonePayloadget
 }
 
 /*
+	types and functions for labelsMap
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateZonePayloadGetLabelsMapAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateZonePayloadGetLabelsMapArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateZonePayloadGetLabelsMapRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateZonePayloadGetLabelsMapAttributeTypeOk(arg CreateZonePayloadGetLabelsMapAttributeType) (ret CreateZonePayloadGetLabelsMapRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateZonePayloadGetLabelsMapAttributeType(arg *CreateZonePayloadGetLabelsMapAttributeType, val CreateZonePayloadGetLabelsMapRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -538,6 +565,8 @@ type CreateZonePayload struct {
 	Extensions CreateZonePayloadGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// if the zone is a reverse zone or not
 	IsReverseZone CreateZonePayloadgetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
+	// labels for the zone - max 64 items. Keys: 1-314 chars (up to 250 prefix, 1 for slash, 1-63 the actual key). Values: 0-63 chars.
+	LabelsMap CreateZonePayloadGetLabelsMapAttributeType `json:"labelsMap,omitempty"`
 	// user given name
 	// REQUIRED
 	Name CreateZonePayloadGetNameAttributeType `json:"name" required:"true"`
@@ -805,6 +834,33 @@ func (o *CreateZonePayload) SetIsReverseZone(v CreateZonePayloadgetIsReverseZone
 	setCreateZonePayloadgetIsReverseZoneAttributeType(&o.IsReverseZone, v)
 }
 
+// GetLabelsMap returns the LabelsMap field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateZonePayload) GetLabelsMap() (res CreateZonePayloadGetLabelsMapRetType) {
+	res, _ = o.GetLabelsMapOk()
+	return
+}
+
+// GetLabelsMapOk returns a tuple with the LabelsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateZonePayload) GetLabelsMapOk() (ret CreateZonePayloadGetLabelsMapRetType, ok bool) {
+	return getCreateZonePayloadGetLabelsMapAttributeTypeOk(o.LabelsMap)
+}
+
+// HasLabelsMap returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateZonePayload) HasLabelsMap() bool {
+	_, ok := o.GetLabelsMapOk()
+	return ok
+}
+
+// SetLabelsMap gets a reference to the given map[string]string and assigns it to the LabelsMap field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateZonePayload) SetLabelsMap(v CreateZonePayloadGetLabelsMapRetType) {
+	setCreateZonePayloadGetLabelsMapAttributeType(&o.LabelsMap, v)
+}
+
 // GetName returns the Name field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateZonePayload) GetName() (ret CreateZonePayloadGetNameRetType) {
@@ -986,6 +1042,9 @@ func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateZonePayloadgetIsReverseZoneAttributeTypeOk(o.IsReverseZone); ok {
 		toSerialize["IsReverseZone"] = val
+	}
+	if val, ok := getCreateZonePayloadGetLabelsMapAttributeTypeOk(o.LabelsMap); ok {
+		toSerialize["LabelsMap"] = val
 	}
 	if val, ok := getCreateZonePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
