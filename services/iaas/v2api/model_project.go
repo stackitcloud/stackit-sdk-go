@@ -28,10 +28,14 @@ type Project struct {
 	// Universally Unique Identifier (UUID).
 	Id             string `json:"id" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	InternetAccess *bool  `json:"internetAccess,omitempty"`
+	// Possible values: `Schwarz`, `Public`, `SNA`, `VPC`.
+	ProjectType *string `json:"projectType,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	Status string `json:"status"`
 	// Date-time when resource was last updated.
-	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	// Universally Unique Identifier (UUID).
+	VpcId                *string `json:"vpcId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -169,6 +173,38 @@ func (o *Project) SetInternetAccess(v bool) {
 	o.InternetAccess = &v
 }
 
+// GetProjectType returns the ProjectType field value if set, zero value otherwise.
+func (o *Project) GetProjectType() string {
+	if o == nil || IsNil(o.ProjectType) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectType
+}
+
+// GetProjectTypeOk returns a tuple with the ProjectType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetProjectTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ProjectType) {
+		return nil, false
+	}
+	return o.ProjectType, true
+}
+
+// HasProjectType returns a boolean if a field has been set.
+func (o *Project) HasProjectType() bool {
+	if o != nil && !IsNil(o.ProjectType) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectType gets a reference to the given string and assigns it to the ProjectType field.
+func (o *Project) SetProjectType(v string) {
+	o.ProjectType = &v
+}
+
 // GetStatus returns the Status field value
 func (o *Project) GetStatus() string {
 	if o == nil {
@@ -225,6 +261,38 @@ func (o *Project) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+func (o *Project) GetVpcId() string {
+	if o == nil || IsNil(o.VpcId) {
+		var ret string
+		return ret
+	}
+	return *o.VpcId
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetVpcIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VpcId) {
+		return nil, false
+	}
+	return o.VpcId, true
+}
+
+// HasVpcId returns a boolean if a field has been set.
+func (o *Project) HasVpcId() bool {
+	if o != nil && !IsNil(o.VpcId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+func (o *Project) SetVpcId(v string) {
+	o.VpcId = &v
+}
+
 func (o Project) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -243,9 +311,15 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InternetAccess) {
 		toSerialize["internetAccess"] = o.InternetAccess
 	}
+	if !IsNil(o.ProjectType) {
+		toSerialize["projectType"] = o.ProjectType
+	}
 	toSerialize["status"] = o.Status
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if !IsNil(o.VpcId) {
+		toSerialize["vpcId"] = o.VpcId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -296,8 +370,10 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "internetAccess")
+		delete(additionalProperties, "projectType")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "vpcId")
 		o.AdditionalProperties = additionalProperties
 	}
 
