@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -21,7 +21,6 @@ var _ MappedNullable = &StorageUpdate{}
 // StorageUpdate struct for StorageUpdate
 type StorageUpdate struct {
 	//  ⚠️ **DEPRECATED AND NON-FUNCTIONAL:** Updating the performance class field is not possible.
-	// Deprecated
 	Class                *string `json:"class,omitempty"`
 	Size                 *int64  `json:"size,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +46,6 @@ func NewStorageUpdateWithDefaults() *StorageUpdate {
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
-// Deprecated
 func (o *StorageUpdate) GetClass() string {
 	if o == nil || IsNil(o.Class) {
 		var ret string
@@ -58,7 +56,6 @@ func (o *StorageUpdate) GetClass() string {
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// Deprecated
 func (o *StorageUpdate) GetClassOk() (*string, bool) {
 	if o == nil || IsNil(o.Class) {
 		return nil, false
@@ -76,7 +73,6 @@ func (o *StorageUpdate) HasClass() bool {
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
-// Deprecated
 func (o *StorageUpdate) SetClass(v string) {
 	o.Class = &v
 }
