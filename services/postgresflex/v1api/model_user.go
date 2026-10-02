@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -24,7 +24,7 @@ type User struct {
 	Host                 *string  `json:"host,omitempty"`
 	Id                   *string  `json:"id,omitempty"`
 	Password             *string  `json:"password,omitempty"`
-	Port                 *int32   `json:"port,omitempty"`
+	Port                 *int64   `json:"port,omitempty"`
 	Roles                []string `json:"roles,omitempty"`
 	Uri                  *string  `json:"uri,omitempty"`
 	Username             *string  `json:"username,omitempty"`
@@ -179,9 +179,9 @@ func (o *User) SetPassword(v string) {
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *User) GetPort() int32 {
+func (o *User) GetPort() int64 {
 	if o == nil || IsNil(o.Port) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Port
@@ -189,7 +189,7 @@ func (o *User) GetPort() int32 {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetPortOk() (*int32, bool) {
+func (o *User) GetPortOk() (*int64, bool) {
 	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
@@ -205,8 +205,8 @@ func (o *User) HasPort() bool {
 	return false
 }
 
-// SetPort gets a reference to the given int32 and assigns it to the Port field.
-func (o *User) SetPort(v int32) {
+// SetPort gets a reference to the given int64 and assigns it to the Port field.
+func (o *User) SetPort(v int64) {
 	o.Port = &v
 }
 
