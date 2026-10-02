@@ -263,6 +263,33 @@ type ClusterStatusGetIdentityArgType = string
 type ClusterStatusGetIdentityRetType = string
 
 /*
+	types and functions for nodeAddressRanges
+*/
+
+// isArray
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetNodeAddressRangesAttributeType = *[]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetNodeAddressRangesArgType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetNodeAddressRangesRetType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getClusterStatusGetNodeAddressRangesAttributeTypeOk(arg ClusterStatusGetNodeAddressRangesAttributeType) (ret ClusterStatusGetNodeAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setClusterStatusGetNodeAddressRangesAttributeType(arg *ClusterStatusGetNodeAddressRangesAttributeType, val ClusterStatusGetNodeAddressRangesRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for podAddressRanges
 */
 
@@ -316,6 +343,33 @@ type ClusterStatusGetServiceAccountIssuerArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ClusterStatusGetServiceAccountIssuerRetType = string
 
+/*
+	types and functions for serviceAddressRanges
+*/
+
+// isArray
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetServiceAddressRangesAttributeType = *[]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetServiceAddressRangesArgType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetServiceAddressRangesRetType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getClusterStatusGetServiceAddressRangesAttributeTypeOk(arg ClusterStatusGetServiceAddressRangesAttributeType) (ret ClusterStatusGetServiceAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setClusterStatusGetServiceAddressRangesAttributeType(arg *ClusterStatusGetServiceAddressRangesAttributeType, val ClusterStatusGetServiceAddressRangesRetType) {
+	*arg = &val
+}
+
 // ClusterStatus struct for ClusterStatus
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ClusterStatus struct {
@@ -330,9 +384,13 @@ type ClusterStatus struct {
 	Expiration          ClusterStatusGetExpirationAttributeType          `json:"expiration,omitempty"`
 	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
 	Identity            ClusterStatusGetIdentityAttributeType            `json:"identity,omitempty"`
+	// The network ranges (in CIDR notation) used by nodes of the cluster.
+	NodeAddressRanges ClusterStatusGetNodeAddressRangesAttributeType `json:"nodeAddressRanges,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
 	PodAddressRanges     ClusterStatusGetPodAddressRangesAttributeType     `json:"podAddressRanges,omitempty"`
 	ServiceAccountIssuer ClusterStatusGetServiceAccountIssuerAttributeType `json:"serviceAccountIssuer,omitempty"`
+	// The network ranges (in CIDR notation) used by services of the cluster.
+	ServiceAddressRanges ClusterStatusGetServiceAddressRangesAttributeType `json:"serviceAddressRanges,omitempty"`
 }
 
 // NewClusterStatus instantiates a new ClusterStatus object
@@ -597,6 +655,33 @@ func (o *ClusterStatus) SetIdentity(v ClusterStatusGetIdentityRetType) {
 	setClusterStatusGetIdentityAttributeType(&o.Identity, v)
 }
 
+// GetNodeAddressRanges returns the NodeAddressRanges field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetNodeAddressRanges() (res ClusterStatusGetNodeAddressRangesRetType) {
+	res, _ = o.GetNodeAddressRangesOk()
+	return
+}
+
+// GetNodeAddressRangesOk returns a tuple with the NodeAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetNodeAddressRangesOk() (ret ClusterStatusGetNodeAddressRangesRetType, ok bool) {
+	return getClusterStatusGetNodeAddressRangesAttributeTypeOk(o.NodeAddressRanges)
+}
+
+// HasNodeAddressRanges returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) HasNodeAddressRanges() bool {
+	_, ok := o.GetNodeAddressRangesOk()
+	return ok
+}
+
+// SetNodeAddressRanges gets a reference to the given []string and assigns it to the NodeAddressRanges field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) SetNodeAddressRanges(v ClusterStatusGetNodeAddressRangesRetType) {
+	setClusterStatusGetNodeAddressRangesAttributeType(&o.NodeAddressRanges, v)
+}
+
 // GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ClusterStatus) GetPodAddressRanges() (res ClusterStatusGetPodAddressRangesRetType) {
@@ -651,6 +736,33 @@ func (o *ClusterStatus) SetServiceAccountIssuer(v ClusterStatusGetServiceAccount
 	setClusterStatusGetServiceAccountIssuerAttributeType(&o.ServiceAccountIssuer, v)
 }
 
+// GetServiceAddressRanges returns the ServiceAddressRanges field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetServiceAddressRanges() (res ClusterStatusGetServiceAddressRangesRetType) {
+	res, _ = o.GetServiceAddressRangesOk()
+	return
+}
+
+// GetServiceAddressRangesOk returns a tuple with the ServiceAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetServiceAddressRangesOk() (ret ClusterStatusGetServiceAddressRangesRetType, ok bool) {
+	return getClusterStatusGetServiceAddressRangesAttributeTypeOk(o.ServiceAddressRanges)
+}
+
+// HasServiceAddressRanges returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) HasServiceAddressRanges() bool {
+	_, ok := o.GetServiceAddressRangesOk()
+	return ok
+}
+
+// SetServiceAddressRanges gets a reference to the given []string and assigns it to the ServiceAddressRanges field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) SetServiceAddressRanges(v ClusterStatusGetServiceAddressRangesRetType) {
+	setClusterStatusGetServiceAddressRangesAttributeType(&o.ServiceAddressRanges, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -681,11 +793,17 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	if val, ok := getClusterStatusGetIdentityAttributeTypeOk(o.Identity); ok {
 		toSerialize["Identity"] = val
 	}
+	if val, ok := getClusterStatusGetNodeAddressRangesAttributeTypeOk(o.NodeAddressRanges); ok {
+		toSerialize["NodeAddressRanges"] = val
+	}
 	if val, ok := getClusterStatusGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges); ok {
 		toSerialize["PodAddressRanges"] = val
 	}
 	if val, ok := getClusterStatusGetServiceAccountIssuerAttributeTypeOk(o.ServiceAccountIssuer); ok {
 		toSerialize["ServiceAccountIssuer"] = val
+	}
+	if val, ok := getClusterStatusGetServiceAddressRangesAttributeTypeOk(o.ServiceAddressRanges); ok {
+		toSerialize["ServiceAddressRanges"] = val
 	}
 	return toSerialize, nil
 }
