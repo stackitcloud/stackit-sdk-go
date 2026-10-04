@@ -50,6 +50,13 @@
       - **Improvement:** Add HTTP 429 rate limit error responses in API operations
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `resourcemanager`:
+  - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v0api`: 
+      - Updated the godoc comments of the `Labels` fields in the model structs
+    - Deprecated SDK layer in root of the module:
+      - Updated the godoc comments of the `Labels` fields in the model structs
 - `runcommand`:
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
