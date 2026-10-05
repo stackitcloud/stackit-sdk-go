@@ -57,6 +57,12 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 			return nil, fmt.Errorf("configuring workload identity federation client: %w", err)
 		}
 		return wifRoundTripper, nil
+	} else if cfg.MetadataAuth {
+		metadataRoundTripper, err := MetadataAuth(cfg)
+		if err != nil {
+			return nil, fmt.Errorf("configuring metadata client: %w", err)
+		}
+		return metadataRoundTripper, nil
 	} else if cfg.ServiceAccountKey != "" || cfg.ServiceAccountKeyPath != "" {
 		keyRoundTripper, err := KeyAuth(cfg)
 		if err != nil {
@@ -248,6 +254,26 @@ func WorkloadIdentityFederationAuth(cfg *config.Configuration) (http.RoundTrippe
 
 	client := &clients.WorkloadIdentityFederationFlow{}
 	if err := client.Init(&wifConfig); err != nil {
+		return nil, fmt.Errorf("error initializing client: %w", err)
+	}
+
+	return client, nil
+}
+
+// MetadataAuth configures the metadata flow and returns an http.RoundTripper
+// that can be used to make authenticated requests as the service account attached to the server
+func MetadataAuth(cfg *config.Configuration) (http.RoundTripper, error) {
+	metadataConfig := clients.MetadataFlowConfig{
+		ServiceAccountEmail:           cfg.ServiceAccountEmail,
+		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
+	}
+
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		metadataConfig.HTTPTransport = cfg.HTTPClient.Transport
+	}
+
+	client := &clients.MetadataFlow{}
+	if err := client.Init(&metadataConfig); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

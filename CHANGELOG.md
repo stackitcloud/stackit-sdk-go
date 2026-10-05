@@ -16,8 +16,11 @@
     - `v1api`:
       - **New:** Add package which can be used for communication with the STACKIT automation v1 API
       - **Feature:** Add waiter method for the API
-- `core`: [v0.27.1](core/CHANGELOG.md#v0271)
-  - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
+- `core`:
+  - [v0.28.0](core/CHANGELOG.md#v0280)
+    - **Feature:** Support metadata flow, authenticating as the service account attached to the server
+  - [v0.27.1](core/CHANGELOG.md#v0271)
+    - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
 - `cost`:
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`

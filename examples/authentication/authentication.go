@@ -41,6 +41,17 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Create a new API client, that will authenticate as the service account attached to the server
+	// it runs on, using tokens from the server's metadata service
+	_, err = dns.NewAPIClient(
+		config.WithMetadataAuth(),
+		config.WithServiceAccountEmail("my-sa@sa.stackit.cloud"),
+	)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
 	// Create a new API client, that will authenticate using the key flow
 	// If you created a service account key and provided your own RSA key pair,
 	// you need to add the path to a PEM encoded file including the private key
