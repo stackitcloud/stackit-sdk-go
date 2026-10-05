@@ -71,8 +71,8 @@ func main() {
 			Memory: sca.PtrInt32(1000),
 			Cpu:    sca.PtrInt32(1000),
 		}},
-		Network: sca.Network{
-			PublicIngress: true,
+		Network: &sca.Network{
+			PublicIngress: sca.PtrBool(true),
 			Port:          sca.PtrInt32(8080),
 		},
 		Scaling: sca.Scaling{
