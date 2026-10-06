@@ -21,7 +21,7 @@ var _ MappedNullable = &DestinationCIDRv6{}
 
 // DestinationCIDRv6 IPv6 Classless Inter-Domain Routing (CIDR) Object.
 type DestinationCIDRv6 struct {
-	Type string `json:"type"`
+	Type DestinationCIDRv6Type `json:"type"`
 	// An CIDRv6 string.
 	Value                string `json:"value" validate:"regexp=^(([0-9a-fA-F]{1\\,4}:){7\\,7}[0-9a-fA-F]{1\\,4}|([0-9a-fA-F]{1\\,4}:){1\\,7}:|([0-9a-fA-F]{1\\,4}:){1\\,6}:[0-9a-fA-F]{1\\,4}|([0-9a-fA-F]{1\\,4}:){1\\,5}(:[0-9a-fA-F]{1\\,4}){1\\,2}|([0-9a-fA-F]{1\\,4}:){1\\,4}(:[0-9a-fA-F]{1\\,4}){1\\,3}|([0-9a-fA-F]{1\\,4}:){1\\,3}(:[0-9a-fA-F]{1\\,4}){1\\,4}|([0-9a-fA-F]{1\\,4}:){1\\,2}(:[0-9a-fA-F]{1\\,4}){1\\,5}|[0-9a-fA-F]{1\\,4}:((:[0-9a-fA-F]{1\\,4}){1\\,6})|:((:[0-9a-fA-F]{1\\,4}){1\\,7}|:)|fe80:(:[0-9a-fA-F]{0\\,4}){0\\,4}%[0-9a-zA-Z]{1\\,}|::(ffff(:0{1\\,4}){0\\,1}:){0\\,1}((25[0-5]|(2[0-4]|1{0\\,1}[0-9]){0\\,1}[0-9])\\.){3\\,3}(25[0-5]|(2[0-4]|1{0\\,1}[0-9]){0\\,1}[0-9])|([0-9a-fA-F]{1\\,4}:){1\\,4}:((25[0-5]|(2[0-4]|1{0\\,1}[0-9]){0\\,1}[0-9])\\.){3\\,3}(25[0-5]|(2[0-4]|1{0\\,1}[0-9]){0\\,1}[0-9]))(/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _DestinationCIDRv6 DestinationCIDRv6
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDestinationCIDRv6(types string, value string) *DestinationCIDRv6 {
+func NewDestinationCIDRv6(types DestinationCIDRv6Type, value string) *DestinationCIDRv6 {
 	this := DestinationCIDRv6{}
 	this.Type = types
 	this.Value = value
@@ -49,9 +49,9 @@ func NewDestinationCIDRv6WithDefaults() *DestinationCIDRv6 {
 }
 
 // GetType returns the Type field value
-func (o *DestinationCIDRv6) GetType() string {
+func (o *DestinationCIDRv6) GetType() DestinationCIDRv6Type {
 	if o == nil {
-		var ret string
+		var ret DestinationCIDRv6Type
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *DestinationCIDRv6) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DestinationCIDRv6) GetTypeOk() (*string, bool) {
+func (o *DestinationCIDRv6) GetTypeOk() (*DestinationCIDRv6Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *DestinationCIDRv6) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *DestinationCIDRv6) SetType(v string) {
+func (o *DestinationCIDRv6) SetType(v DestinationCIDRv6Type) {
 	o.Type = v
 }
 
