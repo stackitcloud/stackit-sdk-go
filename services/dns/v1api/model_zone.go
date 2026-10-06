@@ -46,6 +46,8 @@ type Zone struct {
 	// if the zone is a reverse zone or not
 	IsReverseZone *bool   `json:"isReverseZone,omitempty"`
 	Labels        []Label `json:"labels,omitempty"`
+	// labels for the zone
+	LabelsMap *map[string]string `json:"labelsMap,omitempty"`
 	// user given name
 	Name string `json:"name"`
 	// negative caching
@@ -501,6 +503,38 @@ func (o *Zone) SetLabels(v []Label) {
 	o.Labels = v
 }
 
+// GetLabelsMap returns the LabelsMap field value if set, zero value otherwise.
+func (o *Zone) GetLabelsMap() map[string]string {
+	if o == nil || IsNil(o.LabelsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.LabelsMap
+}
+
+// GetLabelsMapOk returns a tuple with the LabelsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetLabelsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.LabelsMap) {
+		return nil, false
+	}
+	return o.LabelsMap, true
+}
+
+// HasLabelsMap returns a boolean if a field has been set.
+func (o *Zone) HasLabelsMap() bool {
+	if o != nil && !IsNil(o.LabelsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelsMap gets a reference to the given map[string]string and assigns it to the LabelsMap field.
+func (o *Zone) SetLabelsMap(v map[string]string) {
+	o.LabelsMap = &v
+}
+
 // GetName returns the Name field value
 func (o *Zone) GetName() string {
 	if o == nil {
@@ -867,6 +901,9 @@ func (o Zone) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+	if !IsNil(o.LabelsMap) {
+		toSerialize["labelsMap"] = o.LabelsMap
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["negativeCache"] = o.NegativeCache
 	if !IsNil(o.Primaries) {
@@ -958,6 +995,7 @@ func (o *Zone) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "isReverseZone")
 		delete(additionalProperties, "labels")
+		delete(additionalProperties, "labelsMap")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "negativeCache")
 		delete(additionalProperties, "primaries")
