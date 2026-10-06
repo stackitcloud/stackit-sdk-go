@@ -21,7 +21,7 @@ var _ MappedNullable = &NexthopIPv4{}
 
 // NexthopIPv4 Object that represents an IPv4 address.
 type NexthopIPv4 struct {
-	Type string `json:"type"`
+	Type NexthopIPv4Type `json:"type"`
 	// An IPv4 address.
 	Value                string `json:"value" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _NexthopIPv4 NexthopIPv4
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNexthopIPv4(types string, value string) *NexthopIPv4 {
+func NewNexthopIPv4(types NexthopIPv4Type, value string) *NexthopIPv4 {
 	this := NexthopIPv4{}
 	this.Type = types
 	this.Value = value
@@ -49,9 +49,9 @@ func NewNexthopIPv4WithDefaults() *NexthopIPv4 {
 }
 
 // GetType returns the Type field value
-func (o *NexthopIPv4) GetType() string {
+func (o *NexthopIPv4) GetType() NexthopIPv4Type {
 	if o == nil {
-		var ret string
+		var ret NexthopIPv4Type
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *NexthopIPv4) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NexthopIPv4) GetTypeOk() (*string, bool) {
+func (o *NexthopIPv4) GetTypeOk() (*NexthopIPv4Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *NexthopIPv4) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *NexthopIPv4) SetType(v string) {
+func (o *NexthopIPv4) SetType(v NexthopIPv4Type) {
 	o.Type = v
 }
 
