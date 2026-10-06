@@ -26,6 +26,14 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `logme`: 
+  - [v1.4.0](services/logme/CHANGELOG.md#v140)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v2api`:
+      - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
+    - `v1api`:
+      - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `lbiplists`:
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
