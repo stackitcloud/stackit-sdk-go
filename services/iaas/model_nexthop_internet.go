@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the NexthopInternet type satisfies the MappedNullable interface at compile time
@@ -22,9 +23,132 @@ var _ MappedNullable = &NexthopInternet{}
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// NexthopInternetTypes the model 'NexthopInternet'
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopInternetGetTypeAttributeType = *string
+type NexthopInternetTypes string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	NEXTHOPINTERNETTYPE_INTERNET NexthopInternetTypes = "internet"
+)
+
+// All allowed values of NexthopInternet enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedNexthopInternetTypesEnumValues = []NexthopInternetTypes{
+	"internet",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NexthopInternetTypes) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson NexthopInternetTypes
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := NexthopInternetTypes(value)
+	for _, existing := range AllowedNexthopInternetTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid NexthopInternet", value)
+}
+
+// NewNexthopInternetTypesFromValue returns a pointer to a valid NexthopInternetTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNexthopInternetTypesFromValue(v NexthopInternetTypes) (*NexthopInternetTypes, error) {
+	ev := NexthopInternetTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for NexthopInternetTypes: valid values are %v", v, AllowedNexthopInternetTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopInternetTypes) IsValid() bool {
+	for _, existing := range AllowedNexthopInternetTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopInternetTypes) Ptr() *NexthopInternetTypes {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableNexthopInternetTypes struct {
+	value *NexthopInternetTypes
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopInternetTypes) Get() *NexthopInternetTypes {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopInternetTypes) Set(val *NexthopInternetTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopInternetTypes) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopInternetTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableNexthopInternetTypes(val *NexthopInternetTypes) *NullableNexthopInternetTypes {
+	return &NullableNexthopInternetTypes{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopInternetTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopInternetTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopInternetGetTypeAttributeType = *NexthopInternetTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopInternetGetTypeArgType = NexthopInternetTypes
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopInternetGetTypeRetType = NexthopInternetTypes
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getNexthopInternetGetTypeAttributeTypeOk(arg NexthopInternetGetTypeAttributeType) (ret NexthopInternetGetTypeRetType, ok bool) {
@@ -38,12 +162,6 @@ func getNexthopInternetGetTypeAttributeTypeOk(arg NexthopInternetGetTypeAttribut
 func setNexthopInternetGetTypeAttributeType(arg *NexthopInternetGetTypeAttributeType, val NexthopInternetGetTypeRetType) {
 	*arg = &val
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopInternetGetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopInternetGetTypeRetType = string
 
 // NexthopInternet Object that represents a route to the internet.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
