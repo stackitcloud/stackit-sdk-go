@@ -39,6 +39,16 @@
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
 - `objectstorage`:
+  - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - `v2api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
   - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
   - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
