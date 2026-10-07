@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -27,8 +27,8 @@ type CreateInstancePayload struct {
 	// Labels field is not certain/clear
 	Labels               *map[string]string `json:"labels,omitempty"`
 	Name                 string             `json:"name"`
-	Options              map[string]string  `json:"options"`
-	Replicas             int32              `json:"replicas"`
+	Options              *map[string]string `json:"options,omitempty"`
+	Replicas             int64              `json:"replicas"`
 	Storage              Storage            `json:"storage"`
 	Version              string             `json:"version"`
 	AdditionalProperties map[string]interface{}
@@ -40,13 +40,12 @@ type _CreateInstancePayload CreateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstancePayload(acl ACL, backupSchedule string, flavorId string, name string, options map[string]string, replicas int32, storage Storage, version string) *CreateInstancePayload {
+func NewCreateInstancePayload(acl ACL, backupSchedule string, flavorId string, name string, replicas int64, storage Storage, version string) *CreateInstancePayload {
 	this := CreateInstancePayload{}
 	this.Acl = acl
 	this.BackupSchedule = backupSchedule
 	this.FlavorId = flavorId
 	this.Name = name
-	this.Options = options
 	this.Replicas = replicas
 	this.Storage = storage
 	this.Version = version
@@ -189,34 +188,42 @@ func (o *CreateInstancePayload) SetName(v string) {
 	o.Name = v
 }
 
-// GetOptions returns the Options field value
+// GetOptions returns the Options field value if set, zero value otherwise.
 func (o *CreateInstancePayload) GetOptions() map[string]string {
-	if o == nil {
+	if o == nil || IsNil(o.Options) {
 		var ret map[string]string
 		return ret
 	}
-
-	return o.Options
+	return *o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field value
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateInstancePayload) GetOptionsOk() (*map[string]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
-// SetOptions sets field value
+// HasOptions returns a boolean if a field has been set.
+func (o *CreateInstancePayload) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
 func (o *CreateInstancePayload) SetOptions(v map[string]string) {
-	o.Options = v
+	o.Options = &v
 }
 
 // GetReplicas returns the Replicas field value
-func (o *CreateInstancePayload) GetReplicas() int32 {
+func (o *CreateInstancePayload) GetReplicas() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -225,7 +232,7 @@ func (o *CreateInstancePayload) GetReplicas() int32 {
 
 // GetReplicasOk returns a tuple with the Replicas field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetReplicasOk() (*int32, bool) {
+func (o *CreateInstancePayload) GetReplicasOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,7 +240,7 @@ func (o *CreateInstancePayload) GetReplicasOk() (*int32, bool) {
 }
 
 // SetReplicas sets field value
-func (o *CreateInstancePayload) SetReplicas(v int32) {
+func (o *CreateInstancePayload) SetReplicas(v int64) {
 	o.Replicas = v
 }
 
@@ -302,7 +309,9 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["name"] = o.Name
-	toSerialize["options"] = o.Options
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 	toSerialize["replicas"] = o.Replicas
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
@@ -323,7 +332,6 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 		"backupSchedule",
 		"flavorId",
 		"name",
-		"options",
 		"replicas",
 		"storage",
 		"version",
