@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// ClusterStatusState the model 'ClusterStatusState'
+// ClusterStatusState ClusterStatusState holds information about the current state of the Cluster
 type ClusterStatusState string
 
 // List of ClusterStatusState
