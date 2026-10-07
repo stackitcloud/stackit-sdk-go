@@ -242,7 +242,7 @@ type GetShareResponseShare struct {
 	ExportPolicy GetShareResponseShareGetExportPolicyAttributeType `json:"exportPolicy,omitempty"`
 	// ID of the Share
 	Id GetShareResponseShareGetIdAttributeType `json:"id,omitempty"`
-	// An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the share.
 	Labels GetShareResponseShareGetLabelsAttributeType `json:"labels,omitempty"`
 	// Mount path of the Share, used to mount the Share
 	MountPath GetShareResponseShareGetMountPathAttributeType `json:"mountPath,omitempty"`
