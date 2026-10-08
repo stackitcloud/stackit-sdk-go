@@ -1,3 +1,14 @@
+## v1.11.0
+- `v1api`:
+  - **Feature:** New field `Labels` in `ProjectStatus` model struct
+  - **Feature:** New API client method `UpdateService`
+- `v2api`:
+  - **Feature:** New field `Labels` in `ProjectStatus` model struct
+  - **Feature:** New API client method `UpdateService`
+- Deprecated SDK layer in root of the module:
+  - **Feature:** New field `Labels` in `ProjectStatus` model struct
+  - **Feature:** New API client method `UpdateService`
+
 ## v1.10.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 

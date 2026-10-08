@@ -39,6 +39,16 @@
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
 - `objectstorage`:
+  - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - `v2api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
   - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
   - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
@@ -68,6 +78,17 @@
 - `runcommand`:
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sca`:
+  - [v0.2.0](services/sca/CHANGELOG.md#v020)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1alphaapi`:
+      - **Breaking Change:** Field `Network` in `Application` and `CreateApplicationPayload` models is now optional and changed from `Network` to `*Network`
+      - **Breaking Change:** Field `PublicIngress` in `Network` model is now optional and changed from `bool` to `*bool`
+      - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
+      - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
+      - **Feature:** Add `InternalPort` field to `Network` model
+      - **Bugfix:** Handle application failed status in create and update waiters.
+      - **Bugfix:** Handle application none status in create and updated waiters.
 - `serverbackup`:
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -81,6 +102,8 @@
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
+  - [v0.11.4](services/sfs/CHANGELOG.md#v0114)
+    - **Docs:** Update description of `Labels` fields 
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
