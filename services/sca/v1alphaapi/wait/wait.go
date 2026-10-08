@@ -24,7 +24,7 @@ func createOrUpdateApplicationWaitHandler(ctx context.Context, a sca.DefaultAPI,
 	waitConfig := wait.WaiterHelper[sca.Application, sca.CurrentStatus]{
 		FetchInstance: a.GetApplication(ctx, projectID, environmentID, applicationID).Execute,
 		GetState:      getApplicationState,
-		// CURRENT_STATUS_NONE implies that the applicaiton is stopped, so its active without instances
+		// CURRENT_STATUS_NONE implies that the application is stopped, so its active without instances
 		ActiveState: []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_RUNNING, sca.CURRENTSTATUS_CURRENT_STATUS_IDLE, sca.CURRENTSTATUS_CURRENT_STATUS_NONE},
 		ErrorState:  []sca.CurrentStatus{sca.CURRENTSTATUS_CURRENT_STATUS_FAILED},
 	}
