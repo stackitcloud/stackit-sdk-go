@@ -151,6 +151,12 @@
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - `v1api`:
       - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `valkey`:
+  - [v0.4.0](services/valkey/CHANGELOG.md#v040)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+      - **Improvement:** `InstanceParameters.MinReplicasToWrite` doc comment now notes it should not be greater than the number of nodes
 
 ## Release (2026-09-14)
 
