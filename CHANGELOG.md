@@ -56,6 +56,9 @@
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
+- `modelexperiments`:
+  - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
   - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
     - `v1api`:
