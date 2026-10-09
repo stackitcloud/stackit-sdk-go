@@ -62,6 +62,13 @@ func TestCreateOrUpdateApplicationWaitHandler(t *testing.T) {
 			},
 		},
 		{
+			desc: "application_stopped_succeeded",
+			mockSettings: mockSettings{
+				resourceState: sca.CURRENTSTATUS_CURRENT_STATUS_NONE,
+				getFails:      false,
+			},
+		},
+		{
 			desc: "get_fails",
 			mockSettings: mockSettings{
 				getFails: true,

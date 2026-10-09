@@ -7,6 +7,8 @@
   - **Feature:** Add `Status` field to `Environment` and `CreateEnvironmentPayload` models
   - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
   - **Feature:** Add `InternalPort` field to `Network` model
+  - **Bugfix:** Handle application failed status in create and update waiters.
+  - **Bugfix:** Handle application none status in create and updated waiters.
 
 ## v0.1.0
 - **New:** SDK module for STACKIT Container Applications (SCA) service.
