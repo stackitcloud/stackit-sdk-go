@@ -95,6 +95,11 @@
 - `observability`:
   - [v0.25.3](services/observability/CHANGELOG.md#v0253)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `opensearch`:
+  - [v1.4.0](services/opensearch/CHANGELOG.md#v140)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `resourcemanager`:
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
