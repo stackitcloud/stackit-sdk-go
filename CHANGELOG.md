@@ -59,6 +59,9 @@
 - `modelexperiments`:
   - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `modelserving`:
+  - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
   - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
     - `v1api`:
@@ -89,6 +92,9 @@
       - **Improvement:** Add HTTP 429 rate limit error responses in API operations
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `observability`:
+  - [v0.25.3](services/observability/CHANGELOG.md#v0253)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `resourcemanager`:
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -108,6 +114,9 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
+- `secretsmanager`:
+  - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverbackup`:
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -132,6 +141,8 @@
     - `v1betaapi`:
       - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param
 - `telemetryrouter`:
+  - [v0.6.1](services/telemetryrouter/CHANGELOG.md#v061)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - `v1api`:
       - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
