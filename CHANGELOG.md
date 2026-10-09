@@ -41,6 +41,9 @@
 - `intake`:
   - [v0.11.3](services/intake/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `kms`:
+  - [v1.13.2](services/kms/CHANGELOG.md#v1132)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `logme`: 
   - [v1.4.0](services/logme/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
