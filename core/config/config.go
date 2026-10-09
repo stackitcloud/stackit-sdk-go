@@ -83,6 +83,7 @@ type Configuration struct {
 	Debug                                  bool                       `json:"debug,omitempty"`
 	NoAuth                                 bool                       `json:"noAuth,omitempty"`
 	WorkloadIdentityFederation             bool                       `json:"workloadIdentityFederation,omitempty"`
+	MetadataAuth                           bool                       `json:"metadataAuth,omitempty"`
 	ServiceAccountFederatedTokenExpiration string                     `json:"serviceAccountFederatedTokenExpiration,omitempty"`
 	ServiceAccountFederatedTokenFunc       oidcadapters.OIDCTokenFunc `json:"serviceAccountFederatedTokenFunc,omitempty"`
 	ServiceAccountEmail                    string                     `json:"serviceAccountEmail,omitempty"`
@@ -277,6 +278,15 @@ func WithWorkloadIdentityFederationToken(token string) ConfigurationOption {
 func WithWorkloadIdentityFederationTokenExpiration(expiration string) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.ServiceAccountFederatedTokenExpiration = expiration
+		return nil
+	}
+}
+
+// WithMetadataAuth returns a ConfigurationOption that sets the metadata flow to be used for authentication in API calls,
+// authenticating as the service account attached to the server with tokens from its metadata service
+func WithMetadataAuth() ConfigurationOption {
+	return func(config *Configuration) error {
+		config.MetadataAuth = true
 		return nil
 	}
 }
