@@ -1,3 +1,9 @@
+## v0.4.0
+- **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `v1api`:
+  - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+  - **Improvement:** `InstanceParameters.MinReplicasToWrite` doc comment now notes it should not be greater than the number of nodes
+
 ## v0.3.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
