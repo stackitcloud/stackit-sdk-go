@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -35,6 +35,8 @@ type DefaultAPIServiceMock struct {
 	DeleteInstanceExecuteMock *func(r ApiDeleteInstanceRequest) error
 	// DeleteUserExecuteMock can be populated to implement the behavior of the DeleteUserExecute function of this mock
 	DeleteUserExecuteMock *func(r ApiDeleteUserRequest) error
+	// DisableServiceExecuteMock can be populated to implement the behavior of the DisableServiceExecute function of this mock
+	DisableServiceExecuteMock *func(r ApiDisableServiceRequest) error
 	// ForceDeleteInstanceExecuteMock can be populated to implement the behavior of the ForceDeleteInstanceExecute function of this mock
 	ForceDeleteInstanceExecuteMock *func(r ApiForceDeleteInstanceRequest) error
 	// GetBackupExecuteMock can be populated to implement the behavior of the GetBackupExecute function of this mock
@@ -204,6 +206,23 @@ func (a DefaultAPIServiceMock) DeleteUserExecute(r ApiDeleteUserRequest) error {
 	}
 
 	return (*a.DeleteUserExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
+	return ApiDisableServiceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// DisableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DisableServiceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DisableServiceExecute(r ApiDisableServiceRequest) error {
+	if a.DisableServiceExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DisableServiceExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ForceDeleteInstance(ctx context.Context, projectId string, instanceId string) ApiForceDeleteInstanceRequest {
