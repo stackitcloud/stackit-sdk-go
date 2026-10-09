@@ -121,6 +121,9 @@
       - **Feature:** Add `InternalPort` field to `Network` model
       - **Bugfix:** Handle application failed status in create and update waiters.
       - **Bugfix:** Handle application none status in create and updated waiters.
+- `secretsmanager`:
+  - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverbackup`:
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
