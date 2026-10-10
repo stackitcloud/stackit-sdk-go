@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/logme => ../../services/
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
-	github.com/stackitcloud/stackit-sdk-go/services/logme v1.3.1
+	github.com/stackitcloud/stackit-sdk-go/services/logme v1.4.0
 )
 
 require (
