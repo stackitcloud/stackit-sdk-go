@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/secretsmanager => ../../
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
-	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.19.1
+	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.19.2
 )
 
 require (
