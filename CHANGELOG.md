@@ -7,10 +7,10 @@
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
 - `authorization`:
-  - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
-    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v0.16.0](services/authorization/CHANGELOG.md#v0160)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+  - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `automation`:
   - [v0.2.1](services/automation/CHANGELOG.md#v021)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -134,6 +134,8 @@
   - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceenablement`:
+  - [v1.8.0](services/serviceenablement/CHANGELOG.md#v180)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
