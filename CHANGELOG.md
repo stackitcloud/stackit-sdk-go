@@ -21,11 +21,29 @@
 - `cost`:
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `dns`:
+  - [v0.24.0](services/dns/CHANGELOG.md#v0240)
+    - **Feature:** New `LabelsMap` field (`map[string]string`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
+    - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
+    - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
+    - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `CreateZonePayloadExtensions` to new `PartialUpdateZonePayloadExtensions`, now also exposing `observabilityExtension.state`
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Feature:** New `LabelsMap` field (`map[string]string`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
+      - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
+      - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
+      - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
 - `iaas`:
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
+- `intake`:
+  - [v0.11.3](services/intake/CHANGELOG.md#v0113)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `kms`:
+  - [v1.13.2](services/kms/CHANGELOG.md#v1132)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `logme`: 
   - [v1.4.0](services/logme/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -38,7 +56,23 @@
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
+- `modelexperiments`:
+  - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `modelserving`:
+  - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
+  - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
+    - `v1api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - `v2api`:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New field `Labels` in `ProjectStatus` model struct
+      - **Feature:** New API client method `UpdateService`
   - [v1.10.1](services/objectstorage/CHANGELOG.md#v1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1` 
   - [v1.10.0](services/objectstorage/CHANGELOG.md#v1100)
@@ -58,6 +92,14 @@
       - **Improvement:** Add HTTP 429 rate limit error responses in API operations
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
+- `observability`:
+  - [v0.25.3](services/observability/CHANGELOG.md#v0253)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `opensearch`:
+  - [v1.4.0](services/opensearch/CHANGELOG.md#v140)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `resourcemanager`:
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -67,6 +109,18 @@
       - Updated the godoc comments of the `Labels` fields in the model structs
 - `runcommand`:
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sca`:
+  - [v0.2.0](services/sca/CHANGELOG.md#v020)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1alphaapi`:
+      - **Breaking Change:** Field `Network` in `Application` and `CreateApplicationPayload` models is now optional and changed from `Network` to `*Network`
+      - **Breaking Change:** Field `PublicIngress` in `Network` model is now optional and changed from `bool` to `*bool`
+      - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
+      - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
+      - **Feature:** Add `InternalPort` field to `Network` model
+- `secretsmanager`:
+  - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverbackup`:
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
@@ -81,6 +135,8 @@
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
+  - [v0.11.4](services/sfs/CHANGELOG.md#v0114)
+    - **Docs:** Update description of `Labels` fields 
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
@@ -90,9 +146,17 @@
     - `v1betaapi`:
       - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param
 - `telemetryrouter`:
+  - [v0.6.1](services/telemetryrouter/CHANGELOG.md#v061)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - `v1api`:
       - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `valkey`:
+  - [v0.4.0](services/valkey/CHANGELOG.md#v040)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+      - **Improvement:** `InstanceParameters.MinReplicasToWrite` doc comment now notes it should not be greater than the number of nodes
 
 ## Release (2026-09-14)
 
@@ -235,6 +299,10 @@
   - [v1.3.1](services/rabbitmq/CHANGELOG.md#v131)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `redis`:
+  - [v1.5.0](services/redis/CHANGELOG.md#v150)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
   - [v1.4.1](services/redis/CHANGELOG.md#v141)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `resourcemanager`:

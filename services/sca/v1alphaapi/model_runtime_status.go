@@ -24,6 +24,8 @@ type RuntimeStatus struct {
 	// Failure reasons collected from workload conditions.
 	FailureReasons []string   `json:"failureReasons,omitempty"`
 	Instances      []Instance `json:"instances,omitempty"`
+	// Internal URL for the running application.
+	InternalUrl *string `json:"internalUrl,omitempty"`
 	// Last time the application was deployed.
 	LastDeployment *time.Time `json:"lastDeployment,omitempty"`
 	// Known URLs for the running application.
@@ -150,6 +152,38 @@ func (o *RuntimeStatus) SetInstances(v []Instance) {
 	o.Instances = v
 }
 
+// GetInternalUrl returns the InternalUrl field value if set, zero value otherwise.
+func (o *RuntimeStatus) GetInternalUrl() string {
+	if o == nil || IsNil(o.InternalUrl) {
+		var ret string
+		return ret
+	}
+	return *o.InternalUrl
+}
+
+// GetInternalUrlOk returns a tuple with the InternalUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuntimeStatus) GetInternalUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.InternalUrl) {
+		return nil, false
+	}
+	return o.InternalUrl, true
+}
+
+// HasInternalUrl returns a boolean if a field has been set.
+func (o *RuntimeStatus) HasInternalUrl() bool {
+	if o != nil && !IsNil(o.InternalUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternalUrl gets a reference to the given string and assigns it to the InternalUrl field.
+func (o *RuntimeStatus) SetInternalUrl(v string) {
+	o.InternalUrl = &v
+}
+
 // GetLastDeployment returns the LastDeployment field value if set, zero value otherwise.
 func (o *RuntimeStatus) GetLastDeployment() time.Time {
 	if o == nil || IsNil(o.LastDeployment) {
@@ -233,6 +267,9 @@ func (o RuntimeStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
+	if !IsNil(o.InternalUrl) {
+		toSerialize["internalUrl"] = o.InternalUrl
+	}
 	if !IsNil(o.LastDeployment) {
 		toSerialize["lastDeployment"] = o.LastDeployment
 	}
@@ -264,6 +301,7 @@ func (o *RuntimeStatus) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "currentStatus")
 		delete(additionalProperties, "failureReasons")
 		delete(additionalProperties, "instances")
+		delete(additionalProperties, "internalUrl")
 		delete(additionalProperties, "lastDeployment")
 		delete(additionalProperties, "urls")
 		o.AdditionalProperties = additionalProperties

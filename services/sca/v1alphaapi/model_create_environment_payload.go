@@ -28,7 +28,8 @@ type CreateEnvironmentPayload struct {
 	// Human-readable display name.
 	DisplayName string `json:"displayName"`
 	// Environment identifier, for example: default.
-	Id                   *string `json:"id,omitempty"`
+	Id                   *string            `json:"id,omitempty"`
+	Status               *EnvironmentStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,6 +42,8 @@ type _CreateEnvironmentPayload CreateEnvironmentPayload
 func NewCreateEnvironmentPayload(displayName string) *CreateEnvironmentPayload {
 	this := CreateEnvironmentPayload{}
 	this.DisplayName = displayName
+	var status EnvironmentStatus = ENVIRONMENTSTATUS_ENVIRONMENT_STATUS_UNSPECIFIED
+	this.Status = &status
 	return &this
 }
 
@@ -49,6 +52,8 @@ func NewCreateEnvironmentPayload(displayName string) *CreateEnvironmentPayload {
 // but it doesn't guarantee that properties required by API are set
 func NewCreateEnvironmentPayloadWithDefaults() *CreateEnvironmentPayload {
 	this := CreateEnvironmentPayload{}
+	var status EnvironmentStatus = ENVIRONMENTSTATUS_ENVIRONMENT_STATUS_UNSPECIFIED
+	this.Status = &status
 	return &this
 }
 
@@ -172,6 +177,38 @@ func (o *CreateEnvironmentPayload) SetId(v string) {
 	o.Id = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CreateEnvironmentPayload) GetStatus() EnvironmentStatus {
+	if o == nil || IsNil(o.Status) {
+		var ret EnvironmentStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEnvironmentPayload) GetStatusOk() (*EnvironmentStatus, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *CreateEnvironmentPayload) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given EnvironmentStatus and assigns it to the Status field.
+func (o *CreateEnvironmentPayload) SetStatus(v EnvironmentStatus) {
+	o.Status = &v
+}
+
 func (o CreateEnvironmentPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -191,6 +228,9 @@ func (o CreateEnvironmentPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -239,6 +279,7 @@ func (o *CreateEnvironmentPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "default")
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

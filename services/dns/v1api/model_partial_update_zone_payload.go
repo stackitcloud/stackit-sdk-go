@@ -31,7 +31,9 @@ type PartialUpdateZonePayload struct {
 	// expire time
 	ExpireTime *int32 `json:"expireTime,omitempty"`
 	// optional extensions
-	Extensions *ZoneExtensions `json:"extensions,omitempty"`
+	Extensions *DomainExtensions `json:"extensions,omitempty"`
+	// labels for the zone - max 64 items. Keys: 1-314 chars (up to 250 prefix, 1 for slash, 1-63 the actual key). Values: 0-63 chars.
+	LabelsMap *map[string]string `json:"labelsMap,omitempty"`
 	// user given name
 	Name *string `json:"name,omitempty"`
 	// negative caching
@@ -249,9 +251,9 @@ func (o *PartialUpdateZonePayload) SetExpireTime(v int32) {
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *PartialUpdateZonePayload) GetExtensions() ZoneExtensions {
+func (o *PartialUpdateZonePayload) GetExtensions() DomainExtensions {
 	if o == nil || IsNil(o.Extensions) {
-		var ret ZoneExtensions
+		var ret DomainExtensions
 		return ret
 	}
 	return *o.Extensions
@@ -259,7 +261,7 @@ func (o *PartialUpdateZonePayload) GetExtensions() ZoneExtensions {
 
 // GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateZonePayload) GetExtensionsOk() (*ZoneExtensions, bool) {
+func (o *PartialUpdateZonePayload) GetExtensionsOk() (*DomainExtensions, bool) {
 	if o == nil || IsNil(o.Extensions) {
 		return nil, false
 	}
@@ -275,9 +277,41 @@ func (o *PartialUpdateZonePayload) HasExtensions() bool {
 	return false
 }
 
-// SetExtensions gets a reference to the given ZoneExtensions and assigns it to the Extensions field.
-func (o *PartialUpdateZonePayload) SetExtensions(v ZoneExtensions) {
+// SetExtensions gets a reference to the given DomainExtensions and assigns it to the Extensions field.
+func (o *PartialUpdateZonePayload) SetExtensions(v DomainExtensions) {
 	o.Extensions = &v
+}
+
+// GetLabelsMap returns the LabelsMap field value if set, zero value otherwise.
+func (o *PartialUpdateZonePayload) GetLabelsMap() map[string]string {
+	if o == nil || IsNil(o.LabelsMap) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.LabelsMap
+}
+
+// GetLabelsMapOk returns a tuple with the LabelsMap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateZonePayload) GetLabelsMapOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.LabelsMap) {
+		return nil, false
+	}
+	return o.LabelsMap, true
+}
+
+// HasLabelsMap returns a boolean if a field has been set.
+func (o *PartialUpdateZonePayload) HasLabelsMap() bool {
+	if o != nil && !IsNil(o.LabelsMap) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelsMap gets a reference to the given map[string]string and assigns it to the LabelsMap field.
+func (o *PartialUpdateZonePayload) SetLabelsMap(v map[string]string) {
+	o.LabelsMap = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -468,6 +502,9 @@ func (o PartialUpdateZonePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
+	if !IsNil(o.LabelsMap) {
+		toSerialize["labelsMap"] = o.LabelsMap
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -511,6 +548,7 @@ func (o *PartialUpdateZonePayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "expireTime")
 		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "labelsMap")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "negativeCache")
 		delete(additionalProperties, "primaries")

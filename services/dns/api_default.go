@@ -50,8 +50,8 @@ type DefaultApi interface {
 	*/
 	CloneZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error)
 	/*
-		CreateLabel Create or update label
-		Create or update label
+		CreateLabel Create or update label [DEPRECATED]
+		Deprecated: Create or update label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -140,8 +140,8 @@ type DefaultApi interface {
 	*/
 	CreateZoneExecute(ctx context.Context, projectId string) (*ZoneResponse, error)
 	/*
-		DeleteLabel Delete a label
-		Delete a label
+		DeleteLabel Delete a label [DEPRECATED]
+		Deprecated: Delete a label DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -330,8 +330,8 @@ type DefaultApi interface {
 	*/
 	ImportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ImportRecordSetsResponse, error)
 	/*
-		ListLabels Get all labels
-		All Labels
+		ListLabels Get all labels [DEPRECATED]
+		Deprecated: All Labels DEPRECATED: Scheduled for sunset on 2027-10-01. Use the labelsMap field in the Zone resource instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -354,7 +354,7 @@ type DefaultApi interface {
 	ListLabelsExecute(ctx context.Context, projectId string, zoneId string) (*ListLabelsResponse, error)
 	/*
 		ListRecordSets All get selected RRSets
-		All RRSet
+		Retrieve all RRSets. By default, records in the 'DELETE_SUCCEEDED' state are excluded. To retrieve them, explicitly specify 'state[eq]=DELETE_SUCCEEDED' in the query parameters.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -377,7 +377,7 @@ type DefaultApi interface {
 	ListRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ListRecordSetsResponse, error)
 	/*
 		ListZones All get selected zones
-		All zone
+		Retrieve all zones. By default, zones in the 'DELETE_SUCCEEDED' state are excluded. To retrieve them, explicitly specify 'state[eq]=DELETE_SUCCEEDED' in the query parameters.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
@@ -714,7 +714,7 @@ type ApiListRecordSetsRequest interface {
 	// filter type
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	TypeEq(typeEq string) ApiListRecordSetsRequest
-	// filter state
+	// filter state (DELETE_SUCCEEDED is excluded by default)
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	StateEq(stateEq string) ApiListRecordSetsRequest
 	// filter state
@@ -834,7 +834,7 @@ type ApiListZonesRequest interface {
 	// filter description like
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	DescriptionLike(descriptionLike string) ApiListZonesRequest
-	// filter state
+	// filter state (DELETE_SUCCEEDED is excluded by default)
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	StateEq(stateEq string) ApiListZonesRequest
 	// filter state
@@ -1356,7 +1356,7 @@ func (r CreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 }
 
 /*
-CreateLabel: Create or update label
+CreateLabel: Create or update label [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
@@ -2110,7 +2110,7 @@ func (r DeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 }
 
 /*
-DeleteLabel: Delete a label
+DeleteLabel: Delete a label [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
@@ -3547,7 +3547,7 @@ func (r ListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 }
 
 /*
-ListLabels: Get all labels
+ListLabels: Get all labels [DEPRECATED]
 
 Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 
@@ -3651,7 +3651,7 @@ func (r ListRecordSetsRequest) TypeEq(typeEq string) ApiListRecordSetsRequest {
 	return r
 }
 
-// filter state
+// filter state (DELETE_SUCCEEDED is excluded by default)
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r ListRecordSetsRequest) StateEq(stateEq string) ApiListRecordSetsRequest {
 	r.stateEq = &stateEq
@@ -4228,7 +4228,7 @@ func (r ListZonesRequest) DescriptionLike(descriptionLike string) ApiListZonesRe
 	return r
 }
 
-// filter state
+// filter state (DELETE_SUCCEEDED is excluded by default)
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r ListZonesRequest) StateEq(stateEq string) ApiListZonesRequest {
 	r.stateEq = &stateEq

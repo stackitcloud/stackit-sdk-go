@@ -108,7 +108,7 @@ func setUpdateSharePayloadGetSpaceHardLimitGigabytesAttributeType(arg *UpdateSha
 type UpdateSharePayload struct {
 	// Name of the Share Export Policy to use in the Share.   The behavior depends on the value:  - If not set (null): Keep the existing export policy (if any)  - If set to empty string (\"\"):  Remove the existing export policy  - If set to a policy name: Update to use the specified policy, creating a new association if none exists
 	ExportPolicyName UpdateSharePayloadGetExportPolicyNameAttributeType `json:"exportPolicyName,omitempty"`
-	// An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the share.
 	Labels UpdateSharePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)
 	// Can be cast to int32 without loss of precision.

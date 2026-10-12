@@ -24,7 +24,7 @@ type CreateResourcePoolPayload struct {
 	AvailabilityZone string `json:"availabilityZone"`
 	// List of IPs that can mount the Resource Pool in read-only; IPs must have a subnet mask (e.g. \"172.16.0.0/24\" for a range of IPs,  or \"172.16.0.250/32\" for a specific IP)
 	IpAcl []string `json:"ipAcl"`
-	// An optional object that represents the labels associated with the resource pool  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
+	// An optional object that represents the labels associated with the resource pool.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Name of the Resource Pool
 	Name string `json:"name"`
