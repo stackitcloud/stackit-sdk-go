@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -20,7 +20,7 @@ var _ MappedNullable = &ListInstancesResponse{}
 
 // ListInstancesResponse struct for ListInstancesResponse
 type ListInstancesResponse struct {
-	Count                *int32                 `json:"count,omitempty"`
+	Count                *int64                 `json:"count,omitempty"`
 	Items                []InstanceListInstance `json:"items,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -45,9 +45,9 @@ func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *ListInstancesResponse) GetCount() int32 {
+func (o *ListInstancesResponse) GetCount() int64 {
 	if o == nil || IsNil(o.Count) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Count
@@ -55,7 +55,7 @@ func (o *ListInstancesResponse) GetCount() int32 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListInstancesResponse) GetCountOk() (*int32, bool) {
+func (o *ListInstancesResponse) GetCountOk() (*int64, bool) {
 	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *ListInstancesResponse) HasCount() bool {
 	return false
 }
 
-// SetCount gets a reference to the given int32 and assigns it to the Count field.
-func (o *ListInstancesResponse) SetCount(v int32) {
+// SetCount gets a reference to the given int64 and assigns it to the Count field.
+func (o *ListInstancesResponse) SetCount(v int64) {
 	o.Count = &v
 }
 
