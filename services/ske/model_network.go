@@ -99,12 +99,70 @@ type NetworkGetIdArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NetworkGetIdRetType = string
 
+/*
+	types and functions for podAddressRanges
+*/
+
+// isArray
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetPodAddressRangesAttributeType = *[]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetPodAddressRangesArgType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetPodAddressRangesRetType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkGetPodAddressRangesAttributeTypeOk(arg NetworkGetPodAddressRangesAttributeType) (ret NetworkGetPodAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkGetPodAddressRangesAttributeType(arg *NetworkGetPodAddressRangesAttributeType, val NetworkGetPodAddressRangesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serviceAddressRanges
+*/
+
+// isArray
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetServiceAddressRangesAttributeType = *[]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetServiceAddressRangesArgType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NetworkGetServiceAddressRangesRetType = []string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNetworkGetServiceAddressRangesAttributeTypeOk(arg NetworkGetServiceAddressRangesAttributeType) (ret NetworkGetServiceAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNetworkGetServiceAddressRangesAttributeType(arg *NetworkGetServiceAddressRangesAttributeType, val NetworkGetServiceAddressRangesRetType) {
+	*arg = &val
+}
+
 // Network struct for Network
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Network struct {
 	Cni          NetworkGetCniAttributeType          `json:"cni,omitempty"`
 	ControlPlane NetworkGetControlPlaneAttributeType `json:"controlPlane,omitempty"`
 	Id           NetworkGetIdAttributeType           `json:"id,omitempty"`
+	// PodAddressRanges contains the CIDRs that are used to allocate Pod IPs from. Currently only 1 range is allowed. Immutable after creation.
+	PodAddressRanges NetworkGetPodAddressRangesAttributeType `json:"podAddressRanges,omitempty"`
+	// ServiceAddressRanges contains the CIDRs that are used to allocate Service ClusterIPs from. Currently only 1 range is allowed. Immutable after creation.
+	ServiceAddressRanges NetworkGetServiceAddressRangesAttributeType `json:"serviceAddressRanges,omitempty"`
 }
 
 // NewNetwork instantiates a new Network object
@@ -207,6 +265,60 @@ func (o *Network) SetId(v NetworkGetIdRetType) {
 	setNetworkGetIdAttributeType(&o.Id, v)
 }
 
+// GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetPodAddressRanges() (res NetworkGetPodAddressRangesRetType) {
+	res, _ = o.GetPodAddressRangesOk()
+	return
+}
+
+// GetPodAddressRangesOk returns a tuple with the PodAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetPodAddressRangesOk() (ret NetworkGetPodAddressRangesRetType, ok bool) {
+	return getNetworkGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges)
+}
+
+// HasPodAddressRanges returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) HasPodAddressRanges() bool {
+	_, ok := o.GetPodAddressRangesOk()
+	return ok
+}
+
+// SetPodAddressRanges gets a reference to the given []string and assigns it to the PodAddressRanges field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) SetPodAddressRanges(v NetworkGetPodAddressRangesRetType) {
+	setNetworkGetPodAddressRangesAttributeType(&o.PodAddressRanges, v)
+}
+
+// GetServiceAddressRanges returns the ServiceAddressRanges field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetServiceAddressRanges() (res NetworkGetServiceAddressRangesRetType) {
+	res, _ = o.GetServiceAddressRangesOk()
+	return
+}
+
+// GetServiceAddressRangesOk returns a tuple with the ServiceAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) GetServiceAddressRangesOk() (ret NetworkGetServiceAddressRangesRetType, ok bool) {
+	return getNetworkGetServiceAddressRangesAttributeTypeOk(o.ServiceAddressRanges)
+}
+
+// HasServiceAddressRanges returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) HasServiceAddressRanges() bool {
+	_, ok := o.GetServiceAddressRangesOk()
+	return ok
+}
+
+// SetServiceAddressRanges gets a reference to the given []string and assigns it to the ServiceAddressRanges field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Network) SetServiceAddressRanges(v NetworkGetServiceAddressRangesRetType) {
+	setNetworkGetServiceAddressRangesAttributeType(&o.ServiceAddressRanges, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -218,6 +330,12 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNetworkGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getNetworkGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges); ok {
+		toSerialize["PodAddressRanges"] = val
+	}
+	if val, ok := getNetworkGetServiceAddressRangesAttributeTypeOk(o.ServiceAddressRanges); ok {
+		toSerialize["ServiceAddressRanges"] = val
 	}
 	return toSerialize, nil
 }
