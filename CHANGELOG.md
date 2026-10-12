@@ -9,6 +9,8 @@
 - `authorization`:
   - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+  - [v0.16.0](services/authorization/CHANGELOG.md#v0160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `automation`:
   - [v0.2.1](services/automation/CHANGELOG.md#v021)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
