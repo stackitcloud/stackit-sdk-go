@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DestinationCIDRv6 type satisfies the MappedNullable interface at compile time
@@ -22,9 +23,132 @@ var _ MappedNullable = &DestinationCIDRv6{}
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// DestinationCIDRv6Types the model 'DestinationCIDRv6'
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DestinationCIDRv6GetTypeAttributeType = *string
+type DestinationCIDRv6Types string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DESTINATIONCIDRV6TYPE_CIDRV6 DestinationCIDRv6Types = "cidrv6"
+)
+
+// All allowed values of DestinationCIDRv6 enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedDestinationCIDRv6TypesEnumValues = []DestinationCIDRv6Types{
+	"cidrv6",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *DestinationCIDRv6Types) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson DestinationCIDRv6Types
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := DestinationCIDRv6Types(value)
+	for _, existing := range AllowedDestinationCIDRv6TypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid DestinationCIDRv6", value)
+}
+
+// NewDestinationCIDRv6TypesFromValue returns a pointer to a valid DestinationCIDRv6Types
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewDestinationCIDRv6TypesFromValue(v DestinationCIDRv6Types) (*DestinationCIDRv6Types, error) {
+	ev := DestinationCIDRv6Types(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DestinationCIDRv6Types: valid values are %v", v, AllowedDestinationCIDRv6TypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DestinationCIDRv6Types) IsValid() bool {
+	for _, existing := range AllowedDestinationCIDRv6TypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DestinationCIDRv6Types) Ptr() *DestinationCIDRv6Types {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableDestinationCIDRv6Types struct {
+	value *DestinationCIDRv6Types
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDestinationCIDRv6Types) Get() *DestinationCIDRv6Types {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDestinationCIDRv6Types) Set(val *DestinationCIDRv6Types) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDestinationCIDRv6Types) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDestinationCIDRv6Types) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableDestinationCIDRv6Types(val *DestinationCIDRv6Types) *NullableDestinationCIDRv6Types {
+	return &NullableDestinationCIDRv6Types{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDestinationCIDRv6Types) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDestinationCIDRv6Types) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DestinationCIDRv6GetTypeAttributeType = *DestinationCIDRv6Types
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DestinationCIDRv6GetTypeArgType = DestinationCIDRv6Types
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DestinationCIDRv6GetTypeRetType = DestinationCIDRv6Types
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getDestinationCIDRv6GetTypeAttributeTypeOk(arg DestinationCIDRv6GetTypeAttributeType) (ret DestinationCIDRv6GetTypeRetType, ok bool) {
@@ -38,12 +162,6 @@ func getDestinationCIDRv6GetTypeAttributeTypeOk(arg DestinationCIDRv6GetTypeAttr
 func setDestinationCIDRv6GetTypeAttributeType(arg *DestinationCIDRv6GetTypeAttributeType, val DestinationCIDRv6GetTypeRetType) {
 	*arg = &val
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DestinationCIDRv6GetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type DestinationCIDRv6GetTypeRetType = string
 
 /*
 	types and functions for value

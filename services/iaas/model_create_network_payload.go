@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &CreateNetworkPayload{}
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateNetworkPayloadGetDescriptionAttributeTypeOk(arg CreateNetworkPayloadGetDescriptionAttributeType) (ret CreateNetworkPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateNetworkPayloadGetDescriptionAttributeType(arg *CreateNetworkPayloadGetDescriptionAttributeType, val CreateNetworkPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNetworkPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for dhcp
 */
 
@@ -237,11 +264,13 @@ type CreateNetworkPayloadGetVpcIdRetType = string
 // CreateNetworkPayload Object that represents the request body for a network create.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNetworkPayload struct {
+	// Description Object. Allows string up to 255 Characters.
+	Description CreateNetworkPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Enable or disable DHCP for a network.
 	Dhcp CreateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	Ipv4 CreateNetworkPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	Ipv6 CreateNetworkPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels CreateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
@@ -277,6 +306,33 @@ func NewCreateNetworkPayloadWithDefaults() *CreateNetworkPayload {
 	var dhcp bool = true
 	this.Dhcp = &dhcp
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) GetDescription() (res CreateNetworkPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) GetDescriptionOk() (ret CreateNetworkPayloadGetDescriptionRetType, ok bool) {
+	return getCreateNetworkPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNetworkPayload) SetDescription(v CreateNetworkPayloadGetDescriptionRetType) {
+	setCreateNetworkPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDhcp returns the Dhcp field value if set, zero value otherwise.
@@ -491,6 +547,9 @@ func (o *CreateNetworkPayload) SetVpcId(v CreateNetworkPayloadGetVpcIdRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateNetworkPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
 	if val, ok := getCreateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp); ok {
 		toSerialize["Dhcp"] = val
 	}

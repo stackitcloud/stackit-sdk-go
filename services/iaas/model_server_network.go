@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the ServerNetwork type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,33 @@ func getServerNetworkGetAllowedAddressesAttributeTypeOk(arg ServerNetworkGetAllo
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setServerNetworkGetAllowedAddressesAttributeType(arg *ServerNetworkGetAllowedAddressesAttributeType, val ServerNetworkGetAllowedAddressesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetCreatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetCreatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetCreatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getServerNetworkGetCreatedAtAttributeTypeOk(arg ServerNetworkGetCreatedAtAttributeType) (ret ServerNetworkGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setServerNetworkGetCreatedAtAttributeType(arg *ServerNetworkGetCreatedAtAttributeType, val ServerNetworkGetCreatedAtRetType) {
 	*arg = &val
 }
 
@@ -288,11 +316,40 @@ func setServerNetworkGetSecurityGroupsAttributeType(arg *ServerNetworkGetSecurit
 	*arg = &val
 }
 
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetUpdatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetUpdatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServerNetworkGetUpdatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getServerNetworkGetUpdatedAtAttributeTypeOk(arg ServerNetworkGetUpdatedAtAttributeType) (ret ServerNetworkGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setServerNetworkGetUpdatedAtAttributeType(arg *ServerNetworkGetUpdatedAtAttributeType, val ServerNetworkGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // ServerNetwork Describes the object that matches servers to its networks.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ServerNetwork struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses ServerNetworkGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
+	// Date-time when resource was created.
+	CreatedAt ServerNetworkGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents an IP address.
 	Ipv4 ServerNetworkGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
@@ -316,6 +373,8 @@ type ServerNetwork struct {
 	PublicIp ServerNetworkGetPublicIpAttributeType `json:"publicIp,omitempty"`
 	// A list of UUIDs.
 	SecurityGroups ServerNetworkGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt ServerNetworkGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -370,6 +429,33 @@ func (o *ServerNetwork) HasAllowedAddresses() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ServerNetwork) SetAllowedAddresses(v ServerNetworkGetAllowedAddressesRetType) {
 	setServerNetworkGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) GetCreatedAt() (res ServerNetworkGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) GetCreatedAtOk() (ret ServerNetworkGetCreatedAtRetType, ok bool) {
+	return getServerNetworkGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) SetCreatedAt(v ServerNetworkGetCreatedAtRetType) {
+	setServerNetworkGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
@@ -580,11 +666,41 @@ func (o *ServerNetwork) SetSecurityGroups(v ServerNetworkGetSecurityGroupsRetTyp
 	setServerNetworkGetSecurityGroupsAttributeType(&o.SecurityGroups, v)
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) GetUpdatedAt() (res ServerNetworkGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) GetUpdatedAtOk() (ret ServerNetworkGetUpdatedAtRetType, ok bool) {
+	return getServerNetworkGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ServerNetwork) SetUpdatedAt(v ServerNetworkGetUpdatedAtRetType) {
+	setServerNetworkGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o ServerNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServerNetworkGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getServerNetworkGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
 	if val, ok := getServerNetworkGetIpv4AttributeTypeOk(o.Ipv4); ok {
 		toSerialize["Ipv4"] = val
@@ -612,6 +728,9 @@ func (o ServerNetwork) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getServerNetworkGetSecurityGroupsAttributeTypeOk(o.SecurityGroups); ok {
 		toSerialize["SecurityGroups"] = val
+	}
+	if val, ok := getServerNetworkGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

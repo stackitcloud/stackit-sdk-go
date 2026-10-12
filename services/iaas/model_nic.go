@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the NIC type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,33 @@ func getNICGetAllowedAddressesAttributeTypeOk(arg NICGetAllowedAddressesAttribut
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setNICGetAllowedAddressesAttributeType(arg *NICGetAllowedAddressesAttributeType, val NICGetAllowedAddressesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetCreatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetCreatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetCreatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNICGetCreatedAtAttributeTypeOk(arg NICGetCreatedAtAttributeType) (ret NICGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNICGetCreatedAtAttributeType(arg *NICGetCreatedAtAttributeType, val NICGetCreatedAtRetType) {
 	*arg = &val
 }
 
@@ -396,11 +424,40 @@ type NICGetTypeArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NICGetTypeRetType = string
 
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetUpdatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetUpdatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NICGetUpdatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getNICGetUpdatedAtAttributeTypeOk(arg NICGetUpdatedAtAttributeType) (ret NICGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setNICGetUpdatedAtAttributeType(arg *NICGetUpdatedAtAttributeType, val NICGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // NIC Object that represents a network interface.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type NIC struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses NICGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
+	// Date-time when resource was created.
+	CreatedAt NICGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description NICGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -411,7 +468,7 @@ type NIC struct {
 	Ipv4 NICGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
 	Ipv6 NICGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels NICGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac NICGetMacAttributeType `json:"mac,omitempty"`
@@ -427,6 +484,8 @@ type NIC struct {
 	Status NICGetStatusAttributeType `json:"status,omitempty"`
 	// Possible values: `server`, `metadata`, `gateway`, `none`.
 	Type NICGetTypeAttributeType `json:"type,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt NICGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 // NewNIC instantiates a new NIC object
@@ -475,6 +534,33 @@ func (o *NIC) HasAllowedAddresses() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *NIC) SetAllowedAddresses(v NICGetAllowedAddressesRetType) {
 	setNICGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) GetCreatedAt() (res NICGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) GetCreatedAtOk() (ret NICGetCreatedAtRetType, ok bool) {
+	return getNICGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) SetCreatedAt(v NICGetCreatedAtRetType) {
+	setNICGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -828,11 +914,41 @@ func (o *NIC) SetType(v NICGetTypeRetType) {
 	setNICGetTypeAttributeType(&o.Type, v)
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) GetUpdatedAt() (res NICGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) GetUpdatedAtOk() (ret NICGetUpdatedAtRetType, ok bool) {
+	return getNICGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NIC) SetUpdatedAt(v NICGetUpdatedAtRetType) {
+	setNICGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o NIC) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNICGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getNICGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
 	if val, ok := getNICGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
@@ -872,6 +988,9 @@ func (o NIC) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNICGetTypeAttributeTypeOk(o.Type); ok {
 		toSerialize["Type"] = val
+	}
+	if val, ok := getNICGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

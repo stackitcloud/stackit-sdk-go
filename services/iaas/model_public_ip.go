@@ -13,10 +13,38 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the PublicIp type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PublicIp{}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetCreatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetCreatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetCreatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPublicIpGetCreatedAtAttributeTypeOk(arg PublicIpGetCreatedAtAttributeType) (ret PublicIpGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPublicIpGetCreatedAtAttributeType(arg *PublicIpGetCreatedAtAttributeType, val PublicIpGetCreatedAtRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for id
@@ -130,17 +158,48 @@ type PublicIpGetNetworkInterfaceArgType = *string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PublicIpGetNetworkInterfaceRetType = *string
 
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetUpdatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetUpdatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PublicIpGetUpdatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPublicIpGetUpdatedAtAttributeTypeOk(arg PublicIpGetUpdatedAtAttributeType) (ret PublicIpGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPublicIpGetUpdatedAtAttributeType(arg *PublicIpGetUpdatedAtAttributeType, val PublicIpGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // PublicIp Object that represents a public IP.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PublicIp struct {
+	// Date-time when resource was created.
+	CreatedAt PublicIpGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id PublicIpGetIdAttributeType `json:"id,omitempty"`
 	// String that represents an IPv4 address.
 	Ip PublicIpGetIpAttributeType `json:"ip,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels PublicIpGetLabelsAttributeType `json:"labels,omitempty"`
 	// Universally Unique Identifier (UUID).
 	NetworkInterface PublicIpGetNetworkInterfaceAttributeType `json:"networkInterface,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt PublicIpGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 // NewPublicIp instantiates a new PublicIp object
@@ -160,6 +219,33 @@ func NewPublicIp() *PublicIp {
 func NewPublicIpWithDefaults() *PublicIp {
 	this := PublicIp{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) GetCreatedAt() (res PublicIpGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) GetCreatedAtOk() (ret PublicIpGetCreatedAtRetType, ok bool) {
+	return getPublicIpGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) SetCreatedAt(v PublicIpGetCreatedAtRetType) {
+	setPublicIpGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -283,9 +369,39 @@ func (o *PublicIp) UnsetNetworkInterface() {
 	o.NetworkInterface = nil
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) GetUpdatedAt() (res PublicIpGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) GetUpdatedAtOk() (ret PublicIpGetUpdatedAtRetType, ok bool) {
+	return getPublicIpGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PublicIp) SetUpdatedAt(v PublicIpGetUpdatedAtRetType) {
+	setPublicIpGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o PublicIp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getPublicIpGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
 	if val, ok := getPublicIpGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
 	}
@@ -297,6 +413,9 @@ func (o PublicIp) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getPublicIpGetNetworkInterfaceAttributeTypeOk(o.NetworkInterface); ok {
 		toSerialize["NetworkInterface"] = val
+	}
+	if val, ok := getPublicIpGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

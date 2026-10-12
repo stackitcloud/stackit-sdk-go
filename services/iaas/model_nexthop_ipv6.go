@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the NexthopIPv6 type satisfies the MappedNullable interface at compile time
@@ -22,9 +23,132 @@ var _ MappedNullable = &NexthopIPv6{}
 	types and functions for type
 */
 
-// isNotNullableString
+// isEnum
+
+// NexthopIPv6Types the model 'NexthopIPv6'
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopIPv6GetTypeAttributeType = *string
+type NexthopIPv6Types string
+
+// List of Type
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	NEXTHOPIPV6TYPE_IPV6 NexthopIPv6Types = "ipv6"
+)
+
+// All allowed values of NexthopIPv6 enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedNexthopIPv6TypesEnumValues = []NexthopIPv6Types{
+	"ipv6",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NexthopIPv6Types) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson NexthopIPv6Types
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := NexthopIPv6Types(value)
+	for _, existing := range AllowedNexthopIPv6TypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid NexthopIPv6", value)
+}
+
+// NewNexthopIPv6TypesFromValue returns a pointer to a valid NexthopIPv6Types
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNexthopIPv6TypesFromValue(v NexthopIPv6Types) (*NexthopIPv6Types, error) {
+	ev := NexthopIPv6Types(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for NexthopIPv6Types: valid values are %v", v, AllowedNexthopIPv6TypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopIPv6Types) IsValid() bool {
+	for _, existing := range AllowedNexthopIPv6TypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NexthopIPv6Types) Ptr() *NexthopIPv6Types {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableNexthopIPv6Types struct {
+	value *NexthopIPv6Types
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopIPv6Types) Get() *NexthopIPv6Types {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopIPv6Types) Set(val *NexthopIPv6Types) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopIPv6Types) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopIPv6Types) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableNexthopIPv6Types(val *NexthopIPv6Types) *NullableNexthopIPv6Types {
+	return &NullableNexthopIPv6Types{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableNexthopIPv6Types) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableNexthopIPv6Types) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopIPv6GetTypeAttributeType = *NexthopIPv6Types
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopIPv6GetTypeArgType = NexthopIPv6Types
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NexthopIPv6GetTypeRetType = NexthopIPv6Types
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getNexthopIPv6GetTypeAttributeTypeOk(arg NexthopIPv6GetTypeAttributeType) (ret NexthopIPv6GetTypeRetType, ok bool) {
@@ -38,12 +162,6 @@ func getNexthopIPv6GetTypeAttributeTypeOk(arg NexthopIPv6GetTypeAttributeType) (
 func setNexthopIPv6GetTypeAttributeType(arg *NexthopIPv6GetTypeAttributeType, val NexthopIPv6GetTypeRetType) {
 	*arg = &val
 }
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopIPv6GetTypeArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NexthopIPv6GetTypeRetType = string
 
 /*
 	types and functions for value

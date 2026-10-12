@@ -13,6 +13,7 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the CreateNicPayload type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,33 @@ func getCreateNicPayloadGetAllowedAddressesAttributeTypeOk(arg CreateNicPayloadG
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setCreateNicPayloadGetAllowedAddressesAttributeType(arg *CreateNicPayloadGetAllowedAddressesAttributeType, val CreateNicPayloadGetAllowedAddressesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetCreatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetCreatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetCreatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateNicPayloadGetCreatedAtAttributeTypeOk(arg CreateNicPayloadGetCreatedAtAttributeType) (ret CreateNicPayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateNicPayloadGetCreatedAtAttributeType(arg *CreateNicPayloadGetCreatedAtAttributeType, val CreateNicPayloadGetCreatedAtRetType) {
 	*arg = &val
 }
 
@@ -396,11 +424,40 @@ type CreateNicPayloadGetTypeArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNicPayloadGetTypeRetType = string
 
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetUpdatedAtAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetUpdatedAtArgType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateNicPayloadGetUpdatedAtRetType = time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateNicPayloadGetUpdatedAtAttributeTypeOk(arg CreateNicPayloadGetUpdatedAtAttributeType) (ret CreateNicPayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateNicPayloadGetUpdatedAtAttributeType(arg *CreateNicPayloadGetUpdatedAtAttributeType, val CreateNicPayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // CreateNicPayload Object that represents a network interface.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateNicPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses CreateNicPayloadGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
+	// Date-time when resource was created.
+	CreatedAt CreateNicPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description CreateNicPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -411,7 +468,7 @@ type CreateNicPayload struct {
 	Ipv4 CreateNicPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
 	Ipv6 CreateNicPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels CreateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac CreateNicPayloadGetMacAttributeType `json:"mac,omitempty"`
@@ -427,6 +484,8 @@ type CreateNicPayload struct {
 	Status CreateNicPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Possible values: `server`, `metadata`, `gateway`, `none`.
 	Type CreateNicPayloadGetTypeAttributeType `json:"type,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt CreateNicPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 // NewCreateNicPayload instantiates a new CreateNicPayload object
@@ -475,6 +534,33 @@ func (o *CreateNicPayload) HasAllowedAddresses() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateNicPayload) SetAllowedAddresses(v CreateNicPayloadGetAllowedAddressesRetType) {
 	setCreateNicPayloadGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) GetCreatedAt() (res CreateNicPayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) GetCreatedAtOk() (ret CreateNicPayloadGetCreatedAtRetType, ok bool) {
+	return getCreateNicPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) SetCreatedAt(v CreateNicPayloadGetCreatedAtRetType) {
+	setCreateNicPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -828,11 +914,41 @@ func (o *CreateNicPayload) SetType(v CreateNicPayloadGetTypeRetType) {
 	setCreateNicPayloadGetTypeAttributeType(&o.Type, v)
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) GetUpdatedAt() (res CreateNicPayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) GetUpdatedAtOk() (ret CreateNicPayloadGetUpdatedAtRetType, ok bool) {
+	return getCreateNicPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateNicPayload) SetUpdatedAt(v CreateNicPayloadGetUpdatedAtRetType) {
+	setCreateNicPayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateNicPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNicPayloadGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getCreateNicPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
 	if val, ok := getCreateNicPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
@@ -872,6 +988,9 @@ func (o CreateNicPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateNicPayloadGetTypeAttributeTypeOk(o.Type); ok {
 		toSerialize["Type"] = val
+	}
+	if val, ok := getCreateNicPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

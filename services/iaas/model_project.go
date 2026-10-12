@@ -128,6 +128,33 @@ func setProjectgetInternetAccessAttributeType(arg *ProjectgetInternetAccessAttri
 }
 
 /*
+	types and functions for projectType
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetProjectTypeAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getProjectGetProjectTypeAttributeTypeOk(arg ProjectGetProjectTypeAttributeType) (ret ProjectGetProjectTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setProjectGetProjectTypeAttributeType(arg *ProjectGetProjectTypeAttributeType, val ProjectGetProjectTypeRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetProjectTypeArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetProjectTypeRetType = string
+
+/*
 	types and functions for status
 */
 
@@ -181,6 +208,33 @@ func setProjectGetUpdatedAtAttributeType(arg *ProjectGetUpdatedAtAttributeType, 
 	*arg = &val
 }
 
+/*
+	types and functions for vpcId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetVpcIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getProjectGetVpcIdAttributeTypeOk(arg ProjectGetVpcIdAttributeType) (ret ProjectGetVpcIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setProjectGetVpcIdAttributeType(arg *ProjectGetVpcIdAttributeType, val ProjectGetVpcIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetVpcIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ProjectGetVpcIdRetType = string
+
 // Project Object that represents a STACKIT project.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Project struct {
@@ -192,11 +246,15 @@ type Project struct {
 	// REQUIRED
 	Id             ProjectGetIdAttributeType             `json:"id" required:"true"`
 	InternetAccess ProjectgetInternetAccessAttributeType `json:"internetAccess,omitempty"`
+	// Possible values: `Schwarz`, `Public`, `SNA`, `VPC`.
+	ProjectType ProjectGetProjectTypeAttributeType `json:"projectType,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	Status ProjectGetStatusAttributeType `json:"status" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt ProjectGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
+	// Universally Unique Identifier (UUID).
+	VpcId ProjectGetVpcIdAttributeType `json:"vpcId,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -318,6 +376,33 @@ func (o *Project) SetInternetAccess(v ProjectgetInternetAccessRetType) {
 	setProjectgetInternetAccessAttributeType(&o.InternetAccess, v)
 }
 
+// GetProjectType returns the ProjectType field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) GetProjectType() (res ProjectGetProjectTypeRetType) {
+	res, _ = o.GetProjectTypeOk()
+	return
+}
+
+// GetProjectTypeOk returns a tuple with the ProjectType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) GetProjectTypeOk() (ret ProjectGetProjectTypeRetType, ok bool) {
+	return getProjectGetProjectTypeAttributeTypeOk(o.ProjectType)
+}
+
+// HasProjectType returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) HasProjectType() bool {
+	_, ok := o.GetProjectTypeOk()
+	return ok
+}
+
+// SetProjectType gets a reference to the given string and assigns it to the ProjectType field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) SetProjectType(v ProjectGetProjectTypeRetType) {
+	setProjectGetProjectTypeAttributeType(&o.ProjectType, v)
+}
+
 // GetStatus returns the Status field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Project) GetStatus() (ret ProjectGetStatusRetType) {
@@ -365,6 +450,33 @@ func (o *Project) SetUpdatedAt(v ProjectGetUpdatedAtRetType) {
 	setProjectGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+// GetVpcId returns the VpcId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) GetVpcId() (res ProjectGetVpcIdRetType) {
+	res, _ = o.GetVpcIdOk()
+	return
+}
+
+// GetVpcIdOk returns a tuple with the VpcId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) GetVpcIdOk() (ret ProjectGetVpcIdRetType, ok bool) {
+	return getProjectGetVpcIdAttributeTypeOk(o.VpcId)
+}
+
+// HasVpcId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) HasVpcId() bool {
+	_, ok := o.GetVpcIdOk()
+	return ok
+}
+
+// SetVpcId gets a reference to the given string and assigns it to the VpcId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Project) SetVpcId(v ProjectGetVpcIdRetType) {
+	setProjectGetVpcIdAttributeType(&o.VpcId, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -380,11 +492,17 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if val, ok := getProjectgetInternetAccessAttributeTypeOk(o.InternetAccess); ok {
 		toSerialize["InternetAccess"] = val
 	}
+	if val, ok := getProjectGetProjectTypeAttributeTypeOk(o.ProjectType); ok {
+		toSerialize["ProjectType"] = val
+	}
 	if val, ok := getProjectGetStatusAttributeTypeOk(o.Status); ok {
 		toSerialize["Status"] = val
 	}
 	if val, ok := getProjectGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
 		toSerialize["UpdatedAt"] = val
+	}
+	if val, ok := getProjectGetVpcIdAttributeTypeOk(o.VpcId); ok {
+		toSerialize["VpcId"] = val
 	}
 	return toSerialize, nil
 }
