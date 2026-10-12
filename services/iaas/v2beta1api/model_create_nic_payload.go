@@ -13,6 +13,7 @@ package v2beta1api
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the CreateNicPayload type satisfies the MappedNullable interface at compile time
@@ -22,6 +23,8 @@ var _ MappedNullable = &CreateNicPayload{}
 type CreateNicPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses []AllowedAddressesInner `json:"allowedAddresses,omitempty"`
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -32,7 +35,7 @@ type CreateNicPayload struct {
 	Ipv4 *string `json:"ipv4,omitempty" validate:"regexp=((^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$)|(^\\s*((([0-9a-f]{1\\,4}:){7}([0-9a-f]{1\\,4}|:))|(([0-9a-f]{1\\,4}:){6}(:[0-9a-f]{1\\,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){5}(((:[0-9a-f]{1\\,4}){1\\,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){4}(((:[0-9a-f]{1\\,4}){1\\,3})|((:[0-9a-f]{1\\,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){3}(((:[0-9a-f]{1\\,4}){1\\,4})|((:[0-9a-f]{1\\,4}){0\\,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){2}(((:[0-9a-f]{1\\,4}){1\\,5})|((:[0-9a-f]{1\\,4}){0\\,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){1}(((:[0-9a-f]{1\\,4}){1\\,6})|((:[0-9a-f]{1\\,4}){0\\,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1\\,4}){1\\,7})|((:[0-9a-f]{1\\,4}){0\\,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$))"`
 	// String that represents an IPv6 address.
 	Ipv6 *string `json:"ipv6,omitempty" validate:"regexp=^\\s*((([0-9a-f]{1\\,4}:){7}([0-9a-f]{1\\,4}|:))|(([0-9a-f]{1\\,4}:){6}(:[0-9a-f]{1\\,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){5}(((:[0-9a-f]{1\\,4}){1\\,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){4}(((:[0-9a-f]{1\\,4}){1\\,3})|((:[0-9a-f]{1\\,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){3}(((:[0-9a-f]{1\\,4}){1\\,4})|((:[0-9a-f]{1\\,4}){0\\,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){2}(((:[0-9a-f]{1\\,4}){1\\,5})|((:[0-9a-f]{1\\,4}){0\\,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){1}(((:[0-9a-f]{1\\,4}){1\\,6})|((:[0-9a-f]{1\\,4}){0\\,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1\\,4}){1\\,7})|((:[0-9a-f]{1\\,4}){0\\,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac *string `json:"mac,omitempty" validate:"regexp=^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"`
@@ -47,7 +50,9 @@ type CreateNicPayload struct {
 	// Possible values: `ACTIVE`, `DOWN`.
 	Status *string `json:"status,omitempty"`
 	// Possible values: `server`, `metadata`, `gateway`, `none`.
-	Type                 *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +109,38 @@ func (o *CreateNicPayload) HasAllowedAddresses() bool {
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
 func (o *CreateNicPayload) SetAllowedAddresses(v []AllowedAddressesInner) {
 	o.AllowedAddresses = v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *CreateNicPayload) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNicPayload) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CreateNicPayload) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *CreateNicPayload) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -522,6 +559,38 @@ func (o *CreateNicPayload) SetType(v string) {
 	o.Type = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *CreateNicPayload) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNicPayload) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CreateNicPayload) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *CreateNicPayload) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o CreateNicPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -534,6 +603,9 @@ func (o CreateNicPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowedAddresses) {
 		toSerialize["allowedAddresses"] = o.AllowedAddresses
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -574,6 +646,9 @@ func (o CreateNicPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -597,6 +672,7 @@ func (o *CreateNicPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowedAddresses")
+		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "device")
 		delete(additionalProperties, "id")
@@ -610,6 +686,7 @@ func (o *CreateNicPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "securityGroups")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties
 	}
 
