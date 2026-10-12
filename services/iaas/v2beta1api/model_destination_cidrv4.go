@@ -21,7 +21,7 @@ var _ MappedNullable = &DestinationCIDRv4{}
 
 // DestinationCIDRv4 IPv4 Classless Inter-Domain Routing (CIDR) Object.
 type DestinationCIDRv4 struct {
-	Type string `json:"type"`
+	Type DestinationCIDRv4Type `json:"type"`
 	// An CIDRv4 string.
 	Value                string `json:"value" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _DestinationCIDRv4 DestinationCIDRv4
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDestinationCIDRv4(types string, value string) *DestinationCIDRv4 {
+func NewDestinationCIDRv4(types DestinationCIDRv4Type, value string) *DestinationCIDRv4 {
 	this := DestinationCIDRv4{}
 	this.Type = types
 	this.Value = value
@@ -49,9 +49,9 @@ func NewDestinationCIDRv4WithDefaults() *DestinationCIDRv4 {
 }
 
 // GetType returns the Type field value
-func (o *DestinationCIDRv4) GetType() string {
+func (o *DestinationCIDRv4) GetType() DestinationCIDRv4Type {
 	if o == nil {
-		var ret string
+		var ret DestinationCIDRv4Type
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *DestinationCIDRv4) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DestinationCIDRv4) GetTypeOk() (*string, bool) {
+func (o *DestinationCIDRv4) GetTypeOk() (*DestinationCIDRv4Type, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *DestinationCIDRv4) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *DestinationCIDRv4) SetType(v string) {
+func (o *DestinationCIDRv4) SetType(v DestinationCIDRv4Type) {
 	o.Type = v
 }
 
