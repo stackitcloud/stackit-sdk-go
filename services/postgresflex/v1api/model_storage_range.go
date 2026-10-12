@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -20,8 +20,8 @@ var _ MappedNullable = &StorageRange{}
 
 // StorageRange struct for StorageRange
 type StorageRange struct {
-	Max                  *int32 `json:"max,omitempty"`
-	Min                  *int32 `json:"min,omitempty"`
+	Max                  *int64 `json:"max,omitempty"`
+	Min                  *int64 `json:"min,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,9 +45,9 @@ func NewStorageRangeWithDefaults() *StorageRange {
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *StorageRange) GetMax() int32 {
+func (o *StorageRange) GetMax() int64 {
 	if o == nil || IsNil(o.Max) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Max
@@ -55,7 +55,7 @@ func (o *StorageRange) GetMax() int32 {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageRange) GetMaxOk() (*int32, bool) {
+func (o *StorageRange) GetMaxOk() (*int64, bool) {
 	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *StorageRange) HasMax() bool {
 	return false
 }
 
-// SetMax gets a reference to the given int32 and assigns it to the Max field.
-func (o *StorageRange) SetMax(v int32) {
+// SetMax gets a reference to the given int64 and assigns it to the Max field.
+func (o *StorageRange) SetMax(v int64) {
 	o.Max = &v
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
-func (o *StorageRange) GetMin() int32 {
+func (o *StorageRange) GetMin() int64 {
 	if o == nil || IsNil(o.Min) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Min
@@ -87,7 +87,7 @@ func (o *StorageRange) GetMin() int32 {
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageRange) GetMinOk() (*int32, bool) {
+func (o *StorageRange) GetMinOk() (*int64, bool) {
 	if o == nil || IsNil(o.Min) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *StorageRange) HasMin() bool {
 	return false
 }
 
-// SetMin gets a reference to the given int32 and assigns it to the Min field.
-func (o *StorageRange) SetMin(v int32) {
+// SetMin gets a reference to the given int64 and assigns it to the Min field.
+func (o *StorageRange) SetMin(v int64) {
 	o.Min = &v
 }
 

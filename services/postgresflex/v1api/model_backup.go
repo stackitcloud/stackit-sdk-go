@@ -1,7 +1,7 @@
 /*
-STACKIT PostgreSQL Flex API (deprecated)
+STACKIT PostgreSQL Flex API
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -26,7 +26,7 @@ type Backup struct {
 	Labels               []string           `json:"labels,omitempty"`
 	Name                 *string            `json:"name,omitempty"`
 	Options              *map[string]string `json:"options,omitempty"`
-	Size                 *int32             `json:"size,omitempty"`
+	Size                 *int64             `json:"size,omitempty"`
 	StartTime            *string            `json:"startTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -243,9 +243,9 @@ func (o *Backup) SetOptions(v map[string]string) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Backup) GetSize() int32 {
+func (o *Backup) GetSize() int64 {
 	if o == nil || IsNil(o.Size) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -253,7 +253,7 @@ func (o *Backup) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetSizeOk() (*int32, bool) {
+func (o *Backup) GetSizeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
@@ -269,8 +269,8 @@ func (o *Backup) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *Backup) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Backup) SetSize(v int64) {
 	o.Size = &v
 }
 
