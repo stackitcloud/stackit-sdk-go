@@ -13,6 +13,7 @@ package git
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -239,9 +240,144 @@ type AuthenticationGetScopesRetType = string
 	types and functions for status
 */
 
-// isNotNullableString
+// isEnum
+
+// AuthenticationStatus The current status of the authentication definition.
+// value type for enums
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AuthenticationGetStatusAttributeType = *string
+type AuthenticationStatus string
+
+// List of Status
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	AUTHENTICATIONSTATUS_CREATING AuthenticationStatus = "Creating"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	AUTHENTICATIONSTATUS_UPDATING AuthenticationStatus = "Updating"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	AUTHENTICATIONSTATUS_DELETING AuthenticationStatus = "Deleting"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	AUTHENTICATIONSTATUS_READY AuthenticationStatus = "Ready"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	AUTHENTICATIONSTATUS_ERROR AuthenticationStatus = "Error"
+)
+
+// All allowed values of Authentication enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedAuthenticationStatusEnumValues = []AuthenticationStatus{
+	"Creating",
+	"Updating",
+	"Deleting",
+	"Ready",
+	"Error",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *AuthenticationStatus) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson AuthenticationStatus
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := AuthenticationStatus(value)
+	for _, existing := range AllowedAuthenticationStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Authentication", value)
+}
+
+// NewAuthenticationStatusFromValue returns a pointer to a valid AuthenticationStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewAuthenticationStatusFromValue(v AuthenticationStatus) (*AuthenticationStatus, error) {
+	ev := AuthenticationStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for AuthenticationStatus: valid values are %v", v, AllowedAuthenticationStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v AuthenticationStatus) IsValid() bool {
+	for _, existing := range AllowedAuthenticationStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v AuthenticationStatus) Ptr() *AuthenticationStatus {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableAuthenticationStatus struct {
+	value *AuthenticationStatus
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableAuthenticationStatus) Get() *AuthenticationStatus {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableAuthenticationStatus) Set(val *AuthenticationStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableAuthenticationStatus) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableAuthenticationStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableAuthenticationStatus(val *AuthenticationStatus) *NullableAuthenticationStatus {
+	return &NullableAuthenticationStatus{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableAuthenticationStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableAuthenticationStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AuthenticationGetStatusAttributeType = *AuthenticationStatus
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AuthenticationGetStatusArgType = AuthenticationStatus
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AuthenticationGetStatusRetType = AuthenticationStatus
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getAuthenticationGetStatusAttributeTypeOk(arg AuthenticationGetStatusAttributeType) (ret AuthenticationGetStatusRetType, ok bool) {
@@ -256,11 +392,32 @@ func setAuthenticationGetStatusAttributeType(arg *AuthenticationGetStatusAttribu
 	*arg = &val
 }
 
+/*
+	types and functions for status_message
+*/
+
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AuthenticationGetStatusArgType = string
+type AuthenticationGetStatusMessageAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type AuthenticationGetStatusRetType = string
+func getAuthenticationGetStatusMessageAttributeTypeOk(arg AuthenticationGetStatusMessageAttributeType) (ret AuthenticationGetStatusMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setAuthenticationGetStatusMessageAttributeType(arg *AuthenticationGetStatusMessageAttributeType, val AuthenticationGetStatusMessageRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AuthenticationGetStatusMessageArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AuthenticationGetStatusMessageRetType = string
 
 // Authentication Describes an authentication definition associated to a STACKIT Git instance. The provider type will be an openidConnect type.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -292,6 +449,8 @@ type Authentication struct {
 	// The current status of the authentication definition.
 	// REQUIRED
 	Status AuthenticationGetStatusAttributeType `json:"status" required:"true"`
+	// Provides additional information or error details when the status is 'Error'.
+	StatusMessage AuthenticationGetStatusMessageAttributeType `json:"status_message,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -505,6 +664,33 @@ func (o *Authentication) SetStatus(v AuthenticationGetStatusRetType) {
 	setAuthenticationGetStatusAttributeType(&o.Status, v)
 }
 
+// GetStatusMessage returns the StatusMessage field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Authentication) GetStatusMessage() (res AuthenticationGetStatusMessageRetType) {
+	res, _ = o.GetStatusMessageOk()
+	return
+}
+
+// GetStatusMessageOk returns a tuple with the StatusMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Authentication) GetStatusMessageOk() (ret AuthenticationGetStatusMessageRetType, ok bool) {
+	return getAuthenticationGetStatusMessageAttributeTypeOk(o.StatusMessage)
+}
+
+// HasStatusMessage returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Authentication) HasStatusMessage() bool {
+	_, ok := o.GetStatusMessageOk()
+	return ok
+}
+
+// SetStatusMessage gets a reference to the given string and assigns it to the StatusMessage field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Authentication) SetStatusMessage(v AuthenticationGetStatusMessageRetType) {
+	setAuthenticationGetStatusMessageAttributeType(&o.StatusMessage, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Authentication) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -534,6 +720,9 @@ func (o Authentication) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getAuthenticationGetStatusAttributeTypeOk(o.Status); ok {
 		toSerialize["Status"] = val
+	}
+	if val, ok := getAuthenticationGetStatusMessageAttributeTypeOk(o.StatusMessage); ok {
+		toSerialize["StatusMessage"] = val
 	}
 	return toSerialize, nil
 }
