@@ -1,4 +1,4 @@
-## v0.2.0
+## v0.2.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `v1alphaapi`:
   - **Breaking Change:** Field `Network` in `Application` and `CreateApplicationPayload` models is now optional and changed from `Network` to `*Network` (constructors `NewApplication` and `NewCreateApplicationPayload` no longer take the `network` argument)
