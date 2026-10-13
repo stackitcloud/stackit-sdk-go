@@ -103,6 +103,8 @@
     - `v1api`:
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `rabbitmq`:
+  - [v1.5.0](services/rabbitmq/CHANGELOG.md#v150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1api`:
