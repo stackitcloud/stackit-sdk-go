@@ -7,6 +7,8 @@
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
 - `authorization`:
+  - [v0.16.0](services/authorization/CHANGELOG.md#v0160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.15.5](services/authorization/CHANGELOG.md#v0155)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `automation`:
@@ -39,12 +41,18 @@
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.25.1` to `v0.26.0`
 - `intake`:
+  - [v0.12.0](services/intake/CHANGELOG.md#v0120)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.11.3](services/intake/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `kms`:
+  - [v1.14.0](services/kms/CHANGELOG.md#v1140)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.13.2](services/kms/CHANGELOG.md#v1132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `logme`: 
+  - [v1.5.0](services/logme/CHANGELOG.md#v150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.4.0](services/logme/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v2api`:
@@ -60,6 +68,8 @@
   - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `modelserving`:
+  - [v0.14.0](services/modelserving/CHANGELOG.md#v0140)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
@@ -93,13 +103,27 @@
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
 - `observability`:
+  - [v0.26.0](services/observability/CHANGELOG.md#v0260)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.25.3](services/observability/CHANGELOG.md#v0253)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `opensearch`:
+  - [v1.5.0](services/opensearch/CHANGELOG.md#v150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.4.0](services/opensearch/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1api`:
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+- `rabbitmq`:
+  - [v1.5.0](services/rabbitmq/CHANGELOG.md#v150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+  - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+      - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
+    - `v2api`:
+      - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `resourcemanager`:
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -120,6 +144,8 @@
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
 - `secretsmanager`:
+  - [v0.20.0](services/secretsmanager/CHANGELOG.md#v0200)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverbackup`:
@@ -132,6 +158,8 @@
   - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceenablement`:
+  - [v1.8.0](services/serviceenablement/CHANGELOG.md#v180)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
@@ -151,6 +179,14 @@
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - `v1api`:
       - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `ufw`:
+  - [v0.2.0](services/ufw/CHANGELOG.md#v020)
+    - **Breaking Change:** `RuleResponse.Type` field changed from `string` to new `RuleResponseType` enum (adds `SecurityGroup` to the existing `ACL`/`PublicIP`/`SecurityRule` values); `NewRuleResponse`, `GetType`, `GetTypeOk`, `SetType` signatures updated accordingly
+    - **Breaking Change:** `RuleResponse.SecurityGroup` field removed (and its `GetSecurityGroup`/`GetSecurityGroupOk`/`HasSecurityGroup`/`SetSecurityGroup` accessors)
+    - **Breaking Change:** `ListProviderOptionsExecute` now returns `*ProviderOptionsResponse` instead of `[]ProviderOptionsResponse`, matching the endpoint's actual (non-array) response
+    - **Feature:** Add `RefId` and `Stateful` fields to `RuleResponse`
+    - **Feature:** Add `RemoteSecurityGroupId` and `Stateful` fields to `CreateRulePayload`
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `valkey`:
   - [v0.4.0](services/valkey/CHANGELOG.md#v040)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -299,6 +335,8 @@
   - [v1.3.1](services/rabbitmq/CHANGELOG.md#v131)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 - `redis`:
+  - [v1.6.0](services/redis/CHANGELOG.md#v160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.5.0](services/redis/CHANGELOG.md#v150)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1api`:
