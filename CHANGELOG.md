@@ -62,6 +62,8 @@
   - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `modelserving`:
+  - [v0.14.0](services/modelserving/CHANGELOG.md#v0140)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
@@ -95,9 +97,13 @@
       - **Breaking Change:** Field `Expires` in `AccessKey` model is now `NullableString`
       - **Breaking Change:** Field `Expires` in `CreateAccessKeyPayload` model is now a `time.time` pointer
 - `observability`:
+  - [v0.26.0](services/observability/CHANGELOG.md#v0260)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.25.3](services/observability/CHANGELOG.md#v0253)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `opensearch`:
+  - [v1.5.0](services/opensearch/CHANGELOG.md#v150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.4.0](services/opensearch/CHANGELOG.md#v140)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1api`:
