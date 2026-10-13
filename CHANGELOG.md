@@ -175,6 +175,14 @@
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - `v1api`:
       - **Feature:** Add `Disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `ufw`:
+  - [v0.2.0](services/ufw/CHANGELOG.md#v020)
+    - **Breaking Change:** `RuleResponse.Type` field changed from `string` to new `RuleResponseType` enum (adds `SecurityGroup` to the existing `ACL`/`PublicIP`/`SecurityRule` values); `NewRuleResponse`, `GetType`, `GetTypeOk`, `SetType` signatures updated accordingly
+    - **Breaking Change:** `RuleResponse.SecurityGroup` field removed (and its `GetSecurityGroup`/`GetSecurityGroupOk`/`HasSecurityGroup`/`SetSecurityGroup` accessors)
+    - **Breaking Change:** `ListProviderOptionsExecute` now returns `*ProviderOptionsResponse` instead of `[]ProviderOptionsResponse`, matching the endpoint's actual (non-array) response
+    - **Feature:** Add `RefId` and `Stateful` fields to `RuleResponse`
+    - **Feature:** Add `RemoteSecurityGroupId` and `Stateful` fields to `CreateRulePayload`
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `valkey`:
   - [v0.4.0](services/valkey/CHANGELOG.md#v040)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
