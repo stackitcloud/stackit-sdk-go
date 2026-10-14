@@ -1,3 +1,6 @@
+## v0.12.0
+- **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+
 ## v0.11.4
 - **Docs:** Update description of `Labels` fields
 
