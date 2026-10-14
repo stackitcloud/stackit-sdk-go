@@ -136,6 +136,8 @@
     - Deprecated SDK layer in root of the module:
       - Updated the godoc comments of the `Labels` fields in the model structs
 - `runcommand`:
+  - [v1.11.0](services/runcommand/CHANGELOG.md#v1110)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sca`:
