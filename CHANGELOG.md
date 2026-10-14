@@ -66,6 +66,12 @@
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
+- `mariadb`:
+  - [v1.4.0](services/mariadb/CHANGELOG.md#v140)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `modelexperiments`:
   - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
