@@ -40,6 +40,7 @@
 - `iaas`:
   - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.0` to `v0.26.1`
     - `v1api`:
       - **Docs:** Update documentation for `labels` field constraints across models.
       - **Feature:** Add `Description` field in `Network` model
