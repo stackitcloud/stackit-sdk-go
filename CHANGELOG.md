@@ -189,6 +189,10 @@
     - **Docs:** Update description of `Labels` fields 
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sqlserverflex`:
+  - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
