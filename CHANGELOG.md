@@ -24,6 +24,8 @@
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `dns`:
+  - [v0.25.0](services/dns/CHANGELOG.md#v0250)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.24.0](services/dns/CHANGELOG.md#v0240)
     - **Feature:** New `LabelsMap` field (`map[string]string`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
     - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
