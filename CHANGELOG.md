@@ -160,6 +160,8 @@
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverupdate`:
+  - [v1.6.0](services/serverupdate/CHANGELOG.md#v160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceaccount`:
