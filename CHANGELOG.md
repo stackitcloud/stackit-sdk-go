@@ -38,6 +38,34 @@
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
 - `iaas`:
+  - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - `v1api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+    - `v2api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+      - **Feature:** Add new enum `DestinationCIDRv4Type` for `Type` field in `DestinationCIDRv4` model
+      - **Feature:** Add new enum `DestinationCIDRv6Type` for `Type` field in `DestinationCIDRv6` model
+      - **Feature:** Add new enum `NexthopBlackholeType` for `Type` field in `NexthopBlackhole` model
+      - **Feature:** Add new enum `NexthopInternetType` for `Type` field in `NexthopInternet` model
+      - **Feature:** Add new enum `NexthopIPv4Type` for `Type` field in `NexthopIPv4` model
+      - **Feature:** Add new enum `NexthopIPv6Type` for `Type` field in `NexthopIPv6` model
+      - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
+    - `v2beta1api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+      - **Feature:** Add new enum `DestinationCIDRv4Type` for `Type` field in `DestinationCIDRv4` model
+      - **Feature:** Add new enum `DestinationCIDRv6Type` for `Type` field in `DestinationCIDRv6` model
+      - **Feature:** Add new enum `NexthopBlackholeType` for `Type` field in `NexthopBlackhole` model
+      - **Feature:** Add new enum `NexthopInternetType` for `Type` field in `NexthopInternet` model
+      - **Feature:** Add new enum `NexthopIPv4Type` for `Type` field in `NexthopIPv4` model
+      - **Feature:** Add new enum `NexthopIPv6Type` for `Type` field in `NexthopIPv6` model
+      - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
