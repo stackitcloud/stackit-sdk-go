@@ -80,6 +80,10 @@
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `mongodbflex`:
+  - [v1.13.0](services/mongodbflex/CHANGELOG.md#v1130)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
   - [v1.12.0](services/objectstorage/CHANGELOG.md#v1120)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
