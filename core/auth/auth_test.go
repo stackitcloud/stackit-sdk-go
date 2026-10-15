@@ -798,6 +798,27 @@ func TestSetupAuthWorkloadIdentityErrorMessage(t *testing.T) {
 	}
 }
 
+func TestSetupAuthMetadata(t *testing.T) {
+	setTemporaryHome(t)
+	t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "")
+
+	rt, err := SetupAuth(&config.Configuration{MetadataAuth: true, ServiceAccountEmail: "test@sa.stackit.cloud"})
+	if err != nil {
+		t.Fatalf("setting up metadata auth: %s", err)
+	}
+	if _, ok := rt.(*clients.MetadataFlow); !ok {
+		t.Fatalf("expected metadata flow, got %T", rt)
+	}
+
+	_, err = SetupAuth(&config.Configuration{MetadataAuth: true})
+	if err == nil {
+		t.Fatalf("error expected")
+	}
+	if !strings.Contains(err.Error(), "configuring metadata client") {
+		t.Fatalf("expected metadata error, got %s", err)
+	}
+}
+
 func TestNoAuth(t *testing.T) {
 	for _, test := range []struct {
 		desc string

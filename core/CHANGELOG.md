@@ -1,3 +1,6 @@
+## v0.28.0
+- **Feature:** Support metadata flow, authenticating as the service account attached to the server
+
 ## v0.27.1
 - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error. `WaiterHelper.Wait()` now correctly returns `waitFinished = false` on generic fetch errors
 

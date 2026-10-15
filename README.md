@@ -102,20 +102,26 @@ To authenticate with the SDK, you need a [service account](https://docs.stackit.
 
 ### Authentication Methods
 
-The SDK supports three authentication methods:
+The SDK supports four authentication methods:
 
 1. **Workload Identity Federation Flow**
 
    - Uses OIDC trusted tokens
    - Provides best security through short-lived tokens without secrets
 
-2. **Key Flow**
+2. **Metadata Flow**
+
+   - Uses the service account attached to the server the code runs on
+   - Provides short-lived tokens from the server's metadata service without secrets
+   - Is only used when configured explicitly
+
+3. **Key Flow**
 
    - Uses RSA key-pair based authentication
    - Provides better security through short-lived tokens
    - Supports both STACKIT-generated and custom key pairs
 
-3. **Token Flow** (Deprecated)
+4. **Token Flow** (Deprecated)
    - Uses long-lived service account tokens
    - Simpler but less secure
 
@@ -157,6 +163,30 @@ config.WithServiceAccountEmail("my-sa@sa-stackit.cloud")
 STACKIT_FEDERATED_TOKEN_FILE=/path/to/your/federated/token
 # For the service account
 STACKIT_SERVICE_ACCOUNT_EMAIL=my-sa@sa-stackit.cloud
+```
+
+### Using the Metadata Flow
+
+1. Attach the service account to the server, on creation or later (see [Use Service Accounts via the IaaS-API](https://docs.stackit.cloud/products/iaas-api/how-tos/use-service-accounts-via-the-iaas-api/)):
+
+```bash
+stackit server create --service-account-emails my-sa@sa.stackit.cloud --name my-server --machine-type g1.1
+```
+
+2. Configure authentication on that server using any of these methods:
+
+   **A. Code Configuration**
+
+```go
+// Using metadata flow
+config.WithMetadataAuth()
+// For the attached service account
+config.WithServiceAccountEmail("my-sa@sa.stackit.cloud")
+```
+**B. Environment Variables**
+```bash
+# For the attached service account
+STACKIT_SERVICE_ACCOUNT_EMAIL=my-sa@sa.stackit.cloud
 ```
 
 ### Using the Key Flow
