@@ -23,6 +23,8 @@ var _ MappedNullable = &ImageFromVolumePayload{}
 type ImageFromVolumePayload struct {
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	DiskFormat string `json:"diskFormat"`
+	// When true the image is force created from a volume is currently being used.
+	Force *bool `json:"force,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
 	// When true the created image is prevented from being deleted.
@@ -39,6 +41,8 @@ type _ImageFromVolumePayload ImageFromVolumePayload
 func NewImageFromVolumePayload(diskFormat string, name string) *ImageFromVolumePayload {
 	this := ImageFromVolumePayload{}
 	this.DiskFormat = diskFormat
+	var force bool = false
+	this.Force = &force
 	this.Name = name
 	var protected bool = false
 	this.Protected = &protected
@@ -50,6 +54,8 @@ func NewImageFromVolumePayload(diskFormat string, name string) *ImageFromVolumeP
 // but it doesn't guarantee that properties required by API are set
 func NewImageFromVolumePayloadWithDefaults() *ImageFromVolumePayload {
 	this := ImageFromVolumePayload{}
+	var force bool = false
+	this.Force = &force
 	var protected bool = false
 	this.Protected = &protected
 	return &this
@@ -77,6 +83,38 @@ func (o *ImageFromVolumePayload) GetDiskFormatOk() (*string, bool) {
 // SetDiskFormat sets field value
 func (o *ImageFromVolumePayload) SetDiskFormat(v string) {
 	o.DiskFormat = v
+}
+
+// GetForce returns the Force field value if set, zero value otherwise.
+func (o *ImageFromVolumePayload) GetForce() bool {
+	if o == nil || IsNil(o.Force) {
+		var ret bool
+		return ret
+	}
+	return *o.Force
+}
+
+// GetForceOk returns a tuple with the Force field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ImageFromVolumePayload) GetForceOk() (*bool, bool) {
+	if o == nil || IsNil(o.Force) {
+		return nil, false
+	}
+	return o.Force, true
+}
+
+// HasForce returns a boolean if a field has been set.
+func (o *ImageFromVolumePayload) HasForce() bool {
+	if o != nil && !IsNil(o.Force) {
+		return true
+	}
+
+	return false
+}
+
+// SetForce gets a reference to the given bool and assigns it to the Force field.
+func (o *ImageFromVolumePayload) SetForce(v bool) {
+	o.Force = &v
 }
 
 // GetName returns the Name field value
@@ -146,6 +184,9 @@ func (o ImageFromVolumePayload) MarshalJSON() ([]byte, error) {
 func (o ImageFromVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["diskFormat"] = o.DiskFormat
+	if !IsNil(o.Force) {
+		toSerialize["force"] = o.Force
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
@@ -195,6 +236,7 @@ func (o *ImageFromVolumePayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "diskFormat")
+		delete(additionalProperties, "force")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "protected")
 		o.AdditionalProperties = additionalProperties

@@ -24,6 +24,8 @@
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `dns`:
+  - [v0.25.0](services/dns/CHANGELOG.md#v0250)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.24.0](services/dns/CHANGELOG.md#v0240)
     - **Feature:** New `LabelsMap` field (`map[string]string`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
     - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
@@ -35,7 +37,40 @@
       - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
+- `git`:
+  - [v0.15.0](services/git/CHANGELOG.md#v0150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
+  - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.0` to `v0.26.1`
+    - `v1api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+    - `v2api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+      - **Feature:** Add new enum `DestinationCIDRv4Type` for `Type` field in `DestinationCIDRv4` model
+      - **Feature:** Add new enum `DestinationCIDRv6Type` for `Type` field in `DestinationCIDRv6` model
+      - **Feature:** Add new enum `NexthopBlackholeType` for `Type` field in `NexthopBlackhole` model
+      - **Feature:** Add new enum `NexthopInternetType` for `Type` field in `NexthopInternet` model
+      - **Feature:** Add new enum `NexthopIPv4Type` for `Type` field in `NexthopIPv4` model
+      - **Feature:** Add new enum `NexthopIPv6Type` for `Type` field in `NexthopIPv6` model
+      - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
+    - `v2beta1api`:
+      - **Docs:** Update documentation for `labels` field constraints across models.
+      - **Feature:** Add `Description` field in `Network` model
+      - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+      - **Feature:** Add new enum `DestinationCIDRv4Type` for `Type` field in `DestinationCIDRv4` model
+      - **Feature:** Add new enum `DestinationCIDRv6Type` for `Type` field in `DestinationCIDRv6` model
+      - **Feature:** Add new enum `NexthopBlackholeType` for `Type` field in `NexthopBlackhole` model
+      - **Feature:** Add new enum `NexthopInternetType` for `Type` field in `NexthopInternet` model
+      - **Feature:** Add new enum `NexthopIPv4Type` for `Type` field in `NexthopIPv4` model
+      - **Feature:** Add new enum `NexthopIPv6Type` for `Type` field in `NexthopIPv6` model
+      - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v1.14.4](services/iaas/CHANGELOG.md#v1144)
@@ -60,10 +95,20 @@
     - `v1api`:
       - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+- `logs`:
+  - [v0.11.0](services/logs/CHANGELOG.md#v0110)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `lbiplists`:
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
     - **New**: Examples for the API
+- `mariadb`:
+  - [v1.4.0](services/mariadb/CHANGELOG.md#v140)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `modelexperiments`:
   - [v0.3.2](services/modelexperiments/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -72,7 +117,13 @@
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `mongodbflex`:
+  - [v1.13.0](services/mongodbflex/CHANGELOG.md#v1130)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
+  - [v1.12.0](services/objectstorage/CHANGELOG.md#v1120)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
     - `v1api`:
       - **Feature:** New field `Labels` in `ProjectStatus` model struct
@@ -132,6 +183,8 @@
     - Deprecated SDK layer in root of the module:
       - Updated the godoc comments of the `Labels` fields in the model structs
 - `runcommand`:
+  - [v1.11.0](services/runcommand/CHANGELOG.md#v1110)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sca`:
@@ -149,12 +202,18 @@
   - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverbackup`:
+  - [v1.8.0](services/serverbackup/CHANGELOG.md#v180)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.7.3](services/serverbackup/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serverupdate`:
+  - [v1.6.0](services/serverupdate/CHANGELOG.md#v160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceaccount`:
+  - [v0.22.0](services/serviceaccount/CHANGELOG.md#v0220)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceenablement`:
@@ -163,9 +222,15 @@
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
+  - [v0.12.0](services/sfs/CHANGELOG.md#v0120)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.11.4](services/sfs/CHANGELOG.md#v0114)
     - **Docs:** Update description of `Labels` fields 
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `sqlserverflex`:
+  - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
