@@ -14,6 +14,7 @@ package v1api
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ServerNetwork type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ var _ MappedNullable = &ServerNetwork{}
 type ServerNetwork struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses []AllowedAddressesInner `json:"allowedAddresses,omitempty"`
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents an IP address.
 	Ipv4 *string `json:"ipv4,omitempty" validate:"regexp=((^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$)|(^\\s*((([0-9a-f]{1\\,4}:){7}([0-9a-f]{1\\,4}|:))|(([0-9a-f]{1\\,4}:){6}(:[0-9a-f]{1\\,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){5}(((:[0-9a-f]{1\\,4}){1\\,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){4}(((:[0-9a-f]{1\\,4}){1\\,3})|((:[0-9a-f]{1\\,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){3}(((:[0-9a-f]{1\\,4}){1\\,4})|((:[0-9a-f]{1\\,4}){0\\,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){2}(((:[0-9a-f]{1\\,4}){1\\,5})|((:[0-9a-f]{1\\,4}){0\\,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){1}(((:[0-9a-f]{1\\,4}){1\\,6})|((:[0-9a-f]{1\\,4}){0\\,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1\\,4}){1\\,7})|((:[0-9a-f]{1\\,4}){0\\,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$))"`
 	// String that represents an IPv6 address.
@@ -40,7 +43,9 @@ type ServerNetwork struct {
 	// Object that represents an IP address.
 	PublicIp *string `json:"publicIp,omitempty" validate:"regexp=((^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$)|(^\\s*((([0-9a-f]{1\\,4}:){7}([0-9a-f]{1\\,4}|:))|(([0-9a-f]{1\\,4}:){6}(:[0-9a-f]{1\\,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){5}(((:[0-9a-f]{1\\,4}){1\\,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1\\,4}:){4}(((:[0-9a-f]{1\\,4}){1\\,3})|((:[0-9a-f]{1\\,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){3}(((:[0-9a-f]{1\\,4}){1\\,4})|((:[0-9a-f]{1\\,4}){0\\,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){2}(((:[0-9a-f]{1\\,4}){1\\,5})|((:[0-9a-f]{1\\,4}){0\\,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1\\,4}:){1}(((:[0-9a-f]{1\\,4}){1\\,6})|((:[0-9a-f]{1\\,4}){0\\,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1\\,4}){1\\,7})|((:[0-9a-f]{1\\,4}){0\\,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$))"`
 	// A list of UUIDs.
-	SecurityGroups       []string `json:"securityGroups,omitempty"`
+	SecurityGroups []string `json:"securityGroups,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,6 +103,38 @@ func (o *ServerNetwork) HasAllowedAddresses() bool {
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
 func (o *ServerNetwork) SetAllowedAddresses(v []AllowedAddressesInner) {
 	o.AllowedAddresses = v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *ServerNetwork) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerNetwork) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ServerNetwork) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *ServerNetwork) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
@@ -348,6 +385,38 @@ func (o *ServerNetwork) SetSecurityGroups(v []string) {
 	o.SecurityGroups = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ServerNetwork) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerNetwork) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ServerNetwork) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *ServerNetwork) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o ServerNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -360,6 +429,9 @@ func (o ServerNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowedAddresses) {
 		toSerialize["allowedAddresses"] = o.AllowedAddresses
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
@@ -377,6 +449,9 @@ func (o ServerNetwork) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SecurityGroups) {
 		toSerialize["securityGroups"] = o.SecurityGroups
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -426,6 +501,7 @@ func (o *ServerNetwork) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "allowedAddresses")
+		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "mac")
@@ -435,6 +511,7 @@ func (o *ServerNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "nicSecurity")
 		delete(additionalProperties, "publicIp")
 		delete(additionalProperties, "securityGroups")
+		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,9 +21,11 @@ var _ MappedNullable = &PartialUpdateNetworkPayload{}
 // PartialUpdateNetworkPayload Object that represents the request body for a network update.
 type PartialUpdateNetworkPayload struct {
 	AddressFamily *UpdateNetworkAddressFamily `json:"addressFamily,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description *string `json:"description,omitempty"`
 	// Enable or disable DHCP for a network.
 	Dhcp *bool `json:"dhcp,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
@@ -81,6 +83,38 @@ func (o *PartialUpdateNetworkPayload) HasAddressFamily() bool {
 // SetAddressFamily gets a reference to the given UpdateNetworkAddressFamily and assigns it to the AddressFamily field.
 func (o *PartialUpdateNetworkPayload) SetAddressFamily(v UpdateNetworkAddressFamily) {
 	o.AddressFamily = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PartialUpdateNetworkPayload) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDhcp returns the Dhcp field value if set, zero value otherwise.
@@ -224,6 +258,9 @@ func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AddressFamily) {
 		toSerialize["addressFamily"] = o.AddressFamily
 	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	if !IsNil(o.Dhcp) {
 		toSerialize["dhcp"] = o.Dhcp
 	}
@@ -259,6 +296,7 @@ func (o *PartialUpdateNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "addressFamily")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "dhcp")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
