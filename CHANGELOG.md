@@ -181,6 +181,10 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sca`:
   - [v0.2.1](services/sca/CHANGELOG.md#v021)
+    - `v1alphaapi`:
+      - **Bugfix:** Handle application failed status in create and update waiters.
+      - **Bugfix:** Handle application none status in create and updated waiters.
+  - [v0.2.0](services/sca/CHANGELOG.md#v020)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1alphaapi`:
       - **Breaking Change:** Field `Network` in `Application` and `CreateApplicationPayload` models is now optional and changed from `Network` to `*Network`
@@ -188,8 +192,6 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
-      - **Bugfix:** Handle application failed status in create and update waiters.
-      - **Bugfix:** Handle application none status in create and updated waiters.
 - `secretsmanager`:
   - [v0.20.0](services/secretsmanager/CHANGELOG.md#v0200)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
