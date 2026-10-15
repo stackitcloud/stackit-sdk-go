@@ -91,6 +91,10 @@
     - `v1api`:
       - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+- `logs`:
+  - [v0.11.0](services/logs/CHANGELOG.md#v0110)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `lbiplists`:
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
