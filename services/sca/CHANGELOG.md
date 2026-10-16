@@ -1,3 +1,8 @@
+## v0.2.1
+- `v1alphaapi`:
+  - **Bugfix:** Handle application failed status in create and update waiters.
+  - **Bugfix:** Handle application none status in create and updated waiters.
+
 ## v0.2.0
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `v1alphaapi`:

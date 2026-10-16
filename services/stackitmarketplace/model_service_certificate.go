@@ -22,10 +22,14 @@ var _ MappedNullable = &ServiceCertificate{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ServiceCertificateGetVersionAttributeType = *LocalizedVersion
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ServiceCertificateGetVersionArgType = LocalizedVersion
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ServiceCertificateGetVersionRetType = LocalizedVersion
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getServiceCertificateGetVersionAttributeTypeOk(arg ServiceCertificateGetVersionAttributeType) (ret ServiceCertificateGetVersionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,11 +37,13 @@ func getServiceCertificateGetVersionAttributeTypeOk(arg ServiceCertificateGetVer
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setServiceCertificateGetVersionAttributeType(arg *ServiceCertificateGetVersionAttributeType, val ServiceCertificateGetVersionRetType) {
 	*arg = &val
 }
 
 // ServiceCertificate The related service certificate of the (subscription) product.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ServiceCertificate struct {
 	Version ServiceCertificateGetVersionAttributeType `json:"version,omitempty"`
 }
@@ -46,6 +52,7 @@ type ServiceCertificate struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewServiceCertificate() *ServiceCertificate {
 	this := ServiceCertificate{}
 	return &this
@@ -54,12 +61,14 @@ func NewServiceCertificate() *ServiceCertificate {
 // NewServiceCertificateWithDefaults instantiates a new ServiceCertificate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewServiceCertificateWithDefaults() *ServiceCertificate {
 	this := ServiceCertificate{}
 	return &this
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ServiceCertificate) GetVersion() (res ServiceCertificateGetVersionRetType) {
 	res, _ = o.GetVersionOk()
 	return
@@ -67,21 +76,25 @@ func (o *ServiceCertificate) GetVersion() (res ServiceCertificateGetVersionRetTy
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ServiceCertificate) GetVersionOk() (ret ServiceCertificateGetVersionRetType, ok bool) {
 	return getServiceCertificateGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ServiceCertificate) HasVersion() bool {
 	_, ok := o.GetVersionOk()
 	return ok
 }
 
 // SetVersion gets a reference to the given LocalizedVersion and assigns it to the Version field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ServiceCertificate) SetVersion(v ServiceCertificateGetVersionRetType) {
 	setServiceCertificateGetVersionAttributeType(&o.Version, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ServiceCertificate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServiceCertificateGetVersionAttributeTypeOk(o.Version); ok {
@@ -90,37 +103,45 @@ func (o ServiceCertificate) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableServiceCertificate struct {
 	value *ServiceCertificate
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableServiceCertificate) Get() *ServiceCertificate {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableServiceCertificate) Set(val *ServiceCertificate) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableServiceCertificate) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableServiceCertificate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableServiceCertificate(val *ServiceCertificate) *NullableServiceCertificate {
 	return &NullableServiceCertificate{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableServiceCertificate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableServiceCertificate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
