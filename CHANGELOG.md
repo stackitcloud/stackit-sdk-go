@@ -203,6 +203,8 @@
     - `v2api`:
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `resourcemanager`:
+  - [v0.27.0](services/resourcemanager/CHANGELOG.md#v0270)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v0api`: 
