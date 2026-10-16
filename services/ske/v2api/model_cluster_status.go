@@ -31,9 +31,13 @@ type ClusterStatus struct {
 	Expiration          *ExpirationStatus `json:"expiration,omitempty"`
 	Hibernated          *bool             `json:"hibernated,omitempty"`
 	Identity            *string           `json:"identity,omitempty"`
+	// The network ranges (in CIDR notation) used by nodes of the cluster.
+	NodeAddressRanges []string `json:"nodeAddressRanges,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
 	PodAddressRanges     []string `json:"podAddressRanges,omitempty"`
 	ServiceAccountIssuer *string  `json:"serviceAccountIssuer,omitempty"`
+	// The network ranges (in CIDR notation) used by services of the cluster.
+	ServiceAddressRanges []string `json:"serviceAddressRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -344,6 +348,38 @@ func (o *ClusterStatus) SetIdentity(v string) {
 	o.Identity = &v
 }
 
+// GetNodeAddressRanges returns the NodeAddressRanges field value if set, zero value otherwise.
+func (o *ClusterStatus) GetNodeAddressRanges() []string {
+	if o == nil || IsNil(o.NodeAddressRanges) {
+		var ret []string
+		return ret
+	}
+	return o.NodeAddressRanges
+}
+
+// GetNodeAddressRangesOk returns a tuple with the NodeAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetNodeAddressRangesOk() ([]string, bool) {
+	if o == nil || IsNil(o.NodeAddressRanges) {
+		return nil, false
+	}
+	return o.NodeAddressRanges, true
+}
+
+// HasNodeAddressRanges returns a boolean if a field has been set.
+func (o *ClusterStatus) HasNodeAddressRanges() bool {
+	if o != nil && !IsNil(o.NodeAddressRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeAddressRanges gets a reference to the given []string and assigns it to the NodeAddressRanges field.
+func (o *ClusterStatus) SetNodeAddressRanges(v []string) {
+	o.NodeAddressRanges = v
+}
+
 // GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
 func (o *ClusterStatus) GetPodAddressRanges() []string {
 	if o == nil || IsNil(o.PodAddressRanges) {
@@ -408,6 +444,38 @@ func (o *ClusterStatus) SetServiceAccountIssuer(v string) {
 	o.ServiceAccountIssuer = &v
 }
 
+// GetServiceAddressRanges returns the ServiceAddressRanges field value if set, zero value otherwise.
+func (o *ClusterStatus) GetServiceAddressRanges() []string {
+	if o == nil || IsNil(o.ServiceAddressRanges) {
+		var ret []string
+		return ret
+	}
+	return o.ServiceAddressRanges
+}
+
+// GetServiceAddressRangesOk returns a tuple with the ServiceAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetServiceAddressRangesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ServiceAddressRanges) {
+		return nil, false
+	}
+	return o.ServiceAddressRanges, true
+}
+
+// HasServiceAddressRanges returns a boolean if a field has been set.
+func (o *ClusterStatus) HasServiceAddressRanges() bool {
+	if o != nil && !IsNil(o.ServiceAddressRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAddressRanges gets a reference to the given []string and assigns it to the ServiceAddressRanges field.
+func (o *ClusterStatus) SetServiceAddressRanges(v []string) {
+	o.ServiceAddressRanges = v
+}
+
 func (o ClusterStatus) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -445,11 +513,17 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Identity) {
 		toSerialize["identity"] = o.Identity
 	}
+	if !IsNil(o.NodeAddressRanges) {
+		toSerialize["nodeAddressRanges"] = o.NodeAddressRanges
+	}
 	if !IsNil(o.PodAddressRanges) {
 		toSerialize["podAddressRanges"] = o.PodAddressRanges
 	}
 	if !IsNil(o.ServiceAccountIssuer) {
 		toSerialize["serviceAccountIssuer"] = o.ServiceAccountIssuer
+	}
+	if !IsNil(o.ServiceAddressRanges) {
+		toSerialize["serviceAddressRanges"] = o.ServiceAddressRanges
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -482,8 +556,10 @@ func (o *ClusterStatus) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "expiration")
 		delete(additionalProperties, "hibernated")
 		delete(additionalProperties, "identity")
+		delete(additionalProperties, "nodeAddressRanges")
 		delete(additionalProperties, "podAddressRanges")
 		delete(additionalProperties, "serviceAccountIssuer")
+		delete(additionalProperties, "serviceAddressRanges")
 		o.AdditionalProperties = additionalProperties
 	}
 
