@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 	"strings"
 	"time"
 
@@ -258,8 +259,9 @@ func CreateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 }
 
 // ResizeServerWaitHandler will wait for server resize
-// It checks for an intermediate resizing status and only then waits for the server to become active
+// It checks for an intermediate resizing status and only then waits for the server to become either active or inactive
 func ResizeServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
+	var finalResizeStates = []string{ServerActiveStatus, ServerInactiveStatus}
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
 		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
@@ -285,7 +287,7 @@ func ResizeServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 			return false, server, nil
 		}
 
-		if *server.Id == serverId && *server.Status == ServerActiveStatus {
+		if *server.Id == serverId && slices.Contains(finalResizeStates, *server.Status) {
 			return true, server, nil
 		}
 
