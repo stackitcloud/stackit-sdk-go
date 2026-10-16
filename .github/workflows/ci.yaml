@@ -21,12 +21,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
-      
+
       - name: Test
         run: make test
 
@@ -39,15 +39,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.25
-      
+
       - name: Install project tools and dependencies
         run: make project-tools
-      
+
       - name: Lint
         run: |
           make lint
@@ -66,7 +66,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.25
-      
+
       - name: Install project tools and dependencies
         run: make project-tools
 
@@ -75,6 +75,8 @@ jobs:
 
       # Creates a new comment or updates the existing one to show the report result
       - name: Comment PR
+        # don't run on PRs from forks (token has no write permissions)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
         uses: actions/github-script@v7
         env:
           REPORT_FILE: "gorelease_report.md"
@@ -83,12 +85,12 @@ jobs:
           script: |
             const identifier = `<!-- gorelease-report -->`;
             const fs = require('fs');
-            
+
             let report = "No output generated.";
             if (process.env.REPORT_FILE && fs.existsSync(process.env.REPORT_FILE)) {
               report = fs.readFileSync(process.env.REPORT_FILE, 'utf8');
             }
-            
+
             // Format the comment
             const body = `${identifier}\n${report}`;
 
@@ -98,10 +100,10 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            
+
             // Look for a comment containing our unique identifier
             const existingComment = comments.find(c => c.body.includes(identifier));
-            
+
             if (existingComment) {
               // Update the existing comment
               await github.rest.issues.updateComment({

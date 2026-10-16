@@ -1,3 +1,6 @@
+## v0.12.0
+- **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+
 ## v0.11.3
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 
