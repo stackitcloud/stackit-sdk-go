@@ -1,3 +1,6 @@
+## v1.12.0
+- **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+
 ## v1.11.0
 - `v1api`:
   - **Feature:** New field `Labels` in `ProjectStatus` model struct

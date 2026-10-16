@@ -13,6 +13,7 @@ package v2api
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the UpdatePublicIPPayload type satisfies the MappedNullable interface at compile time
@@ -20,14 +21,18 @@ var _ MappedNullable = &UpdatePublicIPPayload{}
 
 // UpdatePublicIPPayload Object that represents a public IP.
 type UpdatePublicIPPayload struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// String that represents an IPv4 address.
 	Ip *string `json:"ip,omitempty" validate:"regexp=^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
+	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// Associate the public IP with a network interface (ID).
-	NetworkInterface     NullableString `json:"networkInterface,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	NetworkInterface NullableString `json:"networkInterface,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// Date-time when resource was last updated.
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,6 +53,38 @@ func NewUpdatePublicIPPayload() *UpdatePublicIPPayload {
 func NewUpdatePublicIPPayloadWithDefaults() *UpdatePublicIPPayload {
 	this := UpdatePublicIPPayload{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *UpdatePublicIPPayload) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePublicIPPayload) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *UpdatePublicIPPayload) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *UpdatePublicIPPayload) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -189,6 +226,38 @@ func (o *UpdatePublicIPPayload) UnsetNetworkInterface() {
 	o.NetworkInterface.Unset()
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *UpdatePublicIPPayload) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePublicIPPayload) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *UpdatePublicIPPayload) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *UpdatePublicIPPayload) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
 func (o UpdatePublicIPPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -199,6 +268,9 @@ func (o UpdatePublicIPPayload) MarshalJSON() ([]byte, error) {
 
 func (o UpdatePublicIPPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -210,6 +282,9 @@ func (o UpdatePublicIPPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if o.NetworkInterface.IsSet() {
 		toSerialize["networkInterface"] = o.NetworkInterface.Get()
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -233,10 +308,12 @@ func (o *UpdatePublicIPPayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "ip")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "networkInterface")
+		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties
 	}
 
