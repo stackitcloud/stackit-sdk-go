@@ -22,8 +22,10 @@ var _ MappedNullable = &CatalogProductPricingOption{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetDescriptionAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(arg CatalogProductPricingOptionGetDescriptionAttributeType) (ret CatalogProductPricingOptionGetDescriptionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(arg CatalogProd
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetDescriptionAttributeType(arg *CatalogProductPricingOptionGetDescriptionAttributeType, val CatalogProductPricingOptionGetDescriptionRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetDescriptionArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetDescriptionRetType = string
 
 /*
@@ -43,10 +48,14 @@ type CatalogProductPricingOptionGetDescriptionRetType = string
 */
 
 // isArray
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetHighlightsAttributeType = *[]CatalogPricingOptionHighlight
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetHighlightsArgType = []CatalogPricingOptionHighlight
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetHighlightsRetType = []CatalogPricingOptionHighlight
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(arg CatalogProductPricingOptionGetHighlightsAttributeType) (ret CatalogProductPricingOptionGetHighlightsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -54,6 +63,7 @@ func getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(arg CatalogProdu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetHighlightsAttributeType(arg *CatalogProductPricingOptionGetHighlightsAttributeType, val CatalogProductPricingOptionGetHighlightsRetType) {
 	*arg = &val
 }
@@ -63,8 +73,10 @@ func setCatalogProductPricingOptionGetHighlightsAttributeType(arg *CatalogProduc
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetNameAttributeTypeOk(arg CatalogProductPricingOptionGetNameAttributeType) (ret CatalogProductPricingOptionGetNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -72,11 +84,14 @@ func getCatalogProductPricingOptionGetNameAttributeTypeOk(arg CatalogProductPric
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetNameAttributeType(arg *CatalogProductPricingOptionGetNameAttributeType, val CatalogProductPricingOptionGetNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNameRetType = string
 
 /*
@@ -84,10 +99,14 @@ type CatalogProductPricingOptionGetNameRetType = string
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNoticePeriodAttributeType = *NoticePeriod
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNoticePeriodArgType = NoticePeriod
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetNoticePeriodRetType = NoticePeriod
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetNoticePeriodAttributeTypeOk(arg CatalogProductPricingOptionGetNoticePeriodAttributeType) (ret CatalogProductPricingOptionGetNoticePeriodRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -95,6 +114,7 @@ func getCatalogProductPricingOptionGetNoticePeriodAttributeTypeOk(arg CatalogPro
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetNoticePeriodAttributeType(arg *CatalogProductPricingOptionGetNoticePeriodAttributeType, val CatalogProductPricingOptionGetNoticePeriodRetType) {
 	*arg = &val
 }
@@ -104,8 +124,10 @@ func setCatalogProductPricingOptionGetNoticePeriodAttributeType(arg *CatalogProd
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPlanIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(arg CatalogProductPricingOptionGetPlanIdAttributeType) (ret CatalogProductPricingOptionGetPlanIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -113,11 +135,14 @@ func getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(arg CatalogProductPr
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetPlanIdAttributeType(arg *CatalogProductPricingOptionGetPlanIdAttributeType, val CatalogProductPricingOptionGetPlanIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPlanIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPlanIdRetType = string
 
 /*
@@ -125,10 +150,14 @@ type CatalogProductPricingOptionGetPlanIdRetType = string
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPriceTypeAttributeType = *PriceType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPriceTypeArgType = PriceType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPriceTypeRetType = PriceType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(arg CatalogProductPricingOptionGetPriceTypeAttributeType) (ret CatalogProductPricingOptionGetPriceTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -136,6 +165,7 @@ func getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(arg CatalogProduc
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetPriceTypeAttributeType(arg *CatalogProductPricingOptionGetPriceTypeAttributeType, val CatalogProductPricingOptionGetPriceTypeRetType) {
 	*arg = &val
 }
@@ -145,8 +175,10 @@ func setCatalogProductPricingOptionGetPriceTypeAttributeType(arg *CatalogProduct
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPricingPlanAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(arg CatalogProductPricingOptionGetPricingPlanAttributeType) (ret CatalogProductPricingOptionGetPricingPlanRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -154,11 +186,14 @@ func getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(arg CatalogProd
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetPricingPlanAttributeType(arg *CatalogProductPricingOptionGetPricingPlanAttributeType, val CatalogProductPricingOptionGetPricingPlanRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPricingPlanArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetPricingPlanRetType = string
 
 /*
@@ -166,8 +201,10 @@ type CatalogProductPricingOptionGetPricingPlanRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetRateAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetRateAttributeTypeOk(arg CatalogProductPricingOptionGetRateAttributeType) (ret CatalogProductPricingOptionGetRateRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -175,11 +212,14 @@ func getCatalogProductPricingOptionGetRateAttributeTypeOk(arg CatalogProductPric
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetRateAttributeType(arg *CatalogProductPricingOptionGetRateAttributeType, val CatalogProductPricingOptionGetRateRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetRateArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetRateRetType = string
 
 /*
@@ -187,10 +227,14 @@ type CatalogProductPricingOptionGetRateRetType = string
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetScopeAttributeType = *Scope
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetScopeArgType = Scope
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetScopeRetType = Scope
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetScopeAttributeTypeOk(arg CatalogProductPricingOptionGetScopeAttributeType) (ret CatalogProductPricingOptionGetScopeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -198,6 +242,7 @@ func getCatalogProductPricingOptionGetScopeAttributeTypeOk(arg CatalogProductPri
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetScopeAttributeType(arg *CatalogProductPricingOptionGetScopeAttributeType, val CatalogProductPricingOptionGetScopeRetType) {
 	*arg = &val
 }
@@ -207,8 +252,10 @@ func setCatalogProductPricingOptionGetScopeAttributeType(arg *CatalogProductPric
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetSkuAttributeTypeOk(arg CatalogProductPricingOptionGetSkuAttributeType) (ret CatalogProductPricingOptionGetSkuRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -216,11 +263,14 @@ func getCatalogProductPricingOptionGetSkuAttributeTypeOk(arg CatalogProductPrici
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetSkuAttributeType(arg *CatalogProductPricingOptionGetSkuAttributeType, val CatalogProductPricingOptionGetSkuRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuRetType = string
 
 /*
@@ -228,8 +278,10 @@ type CatalogProductPricingOptionGetSkuRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(arg CatalogProductPricingOptionGetSkuInfoAttributeType) (ret CatalogProductPricingOptionGetSkuInfoRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -237,11 +289,14 @@ func getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(arg CatalogProductP
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetSkuInfoAttributeType(arg *CatalogProductPricingOptionGetSkuInfoAttributeType, val CatalogProductPricingOptionGetSkuInfoRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoRetType = string
 
 /*
@@ -249,8 +304,10 @@ type CatalogProductPricingOptionGetSkuInfoRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoDetailsAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(arg CatalogProductPricingOptionGetSkuInfoDetailsAttributeType) (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -258,11 +315,14 @@ func getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(arg CatalogP
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(arg *CatalogProductPricingOptionGetSkuInfoDetailsAttributeType, val CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoDetailsArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetSkuInfoDetailsRetType = string
 
 /*
@@ -270,10 +330,14 @@ type CatalogProductPricingOptionGetSkuInfoDetailsRetType = string
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetUnitAttributeType = *PricingOptionUnit
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetUnitArgType = PricingOptionUnit
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOptionGetUnitRetType = PricingOptionUnit
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductPricingOptionGetUnitAttributeTypeOk(arg CatalogProductPricingOptionGetUnitAttributeType) (ret CatalogProductPricingOptionGetUnitRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -281,11 +345,13 @@ func getCatalogProductPricingOptionGetUnitAttributeTypeOk(arg CatalogProductPric
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductPricingOptionGetUnitAttributeType(arg *CatalogProductPricingOptionGetUnitAttributeType, val CatalogProductPricingOptionGetUnitRetType) {
 	*arg = &val
 }
 
 // CatalogProductPricingOption struct for CatalogProductPricingOption
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductPricingOption struct {
 	// The pricing option description.
 	// REQUIRED
@@ -319,12 +385,14 @@ type CatalogProductPricingOption struct {
 	Unit           CatalogProductPricingOptionGetUnitAttributeType           `json:"unit,omitempty"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _CatalogProductPricingOption CatalogProductPricingOption
 
 // NewCatalogProductPricingOption instantiates a new CatalogProductPricingOption object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, planId CatalogProductPricingOptionGetPlanIdArgType, scope CatalogProductPricingOptionGetScopeArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
 	this := CatalogProductPricingOption{}
 	setCatalogProductPricingOptionGetDescriptionAttributeType(&this.Description, description)
@@ -341,12 +409,14 @@ func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDe
 // NewCatalogProductPricingOptionWithDefaults instantiates a new CatalogProductPricingOption object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductPricingOptionWithDefaults() *CatalogProductPricingOption {
 	this := CatalogProductPricingOption{}
 	return &this
 }
 
 // GetDescription returns the Description field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetDescription() (ret CatalogProductPricingOptionGetDescriptionRetType) {
 	ret, _ = o.GetDescriptionOk()
 	return ret
@@ -354,16 +424,19 @@ func (o *CatalogProductPricingOption) GetDescription() (ret CatalogProductPricin
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetDescriptionOk() (ret CatalogProductPricingOptionGetDescriptionRetType, ok bool) {
 	return getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetDescription(v CatalogProductPricingOptionGetDescriptionRetType) {
 	setCatalogProductPricingOptionGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetHighlights returns the Highlights field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetHighlights() (ret CatalogProductPricingOptionGetHighlightsRetType) {
 	ret, _ = o.GetHighlightsOk()
 	return ret
@@ -371,16 +444,19 @@ func (o *CatalogProductPricingOption) GetHighlights() (ret CatalogProductPricing
 
 // GetHighlightsOk returns a tuple with the Highlights field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetHighlightsOk() (ret CatalogProductPricingOptionGetHighlightsRetType, ok bool) {
 	return getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(o.Highlights)
 }
 
 // SetHighlights sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetHighlights(v CatalogProductPricingOptionGetHighlightsRetType) {
 	setCatalogProductPricingOptionGetHighlightsAttributeType(&o.Highlights, v)
 }
 
 // GetName returns the Name field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetName() (ret CatalogProductPricingOptionGetNameRetType) {
 	ret, _ = o.GetNameOk()
 	return ret
@@ -388,16 +464,19 @@ func (o *CatalogProductPricingOption) GetName() (ret CatalogProductPricingOption
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetNameOk() (ret CatalogProductPricingOptionGetNameRetType, ok bool) {
 	return getCatalogProductPricingOptionGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetName(v CatalogProductPricingOptionGetNameRetType) {
 	setCatalogProductPricingOptionGetNameAttributeType(&o.Name, v)
 }
 
 // GetNoticePeriod returns the NoticePeriod field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetNoticePeriod() (res CatalogProductPricingOptionGetNoticePeriodRetType) {
 	res, _ = o.GetNoticePeriodOk()
 	return
@@ -405,22 +484,26 @@ func (o *CatalogProductPricingOption) GetNoticePeriod() (res CatalogProductPrici
 
 // GetNoticePeriodOk returns a tuple with the NoticePeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetNoticePeriodOk() (ret CatalogProductPricingOptionGetNoticePeriodRetType, ok bool) {
 	return getCatalogProductPricingOptionGetNoticePeriodAttributeTypeOk(o.NoticePeriod)
 }
 
 // HasNoticePeriod returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) HasNoticePeriod() bool {
 	_, ok := o.GetNoticePeriodOk()
 	return ok
 }
 
 // SetNoticePeriod gets a reference to the given NoticePeriod and assigns it to the NoticePeriod field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetNoticePeriod(v CatalogProductPricingOptionGetNoticePeriodRetType) {
 	setCatalogProductPricingOptionGetNoticePeriodAttributeType(&o.NoticePeriod, v)
 }
 
 // GetPlanId returns the PlanId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPlanId() (ret CatalogProductPricingOptionGetPlanIdRetType) {
 	ret, _ = o.GetPlanIdOk()
 	return ret
@@ -428,16 +511,19 @@ func (o *CatalogProductPricingOption) GetPlanId() (ret CatalogProductPricingOpti
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPlanIdOk() (ret CatalogProductPricingOptionGetPlanIdRetType, ok bool) {
 	return getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // SetPlanId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetPlanId(v CatalogProductPricingOptionGetPlanIdRetType) {
 	setCatalogProductPricingOptionGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetPriceType returns the PriceType field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPriceType() (res CatalogProductPricingOptionGetPriceTypeRetType) {
 	res, _ = o.GetPriceTypeOk()
 	return
@@ -445,22 +531,26 @@ func (o *CatalogProductPricingOption) GetPriceType() (res CatalogProductPricingO
 
 // GetPriceTypeOk returns a tuple with the PriceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPriceTypeOk() (ret CatalogProductPricingOptionGetPriceTypeRetType, ok bool) {
 	return getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(o.PriceType)
 }
 
 // HasPriceType returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) HasPriceType() bool {
 	_, ok := o.GetPriceTypeOk()
 	return ok
 }
 
 // SetPriceType gets a reference to the given PriceType and assigns it to the PriceType field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetPriceType(v CatalogProductPricingOptionGetPriceTypeRetType) {
 	setCatalogProductPricingOptionGetPriceTypeAttributeType(&o.PriceType, v)
 }
 
 // GetPricingPlan returns the PricingPlan field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPricingPlan() (res CatalogProductPricingOptionGetPricingPlanRetType) {
 	res, _ = o.GetPricingPlanOk()
 	return
@@ -468,22 +558,26 @@ func (o *CatalogProductPricingOption) GetPricingPlan() (res CatalogProductPricin
 
 // GetPricingPlanOk returns a tuple with the PricingPlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetPricingPlanOk() (ret CatalogProductPricingOptionGetPricingPlanRetType, ok bool) {
 	return getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(o.PricingPlan)
 }
 
 // HasPricingPlan returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) HasPricingPlan() bool {
 	_, ok := o.GetPricingPlanOk()
 	return ok
 }
 
 // SetPricingPlan gets a reference to the given string and assigns it to the PricingPlan field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetPricingPlan(v CatalogProductPricingOptionGetPricingPlanRetType) {
 	setCatalogProductPricingOptionGetPricingPlanAttributeType(&o.PricingPlan, v)
 }
 
 // GetRate returns the Rate field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetRate() (res CatalogProductPricingOptionGetRateRetType) {
 	res, _ = o.GetRateOk()
 	return
@@ -491,22 +585,26 @@ func (o *CatalogProductPricingOption) GetRate() (res CatalogProductPricingOption
 
 // GetRateOk returns a tuple with the Rate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetRateOk() (ret CatalogProductPricingOptionGetRateRetType, ok bool) {
 	return getCatalogProductPricingOptionGetRateAttributeTypeOk(o.Rate)
 }
 
 // HasRate returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) HasRate() bool {
 	_, ok := o.GetRateOk()
 	return ok
 }
 
 // SetRate gets a reference to the given string and assigns it to the Rate field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetRate(v CatalogProductPricingOptionGetRateRetType) {
 	setCatalogProductPricingOptionGetRateAttributeType(&o.Rate, v)
 }
 
 // GetScope returns the Scope field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetScope() (ret CatalogProductPricingOptionGetScopeRetType) {
 	ret, _ = o.GetScopeOk()
 	return ret
@@ -514,16 +612,19 @@ func (o *CatalogProductPricingOption) GetScope() (ret CatalogProductPricingOptio
 
 // GetScopeOk returns a tuple with the Scope field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetScopeOk() (ret CatalogProductPricingOptionGetScopeRetType, ok bool) {
 	return getCatalogProductPricingOptionGetScopeAttributeTypeOk(o.Scope)
 }
 
 // SetScope sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetScope(v CatalogProductPricingOptionGetScopeRetType) {
 	setCatalogProductPricingOptionGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetSku returns the Sku field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSku() (ret CatalogProductPricingOptionGetSkuRetType) {
 	ret, _ = o.GetSkuOk()
 	return ret
@@ -531,16 +632,19 @@ func (o *CatalogProductPricingOption) GetSku() (ret CatalogProductPricingOptionG
 
 // GetSkuOk returns a tuple with the Sku field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSkuOk() (ret CatalogProductPricingOptionGetSkuRetType, ok bool) {
 	return getCatalogProductPricingOptionGetSkuAttributeTypeOk(o.Sku)
 }
 
 // SetSku sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetSku(v CatalogProductPricingOptionGetSkuRetType) {
 	setCatalogProductPricingOptionGetSkuAttributeType(&o.Sku, v)
 }
 
 // GetSkuInfo returns the SkuInfo field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSkuInfo() (ret CatalogProductPricingOptionGetSkuInfoRetType) {
 	ret, _ = o.GetSkuInfoOk()
 	return ret
@@ -548,16 +652,19 @@ func (o *CatalogProductPricingOption) GetSkuInfo() (ret CatalogProductPricingOpt
 
 // GetSkuInfoOk returns a tuple with the SkuInfo field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSkuInfoOk() (ret CatalogProductPricingOptionGetSkuInfoRetType, ok bool) {
 	return getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(o.SkuInfo)
 }
 
 // SetSkuInfo sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetSkuInfo(v CatalogProductPricingOptionGetSkuInfoRetType) {
 	setCatalogProductPricingOptionGetSkuInfoAttributeType(&o.SkuInfo, v)
 }
 
 // GetSkuInfoDetails returns the SkuInfoDetails field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSkuInfoDetails() (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
 	ret, _ = o.GetSkuInfoDetailsOk()
 	return ret
@@ -565,16 +672,19 @@ func (o *CatalogProductPricingOption) GetSkuInfoDetails() (ret CatalogProductPri
 
 // GetSkuInfoDetailsOk returns a tuple with the SkuInfoDetails field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetSkuInfoDetailsOk() (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType, ok bool) {
 	return getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(o.SkuInfoDetails)
 }
 
 // SetSkuInfoDetails sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetSkuInfoDetails(v CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
 	setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(&o.SkuInfoDetails, v)
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetUnit() (res CatalogProductPricingOptionGetUnitRetType) {
 	res, _ = o.GetUnitOk()
 	return
@@ -582,21 +692,25 @@ func (o *CatalogProductPricingOption) GetUnit() (res CatalogProductPricingOption
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) GetUnitOk() (ret CatalogProductPricingOptionGetUnitRetType, ok bool) {
 	return getCatalogProductPricingOptionGetUnitAttributeTypeOk(o.Unit)
 }
 
 // HasUnit returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) HasUnit() bool {
 	_, ok := o.GetUnitOk()
 	return ok
 }
 
 // SetUnit gets a reference to the given PricingOptionUnit and assigns it to the Unit field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductPricingOption) SetUnit(v CatalogProductPricingOptionGetUnitRetType) {
 	setCatalogProductPricingOptionGetUnitAttributeType(&o.Unit, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogProductPricingOption) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -641,37 +755,45 @@ func (o CatalogProductPricingOption) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogProductPricingOption struct {
 	value *CatalogProductPricingOption
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductPricingOption) Get() *CatalogProductPricingOption {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductPricingOption) Set(val *CatalogProductPricingOption) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductPricingOption) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductPricingOption) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogProductPricingOption(val *CatalogProductPricingOption) *NullableCatalogProductPricingOption {
 	return &NullableCatalogProductPricingOption{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductPricingOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductPricingOption) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

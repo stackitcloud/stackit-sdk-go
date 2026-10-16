@@ -16,19 +16,27 @@ import (
 )
 
 // SubscriptionLifecycleState Lifecycle state of the subscription.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SubscriptionLifecycleState string
 
 // List of subscriptionLifecycleState
 const (
-	SUBSCRIPTIONLIFECYCLESTATE_PENDING    SubscriptionLifecycleState = "SUBSCRIPTION_PENDING"
-	SUBSCRIPTIONLIFECYCLESTATE_ACTIVE     SubscriptionLifecycleState = "SUBSCRIPTION_ACTIVE"
-	SUBSCRIPTIONLIFECYCLESTATE_INACTIVE   SubscriptionLifecycleState = "SUBSCRIPTION_INACTIVE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SUBSCRIPTIONLIFECYCLESTATE_PENDING SubscriptionLifecycleState = "SUBSCRIPTION_PENDING"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SUBSCRIPTIONLIFECYCLESTATE_ACTIVE SubscriptionLifecycleState = "SUBSCRIPTION_ACTIVE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SUBSCRIPTIONLIFECYCLESTATE_INACTIVE SubscriptionLifecycleState = "SUBSCRIPTION_INACTIVE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	SUBSCRIPTIONLIFECYCLESTATE_CANCELLING SubscriptionLifecycleState = "SUBSCRIPTION_CANCELLING"
-	SUBSCRIPTIONLIFECYCLESTATE_CANCELLED  SubscriptionLifecycleState = "SUBSCRIPTION_CANCELLED"
-	SUBSCRIPTIONLIFECYCLESTATE_REJECTED   SubscriptionLifecycleState = "SUBSCRIPTION_REJECTED"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SUBSCRIPTIONLIFECYCLESTATE_CANCELLED SubscriptionLifecycleState = "SUBSCRIPTION_CANCELLED"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SUBSCRIPTIONLIFECYCLESTATE_REJECTED SubscriptionLifecycleState = "SUBSCRIPTION_REJECTED"
 )
 
 // All allowed values of SubscriptionLifecycleState enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedSubscriptionLifecycleStateEnumValues = []SubscriptionLifecycleState{
 	"SUBSCRIPTION_PENDING",
 	"SUBSCRIPTION_ACTIVE",
@@ -38,6 +46,7 @@ var AllowedSubscriptionLifecycleStateEnumValues = []SubscriptionLifecycleState{
 	"SUBSCRIPTION_REJECTED",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *SubscriptionLifecycleState) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -62,6 +71,7 @@ func (v *SubscriptionLifecycleState) UnmarshalJSON(src []byte) error {
 
 // NewSubscriptionLifecycleStateFromValue returns a pointer to a valid SubscriptionLifecycleState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewSubscriptionLifecycleStateFromValue(v string) (*SubscriptionLifecycleState, error) {
 	ev := SubscriptionLifecycleState(v)
 	if ev.IsValid() {
@@ -72,6 +82,7 @@ func NewSubscriptionLifecycleStateFromValue(v string) (*SubscriptionLifecycleSta
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v SubscriptionLifecycleState) IsValid() bool {
 	for _, existing := range AllowedSubscriptionLifecycleStateEnumValues {
 		if existing == v {
@@ -82,41 +93,50 @@ func (v SubscriptionLifecycleState) IsValid() bool {
 }
 
 // Ptr returns reference to subscriptionLifecycleState value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v SubscriptionLifecycleState) Ptr() *SubscriptionLifecycleState {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableSubscriptionLifecycleState struct {
 	value *SubscriptionLifecycleState
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionLifecycleState) Get() *SubscriptionLifecycleState {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionLifecycleState) Set(val *SubscriptionLifecycleState) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionLifecycleState) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionLifecycleState) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableSubscriptionLifecycleState(val *SubscriptionLifecycleState) *NullableSubscriptionLifecycleState {
 	return &NullableSubscriptionLifecycleState{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionLifecycleState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionLifecycleState) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

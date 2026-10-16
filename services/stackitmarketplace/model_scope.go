@@ -16,22 +16,28 @@ import (
 )
 
 // Scope The (visibility) scope.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type Scope string
 
 // List of scope
 const (
-	SCOPE_PUBLIC          Scope = "PUBLIC"
-	SCOPE_AUTHENTICATED   Scope = "AUTHENTICATED"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SCOPE_PUBLIC Scope = "PUBLIC"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	SCOPE_AUTHENTICATED Scope = "AUTHENTICATED"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	SCOPE_PRIVATE_PROJECT Scope = "PRIVATE_PROJECT"
 )
 
 // All allowed values of Scope enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedScopeEnumValues = []Scope{
 	"PUBLIC",
 	"AUTHENTICATED",
 	"PRIVATE_PROJECT",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *Scope) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -56,6 +62,7 @@ func (v *Scope) UnmarshalJSON(src []byte) error {
 
 // NewScopeFromValue returns a pointer to a valid Scope
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewScopeFromValue(v string) (*Scope, error) {
 	ev := Scope(v)
 	if ev.IsValid() {
@@ -66,6 +73,7 @@ func NewScopeFromValue(v string) (*Scope, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v Scope) IsValid() bool {
 	for _, existing := range AllowedScopeEnumValues {
 		if existing == v {
@@ -76,41 +84,50 @@ func (v Scope) IsValid() bool {
 }
 
 // Ptr returns reference to scope value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v Scope) Ptr() *Scope {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableScope struct {
 	value *Scope
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableScope) Get() *Scope {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableScope) Set(val *Scope) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableScope) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableScope) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableScope(val *Scope) *NullableScope {
 	return &NullableScope{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableScope) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableScope) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

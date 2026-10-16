@@ -45,6 +45,9 @@
       - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
+- `edge`:
+  - [v0.14.0](services/edge/CHANGELOG.md#v0140)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `git`:
   - [v0.15.0](services/git/CHANGELOG.md#v0150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -203,6 +206,10 @@
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sca`:
+  - [v0.2.1](services/sca/CHANGELOG.md#v021)
+    - `v1alphaapi`:
+      - **Bugfix:** Handle application failed status in create and update waiters.
+      - **Bugfix:** Handle application none status in create and updated waiters.
   - [v0.2.0](services/sca/CHANGELOG.md#v020)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1alphaapi`:
@@ -211,6 +218,9 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
+- `scf`:
+  - [v0.11.0](services/scf/CHANGELOG.md#v0110)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `secretsmanager`:
   - [v0.20.0](services/secretsmanager/CHANGELOG.md#v0200)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -247,6 +257,11 @@
   - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `stackitmarketplace`:
+  - [v1.19.0](services/stackitmarketplace/CHANGELOG.md#v1190)
+    - **Feature:** Introduction of multi API version support for the STACKIT Marketplace SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT Marketplace API in the future
+    - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-11-30. Switch to the new `v1api` package instead.
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:
