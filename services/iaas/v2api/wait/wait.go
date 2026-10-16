@@ -259,7 +259,7 @@ func CreateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 }
 
 // ResizeServerWaitHandler will wait for server resize
-// It checks for an intermediate resizing status and only then waits for the server to become active
+// It checks for an intermediate resizing status and only then waits for the server to become either active or inactive
 func ResizeServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
 	var finalResizeStates = []string{ServerActiveStatus, ServerInactiveStatus}
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
