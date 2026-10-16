@@ -29,8 +29,8 @@ type CreateApplicationPayload struct {
 	// Application human-readable display name.
 	EnvironmentName *string `json:"environmentName,omitempty"`
 	// Application identifier, for example: 00000000-0000-0000-0000-000000000000.
-	Id      *string `json:"id,omitempty"`
-	Network Network `json:"network"`
+	Id      *string  `json:"id,omitempty"`
+	Network *Network `json:"network,omitempty"`
 	// Image registry configuration for the application.
 	Registry      []ApplicationRegistry `json:"registry,omitempty"`
 	RuntimeStatus *RuntimeStatus        `json:"runtimeStatus,omitempty"`
@@ -48,11 +48,10 @@ type _CreateApplicationPayload CreateApplicationPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateApplicationPayload(containers []Container, displayName string, network Network, scaling Scaling) *CreateApplicationPayload {
+func NewCreateApplicationPayload(containers []Container, displayName string, scaling Scaling) *CreateApplicationPayload {
 	this := CreateApplicationPayload{}
 	this.Containers = containers
 	this.DisplayName = displayName
-	this.Network = network
 	this.Scaling = scaling
 	return &this
 }
@@ -209,28 +208,36 @@ func (o *CreateApplicationPayload) SetId(v string) {
 	o.Id = &v
 }
 
-// GetNetwork returns the Network field value
+// GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *CreateApplicationPayload) GetNetwork() Network {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		var ret Network
 		return ret
 	}
-
-	return o.Network
+	return *o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateApplicationPayload) GetNetworkOk() (*Network, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Network) {
 		return nil, false
 	}
-	return &o.Network, true
+	return o.Network, true
 }
 
-// SetNetwork sets field value
+// HasNetwork returns a boolean if a field has been set.
+func (o *CreateApplicationPayload) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given Network and assigns it to the Network field.
 func (o *CreateApplicationPayload) SetNetwork(v Network) {
-	o.Network = v
+	o.Network = &v
 }
 
 // GetRegistry returns the Registry field value if set, zero value otherwise.
@@ -406,7 +413,9 @@ func (o CreateApplicationPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	toSerialize["network"] = o.Network
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
 	if !IsNil(o.Registry) {
 		toSerialize["registry"] = o.Registry
 	}
@@ -435,7 +444,6 @@ func (o *CreateApplicationPayload) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"containers",
 		"displayName",
-		"network",
 		"scaling",
 	}
 

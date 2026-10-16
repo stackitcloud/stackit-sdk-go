@@ -60,6 +60,8 @@ type DefaultAPIServiceMock struct {
 	ListCredentialsGroupsExecuteMock *func(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error)
 	// SetDefaultRetentionExecuteMock can be populated to implement the behavior of the SetDefaultRetentionExecute function of this mock
 	SetDefaultRetentionExecuteMock *func(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
+	// UpdateServiceExecuteMock can be populated to implement the behavior of the UpdateServiceExecute function of this mock
+	UpdateServiceExecuteMock *func(r ApiUpdateServiceRequest) (*ProjectStatus, error)
 }
 
 func (a DefaultAPIServiceMock) CreateAccessKey(ctx context.Context, projectId string, region string) ApiCreateAccessKeyRequest {
@@ -449,4 +451,23 @@ func (a DefaultAPIServiceMock) SetDefaultRetentionExecute(r ApiSetDefaultRetenti
 	}
 
 	return (*a.SetDefaultRetentionExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateService(ctx context.Context, projectId string, region string) ApiUpdateServiceRequest {
+	return ApiUpdateServiceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// UpdateServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateServiceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateServiceExecute(r ApiUpdateServiceRequest) (*ProjectStatus, error) {
+	if a.UpdateServiceExecuteMock == nil {
+		var localVarReturnValue *ProjectStatus
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateServiceExecuteMock)(r)
 }

@@ -22,8 +22,10 @@ var _ MappedNullable = &ListCatalogProductsResponse{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetCursorAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListCatalogProductsResponseGetCursorAttributeTypeOk(arg ListCatalogProductsResponseGetCursorAttributeType) (ret ListCatalogProductsResponseGetCursorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getListCatalogProductsResponseGetCursorAttributeTypeOk(arg ListCatalogProdu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListCatalogProductsResponseGetCursorAttributeType(arg *ListCatalogProductsResponseGetCursorAttributeType, val ListCatalogProductsResponseGetCursorRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetCursorArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetCursorRetType = string
 
 /*
@@ -43,10 +48,14 @@ type ListCatalogProductsResponseGetCursorRetType = string
 */
 
 // isContainer
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetFacetsAttributeType = *map[string][]CatalogProductFacetsValueInner
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetFacetsArgType = map[string][]CatalogProductFacetsValueInner
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetFacetsRetType = map[string][]CatalogProductFacetsValueInner
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListCatalogProductsResponseGetFacetsAttributeTypeOk(arg ListCatalogProductsResponseGetFacetsAttributeType) (ret ListCatalogProductsResponseGetFacetsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -54,6 +63,7 @@ func getListCatalogProductsResponseGetFacetsAttributeTypeOk(arg ListCatalogProdu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListCatalogProductsResponseGetFacetsAttributeType(arg *ListCatalogProductsResponseGetFacetsAttributeType, val ListCatalogProductsResponseGetFacetsRetType) {
 	*arg = &val
 }
@@ -63,10 +73,14 @@ func setListCatalogProductsResponseGetFacetsAttributeType(arg *ListCatalogProduc
 */
 
 // isArray
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetItemsAttributeType = *[]CatalogProductOverview
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetItemsArgType = []CatalogProductOverview
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetItemsRetType = []CatalogProductOverview
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListCatalogProductsResponseGetItemsAttributeTypeOk(arg ListCatalogProductsResponseGetItemsAttributeType) (ret ListCatalogProductsResponseGetItemsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -74,6 +88,7 @@ func getListCatalogProductsResponseGetItemsAttributeTypeOk(arg ListCatalogProduc
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListCatalogProductsResponseGetItemsAttributeType(arg *ListCatalogProductsResponseGetItemsAttributeType, val ListCatalogProductsResponseGetItemsRetType) {
 	*arg = &val
 }
@@ -83,10 +98,14 @@ func setListCatalogProductsResponseGetItemsAttributeType(arg *ListCatalogProduct
 */
 
 // isNumber
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetLimitAttributeType = *float64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetLimitArgType = float64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponseGetLimitRetType = float64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListCatalogProductsResponseGetLimitAttributeTypeOk(arg ListCatalogProductsResponseGetLimitAttributeType) (ret ListCatalogProductsResponseGetLimitRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -94,11 +113,13 @@ func getListCatalogProductsResponseGetLimitAttributeTypeOk(arg ListCatalogProduc
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListCatalogProductsResponseGetLimitAttributeType(arg *ListCatalogProductsResponseGetLimitAttributeType, val ListCatalogProductsResponseGetLimitRetType) {
 	*arg = &val
 }
 
 // ListCatalogProductsResponse struct for ListCatalogProductsResponse
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListCatalogProductsResponse struct {
 	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
@@ -112,12 +133,14 @@ type ListCatalogProductsResponse struct {
 	Limit ListCatalogProductsResponseGetLimitAttributeType `json:"limit" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _ListCatalogProductsResponse ListCatalogProductsResponse
 
 // NewListCatalogProductsResponse instantiates a new ListCatalogProductsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewListCatalogProductsResponse(cursor ListCatalogProductsResponseGetCursorArgType, items ListCatalogProductsResponseGetItemsArgType, limit ListCatalogProductsResponseGetLimitArgType) *ListCatalogProductsResponse {
 	this := ListCatalogProductsResponse{}
 	setListCatalogProductsResponseGetCursorAttributeType(&this.Cursor, cursor)
@@ -129,6 +152,7 @@ func NewListCatalogProductsResponse(cursor ListCatalogProductsResponseGetCursorA
 // NewListCatalogProductsResponseWithDefaults instantiates a new ListCatalogProductsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewListCatalogProductsResponseWithDefaults() *ListCatalogProductsResponse {
 	this := ListCatalogProductsResponse{}
 	var limit float64 = 50
@@ -137,6 +161,7 @@ func NewListCatalogProductsResponseWithDefaults() *ListCatalogProductsResponse {
 }
 
 // GetCursor returns the Cursor field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetCursor() (ret ListCatalogProductsResponseGetCursorRetType) {
 	ret, _ = o.GetCursorOk()
 	return ret
@@ -144,16 +169,19 @@ func (o *ListCatalogProductsResponse) GetCursor() (ret ListCatalogProductsRespon
 
 // GetCursorOk returns a tuple with the Cursor field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetCursorOk() (ret ListCatalogProductsResponseGetCursorRetType, ok bool) {
 	return getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor)
 }
 
 // SetCursor sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) SetCursor(v ListCatalogProductsResponseGetCursorRetType) {
 	setListCatalogProductsResponseGetCursorAttributeType(&o.Cursor, v)
 }
 
 // GetFacets returns the Facets field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetFacets() (res ListCatalogProductsResponseGetFacetsRetType) {
 	res, _ = o.GetFacetsOk()
 	return
@@ -161,22 +189,26 @@ func (o *ListCatalogProductsResponse) GetFacets() (res ListCatalogProductsRespon
 
 // GetFacetsOk returns a tuple with the Facets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetFacetsOk() (ret ListCatalogProductsResponseGetFacetsRetType, ok bool) {
 	return getListCatalogProductsResponseGetFacetsAttributeTypeOk(o.Facets)
 }
 
 // HasFacets returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) HasFacets() bool {
 	_, ok := o.GetFacetsOk()
 	return ok
 }
 
 // SetFacets gets a reference to the given map[string][]CatalogProductFacetsValueInner and assigns it to the Facets field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) SetFacets(v ListCatalogProductsResponseGetFacetsRetType) {
 	setListCatalogProductsResponseGetFacetsAttributeType(&o.Facets, v)
 }
 
 // GetItems returns the Items field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetItems() (ret ListCatalogProductsResponseGetItemsRetType) {
 	ret, _ = o.GetItemsOk()
 	return ret
@@ -184,16 +216,19 @@ func (o *ListCatalogProductsResponse) GetItems() (ret ListCatalogProductsRespons
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetItemsOk() (ret ListCatalogProductsResponseGetItemsRetType, ok bool) {
 	return getListCatalogProductsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) SetItems(v ListCatalogProductsResponseGetItemsRetType) {
 	setListCatalogProductsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetLimit() (ret ListCatalogProductsResponseGetLimitRetType) {
 	ret, _ = o.GetLimitOk()
 	return ret
@@ -201,15 +236,18 @@ func (o *ListCatalogProductsResponse) GetLimit() (ret ListCatalogProductsRespons
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) GetLimitOk() (ret ListCatalogProductsResponseGetLimitRetType, ok bool) {
 	return getListCatalogProductsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListCatalogProductsResponse) SetLimit(v ListCatalogProductsResponseGetLimitRetType) {
 	setListCatalogProductsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
@@ -227,37 +265,45 @@ func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableListCatalogProductsResponse struct {
 	value *ListCatalogProductsResponse
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListCatalogProductsResponse) Get() *ListCatalogProductsResponse {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListCatalogProductsResponse) Set(val *ListCatalogProductsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListCatalogProductsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListCatalogProductsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableListCatalogProductsResponse(val *ListCatalogProductsResponse) *NullableListCatalogProductsResponse {
 	return &NullableListCatalogProductsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListCatalogProductsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListCatalogProductsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

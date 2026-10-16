@@ -12,7 +12,6 @@ package v1alphaapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Network type satisfies the MappedNullable interface at compile time
@@ -22,10 +21,12 @@ var _ MappedNullable = &Network{}
 type Network struct {
 	// Allowed destination CIDRs for Ingress traffic.
 	IngressAcl []string `json:"ingressAcl,omitempty"`
+	// Internal port number for inter application communication.
+	InternalPort *int32 `json:"internalPort,omitempty"`
 	// Port number.
 	Port *int32 `json:"port,omitempty"`
 	// Whether the application should be accessible from the internet.
-	PublicIngress        bool `json:"publicIngress"`
+	PublicIngress        *bool `json:"publicIngress,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,9 +36,8 @@ type _Network Network
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetwork(publicIngress bool) *Network {
+func NewNetwork() *Network {
 	this := Network{}
-	this.PublicIngress = publicIngress
 	return &this
 }
 
@@ -81,6 +81,38 @@ func (o *Network) SetIngressAcl(v []string) {
 	o.IngressAcl = v
 }
 
+// GetInternalPort returns the InternalPort field value if set, zero value otherwise.
+func (o *Network) GetInternalPort() int32 {
+	if o == nil || IsNil(o.InternalPort) {
+		var ret int32
+		return ret
+	}
+	return *o.InternalPort
+}
+
+// GetInternalPortOk returns a tuple with the InternalPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetInternalPortOk() (*int32, bool) {
+	if o == nil || IsNil(o.InternalPort) {
+		return nil, false
+	}
+	return o.InternalPort, true
+}
+
+// HasInternalPort returns a boolean if a field has been set.
+func (o *Network) HasInternalPort() bool {
+	if o != nil && !IsNil(o.InternalPort) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternalPort gets a reference to the given int32 and assigns it to the InternalPort field.
+func (o *Network) SetInternalPort(v int32) {
+	o.InternalPort = &v
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *Network) GetPort() int32 {
 	if o == nil || IsNil(o.Port) {
@@ -113,28 +145,36 @@ func (o *Network) SetPort(v int32) {
 	o.Port = &v
 }
 
-// GetPublicIngress returns the PublicIngress field value
+// GetPublicIngress returns the PublicIngress field value if set, zero value otherwise.
 func (o *Network) GetPublicIngress() bool {
-	if o == nil {
+	if o == nil || IsNil(o.PublicIngress) {
 		var ret bool
 		return ret
 	}
-
-	return o.PublicIngress
+	return *o.PublicIngress
 }
 
-// GetPublicIngressOk returns a tuple with the PublicIngress field value
+// GetPublicIngressOk returns a tuple with the PublicIngress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Network) GetPublicIngressOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicIngress) {
 		return nil, false
 	}
-	return &o.PublicIngress, true
+	return o.PublicIngress, true
 }
 
-// SetPublicIngress sets field value
+// HasPublicIngress returns a boolean if a field has been set.
+func (o *Network) HasPublicIngress() bool {
+	if o != nil && !IsNil(o.PublicIngress) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicIngress gets a reference to the given bool and assigns it to the PublicIngress field.
 func (o *Network) SetPublicIngress(v bool) {
-	o.PublicIngress = v
+	o.PublicIngress = &v
 }
 
 func (o Network) MarshalJSON() ([]byte, error) {
@@ -150,10 +190,15 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IngressAcl) {
 		toSerialize["ingressAcl"] = o.IngressAcl
 	}
+	if !IsNil(o.InternalPort) {
+		toSerialize["internalPort"] = o.InternalPort
+	}
 	if !IsNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}
-	toSerialize["publicIngress"] = o.PublicIngress
+	if !IsNil(o.PublicIngress) {
+		toSerialize["publicIngress"] = o.PublicIngress
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -163,27 +208,6 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Network) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"publicIngress",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varNetwork := _Network{}
 
 	err = json.Unmarshal(data, &varNetwork)
@@ -198,6 +222,7 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ingressAcl")
+		delete(additionalProperties, "internalPort")
 		delete(additionalProperties, "port")
 		delete(additionalProperties, "publicIngress")
 		o.AdditionalProperties = additionalProperties

@@ -20,6 +20,8 @@ var _ MappedNullable = &ProjectStatus{}
 
 // ProjectStatus struct for ProjectStatus
 type ProjectStatus struct {
+	// Project labels
+	Labels *map[string]string `json:"labels,omitempty"`
 	// Project ID
 	Project string `json:"project"`
 	// Project Scope
@@ -46,6 +48,38 @@ func NewProjectStatus(project string, scope ProjectScope) *ProjectStatus {
 func NewProjectStatusWithDefaults() *ProjectStatus {
 	this := ProjectStatus{}
 	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *ProjectStatus) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectStatus) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *ProjectStatus) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *ProjectStatus) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetProject returns the Project field value
@@ -106,6 +140,9 @@ func (o ProjectStatus) MarshalJSON() ([]byte, error) {
 
 func (o ProjectStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["project"] = o.Project
 	toSerialize["scope"] = o.Scope
 
@@ -152,6 +189,7 @@ func (o *ProjectStatus) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "scope")
 		o.AdditionalProperties = additionalProperties

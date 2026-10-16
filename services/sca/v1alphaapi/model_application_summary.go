@@ -34,6 +34,8 @@ type ApplicationSummary struct {
 	Id *string `json:"id,omitempty"`
 	// Application's running instances.
 	Instances *int32 `json:"instances,omitempty"`
+	// Application's internal URL.
+	InternalUrl *string `json:"internalUrl,omitempty"`
 	// Date of the last moment the application got the running status in RFC3339 format.
 	LastDeployment *time.Time     `json:"lastDeployment,omitempty"`
 	Status         *CurrentStatus `json:"status,omitempty"`
@@ -291,6 +293,38 @@ func (o *ApplicationSummary) SetInstances(v int32) {
 	o.Instances = &v
 }
 
+// GetInternalUrl returns the InternalUrl field value if set, zero value otherwise.
+func (o *ApplicationSummary) GetInternalUrl() string {
+	if o == nil || IsNil(o.InternalUrl) {
+		var ret string
+		return ret
+	}
+	return *o.InternalUrl
+}
+
+// GetInternalUrlOk returns a tuple with the InternalUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationSummary) GetInternalUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.InternalUrl) {
+		return nil, false
+	}
+	return o.InternalUrl, true
+}
+
+// HasInternalUrl returns a boolean if a field has been set.
+func (o *ApplicationSummary) HasInternalUrl() bool {
+	if o != nil && !IsNil(o.InternalUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternalUrl gets a reference to the given string and assigns it to the InternalUrl field.
+func (o *ApplicationSummary) SetInternalUrl(v string) {
+	o.InternalUrl = &v
+}
+
 // GetLastDeployment returns the LastDeployment field value if set, zero value otherwise.
 func (o *ApplicationSummary) GetLastDeployment() time.Time {
 	if o == nil || IsNil(o.LastDeployment) {
@@ -450,6 +484,9 @@ func (o ApplicationSummary) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Instances) {
 		toSerialize["instances"] = o.Instances
 	}
+	if !IsNil(o.InternalUrl) {
+		toSerialize["internalUrl"] = o.InternalUrl
+	}
 	if !IsNil(o.LastDeployment) {
 		toSerialize["lastDeployment"] = o.LastDeployment
 	}
@@ -491,6 +528,7 @@ func (o *ApplicationSummary) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "environmentName")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "instances")
+		delete(additionalProperties, "internalUrl")
 		delete(additionalProperties, "lastDeployment")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "stopped")
