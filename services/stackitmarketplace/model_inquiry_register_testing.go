@@ -22,8 +22,10 @@ var _ MappedNullable = &InquiryRegisterTesting{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetContactEmailAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRegisterTestingGetContactEmailAttributeTypeOk(arg InquiryRegisterTestingGetContactEmailAttributeType) (ret InquiryRegisterTestingGetContactEmailRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getInquiryRegisterTestingGetContactEmailAttributeTypeOk(arg InquiryRegister
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRegisterTestingGetContactEmailAttributeType(arg *InquiryRegisterTestingGetContactEmailAttributeType, val InquiryRegisterTestingGetContactEmailRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetContactEmailArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetContactEmailRetType = string
 
 /*
@@ -43,8 +48,10 @@ type InquiryRegisterTestingGetContactEmailRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetFullNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRegisterTestingGetFullNameAttributeTypeOk(arg InquiryRegisterTestingGetFullNameAttributeType) (ret InquiryRegisterTestingGetFullNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getInquiryRegisterTestingGetFullNameAttributeTypeOk(arg InquiryRegisterTest
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRegisterTestingGetFullNameAttributeType(arg *InquiryRegisterTestingGetFullNameAttributeType, val InquiryRegisterTestingGetFullNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetFullNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetFullNameRetType = string
 
 /*
@@ -64,8 +74,10 @@ type InquiryRegisterTestingGetFullNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRegisterTestingGetMessageAttributeTypeOk(arg InquiryRegisterTestingGetMessageAttributeType) (ret InquiryRegisterTestingGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,14 +85,18 @@ func getInquiryRegisterTestingGetMessageAttributeTypeOk(arg InquiryRegisterTesti
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRegisterTestingGetMessageAttributeType(arg *InquiryRegisterTestingGetMessageAttributeType, val InquiryRegisterTestingGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTestingGetMessageRetType = string
 
 // InquiryRegisterTesting Register for testing.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRegisterTesting struct {
 	// A e-mail address.
 	// REQUIRED
@@ -93,12 +109,14 @@ type InquiryRegisterTesting struct {
 	Message InquiryRegisterTestingGetMessageAttributeType `json:"message" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _InquiryRegisterTesting InquiryRegisterTesting
 
 // NewInquiryRegisterTesting instantiates a new InquiryRegisterTesting object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryRegisterTesting(contactEmail InquiryRegisterTestingGetContactEmailArgType, fullName InquiryRegisterTestingGetFullNameArgType, message InquiryRegisterTestingGetMessageArgType) *InquiryRegisterTesting {
 	this := InquiryRegisterTesting{}
 	setInquiryRegisterTestingGetContactEmailAttributeType(&this.ContactEmail, contactEmail)
@@ -110,12 +128,14 @@ func NewInquiryRegisterTesting(contactEmail InquiryRegisterTestingGetContactEmai
 // NewInquiryRegisterTestingWithDefaults instantiates a new InquiryRegisterTesting object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryRegisterTestingWithDefaults() *InquiryRegisterTesting {
 	this := InquiryRegisterTesting{}
 	return &this
 }
 
 // GetContactEmail returns the ContactEmail field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetContactEmail() (ret InquiryRegisterTestingGetContactEmailRetType) {
 	ret, _ = o.GetContactEmailOk()
 	return ret
@@ -123,16 +143,19 @@ func (o *InquiryRegisterTesting) GetContactEmail() (ret InquiryRegisterTestingGe
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetContactEmailOk() (ret InquiryRegisterTestingGetContactEmailRetType, ok bool) {
 	return getInquiryRegisterTestingGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) SetContactEmail(v InquiryRegisterTestingGetContactEmailRetType) {
 	setInquiryRegisterTestingGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetFullName returns the FullName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetFullName() (ret InquiryRegisterTestingGetFullNameRetType) {
 	ret, _ = o.GetFullNameOk()
 	return ret
@@ -140,16 +163,19 @@ func (o *InquiryRegisterTesting) GetFullName() (ret InquiryRegisterTestingGetFul
 
 // GetFullNameOk returns a tuple with the FullName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetFullNameOk() (ret InquiryRegisterTestingGetFullNameRetType, ok bool) {
 	return getInquiryRegisterTestingGetFullNameAttributeTypeOk(o.FullName)
 }
 
 // SetFullName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) SetFullName(v InquiryRegisterTestingGetFullNameRetType) {
 	setInquiryRegisterTestingGetFullNameAttributeType(&o.FullName, v)
 }
 
 // GetMessage returns the Message field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetMessage() (ret InquiryRegisterTestingGetMessageRetType) {
 	ret, _ = o.GetMessageOk()
 	return ret
@@ -157,15 +183,18 @@ func (o *InquiryRegisterTesting) GetMessage() (ret InquiryRegisterTestingGetMess
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) GetMessageOk() (ret InquiryRegisterTestingGetMessageRetType, ok bool) {
 	return getInquiryRegisterTestingGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRegisterTesting) SetMessage(v InquiryRegisterTestingGetMessageRetType) {
 	setInquiryRegisterTestingGetMessageAttributeType(&o.Message, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o InquiryRegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryRegisterTestingGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
@@ -180,37 +209,45 @@ func (o InquiryRegisterTesting) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiryRegisterTesting struct {
 	value *InquiryRegisterTesting
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRegisterTesting) Get() *InquiryRegisterTesting {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRegisterTesting) Set(val *InquiryRegisterTesting) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRegisterTesting) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRegisterTesting) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiryRegisterTesting(val *InquiryRegisterTesting) *NullableInquiryRegisterTesting {
 	return &NullableInquiryRegisterTesting{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRegisterTesting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRegisterTesting) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

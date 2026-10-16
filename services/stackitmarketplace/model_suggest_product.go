@@ -22,10 +22,14 @@ var _ MappedNullable = &SuggestProduct{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetSuggestProductAttributeType = *InquirySuggestProduct
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetSuggestProductArgType = InquirySuggestProduct
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetSuggestProductRetType = InquirySuggestProduct
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getSuggestProductGetSuggestProductAttributeTypeOk(arg SuggestProductGetSuggestProductAttributeType) (ret SuggestProductGetSuggestProductRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getSuggestProductGetSuggestProductAttributeTypeOk(arg SuggestProductGetSugg
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setSuggestProductGetSuggestProductAttributeType(arg *SuggestProductGetSuggestProductAttributeType, val SuggestProductGetSuggestProductRetType) {
 	*arg = &val
 }
@@ -42,10 +47,14 @@ func setSuggestProductGetSuggestProductAttributeType(arg *SuggestProductGetSugge
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetTypeAttributeType = *InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetTypeArgType = InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProductGetTypeRetType = InquiryFormType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getSuggestProductGetTypeAttributeTypeOk(arg SuggestProductGetTypeAttributeType) (ret SuggestProductGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +62,13 @@ func getSuggestProductGetTypeAttributeTypeOk(arg SuggestProductGetTypeAttributeT
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setSuggestProductGetTypeAttributeType(arg *SuggestProductGetTypeAttributeType, val SuggestProductGetTypeRetType) {
 	*arg = &val
 }
 
 // SuggestProduct Suggest a product.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SuggestProduct struct {
 	// REQUIRED
 	SuggestProduct SuggestProductGetSuggestProductAttributeType `json:"suggestProduct" required:"true"`
@@ -65,12 +76,14 @@ type SuggestProduct struct {
 	Type SuggestProductGetTypeAttributeType `json:"type" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _SuggestProduct SuggestProduct
 
 // NewSuggestProduct instantiates a new SuggestProduct object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewSuggestProduct(suggestProduct SuggestProductGetSuggestProductArgType, types SuggestProductGetTypeArgType) *SuggestProduct {
 	this := SuggestProduct{}
 	setSuggestProductGetSuggestProductAttributeType(&this.SuggestProduct, suggestProduct)
@@ -81,12 +94,14 @@ func NewSuggestProduct(suggestProduct SuggestProductGetSuggestProductArgType, ty
 // NewSuggestProductWithDefaults instantiates a new SuggestProduct object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewSuggestProductWithDefaults() *SuggestProduct {
 	this := SuggestProduct{}
 	return &this
 }
 
 // GetSuggestProduct returns the SuggestProduct field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) GetSuggestProduct() (ret SuggestProductGetSuggestProductRetType) {
 	ret, _ = o.GetSuggestProductOk()
 	return ret
@@ -94,16 +109,19 @@ func (o *SuggestProduct) GetSuggestProduct() (ret SuggestProductGetSuggestProduc
 
 // GetSuggestProductOk returns a tuple with the SuggestProduct field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) GetSuggestProductOk() (ret SuggestProductGetSuggestProductRetType, ok bool) {
 	return getSuggestProductGetSuggestProductAttributeTypeOk(o.SuggestProduct)
 }
 
 // SetSuggestProduct sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) SetSuggestProduct(v SuggestProductGetSuggestProductRetType) {
 	setSuggestProductGetSuggestProductAttributeType(&o.SuggestProduct, v)
 }
 
 // GetType returns the Type field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) GetType() (ret SuggestProductGetTypeRetType) {
 	ret, _ = o.GetTypeOk()
 	return ret
@@ -111,15 +129,18 @@ func (o *SuggestProduct) GetType() (ret SuggestProductGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) GetTypeOk() (ret SuggestProductGetTypeRetType, ok bool) {
 	return getSuggestProductGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *SuggestProduct) SetType(v SuggestProductGetTypeRetType) {
 	setSuggestProductGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o SuggestProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSuggestProductGetSuggestProductAttributeTypeOk(o.SuggestProduct); ok {
@@ -131,37 +152,45 @@ func (o SuggestProduct) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableSuggestProduct struct {
 	value *SuggestProduct
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSuggestProduct) Get() *SuggestProduct {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSuggestProduct) Set(val *SuggestProduct) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSuggestProduct) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSuggestProduct) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableSuggestProduct(val *SuggestProduct) *NullableSuggestProduct {
 	return &NullableSuggestProduct{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSuggestProduct) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSuggestProduct) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
