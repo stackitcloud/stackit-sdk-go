@@ -215,6 +215,9 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
+- `scf`:
+  - [v0.11.0](services/scf/CHANGELOG.md#v0110)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `secretsmanager`:
   - [v0.20.0](services/secretsmanager/CHANGELOG.md#v0200)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
