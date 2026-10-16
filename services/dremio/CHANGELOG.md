@@ -1,3 +1,9 @@
+## v0.7.0
+- `v1betaapi`:
+  - **Breaking Change:** Updated `NewDremioResponse()` constructor signature to require new `Acl` parameter
+  - **Breaking Change:** Added new required `Acl` field to `DremioResponse` model
+  - **Feature:** Add new `Acl` field to `CreateDremioInstancePayload` and `UpdateDremioInstancePayload` models to manage the list of IPv4/IPv6 CIDR ranges allowed to connect to the Dremio instance
+
 ## v0.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
