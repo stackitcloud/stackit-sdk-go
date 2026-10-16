@@ -200,6 +200,10 @@
   - [v1.10.2](services/runcommand/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sca`:
+  - [v0.2.1](services/sca/CHANGELOG.md#v021)
+    - `v1alphaapi`:
+      - **Bugfix:** Handle application failed status in create and update waiters.
+      - **Bugfix:** Handle application none status in create and updated waiters.
   - [v0.2.0](services/sca/CHANGELOG.md#v020)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1alphaapi`:
