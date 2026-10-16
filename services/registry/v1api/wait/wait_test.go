@@ -19,7 +19,7 @@ const (
 )
 
 type response struct {
-	state  string
+	state  registry.ArtifactoryState
 	status int
 }
 
@@ -54,7 +54,7 @@ func TestCreateArtifactoryWaitHandler(t *testing.T) {
 	tests := []struct {
 		name      string
 		responses []response
-		wantState string
+		wantState registry.ArtifactoryState
 		wantErr   bool
 	}{
 		{
@@ -76,8 +76,8 @@ func TestCreateArtifactoryWaitHandler(t *testing.T) {
 		{
 			name: "success delayed",
 			responses: []response{
-				{state: ArtifactoryReconcilling},
-				{state: ArtifactoryReconcilling},
+				{state: ArtifactoryReconciling},
+				{state: ArtifactoryReconciling},
 				{state: ArtifactoryActive},
 			},
 			wantState: ArtifactoryActive,
@@ -123,7 +123,7 @@ func TestUpdateArtifactoryWaitHandler(t *testing.T) {
 	tests := []struct {
 		name      string
 		responses []response
-		wantState string
+		wantState registry.ArtifactoryState
 		wantErr   bool
 	}{
 		{
@@ -137,7 +137,7 @@ func TestUpdateArtifactoryWaitHandler(t *testing.T) {
 		{
 			name: "success delayed with healthy state",
 			responses: []response{
-				{state: ArtifactoryReconcilling},
+				{state: ArtifactoryReconciling},
 				{state: ArtifactoryActive},
 			},
 			wantState: ArtifactoryActive,
@@ -179,11 +179,65 @@ func TestUpdateArtifactoryWaitHandler(t *testing.T) {
 	}
 }
 
+func TestDeleteArtifactoryWaitHandler(t *testing.T) {
+	tests := []struct {
+		name      string
+		responses []response
+		wantErr   bool
+	}{
+		{
+			name: "success immediately on 404",
+			responses: []response{
+				{status: http.StatusNotFound},
+			},
+			wantErr: false,
+		},
+		{
+			name: "success delayed after reconciling",
+			responses: []response{
+				{state: ArtifactoryReconciling},
+				{status: http.StatusNotFound},
+			},
+			wantErr: false,
+		},
+		{
+			name: "error state",
+			responses: []response{
+				{state: ArtifactoryError},
+			},
+			wantErr: true,
+		},
+		{
+			name: "api error",
+			responses: []response{
+				{status: http.StatusInternalServerError},
+			},
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				mock := newAPIMock(&mockSettings{responses: tt.responses})
+				handler := DeleteArtifactoryWaitHandler(context.Background(), mock, testProjectId, testRegionId, testArtifactoryId)
+				handler.SetSleepBeforeWait(0)
+				handler.SetThrottle(10 * time.Millisecond)
+
+				_, err := handler.WaitWithContext(context.Background())
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("WaitWithContext() error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
+		})
+	}
+}
+
 func TestGetStateArtifactory(t *testing.T) {
 	tests := []struct {
 		name    string
 		resp    *registry.Artifactory
-		want    string
+		want    registry.ArtifactoryState
 		wantErr bool
 	}{
 		{
