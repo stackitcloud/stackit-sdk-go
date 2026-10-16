@@ -1,3 +1,6 @@
+## v0.25.0
+- **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+
 ## v0.24.0
 - **Feature:** New `LabelsMap` field (`map[string]string`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
 - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
