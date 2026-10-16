@@ -1,3 +1,6 @@
+## v1.15.1
+- **Bugfix:** Waiter `ResizeServerWaitHandler` continued waiting when server is inactive
+
 ## v1.15.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.0` to `v0.26.1`

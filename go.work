@@ -13,6 +13,7 @@ use (
 	./examples/edge
 	./examples/errorhandling
 	./examples/experimental
+	./examples/functions
 	./examples/git
 	./examples/iaas
 	./examples/intake
