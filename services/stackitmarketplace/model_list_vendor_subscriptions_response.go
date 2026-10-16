@@ -22,8 +22,10 @@ var _ MappedNullable = &ListVendorSubscriptionsResponse{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetCursorAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(arg ListVendorSubscriptionsResponseGetCursorAttributeType) (ret ListVendorSubscriptionsResponseGetCursorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(arg ListVendorSu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListVendorSubscriptionsResponseGetCursorAttributeType(arg *ListVendorSubscriptionsResponseGetCursorAttributeType, val ListVendorSubscriptionsResponseGetCursorRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetCursorArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetCursorRetType = string
 
 /*
@@ -43,10 +48,14 @@ type ListVendorSubscriptionsResponseGetCursorRetType = string
 */
 
 // isArray
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetItemsAttributeType = *[]VendorSubscription
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetItemsArgType = []VendorSubscription
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetItemsRetType = []VendorSubscription
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(arg ListVendorSubscriptionsResponseGetItemsAttributeType) (ret ListVendorSubscriptionsResponseGetItemsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -54,6 +63,7 @@ func getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(arg ListVendorSub
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListVendorSubscriptionsResponseGetItemsAttributeType(arg *ListVendorSubscriptionsResponseGetItemsAttributeType, val ListVendorSubscriptionsResponseGetItemsRetType) {
 	*arg = &val
 }
@@ -63,10 +73,14 @@ func setListVendorSubscriptionsResponseGetItemsAttributeType(arg *ListVendorSubs
 */
 
 // isNumber
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetLimitAttributeType = *float64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetLimitArgType = float64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponseGetLimitRetType = float64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(arg ListVendorSubscriptionsResponseGetLimitAttributeType) (ret ListVendorSubscriptionsResponseGetLimitRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -74,11 +88,13 @@ func getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(arg ListVendorSub
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setListVendorSubscriptionsResponseGetLimitAttributeType(arg *ListVendorSubscriptionsResponseGetLimitAttributeType, val ListVendorSubscriptionsResponseGetLimitRetType) {
 	*arg = &val
 }
 
 // ListVendorSubscriptionsResponse struct for ListVendorSubscriptionsResponse
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ListVendorSubscriptionsResponse struct {
 	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
@@ -91,12 +107,14 @@ type ListVendorSubscriptionsResponse struct {
 	Limit ListVendorSubscriptionsResponseGetLimitAttributeType `json:"limit" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _ListVendorSubscriptionsResponse ListVendorSubscriptionsResponse
 
 // NewListVendorSubscriptionsResponse instantiates a new ListVendorSubscriptionsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewListVendorSubscriptionsResponse(cursor ListVendorSubscriptionsResponseGetCursorArgType, items ListVendorSubscriptionsResponseGetItemsArgType, limit ListVendorSubscriptionsResponseGetLimitArgType) *ListVendorSubscriptionsResponse {
 	this := ListVendorSubscriptionsResponse{}
 	setListVendorSubscriptionsResponseGetCursorAttributeType(&this.Cursor, cursor)
@@ -108,6 +126,7 @@ func NewListVendorSubscriptionsResponse(cursor ListVendorSubscriptionsResponseGe
 // NewListVendorSubscriptionsResponseWithDefaults instantiates a new ListVendorSubscriptionsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewListVendorSubscriptionsResponseWithDefaults() *ListVendorSubscriptionsResponse {
 	this := ListVendorSubscriptionsResponse{}
 	var limit float64 = 50
@@ -116,6 +135,7 @@ func NewListVendorSubscriptionsResponseWithDefaults() *ListVendorSubscriptionsRe
 }
 
 // GetCursor returns the Cursor field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetCursor() (ret ListVendorSubscriptionsResponseGetCursorRetType) {
 	ret, _ = o.GetCursorOk()
 	return ret
@@ -123,16 +143,19 @@ func (o *ListVendorSubscriptionsResponse) GetCursor() (ret ListVendorSubscriptio
 
 // GetCursorOk returns a tuple with the Cursor field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetCursorOk() (ret ListVendorSubscriptionsResponseGetCursorRetType, ok bool) {
 	return getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(o.Cursor)
 }
 
 // SetCursor sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) SetCursor(v ListVendorSubscriptionsResponseGetCursorRetType) {
 	setListVendorSubscriptionsResponseGetCursorAttributeType(&o.Cursor, v)
 }
 
 // GetItems returns the Items field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetItems() (ret ListVendorSubscriptionsResponseGetItemsRetType) {
 	ret, _ = o.GetItemsOk()
 	return ret
@@ -140,16 +163,19 @@ func (o *ListVendorSubscriptionsResponse) GetItems() (ret ListVendorSubscription
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetItemsOk() (ret ListVendorSubscriptionsResponseGetItemsRetType, ok bool) {
 	return getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) SetItems(v ListVendorSubscriptionsResponseGetItemsRetType) {
 	setListVendorSubscriptionsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetLimit() (ret ListVendorSubscriptionsResponseGetLimitRetType) {
 	ret, _ = o.GetLimitOk()
 	return ret
@@ -157,15 +183,18 @@ func (o *ListVendorSubscriptionsResponse) GetLimit() (ret ListVendorSubscription
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) GetLimitOk() (ret ListVendorSubscriptionsResponseGetLimitRetType, ok bool) {
 	return getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ListVendorSubscriptionsResponse) SetLimit(v ListVendorSubscriptionsResponseGetLimitRetType) {
 	setListVendorSubscriptionsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ListVendorSubscriptionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
@@ -180,37 +209,45 @@ func (o ListVendorSubscriptionsResponse) ToMap() (map[string]interface{}, error)
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableListVendorSubscriptionsResponse struct {
 	value *ListVendorSubscriptionsResponse
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListVendorSubscriptionsResponse) Get() *ListVendorSubscriptionsResponse {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListVendorSubscriptionsResponse) Set(val *ListVendorSubscriptionsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListVendorSubscriptionsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListVendorSubscriptionsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableListVendorSubscriptionsResponse(val *ListVendorSubscriptionsResponse) *NullableListVendorSubscriptionsResponse {
 	return &NullableListVendorSubscriptionsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableListVendorSubscriptionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableListVendorSubscriptionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

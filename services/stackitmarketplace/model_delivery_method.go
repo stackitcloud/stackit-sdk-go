@@ -16,17 +16,23 @@ import (
 )
 
 // DeliveryMethod The product delivery method/type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type DeliveryMethod string
 
 // List of deliveryMethod
 const (
-	DELIVERYMETHOD_SAAS                 DeliveryMethod = "SAAS"
-	DELIVERYMETHOD_KUBERNETES           DeliveryMethod = "KUBERNETES"
-	DELIVERYMETHOD_SAI                  DeliveryMethod = "SAI"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	DELIVERYMETHOD_SAAS DeliveryMethod = "SAAS"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	DELIVERYMETHOD_KUBERNETES DeliveryMethod = "KUBERNETES"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	DELIVERYMETHOD_SAI DeliveryMethod = "SAI"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	DELIVERYMETHOD_PROFESSIONAL_SERVICE DeliveryMethod = "PROFESSIONAL_SERVICE"
 )
 
 // All allowed values of DeliveryMethod enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedDeliveryMethodEnumValues = []DeliveryMethod{
 	"SAAS",
 	"KUBERNETES",
@@ -34,6 +40,7 @@ var AllowedDeliveryMethodEnumValues = []DeliveryMethod{
 	"PROFESSIONAL_SERVICE",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *DeliveryMethod) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -58,6 +65,7 @@ func (v *DeliveryMethod) UnmarshalJSON(src []byte) error {
 
 // NewDeliveryMethodFromValue returns a pointer to a valid DeliveryMethod
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewDeliveryMethodFromValue(v string) (*DeliveryMethod, error) {
 	ev := DeliveryMethod(v)
 	if ev.IsValid() {
@@ -68,6 +76,7 @@ func NewDeliveryMethodFromValue(v string) (*DeliveryMethod, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v DeliveryMethod) IsValid() bool {
 	for _, existing := range AllowedDeliveryMethodEnumValues {
 		if existing == v {
@@ -78,41 +87,50 @@ func (v DeliveryMethod) IsValid() bool {
 }
 
 // Ptr returns reference to deliveryMethod value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v DeliveryMethod) Ptr() *DeliveryMethod {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableDeliveryMethod struct {
 	value *DeliveryMethod
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableDeliveryMethod) Get() *DeliveryMethod {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableDeliveryMethod) Set(val *DeliveryMethod) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableDeliveryMethod) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableDeliveryMethod) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableDeliveryMethod(val *DeliveryMethod) *NullableDeliveryMethod {
 	return &NullableDeliveryMethod{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableDeliveryMethod) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableDeliveryMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

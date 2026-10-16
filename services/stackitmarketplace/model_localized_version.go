@@ -22,8 +22,10 @@ var _ MappedNullable = &LocalizedVersion{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetDeAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getLocalizedVersionGetDeAttributeTypeOk(arg LocalizedVersionGetDeAttributeType) (ret LocalizedVersionGetDeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getLocalizedVersionGetDeAttributeTypeOk(arg LocalizedVersionGetDeAttributeT
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setLocalizedVersionGetDeAttributeType(arg *LocalizedVersionGetDeAttributeType, val LocalizedVersionGetDeRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetDeArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetDeRetType = string
 
 /*
@@ -43,8 +48,10 @@ type LocalizedVersionGetDeRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetEnAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getLocalizedVersionGetEnAttributeTypeOk(arg LocalizedVersionGetEnAttributeType) (ret LocalizedVersionGetEnRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,14 +59,18 @@ func getLocalizedVersionGetEnAttributeTypeOk(arg LocalizedVersionGetEnAttributeT
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setLocalizedVersionGetEnAttributeType(arg *LocalizedVersionGetEnAttributeType, val LocalizedVersionGetEnRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetEnArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersionGetEnRetType = string
 
 // LocalizedVersion The localized version (file name) of a file.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type LocalizedVersion struct {
 	// The file version matching the file name (localized).
 	De LocalizedVersionGetDeAttributeType `json:"de,omitempty"`
@@ -71,6 +82,7 @@ type LocalizedVersion struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewLocalizedVersion() *LocalizedVersion {
 	this := LocalizedVersion{}
 	return &this
@@ -79,12 +91,14 @@ func NewLocalizedVersion() *LocalizedVersion {
 // NewLocalizedVersionWithDefaults instantiates a new LocalizedVersion object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewLocalizedVersionWithDefaults() *LocalizedVersion {
 	this := LocalizedVersion{}
 	return &this
 }
 
 // GetDe returns the De field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) GetDe() (res LocalizedVersionGetDeRetType) {
 	res, _ = o.GetDeOk()
 	return
@@ -92,22 +106,26 @@ func (o *LocalizedVersion) GetDe() (res LocalizedVersionGetDeRetType) {
 
 // GetDeOk returns a tuple with the De field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) GetDeOk() (ret LocalizedVersionGetDeRetType, ok bool) {
 	return getLocalizedVersionGetDeAttributeTypeOk(o.De)
 }
 
 // HasDe returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) HasDe() bool {
 	_, ok := o.GetDeOk()
 	return ok
 }
 
 // SetDe gets a reference to the given string and assigns it to the De field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) SetDe(v LocalizedVersionGetDeRetType) {
 	setLocalizedVersionGetDeAttributeType(&o.De, v)
 }
 
 // GetEn returns the En field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) GetEn() (res LocalizedVersionGetEnRetType) {
 	res, _ = o.GetEnOk()
 	return
@@ -115,21 +133,25 @@ func (o *LocalizedVersion) GetEn() (res LocalizedVersionGetEnRetType) {
 
 // GetEnOk returns a tuple with the En field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) GetEnOk() (ret LocalizedVersionGetEnRetType, ok bool) {
 	return getLocalizedVersionGetEnAttributeTypeOk(o.En)
 }
 
 // HasEn returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) HasEn() bool {
 	_, ok := o.GetEnOk()
 	return ok
 }
 
 // SetEn gets a reference to the given string and assigns it to the En field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *LocalizedVersion) SetEn(v LocalizedVersionGetEnRetType) {
 	setLocalizedVersionGetEnAttributeType(&o.En, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o LocalizedVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getLocalizedVersionGetDeAttributeTypeOk(o.De); ok {
@@ -141,37 +163,45 @@ func (o LocalizedVersion) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableLocalizedVersion struct {
 	value *LocalizedVersion
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableLocalizedVersion) Get() *LocalizedVersion {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableLocalizedVersion) Set(val *LocalizedVersion) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableLocalizedVersion) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableLocalizedVersion) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableLocalizedVersion(val *LocalizedVersion) *NullableLocalizedVersion {
 	return &NullableLocalizedVersion{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableLocalizedVersion) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableLocalizedVersion) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

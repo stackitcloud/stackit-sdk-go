@@ -16,18 +16,22 @@ import (
 )
 
 // PricingOptionUnit The interval to which the rate applies.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type PricingOptionUnit string
 
 // List of pricingOptionUnit
 const (
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	PRICINGOPTIONUNIT_MONTH PricingOptionUnit = "month"
 )
 
 // All allowed values of PricingOptionUnit enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedPricingOptionUnitEnumValues = []PricingOptionUnit{
 	"month",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *PricingOptionUnit) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -52,6 +56,7 @@ func (v *PricingOptionUnit) UnmarshalJSON(src []byte) error {
 
 // NewPricingOptionUnitFromValue returns a pointer to a valid PricingOptionUnit
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewPricingOptionUnitFromValue(v string) (*PricingOptionUnit, error) {
 	ev := PricingOptionUnit(v)
 	if ev.IsValid() {
@@ -62,6 +67,7 @@ func NewPricingOptionUnitFromValue(v string) (*PricingOptionUnit, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v PricingOptionUnit) IsValid() bool {
 	for _, existing := range AllowedPricingOptionUnitEnumValues {
 		if existing == v {
@@ -72,41 +78,50 @@ func (v PricingOptionUnit) IsValid() bool {
 }
 
 // Ptr returns reference to pricingOptionUnit value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v PricingOptionUnit) Ptr() *PricingOptionUnit {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullablePricingOptionUnit struct {
 	value *PricingOptionUnit
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePricingOptionUnit) Get() *PricingOptionUnit {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePricingOptionUnit) Set(val *PricingOptionUnit) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePricingOptionUnit) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePricingOptionUnit) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullablePricingOptionUnit(val *PricingOptionUnit) *NullablePricingOptionUnit {
 	return &NullablePricingOptionUnit{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePricingOptionUnit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePricingOptionUnit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

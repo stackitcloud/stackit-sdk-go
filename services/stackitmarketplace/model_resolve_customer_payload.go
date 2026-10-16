@@ -22,8 +22,10 @@ var _ MappedNullable = &ResolveCustomerPayload{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ResolveCustomerPayloadGetTokenAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getResolveCustomerPayloadGetTokenAttributeTypeOk(arg ResolveCustomerPayloadGetTokenAttributeType) (ret ResolveCustomerPayloadGetTokenRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,26 +33,32 @@ func getResolveCustomerPayloadGetTokenAttributeTypeOk(arg ResolveCustomerPayload
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setResolveCustomerPayloadGetTokenAttributeType(arg *ResolveCustomerPayloadGetTokenAttributeType, val ResolveCustomerPayloadGetTokenRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ResolveCustomerPayloadGetTokenArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ResolveCustomerPayloadGetTokenRetType = string
 
 // ResolveCustomerPayload struct for ResolveCustomerPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ResolveCustomerPayload struct {
 	// Opaque token exchangeable for subscription details.
 	// REQUIRED
 	Token ResolveCustomerPayloadGetTokenAttributeType `json:"token" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _ResolveCustomerPayload ResolveCustomerPayload
 
 // NewResolveCustomerPayload instantiates a new ResolveCustomerPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewResolveCustomerPayload(token ResolveCustomerPayloadGetTokenArgType) *ResolveCustomerPayload {
 	this := ResolveCustomerPayload{}
 	setResolveCustomerPayloadGetTokenAttributeType(&this.Token, token)
@@ -60,12 +68,14 @@ func NewResolveCustomerPayload(token ResolveCustomerPayloadGetTokenArgType) *Res
 // NewResolveCustomerPayloadWithDefaults instantiates a new ResolveCustomerPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewResolveCustomerPayloadWithDefaults() *ResolveCustomerPayload {
 	this := ResolveCustomerPayload{}
 	return &this
 }
 
 // GetToken returns the Token field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ResolveCustomerPayload) GetToken() (ret ResolveCustomerPayloadGetTokenRetType) {
 	ret, _ = o.GetTokenOk()
 	return ret
@@ -73,15 +83,18 @@ func (o *ResolveCustomerPayload) GetToken() (ret ResolveCustomerPayloadGetTokenR
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ResolveCustomerPayload) GetTokenOk() (ret ResolveCustomerPayloadGetTokenRetType, ok bool) {
 	return getResolveCustomerPayloadGetTokenAttributeTypeOk(o.Token)
 }
 
 // SetToken sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ResolveCustomerPayload) SetToken(v ResolveCustomerPayloadGetTokenRetType) {
 	setResolveCustomerPayloadGetTokenAttributeType(&o.Token, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ResolveCustomerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getResolveCustomerPayloadGetTokenAttributeTypeOk(o.Token); ok {
@@ -90,37 +103,45 @@ func (o ResolveCustomerPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableResolveCustomerPayload struct {
 	value *ResolveCustomerPayload
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableResolveCustomerPayload) Get() *ResolveCustomerPayload {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableResolveCustomerPayload) Set(val *ResolveCustomerPayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableResolveCustomerPayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableResolveCustomerPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableResolveCustomerPayload(val *ResolveCustomerPayload) *NullableResolveCustomerPayload {
 	return &NullableResolveCustomerPayload{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableResolveCustomerPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableResolveCustomerPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,10 +22,14 @@ var _ MappedNullable = &RequestPrivatePlan{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetRequestPrivatePlanAttributeType = *InquiryRequestPrivatePlan
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetRequestPrivatePlanArgType = InquiryRequestPrivatePlan
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetRequestPrivatePlanRetType = InquiryRequestPrivatePlan
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getRequestPrivatePlanGetRequestPrivatePlanAttributeTypeOk(arg RequestPrivatePlanGetRequestPrivatePlanAttributeType) (ret RequestPrivatePlanGetRequestPrivatePlanRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getRequestPrivatePlanGetRequestPrivatePlanAttributeTypeOk(arg RequestPrivat
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setRequestPrivatePlanGetRequestPrivatePlanAttributeType(arg *RequestPrivatePlanGetRequestPrivatePlanAttributeType, val RequestPrivatePlanGetRequestPrivatePlanRetType) {
 	*arg = &val
 }
@@ -42,10 +47,14 @@ func setRequestPrivatePlanGetRequestPrivatePlanAttributeType(arg *RequestPrivate
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetTypeAttributeType = *InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetTypeArgType = InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlanGetTypeRetType = InquiryFormType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getRequestPrivatePlanGetTypeAttributeTypeOk(arg RequestPrivatePlanGetTypeAttributeType) (ret RequestPrivatePlanGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +62,13 @@ func getRequestPrivatePlanGetTypeAttributeTypeOk(arg RequestPrivatePlanGetTypeAt
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setRequestPrivatePlanGetTypeAttributeType(arg *RequestPrivatePlanGetTypeAttributeType, val RequestPrivatePlanGetTypeRetType) {
 	*arg = &val
 }
 
 // RequestPrivatePlan Request a private plan.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RequestPrivatePlan struct {
 	// REQUIRED
 	RequestPrivatePlan RequestPrivatePlanGetRequestPrivatePlanAttributeType `json:"requestPrivatePlan" required:"true"`
@@ -65,12 +76,14 @@ type RequestPrivatePlan struct {
 	Type RequestPrivatePlanGetTypeAttributeType `json:"type" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _RequestPrivatePlan RequestPrivatePlan
 
 // NewRequestPrivatePlan instantiates a new RequestPrivatePlan object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewRequestPrivatePlan(requestPrivatePlan RequestPrivatePlanGetRequestPrivatePlanArgType, types RequestPrivatePlanGetTypeArgType) *RequestPrivatePlan {
 	this := RequestPrivatePlan{}
 	setRequestPrivatePlanGetRequestPrivatePlanAttributeType(&this.RequestPrivatePlan, requestPrivatePlan)
@@ -81,12 +94,14 @@ func NewRequestPrivatePlan(requestPrivatePlan RequestPrivatePlanGetRequestPrivat
 // NewRequestPrivatePlanWithDefaults instantiates a new RequestPrivatePlan object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewRequestPrivatePlanWithDefaults() *RequestPrivatePlan {
 	this := RequestPrivatePlan{}
 	return &this
 }
 
 // GetRequestPrivatePlan returns the RequestPrivatePlan field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) GetRequestPrivatePlan() (ret RequestPrivatePlanGetRequestPrivatePlanRetType) {
 	ret, _ = o.GetRequestPrivatePlanOk()
 	return ret
@@ -94,16 +109,19 @@ func (o *RequestPrivatePlan) GetRequestPrivatePlan() (ret RequestPrivatePlanGetR
 
 // GetRequestPrivatePlanOk returns a tuple with the RequestPrivatePlan field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) GetRequestPrivatePlanOk() (ret RequestPrivatePlanGetRequestPrivatePlanRetType, ok bool) {
 	return getRequestPrivatePlanGetRequestPrivatePlanAttributeTypeOk(o.RequestPrivatePlan)
 }
 
 // SetRequestPrivatePlan sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) SetRequestPrivatePlan(v RequestPrivatePlanGetRequestPrivatePlanRetType) {
 	setRequestPrivatePlanGetRequestPrivatePlanAttributeType(&o.RequestPrivatePlan, v)
 }
 
 // GetType returns the Type field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) GetType() (ret RequestPrivatePlanGetTypeRetType) {
 	ret, _ = o.GetTypeOk()
 	return ret
@@ -111,15 +129,18 @@ func (o *RequestPrivatePlan) GetType() (ret RequestPrivatePlanGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) GetTypeOk() (ret RequestPrivatePlanGetTypeRetType, ok bool) {
 	return getRequestPrivatePlanGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RequestPrivatePlan) SetType(v RequestPrivatePlanGetTypeRetType) {
 	setRequestPrivatePlanGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o RequestPrivatePlan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRequestPrivatePlanGetRequestPrivatePlanAttributeTypeOk(o.RequestPrivatePlan); ok {
@@ -131,37 +152,45 @@ func (o RequestPrivatePlan) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableRequestPrivatePlan struct {
 	value *RequestPrivatePlan
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRequestPrivatePlan) Get() *RequestPrivatePlan {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRequestPrivatePlan) Set(val *RequestPrivatePlan) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRequestPrivatePlan) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRequestPrivatePlan) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableRequestPrivatePlan(val *RequestPrivatePlan) *NullableRequestPrivatePlan {
 	return &NullableRequestPrivatePlan{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRequestPrivatePlan) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRequestPrivatePlan) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

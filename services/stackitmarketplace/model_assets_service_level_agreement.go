@@ -22,10 +22,14 @@ var _ MappedNullable = &AssetsServiceLevelAgreement{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type AssetsServiceLevelAgreementGetVersionAttributeType = *LocalizedVersion
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type AssetsServiceLevelAgreementGetVersionArgType = LocalizedVersion
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type AssetsServiceLevelAgreementGetVersionRetType = LocalizedVersion
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getAssetsServiceLevelAgreementGetVersionAttributeTypeOk(arg AssetsServiceLevelAgreementGetVersionAttributeType) (ret AssetsServiceLevelAgreementGetVersionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,11 +37,13 @@ func getAssetsServiceLevelAgreementGetVersionAttributeTypeOk(arg AssetsServiceLe
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setAssetsServiceLevelAgreementGetVersionAttributeType(arg *AssetsServiceLevelAgreementGetVersionAttributeType, val AssetsServiceLevelAgreementGetVersionRetType) {
 	*arg = &val
 }
 
 // AssetsServiceLevelAgreement The related service level agreement of the (subscription) product.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type AssetsServiceLevelAgreement struct {
 	Version AssetsServiceLevelAgreementGetVersionAttributeType `json:"version,omitempty"`
 }
@@ -46,6 +52,7 @@ type AssetsServiceLevelAgreement struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewAssetsServiceLevelAgreement() *AssetsServiceLevelAgreement {
 	this := AssetsServiceLevelAgreement{}
 	return &this
@@ -54,12 +61,14 @@ func NewAssetsServiceLevelAgreement() *AssetsServiceLevelAgreement {
 // NewAssetsServiceLevelAgreementWithDefaults instantiates a new AssetsServiceLevelAgreement object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewAssetsServiceLevelAgreementWithDefaults() *AssetsServiceLevelAgreement {
 	this := AssetsServiceLevelAgreement{}
 	return &this
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *AssetsServiceLevelAgreement) GetVersion() (res AssetsServiceLevelAgreementGetVersionRetType) {
 	res, _ = o.GetVersionOk()
 	return
@@ -67,21 +76,25 @@ func (o *AssetsServiceLevelAgreement) GetVersion() (res AssetsServiceLevelAgreem
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *AssetsServiceLevelAgreement) GetVersionOk() (ret AssetsServiceLevelAgreementGetVersionRetType, ok bool) {
 	return getAssetsServiceLevelAgreementGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *AssetsServiceLevelAgreement) HasVersion() bool {
 	_, ok := o.GetVersionOk()
 	return ok
 }
 
 // SetVersion gets a reference to the given LocalizedVersion and assigns it to the Version field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *AssetsServiceLevelAgreement) SetVersion(v AssetsServiceLevelAgreementGetVersionRetType) {
 	setAssetsServiceLevelAgreementGetVersionAttributeType(&o.Version, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o AssetsServiceLevelAgreement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAssetsServiceLevelAgreementGetVersionAttributeTypeOk(o.Version); ok {
@@ -90,37 +103,45 @@ func (o AssetsServiceLevelAgreement) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableAssetsServiceLevelAgreement struct {
 	value *AssetsServiceLevelAgreement
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableAssetsServiceLevelAgreement) Get() *AssetsServiceLevelAgreement {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableAssetsServiceLevelAgreement) Set(val *AssetsServiceLevelAgreement) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableAssetsServiceLevelAgreement) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableAssetsServiceLevelAgreement) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableAssetsServiceLevelAgreement(val *AssetsServiceLevelAgreement) *NullableAssetsServiceLevelAgreement {
 	return &NullableAssetsServiceLevelAgreement{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableAssetsServiceLevelAgreement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableAssetsServiceLevelAgreement) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

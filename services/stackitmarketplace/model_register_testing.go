@@ -22,10 +22,14 @@ var _ MappedNullable = &RegisterTesting{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetRegisterTestingAttributeType = *InquiryRegisterTesting
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetRegisterTestingArgType = InquiryRegisterTesting
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetRegisterTestingRetType = InquiryRegisterTesting
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getRegisterTestingGetRegisterTestingAttributeTypeOk(arg RegisterTestingGetRegisterTestingAttributeType) (ret RegisterTestingGetRegisterTestingRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getRegisterTestingGetRegisterTestingAttributeTypeOk(arg RegisterTestingGetR
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setRegisterTestingGetRegisterTestingAttributeType(arg *RegisterTestingGetRegisterTestingAttributeType, val RegisterTestingGetRegisterTestingRetType) {
 	*arg = &val
 }
@@ -42,10 +47,14 @@ func setRegisterTestingGetRegisterTestingAttributeType(arg *RegisterTestingGetRe
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetTypeAttributeType = *InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetTypeArgType = InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTestingGetTypeRetType = InquiryFormType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getRegisterTestingGetTypeAttributeTypeOk(arg RegisterTestingGetTypeAttributeType) (ret RegisterTestingGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +62,13 @@ func getRegisterTestingGetTypeAttributeTypeOk(arg RegisterTestingGetTypeAttribut
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setRegisterTestingGetTypeAttributeType(arg *RegisterTestingGetTypeAttributeType, val RegisterTestingGetTypeRetType) {
 	*arg = &val
 }
 
 // RegisterTesting Register for testing.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type RegisterTesting struct {
 	// REQUIRED
 	RegisterTesting RegisterTestingGetRegisterTestingAttributeType `json:"registerTesting" required:"true"`
@@ -65,12 +76,14 @@ type RegisterTesting struct {
 	Type RegisterTestingGetTypeAttributeType `json:"type" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _RegisterTesting RegisterTesting
 
 // NewRegisterTesting instantiates a new RegisterTesting object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewRegisterTesting(registerTesting RegisterTestingGetRegisterTestingArgType, types RegisterTestingGetTypeArgType) *RegisterTesting {
 	this := RegisterTesting{}
 	setRegisterTestingGetRegisterTestingAttributeType(&this.RegisterTesting, registerTesting)
@@ -81,12 +94,14 @@ func NewRegisterTesting(registerTesting RegisterTestingGetRegisterTestingArgType
 // NewRegisterTestingWithDefaults instantiates a new RegisterTesting object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewRegisterTestingWithDefaults() *RegisterTesting {
 	this := RegisterTesting{}
 	return &this
 }
 
 // GetRegisterTesting returns the RegisterTesting field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) GetRegisterTesting() (ret RegisterTestingGetRegisterTestingRetType) {
 	ret, _ = o.GetRegisterTestingOk()
 	return ret
@@ -94,16 +109,19 @@ func (o *RegisterTesting) GetRegisterTesting() (ret RegisterTestingGetRegisterTe
 
 // GetRegisterTestingOk returns a tuple with the RegisterTesting field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) GetRegisterTestingOk() (ret RegisterTestingGetRegisterTestingRetType, ok bool) {
 	return getRegisterTestingGetRegisterTestingAttributeTypeOk(o.RegisterTesting)
 }
 
 // SetRegisterTesting sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) SetRegisterTesting(v RegisterTestingGetRegisterTestingRetType) {
 	setRegisterTestingGetRegisterTestingAttributeType(&o.RegisterTesting, v)
 }
 
 // GetType returns the Type field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) GetType() (ret RegisterTestingGetTypeRetType) {
 	ret, _ = o.GetTypeOk()
 	return ret
@@ -111,15 +129,18 @@ func (o *RegisterTesting) GetType() (ret RegisterTestingGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) GetTypeOk() (ret RegisterTestingGetTypeRetType, ok bool) {
 	return getRegisterTestingGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *RegisterTesting) SetType(v RegisterTestingGetTypeRetType) {
 	setRegisterTestingGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o RegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRegisterTestingGetRegisterTestingAttributeTypeOk(o.RegisterTesting); ok {
@@ -131,37 +152,45 @@ func (o RegisterTesting) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableRegisterTesting struct {
 	value *RegisterTesting
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRegisterTesting) Get() *RegisterTesting {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRegisterTesting) Set(val *RegisterTesting) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRegisterTesting) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRegisterTesting) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableRegisterTesting(val *RegisterTesting) *NullableRegisterTesting {
 	return &NullableRegisterTesting{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableRegisterTesting) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableRegisterTesting) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
