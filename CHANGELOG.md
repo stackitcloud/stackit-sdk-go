@@ -1,6 +1,8 @@
 ## Release (2026-MM-DD)
 
 - `alb`:
+  - [v0.19.0](services/alb/CHANGELOG.md#v0190)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.18.0](services/alb/CHANGELOG.md#v0180)
     - `v2api`:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
@@ -18,6 +20,12 @@
     - `v1api`:
       - **New:** Add package which can be used for communication with the STACKIT automation v1 API
       - **Feature:** Add waiter method for the API
+- `cdn`:
+  - [v1.22.0](services/cdn/CHANGELOG.md#v1220)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
+- `certificates`:
+  - [v1.10.0](services/certificates/CHANGELOG.md#v1100)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `core`: [v0.27.1](core/CHANGELOG.md#v0271)
   - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
 - `cost`:
@@ -37,6 +45,10 @@
       - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
+- `git`:
+  - [v0.15.0](services/git/CHANGELOG.md#v0150)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
   - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -91,6 +103,10 @@
     - `v1api`:
       - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+- `logs`:
+  - [v0.11.0](services/logs/CHANGELOG.md#v0110)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `lbiplists`:
   - [v0.1.0](services/lbiplists/CHANGELOG.md#v010)
     - **New**: Load Balancer IP Lists Service SDK
@@ -157,6 +173,10 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v1api`:
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
+- `postgresflex`:
+  - [v1.16.0](services/postgresflex/CHANGELOG.md#v1160)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `rabbitmq`:
   - [v1.5.0](services/rabbitmq/CHANGELOG.md#v150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -208,6 +228,8 @@
   - [v1.5.6](services/serverupdate/CHANGELOG.md#v156)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceaccount`:
+  - [v0.22.0](services/serviceaccount/CHANGELOG.md#v0220)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.21.1](services/serviceaccount/CHANGELOG.md#v0211)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `serviceenablement`:
@@ -226,6 +248,11 @@
   - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `stackitmarketplace`:
+  - [v1.19.0](services/stackitmarketplace/CHANGELOG.md#v1190)
+    - **Feature:** Introduction of multi API version support for the STACKIT Marketplace SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT Marketplace API in the future
+    - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-11-30. Switch to the new `v1api` package instead.
 - `telemetrylink`:
   - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
     - `v1api`:

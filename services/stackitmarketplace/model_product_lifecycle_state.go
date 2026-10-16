@@ -16,20 +16,25 @@ import (
 )
 
 // ProductLifecycleState The lifecycle state of the product.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ProductLifecycleState string
 
 // List of productLifecycleState
 const (
-	PRODUCTLIFECYCLESTATE_LIVE    ProductLifecycleState = "PRODUCT_LIVE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	PRODUCTLIFECYCLESTATE_LIVE ProductLifecycleState = "PRODUCT_LIVE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	PRODUCTLIFECYCLESTATE_PREVIEW ProductLifecycleState = "PRODUCT_PREVIEW"
 )
 
 // All allowed values of ProductLifecycleState enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedProductLifecycleStateEnumValues = []ProductLifecycleState{
 	"PRODUCT_LIVE",
 	"PRODUCT_PREVIEW",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *ProductLifecycleState) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -54,6 +59,7 @@ func (v *ProductLifecycleState) UnmarshalJSON(src []byte) error {
 
 // NewProductLifecycleStateFromValue returns a pointer to a valid ProductLifecycleState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewProductLifecycleStateFromValue(v string) (*ProductLifecycleState, error) {
 	ev := ProductLifecycleState(v)
 	if ev.IsValid() {
@@ -64,6 +70,7 @@ func NewProductLifecycleStateFromValue(v string) (*ProductLifecycleState, error)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v ProductLifecycleState) IsValid() bool {
 	for _, existing := range AllowedProductLifecycleStateEnumValues {
 		if existing == v {
@@ -74,41 +81,50 @@ func (v ProductLifecycleState) IsValid() bool {
 }
 
 // Ptr returns reference to productLifecycleState value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v ProductLifecycleState) Ptr() *ProductLifecycleState {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableProductLifecycleState struct {
 	value *ProductLifecycleState
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableProductLifecycleState) Get() *ProductLifecycleState {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableProductLifecycleState) Set(val *ProductLifecycleState) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableProductLifecycleState) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableProductLifecycleState) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableProductLifecycleState(val *ProductLifecycleState) *NullableProductLifecycleState {
 	return &NullableProductLifecycleState{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableProductLifecycleState) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableProductLifecycleState) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

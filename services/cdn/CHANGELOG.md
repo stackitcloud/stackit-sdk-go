@@ -1,3 +1,6 @@
+## v1.22.0
+- **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
+
 ## v1.21.0
 - `v1api`:
   - **Feature:** Add field `CacheConfig` to models `Config`, `ConfigPatch` and `CreateDistributionPayload`
