@@ -1,3 +1,14 @@
+## v1.22.0
+- **Breaking change:** Removal of deprecated SDK layer in the root of the module.
+- **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `v1api`:
+  - **Breaking Change:** Fields `AutoUpdate` and `TimeWindow` in `Maintenance` are now optional and changed from `MaintenanceAutoUpdate` and `TimeWindow` to `*MaintenanceAutoUpdate` and `*TimeWindow`. The `NewMaintenance` constructor no longer takes arguments
+- `v2api`:
+  - **Breaking Change:** Fields `AutoUpdate` and `TimeWindow` in `Maintenance` are now optional and changed from `MaintenanceAutoUpdate` and `TimeWindow` to `*MaintenanceAutoUpdate` and `*TimeWindow`. The `NewMaintenance` constructor no longer takes arguments
+  - **Feature:** Add model struct `Kata` and field `Kata` to `CRI` to configure workload isolation via Kata Containers (private preview)
+  - **Feature:** Add fields `PodAddressRanges` and `ServiceAddressRanges` to `Network` to configure pod and service CIDRs at cluster creation
+  - **Feature:** Add fields `NodeAddressRanges` and `ServiceAddressRanges` to `ClusterStatus`
+
 ## v1.21.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 

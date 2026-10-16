@@ -1,3 +1,6 @@
+## v0.15.3
+- **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+
 ## v0.15.2
 - `v1api`:
   - **Fix:** `NetworkConfig.PredefinedNetworkPrefix` field type changed from `[]string` to `*string` (the API expects a single CIDR string, not an array)

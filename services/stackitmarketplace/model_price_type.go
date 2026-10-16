@@ -16,18 +16,25 @@ import (
 )
 
 // PriceType The product's price type.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type PriceType string
 
 // List of priceType
 const (
-	PRICETYPE_CONTRACT   PriceType = "CONTRACT"
-	PRICETYPE_FREE       PriceType = "FREE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	PRICETYPE_CONTRACT PriceType = "CONTRACT"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	PRICETYPE_FREE PriceType = "FREE"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	PRICETYPE_FREE_TRIAL PriceType = "FREE_TRIAL"
-	PRICETYPE_BYOL       PriceType = "BYOL"
-	PRICETYPE_PAYG       PriceType = "PAYG"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	PRICETYPE_BYOL PriceType = "BYOL"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	PRICETYPE_PAYG PriceType = "PAYG"
 )
 
 // All allowed values of PriceType enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedPriceTypeEnumValues = []PriceType{
 	"CONTRACT",
 	"FREE",
@@ -36,6 +43,7 @@ var AllowedPriceTypeEnumValues = []PriceType{
 	"PAYG",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *PriceType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -60,6 +68,7 @@ func (v *PriceType) UnmarshalJSON(src []byte) error {
 
 // NewPriceTypeFromValue returns a pointer to a valid PriceType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewPriceTypeFromValue(v string) (*PriceType, error) {
 	ev := PriceType(v)
 	if ev.IsValid() {
@@ -70,6 +79,7 @@ func NewPriceTypeFromValue(v string) (*PriceType, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v PriceType) IsValid() bool {
 	for _, existing := range AllowedPriceTypeEnumValues {
 		if existing == v {
@@ -80,41 +90,50 @@ func (v PriceType) IsValid() bool {
 }
 
 // Ptr returns reference to priceType value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v PriceType) Ptr() *PriceType {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullablePriceType struct {
 	value *PriceType
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePriceType) Get() *PriceType {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePriceType) Set(val *PriceType) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePriceType) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePriceType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullablePriceType(val *PriceType) *NullablePriceType {
 	return &NullablePriceType{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullablePriceType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullablePriceType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

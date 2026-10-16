@@ -18,6 +18,7 @@ import (
 var _ MappedNullable = &VendorId{}
 
 // VendorId The vendor ID.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorId struct {
 }
 
@@ -25,6 +26,7 @@ type VendorId struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewVendorId() *VendorId {
 	this := VendorId{}
 	return &this
@@ -33,47 +35,57 @@ func NewVendorId() *VendorId {
 // NewVendorIdWithDefaults instantiates a new VendorId object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewVendorIdWithDefaults() *VendorId {
 	this := VendorId{}
 	return &this
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o VendorId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableVendorId struct {
 	value *VendorId
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorId) Get() *VendorId {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorId) Set(val *VendorId) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorId) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorId) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableVendorId(val *VendorId) *NullableVendorId {
 	return &NullableVendorId{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

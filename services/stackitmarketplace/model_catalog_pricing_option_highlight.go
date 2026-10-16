@@ -22,8 +22,10 @@ var _ MappedNullable = &CatalogPricingOptionHighlight{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogPricingOptionHighlightGetHighlightContentAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(arg CatalogPricingOptionHighlightGetHighlightContentAttributeType) (ret CatalogPricingOptionHighlightGetHighlightContentRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,14 +33,18 @@ func getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(arg Cata
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogPricingOptionHighlightGetHighlightContentAttributeType(arg *CatalogPricingOptionHighlightGetHighlightContentAttributeType, val CatalogPricingOptionHighlightGetHighlightContentRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogPricingOptionHighlightGetHighlightContentArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogPricingOptionHighlightGetHighlightContentRetType = string
 
 // CatalogPricingOptionHighlight struct for CatalogPricingOptionHighlight
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogPricingOptionHighlight struct {
 	// The highlight content.
 	HighlightContent CatalogPricingOptionHighlightGetHighlightContentAttributeType `json:"highlightContent,omitempty"`
@@ -48,6 +54,7 @@ type CatalogPricingOptionHighlight struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogPricingOptionHighlight() *CatalogPricingOptionHighlight {
 	this := CatalogPricingOptionHighlight{}
 	return &this
@@ -56,12 +63,14 @@ func NewCatalogPricingOptionHighlight() *CatalogPricingOptionHighlight {
 // NewCatalogPricingOptionHighlightWithDefaults instantiates a new CatalogPricingOptionHighlight object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogPricingOptionHighlightWithDefaults() *CatalogPricingOptionHighlight {
 	this := CatalogPricingOptionHighlight{}
 	return &this
 }
 
 // GetHighlightContent returns the HighlightContent field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogPricingOptionHighlight) GetHighlightContent() (res CatalogPricingOptionHighlightGetHighlightContentRetType) {
 	res, _ = o.GetHighlightContentOk()
 	return
@@ -69,21 +78,25 @@ func (o *CatalogPricingOptionHighlight) GetHighlightContent() (res CatalogPricin
 
 // GetHighlightContentOk returns a tuple with the HighlightContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogPricingOptionHighlight) GetHighlightContentOk() (ret CatalogPricingOptionHighlightGetHighlightContentRetType, ok bool) {
 	return getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent)
 }
 
 // HasHighlightContent returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogPricingOptionHighlight) HasHighlightContent() bool {
 	_, ok := o.GetHighlightContentOk()
 	return ok
 }
 
 // SetHighlightContent gets a reference to the given string and assigns it to the HighlightContent field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogPricingOptionHighlight) SetHighlightContent(v CatalogPricingOptionHighlightGetHighlightContentRetType) {
 	setCatalogPricingOptionHighlightGetHighlightContentAttributeType(&o.HighlightContent, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogPricingOptionHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {
@@ -92,37 +105,45 @@ func (o CatalogPricingOptionHighlight) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogPricingOptionHighlight struct {
 	value *CatalogPricingOptionHighlight
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogPricingOptionHighlight) Get() *CatalogPricingOptionHighlight {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogPricingOptionHighlight) Set(val *CatalogPricingOptionHighlight) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogPricingOptionHighlight) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogPricingOptionHighlight) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogPricingOptionHighlight(val *CatalogPricingOptionHighlight) *NullableCatalogPricingOptionHighlight {
 	return &NullableCatalogPricingOptionHighlight{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogPricingOptionHighlight) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogPricingOptionHighlight) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

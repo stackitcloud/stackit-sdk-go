@@ -718,6 +718,14 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			wantResp:           true,
 		},
 		{
+			desc:               "resize_succeeded_inactive_server",
+			getFails:           false,
+			returnResizing:     true,
+			finalResourceState: ServerInactiveStatus,
+			wantErr:            false,
+			wantResp:           true,
+		},
+		{
 			desc:               "resizing_status_is_never_returned",
 			getFails:           false,
 			returnResizing:     false,
