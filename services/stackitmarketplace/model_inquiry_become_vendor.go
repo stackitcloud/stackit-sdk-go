@@ -22,8 +22,10 @@ var _ MappedNullable = &InquiryBecomeVendor{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetContactEmailAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryBecomeVendorGetContactEmailAttributeTypeOk(arg InquiryBecomeVendorGetContactEmailAttributeType) (ret InquiryBecomeVendorGetContactEmailRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getInquiryBecomeVendorGetContactEmailAttributeTypeOk(arg InquiryBecomeVendo
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryBecomeVendorGetContactEmailAttributeType(arg *InquiryBecomeVendorGetContactEmailAttributeType, val InquiryBecomeVendorGetContactEmailRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetContactEmailArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetContactEmailRetType = string
 
 /*
@@ -43,8 +48,10 @@ type InquiryBecomeVendorGetContactEmailRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryBecomeVendorGetMessageAttributeTypeOk(arg InquiryBecomeVendorGetMessageAttributeType) (ret InquiryBecomeVendorGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,14 +59,18 @@ func getInquiryBecomeVendorGetMessageAttributeTypeOk(arg InquiryBecomeVendorGetM
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryBecomeVendorGetMessageAttributeType(arg *InquiryBecomeVendorGetMessageAttributeType, val InquiryBecomeVendorGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendorGetMessageRetType = string
 
 // InquiryBecomeVendor Become a vendor.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryBecomeVendor struct {
 	// A e-mail address.
 	// REQUIRED
@@ -69,12 +80,14 @@ type InquiryBecomeVendor struct {
 	Message InquiryBecomeVendorGetMessageAttributeType `json:"message" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _InquiryBecomeVendor InquiryBecomeVendor
 
 // NewInquiryBecomeVendor instantiates a new InquiryBecomeVendor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryBecomeVendor(contactEmail InquiryBecomeVendorGetContactEmailArgType, message InquiryBecomeVendorGetMessageArgType) *InquiryBecomeVendor {
 	this := InquiryBecomeVendor{}
 	setInquiryBecomeVendorGetContactEmailAttributeType(&this.ContactEmail, contactEmail)
@@ -85,12 +98,14 @@ func NewInquiryBecomeVendor(contactEmail InquiryBecomeVendorGetContactEmailArgTy
 // NewInquiryBecomeVendorWithDefaults instantiates a new InquiryBecomeVendor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryBecomeVendorWithDefaults() *InquiryBecomeVendor {
 	this := InquiryBecomeVendor{}
 	return &this
 }
 
 // GetContactEmail returns the ContactEmail field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) GetContactEmail() (ret InquiryBecomeVendorGetContactEmailRetType) {
 	ret, _ = o.GetContactEmailOk()
 	return ret
@@ -98,16 +113,19 @@ func (o *InquiryBecomeVendor) GetContactEmail() (ret InquiryBecomeVendorGetConta
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) GetContactEmailOk() (ret InquiryBecomeVendorGetContactEmailRetType, ok bool) {
 	return getInquiryBecomeVendorGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) SetContactEmail(v InquiryBecomeVendorGetContactEmailRetType) {
 	setInquiryBecomeVendorGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetMessage returns the Message field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) GetMessage() (ret InquiryBecomeVendorGetMessageRetType) {
 	ret, _ = o.GetMessageOk()
 	return ret
@@ -115,15 +133,18 @@ func (o *InquiryBecomeVendor) GetMessage() (ret InquiryBecomeVendorGetMessageRet
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) GetMessageOk() (ret InquiryBecomeVendorGetMessageRetType, ok bool) {
 	return getInquiryBecomeVendorGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryBecomeVendor) SetMessage(v InquiryBecomeVendorGetMessageRetType) {
 	setInquiryBecomeVendorGetMessageAttributeType(&o.Message, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o InquiryBecomeVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryBecomeVendorGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
@@ -135,37 +156,45 @@ func (o InquiryBecomeVendor) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiryBecomeVendor struct {
 	value *InquiryBecomeVendor
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryBecomeVendor) Get() *InquiryBecomeVendor {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryBecomeVendor) Set(val *InquiryBecomeVendor) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryBecomeVendor) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryBecomeVendor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiryBecomeVendor(val *InquiryBecomeVendor) *NullableInquiryBecomeVendor {
 	return &NullableInquiryBecomeVendor{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryBecomeVendor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryBecomeVendor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

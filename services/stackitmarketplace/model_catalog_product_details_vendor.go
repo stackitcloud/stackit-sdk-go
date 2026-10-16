@@ -22,8 +22,10 @@ var _ MappedNullable = &CatalogProductDetailsVendor{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetDescriptionAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetDescriptionAttributeTypeOk(arg CatalogProductDetailsVendorGetDescriptionAttributeType) (ret CatalogProductDetailsVendorGetDescriptionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getCatalogProductDetailsVendorGetDescriptionAttributeTypeOk(arg CatalogProd
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetDescriptionAttributeType(arg *CatalogProductDetailsVendorGetDescriptionAttributeType, val CatalogProductDetailsVendorGetDescriptionRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetDescriptionArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetDescriptionRetType = string
 
 /*
@@ -43,8 +48,10 @@ type CatalogProductDetailsVendorGetDescriptionRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetLogoAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDetailsVendorGetLogoAttributeType) (ret CatalogProductDetailsVendorGetLogoRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDeta
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetLogoAttributeType(arg *CatalogProductDetailsVendorGetLogoAttributeType, val CatalogProductDetailsVendorGetLogoRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetLogoArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetLogoRetType = string
 
 /*
@@ -64,8 +74,10 @@ type CatalogProductDetailsVendorGetLogoRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetNameAttributeTypeOk(arg CatalogProductDetailsVendorGetNameAttributeType) (ret CatalogProductDetailsVendorGetNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,11 +85,14 @@ func getCatalogProductDetailsVendorGetNameAttributeTypeOk(arg CatalogProductDeta
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetNameAttributeType(arg *CatalogProductDetailsVendorGetNameAttributeType, val CatalogProductDetailsVendorGetNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetNameRetType = string
 
 /*
@@ -85,8 +100,10 @@ type CatalogProductDetailsVendorGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVendorIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(arg CatalogProductDetailsVendorGetVendorIdAttributeType) (ret CatalogProductDetailsVendorGetVendorIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -94,11 +111,14 @@ func getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(arg CatalogProduct
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetVendorIdAttributeType(arg *CatalogProductDetailsVendorGetVendorIdAttributeType, val CatalogProductDetailsVendorGetVendorIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVendorIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVendorIdRetType = string
 
 /*
@@ -106,8 +126,10 @@ type CatalogProductDetailsVendorGetVendorIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVideoUrlAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetVideoUrlAttributeTypeOk(arg CatalogProductDetailsVendorGetVideoUrlAttributeType) (ret CatalogProductDetailsVendorGetVideoUrlRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -115,11 +137,14 @@ func getCatalogProductDetailsVendorGetVideoUrlAttributeTypeOk(arg CatalogProduct
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetVideoUrlAttributeType(arg *CatalogProductDetailsVendorGetVideoUrlAttributeType, val CatalogProductDetailsVendorGetVideoUrlRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVideoUrlArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetVideoUrlRetType = string
 
 /*
@@ -127,8 +152,10 @@ type CatalogProductDetailsVendorGetVideoUrlRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetWebsiteUrlAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductDetailsVendorGetWebsiteUrlAttributeTypeOk(arg CatalogProductDetailsVendorGetWebsiteUrlAttributeType) (ret CatalogProductDetailsVendorGetWebsiteUrlRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -136,14 +163,18 @@ func getCatalogProductDetailsVendorGetWebsiteUrlAttributeTypeOk(arg CatalogProdu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductDetailsVendorGetWebsiteUrlAttributeType(arg *CatalogProductDetailsVendorGetWebsiteUrlAttributeType, val CatalogProductDetailsVendorGetWebsiteUrlRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetWebsiteUrlArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendorGetWebsiteUrlRetType = string
 
 // CatalogProductDetailsVendor struct for CatalogProductDetailsVendor
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductDetailsVendor struct {
 	// The vendor description.
 	// REQUIRED
@@ -165,12 +196,14 @@ type CatalogProductDetailsVendor struct {
 	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _CatalogProductDetailsVendor CatalogProductDetailsVendor
 
 // NewCatalogProductDetailsVendor instantiates a new CatalogProductDetailsVendor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductDetailsVendor(description CatalogProductDetailsVendorGetDescriptionArgType, logo CatalogProductDetailsVendorGetLogoArgType, name CatalogProductDetailsVendorGetNameArgType, vendorId CatalogProductDetailsVendorGetVendorIdArgType, videoUrl CatalogProductDetailsVendorGetVideoUrlArgType, websiteUrl CatalogProductDetailsVendorGetWebsiteUrlArgType) *CatalogProductDetailsVendor {
 	this := CatalogProductDetailsVendor{}
 	setCatalogProductDetailsVendorGetDescriptionAttributeType(&this.Description, description)
@@ -185,12 +218,14 @@ func NewCatalogProductDetailsVendor(description CatalogProductDetailsVendorGetDe
 // NewCatalogProductDetailsVendorWithDefaults instantiates a new CatalogProductDetailsVendor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductDetailsVendorWithDefaults() *CatalogProductDetailsVendor {
 	this := CatalogProductDetailsVendor{}
 	return &this
 }
 
 // GetDescription returns the Description field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetDescription() (ret CatalogProductDetailsVendorGetDescriptionRetType) {
 	ret, _ = o.GetDescriptionOk()
 	return ret
@@ -198,16 +233,19 @@ func (o *CatalogProductDetailsVendor) GetDescription() (ret CatalogProductDetail
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetDescriptionOk() (ret CatalogProductDetailsVendorGetDescriptionRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetDescription(v CatalogProductDetailsVendorGetDescriptionRetType) {
 	setCatalogProductDetailsVendorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetLogo returns the Logo field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetLogo() (ret CatalogProductDetailsVendorGetLogoRetType) {
 	ret, _ = o.GetLogoOk()
 	return ret
@@ -215,16 +253,19 @@ func (o *CatalogProductDetailsVendor) GetLogo() (ret CatalogProductDetailsVendor
 
 // GetLogoOk returns a tuple with the Logo field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetLogoOk() (ret CatalogProductDetailsVendorGetLogoRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetLogoAttributeTypeOk(o.Logo)
 }
 
 // SetLogo sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetLogo(v CatalogProductDetailsVendorGetLogoRetType) {
 	setCatalogProductDetailsVendorGetLogoAttributeType(&o.Logo, v)
 }
 
 // GetName returns the Name field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetName() (ret CatalogProductDetailsVendorGetNameRetType) {
 	ret, _ = o.GetNameOk()
 	return ret
@@ -232,16 +273,19 @@ func (o *CatalogProductDetailsVendor) GetName() (ret CatalogProductDetailsVendor
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetNameOk() (ret CatalogProductDetailsVendorGetNameRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetName(v CatalogProductDetailsVendorGetNameRetType) {
 	setCatalogProductDetailsVendorGetNameAttributeType(&o.Name, v)
 }
 
 // GetVendorId returns the VendorId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetVendorId() (ret CatalogProductDetailsVendorGetVendorIdRetType) {
 	ret, _ = o.GetVendorIdOk()
 	return ret
@@ -249,16 +293,19 @@ func (o *CatalogProductDetailsVendor) GetVendorId() (ret CatalogProductDetailsVe
 
 // GetVendorIdOk returns a tuple with the VendorId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetVendorIdOk() (ret CatalogProductDetailsVendorGetVendorIdRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(o.VendorId)
 }
 
 // SetVendorId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetVendorId(v CatalogProductDetailsVendorGetVendorIdRetType) {
 	setCatalogProductDetailsVendorGetVendorIdAttributeType(&o.VendorId, v)
 }
 
 // GetVideoUrl returns the VideoUrl field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetVideoUrl() (ret CatalogProductDetailsVendorGetVideoUrlRetType) {
 	ret, _ = o.GetVideoUrlOk()
 	return ret
@@ -266,16 +313,19 @@ func (o *CatalogProductDetailsVendor) GetVideoUrl() (ret CatalogProductDetailsVe
 
 // GetVideoUrlOk returns a tuple with the VideoUrl field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetVideoUrlOk() (ret CatalogProductDetailsVendorGetVideoUrlRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetVideoUrlAttributeTypeOk(o.VideoUrl)
 }
 
 // SetVideoUrl sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetVideoUrl(v CatalogProductDetailsVendorGetVideoUrlRetType) {
 	setCatalogProductDetailsVendorGetVideoUrlAttributeType(&o.VideoUrl, v)
 }
 
 // GetWebsiteUrl returns the WebsiteUrl field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetWebsiteUrl() (ret CatalogProductDetailsVendorGetWebsiteUrlRetType) {
 	ret, _ = o.GetWebsiteUrlOk()
 	return ret
@@ -283,15 +333,18 @@ func (o *CatalogProductDetailsVendor) GetWebsiteUrl() (ret CatalogProductDetails
 
 // GetWebsiteUrlOk returns a tuple with the WebsiteUrl field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) GetWebsiteUrlOk() (ret CatalogProductDetailsVendorGetWebsiteUrlRetType, ok bool) {
 	return getCatalogProductDetailsVendorGetWebsiteUrlAttributeTypeOk(o.WebsiteUrl)
 }
 
 // SetWebsiteUrl sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductDetailsVendor) SetWebsiteUrl(v CatalogProductDetailsVendorGetWebsiteUrlRetType) {
 	setCatalogProductDetailsVendorGetWebsiteUrlAttributeType(&o.WebsiteUrl, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogProductDetailsVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductDetailsVendorGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -315,37 +368,45 @@ func (o CatalogProductDetailsVendor) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogProductDetailsVendor struct {
 	value *CatalogProductDetailsVendor
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductDetailsVendor) Get() *CatalogProductDetailsVendor {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductDetailsVendor) Set(val *CatalogProductDetailsVendor) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductDetailsVendor) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductDetailsVendor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogProductDetailsVendor(val *CatalogProductDetailsVendor) *NullableCatalogProductDetailsVendor {
 	return &NullableCatalogProductDetailsVendor{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductDetailsVendor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductDetailsVendor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

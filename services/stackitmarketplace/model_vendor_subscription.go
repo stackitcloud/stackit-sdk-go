@@ -22,10 +22,14 @@ var _ MappedNullable = &VendorSubscription{}
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetLifecycleStateAttributeType = *SubscriptionLifecycleState
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetLifecycleStateArgType = SubscriptionLifecycleState
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetLifecycleStateRetType = SubscriptionLifecycleState
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getVendorSubscriptionGetLifecycleStateAttributeTypeOk(arg VendorSubscriptionGetLifecycleStateAttributeType) (ret VendorSubscriptionGetLifecycleStateRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getVendorSubscriptionGetLifecycleStateAttributeTypeOk(arg VendorSubscriptio
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setVendorSubscriptionGetLifecycleStateAttributeType(arg *VendorSubscriptionGetLifecycleStateAttributeType, val VendorSubscriptionGetLifecycleStateRetType) {
 	*arg = &val
 }
@@ -42,8 +47,10 @@ func setVendorSubscriptionGetLifecycleStateAttributeType(arg *VendorSubscription
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetOrganizationIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getVendorSubscriptionGetOrganizationIdAttributeTypeOk(arg VendorSubscriptionGetOrganizationIdAttributeType) (ret VendorSubscriptionGetOrganizationIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -51,11 +58,14 @@ func getVendorSubscriptionGetOrganizationIdAttributeTypeOk(arg VendorSubscriptio
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setVendorSubscriptionGetOrganizationIdAttributeType(arg *VendorSubscriptionGetOrganizationIdAttributeType, val VendorSubscriptionGetOrganizationIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetOrganizationIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetOrganizationIdRetType = string
 
 /*
@@ -63,10 +73,14 @@ type VendorSubscriptionGetOrganizationIdRetType = string
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProductAttributeType = *SubscriptionProduct
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProductArgType = SubscriptionProduct
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProductRetType = SubscriptionProduct
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getVendorSubscriptionGetProductAttributeTypeOk(arg VendorSubscriptionGetProductAttributeType) (ret VendorSubscriptionGetProductRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -74,6 +88,7 @@ func getVendorSubscriptionGetProductAttributeTypeOk(arg VendorSubscriptionGetPro
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setVendorSubscriptionGetProductAttributeType(arg *VendorSubscriptionGetProductAttributeType, val VendorSubscriptionGetProductRetType) {
 	*arg = &val
 }
@@ -83,8 +98,10 @@ func setVendorSubscriptionGetProductAttributeType(arg *VendorSubscriptionGetProd
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProjectIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getVendorSubscriptionGetProjectIdAttributeTypeOk(arg VendorSubscriptionGetProjectIdAttributeType) (ret VendorSubscriptionGetProjectIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -92,11 +109,14 @@ func getVendorSubscriptionGetProjectIdAttributeTypeOk(arg VendorSubscriptionGetP
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setVendorSubscriptionGetProjectIdAttributeType(arg *VendorSubscriptionGetProjectIdAttributeType, val VendorSubscriptionGetProjectIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProjectIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetProjectIdRetType = string
 
 /*
@@ -104,8 +124,10 @@ type VendorSubscriptionGetProjectIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetSubscriptionIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getVendorSubscriptionGetSubscriptionIdAttributeTypeOk(arg VendorSubscriptionGetSubscriptionIdAttributeType) (ret VendorSubscriptionGetSubscriptionIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -113,14 +135,18 @@ func getVendorSubscriptionGetSubscriptionIdAttributeTypeOk(arg VendorSubscriptio
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setVendorSubscriptionGetSubscriptionIdAttributeType(arg *VendorSubscriptionGetSubscriptionIdAttributeType, val VendorSubscriptionGetSubscriptionIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetSubscriptionIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscriptionGetSubscriptionIdRetType = string
 
 // VendorSubscription struct for VendorSubscription
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type VendorSubscription struct {
 	// REQUIRED
 	LifecycleState VendorSubscriptionGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
@@ -137,12 +163,14 @@ type VendorSubscription struct {
 	SubscriptionId VendorSubscriptionGetSubscriptionIdAttributeType `json:"subscriptionId" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _VendorSubscription VendorSubscription
 
 // NewVendorSubscription instantiates a new VendorSubscription object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewVendorSubscription(lifecycleState VendorSubscriptionGetLifecycleStateArgType, organizationId VendorSubscriptionGetOrganizationIdArgType, product VendorSubscriptionGetProductArgType, projectId VendorSubscriptionGetProjectIdArgType, subscriptionId VendorSubscriptionGetSubscriptionIdArgType) *VendorSubscription {
 	this := VendorSubscription{}
 	setVendorSubscriptionGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
@@ -156,12 +184,14 @@ func NewVendorSubscription(lifecycleState VendorSubscriptionGetLifecycleStateArg
 // NewVendorSubscriptionWithDefaults instantiates a new VendorSubscription object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewVendorSubscriptionWithDefaults() *VendorSubscription {
 	this := VendorSubscription{}
 	return &this
 }
 
 // GetLifecycleState returns the LifecycleState field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetLifecycleState() (ret VendorSubscriptionGetLifecycleStateRetType) {
 	ret, _ = o.GetLifecycleStateOk()
 	return ret
@@ -169,16 +199,19 @@ func (o *VendorSubscription) GetLifecycleState() (ret VendorSubscriptionGetLifec
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetLifecycleStateOk() (ret VendorSubscriptionGetLifecycleStateRetType, ok bool) {
 	return getVendorSubscriptionGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) SetLifecycleState(v VendorSubscriptionGetLifecycleStateRetType) {
 	setVendorSubscriptionGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetOrganizationId returns the OrganizationId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetOrganizationId() (ret VendorSubscriptionGetOrganizationIdRetType) {
 	ret, _ = o.GetOrganizationIdOk()
 	return ret
@@ -186,16 +219,19 @@ func (o *VendorSubscription) GetOrganizationId() (ret VendorSubscriptionGetOrgan
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetOrganizationIdOk() (ret VendorSubscriptionGetOrganizationIdRetType, ok bool) {
 	return getVendorSubscriptionGetOrganizationIdAttributeTypeOk(o.OrganizationId)
 }
 
 // SetOrganizationId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) SetOrganizationId(v VendorSubscriptionGetOrganizationIdRetType) {
 	setVendorSubscriptionGetOrganizationIdAttributeType(&o.OrganizationId, v)
 }
 
 // GetProduct returns the Product field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetProduct() (ret VendorSubscriptionGetProductRetType) {
 	ret, _ = o.GetProductOk()
 	return ret
@@ -203,16 +239,19 @@ func (o *VendorSubscription) GetProduct() (ret VendorSubscriptionGetProductRetTy
 
 // GetProductOk returns a tuple with the Product field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetProductOk() (ret VendorSubscriptionGetProductRetType, ok bool) {
 	return getVendorSubscriptionGetProductAttributeTypeOk(o.Product)
 }
 
 // SetProduct sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) SetProduct(v VendorSubscriptionGetProductRetType) {
 	setVendorSubscriptionGetProductAttributeType(&o.Product, v)
 }
 
 // GetProjectId returns the ProjectId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetProjectId() (ret VendorSubscriptionGetProjectIdRetType) {
 	ret, _ = o.GetProjectIdOk()
 	return ret
@@ -220,16 +259,19 @@ func (o *VendorSubscription) GetProjectId() (ret VendorSubscriptionGetProjectIdR
 
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetProjectIdOk() (ret VendorSubscriptionGetProjectIdRetType, ok bool) {
 	return getVendorSubscriptionGetProjectIdAttributeTypeOk(o.ProjectId)
 }
 
 // SetProjectId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) SetProjectId(v VendorSubscriptionGetProjectIdRetType) {
 	setVendorSubscriptionGetProjectIdAttributeType(&o.ProjectId, v)
 }
 
 // GetSubscriptionId returns the SubscriptionId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetSubscriptionId() (ret VendorSubscriptionGetSubscriptionIdRetType) {
 	ret, _ = o.GetSubscriptionIdOk()
 	return ret
@@ -237,15 +279,18 @@ func (o *VendorSubscription) GetSubscriptionId() (ret VendorSubscriptionGetSubsc
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) GetSubscriptionIdOk() (ret VendorSubscriptionGetSubscriptionIdRetType, ok bool) {
 	return getVendorSubscriptionGetSubscriptionIdAttributeTypeOk(o.SubscriptionId)
 }
 
 // SetSubscriptionId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *VendorSubscription) SetSubscriptionId(v VendorSubscriptionGetSubscriptionIdRetType) {
 	setVendorSubscriptionGetSubscriptionIdAttributeType(&o.SubscriptionId, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o VendorSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVendorSubscriptionGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
@@ -266,37 +311,45 @@ func (o VendorSubscription) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableVendorSubscription struct {
 	value *VendorSubscription
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorSubscription) Get() *VendorSubscription {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorSubscription) Set(val *VendorSubscription) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorSubscription) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorSubscription) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableVendorSubscription(val *VendorSubscription) *NullableVendorSubscription {
 	return &NullableVendorSubscription{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableVendorSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableVendorSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

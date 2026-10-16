@@ -22,10 +22,14 @@ var _ MappedNullable = &BecomeVendor{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetBecomeVendorAttributeType = *InquiryBecomeVendor
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetBecomeVendorArgType = InquiryBecomeVendor
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetBecomeVendorRetType = InquiryBecomeVendor
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getBecomeVendorGetBecomeVendorAttributeTypeOk(arg BecomeVendorGetBecomeVendorAttributeType) (ret BecomeVendorGetBecomeVendorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getBecomeVendorGetBecomeVendorAttributeTypeOk(arg BecomeVendorGetBecomeVend
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setBecomeVendorGetBecomeVendorAttributeType(arg *BecomeVendorGetBecomeVendorAttributeType, val BecomeVendorGetBecomeVendorRetType) {
 	*arg = &val
 }
@@ -42,10 +47,14 @@ func setBecomeVendorGetBecomeVendorAttributeType(arg *BecomeVendorGetBecomeVendo
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetTypeAttributeType = *InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetTypeArgType = InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendorGetTypeRetType = InquiryFormType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getBecomeVendorGetTypeAttributeTypeOk(arg BecomeVendorGetTypeAttributeType) (ret BecomeVendorGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +62,13 @@ func getBecomeVendorGetTypeAttributeTypeOk(arg BecomeVendorGetTypeAttributeType)
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setBecomeVendorGetTypeAttributeType(arg *BecomeVendorGetTypeAttributeType, val BecomeVendorGetTypeRetType) {
 	*arg = &val
 }
 
 // BecomeVendor Become a Vendor.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type BecomeVendor struct {
 	// REQUIRED
 	BecomeVendor BecomeVendorGetBecomeVendorAttributeType `json:"becomeVendor" required:"true"`
@@ -65,12 +76,14 @@ type BecomeVendor struct {
 	Type BecomeVendorGetTypeAttributeType `json:"type" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _BecomeVendor BecomeVendor
 
 // NewBecomeVendor instantiates a new BecomeVendor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewBecomeVendor(becomeVendor BecomeVendorGetBecomeVendorArgType, types BecomeVendorGetTypeArgType) *BecomeVendor {
 	this := BecomeVendor{}
 	setBecomeVendorGetBecomeVendorAttributeType(&this.BecomeVendor, becomeVendor)
@@ -81,12 +94,14 @@ func NewBecomeVendor(becomeVendor BecomeVendorGetBecomeVendorArgType, types Beco
 // NewBecomeVendorWithDefaults instantiates a new BecomeVendor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewBecomeVendorWithDefaults() *BecomeVendor {
 	this := BecomeVendor{}
 	return &this
 }
 
 // GetBecomeVendor returns the BecomeVendor field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) GetBecomeVendor() (ret BecomeVendorGetBecomeVendorRetType) {
 	ret, _ = o.GetBecomeVendorOk()
 	return ret
@@ -94,16 +109,19 @@ func (o *BecomeVendor) GetBecomeVendor() (ret BecomeVendorGetBecomeVendorRetType
 
 // GetBecomeVendorOk returns a tuple with the BecomeVendor field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) GetBecomeVendorOk() (ret BecomeVendorGetBecomeVendorRetType, ok bool) {
 	return getBecomeVendorGetBecomeVendorAttributeTypeOk(o.BecomeVendor)
 }
 
 // SetBecomeVendor sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) SetBecomeVendor(v BecomeVendorGetBecomeVendorRetType) {
 	setBecomeVendorGetBecomeVendorAttributeType(&o.BecomeVendor, v)
 }
 
 // GetType returns the Type field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) GetType() (ret BecomeVendorGetTypeRetType) {
 	ret, _ = o.GetTypeOk()
 	return ret
@@ -111,15 +129,18 @@ func (o *BecomeVendor) GetType() (ret BecomeVendorGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) GetTypeOk() (ret BecomeVendorGetTypeRetType, ok bool) {
 	return getBecomeVendorGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *BecomeVendor) SetType(v BecomeVendorGetTypeRetType) {
 	setBecomeVendorGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o BecomeVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBecomeVendorGetBecomeVendorAttributeTypeOk(o.BecomeVendor); ok {
@@ -131,37 +152,45 @@ func (o BecomeVendor) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableBecomeVendor struct {
 	value *BecomeVendor
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableBecomeVendor) Get() *BecomeVendor {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableBecomeVendor) Set(val *BecomeVendor) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableBecomeVendor) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableBecomeVendor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableBecomeVendor(val *BecomeVendor) *NullableBecomeVendor {
 	return &NullableBecomeVendor{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableBecomeVendor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableBecomeVendor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

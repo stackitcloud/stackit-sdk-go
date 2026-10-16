@@ -22,8 +22,10 @@ var _ MappedNullable = &CatalogProductHighlight{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightContentAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductHighlightGetHighlightContentAttributeTypeOk(arg CatalogProductHighlightGetHighlightContentAttributeType) (ret CatalogProductHighlightGetHighlightContentRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getCatalogProductHighlightGetHighlightContentAttributeTypeOk(arg CatalogPro
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductHighlightGetHighlightContentAttributeType(arg *CatalogProductHighlightGetHighlightContentAttributeType, val CatalogProductHighlightGetHighlightContentRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightContentArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightContentRetType = string
 
 /*
@@ -43,8 +48,10 @@ type CatalogProductHighlightGetHighlightContentRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightIconAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductHighlightGetHighlightIconAttributeTypeOk(arg CatalogProductHighlightGetHighlightIconAttributeType) (ret CatalogProductHighlightGetHighlightIconRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getCatalogProductHighlightGetHighlightIconAttributeTypeOk(arg CatalogProduc
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductHighlightGetHighlightIconAttributeType(arg *CatalogProductHighlightGetHighlightIconAttributeType, val CatalogProductHighlightGetHighlightIconRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightIconArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightIconRetType = string
 
 /*
@@ -64,8 +74,10 @@ type CatalogProductHighlightGetHighlightIconRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightTitleAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(arg CatalogProductHighlightGetHighlightTitleAttributeType) (ret CatalogProductHighlightGetHighlightTitleRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,14 +85,18 @@ func getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(arg CatalogProdu
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductHighlightGetHighlightTitleAttributeType(arg *CatalogProductHighlightGetHighlightTitleAttributeType, val CatalogProductHighlightGetHighlightTitleRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightTitleArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlightGetHighlightTitleRetType = string
 
 // CatalogProductHighlight struct for CatalogProductHighlight
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductHighlight struct {
 	// The highlight content.
 	HighlightContent CatalogProductHighlightGetHighlightContentAttributeType `json:"highlightContent,omitempty"`
@@ -94,6 +110,7 @@ type CatalogProductHighlight struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductHighlight() *CatalogProductHighlight {
 	this := CatalogProductHighlight{}
 	return &this
@@ -102,12 +119,14 @@ func NewCatalogProductHighlight() *CatalogProductHighlight {
 // NewCatalogProductHighlightWithDefaults instantiates a new CatalogProductHighlight object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductHighlightWithDefaults() *CatalogProductHighlight {
 	this := CatalogProductHighlight{}
 	return &this
 }
 
 // GetHighlightContent returns the HighlightContent field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightContent() (res CatalogProductHighlightGetHighlightContentRetType) {
 	res, _ = o.GetHighlightContentOk()
 	return
@@ -115,22 +134,26 @@ func (o *CatalogProductHighlight) GetHighlightContent() (res CatalogProductHighl
 
 // GetHighlightContentOk returns a tuple with the HighlightContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightContentOk() (ret CatalogProductHighlightGetHighlightContentRetType, ok bool) {
 	return getCatalogProductHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent)
 }
 
 // HasHighlightContent returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) HasHighlightContent() bool {
 	_, ok := o.GetHighlightContentOk()
 	return ok
 }
 
 // SetHighlightContent gets a reference to the given string and assigns it to the HighlightContent field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) SetHighlightContent(v CatalogProductHighlightGetHighlightContentRetType) {
 	setCatalogProductHighlightGetHighlightContentAttributeType(&o.HighlightContent, v)
 }
 
 // GetHighlightIcon returns the HighlightIcon field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightIcon() (res CatalogProductHighlightGetHighlightIconRetType) {
 	res, _ = o.GetHighlightIconOk()
 	return
@@ -138,22 +161,26 @@ func (o *CatalogProductHighlight) GetHighlightIcon() (res CatalogProductHighligh
 
 // GetHighlightIconOk returns a tuple with the HighlightIcon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightIconOk() (ret CatalogProductHighlightGetHighlightIconRetType, ok bool) {
 	return getCatalogProductHighlightGetHighlightIconAttributeTypeOk(o.HighlightIcon)
 }
 
 // HasHighlightIcon returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) HasHighlightIcon() bool {
 	_, ok := o.GetHighlightIconOk()
 	return ok
 }
 
 // SetHighlightIcon gets a reference to the given string and assigns it to the HighlightIcon field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) SetHighlightIcon(v CatalogProductHighlightGetHighlightIconRetType) {
 	setCatalogProductHighlightGetHighlightIconAttributeType(&o.HighlightIcon, v)
 }
 
 // GetHighlightTitle returns the HighlightTitle field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightTitle() (res CatalogProductHighlightGetHighlightTitleRetType) {
 	res, _ = o.GetHighlightTitleOk()
 	return
@@ -161,21 +188,25 @@ func (o *CatalogProductHighlight) GetHighlightTitle() (res CatalogProductHighlig
 
 // GetHighlightTitleOk returns a tuple with the HighlightTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) GetHighlightTitleOk() (ret CatalogProductHighlightGetHighlightTitleRetType, ok bool) {
 	return getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(o.HighlightTitle)
 }
 
 // HasHighlightTitle returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) HasHighlightTitle() bool {
 	_, ok := o.GetHighlightTitleOk()
 	return ok
 }
 
 // SetHighlightTitle gets a reference to the given string and assigns it to the HighlightTitle field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductHighlight) SetHighlightTitle(v CatalogProductHighlightGetHighlightTitleRetType) {
 	setCatalogProductHighlightGetHighlightTitleAttributeType(&o.HighlightTitle, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogProductHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {
@@ -190,37 +221,45 @@ func (o CatalogProductHighlight) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogProductHighlight struct {
 	value *CatalogProductHighlight
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductHighlight) Get() *CatalogProductHighlight {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductHighlight) Set(val *CatalogProductHighlight) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductHighlight) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductHighlight) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogProductHighlight(val *CatalogProductHighlight) *NullableCatalogProductHighlight {
 	return &NullableCatalogProductHighlight{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductHighlight) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductHighlight) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

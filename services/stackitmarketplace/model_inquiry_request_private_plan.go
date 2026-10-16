@@ -22,8 +22,10 @@ var _ MappedNullable = &InquiryRequestPrivatePlan{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetCompanyNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRequestPrivatePlanGetCompanyNameAttributeTypeOk(arg InquiryRequestPrivatePlanGetCompanyNameAttributeType) (ret InquiryRequestPrivatePlanGetCompanyNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getInquiryRequestPrivatePlanGetCompanyNameAttributeTypeOk(arg InquiryReques
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRequestPrivatePlanGetCompanyNameAttributeType(arg *InquiryRequestPrivatePlanGetCompanyNameAttributeType, val InquiryRequestPrivatePlanGetCompanyNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetCompanyNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetCompanyNameRetType = string
 
 /*
@@ -43,8 +48,10 @@ type InquiryRequestPrivatePlanGetCompanyNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetContactEmailAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRequestPrivatePlanGetContactEmailAttributeTypeOk(arg InquiryRequestPrivatePlanGetContactEmailAttributeType) (ret InquiryRequestPrivatePlanGetContactEmailRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getInquiryRequestPrivatePlanGetContactEmailAttributeTypeOk(arg InquiryReque
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRequestPrivatePlanGetContactEmailAttributeType(arg *InquiryRequestPrivatePlanGetContactEmailAttributeType, val InquiryRequestPrivatePlanGetContactEmailRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetContactEmailArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetContactEmailRetType = string
 
 /*
@@ -64,8 +74,10 @@ type InquiryRequestPrivatePlanGetContactEmailRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetFullNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRequestPrivatePlanGetFullNameAttributeTypeOk(arg InquiryRequestPrivatePlanGetFullNameAttributeType) (ret InquiryRequestPrivatePlanGetFullNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,11 +85,14 @@ func getInquiryRequestPrivatePlanGetFullNameAttributeTypeOk(arg InquiryRequestPr
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRequestPrivatePlanGetFullNameAttributeType(arg *InquiryRequestPrivatePlanGetFullNameAttributeType, val InquiryRequestPrivatePlanGetFullNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetFullNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetFullNameRetType = string
 
 /*
@@ -85,8 +100,10 @@ type InquiryRequestPrivatePlanGetFullNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRequestPrivatePlanGetMessageAttributeTypeOk(arg InquiryRequestPrivatePlanGetMessageAttributeType) (ret InquiryRequestPrivatePlanGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -94,11 +111,14 @@ func getInquiryRequestPrivatePlanGetMessageAttributeTypeOk(arg InquiryRequestPri
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRequestPrivatePlanGetMessageAttributeType(arg *InquiryRequestPrivatePlanGetMessageAttributeType, val InquiryRequestPrivatePlanGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetMessageRetType = string
 
 /*
@@ -106,8 +126,10 @@ type InquiryRequestPrivatePlanGetMessageRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetProductIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryRequestPrivatePlanGetProductIdAttributeTypeOk(arg InquiryRequestPrivatePlanGetProductIdAttributeType) (ret InquiryRequestPrivatePlanGetProductIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -115,14 +137,18 @@ func getInquiryRequestPrivatePlanGetProductIdAttributeTypeOk(arg InquiryRequestP
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryRequestPrivatePlanGetProductIdAttributeType(arg *InquiryRequestPrivatePlanGetProductIdAttributeType, val InquiryRequestPrivatePlanGetProductIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetProductIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlanGetProductIdRetType = string
 
 // InquiryRequestPrivatePlan Request a private plan.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryRequestPrivatePlan struct {
 	// The product's vendor name.
 	// REQUIRED
@@ -141,12 +167,14 @@ type InquiryRequestPrivatePlan struct {
 	ProductId InquiryRequestPrivatePlanGetProductIdAttributeType `json:"productId" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _InquiryRequestPrivatePlan InquiryRequestPrivatePlan
 
 // NewInquiryRequestPrivatePlan instantiates a new InquiryRequestPrivatePlan object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryRequestPrivatePlan(companyName InquiryRequestPrivatePlanGetCompanyNameArgType, contactEmail InquiryRequestPrivatePlanGetContactEmailArgType, fullName InquiryRequestPrivatePlanGetFullNameArgType, message InquiryRequestPrivatePlanGetMessageArgType, productId InquiryRequestPrivatePlanGetProductIdArgType) *InquiryRequestPrivatePlan {
 	this := InquiryRequestPrivatePlan{}
 	setInquiryRequestPrivatePlanGetCompanyNameAttributeType(&this.CompanyName, companyName)
@@ -160,12 +188,14 @@ func NewInquiryRequestPrivatePlan(companyName InquiryRequestPrivatePlanGetCompan
 // NewInquiryRequestPrivatePlanWithDefaults instantiates a new InquiryRequestPrivatePlan object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryRequestPrivatePlanWithDefaults() *InquiryRequestPrivatePlan {
 	this := InquiryRequestPrivatePlan{}
 	return &this
 }
 
 // GetCompanyName returns the CompanyName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetCompanyName() (ret InquiryRequestPrivatePlanGetCompanyNameRetType) {
 	ret, _ = o.GetCompanyNameOk()
 	return ret
@@ -173,16 +203,19 @@ func (o *InquiryRequestPrivatePlan) GetCompanyName() (ret InquiryRequestPrivateP
 
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetCompanyNameOk() (ret InquiryRequestPrivatePlanGetCompanyNameRetType, ok bool) {
 	return getInquiryRequestPrivatePlanGetCompanyNameAttributeTypeOk(o.CompanyName)
 }
 
 // SetCompanyName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) SetCompanyName(v InquiryRequestPrivatePlanGetCompanyNameRetType) {
 	setInquiryRequestPrivatePlanGetCompanyNameAttributeType(&o.CompanyName, v)
 }
 
 // GetContactEmail returns the ContactEmail field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetContactEmail() (ret InquiryRequestPrivatePlanGetContactEmailRetType) {
 	ret, _ = o.GetContactEmailOk()
 	return ret
@@ -190,16 +223,19 @@ func (o *InquiryRequestPrivatePlan) GetContactEmail() (ret InquiryRequestPrivate
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetContactEmailOk() (ret InquiryRequestPrivatePlanGetContactEmailRetType, ok bool) {
 	return getInquiryRequestPrivatePlanGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) SetContactEmail(v InquiryRequestPrivatePlanGetContactEmailRetType) {
 	setInquiryRequestPrivatePlanGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetFullName returns the FullName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetFullName() (ret InquiryRequestPrivatePlanGetFullNameRetType) {
 	ret, _ = o.GetFullNameOk()
 	return ret
@@ -207,16 +243,19 @@ func (o *InquiryRequestPrivatePlan) GetFullName() (ret InquiryRequestPrivatePlan
 
 // GetFullNameOk returns a tuple with the FullName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetFullNameOk() (ret InquiryRequestPrivatePlanGetFullNameRetType, ok bool) {
 	return getInquiryRequestPrivatePlanGetFullNameAttributeTypeOk(o.FullName)
 }
 
 // SetFullName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) SetFullName(v InquiryRequestPrivatePlanGetFullNameRetType) {
 	setInquiryRequestPrivatePlanGetFullNameAttributeType(&o.FullName, v)
 }
 
 // GetMessage returns the Message field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetMessage() (ret InquiryRequestPrivatePlanGetMessageRetType) {
 	ret, _ = o.GetMessageOk()
 	return ret
@@ -224,16 +263,19 @@ func (o *InquiryRequestPrivatePlan) GetMessage() (ret InquiryRequestPrivatePlanG
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetMessageOk() (ret InquiryRequestPrivatePlanGetMessageRetType, ok bool) {
 	return getInquiryRequestPrivatePlanGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) SetMessage(v InquiryRequestPrivatePlanGetMessageRetType) {
 	setInquiryRequestPrivatePlanGetMessageAttributeType(&o.Message, v)
 }
 
 // GetProductId returns the ProductId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetProductId() (ret InquiryRequestPrivatePlanGetProductIdRetType) {
 	ret, _ = o.GetProductIdOk()
 	return ret
@@ -241,15 +283,18 @@ func (o *InquiryRequestPrivatePlan) GetProductId() (ret InquiryRequestPrivatePla
 
 // GetProductIdOk returns a tuple with the ProductId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) GetProductIdOk() (ret InquiryRequestPrivatePlanGetProductIdRetType, ok bool) {
 	return getInquiryRequestPrivatePlanGetProductIdAttributeTypeOk(o.ProductId)
 }
 
 // SetProductId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryRequestPrivatePlan) SetProductId(v InquiryRequestPrivatePlanGetProductIdRetType) {
 	setInquiryRequestPrivatePlanGetProductIdAttributeType(&o.ProductId, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o InquiryRequestPrivatePlan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryRequestPrivatePlanGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
@@ -270,37 +315,45 @@ func (o InquiryRequestPrivatePlan) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiryRequestPrivatePlan struct {
 	value *InquiryRequestPrivatePlan
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRequestPrivatePlan) Get() *InquiryRequestPrivatePlan {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRequestPrivatePlan) Set(val *InquiryRequestPrivatePlan) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRequestPrivatePlan) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRequestPrivatePlan) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiryRequestPrivatePlan(val *InquiryRequestPrivatePlan) *NullableInquiryRequestPrivatePlan {
 	return &NullableInquiryRequestPrivatePlan{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryRequestPrivatePlan) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryRequestPrivatePlan) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

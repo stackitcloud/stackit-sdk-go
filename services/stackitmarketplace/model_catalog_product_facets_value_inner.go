@@ -22,10 +22,14 @@ var _ MappedNullable = &CatalogProductFacetsValueInner{}
 */
 
 // isInteger
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetCountAttributeType = *int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetCountArgType = int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetCountRetType = int64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductFacetsValueInnerGetCountAttributeTypeOk(arg CatalogProductFacetsValueInnerGetCountAttributeType) (ret CatalogProductFacetsValueInnerGetCountRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getCatalogProductFacetsValueInnerGetCountAttributeTypeOk(arg CatalogProduct
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductFacetsValueInnerGetCountAttributeType(arg *CatalogProductFacetsValueInnerGetCountAttributeType, val CatalogProductFacetsValueInnerGetCountRetType) {
 	*arg = &val
 }
@@ -42,8 +47,10 @@ func setCatalogProductFacetsValueInnerGetCountAttributeType(arg *CatalogProductF
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetValueAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductFacetsValueInnerGetValueAttributeTypeOk(arg CatalogProductFacetsValueInnerGetValueAttributeType) (ret CatalogProductFacetsValueInnerGetValueRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -51,14 +58,18 @@ func getCatalogProductFacetsValueInnerGetValueAttributeTypeOk(arg CatalogProduct
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductFacetsValueInnerGetValueAttributeType(arg *CatalogProductFacetsValueInnerGetValueAttributeType, val CatalogProductFacetsValueInnerGetValueRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetValueArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInnerGetValueRetType = string
 
 // CatalogProductFacetsValueInner struct for CatalogProductFacetsValueInner
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductFacetsValueInner struct {
 	// The number of items associated with this facet value.
 	// Can be cast to int32 without loss of precision.
@@ -69,12 +80,14 @@ type CatalogProductFacetsValueInner struct {
 	Value CatalogProductFacetsValueInnerGetValueAttributeType `json:"value" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _CatalogProductFacetsValueInner CatalogProductFacetsValueInner
 
 // NewCatalogProductFacetsValueInner instantiates a new CatalogProductFacetsValueInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductFacetsValueInner(count CatalogProductFacetsValueInnerGetCountArgType, value CatalogProductFacetsValueInnerGetValueArgType) *CatalogProductFacetsValueInner {
 	this := CatalogProductFacetsValueInner{}
 	setCatalogProductFacetsValueInnerGetCountAttributeType(&this.Count, count)
@@ -85,12 +98,14 @@ func NewCatalogProductFacetsValueInner(count CatalogProductFacetsValueInnerGetCo
 // NewCatalogProductFacetsValueInnerWithDefaults instantiates a new CatalogProductFacetsValueInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductFacetsValueInnerWithDefaults() *CatalogProductFacetsValueInner {
 	this := CatalogProductFacetsValueInner{}
 	return &this
 }
 
 // GetCount returns the Count field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) GetCount() (ret CatalogProductFacetsValueInnerGetCountRetType) {
 	ret, _ = o.GetCountOk()
 	return ret
@@ -98,16 +113,19 @@ func (o *CatalogProductFacetsValueInner) GetCount() (ret CatalogProductFacetsVal
 
 // GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) GetCountOk() (ret CatalogProductFacetsValueInnerGetCountRetType, ok bool) {
 	return getCatalogProductFacetsValueInnerGetCountAttributeTypeOk(o.Count)
 }
 
 // SetCount sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) SetCount(v CatalogProductFacetsValueInnerGetCountRetType) {
 	setCatalogProductFacetsValueInnerGetCountAttributeType(&o.Count, v)
 }
 
 // GetValue returns the Value field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) GetValue() (ret CatalogProductFacetsValueInnerGetValueRetType) {
 	ret, _ = o.GetValueOk()
 	return ret
@@ -115,15 +133,18 @@ func (o *CatalogProductFacetsValueInner) GetValue() (ret CatalogProductFacetsVal
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) GetValueOk() (ret CatalogProductFacetsValueInnerGetValueRetType, ok bool) {
 	return getCatalogProductFacetsValueInnerGetValueAttributeTypeOk(o.Value)
 }
 
 // SetValue sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductFacetsValueInner) SetValue(v CatalogProductFacetsValueInnerGetValueRetType) {
 	setCatalogProductFacetsValueInnerGetValueAttributeType(&o.Value, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogProductFacetsValueInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductFacetsValueInnerGetCountAttributeTypeOk(o.Count); ok {
@@ -135,37 +156,45 @@ func (o CatalogProductFacetsValueInner) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogProductFacetsValueInner struct {
 	value *CatalogProductFacetsValueInner
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductFacetsValueInner) Get() *CatalogProductFacetsValueInner {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductFacetsValueInner) Set(val *CatalogProductFacetsValueInner) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductFacetsValueInner) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductFacetsValueInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogProductFacetsValueInner(val *CatalogProductFacetsValueInner) *NullableCatalogProductFacetsValueInner {
 	return &NullableCatalogProductFacetsValueInner{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductFacetsValueInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductFacetsValueInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
