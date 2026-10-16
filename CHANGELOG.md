@@ -33,6 +33,9 @@
       - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
+- `edge`:
+  - [v0.14.0](services/edge/CHANGELOG.md#v0140)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `iaas`:
   - [v1.14.5](services/iaas/CHANGELOG.md#v1145)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
