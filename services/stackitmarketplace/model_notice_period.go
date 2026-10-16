@@ -26,6 +26,7 @@ var _ MappedNullable = &NoticePeriod{}
 
 // NoticePeriodTypes The notice period type.
 // value type for enums
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodTypes string
 
 // List of Type
@@ -42,6 +43,7 @@ var AllowedNoticePeriodTypesEnumValues = []NoticePeriodTypes{
 	"MONTHS",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NoticePeriodTypes) UnmarshalJSON(src []byte) error {
 	// use a type alias to prevent infinite recursion during unmarshal,
 	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
@@ -69,6 +71,7 @@ func (v *NoticePeriodTypes) UnmarshalJSON(src []byte) error {
 
 // NewNoticePeriodTypesFromValue returns a pointer to a valid NoticePeriodTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNoticePeriodTypesFromValue(v NoticePeriodTypes) (*NoticePeriodTypes, error) {
 	ev := NoticePeriodTypes(v)
 	if ev.IsValid() {
@@ -79,6 +82,7 @@ func NewNoticePeriodTypesFromValue(v NoticePeriodTypes) (*NoticePeriodTypes, err
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NoticePeriodTypes) IsValid() bool {
 	for _, existing := range AllowedNoticePeriodTypesEnumValues {
 		if existing == v {
@@ -89,50 +93,63 @@ func (v NoticePeriodTypes) IsValid() bool {
 }
 
 // Ptr returns reference to TypeTypes value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NoticePeriodTypes) Ptr() *NoticePeriodTypes {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableNoticePeriodTypes struct {
 	value *NoticePeriodTypes
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriodTypes) Get() *NoticePeriodTypes {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriodTypes) Set(val *NoticePeriodTypes) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriodTypes) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriodTypes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableNoticePeriodTypes(val *NoticePeriodTypes) *NullableNoticePeriodTypes {
 	return &NullableNoticePeriodTypes{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriodTypes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriodTypes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetTypeAttributeType = *NoticePeriodTypes
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetTypeArgType = NoticePeriodTypes
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetTypeRetType = NoticePeriodTypes
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getNoticePeriodGetTypeAttributeTypeOk(arg NoticePeriodGetTypeAttributeType) (ret NoticePeriodGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -140,6 +157,7 @@ func getNoticePeriodGetTypeAttributeTypeOk(arg NoticePeriodGetTypeAttributeType)
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setNoticePeriodGetTypeAttributeType(arg *NoticePeriodGetTypeAttributeType, val NoticePeriodGetTypeRetType) {
 	*arg = &val
 }
@@ -149,10 +167,14 @@ func setNoticePeriodGetTypeAttributeType(arg *NoticePeriodGetTypeAttributeType, 
 */
 
 // isInteger
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetValueAttributeType = *int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetValueArgType = int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriodGetValueRetType = int64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getNoticePeriodGetValueAttributeTypeOk(arg NoticePeriodGetValueAttributeType) (ret NoticePeriodGetValueRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -160,11 +182,13 @@ func getNoticePeriodGetValueAttributeTypeOk(arg NoticePeriodGetValueAttributeTyp
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setNoticePeriodGetValueAttributeType(arg *NoticePeriodGetValueAttributeType, val NoticePeriodGetValueRetType) {
 	*arg = &val
 }
 
 // NoticePeriod The notice period for a product and plan.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NoticePeriod struct {
 	// The notice period type.
 	Type NoticePeriodGetTypeAttributeType `json:"type,omitempty"`
@@ -176,6 +200,7 @@ type NoticePeriod struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNoticePeriod() *NoticePeriod {
 	this := NoticePeriod{}
 	return &this
@@ -184,12 +209,14 @@ func NewNoticePeriod() *NoticePeriod {
 // NewNoticePeriodWithDefaults instantiates a new NoticePeriod object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNoticePeriodWithDefaults() *NoticePeriod {
 	this := NoticePeriod{}
 	return &this
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) GetType() (res NoticePeriodGetTypeRetType) {
 	res, _ = o.GetTypeOk()
 	return
@@ -197,22 +224,26 @@ func (o *NoticePeriod) GetType() (res NoticePeriodGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) GetTypeOk() (ret NoticePeriodGetTypeRetType, ok bool) {
 	return getNoticePeriodGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) HasType() bool {
 	_, ok := o.GetTypeOk()
 	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) SetType(v NoticePeriodGetTypeRetType) {
 	setNoticePeriodGetTypeAttributeType(&o.Type, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) GetValue() (res NoticePeriodGetValueRetType) {
 	res, _ = o.GetValueOk()
 	return
@@ -220,21 +251,25 @@ func (o *NoticePeriod) GetValue() (res NoticePeriodGetValueRetType) {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) GetValueOk() (ret NoticePeriodGetValueRetType, ok bool) {
 	return getNoticePeriodGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) HasValue() bool {
 	_, ok := o.GetValueOk()
 	return ok
 }
 
 // SetValue gets a reference to the given int64 and assigns it to the Value field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *NoticePeriod) SetValue(v NoticePeriodGetValueRetType) {
 	setNoticePeriodGetValueAttributeType(&o.Value, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o NoticePeriod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNoticePeriodGetTypeAttributeTypeOk(o.Type); ok {
@@ -246,37 +281,45 @@ func (o NoticePeriod) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableNoticePeriod struct {
 	value *NoticePeriod
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriod) Get() *NoticePeriod {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriod) Set(val *NoticePeriod) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriod) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriod) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableNoticePeriod(val *NoticePeriod) *NullableNoticePeriod {
 	return &NullableNoticePeriod{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableNoticePeriod) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableNoticePeriod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

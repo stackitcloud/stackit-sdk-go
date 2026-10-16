@@ -1,3 +1,8 @@
+## v1.19.0
+- **Feature:** Introduction of multi API version support for the STACKIT Marketplace SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v1api`: New package which should be used for communication with the STACKIT Marketplace API in the future
+- **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-11-30. Switch to the new `v1api` package instead.
+
 ## v1.18.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 

@@ -23,8 +23,10 @@ var _ MappedNullable = &ErrorResponse{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetErrorAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getErrorResponseGetErrorAttributeTypeOk(arg ErrorResponseGetErrorAttributeType) (ret ErrorResponseGetErrorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -32,11 +34,14 @@ func getErrorResponseGetErrorAttributeTypeOk(arg ErrorResponseGetErrorAttributeT
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setErrorResponseGetErrorAttributeType(arg *ErrorResponseGetErrorAttributeType, val ErrorResponseGetErrorRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetErrorArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetErrorRetType = string
 
 /*
@@ -44,8 +49,10 @@ type ErrorResponseGetErrorRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getErrorResponseGetMessageAttributeTypeOk(arg ErrorResponseGetMessageAttributeType) (ret ErrorResponseGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +60,14 @@ func getErrorResponseGetMessageAttributeTypeOk(arg ErrorResponseGetMessageAttrib
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setErrorResponseGetMessageAttributeType(arg *ErrorResponseGetMessageAttributeType, val ErrorResponseGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetMessageRetType = string
 
 /*
@@ -65,8 +75,10 @@ type ErrorResponseGetMessageRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetPathAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getErrorResponseGetPathAttributeTypeOk(arg ErrorResponseGetPathAttributeType) (ret ErrorResponseGetPathRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -74,11 +86,14 @@ func getErrorResponseGetPathAttributeTypeOk(arg ErrorResponseGetPathAttributeTyp
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setErrorResponseGetPathAttributeType(arg *ErrorResponseGetPathAttributeType, val ErrorResponseGetPathRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetPathArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetPathRetType = string
 
 /*
@@ -86,10 +101,14 @@ type ErrorResponseGetPathRetType = string
 */
 
 // isInteger
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetStatusAttributeType = *int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetStatusArgType = int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetStatusRetType = int64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getErrorResponseGetStatusAttributeTypeOk(arg ErrorResponseGetStatusAttributeType) (ret ErrorResponseGetStatusRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -97,6 +116,7 @@ func getErrorResponseGetStatusAttributeTypeOk(arg ErrorResponseGetStatusAttribut
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setErrorResponseGetStatusAttributeType(arg *ErrorResponseGetStatusAttributeType, val ErrorResponseGetStatusRetType) {
 	*arg = &val
 }
@@ -106,10 +126,14 @@ func setErrorResponseGetStatusAttributeType(arg *ErrorResponseGetStatusAttribute
 */
 
 // isDateTime
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetTimeStampAttributeType = *time.Time
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetTimeStampArgType = time.Time
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponseGetTimeStampRetType = time.Time
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getErrorResponseGetTimeStampAttributeTypeOk(arg ErrorResponseGetTimeStampAttributeType) (ret ErrorResponseGetTimeStampRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -117,11 +141,13 @@ func getErrorResponseGetTimeStampAttributeTypeOk(arg ErrorResponseGetTimeStampAt
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setErrorResponseGetTimeStampAttributeType(arg *ErrorResponseGetTimeStampAttributeType, val ErrorResponseGetTimeStampRetType) {
 	*arg = &val
 }
 
 // ErrorResponse struct for ErrorResponse
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ErrorResponse struct {
 	// Reason phrase of the status code.
 	// REQUIRED
@@ -141,12 +167,14 @@ type ErrorResponse struct {
 	TimeStamp ErrorResponseGetTimeStampAttributeType `json:"timeStamp" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _ErrorResponse ErrorResponse
 
 // NewErrorResponse instantiates a new ErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewErrorResponse(error_ ErrorResponseGetErrorArgType, message ErrorResponseGetMessageArgType, path ErrorResponseGetPathArgType, status ErrorResponseGetStatusArgType, timeStamp ErrorResponseGetTimeStampArgType) *ErrorResponse {
 	this := ErrorResponse{}
 	setErrorResponseGetErrorAttributeType(&this.Error, error_)
@@ -160,12 +188,14 @@ func NewErrorResponse(error_ ErrorResponseGetErrorArgType, message ErrorResponse
 // NewErrorResponseWithDefaults instantiates a new ErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewErrorResponseWithDefaults() *ErrorResponse {
 	this := ErrorResponse{}
 	return &this
 }
 
 // GetError returns the Error field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetError() (ret ErrorResponseGetErrorRetType) {
 	ret, _ = o.GetErrorOk()
 	return ret
@@ -173,16 +203,19 @@ func (o *ErrorResponse) GetError() (ret ErrorResponseGetErrorRetType) {
 
 // GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetErrorOk() (ret ErrorResponseGetErrorRetType, ok bool) {
 	return getErrorResponseGetErrorAttributeTypeOk(o.Error)
 }
 
 // SetError sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) SetError(v ErrorResponseGetErrorRetType) {
 	setErrorResponseGetErrorAttributeType(&o.Error, v)
 }
 
 // GetMessage returns the Message field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetMessage() (ret ErrorResponseGetMessageRetType) {
 	ret, _ = o.GetMessageOk()
 	return ret
@@ -190,16 +223,19 @@ func (o *ErrorResponse) GetMessage() (ret ErrorResponseGetMessageRetType) {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetMessageOk() (ret ErrorResponseGetMessageRetType, ok bool) {
 	return getErrorResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) SetMessage(v ErrorResponseGetMessageRetType) {
 	setErrorResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetPath returns the Path field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetPath() (ret ErrorResponseGetPathRetType) {
 	ret, _ = o.GetPathOk()
 	return ret
@@ -207,16 +243,19 @@ func (o *ErrorResponse) GetPath() (ret ErrorResponseGetPathRetType) {
 
 // GetPathOk returns a tuple with the Path field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetPathOk() (ret ErrorResponseGetPathRetType, ok bool) {
 	return getErrorResponseGetPathAttributeTypeOk(o.Path)
 }
 
 // SetPath sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) SetPath(v ErrorResponseGetPathRetType) {
 	setErrorResponseGetPathAttributeType(&o.Path, v)
 }
 
 // GetStatus returns the Status field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetStatus() (ret ErrorResponseGetStatusRetType) {
 	ret, _ = o.GetStatusOk()
 	return ret
@@ -224,16 +263,19 @@ func (o *ErrorResponse) GetStatus() (ret ErrorResponseGetStatusRetType) {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetStatusOk() (ret ErrorResponseGetStatusRetType, ok bool) {
 	return getErrorResponseGetStatusAttributeTypeOk(o.Status)
 }
 
 // SetStatus sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) SetStatus(v ErrorResponseGetStatusRetType) {
 	setErrorResponseGetStatusAttributeType(&o.Status, v)
 }
 
 // GetTimeStamp returns the TimeStamp field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetTimeStamp() (ret ErrorResponseGetTimeStampRetType) {
 	ret, _ = o.GetTimeStampOk()
 	return ret
@@ -241,15 +283,18 @@ func (o *ErrorResponse) GetTimeStamp() (ret ErrorResponseGetTimeStampRetType) {
 
 // GetTimeStampOk returns a tuple with the TimeStamp field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) GetTimeStampOk() (ret ErrorResponseGetTimeStampRetType, ok bool) {
 	return getErrorResponseGetTimeStampAttributeTypeOk(o.TimeStamp)
 }
 
 // SetTimeStamp sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ErrorResponse) SetTimeStamp(v ErrorResponseGetTimeStampRetType) {
 	setErrorResponseGetTimeStampAttributeType(&o.TimeStamp, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getErrorResponseGetErrorAttributeTypeOk(o.Error); ok {
@@ -270,37 +315,45 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableErrorResponse struct {
 	value *ErrorResponse
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableErrorResponse) Get() *ErrorResponse {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableErrorResponse) Set(val *ErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableErrorResponse(val *ErrorResponse) *NullableErrorResponse {
 	return &NullableErrorResponse{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
