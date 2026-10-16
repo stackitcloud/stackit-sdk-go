@@ -6,8 +6,10 @@
     - "services/albwaf/*"
     - "services/cdn/*"
     - "services/certificates/*"
+    - "services/cgw/*"
     - "services/lbiplists/*"
     - "services/loadbalancer/*"
+    - "services/privateendpoint/*"
     - "services/vpn/*"
 # kubernetes
 "domain:Kubernetes":
