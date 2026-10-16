@@ -22,8 +22,10 @@ var _ MappedNullable = &CatalogProductSupportResource{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(arg CatalogProductSupportResourceGetSupportLinkAttributeType) (ret CatalogProductSupportResourceGetSupportLinkRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(arg CatalogPr
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductSupportResourceGetSupportLinkAttributeType(arg *CatalogProductSupportResourceGetSupportLinkAttributeType, val CatalogProductSupportResourceGetSupportLinkRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkRetType = string
 
 /*
@@ -43,8 +48,10 @@ type CatalogProductSupportResourceGetSupportLinkRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkTitleAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(arg CatalogProductSupportResourceGetSupportLinkTitleAttributeType) (ret CatalogProductSupportResourceGetSupportLinkTitleRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,14 +59,18 @@ func getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(arg Cata
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setCatalogProductSupportResourceGetSupportLinkTitleAttributeType(arg *CatalogProductSupportResourceGetSupportLinkTitleAttributeType, val CatalogProductSupportResourceGetSupportLinkTitleRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkTitleArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResourceGetSupportLinkTitleRetType = string
 
 // CatalogProductSupportResource struct for CatalogProductSupportResource
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type CatalogProductSupportResource struct {
 	// Uniform Resource Locator.
 	SupportLink CatalogProductSupportResourceGetSupportLinkAttributeType `json:"supportLink,omitempty"`
@@ -71,6 +82,7 @@ type CatalogProductSupportResource struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductSupportResource() *CatalogProductSupportResource {
 	this := CatalogProductSupportResource{}
 	return &this
@@ -79,12 +91,14 @@ func NewCatalogProductSupportResource() *CatalogProductSupportResource {
 // NewCatalogProductSupportResourceWithDefaults instantiates a new CatalogProductSupportResource object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewCatalogProductSupportResourceWithDefaults() *CatalogProductSupportResource {
 	this := CatalogProductSupportResource{}
 	return &this
 }
 
 // GetSupportLink returns the SupportLink field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) GetSupportLink() (res CatalogProductSupportResourceGetSupportLinkRetType) {
 	res, _ = o.GetSupportLinkOk()
 	return
@@ -92,22 +106,26 @@ func (o *CatalogProductSupportResource) GetSupportLink() (res CatalogProductSupp
 
 // GetSupportLinkOk returns a tuple with the SupportLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) GetSupportLinkOk() (ret CatalogProductSupportResourceGetSupportLinkRetType, ok bool) {
 	return getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(o.SupportLink)
 }
 
 // HasSupportLink returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) HasSupportLink() bool {
 	_, ok := o.GetSupportLinkOk()
 	return ok
 }
 
 // SetSupportLink gets a reference to the given string and assigns it to the SupportLink field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) SetSupportLink(v CatalogProductSupportResourceGetSupportLinkRetType) {
 	setCatalogProductSupportResourceGetSupportLinkAttributeType(&o.SupportLink, v)
 }
 
 // GetSupportLinkTitle returns the SupportLinkTitle field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) GetSupportLinkTitle() (res CatalogProductSupportResourceGetSupportLinkTitleRetType) {
 	res, _ = o.GetSupportLinkTitleOk()
 	return
@@ -115,21 +133,25 @@ func (o *CatalogProductSupportResource) GetSupportLinkTitle() (res CatalogProduc
 
 // GetSupportLinkTitleOk returns a tuple with the SupportLinkTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) GetSupportLinkTitleOk() (ret CatalogProductSupportResourceGetSupportLinkTitleRetType, ok bool) {
 	return getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(o.SupportLinkTitle)
 }
 
 // HasSupportLinkTitle returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) HasSupportLinkTitle() bool {
 	_, ok := o.GetSupportLinkTitleOk()
 	return ok
 }
 
 // SetSupportLinkTitle gets a reference to the given string and assigns it to the SupportLinkTitle field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *CatalogProductSupportResource) SetSupportLinkTitle(v CatalogProductSupportResourceGetSupportLinkTitleRetType) {
 	setCatalogProductSupportResourceGetSupportLinkTitleAttributeType(&o.SupportLinkTitle, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o CatalogProductSupportResource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(o.SupportLink); ok {
@@ -141,37 +163,45 @@ func (o CatalogProductSupportResource) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableCatalogProductSupportResource struct {
 	value *CatalogProductSupportResource
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductSupportResource) Get() *CatalogProductSupportResource {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductSupportResource) Set(val *CatalogProductSupportResource) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductSupportResource) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductSupportResource) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableCatalogProductSupportResource(val *CatalogProductSupportResource) *NullableCatalogProductSupportResource {
 	return &NullableCatalogProductSupportResource{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableCatalogProductSupportResource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableCatalogProductSupportResource) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

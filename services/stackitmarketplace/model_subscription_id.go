@@ -18,6 +18,7 @@ import (
 var _ MappedNullable = &SubscriptionId{}
 
 // SubscriptionId The subscription ID.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type SubscriptionId struct {
 }
 
@@ -25,6 +26,7 @@ type SubscriptionId struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewSubscriptionId() *SubscriptionId {
 	this := SubscriptionId{}
 	return &this
@@ -33,47 +35,57 @@ func NewSubscriptionId() *SubscriptionId {
 // NewSubscriptionIdWithDefaults instantiates a new SubscriptionId object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewSubscriptionIdWithDefaults() *SubscriptionId {
 	this := SubscriptionId{}
 	return &this
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o SubscriptionId) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableSubscriptionId struct {
 	value *SubscriptionId
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionId) Get() *SubscriptionId {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionId) Set(val *SubscriptionId) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionId) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionId) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableSubscriptionId(val *SubscriptionId) *NullableSubscriptionId {
 	return &NullableSubscriptionId{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableSubscriptionId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableSubscriptionId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

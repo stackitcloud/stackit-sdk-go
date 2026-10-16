@@ -22,8 +22,10 @@ var _ MappedNullable = &InquiryContactSales{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetCompanyNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryContactSalesGetCompanyNameAttributeTypeOk(arg InquiryContactSalesGetCompanyNameAttributeType) (ret InquiryContactSalesGetCompanyNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getInquiryContactSalesGetCompanyNameAttributeTypeOk(arg InquiryContactSales
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryContactSalesGetCompanyNameAttributeType(arg *InquiryContactSalesGetCompanyNameAttributeType, val InquiryContactSalesGetCompanyNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetCompanyNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetCompanyNameRetType = string
 
 /*
@@ -43,8 +48,10 @@ type InquiryContactSalesGetCompanyNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetContactEmailAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryContactSalesGetContactEmailAttributeTypeOk(arg InquiryContactSalesGetContactEmailAttributeType) (ret InquiryContactSalesGetContactEmailRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getInquiryContactSalesGetContactEmailAttributeTypeOk(arg InquiryContactSale
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryContactSalesGetContactEmailAttributeType(arg *InquiryContactSalesGetContactEmailAttributeType, val InquiryContactSalesGetContactEmailRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetContactEmailArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetContactEmailRetType = string
 
 /*
@@ -64,8 +74,10 @@ type InquiryContactSalesGetContactEmailRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetFullNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryContactSalesGetFullNameAttributeTypeOk(arg InquiryContactSalesGetFullNameAttributeType) (ret InquiryContactSalesGetFullNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,11 +85,14 @@ func getInquiryContactSalesGetFullNameAttributeTypeOk(arg InquiryContactSalesGet
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryContactSalesGetFullNameAttributeType(arg *InquiryContactSalesGetFullNameAttributeType, val InquiryContactSalesGetFullNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetFullNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetFullNameRetType = string
 
 /*
@@ -85,8 +100,10 @@ type InquiryContactSalesGetFullNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryContactSalesGetMessageAttributeTypeOk(arg InquiryContactSalesGetMessageAttributeType) (ret InquiryContactSalesGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -94,11 +111,14 @@ func getInquiryContactSalesGetMessageAttributeTypeOk(arg InquiryContactSalesGetM
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryContactSalesGetMessageAttributeType(arg *InquiryContactSalesGetMessageAttributeType, val InquiryContactSalesGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetMessageRetType = string
 
 /*
@@ -106,8 +126,10 @@ type InquiryContactSalesGetMessageRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetProductIdAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquiryContactSalesGetProductIdAttributeTypeOk(arg InquiryContactSalesGetProductIdAttributeType) (ret InquiryContactSalesGetProductIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -115,14 +137,18 @@ func getInquiryContactSalesGetProductIdAttributeTypeOk(arg InquiryContactSalesGe
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquiryContactSalesGetProductIdAttributeType(arg *InquiryContactSalesGetProductIdAttributeType, val InquiryContactSalesGetProductIdRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetProductIdArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSalesGetProductIdRetType = string
 
 // InquiryContactSales Contact sales.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryContactSales struct {
 	// The product's vendor name.
 	// REQUIRED
@@ -141,12 +167,14 @@ type InquiryContactSales struct {
 	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _InquiryContactSales InquiryContactSales
 
 // NewInquiryContactSales instantiates a new InquiryContactSales object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryContactSales(companyName InquiryContactSalesGetCompanyNameArgType, contactEmail InquiryContactSalesGetContactEmailArgType, fullName InquiryContactSalesGetFullNameArgType, message InquiryContactSalesGetMessageArgType, productId InquiryContactSalesGetProductIdArgType) *InquiryContactSales {
 	this := InquiryContactSales{}
 	setInquiryContactSalesGetCompanyNameAttributeType(&this.CompanyName, companyName)
@@ -160,12 +188,14 @@ func NewInquiryContactSales(companyName InquiryContactSalesGetCompanyNameArgType
 // NewInquiryContactSalesWithDefaults instantiates a new InquiryContactSales object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryContactSalesWithDefaults() *InquiryContactSales {
 	this := InquiryContactSales{}
 	return &this
 }
 
 // GetCompanyName returns the CompanyName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetCompanyName() (ret InquiryContactSalesGetCompanyNameRetType) {
 	ret, _ = o.GetCompanyNameOk()
 	return ret
@@ -173,16 +203,19 @@ func (o *InquiryContactSales) GetCompanyName() (ret InquiryContactSalesGetCompan
 
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetCompanyNameOk() (ret InquiryContactSalesGetCompanyNameRetType, ok bool) {
 	return getInquiryContactSalesGetCompanyNameAttributeTypeOk(o.CompanyName)
 }
 
 // SetCompanyName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) SetCompanyName(v InquiryContactSalesGetCompanyNameRetType) {
 	setInquiryContactSalesGetCompanyNameAttributeType(&o.CompanyName, v)
 }
 
 // GetContactEmail returns the ContactEmail field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetContactEmail() (ret InquiryContactSalesGetContactEmailRetType) {
 	ret, _ = o.GetContactEmailOk()
 	return ret
@@ -190,16 +223,19 @@ func (o *InquiryContactSales) GetContactEmail() (ret InquiryContactSalesGetConta
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetContactEmailOk() (ret InquiryContactSalesGetContactEmailRetType, ok bool) {
 	return getInquiryContactSalesGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) SetContactEmail(v InquiryContactSalesGetContactEmailRetType) {
 	setInquiryContactSalesGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetFullName returns the FullName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetFullName() (ret InquiryContactSalesGetFullNameRetType) {
 	ret, _ = o.GetFullNameOk()
 	return ret
@@ -207,16 +243,19 @@ func (o *InquiryContactSales) GetFullName() (ret InquiryContactSalesGetFullNameR
 
 // GetFullNameOk returns a tuple with the FullName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetFullNameOk() (ret InquiryContactSalesGetFullNameRetType, ok bool) {
 	return getInquiryContactSalesGetFullNameAttributeTypeOk(o.FullName)
 }
 
 // SetFullName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) SetFullName(v InquiryContactSalesGetFullNameRetType) {
 	setInquiryContactSalesGetFullNameAttributeType(&o.FullName, v)
 }
 
 // GetMessage returns the Message field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetMessage() (ret InquiryContactSalesGetMessageRetType) {
 	ret, _ = o.GetMessageOk()
 	return ret
@@ -224,16 +263,19 @@ func (o *InquiryContactSales) GetMessage() (ret InquiryContactSalesGetMessageRet
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetMessageOk() (ret InquiryContactSalesGetMessageRetType, ok bool) {
 	return getInquiryContactSalesGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) SetMessage(v InquiryContactSalesGetMessageRetType) {
 	setInquiryContactSalesGetMessageAttributeType(&o.Message, v)
 }
 
 // GetProductId returns the ProductId field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetProductId() (ret InquiryContactSalesGetProductIdRetType) {
 	ret, _ = o.GetProductIdOk()
 	return ret
@@ -241,15 +283,18 @@ func (o *InquiryContactSales) GetProductId() (ret InquiryContactSalesGetProductI
 
 // GetProductIdOk returns a tuple with the ProductId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) GetProductIdOk() (ret InquiryContactSalesGetProductIdRetType, ok bool) {
 	return getInquiryContactSalesGetProductIdAttributeTypeOk(o.ProductId)
 }
 
 // SetProductId sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquiryContactSales) SetProductId(v InquiryContactSalesGetProductIdRetType) {
 	setInquiryContactSalesGetProductIdAttributeType(&o.ProductId, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o InquiryContactSales) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryContactSalesGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
@@ -270,37 +315,45 @@ func (o InquiryContactSales) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiryContactSales struct {
 	value *InquiryContactSales
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryContactSales) Get() *InquiryContactSales {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryContactSales) Set(val *InquiryContactSales) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryContactSales) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryContactSales) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiryContactSales(val *InquiryContactSales) *NullableInquiryContactSales {
 	return &NullableInquiryContactSales{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryContactSales) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryContactSales) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

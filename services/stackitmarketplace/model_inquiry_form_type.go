@@ -16,18 +16,25 @@ import (
 )
 
 // InquiryFormType The form type.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiryFormType string
 
 // List of inquiryFormType
 const (
-	INQUIRYFORMTYPE_SUGGEST_PRODUCT      InquiryFormType = "SUGGEST_PRODUCT"
-	INQUIRYFORMTYPE_CONTACT_SALES        InquiryFormType = "CONTACT_SALES"
-	INQUIRYFORMTYPE_BECOME_VENDOR        InquiryFormType = "BECOME_VENDOR"
-	INQUIRYFORMTYPE_REGISTER_TESTING     InquiryFormType = "REGISTER_TESTING"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	INQUIRYFORMTYPE_SUGGEST_PRODUCT InquiryFormType = "SUGGEST_PRODUCT"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	INQUIRYFORMTYPE_CONTACT_SALES InquiryFormType = "CONTACT_SALES"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	INQUIRYFORMTYPE_BECOME_VENDOR InquiryFormType = "BECOME_VENDOR"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	INQUIRYFORMTYPE_REGISTER_TESTING InquiryFormType = "REGISTER_TESTING"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	INQUIRYFORMTYPE_REQUEST_PRIVATE_PLAN InquiryFormType = "REQUEST_PRIVATE_PLAN"
 )
 
 // All allowed values of InquiryFormType enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedInquiryFormTypeEnumValues = []InquiryFormType{
 	"SUGGEST_PRODUCT",
 	"CONTACT_SALES",
@@ -36,6 +43,7 @@ var AllowedInquiryFormTypeEnumValues = []InquiryFormType{
 	"REQUEST_PRIVATE_PLAN",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *InquiryFormType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -60,6 +68,7 @@ func (v *InquiryFormType) UnmarshalJSON(src []byte) error {
 
 // NewInquiryFormTypeFromValue returns a pointer to a valid InquiryFormType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquiryFormTypeFromValue(v string) (*InquiryFormType, error) {
 	ev := InquiryFormType(v)
 	if ev.IsValid() {
@@ -70,6 +79,7 @@ func NewInquiryFormTypeFromValue(v string) (*InquiryFormType, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v InquiryFormType) IsValid() bool {
 	for _, existing := range AllowedInquiryFormTypeEnumValues {
 		if existing == v {
@@ -80,41 +90,50 @@ func (v InquiryFormType) IsValid() bool {
 }
 
 // Ptr returns reference to inquiryFormType value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v InquiryFormType) Ptr() *InquiryFormType {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiryFormType struct {
 	value *InquiryFormType
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryFormType) Get() *InquiryFormType {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryFormType) Set(val *InquiryFormType) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryFormType) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryFormType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiryFormType(val *InquiryFormType) *NullableInquiryFormType {
 	return &NullableInquiryFormType{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiryFormType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiryFormType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

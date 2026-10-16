@@ -16,20 +16,25 @@ import (
 )
 
 // OfferType The offer type of a product reflecting the business model.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type OfferType string
 
 // List of offerType
 const (
-	OFFERTYPE_LISTING   OfferType = "OFFER_LISTING"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
+	OFFERTYPE_LISTING OfferType = "OFFER_LISTING"
+	// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 	OFFERTYPE_RESELLING OfferType = "OFFER_RESELLING"
 )
 
 // All allowed values of OfferType enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 var AllowedOfferTypeEnumValues = []OfferType{
 	"OFFER_LISTING",
 	"OFFER_RESELLING",
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *OfferType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -54,6 +59,7 @@ func (v *OfferType) UnmarshalJSON(src []byte) error {
 
 // NewOfferTypeFromValue returns a pointer to a valid OfferType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewOfferTypeFromValue(v string) (*OfferType, error) {
 	ev := OfferType(v)
 	if ev.IsValid() {
@@ -64,6 +70,7 @@ func NewOfferTypeFromValue(v string) (*OfferType, error) {
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v OfferType) IsValid() bool {
 	for _, existing := range AllowedOfferTypeEnumValues {
 		if existing == v {
@@ -74,41 +81,50 @@ func (v OfferType) IsValid() bool {
 }
 
 // Ptr returns reference to offerType value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v OfferType) Ptr() *OfferType {
 	return &v
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableOfferType struct {
 	value *OfferType
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableOfferType) Get() *OfferType {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableOfferType) Set(val *OfferType) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableOfferType) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableOfferType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableOfferType(val *OfferType) *NullableOfferType {
 	return &NullableOfferType{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableOfferType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableOfferType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

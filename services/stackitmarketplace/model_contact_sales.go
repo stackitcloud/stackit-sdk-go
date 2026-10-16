@@ -22,10 +22,14 @@ var _ MappedNullable = &ContactSales{}
 */
 
 // isModel
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetContactSalesAttributeType = *InquiryContactSales
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetContactSalesArgType = InquiryContactSales
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetContactSalesRetType = InquiryContactSales
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getContactSalesGetContactSalesAttributeTypeOk(arg ContactSalesGetContactSalesAttributeType) (ret ContactSalesGetContactSalesRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,6 +37,7 @@ func getContactSalesGetContactSalesAttributeTypeOk(arg ContactSalesGetContactSal
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setContactSalesGetContactSalesAttributeType(arg *ContactSalesGetContactSalesAttributeType, val ContactSalesGetContactSalesRetType) {
 	*arg = &val
 }
@@ -42,10 +47,14 @@ func setContactSalesGetContactSalesAttributeType(arg *ContactSalesGetContactSale
 */
 
 // isEnumRef
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetTypeAttributeType = *InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetTypeArgType = InquiryFormType
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSalesGetTypeRetType = InquiryFormType
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getContactSalesGetTypeAttributeTypeOk(arg ContactSalesGetTypeAttributeType) (ret ContactSalesGetTypeRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -53,11 +62,13 @@ func getContactSalesGetTypeAttributeTypeOk(arg ContactSalesGetTypeAttributeType)
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setContactSalesGetTypeAttributeType(arg *ContactSalesGetTypeAttributeType, val ContactSalesGetTypeRetType) {
 	*arg = &val
 }
 
 // ContactSales Contact sales.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type ContactSales struct {
 	// REQUIRED
 	ContactSales ContactSalesGetContactSalesAttributeType `json:"contactSales" required:"true"`
@@ -65,12 +76,14 @@ type ContactSales struct {
 	Type ContactSalesGetTypeAttributeType `json:"type" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _ContactSales ContactSales
 
 // NewContactSales instantiates a new ContactSales object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewContactSales(contactSales ContactSalesGetContactSalesArgType, types ContactSalesGetTypeArgType) *ContactSales {
 	this := ContactSales{}
 	setContactSalesGetContactSalesAttributeType(&this.ContactSales, contactSales)
@@ -81,12 +94,14 @@ func NewContactSales(contactSales ContactSalesGetContactSalesArgType, types Cont
 // NewContactSalesWithDefaults instantiates a new ContactSales object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewContactSalesWithDefaults() *ContactSales {
 	this := ContactSales{}
 	return &this
 }
 
 // GetContactSales returns the ContactSales field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) GetContactSales() (ret ContactSalesGetContactSalesRetType) {
 	ret, _ = o.GetContactSalesOk()
 	return ret
@@ -94,16 +109,19 @@ func (o *ContactSales) GetContactSales() (ret ContactSalesGetContactSalesRetType
 
 // GetContactSalesOk returns a tuple with the ContactSales field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) GetContactSalesOk() (ret ContactSalesGetContactSalesRetType, ok bool) {
 	return getContactSalesGetContactSalesAttributeTypeOk(o.ContactSales)
 }
 
 // SetContactSales sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) SetContactSales(v ContactSalesGetContactSalesRetType) {
 	setContactSalesGetContactSalesAttributeType(&o.ContactSales, v)
 }
 
 // GetType returns the Type field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) GetType() (ret ContactSalesGetTypeRetType) {
 	ret, _ = o.GetTypeOk()
 	return ret
@@ -111,15 +129,18 @@ func (o *ContactSales) GetType() (ret ContactSalesGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) GetTypeOk() (ret ContactSalesGetTypeRetType, ok bool) {
 	return getContactSalesGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *ContactSales) SetType(v ContactSalesGetTypeRetType) {
 	setContactSalesGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o ContactSales) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getContactSalesGetContactSalesAttributeTypeOk(o.ContactSales); ok {
@@ -131,37 +152,45 @@ func (o ContactSales) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableContactSales struct {
 	value *ContactSales
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableContactSales) Get() *ContactSales {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableContactSales) Set(val *ContactSales) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableContactSales) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableContactSales) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableContactSales(val *ContactSales) *NullableContactSales {
 	return &NullableContactSales{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableContactSales) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableContactSales) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
