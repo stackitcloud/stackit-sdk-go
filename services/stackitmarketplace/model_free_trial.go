@@ -22,10 +22,14 @@ var _ MappedNullable = &FreeTrial{}
 */
 
 // isInteger
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type FreeTrialGetValueAttributeType = *int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type FreeTrialGetValueArgType = int64
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type FreeTrialGetValueRetType = int64
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getFreeTrialGetValueAttributeTypeOk(arg FreeTrialGetValueAttributeType) (ret FreeTrialGetValueRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -33,11 +37,13 @@ func getFreeTrialGetValueAttributeTypeOk(arg FreeTrialGetValueAttributeType) (re
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setFreeTrialGetValueAttributeType(arg *FreeTrialGetValueAttributeType, val FreeTrialGetValueRetType) {
 	*arg = &val
 }
 
 // FreeTrial The amount of days of free trial highlighted in the product card.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type FreeTrial struct {
 	Value FreeTrialGetValueAttributeType `json:"value,omitempty"`
 }
@@ -46,6 +52,7 @@ type FreeTrial struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewFreeTrial() *FreeTrial {
 	this := FreeTrial{}
 	return &this
@@ -54,12 +61,14 @@ func NewFreeTrial() *FreeTrial {
 // NewFreeTrialWithDefaults instantiates a new FreeTrial object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewFreeTrialWithDefaults() *FreeTrial {
 	this := FreeTrial{}
 	return &this
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *FreeTrial) GetValue() (res FreeTrialGetValueRetType) {
 	res, _ = o.GetValueOk()
 	return
@@ -67,21 +76,25 @@ func (o *FreeTrial) GetValue() (res FreeTrialGetValueRetType) {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *FreeTrial) GetValueOk() (ret FreeTrialGetValueRetType, ok bool) {
 	return getFreeTrialGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *FreeTrial) HasValue() bool {
 	_, ok := o.GetValueOk()
 	return ok
 }
 
 // SetValue gets a reference to the given int64 and assigns it to the Value field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *FreeTrial) SetValue(v FreeTrialGetValueRetType) {
 	setFreeTrialGetValueAttributeType(&o.Value, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o FreeTrial) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFreeTrialGetValueAttributeTypeOk(o.Value); ok {
@@ -90,37 +103,45 @@ func (o FreeTrial) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableFreeTrial struct {
 	value *FreeTrial
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableFreeTrial) Get() *FreeTrial {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableFreeTrial) Set(val *FreeTrial) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableFreeTrial) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableFreeTrial) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableFreeTrial(val *FreeTrial) *NullableFreeTrial {
 	return &NullableFreeTrial{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableFreeTrial) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableFreeTrial) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

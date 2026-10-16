@@ -22,8 +22,10 @@ var _ MappedNullable = &InquirySuggestProduct{}
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetCompanyNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquirySuggestProductGetCompanyNameAttributeTypeOk(arg InquirySuggestProductGetCompanyNameAttributeType) (ret InquirySuggestProductGetCompanyNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -31,11 +33,14 @@ func getInquirySuggestProductGetCompanyNameAttributeTypeOk(arg InquirySuggestPro
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquirySuggestProductGetCompanyNameAttributeType(arg *InquirySuggestProductGetCompanyNameAttributeType, val InquirySuggestProductGetCompanyNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetCompanyNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetCompanyNameRetType = string
 
 /*
@@ -43,8 +48,10 @@ type InquirySuggestProductGetCompanyNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetMessageAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquirySuggestProductGetMessageAttributeTypeOk(arg InquirySuggestProductGetMessageAttributeType) (ret InquirySuggestProductGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -52,11 +59,14 @@ func getInquirySuggestProductGetMessageAttributeTypeOk(arg InquirySuggestProduct
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquirySuggestProductGetMessageAttributeType(arg *InquirySuggestProductGetMessageAttributeType, val InquirySuggestProductGetMessageRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetMessageArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetMessageRetType = string
 
 /*
@@ -64,8 +74,10 @@ type InquirySuggestProductGetMessageRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetNameAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquirySuggestProductGetNameAttributeTypeOk(arg InquirySuggestProductGetNameAttributeType) (ret InquirySuggestProductGetNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -73,11 +85,14 @@ func getInquirySuggestProductGetNameAttributeTypeOk(arg InquirySuggestProductGet
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquirySuggestProductGetNameAttributeType(arg *InquirySuggestProductGetNameAttributeType, val InquirySuggestProductGetNameRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetNameArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetNameRetType = string
 
 /*
@@ -85,8 +100,10 @@ type InquirySuggestProductGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetUrlAttributeType = *string
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func getInquirySuggestProductGetUrlAttributeTypeOk(arg InquirySuggestProductGetUrlAttributeType) (ret InquirySuggestProductGetUrlRetType, ok bool) {
 	if arg == nil {
 		return ret, false
@@ -94,14 +111,18 @@ func getInquirySuggestProductGetUrlAttributeTypeOk(arg InquirySuggestProductGetU
 	return *arg, true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func setInquirySuggestProductGetUrlAttributeType(arg *InquirySuggestProductGetUrlAttributeType, val InquirySuggestProductGetUrlRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetUrlArgType = string
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProductGetUrlRetType = string
 
 // InquirySuggestProduct Suggest a product.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquirySuggestProduct struct {
 	// The product's vendor name.
 	// REQUIRED
@@ -116,12 +137,14 @@ type InquirySuggestProduct struct {
 	Url InquirySuggestProductGetUrlAttributeType `json:"url" required:"true"`
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type _InquirySuggestProduct InquirySuggestProduct
 
 // NewInquirySuggestProduct instantiates a new InquirySuggestProduct object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquirySuggestProduct(companyName InquirySuggestProductGetCompanyNameArgType, name InquirySuggestProductGetNameArgType, url InquirySuggestProductGetUrlArgType) *InquirySuggestProduct {
 	this := InquirySuggestProduct{}
 	setInquirySuggestProductGetCompanyNameAttributeType(&this.CompanyName, companyName)
@@ -133,12 +156,14 @@ func NewInquirySuggestProduct(companyName InquirySuggestProductGetCompanyNameArg
 // NewInquirySuggestProductWithDefaults instantiates a new InquirySuggestProduct object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewInquirySuggestProductWithDefaults() *InquirySuggestProduct {
 	this := InquirySuggestProduct{}
 	return &this
 }
 
 // GetCompanyName returns the CompanyName field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetCompanyName() (ret InquirySuggestProductGetCompanyNameRetType) {
 	ret, _ = o.GetCompanyNameOk()
 	return ret
@@ -146,16 +171,19 @@ func (o *InquirySuggestProduct) GetCompanyName() (ret InquirySuggestProductGetCo
 
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetCompanyNameOk() (ret InquirySuggestProductGetCompanyNameRetType, ok bool) {
 	return getInquirySuggestProductGetCompanyNameAttributeTypeOk(o.CompanyName)
 }
 
 // SetCompanyName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) SetCompanyName(v InquirySuggestProductGetCompanyNameRetType) {
 	setInquirySuggestProductGetCompanyNameAttributeType(&o.CompanyName, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetMessage() (res InquirySuggestProductGetMessageRetType) {
 	res, _ = o.GetMessageOk()
 	return
@@ -163,22 +191,26 @@ func (o *InquirySuggestProduct) GetMessage() (res InquirySuggestProductGetMessag
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetMessageOk() (ret InquirySuggestProductGetMessageRetType, ok bool) {
 	return getInquirySuggestProductGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) HasMessage() bool {
 	_, ok := o.GetMessageOk()
 	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) SetMessage(v InquirySuggestProductGetMessageRetType) {
 	setInquirySuggestProductGetMessageAttributeType(&o.Message, v)
 }
 
 // GetName returns the Name field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetName() (ret InquirySuggestProductGetNameRetType) {
 	ret, _ = o.GetNameOk()
 	return ret
@@ -186,16 +218,19 @@ func (o *InquirySuggestProduct) GetName() (ret InquirySuggestProductGetNameRetTy
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetNameOk() (ret InquirySuggestProductGetNameRetType, ok bool) {
 	return getInquirySuggestProductGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) SetName(v InquirySuggestProductGetNameRetType) {
 	setInquirySuggestProductGetNameAttributeType(&o.Name, v)
 }
 
 // GetUrl returns the Url field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetUrl() (ret InquirySuggestProductGetUrlRetType) {
 	ret, _ = o.GetUrlOk()
 	return ret
@@ -203,15 +238,18 @@ func (o *InquirySuggestProduct) GetUrl() (ret InquirySuggestProductGetUrlRetType
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) GetUrlOk() (ret InquirySuggestProductGetUrlRetType, ok bool) {
 	return getInquirySuggestProductGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o *InquirySuggestProduct) SetUrl(v InquirySuggestProductGetUrlRetType) {
 	setInquirySuggestProductGetUrlAttributeType(&o.Url, v)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (o InquirySuggestProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquirySuggestProductGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
@@ -229,37 +267,45 @@ func (o InquirySuggestProduct) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquirySuggestProduct struct {
 	value *InquirySuggestProduct
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquirySuggestProduct) Get() *InquirySuggestProduct {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquirySuggestProduct) Set(val *InquirySuggestProduct) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquirySuggestProduct) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquirySuggestProduct) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquirySuggestProduct(val *InquirySuggestProduct) *NullableInquirySuggestProduct {
 	return &NullableInquirySuggestProduct{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquirySuggestProduct) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquirySuggestProduct) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
