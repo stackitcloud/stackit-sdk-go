@@ -119,6 +119,9 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
+- `scf`:
+  - [v0.11.0](services/scf/CHANGELOG.md#v0110)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `secretsmanager`:
   - [v0.19.2](services/secretsmanager/CHANGELOG.md#v0192)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
