@@ -1,6 +1,8 @@
 ## Release (2026-MM-DD)
 
 - `alb`:
+  - [v0.19.0](services/alb/CHANGELOG.md#v0190)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.18.0](services/alb/CHANGELOG.md#v0180)
     - `v2api`:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
@@ -20,6 +22,9 @@
       - **Feature:** Add waiter method for the API
 - `cdn`:
   - [v1.22.0](services/cdn/CHANGELOG.md#v1220)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
+- `certificates`:
+  - [v1.10.0](services/certificates/CHANGELOG.md#v1100)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `core`: [v0.27.1](core/CHANGELOG.md#v0271)
   - **Bugfix:** `WaitWithContext` no longer returns `(nil, nil)` after a single retryable `502`/`504` error
