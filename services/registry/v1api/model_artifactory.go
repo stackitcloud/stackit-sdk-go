@@ -29,10 +29,9 @@ type Artifactory struct {
 	// A auto generated unique id which identifies the STACKIT Artifactory.
 	Id string `json:"id"`
 	// A user chosen name to distinguish multiple STACKIT Artifactories.
-	Name  string `json:"name"`
-	Proxy *Proxy `json:"proxy,omitempty"`
-	// The current state of the STACKIT Artifactory.
-	State string `json:"state"`
+	Name  string           `json:"name"`
+	Proxy *Proxy           `json:"proxy,omitempty"`
+	State ArtifactoryState `json:"state"`
 	// The base URL of the STACKIT Artifactory.
 	Url                  string `json:"url"`
 	AdditionalProperties map[string]interface{}
@@ -44,7 +43,7 @@ type _Artifactory Artifactory
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArtifactory(consumedQuotaBytes int64, createTime time.Time, id string, name string, state string, url string) *Artifactory {
+func NewArtifactory(consumedQuotaBytes int64, createTime time.Time, id string, name string, state ArtifactoryState, url string) *Artifactory {
 	this := Artifactory{}
 	this.ConsumedQuotaBytes = consumedQuotaBytes
 	this.CreateTime = createTime
@@ -192,9 +191,9 @@ func (o *Artifactory) SetProxy(v Proxy) {
 }
 
 // GetState returns the State field value
-func (o *Artifactory) GetState() string {
+func (o *Artifactory) GetState() ArtifactoryState {
 	if o == nil {
-		var ret string
+		var ret ArtifactoryState
 		return ret
 	}
 
@@ -203,7 +202,7 @@ func (o *Artifactory) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Artifactory) GetStateOk() (*string, bool) {
+func (o *Artifactory) GetStateOk() (*ArtifactoryState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,7 +210,7 @@ func (o *Artifactory) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *Artifactory) SetState(v string) {
+func (o *Artifactory) SetState(v ArtifactoryState) {
 	o.State = v
 }
 
