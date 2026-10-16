@@ -16,6 +16,7 @@ import (
 )
 
 // InquiriesCreateInquiryPayload - struct for InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type InquiriesCreateInquiryPayload struct {
 	BecomeVendor       *BecomeVendor
 	ContactSales       *ContactSales
@@ -25,6 +26,7 @@ type InquiriesCreateInquiryPayload struct {
 }
 
 // BecomeVendorAsInquiriesCreateInquiryPayload is a convenience function that returns BecomeVendor wrapped in InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func BecomeVendorAsInquiriesCreateInquiryPayload(v *BecomeVendor) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		BecomeVendor: v,
@@ -32,6 +34,7 @@ func BecomeVendorAsInquiriesCreateInquiryPayload(v *BecomeVendor) InquiriesCreat
 }
 
 // ContactSalesAsInquiriesCreateInquiryPayload is a convenience function that returns ContactSales wrapped in InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func ContactSalesAsInquiriesCreateInquiryPayload(v *ContactSales) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		ContactSales: v,
@@ -39,6 +42,7 @@ func ContactSalesAsInquiriesCreateInquiryPayload(v *ContactSales) InquiriesCreat
 }
 
 // RegisterTestingAsInquiriesCreateInquiryPayload is a convenience function that returns RegisterTesting wrapped in InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func RegisterTestingAsInquiriesCreateInquiryPayload(v *RegisterTesting) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		RegisterTesting: v,
@@ -46,6 +50,7 @@ func RegisterTestingAsInquiriesCreateInquiryPayload(v *RegisterTesting) Inquirie
 }
 
 // RequestPrivatePlanAsInquiriesCreateInquiryPayload is a convenience function that returns RequestPrivatePlan wrapped in InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func RequestPrivatePlanAsInquiriesCreateInquiryPayload(v *RequestPrivatePlan) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		RequestPrivatePlan: v,
@@ -53,6 +58,7 @@ func RequestPrivatePlanAsInquiriesCreateInquiryPayload(v *RequestPrivatePlan) In
 }
 
 // SuggestProductAsInquiriesCreateInquiryPayload is a convenience function that returns SuggestProduct wrapped in InquiriesCreateInquiryPayload
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func SuggestProductAsInquiriesCreateInquiryPayload(v *SuggestProduct) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		SuggestProduct: v,
@@ -60,6 +66,7 @@ func SuggestProductAsInquiriesCreateInquiryPayload(v *SuggestProduct) InquiriesC
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
@@ -138,6 +145,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (src InquiriesCreateInquiryPayload) MarshalJSON() ([]byte, error) {
 	if src.BecomeVendor != nil {
 		return json.Marshal(&src.BecomeVendor)
@@ -163,6 +171,7 @@ func (src InquiriesCreateInquiryPayload) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (obj *InquiriesCreateInquiryPayload) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
@@ -191,37 +200,45 @@ func (obj *InquiriesCreateInquiryPayload) GetActualInstance() interface{} {
 	return nil
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 type NullableInquiriesCreateInquiryPayload struct {
 	value *InquiriesCreateInquiryPayload
 	isSet bool
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiriesCreateInquiryPayload) Get() *InquiriesCreateInquiryPayload {
 	return v.value
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiriesCreateInquiryPayload) Set(val *InquiriesCreateInquiryPayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiriesCreateInquiryPayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiriesCreateInquiryPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func NewNullableInquiriesCreateInquiryPayload(val *InquiriesCreateInquiryPayload) *NullableInquiriesCreateInquiryPayload {
 	return &NullableInquiriesCreateInquiryPayload{value: val, isSet: true}
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v NullableInquiriesCreateInquiryPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Will be removed after 2026-11-30. Move to the packages generated for each available API version instead
 func (v *NullableInquiriesCreateInquiryPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
