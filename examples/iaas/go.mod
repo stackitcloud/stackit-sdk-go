@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/iaas => ../../services/i
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
-	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.14.3
+	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.15.1
 )
 
 require (
