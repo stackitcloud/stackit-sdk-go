@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
+	"github.com/stackitcloud/stackit-sdk-go/core/credentials"
 	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 )
 
@@ -95,6 +96,7 @@ type Configuration struct {
 	TokenCustomUrl                         string                     `json:"tokenCustomUrl,omitempty"`
 	Region                                 string                     `json:"region,omitempty"`
 	CustomAuth                             http.RoundTripper
+	TokenProvider                          credentials.TokenProvider // used by auth.DefaultAuth instead of the legacy flows when set
 	Servers                                ServerConfigurations
 	OperationServers                       map[string]ServerConfigurations
 	HTTPClient                             *http.Client
@@ -386,6 +388,15 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 // Deprecated: Use runtime.WithCaptureHTTPResponse instead
 func WithCaptureHTTPResponse(parent context.Context, resp **http.Response) context.Context {
 	return context.WithValue(parent, ContextHTTPResponse, resp)
+}
+
+// WithTokenProvider returns a ConfigurationOption that sets a TokenProvider from the credentials package.
+// When set, auth.DefaultAuth authenticates requests with it instead of the legacy flows.
+func WithTokenProvider(tp credentials.TokenProvider) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.TokenProvider = tp
+		return nil
+	}
 }
 
 // ServerVariable stores the information about a server variable
