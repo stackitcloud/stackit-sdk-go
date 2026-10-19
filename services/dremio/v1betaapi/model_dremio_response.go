@@ -21,6 +21,8 @@ var _ MappedNullable = &DremioResponse{}
 
 // DremioResponse struct for DremioResponse
 type DremioResponse struct {
+	// The Access Control List (ACL) defining the IPv4 or IPv6 CIDR ranges allowed to connect to the Dremio instance. An empty list allows access from any address. Omitting this field on creation allows access from any address. Omitting it on update preserves the current list. Updates replace the entire list and take effect asynchronously.
+	Acl            []string       `json:"acl"`
 	Authentication Authentication `json:"authentication"`
 	// The point in time the resource was created.
 	CreateTime time.Time `json:"create_time"`
@@ -43,8 +45,9 @@ type _DremioResponse DremioResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDremioResponse(authentication Authentication, createTime time.Time, displayName string, endpoints Endpoints, id string, state DremioResponseState) *DremioResponse {
+func NewDremioResponse(acl []string, authentication Authentication, createTime time.Time, displayName string, endpoints Endpoints, id string, state DremioResponseState) *DremioResponse {
 	this := DremioResponse{}
+	this.Acl = acl
 	this.Authentication = authentication
 	this.CreateTime = createTime
 	this.DisplayName = displayName
@@ -60,6 +63,30 @@ func NewDremioResponse(authentication Authentication, createTime time.Time, disp
 func NewDremioResponseWithDefaults() *DremioResponse {
 	this := DremioResponse{}
 	return &this
+}
+
+// GetAcl returns the Acl field value
+func (o *DremioResponse) GetAcl() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value
+// and a boolean to check if the value has been set.
+func (o *DremioResponse) GetAclOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// SetAcl sets field value
+func (o *DremioResponse) SetAcl(v []string) {
+	o.Acl = v
 }
 
 // GetAuthentication returns the Authentication field value
@@ -280,6 +307,7 @@ func (o DremioResponse) MarshalJSON() ([]byte, error) {
 
 func (o DremioResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["acl"] = o.Acl
 	toSerialize["authentication"] = o.Authentication
 	toSerialize["create_time"] = o.CreateTime
 	if !IsNil(o.Description) {
@@ -305,6 +333,7 @@ func (o *DremioResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"acl",
 		"authentication",
 		"create_time",
 		"displayName",
@@ -340,6 +369,7 @@ func (o *DremioResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
 		delete(additionalProperties, "authentication")
 		delete(additionalProperties, "create_time")
 		delete(additionalProperties, "description")
