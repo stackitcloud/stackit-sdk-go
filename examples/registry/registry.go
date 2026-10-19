@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	registry "github.com/stackitcloud/stackit-sdk-go/services/registry/v1api"
 	"github.com/stackitcloud/stackit-sdk-go/services/registry/v1api/wait"
 )
@@ -80,84 +79,4 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println("Artifactory deleted successfully.")
-
-	// ==========================================
-	// Proxy Artifactory Example
-	// ==========================================
-
-	// 6. Create a proxy artifactory (e.g. proxying Docker Hub)
-	proxyArtifactoryName := "my-proxy-registry"
-	createProxyPayload := registry.CreateArtifactoryPayload{
-		Name: proxyArtifactoryName,
-		Proxy: &registry.CreateProxyRequest{
-			RegistryType: "docker-hub",
-			Url:          "https://hub.docker.com",
-			Description:  utils.Ptr("Docker Hub Proxy Cache"),
-			Credentials: &registry.Credentials{
-				AccessKey:    "my-proxy_access_key",
-				AccessSecret: "my-proxy_access_secret",
-			},
-		},
-	}
-	createProxyResp, err := client.DefaultAPI.CreateArtifactory(ctx, projectId, region).
-		CreateArtifactoryPayload(createProxyPayload).
-		Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating proxy artifactory: %v\n", err)
-		os.Exit(1)
-	}
-
-	proxyArtifactoryId := createProxyResp.Id
-	fmt.Printf("Created proxy artifactory with ID %q. Waiting for it to become ready...\n", proxyArtifactoryId)
-
-	// Wait for the proxy artifactory to be ready
-
-	_, err = wait.CreateArtifactoryWaitHandler(ctx, client.DefaultAPI, projectId, region, proxyArtifactoryId).WaitWithContext(ctx)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error waiting for proxy artifactory to be ready: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Println("Proxy artifactory is ready.")
-
-	// 7. Update proxy credentials
-	patchPayload := registry.PatchArtifactoryPayload{
-		Proxy: &registry.UpdateProxyRequest{
-			Credentials: &registry.Credentials{
-				AccessKey:    "my-proxy_access_key_updated",
-				AccessSecret: "my-proxy_access_secret_updated",
-			},
-			Description: utils.Ptr("Updated Docker Hub Proxy Cache"),
-		},
-	}
-	_, err = client.DefaultAPI.PatchArtifactory(ctx, projectId, region, proxyArtifactoryId).
-		PatchArtifactoryPayload(patchPayload).
-		Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error updating proxy credentials: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Printf("Updating proxy credentials for artifactory %q. Waiting for update to complete...\n", proxyArtifactoryId)
-
-	// Wait for the update to complete
-	_, err = wait.UpdateArtifactoryWaitHandler(ctx, client.DefaultAPI, projectId, region, proxyArtifactoryId).WaitWithContext(ctx)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error waiting for proxy artifactory update: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Println("Proxy artifactory credentials updated successfully.")
-
-	// 8. Delete the proxy artifactory
-	err = client.DefaultAPI.DeleteArtifactory(ctx, projectId, region, proxyArtifactoryId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error deleting proxy artifactory: %v\n", err)
-		os.Exit(1)
-	}
-
-	// Wait for the proxy artifactory to be deleted
-	_, err = wait.DeleteArtifactoryWaitHandler(ctx, client.DefaultAPI, projectId, region, proxyArtifactoryId).WaitWithContext(ctx)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error waiting for proxy artifactory to be deleted: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Println("Proxy artifactory deleted successfully.")
 }
