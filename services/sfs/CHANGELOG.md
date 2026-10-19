@@ -1,3 +1,9 @@
+## v0.13.0
+- `v1api`:
+  - **Feature:** Add new `ConflictError` model for responses with 409 status code
+- `v1betaapi`:
+  - **Feature:** Add new `ConflictError` model for responses with 409 status code
+
 ## v0.12.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 
