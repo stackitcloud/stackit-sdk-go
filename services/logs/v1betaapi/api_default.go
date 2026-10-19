@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1beta.0.4
 */
@@ -24,210 +24,555 @@ import (
 type DefaultAPI interface {
 
 	/*
-		CreateAccessToken Create Access Token
+			CreateAccessPolicy Create Access Policy
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+		Create a new access policy for Logs instance
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiCreateAccessPolicyRequest
+
+			Deprecated
+	*/
+	CreateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessPolicyRequest
+
+	// CreateAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	// Deprecated
+	CreateAccessPolicyExecute(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error)
+
+	/*
+			CreateAccessToken Create Access Token
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
 
 		Create a new Logs instance access token
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiCreateAccessTokenRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiCreateAccessTokenRequest
+
+			Deprecated
 	*/
 	CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest
 
 	// CreateAccessTokenExecute executes the request
 	//  @return AccessToken
+	// Deprecated
 	CreateAccessTokenExecute(r ApiCreateAccessTokenRequest) (*AccessToken, error)
 
 	/*
-		CreateLogsInstance Create Logs instance
+			CreateLogsInstance Create Logs instance
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances` instead.
 
 		Creates a new Logs instance within the project.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@return ApiCreateLogsInstanceRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@return ApiCreateLogsInstanceRequest
+
+			Deprecated
 	*/
 	CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest
 
 	// CreateLogsInstanceExecute executes the request
 	//  @return LogsInstance
+	// Deprecated
 	CreateLogsInstanceExecute(r ApiCreateLogsInstanceRequest) (*LogsInstance, error)
 
 	/*
-		DeleteAccessToken Delete Access Token
+			DeleteAccessPolicy Delete Access Policy
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+		Deletes a Logs instance access policy
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param pId The access policy unique id.
+			@return ApiDeleteAccessPolicyRequest
+
+			Deprecated
+	*/
+	DeleteAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiDeleteAccessPolicyRequest
+
+	// DeleteAccessPolicyExecute executes the request
+	// Deprecated
+	DeleteAccessPolicyExecute(r ApiDeleteAccessPolicyRequest) error
+
+	/*
+			DeleteAccessToken Delete Access Token
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
 
 		Deletes a Logs instance access token
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@param tId The access token UUID.
-		@return ApiDeleteAccessTokenRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param tId The access token UUID.
+			@return ApiDeleteAccessTokenRequest
+
+			Deprecated
 	*/
 	DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest
 
 	// DeleteAccessTokenExecute executes the request
+	// Deprecated
 	DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error
 
 	/*
-		DeleteAllAccessTokens Delete All Access Tokens
+			DeleteAllAccessPolicies Delete All Access Policies
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+		Deletes all access policies for a Logs instance
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiDeleteAllAccessPoliciesRequest
+
+			Deprecated
+	*/
+	DeleteAllAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessPoliciesRequest
+
+	// DeleteAllAccessPoliciesExecute executes the request
+	//  @return AccessPolicyList
+	// Deprecated
+	DeleteAllAccessPoliciesExecute(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error)
+
+	/*
+			DeleteAllAccessTokens Delete All Access Tokens
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
 
 		Deletes all access tokens available for a Logs instance
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiDeleteAllAccessTokensRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiDeleteAllAccessTokensRequest
+
+			Deprecated
 	*/
 	DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest
 
 	// DeleteAllAccessTokensExecute executes the request
 	//  @return AccessTokenList
+	// Deprecated
 	DeleteAllAccessTokensExecute(r ApiDeleteAllAccessTokensRequest) (*AccessTokenList, error)
 
 	/*
-		DeleteAllExpiredAccessTokens Deletes all expired access tokens
+			DeleteAllExpiredAccessTokens Deletes all expired access tokens
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/expired` instead.
 
 		Deletes all expired access tokens
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiDeleteAllExpiredAccessTokensRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiDeleteAllExpiredAccessTokensRequest
+
+			Deprecated
 	*/
 	DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest
 
 	// DeleteAllExpiredAccessTokensExecute executes the request
 	//  @return AccessTokenList
+	// Deprecated
 	DeleteAllExpiredAccessTokensExecute(r ApiDeleteAllExpiredAccessTokensRequest) (*AccessTokenList, error)
 
 	/*
-		DeleteLogsInstance Delete Logs instance
+			DeleteLogsInstance Delete Logs instance
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
 
 		Deletes the given Logs instance.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiDeleteLogsInstanceRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiDeleteLogsInstanceRequest
+
+			Deprecated
 	*/
 	DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest
 
 	// DeleteLogsInstanceExecute executes the request
+	// Deprecated
 	DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceRequest) error
 
 	/*
-		GetAccessToken Get Access Token
+			GetAccessPolicy Get Access Policy
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+		Get the information of the given access policy.
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param pId The access policy unique id.
+			@return ApiGetAccessPolicyRequest
+
+			Deprecated
+	*/
+	GetAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiGetAccessPolicyRequest
+
+	// GetAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	// Deprecated
+	GetAccessPolicyExecute(r ApiGetAccessPolicyRequest) (*AccessPolicy, error)
+
+	/*
+			GetAccessToken Get Access Token
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
 
 		Get the information of the given access token.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@param tId The access token UUID.
-		@return ApiGetAccessTokenRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param tId The access token UUID.
+			@return ApiGetAccessTokenRequest
+
+			Deprecated
 	*/
 	GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest
 
 	// GetAccessTokenExecute executes the request
 	//  @return AccessToken
+	// Deprecated
 	GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*AccessToken, error)
 
 	/*
-		GetLogsInstance Get Logs Instance
+			GetLogsInstance Get Logs Instance
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
 
 		Returns the details for the given Logs instance.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiGetLogsInstanceRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiGetLogsInstanceRequest
+
+			Deprecated
 	*/
 	GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest
 
 	// GetLogsInstanceExecute executes the request
 	//  @return LogsInstance
+	// Deprecated
 	GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) (*LogsInstance, error)
 
 	/*
-		ListAccessTokens List Access Tokens
+			ListAccessPolicies List Access Policies
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+		Returns a list of access policies created for a Logs instance
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiListAccessPoliciesRequest
+
+			Deprecated
+	*/
+	ListAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessPoliciesRequest
+
+	// ListAccessPoliciesExecute executes the request
+	//  @return AccessPolicyList
+	// Deprecated
+	ListAccessPoliciesExecute(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error)
+
+	/*
+			ListAccessTokens List Access Tokens
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
 
 		Returns a list of access tokens created for a Logs instance
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiListAccessTokensRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiListAccessTokensRequest
+
+			Deprecated
 	*/
 	ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest
 
 	// ListAccessTokensExecute executes the request
 	//  @return AccessTokenList
+	// Deprecated
 	ListAccessTokensExecute(r ApiListAccessTokensRequest) (*AccessTokenList, error)
 
 	/*
-		ListLogsInstances List Logs instances
+			ListLogsInstances List Logs instances
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances` instead.
 
 		Returns a list of all Logs instances within the project.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@return ApiListLogsInstancesRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@return ApiListLogsInstancesRequest
+
+			Deprecated
 	*/
 	ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest
 
 	// ListLogsInstancesExecute executes the request
 	//  @return LogsInstancesList
+	// Deprecated
 	ListLogsInstancesExecute(r ApiListLogsInstancesRequest) (*LogsInstancesList, error)
 
 	/*
-		UpdateAccessToken Update Access Token
+			UpdateAccessPolicy Update Access Policy
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+		Updates the given access policy.
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param pId The access policy unique id.
+			@return ApiUpdateAccessPolicyRequest
+
+			Deprecated
+	*/
+	UpdateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiUpdateAccessPolicyRequest
+
+	// UpdateAccessPolicyExecute executes the request
+	//  @return AccessPolicy
+	// Deprecated
+	UpdateAccessPolicyExecute(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error)
+
+	/*
+			UpdateAccessToken Update Access Token
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
 
 		Updates the given access token.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@param tId The access token UUID.
-		@return ApiUpdateAccessTokenRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@param tId The access token UUID.
+			@return ApiUpdateAccessTokenRequest
+
+			Deprecated
 	*/
 	UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest
 
 	// UpdateAccessTokenExecute executes the request
+	// Deprecated
 	UpdateAccessTokenExecute(r ApiUpdateAccessTokenRequest) error
 
 	/*
-		UpdateLogsInstance Update Logs instance
+			UpdateLogsInstance Update Logs instance
+
+			**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
 
 		Updates the given Logs instance.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param regionId The STACKIT region name the resource is located in.
-		@param instanceId The Logs Instance UUID.
-		@return ApiUpdateLogsInstanceRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId The STACKIT portal project UUID the resource is located in.
+			@param regionId The STACKIT region name the resource is located in.
+			@param instanceId The Logs Instance UUID.
+			@return ApiUpdateLogsInstanceRequest
+
+			Deprecated
 	*/
 	UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest
 
 	// UpdateLogsInstanceExecute executes the request
 	//  @return LogsInstance
+	// Deprecated
 	UpdateLogsInstanceExecute(r ApiUpdateLogsInstanceRequest) (*LogsInstance, error)
 }
 
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
+
+type ApiCreateAccessPolicyRequest struct {
+	ctx                       context.Context
+	ApiService                DefaultAPI
+	projectId                 string
+	regionId                  string
+	instanceId                string
+	createAccessPolicyPayload *CreateAccessPolicyPayload
+}
+
+func (r ApiCreateAccessPolicyRequest) CreateAccessPolicyPayload(createAccessPolicyPayload CreateAccessPolicyPayload) ApiCreateAccessPolicyRequest {
+	r.createAccessPolicyPayload = &createAccessPolicyPayload
+	return r
+}
+
+func (r ApiCreateAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.CreateAccessPolicyExecute(r)
+}
+
+/*
+CreateAccessPolicy Create Access Policy
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+Create a new access policy for Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiCreateAccessPolicyRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) CreateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessPolicyRequest {
+	return ApiCreateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+//
+// Deprecated
+func (a *DefaultAPIService) CreateAccessPolicyExecute(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createAccessPolicyPayload == nil {
+		return localVarReturnValue, reportError("createAccessPolicyPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createAccessPolicyPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
 
 type ApiCreateAccessTokenRequest struct {
 	ctx                      context.Context
@@ -250,6 +595,8 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 /*
 CreateAccessToken Create Access Token
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
+
 Create a new Logs instance access token
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -257,6 +604,8 @@ Create a new Logs instance access token
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiCreateAccessTokenRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
@@ -271,6 +620,8 @@ func (a *DefaultAPIService) CreateAccessToken(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return AccessToken
+//
+// Deprecated
 func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenRequest) (*AccessToken, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -394,12 +745,16 @@ func (r ApiCreateLogsInstanceRequest) Execute() (*LogsInstance, error) {
 /*
 CreateLogsInstance Create Logs instance
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances` instead.
+
 Creates a new Logs instance within the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the resource is located in.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateLogsInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest {
 	return ApiCreateLogsInstanceRequest{
@@ -413,6 +768,8 @@ func (a *DefaultAPIService) CreateLogsInstance(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return LogsInstance
+//
+// Deprecated
 func (a *DefaultAPIService) CreateLogsInstanceExecute(r ApiCreateLogsInstanceRequest) (*LogsInstance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -515,6 +872,136 @@ func (a *DefaultAPIService) CreateLogsInstanceExecute(r ApiCreateLogsInstanceReq
 	return localVarReturnValue, nil
 }
 
+type ApiDeleteAccessPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+	pId        string
+}
+
+func (r ApiDeleteAccessPolicyRequest) Execute() error {
+	return r.ApiService.DeleteAccessPolicyExecute(r)
+}
+
+/*
+DeleteAccessPolicy Delete Access Policy
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+Deletes a Logs instance access policy
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiDeleteAccessPolicyRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) DeleteAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiDeleteAccessPolicyRequest {
+	return ApiDeleteAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+// Deprecated
+func (a *DefaultAPIService) DeleteAccessPolicyExecute(r ApiDeleteAccessPolicyRequest) error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAccessPolicy")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		return newErr
+	}
+
+	return nil
+}
+
 type ApiDeleteAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -531,6 +1018,8 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 /*
 DeleteAccessToken Delete Access Token
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
+
 Deletes a Logs instance access token
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -539,6 +1028,8 @@ Deletes a Logs instance access token
 	@param instanceId The Logs Instance UUID.
 	@param tId The access token UUID.
 	@return ApiDeleteAccessTokenRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
@@ -552,6 +1043,7 @@ func (a *DefaultAPIService) DeleteAccessToken(ctx context.Context, projectId str
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -640,6 +1132,146 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 	return nil
 }
 
+type ApiDeleteAllAccessPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+}
+
+func (r ApiDeleteAllAccessPoliciesRequest) Execute() (*AccessPolicyList, error) {
+	return r.ApiService.DeleteAllAccessPoliciesExecute(r)
+}
+
+/*
+DeleteAllAccessPolicies Delete All Access Policies
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+Deletes all access policies for a Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiDeleteAllAccessPoliciesRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) DeleteAllAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessPoliciesRequest {
+	return ApiDeleteAllAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicyList
+//
+// Deprecated
+func (a *DefaultAPIService) DeleteAllAccessPoliciesExecute(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicyList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAllAccessPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiDeleteAllAccessTokensRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -655,6 +1287,8 @@ func (r ApiDeleteAllAccessTokensRequest) Execute() (*AccessTokenList, error) {
 /*
 DeleteAllAccessTokens Delete All Access Tokens
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
+
 Deletes all access tokens available for a Logs instance
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -662,6 +1296,8 @@ Deletes all access tokens available for a Logs instance
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteAllAccessTokensRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest {
 	return ApiDeleteAllAccessTokensRequest{
@@ -676,6 +1312,8 @@ func (a *DefaultAPIService) DeleteAllAccessTokens(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return AccessTokenList
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteAllAccessTokensExecute(r ApiDeleteAllAccessTokensRequest) (*AccessTokenList, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -789,6 +1427,8 @@ func (r ApiDeleteAllExpiredAccessTokensRequest) Execute() (*AccessTokenList, err
 /*
 DeleteAllExpiredAccessTokens Deletes all expired access tokens
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/expired` instead.
+
 Deletes all expired access tokens
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -796,6 +1436,8 @@ Deletes all expired access tokens
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteAllExpiredAccessTokensRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
 	return ApiDeleteAllExpiredAccessTokensRequest{
@@ -810,6 +1452,8 @@ func (a *DefaultAPIService) DeleteAllExpiredAccessTokens(ctx context.Context, pr
 // Execute executes the request
 //
 //	@return AccessTokenList
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteAllExpiredAccessTokensExecute(r ApiDeleteAllExpiredAccessTokensRequest) (*AccessTokenList, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -923,6 +1567,8 @@ func (r ApiDeleteLogsInstanceRequest) Execute() error {
 /*
 DeleteLogsInstance Delete Logs instance
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
+
 Deletes the given Logs instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -930,6 +1576,8 @@ Deletes the given Logs instance.
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiDeleteLogsInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest {
 	return ApiDeleteLogsInstanceRequest{
@@ -942,6 +1590,7 @@ func (a *DefaultAPIService) DeleteLogsInstance(ctx context.Context, projectId st
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1029,6 +1678,150 @@ func (a *DefaultAPIService) DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceReq
 	return nil
 }
 
+type ApiGetAccessPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+	pId        string
+}
+
+func (r ApiGetAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.GetAccessPolicyExecute(r)
+}
+
+/*
+GetAccessPolicy Get Access Policy
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+Get the information of the given access policy.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiGetAccessPolicyRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) GetAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiGetAccessPolicyRequest {
+	return ApiGetAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+//
+// Deprecated
+func (a *DefaultAPIService) GetAccessPolicyExecute(r ApiGetAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetAccessTokenRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1045,6 +1838,8 @@ func (r ApiGetAccessTokenRequest) Execute() (*AccessToken, error) {
 /*
 GetAccessToken Get Access Token
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
+
 Get the information of the given access token.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1053,6 +1848,8 @@ Get the information of the given access token.
 	@param instanceId The Logs Instance UUID.
 	@param tId The access token UUID.
 	@return ApiGetAccessTokenRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
@@ -1068,6 +1865,8 @@ func (a *DefaultAPIService) GetAccessToken(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return AccessToken
+//
+// Deprecated
 func (a *DefaultAPIService) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*AccessToken, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1182,6 +1981,8 @@ func (r ApiGetLogsInstanceRequest) Execute() (*LogsInstance, error) {
 /*
 GetLogsInstance Get Logs Instance
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
+
 Returns the details for the given Logs instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1189,6 +1990,8 @@ Returns the details for the given Logs instance.
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiGetLogsInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest {
 	return ApiGetLogsInstanceRequest{
@@ -1203,6 +2006,8 @@ func (a *DefaultAPIService) GetLogsInstance(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return LogsInstance
+//
+// Deprecated
 func (a *DefaultAPIService) GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) (*LogsInstance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1217,6 +2022,146 @@ func (a *DefaultAPIService) GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) 
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListAccessPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	instanceId string
+}
+
+func (r ApiListAccessPoliciesRequest) Execute() (*AccessPolicyList, error) {
+	return r.ApiService.ListAccessPoliciesExecute(r)
+}
+
+/*
+ListAccessPolicies List Access Policies
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies` instead.
+
+Returns a list of access policies created for a Logs instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@return ApiListAccessPoliciesRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) ListAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessPoliciesRequest {
+	return ApiListAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicyList
+//
+// Deprecated
+func (a *DefaultAPIService) ListAccessPoliciesExecute(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicyList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListAccessPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
@@ -1316,6 +2261,8 @@ func (r ApiListAccessTokensRequest) Execute() (*AccessTokenList, error) {
 /*
 ListAccessTokens List Access Tokens
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens` instead.
+
 Returns a list of access tokens created for a Logs instance
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1323,6 +2270,8 @@ Returns a list of access tokens created for a Logs instance
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiListAccessTokensRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
@@ -1337,6 +2286,8 @@ func (a *DefaultAPIService) ListAccessTokens(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return AccessTokenList
+//
+// Deprecated
 func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest) (*AccessTokenList, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1449,12 +2400,16 @@ func (r ApiListLogsInstancesRequest) Execute() (*LogsInstancesList, error) {
 /*
 ListLogsInstances List Logs instances
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances` instead.
+
 Returns a list of all Logs instances within the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the resource is located in.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListLogsInstancesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest {
 	return ApiListLogsInstancesRequest{
@@ -1468,6 +2423,8 @@ func (a *DefaultAPIService) ListLogsInstances(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return LogsInstancesList
+//
+// Deprecated
 func (a *DefaultAPIService) ListLogsInstancesExecute(r ApiListLogsInstancesRequest) (*LogsInstancesList, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1565,6 +2522,161 @@ func (a *DefaultAPIService) ListLogsInstancesExecute(r ApiListLogsInstancesReque
 	return localVarReturnValue, nil
 }
 
+type ApiUpdateAccessPolicyRequest struct {
+	ctx                       context.Context
+	ApiService                DefaultAPI
+	projectId                 string
+	regionId                  string
+	instanceId                string
+	pId                       string
+	updateAccessPolicyPayload *UpdateAccessPolicyPayload
+}
+
+func (r ApiUpdateAccessPolicyRequest) UpdateAccessPolicyPayload(updateAccessPolicyPayload UpdateAccessPolicyPayload) ApiUpdateAccessPolicyRequest {
+	r.updateAccessPolicyPayload = &updateAccessPolicyPayload
+	return r
+}
+
+func (r ApiUpdateAccessPolicyRequest) Execute() (*AccessPolicy, error) {
+	return r.ApiService.UpdateAccessPolicyExecute(r)
+}
+
+/*
+UpdateAccessPolicy Update Access Policy
+
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}` instead.
+
+Updates the given access policy.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param instanceId The Logs Instance UUID.
+	@param pId The access policy unique id.
+	@return ApiUpdateAccessPolicyRequest
+
+Deprecated
+*/
+func (a *DefaultAPIService) UpdateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiUpdateAccessPolicyRequest {
+	return ApiUpdateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AccessPolicy
+//
+// Deprecated
+func (a *DefaultAPIService) UpdateAccessPolicyExecute(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AccessPolicy
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateAccessPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-policies/{pId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(parameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pId"+"}", url.PathEscape(parameterValueToString(r.pId, "pId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAccessPolicyPayload == nil {
+		return localVarReturnValue, reportError("updateAccessPolicyPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateAccessPolicyPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiUpdateAccessTokenRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
@@ -1587,6 +2699,8 @@ func (r ApiUpdateAccessTokenRequest) Execute() error {
 /*
 UpdateAccessToken Update Access Token
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}` instead.
+
 Updates the given access token.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1595,6 +2709,8 @@ Updates the given access token.
 	@param instanceId The Logs Instance UUID.
 	@param tId The access token UUID.
 	@return ApiUpdateAccessTokenRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
@@ -1608,6 +2724,7 @@ func (a *DefaultAPIService) UpdateAccessToken(ctx context.Context, projectId str
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) UpdateAccessTokenExecute(r ApiUpdateAccessTokenRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPut
@@ -1722,6 +2839,8 @@ func (r ApiUpdateLogsInstanceRequest) Execute() (*LogsInstance, error) {
 /*
 UpdateLogsInstance Update Logs instance
 
+**Deprecated**: Use Logs API v1 `/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}` instead.
+
 Updates the given Logs instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1729,6 +2848,8 @@ Updates the given Logs instance.
 	@param regionId The STACKIT region name the resource is located in.
 	@param instanceId The Logs Instance UUID.
 	@return ApiUpdateLogsInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest {
 	return ApiUpdateLogsInstanceRequest{
@@ -1743,6 +2864,8 @@ func (a *DefaultAPIService) UpdateLogsInstance(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return LogsInstance
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateLogsInstanceExecute(r ApiUpdateLogsInstanceRequest) (*LogsInstance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
