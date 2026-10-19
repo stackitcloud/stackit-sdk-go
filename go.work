@@ -13,6 +13,7 @@ use (
 	./examples/edge
 	./examples/errorhandling
 	./examples/experimental
+	./examples/functions
 	./examples/git
 	./examples/iaas
 	./examples/intake
@@ -58,6 +59,7 @@ use (
 	./services/dns
 	./services/dremio
 	./services/edge
+	./services/functions
 	./services/git
 	./services/iaas
 	./services/intake

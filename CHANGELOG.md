@@ -8,6 +8,9 @@
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add `IpBlockListName` field to `LoadbalancerOptionAccessControl` to reference an IP block list by name
+- `albwaf`:
+  - [v0.13.5](services/albwaf/CHANGELOG.md#v0135)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `authorization`:
   - [v0.16.0](services/authorization/CHANGELOG.md#v0160)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -45,14 +48,25 @@
       - **Deprecation:** `CreateLabel`, `DeleteLabel`, `ListLabels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labelsMap` field on the `Zone` resource instead
       - **Improvement:** `ListRecordSets`/`ListZones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
       - **Breaking Change:** `PartialUpdateZonePayload.Extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observabilityExtension.state`
+- `dremio`:
+  - [v0.7.0](services/dremio/CHANGELOG.md#v070)
+    - `v1betaapi`:
+      - **Feature:** Add field `Acl` to models `CreateDremioInstancePayload`, `DremioResponse` and `UpdateDremioInstancePayload`
+      - **Breaking Change:** `NewDremioResponse` constructor now requires an `acl` parameter
 - `edge`:
   - [v0.14.0](services/edge/CHANGELOG.md#v0140)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
+- `functions`:
+  - [v0.1.0](services/functions/CHANGELOG.md#v010)
+    - `v1alphaapi`:
+      - **Feature**: initial release
 - `git`:
   - [v0.15.0](services/git/CHANGELOG.md#v0150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
+  - [v1.15.1](services/iaas/CHANGELOG.md#v1151)
+    - **Bugfix:** Waiter `ResizeServerWaitHandler` continued waiting when server is inactive 
   - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.0` to `v0.26.1`
@@ -96,6 +110,9 @@
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.13.2](services/kms/CHANGELOG.md#v1132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `loadbalancer`: 
+  - [1.16.0](services/loadbalancer/CHANGELOG.md#1160)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `logme`: 
   - [v1.5.0](services/logme/CHANGELOG.md#v150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -191,6 +208,8 @@
     - `v2api`:
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `resourcemanager`:
+  - [v0.27.0](services/resourcemanager/CHANGELOG.md#v0270)
+    - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
     - `v0api`: 
@@ -215,6 +234,9 @@
       - **Feature:** New model struct `EnvironmentStatus`, added as `Status` field to `Environment` and `CreateEnvironmentPayload` models
       - **Feature:** Add `InternalUrl` field to `ApplicationSummary` and `RuntimeStatus` models
       - **Feature:** Add `InternalPort` field to `Network` model
+- `scf`:
+  - [v0.11.0](services/scf/CHANGELOG.md#v0110)
+    - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `secretsmanager`:
   - [v0.20.0](services/secretsmanager/CHANGELOG.md#v0200)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -241,12 +263,28 @@
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
+  - [v0.13.0](services/sfs/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Feature:** Add new `ConflictError` model for responses with 409 status code
+    - `v1betaapi`:
+      - **Feature:** Add new `ConflictError` model for responses with 409 status code 
   - [v0.12.0](services/sfs/CHANGELOG.md#v0120)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.11.4](services/sfs/CHANGELOG.md#v0114)
     - **Docs:** Update description of `Labels` fields 
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+- `ske`:
+  - [v1.22.0](services/ske/CHANGELOG.md#v1220)
+    - **Breaking change:** Removal of deprecated SDK layer in the root of the module.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
+    - `v1api`:
+      - **Breaking Change:** Fields `AutoUpdate` and `TimeWindow` in `Maintenance` are now optional and changed from `MaintenanceAutoUpdate` and `TimeWindow` to `*MaintenanceAutoUpdate` and `*TimeWindow`. The `NewMaintenance` constructor no longer takes arguments
+    - `v2api`:
+      - **Breaking Change:** Fields `AutoUpdate` and `TimeWindow` in `Maintenance` are now optional and changed from `MaintenanceAutoUpdate` and `TimeWindow` to `*MaintenanceAutoUpdate` and `*TimeWindow`. The `NewMaintenance` constructor no longer takes arguments
+      - **Feature:** Add model struct `Kata` and field `Kata` to `CRI` to configure workload isolation via Kata Containers (private preview)
+      - **Feature:** Add fields `PodAddressRanges` and `ServiceAddressRanges` to `Network` to configure pod and service CIDRs at cluster creation
+      - **Feature:** Add fields `NodeAddressRanges` and `ServiceAddressRanges` to `ClusterStatus`
 - `sqlserverflex`:
   - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
@@ -282,6 +320,9 @@
     - `v1api`:
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
       - **Improvement:** `InstanceParameters.MinReplicasToWrite` doc comment now notes it should not be greater than the number of nodes
+- `vpn`:
+  - [v0.15.3](services/vpn/CHANGELOG.md#v0153)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 
 ## Release (2026-09-14)
 

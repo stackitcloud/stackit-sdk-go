@@ -19,6 +19,8 @@ var _ MappedNullable = &UpdateDremioInstancePayload{}
 
 // UpdateDremioInstancePayload struct for UpdateDremioInstancePayload
 type UpdateDremioInstancePayload struct {
+	// The Access Control List (ACL) defining the IPv4 or IPv6 CIDR ranges allowed to connect to the Dremio instance. An empty list allows access from any address. Omitting this field on creation allows access from any address. Omitting it on update preserves the current list. Updates replace the entire list and take effect asynchronously.
+	Acl            []string        `json:"acl,omitempty"`
 	Authentication *Authentication `json:"authentication,omitempty"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty"`
@@ -44,6 +46,38 @@ func NewUpdateDremioInstancePayload() *UpdateDremioInstancePayload {
 func NewUpdateDremioInstancePayloadWithDefaults() *UpdateDremioInstancePayload {
 	this := UpdateDremioInstancePayload{}
 	return &this
+}
+
+// GetAcl returns the Acl field value if set, zero value otherwise.
+func (o *UpdateDremioInstancePayload) GetAcl() []string {
+	if o == nil || IsNil(o.Acl) {
+		var ret []string
+		return ret
+	}
+	return o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDremioInstancePayload) GetAclOk() ([]string, bool) {
+	if o == nil || IsNil(o.Acl) {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// HasAcl returns a boolean if a field has been set.
+func (o *UpdateDremioInstancePayload) HasAcl() bool {
+	if o != nil && !IsNil(o.Acl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAcl gets a reference to the given []string and assigns it to the Acl field.
+func (o *UpdateDremioInstancePayload) SetAcl(v []string) {
+	o.Acl = v
 }
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
@@ -152,6 +186,9 @@ func (o UpdateDremioInstancePayload) MarshalJSON() ([]byte, error) {
 
 func (o UpdateDremioInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Acl) {
+		toSerialize["acl"] = o.Acl
+	}
 	if !IsNil(o.Authentication) {
 		toSerialize["authentication"] = o.Authentication
 	}
@@ -183,6 +220,7 @@ func (o *UpdateDremioInstancePayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
 		delete(additionalProperties, "authentication")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "displayName")

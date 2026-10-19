@@ -1,3 +1,8 @@
+## v0.7.0
+- `v1betaapi`:
+  - **Feature:** Add field `Acl` to models `CreateDremioInstancePayload`, `DremioResponse` and `UpdateDremioInstancePayload`
+  - **Breaking Change:** `NewDremioResponse` constructor now requires an `acl` parameter
+
 ## v0.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.26.0` to `v0.27.0`
 
