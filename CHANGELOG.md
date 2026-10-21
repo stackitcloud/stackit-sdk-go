@@ -207,6 +207,9 @@
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
     - `v2api`:
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
+- `registry`:
+  - [v0.1.0](services/registry/CHANGELOG.md#v010)
+    - **New**: New package which can be used for communication with the registry v1 API
 - `resourcemanager`:
   - [v0.27.0](services/resourcemanager/CHANGELOG.md#v0270)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
