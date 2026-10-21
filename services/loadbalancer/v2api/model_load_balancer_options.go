@@ -19,7 +19,9 @@ var _ MappedNullable = &LoadBalancerOptions{}
 
 // LoadBalancerOptions Defines any optional functionality you want to have enabled on your load balancer.
 type LoadBalancerOptions struct {
-	AccessControl    *LoadbalancerOptionAccessControl `json:"accessControl,omitempty"`
+	AccessControl *LoadbalancerOptionAccessControl `json:"accessControl,omitempty"`
+	// Enable per-request access logs on the Load Balancer. Defaults to false. Enable only when the Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires STACKIT Telemetry Hub or STACKIT Observability to be set up for the logs to be viewable.
+	AccessLogs       *bool                            `json:"accessLogs,omitempty"`
 	EphemeralAddress *bool                            `json:"ephemeralAddress,omitempty"`
 	Observability    *LoadbalancerOptionObservability `json:"observability,omitempty"`
 	// Load Balancer is accessible only via a private network ip address. Not changeable after creation.
@@ -76,6 +78,38 @@ func (o *LoadBalancerOptions) HasAccessControl() bool {
 // SetAccessControl gets a reference to the given LoadbalancerOptionAccessControl and assigns it to the AccessControl field.
 func (o *LoadBalancerOptions) SetAccessControl(v LoadbalancerOptionAccessControl) {
 	o.AccessControl = &v
+}
+
+// GetAccessLogs returns the AccessLogs field value if set, zero value otherwise.
+func (o *LoadBalancerOptions) GetAccessLogs() bool {
+	if o == nil || IsNil(o.AccessLogs) {
+		var ret bool
+		return ret
+	}
+	return *o.AccessLogs
+}
+
+// GetAccessLogsOk returns a tuple with the AccessLogs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoadBalancerOptions) GetAccessLogsOk() (*bool, bool) {
+	if o == nil || IsNil(o.AccessLogs) {
+		return nil, false
+	}
+	return o.AccessLogs, true
+}
+
+// HasAccessLogs returns a boolean if a field has been set.
+func (o *LoadBalancerOptions) HasAccessLogs() bool {
+	if o != nil && !IsNil(o.AccessLogs) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessLogs gets a reference to the given bool and assigns it to the AccessLogs field.
+func (o *LoadBalancerOptions) SetAccessLogs(v bool) {
+	o.AccessLogs = &v
 }
 
 // GetEphemeralAddress returns the EphemeralAddress field value if set, zero value otherwise.
@@ -187,6 +221,9 @@ func (o LoadBalancerOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccessControl) {
 		toSerialize["accessControl"] = o.AccessControl
 	}
+	if !IsNil(o.AccessLogs) {
+		toSerialize["accessLogs"] = o.AccessLogs
+	}
 	if !IsNil(o.EphemeralAddress) {
 		toSerialize["ephemeralAddress"] = o.EphemeralAddress
 	}
@@ -219,6 +256,7 @@ func (o *LoadBalancerOptions) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accessControl")
+		delete(additionalProperties, "accessLogs")
 		delete(additionalProperties, "ephemeralAddress")
 		delete(additionalProperties, "observability")
 		delete(additionalProperties, "privateNetworkOnly")
