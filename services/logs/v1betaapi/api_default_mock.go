@@ -1,7 +1,7 @@
 /*
-STACKIT Logs API
+STACKIT Logs API (Deprecated)
 
-This API provides endpoints for managing STACKIT Logs.
+DEPRECATED! This version is not maintained. Please use v1.
 
 API version: 1beta.0.4
 */
@@ -20,32 +20,66 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CreateAccessTokenExecuteMock can be populated to implement the behavior of the CreateAccessTokenExecute function of this mock
+	// Deprecated: CreateAccessPolicyExecuteMock can be populated to implement the behavior of the CreateAccessPolicyExecute function of this mock
+	CreateAccessPolicyExecuteMock *func(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error)
+	// Deprecated: CreateAccessTokenExecuteMock can be populated to implement the behavior of the CreateAccessTokenExecute function of this mock
 	CreateAccessTokenExecuteMock *func(r ApiCreateAccessTokenRequest) (*AccessToken, error)
-	// CreateLogsInstanceExecuteMock can be populated to implement the behavior of the CreateLogsInstanceExecute function of this mock
+	// Deprecated: CreateLogsInstanceExecuteMock can be populated to implement the behavior of the CreateLogsInstanceExecute function of this mock
 	CreateLogsInstanceExecuteMock *func(r ApiCreateLogsInstanceRequest) (*LogsInstance, error)
-	// DeleteAccessTokenExecuteMock can be populated to implement the behavior of the DeleteAccessTokenExecute function of this mock
+	// Deprecated: DeleteAccessPolicyExecuteMock can be populated to implement the behavior of the DeleteAccessPolicyExecute function of this mock
+	DeleteAccessPolicyExecuteMock *func(r ApiDeleteAccessPolicyRequest) error
+	// Deprecated: DeleteAccessTokenExecuteMock can be populated to implement the behavior of the DeleteAccessTokenExecute function of this mock
 	DeleteAccessTokenExecuteMock *func(r ApiDeleteAccessTokenRequest) error
-	// DeleteAllAccessTokensExecuteMock can be populated to implement the behavior of the DeleteAllAccessTokensExecute function of this mock
+	// Deprecated: DeleteAllAccessPoliciesExecuteMock can be populated to implement the behavior of the DeleteAllAccessPoliciesExecute function of this mock
+	DeleteAllAccessPoliciesExecuteMock *func(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error)
+	// Deprecated: DeleteAllAccessTokensExecuteMock can be populated to implement the behavior of the DeleteAllAccessTokensExecute function of this mock
 	DeleteAllAccessTokensExecuteMock *func(r ApiDeleteAllAccessTokensRequest) (*AccessTokenList, error)
-	// DeleteAllExpiredAccessTokensExecuteMock can be populated to implement the behavior of the DeleteAllExpiredAccessTokensExecute function of this mock
+	// Deprecated: DeleteAllExpiredAccessTokensExecuteMock can be populated to implement the behavior of the DeleteAllExpiredAccessTokensExecute function of this mock
 	DeleteAllExpiredAccessTokensExecuteMock *func(r ApiDeleteAllExpiredAccessTokensRequest) (*AccessTokenList, error)
-	// DeleteLogsInstanceExecuteMock can be populated to implement the behavior of the DeleteLogsInstanceExecute function of this mock
+	// Deprecated: DeleteLogsInstanceExecuteMock can be populated to implement the behavior of the DeleteLogsInstanceExecute function of this mock
 	DeleteLogsInstanceExecuteMock *func(r ApiDeleteLogsInstanceRequest) error
-	// GetAccessTokenExecuteMock can be populated to implement the behavior of the GetAccessTokenExecute function of this mock
+	// Deprecated: GetAccessPolicyExecuteMock can be populated to implement the behavior of the GetAccessPolicyExecute function of this mock
+	GetAccessPolicyExecuteMock *func(r ApiGetAccessPolicyRequest) (*AccessPolicy, error)
+	// Deprecated: GetAccessTokenExecuteMock can be populated to implement the behavior of the GetAccessTokenExecute function of this mock
 	GetAccessTokenExecuteMock *func(r ApiGetAccessTokenRequest) (*AccessToken, error)
-	// GetLogsInstanceExecuteMock can be populated to implement the behavior of the GetLogsInstanceExecute function of this mock
+	// Deprecated: GetLogsInstanceExecuteMock can be populated to implement the behavior of the GetLogsInstanceExecute function of this mock
 	GetLogsInstanceExecuteMock *func(r ApiGetLogsInstanceRequest) (*LogsInstance, error)
-	// ListAccessTokensExecuteMock can be populated to implement the behavior of the ListAccessTokensExecute function of this mock
+	// Deprecated: ListAccessPoliciesExecuteMock can be populated to implement the behavior of the ListAccessPoliciesExecute function of this mock
+	ListAccessPoliciesExecuteMock *func(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error)
+	// Deprecated: ListAccessTokensExecuteMock can be populated to implement the behavior of the ListAccessTokensExecute function of this mock
 	ListAccessTokensExecuteMock *func(r ApiListAccessTokensRequest) (*AccessTokenList, error)
-	// ListLogsInstancesExecuteMock can be populated to implement the behavior of the ListLogsInstancesExecute function of this mock
+	// Deprecated: ListLogsInstancesExecuteMock can be populated to implement the behavior of the ListLogsInstancesExecute function of this mock
 	ListLogsInstancesExecuteMock *func(r ApiListLogsInstancesRequest) (*LogsInstancesList, error)
-	// UpdateAccessTokenExecuteMock can be populated to implement the behavior of the UpdateAccessTokenExecute function of this mock
+	// Deprecated: UpdateAccessPolicyExecuteMock can be populated to implement the behavior of the UpdateAccessPolicyExecute function of this mock
+	UpdateAccessPolicyExecuteMock *func(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error)
+	// Deprecated: UpdateAccessTokenExecuteMock can be populated to implement the behavior of the UpdateAccessTokenExecute function of this mock
 	UpdateAccessTokenExecuteMock *func(r ApiUpdateAccessTokenRequest) error
-	// UpdateLogsInstanceExecuteMock can be populated to implement the behavior of the UpdateLogsInstanceExecute function of this mock
+	// Deprecated: UpdateLogsInstanceExecuteMock can be populated to implement the behavior of the UpdateLogsInstanceExecute function of this mock
 	UpdateLogsInstanceExecuteMock *func(r ApiUpdateLogsInstanceRequest) (*LogsInstance, error)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) CreateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessPolicyRequest {
+	return ApiCreateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Deprecated: CreateAccessPolicyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessPolicyExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateAccessPolicyExecute(r ApiCreateAccessPolicyRequest) (*AccessPolicy, error) {
+	if a.CreateAccessPolicyExecuteMock == nil {
+		var localVarReturnValue *AccessPolicy
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateAccessPolicyExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string) ApiCreateAccessTokenRequest {
 	return ApiCreateAccessTokenRequest{
 		ApiService: a,
@@ -56,7 +90,7 @@ func (a DefaultAPIServiceMock) CreateAccessToken(ctx context.Context, projectId 
 	}
 }
 
-// CreateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateAccessTokenExecute(r ApiCreateAccessTokenRequest) (*AccessToken, error) {
 	if a.CreateAccessTokenExecuteMock == nil {
 		var localVarReturnValue *AccessToken
@@ -66,6 +100,7 @@ func (a DefaultAPIServiceMock) CreateAccessTokenExecute(r ApiCreateAccessTokenRe
 	return (*a.CreateAccessTokenExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateLogsInstance(ctx context.Context, projectId string, regionId string) ApiCreateLogsInstanceRequest {
 	return ApiCreateLogsInstanceRequest{
 		ApiService: a,
@@ -75,7 +110,7 @@ func (a DefaultAPIServiceMock) CreateLogsInstance(ctx context.Context, projectId
 	}
 }
 
-// CreateLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateLogsInstanceExecute(r ApiCreateLogsInstanceRequest) (*LogsInstance, error) {
 	if a.CreateLogsInstanceExecuteMock == nil {
 		var localVarReturnValue *LogsInstance
@@ -85,6 +120,28 @@ func (a DefaultAPIServiceMock) CreateLogsInstanceExecute(r ApiCreateLogsInstance
 	return (*a.CreateLogsInstanceExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) DeleteAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiDeleteAccessPolicyRequest {
+	return ApiDeleteAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Deprecated: DeleteAccessPolicyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessPolicyExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteAccessPolicyExecute(r ApiDeleteAccessPolicyRequest) error {
+	if a.DeleteAccessPolicyExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DeleteAccessPolicyExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiDeleteAccessTokenRequest {
 	return ApiDeleteAccessTokenRequest{
 		ApiService: a,
@@ -96,7 +153,7 @@ func (a DefaultAPIServiceMock) DeleteAccessToken(ctx context.Context, projectId 
 	}
 }
 
-// DeleteAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRequest) error {
 	if a.DeleteAccessTokenExecuteMock == nil {
 		return nil
@@ -105,6 +162,28 @@ func (a DefaultAPIServiceMock) DeleteAccessTokenExecute(r ApiDeleteAccessTokenRe
 	return (*a.DeleteAccessTokenExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) DeleteAllAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessPoliciesRequest {
+	return ApiDeleteAllAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Deprecated: DeleteAllAccessPoliciesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAllAccessPoliciesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteAllAccessPoliciesExecute(r ApiDeleteAllAccessPoliciesRequest) (*AccessPolicyList, error) {
+	if a.DeleteAllAccessPoliciesExecuteMock == nil {
+		var localVarReturnValue *AccessPolicyList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.DeleteAllAccessPoliciesExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteAllAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllAccessTokensRequest {
 	return ApiDeleteAllAccessTokensRequest{
 		ApiService: a,
@@ -115,7 +194,7 @@ func (a DefaultAPIServiceMock) DeleteAllAccessTokens(ctx context.Context, projec
 	}
 }
 
-// DeleteAllAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAllAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteAllAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAllAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteAllAccessTokensExecute(r ApiDeleteAllAccessTokensRequest) (*AccessTokenList, error) {
 	if a.DeleteAllAccessTokensExecuteMock == nil {
 		var localVarReturnValue *AccessTokenList
@@ -125,6 +204,7 @@ func (a DefaultAPIServiceMock) DeleteAllAccessTokensExecute(r ApiDeleteAllAccess
 	return (*a.DeleteAllAccessTokensExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteAllExpiredAccessTokensRequest {
 	return ApiDeleteAllExpiredAccessTokensRequest{
 		ApiService: a,
@@ -135,7 +215,7 @@ func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokens(ctx context.Context,
 	}
 }
 
-// DeleteAllExpiredAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAllExpiredAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteAllExpiredAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAllExpiredAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokensExecute(r ApiDeleteAllExpiredAccessTokensRequest) (*AccessTokenList, error) {
 	if a.DeleteAllExpiredAccessTokensExecuteMock == nil {
 		var localVarReturnValue *AccessTokenList
@@ -145,6 +225,7 @@ func (a DefaultAPIServiceMock) DeleteAllExpiredAccessTokensExecute(r ApiDeleteAl
 	return (*a.DeleteAllExpiredAccessTokensExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiDeleteLogsInstanceRequest {
 	return ApiDeleteLogsInstanceRequest{
 		ApiService: a,
@@ -155,7 +236,7 @@ func (a DefaultAPIServiceMock) DeleteLogsInstance(ctx context.Context, projectId
 	}
 }
 
-// DeleteLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceRequest) error {
 	if a.DeleteLogsInstanceExecuteMock == nil {
 		return nil
@@ -164,6 +245,29 @@ func (a DefaultAPIServiceMock) DeleteLogsInstanceExecute(r ApiDeleteLogsInstance
 	return (*a.DeleteLogsInstanceExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) GetAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiGetAccessPolicyRequest {
+	return ApiGetAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Deprecated: GetAccessPolicyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetAccessPolicyExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetAccessPolicyExecute(r ApiGetAccessPolicyRequest) (*AccessPolicy, error) {
+	if a.GetAccessPolicyExecuteMock == nil {
+		var localVarReturnValue *AccessPolicy
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetAccessPolicyExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiGetAccessTokenRequest {
 	return ApiGetAccessTokenRequest{
 		ApiService: a,
@@ -175,7 +279,7 @@ func (a DefaultAPIServiceMock) GetAccessToken(ctx context.Context, projectId str
 	}
 }
 
-// GetAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*AccessToken, error) {
 	if a.GetAccessTokenExecuteMock == nil {
 		var localVarReturnValue *AccessToken
@@ -185,6 +289,7 @@ func (a DefaultAPIServiceMock) GetAccessTokenExecute(r ApiGetAccessTokenRequest)
 	return (*a.GetAccessTokenExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiGetLogsInstanceRequest {
 	return ApiGetLogsInstanceRequest{
 		ApiService: a,
@@ -195,7 +300,7 @@ func (a DefaultAPIServiceMock) GetLogsInstance(ctx context.Context, projectId st
 	}
 }
 
-// GetLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) (*LogsInstance, error) {
 	if a.GetLogsInstanceExecuteMock == nil {
 		var localVarReturnValue *LogsInstance
@@ -205,6 +310,28 @@ func (a DefaultAPIServiceMock) GetLogsInstanceExecute(r ApiGetLogsInstanceReques
 	return (*a.GetLogsInstanceExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) ListAccessPolicies(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessPoliciesRequest {
+	return ApiListAccessPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+	}
+}
+
+// Deprecated: ListAccessPoliciesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessPoliciesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListAccessPoliciesExecute(r ApiListAccessPoliciesRequest) (*AccessPolicyList, error) {
+	if a.ListAccessPoliciesExecuteMock == nil {
+		var localVarReturnValue *AccessPolicyList
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListAccessPoliciesExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId string, regionId string, instanceId string) ApiListAccessTokensRequest {
 	return ApiListAccessTokensRequest{
 		ApiService: a,
@@ -215,7 +342,7 @@ func (a DefaultAPIServiceMock) ListAccessTokens(ctx context.Context, projectId s
 	}
 }
 
-// ListAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListAccessTokensExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessTokensExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListAccessTokensExecute(r ApiListAccessTokensRequest) (*AccessTokenList, error) {
 	if a.ListAccessTokensExecuteMock == nil {
 		var localVarReturnValue *AccessTokenList
@@ -225,6 +352,7 @@ func (a DefaultAPIServiceMock) ListAccessTokensExecute(r ApiListAccessTokensRequ
 	return (*a.ListAccessTokensExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListLogsInstances(ctx context.Context, projectId string, regionId string) ApiListLogsInstancesRequest {
 	return ApiListLogsInstancesRequest{
 		ApiService: a,
@@ -234,7 +362,7 @@ func (a DefaultAPIServiceMock) ListLogsInstances(ctx context.Context, projectId 
 	}
 }
 
-// ListLogsInstancesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLogsInstancesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListLogsInstancesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLogsInstancesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListLogsInstancesExecute(r ApiListLogsInstancesRequest) (*LogsInstancesList, error) {
 	if a.ListLogsInstancesExecuteMock == nil {
 		var localVarReturnValue *LogsInstancesList
@@ -244,6 +372,29 @@ func (a DefaultAPIServiceMock) ListLogsInstancesExecute(r ApiListLogsInstancesRe
 	return (*a.ListLogsInstancesExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) UpdateAccessPolicy(ctx context.Context, projectId string, regionId string, instanceId string, pId string) ApiUpdateAccessPolicyRequest {
+	return ApiUpdateAccessPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+		instanceId: instanceId,
+		pId:        pId,
+	}
+}
+
+// Deprecated: UpdateAccessPolicyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateAccessPolicyExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateAccessPolicyExecute(r ApiUpdateAccessPolicyRequest) (*AccessPolicy, error) {
+	if a.UpdateAccessPolicyExecuteMock == nil {
+		var localVarReturnValue *AccessPolicy
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateAccessPolicyExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId string, instanceId string, tId string) ApiUpdateAccessTokenRequest {
 	return ApiUpdateAccessTokenRequest{
 		ApiService: a,
@@ -255,7 +406,7 @@ func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId 
 	}
 }
 
-// UpdateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateAccessTokenExecute(r ApiUpdateAccessTokenRequest) error {
 	if a.UpdateAccessTokenExecuteMock == nil {
 		return nil
@@ -264,6 +415,7 @@ func (a DefaultAPIServiceMock) UpdateAccessTokenExecute(r ApiUpdateAccessTokenRe
 	return (*a.UpdateAccessTokenExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateLogsInstance(ctx context.Context, projectId string, regionId string, instanceId string) ApiUpdateLogsInstanceRequest {
 	return ApiUpdateLogsInstanceRequest{
 		ApiService: a,
@@ -274,7 +426,7 @@ func (a DefaultAPIServiceMock) UpdateLogsInstance(ctx context.Context, projectId
 	}
 }
 
-// UpdateLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateLogsInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateLogsInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateLogsInstanceExecute(r ApiUpdateLogsInstanceRequest) (*LogsInstance, error) {
 	if a.UpdateLogsInstanceExecuteMock == nil {
 		var localVarReturnValue *LogsInstance
