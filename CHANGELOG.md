@@ -129,6 +129,13 @@
       - **Breaking Change:** Field `IsmJitter` in `InstanceParameters` model changed from *float32 to *float64
       - **Deprecation:** The `v1api` is deprecated and is planned to retire on 1 October 2027. Use the regional v2 api.
 - `logs`:
+  - [v0.12.0](services/logs/CHANGELOG.md#v0120)
+    - `v1alphaapi`:
+      - **Breaking Change:** The `v1alphaapi` package has been removed. The STACKIT Logs alpha API version has been retired; use `v1api` or `v1betaapi` instead.
+    - `v1api`:
+      - **Feature:** Add endpoints to manage access policies: `CreateAccessPolicy`, `GetAccessPolicy`, `ListAccessPolicies`, `UpdateAccessPolicy`, `DeleteAccessPolicy` and `DeleteAllAccessPolicies`. Adds `AccessPolicy`, `AccessPolicyList`, `CreateAccessPolicyPayload` and `UpdateAccessPolicyPayload` models
+    - `v1betaapi`:
+      - **Feature:** Add endpoints to manage access policies: `CreateAccessPolicy`, `GetAccessPolicy`, `ListAccessPolicies`, `UpdateAccessPolicy`, `DeleteAccessPolicy` and `DeleteAllAccessPolicies`. Adds `AccessPolicy`, `AccessPolicyList`, `CreateAccessPolicyPayload` and `UpdateAccessPolicyPayload` models
   - [v0.11.0](services/logs/CHANGELOG.md#v0110)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`

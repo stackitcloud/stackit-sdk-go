@@ -1,3 +1,11 @@
+## v0.12.0
+- `v1alphaapi`:
+  - **Breaking Change:** The `v1alphaapi` package has been removed. The STACKIT Logs alpha API version has been retired; use `v1api` or `v1betaapi` instead.
+- `v1api`:
+  - **Feature:** Add endpoints to manage access policies: `CreateAccessPolicy`, `GetAccessPolicy`, `ListAccessPolicies`, `UpdateAccessPolicy`, `DeleteAccessPolicy` and `DeleteAllAccessPolicies`. Adds `AccessPolicy`, `AccessPolicyList`, `CreateAccessPolicyPayload` and `UpdateAccessPolicyPayload` models
+- `v1betaapi`:
+  - **Feature:** Add endpoints to manage access policies: `CreateAccessPolicy`, `GetAccessPolicy`, `ListAccessPolicies`, `UpdateAccessPolicy`, `DeleteAccessPolicy` and `DeleteAllAccessPolicies`. Adds `AccessPolicy`, `AccessPolicyList`, `CreateAccessPolicyPayload` and `UpdateAccessPolicyPayload` models
+
 ## v0.11.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
