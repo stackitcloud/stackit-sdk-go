@@ -114,6 +114,11 @@
   - [1.16.0](services/loadbalancer/CHANGELOG.md#1160)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `logme`: 
+  - [v1.6.0](services/logme/CHANGELOG.md#v160)
+    - `v2api`:
+      - **Feature:** Add endpoints to manage instance updates: `GetUpdates` (current update availability/settings), `TriggerUpdate` (start an update) and `UpdateUpdatesSettings` (configure automatic updates). Adds an `InstanceStatus` field (new `InstanceInstanceStatus` enum) to the `Instance` model
+    - `v1api`:
+      - **Improvement:** Clarified the deprecation notice wording for the `v1api` package
   - [v1.5.0](services/logme/CHANGELOG.md#v150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.4.0](services/logme/CHANGELOG.md#v140)
