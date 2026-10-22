@@ -25,12 +25,15 @@ type TelemetryRouterResponse struct {
 	CreationTime time.Time `json:"creationTime"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
+	// The number of destinations configured for the telemetry router.
+	DestinationCount *int32 `json:"destinationCount,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName string        `json:"displayName" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
 	Filter      *ConfigFilter `json:"filter,omitempty"`
 	// A auto generated unique id which identifies the resource.
-	Id     string                        `json:"id"`
-	Status TelemetryRouterResponseStatus `json:"status"`
+	Id             string                        `json:"id"`
+	ResourceLabels *map[string]string            `json:"resourceLabels,omitempty"`
+	Status         TelemetryRouterResponseStatus `json:"status"`
 	// The URI for reaching the resource.
 	Uri                  string `json:"uri"`
 	AdditionalProperties map[string]interface{}
@@ -116,6 +119,38 @@ func (o *TelemetryRouterResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDestinationCount returns the DestinationCount field value if set, zero value otherwise.
+func (o *TelemetryRouterResponse) GetDestinationCount() int32 {
+	if o == nil || IsNil(o.DestinationCount) {
+		var ret int32
+		return ret
+	}
+	return *o.DestinationCount
+}
+
+// GetDestinationCountOk returns a tuple with the DestinationCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TelemetryRouterResponse) GetDestinationCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.DestinationCount) {
+		return nil, false
+	}
+	return o.DestinationCount, true
+}
+
+// HasDestinationCount returns a boolean if a field has been set.
+func (o *TelemetryRouterResponse) HasDestinationCount() bool {
+	if o != nil && !IsNil(o.DestinationCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetDestinationCount gets a reference to the given int32 and assigns it to the DestinationCount field.
+func (o *TelemetryRouterResponse) SetDestinationCount(v int32) {
+	o.DestinationCount = &v
+}
+
 // GetDisplayName returns the DisplayName field value
 func (o *TelemetryRouterResponse) GetDisplayName() string {
 	if o == nil {
@@ -196,6 +231,38 @@ func (o *TelemetryRouterResponse) SetId(v string) {
 	o.Id = v
 }
 
+// GetResourceLabels returns the ResourceLabels field value if set, zero value otherwise.
+func (o *TelemetryRouterResponse) GetResourceLabels() map[string]string {
+	if o == nil || IsNil(o.ResourceLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.ResourceLabels
+}
+
+// GetResourceLabelsOk returns a tuple with the ResourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TelemetryRouterResponse) GetResourceLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.ResourceLabels) {
+		return nil, false
+	}
+	return o.ResourceLabels, true
+}
+
+// HasResourceLabels returns a boolean if a field has been set.
+func (o *TelemetryRouterResponse) HasResourceLabels() bool {
+	if o != nil && !IsNil(o.ResourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceLabels gets a reference to the given map[string]string and assigns it to the ResourceLabels field.
+func (o *TelemetryRouterResponse) SetResourceLabels(v map[string]string) {
+	o.ResourceLabels = &v
+}
+
 // GetStatus returns the Status field value
 func (o *TelemetryRouterResponse) GetStatus() TelemetryRouterResponseStatus {
 	if o == nil {
@@ -258,11 +325,17 @@ func (o TelemetryRouterResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.DestinationCount) {
+		toSerialize["destinationCount"] = o.DestinationCount
+	}
 	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Filter) {
 		toSerialize["filter"] = o.Filter
 	}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.ResourceLabels) {
+		toSerialize["resourceLabels"] = o.ResourceLabels
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["uri"] = o.Uri
 
@@ -314,9 +387,11 @@ func (o *TelemetryRouterResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "creationTime")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "destinationCount")
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "filter")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "resourceLabels")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "uri")
 		o.AdditionalProperties = additionalProperties
