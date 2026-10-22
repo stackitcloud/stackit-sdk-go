@@ -1,3 +1,9 @@
+## v1.6.0
+- `v2api`:
+  - **Feature:** Add endpoints to manage instance updates: `GetUpdates` (current update availability/settings), `TriggerUpdate` (start an update) and `UpdateUpdatesSettings` (configure automatic updates). Adds an `InstanceStatus` field (new `InstanceInstanceStatus` enum) to the `Instance` model
+- `v1api`:
+  - **Improvement:** Clarified the deprecation notice wording for the `v1api` package
+
 ## v1.5.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 
