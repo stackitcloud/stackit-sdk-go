@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &ApproleSecret{}
 type ApproleSecret struct {
 	// A user chosen description to differentiate between multiple approle secrets.
 	Description string `json:"description"`
-	NumUses     int32  `json:"num_uses"`
+	NumUses     int64  `json:"num_uses"`
 	// Identifier used for authentication, returned only at creation
 	SecretId *string `json:"secret_id,omitempty"`
 	// Token TTL in time.Duration format (eg 15m for 15 minutes, 1h for 1 hour).
 	Ttl string `json:"ttl" validate:"regexp=^[0-9]+[smh]$"`
 	// Accessor used for handling secrets
-	Version              int32 `json:"version"`
+	Version              int64 `json:"version"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _ApproleSecret ApproleSecret
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApproleSecret(description string, numUses int32, ttl string, version int32) *ApproleSecret {
+func NewApproleSecret(description string, numUses int64, ttl string, version int64) *ApproleSecret {
 	this := ApproleSecret{}
 	this.Description = description
 	this.NumUses = numUses
@@ -80,9 +80,9 @@ func (o *ApproleSecret) SetDescription(v string) {
 }
 
 // GetNumUses returns the NumUses field value
-func (o *ApproleSecret) GetNumUses() int32 {
+func (o *ApproleSecret) GetNumUses() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *ApproleSecret) GetNumUses() int32 {
 
 // GetNumUsesOk returns a tuple with the NumUses field value
 // and a boolean to check if the value has been set.
-func (o *ApproleSecret) GetNumUsesOk() (*int32, bool) {
+func (o *ApproleSecret) GetNumUsesOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *ApproleSecret) GetNumUsesOk() (*int32, bool) {
 }
 
 // SetNumUses sets field value
-func (o *ApproleSecret) SetNumUses(v int32) {
+func (o *ApproleSecret) SetNumUses(v int64) {
 	o.NumUses = v
 }
 
@@ -160,9 +160,9 @@ func (o *ApproleSecret) SetTtl(v string) {
 }
 
 // GetVersion returns the Version field value
-func (o *ApproleSecret) GetVersion() int32 {
+func (o *ApproleSecret) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -171,7 +171,7 @@ func (o *ApproleSecret) GetVersion() int32 {
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *ApproleSecret) GetVersionOk() (*int32, bool) {
+func (o *ApproleSecret) GetVersionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,7 +179,7 @@ func (o *ApproleSecret) GetVersionOk() (*int32, bool) {
 }
 
 // SetVersion sets field value
-func (o *ApproleSecret) SetVersion(v int32) {
+func (o *ApproleSecret) SetVersion(v int64) {
 	o.Version = v
 }
 
