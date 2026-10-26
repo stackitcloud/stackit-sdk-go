@@ -1,3 +1,6 @@
+## v1.17.0
+- **Feature**: Add `AccessLogs` field of type bool in `LoadBalancerOptions` model
+
 ## v1.16.0
 - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 
