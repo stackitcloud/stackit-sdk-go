@@ -284,6 +284,9 @@
   - [v1.7.3](services/serviceenablement/CHANGELOG.md#v173)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `sfs`:
+  - [v0.13.1](services/sfs/CHANGELOG.md#v0131)
+    - `v1api`:
+      - **Improvement:** Increase default timeout to 30 minutes for `CreateResourcePoolWaitHandler`,  `UpdateResourcePoolWaitHandler` and `DeleteResourcePoolWaitHandler`
   - [v0.13.0](services/sfs/CHANGELOG.md#v0130)
     - `v1api`:
       - **Feature:** Add new `ConflictError` model for responses with 409 status code
