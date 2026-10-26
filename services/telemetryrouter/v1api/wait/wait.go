@@ -33,6 +33,15 @@ func CreateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 
 // UpdateTelemetryRouterWaitHandler will wait for TelemetryRouter update
 func UpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
+	return updateTelemetryRouterWaitHandler(ctx, a, projectId, regionId, instanceId)
+}
+
+// PartialUpdateTelemetryRouterWaitHandler will wait for TelemetryRouter partial update
+func PartialUpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
+	return updateTelemetryRouterWaitHandler(ctx, a, projectId, regionId, instanceId)
+}
+
+func updateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId string) *wait.AsyncActionHandler[telemetryrouter.TelemetryRouterResponse] {
 	waitConfig := wait.WaiterHelper[telemetryrouter.TelemetryRouterResponse, telemetryrouter.TelemetryRouterResponseStatus]{
 		FetchInstance: a.GetTelemetryRouter(ctx, projectId, regionId, instanceId).Execute,
 		GetState: func(d *telemetryrouter.TelemetryRouterResponse) (telemetryrouter.TelemetryRouterResponseStatus, error) {

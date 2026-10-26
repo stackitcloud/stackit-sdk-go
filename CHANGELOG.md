@@ -325,6 +325,9 @@
     - `v1betaapi`:
       - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param
 - `telemetryrouter`:
+  - [v0.6.2](services/telemetryrouter/CHANGELOG.md#v062)
+    - `v1api`:
+      - **Feature:** new `PartialUpdateTelemetryRouter` operation
   - [v0.6.1](services/telemetryrouter/CHANGELOG.md#v061)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)

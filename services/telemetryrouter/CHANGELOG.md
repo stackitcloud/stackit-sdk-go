@@ -1,3 +1,7 @@
+## v0.6.2
+  - `v1api`:
+    - **Feature:** new `PartialUpdateTelemetryRouter` operation
+
 ## v0.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 
