@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) or VPC and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -31,13 +31,17 @@ type Phase2Status struct {
 	EncryptionAlgorithm *string `json:"encryptionAlgorithm,omitempty"`
 	// The negotiated integrity algorithm or pseudo-random-function.
 	IntegrityAlgorithm *string `json:"integrityAlgorithm,omitempty"`
+	// List of negotiated local traffic selectors.
+	LocalTS []string `json:"localTS,omitempty"`
 	// The total number of packets received through this IPsec Security Association.
 	PacketsIn *string `json:"packetsIn,omitempty"`
 	// The total number of packets sent through this IPsec Security Association
 	PacketsOut *string `json:"packetsOut,omitempty"`
 	// The security protocol used for the tunnel, typically `ESP` (Encapsulating Security Payload).
-	Protocol             *string `json:"protocol,omitempty"`
-	State                *string `json:"state,omitempty"`
+	Protocol *string `json:"protocol,omitempty"`
+	// List of negotiated remote traffic selectors.
+	RemoteTS             []string `json:"remoteTS,omitempty"`
+	State                *string  `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -252,6 +256,38 @@ func (o *Phase2Status) SetIntegrityAlgorithm(v string) {
 	o.IntegrityAlgorithm = &v
 }
 
+// GetLocalTS returns the LocalTS field value if set, zero value otherwise.
+func (o *Phase2Status) GetLocalTS() []string {
+	if o == nil || IsNil(o.LocalTS) {
+		var ret []string
+		return ret
+	}
+	return o.LocalTS
+}
+
+// GetLocalTSOk returns a tuple with the LocalTS field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Phase2Status) GetLocalTSOk() ([]string, bool) {
+	if o == nil || IsNil(o.LocalTS) {
+		return nil, false
+	}
+	return o.LocalTS, true
+}
+
+// HasLocalTS returns a boolean if a field has been set.
+func (o *Phase2Status) HasLocalTS() bool {
+	if o != nil && !IsNil(o.LocalTS) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalTS gets a reference to the given []string and assigns it to the LocalTS field.
+func (o *Phase2Status) SetLocalTS(v []string) {
+	o.LocalTS = v
+}
+
 // GetPacketsIn returns the PacketsIn field value if set, zero value otherwise.
 func (o *Phase2Status) GetPacketsIn() string {
 	if o == nil || IsNil(o.PacketsIn) {
@@ -348,6 +384,38 @@ func (o *Phase2Status) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
+// GetRemoteTS returns the RemoteTS field value if set, zero value otherwise.
+func (o *Phase2Status) GetRemoteTS() []string {
+	if o == nil || IsNil(o.RemoteTS) {
+		var ret []string
+		return ret
+	}
+	return o.RemoteTS
+}
+
+// GetRemoteTSOk returns a tuple with the RemoteTS field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Phase2Status) GetRemoteTSOk() ([]string, bool) {
+	if o == nil || IsNil(o.RemoteTS) {
+		return nil, false
+	}
+	return o.RemoteTS, true
+}
+
+// HasRemoteTS returns a boolean if a field has been set.
+func (o *Phase2Status) HasRemoteTS() bool {
+	if o != nil && !IsNil(o.RemoteTS) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteTS gets a reference to the given []string and assigns it to the RemoteTS field.
+func (o *Phase2Status) SetRemoteTS(v []string) {
+	o.RemoteTS = v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Phase2Status) GetState() string {
 	if o == nil || IsNil(o.State) {
@@ -408,6 +476,9 @@ func (o Phase2Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IntegrityAlgorithm) {
 		toSerialize["integrityAlgorithm"] = o.IntegrityAlgorithm
 	}
+	if !IsNil(o.LocalTS) {
+		toSerialize["localTS"] = o.LocalTS
+	}
 	if !IsNil(o.PacketsIn) {
 		toSerialize["packetsIn"] = o.PacketsIn
 	}
@@ -416,6 +487,9 @@ func (o Phase2Status) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.RemoteTS) {
+		toSerialize["remoteTS"] = o.RemoteTS
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
@@ -448,9 +522,11 @@ func (o *Phase2Status) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "encap")
 		delete(additionalProperties, "encryptionAlgorithm")
 		delete(additionalProperties, "integrityAlgorithm")
+		delete(additionalProperties, "localTS")
 		delete(additionalProperties, "packetsIn")
 		delete(additionalProperties, "packetsOut")
 		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "remoteTS")
 		delete(additionalProperties, "state")
 		o.AdditionalProperties = additionalProperties
 	}
