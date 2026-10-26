@@ -1,7 +1,7 @@
 ## Release (2026-MM-DD)
 
 - `alb`:
-  - [v0.19.0](services/alb/CHANGELOG.md#v0190)
+  - [v0.20.0](services/alb/CHANGELOG.md#v0200)
     - `v2api`:
       - **Feature**: Add `AccessLogs` field of type bool in `LoadBalancerOptions` model
   - [v0.19.0](services/alb/CHANGELOG.md#v0190)
