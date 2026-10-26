@@ -1,3 +1,7 @@
+## v0.13.1
+- `v1api`:
+  - **Improvement:** Increase default timeout to 30 minutes for `CreateResourcePoolWaitHandler`,  `UpdateResourcePoolWaitHandler` and `DeleteResourcePoolWaitHandler`
+
 ## v0.13.0
 - `v1api`:
   - **Feature:** Add new `ConflictError` model for responses with 409 status code

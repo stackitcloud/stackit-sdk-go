@@ -36,7 +36,7 @@ func CreateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 
 	handler := wait.New(waitConfig.Wait())
 
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
@@ -50,7 +50,7 @@ func UpdateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 
 	handler := wait.New(waitConfig.Wait())
 
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
@@ -64,7 +64,7 @@ func DeleteResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 
 	handler := wait.New(waitConfig.Wait())
 
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
