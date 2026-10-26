@@ -2,6 +2,9 @@
 
 - `alb`:
   - [v0.19.0](services/alb/CHANGELOG.md#v0190)
+    - `v2api`:
+      - **Feature**: Add `AccessLogs` field of type bool in `LoadBalancerOptions` model
+  - [v0.19.0](services/alb/CHANGELOG.md#v0190)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.18.0](services/alb/CHANGELOG.md#v0180)
     - `v2api`:
