@@ -57,6 +57,8 @@
   - [v0.14.0](services/edge/CHANGELOG.md#v0140)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `functions`:
+  - [v0.2.0](services/functions/CHANGELOG.md#v020)
+    - `v1alphaapi`: Align package to latest API specification
   - [v0.1.0](services/functions/CHANGELOG.md#v010)
     - `v1alphaapi`:
       - **Feature**: initial release
