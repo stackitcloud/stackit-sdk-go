@@ -110,7 +110,10 @@
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.13.2](services/kms/CHANGELOG.md#v1132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
-- `loadbalancer`: 
+- `loadbalancer`:
+  - [1.17.0](services/loadbalancer/CHANGELOG.md#1170)
+    - `v2api`:
+      - **Feature**: Add `AccessLogs` field of type bool in `LoadBalancerOptions` model
   - [1.16.0](services/loadbalancer/CHANGELOG.md#1160)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `logme`: 
