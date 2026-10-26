@@ -27,15 +27,15 @@ type ListFlavors struct {
 	Description string `json:"description"`
 	// The id of the instance flavor.
 	Id string `json:"id"`
-	// maximum storage which can be ordered for the flavor in Gigabyte.
+	// The maximum storage size in gigabytes that can be ordered for this flavor.
 	MaxGB int32 `json:"maxGB"`
 	// The memory of the instance in Gibibyte.
 	Memory int64 `json:"memory"`
-	// minimum storage which is required to order in Gigabyte.
+	// The minimum storage size in gigabytes required for this flavor.
 	MinGB int32 `json:"minGB"`
 	// defines the nodeType it can be either single or replica
 	NodeType string `json:"nodeType"`
-	// maximum storage which can be ordered for the flavor in Gigabyte.
+	// The storage classes available for the flavor.
 	StorageClasses       []FlavorStorageClassesStorageClass `json:"storageClasses"`
 	AdditionalProperties map[string]interface{}
 }
