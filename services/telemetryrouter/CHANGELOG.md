@@ -1,4 +1,4 @@
-## v0.6.2
+## v0.7.0
   - `v1api`:
     - **Feature:** new `PartialUpdateTelemetryRouter` operation
 
