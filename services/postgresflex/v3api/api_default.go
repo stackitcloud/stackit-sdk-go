@@ -127,7 +127,7 @@ type DefaultAPI interface {
 	/*
 		DeleteUser Delete User
 
-		Delete an user from a specific instance.
+		Delete a user from a specific instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The STACKIT project ID.
@@ -213,7 +213,7 @@ type DefaultAPI interface {
 	GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error)
 
 	/*
-		ListBackups List backups
+		ListBackups List Backups
 
 		List all backups which are available for a specific instance.
 
@@ -381,7 +381,7 @@ type DefaultAPI interface {
 	/*
 		PartialUpdateUser Update User Partially
 
-		Update an user partially for an instance.
+		Update a user partially for an instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The STACKIT project ID.
@@ -398,7 +398,7 @@ type DefaultAPI interface {
 	/*
 		ResetUserPassword Reset User
 
-		Reset an user from an specific instance.
+		Reset a user from a specific instance.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The STACKIT project ID.
@@ -1328,6 +1328,17 @@ func (a *DefaultAPIService) CreateUserExecute(r ApiCreateUserRequest) (*CreateUs
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1529,6 +1540,17 @@ func (a *DefaultAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) er
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1779,7 +1801,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 /*
 DeleteUser Delete User
 
-Delete an user from a specific instance.
+Delete a user from a specific instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
@@ -2773,7 +2795,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 }
 
 /*
-ListBackups List backups
+ListBackups List Backups
 
 List all backups which are available for a specific instance.
 
@@ -4910,7 +4932,7 @@ func (r ApiPartialUpdateUserRequest) Execute() error {
 /*
 PartialUpdateUser Update User Partially
 
-Update an user partially for an instance.
+Update a user partially for an instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
@@ -5048,6 +5070,17 @@ func (a *DefaultAPIService) PartialUpdateUserExecute(r ApiPartialUpdateUserReque
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -5113,7 +5146,7 @@ func (r ApiResetUserPasswordRequest) Execute() (*ResetUserPasswordResponse, erro
 /*
 ResetUserPassword Reset User
 
-Reset an user from an specific instance.
+Reset a user from a specific instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT project ID.
@@ -5753,7 +5786,7 @@ type ApiUpdateInstanceProtectionRequest struct {
 	updateInstanceProtectionPayload *UpdateInstanceProtectionPayload
 }
 
-// The request body with flag isDeletable. Parameter is required.
+// The request body containing the isDeletable flag. This parameter is required.
 func (r ApiUpdateInstanceProtectionRequest) UpdateInstanceProtectionPayload(updateInstanceProtectionPayload UpdateInstanceProtectionPayload) ApiUpdateInstanceProtectionRequest {
 	r.updateInstanceProtectionPayload = &updateInstanceProtectionPayload
 	return r
@@ -6120,6 +6153,17 @@ func (a *DefaultAPIService) UpdateUserExecute(r ApiUpdateUserRequest) error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
