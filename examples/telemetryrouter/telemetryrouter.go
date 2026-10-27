@@ -109,7 +109,7 @@ func main() {
 		PartialUpdateTelemetryRouterPayload(partialUpdatePayload).
 		Execute()
 	if err != nil {
-		log.Fatalf("[Telemetry Router API] Error when calling `PArtialUpdateTelemetryRouter`: %v\n", err)
+		log.Fatalf("[Telemetry Router API] Error when calling `PartialUpdateTelemetryRouter`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Partially Updated Telemetry Router Instance with ID \"%s\" to Display Name \"%s\".\n", partialUpdateResp.Id, partialUpdateResp.DisplayName)
 
