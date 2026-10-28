@@ -20,7 +20,7 @@ var _ MappedNullable = &LoadBalancerOptions{}
 // LoadBalancerOptions Defines any optional functionality you want to have enabled on your Application Load Balancer.
 type LoadBalancerOptions struct {
 	AccessControl *LoadbalancerOptionAccessControl `json:"accessControl,omitempty"`
-	// Enable per-request access logs on the Application Load Balancer. Defaults to false. Enable only when the Application Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires STACKIT Telemetry Hub or STACKIT Observability to be set up for the logs to be viewable.
+	// Enable per-request access logs on the Application Load Balancer. Defaults to false. Enable only when the Application Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires a STACKIT Telemetry Router to be set up for the logs to be viewable.
 	AccessLogs *bool `json:"accessLogs,omitempty"`
 	// This option automates the handling of the external IP address for an Application Load Balancer. If set to true a new IP address will be automatically created. It will also be automatically deleted when the Load Balancer is deleted.
 	EphemeralAddress *bool                            `json:"ephemeralAddress,omitempty"`
