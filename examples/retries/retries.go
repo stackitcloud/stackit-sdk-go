@@ -137,9 +137,14 @@ func NewRetryMiddleware(rt http.RoundTripper) http.RoundTripper {
 
 func main() {
 	const (
-		projectId = "PROJECT_ID" // the uuid of your STACKIT project
-		region    = "eu01"
+		region = "eu01"
 	)
+
+	projectId, ok := os.LookupEnv("STACKIT_PROJECT_ID") // the uuid of your STACKIT project
+	if !ok {
+		fmt.Fprintf(os.Stderr, "STACKIT_PROJECT_ID env variable not set.\n")
+		os.Exit(1)
+	}
 
 	ctx := context.Background()
 
@@ -152,13 +157,6 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
-	}
-
-	// do an initial API call to make sure not all goroutines will try to authenticate in parallel
-	_, err = client.DefaultAPI.ListBuckets(ctx, projectId, region).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Initial API call failed: %v\n", err)
-		return
 	}
 
 	var wg sync.WaitGroup
