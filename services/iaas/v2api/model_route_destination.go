@@ -18,8 +18,9 @@ import (
 
 // RouteDestination - struct for RouteDestination
 type RouteDestination struct {
-	DestinationCIDRv4 *DestinationCIDRv4
-	DestinationCIDRv6 *DestinationCIDRv6
+	DestinationCIDRv4     *DestinationCIDRv4
+	DestinationCIDRv6     *DestinationCIDRv6
+	DestinationPrefixList *DestinationPrefixList
 }
 
 // DestinationCIDRv4AsRouteDestination is a convenience function that returns DestinationCIDRv4 wrapped in RouteDestination
@@ -33,6 +34,13 @@ func DestinationCIDRv4AsRouteDestination(v *DestinationCIDRv4) RouteDestination 
 func DestinationCIDRv6AsRouteDestination(v *DestinationCIDRv6) RouteDestination {
 	return RouteDestination{
 		DestinationCIDRv6: v,
+	}
+}
+
+// DestinationPrefixListAsRouteDestination is a convenience function that returns DestinationPrefixList wrapped in RouteDestination
+func DestinationPrefixListAsRouteDestination(v *DestinationPrefixList) RouteDestination {
+	return RouteDestination{
+		DestinationPrefixList: v,
 	}
 }
 
@@ -70,6 +78,18 @@ func (dst *RouteDestination) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'prefixlist'
+	if jsonDict["type"] == "prefixlist" {
+		// try to unmarshal JSON data into DestinationPrefixList
+		err = json.Unmarshal(data, &dst.DestinationPrefixList)
+		if err == nil {
+			return nil // data stored in dst.DestinationPrefixList, return on the first match
+		} else {
+			dst.DestinationPrefixList = nil
+			return fmt.Errorf("failed to unmarshal RouteDestination as DestinationPrefixList: %s", err.Error())
+		}
+	}
+
 	return nil
 }
 
@@ -81,6 +101,10 @@ func (src RouteDestination) MarshalJSON() ([]byte, error) {
 
 	if src.DestinationCIDRv6 != nil {
 		return json.Marshal(&src.DestinationCIDRv6)
+	}
+
+	if src.DestinationPrefixList != nil {
+		return json.Marshal(&src.DestinationPrefixList)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -99,6 +123,10 @@ func (obj *RouteDestination) GetActualInstance() interface{} {
 		return obj.DestinationCIDRv6
 	}
 
+	if obj.DestinationPrefixList != nil {
+		return obj.DestinationPrefixList
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -111,6 +139,10 @@ func (obj RouteDestination) GetActualInstanceValue() interface{} {
 
 	if obj.DestinationCIDRv6 != nil {
 		return *obj.DestinationCIDRv6
+	}
+
+	if obj.DestinationPrefixList != nil {
+		return *obj.DestinationPrefixList
 	}
 
 	// all schemas are nil
