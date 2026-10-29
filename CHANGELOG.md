@@ -68,6 +68,18 @@
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `iaas`:
+  - [v1.16.0](services/iaas/CHANGELOG.md#v1160)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.1` to `v0.28.0`
+    - `v2api`:
+      - **Feature:** Add `Encrypted` field in `CreateSnapshotPayload` and `Snapshot` model
+      - **Feature:** Add `DestinationPrefixList` model
+      - **Feature:** Add `DestinationPrefixListType` enum
+      - **Feature:** Add `DestinationPrefixList` field to oneOf model `RouteDestination`
+    - `v2beta1api`:
+      - **Feature:** Add `Encrypted` field in `V2beta1CreateSnapshotPayload` and `Snapshot` model
+      - **Feature:** Add `DestinationPrefixList` model
+      - **Feature:** Add `DestinationPrefixListType` enum
+      - **Feature:** Add `DestinationPrefixList` field to oneOf model `RouteDestination`
   - [v1.15.1](services/iaas/CHANGELOG.md#v1151)
     - **Bugfix:** Waiter `ResizeServerWaitHandler` continued waiting when server is inactive 
   - [v1.15.0](services/iaas/CHANGELOG.md#v1150)
