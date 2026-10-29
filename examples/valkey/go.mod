@@ -2,8 +2,10 @@ module github.com/stackitcloud/stackit-sdk-go/examples/valkey
 
 go 1.25
 
+// NOTE: valkey is currently on the SDK generator blocklist, so the replace is commented out.
+// Re-enable it as soon as valkey is removed from the blocklist again.
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
-replace github.com/stackitcloud/stackit-sdk-go/services/valkey => ../../services/valkey
+// replace github.com/stackitcloud/stackit-sdk-go/services/valkey => ../../services/valkey
 
 require github.com/stackitcloud/stackit-sdk-go/services/valkey v0.3.1
 

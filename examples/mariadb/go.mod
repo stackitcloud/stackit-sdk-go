@@ -2,8 +2,10 @@ module github.com/stackitcloud/stackit-sdk-go/examples/mariadb
 
 go 1.25
 
+// NOTE: mariadb is currently on the SDK generator blocklist, so the replace is commented out.
+// Re-enable it as soon as mariadb is removed from the blocklist again.
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
-replace github.com/stackitcloud/stackit-sdk-go/services/mariadb => ../../services/mariadb
+// replace github.com/stackitcloud/stackit-sdk-go/services/mariadb => ../../services/mariadb
 
 require github.com/stackitcloud/stackit-sdk-go/services/mariadb v1.3.1
 
