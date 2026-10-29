@@ -1,3 +1,16 @@
+## v1.16.0
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.26.1` to `v0.28.0`
+- `v2api`:
+  - **Feature:** Add `Encrypted` field in `CreateSnapshotPayload` and `Snapshot` model
+  - **Feature:** Add `DestinationPrefixList` model
+  - **Feature:** Add `DestinationPrefixListType` enum
+  - **Feature:** Add `DestinationPrefixList` field to oneOf model `RouteDestination` 
+- `v2beta1api`:
+  - **Feature:** Add `Encrypted` field in `V2beta1CreateSnapshotPayload` and `Snapshot` model
+  - **Feature:** Add `DestinationPrefixList` model
+  - **Feature:** Add `DestinationPrefixListType` enum
+  - **Feature:** Add `DestinationPrefixList` field to oneOf model `RouteDestination` 
+
 ## v1.15.1
 - **Bugfix:** Waiter `ResizeServerWaitHandler` continued waiting when server is inactive
 
