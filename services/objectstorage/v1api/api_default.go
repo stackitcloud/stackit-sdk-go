@@ -1,7 +1,7 @@
 /*
-STACKIT Object Storage API
+[DEPRECATED] STACKIT Object Storage API
 
-STACKIT API to manage the Object Storage
+## ⚠️ WARNING: THIS API IS DEPRECATED Use V2
 
 API version: 1.1.0
 */
@@ -31,11 +31,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiCreateAccessKeyRequest
+
+		Deprecated
 	*/
 	CreateAccessKey(ctx context.Context, projectId string) ApiCreateAccessKeyRequest
 
 	// CreateAccessKeyExecute executes the request
 	//  @return CreateAccessKeyResponse
+	// Deprecated
 	CreateAccessKeyExecute(r ApiCreateAccessKeyRequest) (*CreateAccessKeyResponse, error)
 
 	/*
@@ -47,11 +50,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiCreateBucketRequest
+
+		Deprecated
 	*/
 	CreateBucket(ctx context.Context, projectId string, bucketName string) ApiCreateBucketRequest
 
 	// CreateBucketExecute executes the request
 	//  @return CreateBucketResponse
+	// Deprecated
 	CreateBucketExecute(r ApiCreateBucketRequest) (*CreateBucketResponse, error)
 
 	/*
@@ -62,11 +68,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiCreateComplianceLockRequest
+
+		Deprecated
 	*/
 	CreateComplianceLock(ctx context.Context, projectId string) ApiCreateComplianceLockRequest
 
 	// CreateComplianceLockExecute executes the request
 	//  @return ComplianceLockResponse
+	// Deprecated
 	CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error)
 
 	/*
@@ -75,11 +84,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiCreateCredentialsGroupRequest
+
+		Deprecated
 	*/
 	CreateCredentialsGroup(ctx context.Context, projectId string) ApiCreateCredentialsGroupRequest
 
 	// CreateCredentialsGroupExecute executes the request
 	//  @return CreateCredentialsGroupResponse
+	// Deprecated
 	CreateCredentialsGroupExecute(r ApiCreateCredentialsGroupRequest) (*CreateCredentialsGroupResponse, error)
 
 	/*
@@ -91,11 +103,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param keyId Object storage access key
 		@return ApiDeleteAccessKeyRequest
+
+		Deprecated
 	*/
 	DeleteAccessKey(ctx context.Context, projectId string, keyId string) ApiDeleteAccessKeyRequest
 
 	// DeleteAccessKeyExecute executes the request
 	//  @return DeleteAccessKeyResponse
+	// Deprecated
 	DeleteAccessKeyExecute(r ApiDeleteAccessKeyRequest) (*DeleteAccessKeyResponse, error)
 
 	/*
@@ -107,11 +122,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiDeleteBucketRequest
+
+		Deprecated
 	*/
 	DeleteBucket(ctx context.Context, projectId string, bucketName string) ApiDeleteBucketRequest
 
 	// DeleteBucketExecute executes the request
 	//  @return DeleteBucketResponse
+	// Deprecated
 	DeleteBucketExecute(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error)
 
 	/*
@@ -122,11 +140,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiDeleteComplianceLockRequest
+
+		Deprecated
 	*/
 	DeleteComplianceLock(ctx context.Context, projectId string) ApiDeleteComplianceLockRequest
 
 	// DeleteComplianceLockExecute executes the request
 	//  @return ComplianceLockResponse
+	// Deprecated
 	DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error)
 
 	/*
@@ -139,11 +160,14 @@ type DefaultAPI interface {
 			@param projectId STACKIT project ID
 			@param groupId Id of the credentials group
 			@return ApiDeleteCredentialsGroupRequest
+
+			Deprecated
 	*/
 	DeleteCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiDeleteCredentialsGroupRequest
 
 	// DeleteCredentialsGroupExecute executes the request
 	//  @return DeleteCredentialsGroupResponse
+	// Deprecated
 	DeleteCredentialsGroupExecute(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error)
 
 	/*
@@ -155,11 +179,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiDeleteDefaultRetentionRequest
+
+		Deprecated
 	*/
 	DeleteDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiDeleteDefaultRetentionRequest
 
 	// DeleteDefaultRetentionExecute executes the request
 	//  @return DeleteDefaultRetentionResponse
+	// Deprecated
 	DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error)
 
 	/*
@@ -170,11 +197,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiDisableServiceRequest
+
+		Deprecated
 	*/
 	DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest
 
 	// DisableServiceExecute executes the request
 	//  @return ProjectStatus
+	// Deprecated
 	DisableServiceExecute(r ApiDisableServiceRequest) (*ProjectStatus, error)
 
 	/*
@@ -186,11 +216,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId STACKIT project ID
 			@return ApiEnableServiceRequest
+
+			Deprecated
 	*/
 	EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest
 
 	// EnableServiceExecute executes the request
 	//  @return ProjectStatus
+	// Deprecated
 	EnableServiceExecute(r ApiEnableServiceRequest) (*ProjectStatus, error)
 
 	/*
@@ -202,11 +235,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiGetBucketRequest
+
+		Deprecated
 	*/
 	GetBucket(ctx context.Context, projectId string, bucketName string) ApiGetBucketRequest
 
 	// GetBucketExecute executes the request
 	//  @return GetBucketResponse
+	// Deprecated
 	GetBucketExecute(r ApiGetBucketRequest) (*GetBucketResponse, error)
 
 	/*
@@ -217,11 +253,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiGetComplianceLockRequest
+
+		Deprecated
 	*/
 	GetComplianceLock(ctx context.Context, projectId string) ApiGetComplianceLockRequest
 
 	// GetComplianceLockExecute executes the request
 	//  @return ComplianceLockResponse
+	// Deprecated
 	GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error)
 
 	/*
@@ -233,11 +272,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param groupId Id of the credentials group
 		@return ApiGetCredentialsGroupRequest
+
+		Deprecated
 	*/
 	GetCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiGetCredentialsGroupRequest
 
 	// GetCredentialsGroupExecute executes the request
 	//  @return GetCredentialsGroupResponse
+	// Deprecated
 	GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error)
 
 	/*
@@ -249,11 +291,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiGetDefaultRetentionRequest
+
+		Deprecated
 	*/
 	GetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiGetDefaultRetentionRequest
 
 	// GetDefaultRetentionExecute executes the request
 	//  @return DefaultRetentionResponse
+	// Deprecated
 	GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 
 	/*
@@ -264,11 +309,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiGetServiceStatusRequest
+
+		Deprecated
 	*/
 	GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest
 
 	// GetServiceStatusExecute executes the request
 	//  @return ProjectStatus
+	// Deprecated
 	GetServiceStatusExecute(r ApiGetServiceStatusRequest) (*ProjectStatus, error)
 
 	/*
@@ -279,11 +327,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiListAccessKeysRequest
+
+		Deprecated
 	*/
 	ListAccessKeys(ctx context.Context, projectId string) ApiListAccessKeysRequest
 
 	// ListAccessKeysExecute executes the request
 	//  @return ListAccessKeysResponse
+	// Deprecated
 	ListAccessKeysExecute(r ApiListAccessKeysRequest) (*ListAccessKeysResponse, error)
 
 	/*
@@ -294,11 +345,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiListBucketsRequest
+
+		Deprecated
 	*/
 	ListBuckets(ctx context.Context, projectId string) ApiListBucketsRequest
 
 	// ListBucketsExecute executes the request
 	//  @return ListBucketsResponse
+	// Deprecated
 	ListBucketsExecute(r ApiListBucketsRequest) (*ListBucketsResponse, error)
 
 	/*
@@ -309,11 +363,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiListCredentialsGroupsRequest
+
+		Deprecated
 	*/
 	ListCredentialsGroups(ctx context.Context, projectId string) ApiListCredentialsGroupsRequest
 
 	// ListCredentialsGroupsExecute executes the request
 	//  @return ListCredentialsGroupsResponse
+	// Deprecated
 	ListCredentialsGroupsExecute(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error)
 
 	/*
@@ -325,11 +382,14 @@ type DefaultAPI interface {
 		@param projectId STACKIT project ID
 		@param bucketName The name has to be dns-conform.
 		@return ApiSetDefaultRetentionRequest
+
+		Deprecated
 	*/
 	SetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiSetDefaultRetentionRequest
 
 	// SetDefaultRetentionExecute executes the request
 	//  @return DefaultRetentionResponse
+	// Deprecated
 	SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 
 	/*
@@ -340,11 +400,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId STACKIT project ID
 		@return ApiUpdateServiceRequest
+
+		Deprecated
 	*/
 	UpdateService(ctx context.Context, projectId string) ApiUpdateServiceRequest
 
 	// UpdateServiceExecute executes the request
 	//  @return ProjectStatus
+	// Deprecated
 	UpdateServiceExecute(r ApiUpdateServiceRequest) (*ProjectStatus, error)
 }
 
@@ -381,6 +444,8 @@ Create an access key for the given project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiCreateAccessKeyRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateAccessKey(ctx context.Context, projectId string) ApiCreateAccessKeyRequest {
 	return ApiCreateAccessKeyRequest{
@@ -393,6 +458,8 @@ func (a *DefaultAPIService) CreateAccessKey(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return CreateAccessKeyResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateAccessKeyExecute(r ApiCreateAccessKeyRequest) (*CreateAccessKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -578,6 +645,8 @@ Create a bucket for the given project. Bucket with the same name cannot already 
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiCreateBucketRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateBucket(ctx context.Context, projectId string, bucketName string) ApiCreateBucketRequest {
 	return ApiCreateBucketRequest{
@@ -591,6 +660,8 @@ func (a *DefaultAPIService) CreateBucket(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return CreateBucketResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateBucketExecute(r ApiCreateBucketRequest) (*CreateBucketResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -773,6 +844,8 @@ Enable compliance lock for a project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiCreateComplianceLockRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateComplianceLock(ctx context.Context, projectId string) ApiCreateComplianceLockRequest {
 	return ApiCreateComplianceLockRequest{
@@ -785,6 +858,8 @@ func (a *DefaultAPIService) CreateComplianceLock(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return ComplianceLockResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -924,6 +999,8 @@ CreateCredentialsGroup Create Credentials Group
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiCreateCredentialsGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCredentialsGroup(ctx context.Context, projectId string) ApiCreateCredentialsGroupRequest {
 	return ApiCreateCredentialsGroupRequest{
@@ -936,6 +1013,8 @@ func (a *DefaultAPIService) CreateCredentialsGroup(ctx context.Context, projectI
 // Execute executes the request
 //
 //	@return CreateCredentialsGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCredentialsGroupExecute(r ApiCreateCredentialsGroupRequest) (*CreateCredentialsGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1128,6 +1207,8 @@ Delete an access key from the given project.
 	@param projectId STACKIT project ID
 	@param keyId Object storage access key
 	@return ApiDeleteAccessKeyRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteAccessKey(ctx context.Context, projectId string, keyId string) ApiDeleteAccessKeyRequest {
 	return ApiDeleteAccessKeyRequest{
@@ -1141,6 +1222,8 @@ func (a *DefaultAPIService) DeleteAccessKey(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return DeleteAccessKeyResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteAccessKeyExecute(r ApiDeleteAccessKeyRequest) (*DeleteAccessKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1326,6 +1409,8 @@ Delete a bucket from the given project.
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiDeleteBucketRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteBucket(ctx context.Context, projectId string, bucketName string) ApiDeleteBucketRequest {
 	return ApiDeleteBucketRequest{
@@ -1339,6 +1424,8 @@ func (a *DefaultAPIService) DeleteBucket(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return DeleteBucketResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1503,6 +1590,8 @@ Remove compliance lock from a project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiDeleteComplianceLockRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteComplianceLock(ctx context.Context, projectId string) ApiDeleteComplianceLockRequest {
 	return ApiDeleteComplianceLockRequest{
@@ -1515,6 +1604,8 @@ func (a *DefaultAPIService) DeleteComplianceLock(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return ComplianceLockResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1653,6 +1744,8 @@ exists and no valid access keys are left in the group.
 	@param projectId STACKIT project ID
 	@param groupId Id of the credentials group
 	@return ApiDeleteCredentialsGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiDeleteCredentialsGroupRequest {
 	return ApiDeleteCredentialsGroupRequest{
@@ -1666,6 +1759,8 @@ func (a *DefaultAPIService) DeleteCredentialsGroup(ctx context.Context, projectI
 // Execute executes the request
 //
 //	@return DeleteCredentialsGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCredentialsGroupExecute(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1826,6 +1921,8 @@ Remove the default retention from a bucket. Object Lock itself remains enabled.
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiDeleteDefaultRetentionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiDeleteDefaultRetentionRequest {
 	return ApiDeleteDefaultRetentionRequest{
@@ -1839,6 +1936,8 @@ func (a *DefaultAPIService) DeleteDefaultRetention(ctx context.Context, projectI
 // Execute executes the request
 //
 //	@return DeleteDefaultRetentionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1981,6 +2080,8 @@ Delete the given project
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiDisableServiceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
 	return ApiDisableServiceRequest{
@@ -1993,6 +2094,8 @@ func (a *DefaultAPIService) DisableService(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return ProjectStatus
+//
+// Deprecated
 func (a *DefaultAPIService) DisableServiceExecute(r ApiDisableServiceRequest) (*ProjectStatus, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -2184,6 +2287,8 @@ already exists, but will not create a duplicate
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiEnableServiceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
 	return ApiEnableServiceRequest{
@@ -2196,6 +2301,8 @@ func (a *DefaultAPIService) EnableService(ctx context.Context, projectId string)
 // Execute executes the request
 //
 //	@return ProjectStatus
+//
+// Deprecated
 func (a *DefaultAPIService) EnableServiceExecute(r ApiEnableServiceRequest) (*ProjectStatus, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -2366,6 +2473,8 @@ Get information for the given bucket in the project.
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiGetBucketRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetBucket(ctx context.Context, projectId string, bucketName string) ApiGetBucketRequest {
 	return ApiGetBucketRequest{
@@ -2379,6 +2488,8 @@ func (a *DefaultAPIService) GetBucket(ctx context.Context, projectId string, buc
 // Execute executes the request
 //
 //	@return GetBucketResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetBucketExecute(r ApiGetBucketRequest) (*GetBucketResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2554,6 +2665,8 @@ Get the project-level compliance lock.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiGetComplianceLockRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetComplianceLock(ctx context.Context, projectId string) ApiGetComplianceLockRequest {
 	return ApiGetComplianceLockRequest{
@@ -2566,6 +2679,8 @@ func (a *DefaultAPIService) GetComplianceLock(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return ComplianceLockResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2692,6 +2807,8 @@ Get the details of a single credentials group
 	@param projectId STACKIT project ID
 	@param groupId Id of the credentials group
 	@return ApiGetCredentialsGroupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiGetCredentialsGroupRequest {
 	return ApiGetCredentialsGroupRequest{
@@ -2705,6 +2822,8 @@ func (a *DefaultAPIService) GetCredentialsGroup(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return GetCredentialsGroupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2843,6 +2962,8 @@ Get the default retention configuration for a bucket.
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiGetDefaultRetentionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiGetDefaultRetentionRequest {
 	return ApiGetDefaultRetentionRequest{
@@ -2856,6 +2977,8 @@ func (a *DefaultAPIService) GetDefaultRetention(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return DefaultRetentionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2998,6 +3121,8 @@ Get project details.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiGetServiceStatusRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
 	return ApiGetServiceStatusRequest{
@@ -3010,6 +3135,8 @@ func (a *DefaultAPIService) GetServiceStatus(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return ProjectStatus
+//
+// Deprecated
 func (a *DefaultAPIService) GetServiceStatusExecute(r ApiGetServiceStatusRequest) (*ProjectStatus, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3184,6 +3311,8 @@ Get a list of access keys for the given project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiListAccessKeysRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListAccessKeys(ctx context.Context, projectId string) ApiListAccessKeysRequest {
 	return ApiListAccessKeysRequest{
@@ -3196,6 +3325,8 @@ func (a *DefaultAPIService) ListAccessKeys(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return ListAccessKeysResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListAccessKeysExecute(r ApiListAccessKeysRequest) (*ListAccessKeysResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3367,6 +3498,8 @@ Get the list of all buckets in the given project
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiListBucketsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListBuckets(ctx context.Context, projectId string) ApiListBucketsRequest {
 	return ApiListBucketsRequest{
@@ -3379,6 +3512,8 @@ func (a *DefaultAPIService) ListBuckets(ctx context.Context, projectId string) A
 // Execute executes the request
 //
 //	@return ListBucketsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListBucketsExecute(r ApiListBucketsRequest) (*ListBucketsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3547,6 +3682,8 @@ Get credentials groups inside a project if the project exists
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiListCredentialsGroupsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCredentialsGroups(ctx context.Context, projectId string) ApiListCredentialsGroupsRequest {
 	return ApiListCredentialsGroupsRequest{
@@ -3559,6 +3696,8 @@ func (a *DefaultAPIService) ListCredentialsGroups(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return ListCredentialsGroupsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCredentialsGroupsExecute(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3724,6 +3863,8 @@ Set or update the default retention for a bucket.
 	@param projectId STACKIT project ID
 	@param bucketName The name has to be dns-conform.
 	@return ApiSetDefaultRetentionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) SetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiSetDefaultRetentionRequest {
 	return ApiSetDefaultRetentionRequest{
@@ -3737,6 +3878,8 @@ func (a *DefaultAPIService) SetDefaultRetention(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return DefaultRetentionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -3901,6 +4044,8 @@ Update project details.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
 	@return ApiUpdateServiceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateService(ctx context.Context, projectId string) ApiUpdateServiceRequest {
 	return ApiUpdateServiceRequest{
@@ -3913,6 +4058,8 @@ func (a *DefaultAPIService) UpdateService(ctx context.Context, projectId string)
 // Execute executes the request
 //
 //	@return ProjectStatus
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateServiceExecute(r ApiUpdateServiceRequest) (*ProjectStatus, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
