@@ -20,7 +20,10 @@ var _ MappedNullable = &ResourceLimits{}
 
 // ResourceLimits Resource utilization limitations
 type ResourceLimits struct {
-	Concurrency          int32  `json:"concurrency"`
+	// Maximum number of in-flight requests to a single instance
+	Concurrency int32 `json:"concurrency"`
+	// Maximum number of running instances
+	MaxScale             *int32 `json:"max_scale,omitempty"`
 	Plan                 string `json:"plan"`
 	AdditionalProperties map[string]interface{}
 }
@@ -70,6 +73,38 @@ func (o *ResourceLimits) SetConcurrency(v int32) {
 	o.Concurrency = v
 }
 
+// GetMaxScale returns the MaxScale field value if set, zero value otherwise.
+func (o *ResourceLimits) GetMaxScale() int32 {
+	if o == nil || IsNil(o.MaxScale) {
+		var ret int32
+		return ret
+	}
+	return *o.MaxScale
+}
+
+// GetMaxScaleOk returns a tuple with the MaxScale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResourceLimits) GetMaxScaleOk() (*int32, bool) {
+	if o == nil || IsNil(o.MaxScale) {
+		return nil, false
+	}
+	return o.MaxScale, true
+}
+
+// HasMaxScale returns a boolean if a field has been set.
+func (o *ResourceLimits) HasMaxScale() bool {
+	if o != nil && !IsNil(o.MaxScale) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxScale gets a reference to the given int32 and assigns it to the MaxScale field.
+func (o *ResourceLimits) SetMaxScale(v int32) {
+	o.MaxScale = &v
+}
+
 // GetPlan returns the Plan field value
 func (o *ResourceLimits) GetPlan() string {
 	if o == nil {
@@ -105,6 +140,9 @@ func (o ResourceLimits) MarshalJSON() ([]byte, error) {
 func (o ResourceLimits) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["concurrency"] = o.Concurrency
+	if !IsNil(o.MaxScale) {
+		toSerialize["max_scale"] = o.MaxScale
+	}
 	toSerialize["plan"] = o.Plan
 
 	for key, value := range o.AdditionalProperties {
@@ -151,6 +189,7 @@ func (o *ResourceLimits) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "concurrency")
+		delete(additionalProperties, "max_scale")
 		delete(additionalProperties, "plan")
 		o.AdditionalProperties = additionalProperties
 	}
