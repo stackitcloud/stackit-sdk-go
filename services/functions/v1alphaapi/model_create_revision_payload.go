@@ -16,11 +16,11 @@ import (
 	"time"
 )
 
-// checks if the CreateFunctionRevisionPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateFunctionRevisionPayload{}
+// checks if the CreateRevisionPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateRevisionPayload{}
 
-// CreateFunctionRevisionPayload The function revision
-type CreateFunctionRevisionPayload struct {
+// CreateRevisionPayload The function revision
+type CreateRevisionPayload struct {
 	// Time the function was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// A hashed fingerprint of the revision artifact.
@@ -38,8 +38,8 @@ type CreateFunctionRevisionPayload struct {
 	// OCI Registry pull credential to use for pulling the revision's image.
 	OciPullCredentialId *string `json:"oci_pull_credential_id,omitempty"`
 	// OCI reference for the revision.
-	OciReference string                              `json:"oci_reference" validate:"regexp=(:[vV]?\\d+\\.\\d+\\.\\d+(@sha256:[a-fA-F0-9]{64})?)$|((:latest)?@sha256:[a-fA-F0-9]{64})$"`
-	State        *CreateFunctionRevisionPayloadState `json:"state,omitempty"`
+	OciReference string                      `json:"oci_reference" validate:"regexp=(:[vV]?\\d+\\.\\d+\\.\\d+(@sha256:[a-fA-F0-9]{64})?)$|((:latest)?@sha256:[a-fA-F0-9]{64})$"`
+	State        *CreateRevisionPayloadState `json:"state,omitempty"`
 	// Error message related to this revision.
 	StateError *string `json:"state_error,omitempty"`
 	// Time the function was last updated.
@@ -51,29 +51,29 @@ type CreateFunctionRevisionPayload struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateFunctionRevisionPayload CreateFunctionRevisionPayload
+type _CreateRevisionPayload CreateRevisionPayload
 
-// NewCreateFunctionRevisionPayload instantiates a new CreateFunctionRevisionPayload object
+// NewCreateRevisionPayload instantiates a new CreateRevisionPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFunctionRevisionPayload(limits ResourceLimits, ociReference string) *CreateFunctionRevisionPayload {
-	this := CreateFunctionRevisionPayload{}
+func NewCreateRevisionPayload(limits ResourceLimits, ociReference string) *CreateRevisionPayload {
+	this := CreateRevisionPayload{}
 	this.Limits = limits
 	this.OciReference = ociReference
 	return &this
 }
 
-// NewCreateFunctionRevisionPayloadWithDefaults instantiates a new CreateFunctionRevisionPayload object
+// NewCreateRevisionPayloadWithDefaults instantiates a new CreateRevisionPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateFunctionRevisionPayloadWithDefaults() *CreateFunctionRevisionPayload {
-	this := CreateFunctionRevisionPayload{}
+func NewCreateRevisionPayloadWithDefaults() *CreateRevisionPayload {
+	this := CreateRevisionPayload{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetCreatedAt() time.Time {
+func (o *CreateRevisionPayload) GetCreatedAt() time.Time {
 	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
@@ -83,7 +83,7 @@ func (o *CreateFunctionRevisionPayload) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetCreatedAtOk() (*time.Time, bool) {
+func (o *CreateRevisionPayload) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *CreateFunctionRevisionPayload) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasCreatedAt() bool {
+func (o *CreateRevisionPayload) HasCreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -100,12 +100,12 @@ func (o *CreateFunctionRevisionPayload) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CreateFunctionRevisionPayload) SetCreatedAt(v time.Time) {
+func (o *CreateRevisionPayload) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetDigest returns the Digest field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetDigest() string {
+func (o *CreateRevisionPayload) GetDigest() string {
 	if o == nil || IsNil(o.Digest) {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *CreateFunctionRevisionPayload) GetDigest() string {
 
 // GetDigestOk returns a tuple with the Digest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetDigestOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetDigestOk() (*string, bool) {
 	if o == nil || IsNil(o.Digest) {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *CreateFunctionRevisionPayload) GetDigestOk() (*string, bool) {
 }
 
 // HasDigest returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasDigest() bool {
+func (o *CreateRevisionPayload) HasDigest() bool {
 	if o != nil && !IsNil(o.Digest) {
 		return true
 	}
@@ -132,12 +132,12 @@ func (o *CreateFunctionRevisionPayload) HasDigest() bool {
 }
 
 // SetDigest gets a reference to the given string and assigns it to the Digest field.
-func (o *CreateFunctionRevisionPayload) SetDigest(v string) {
+func (o *CreateRevisionPayload) SetDigest(v string) {
 	o.Digest = &v
 }
 
 // GetFunctionId returns the FunctionId field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetFunctionId() string {
+func (o *CreateRevisionPayload) GetFunctionId() string {
 	if o == nil || IsNil(o.FunctionId) {
 		var ret string
 		return ret
@@ -147,7 +147,7 @@ func (o *CreateFunctionRevisionPayload) GetFunctionId() string {
 
 // GetFunctionIdOk returns a tuple with the FunctionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetFunctionIdOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetFunctionIdOk() (*string, bool) {
 	if o == nil || IsNil(o.FunctionId) {
 		return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *CreateFunctionRevisionPayload) GetFunctionIdOk() (*string, bool) {
 }
 
 // HasFunctionId returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasFunctionId() bool {
+func (o *CreateRevisionPayload) HasFunctionId() bool {
 	if o != nil && !IsNil(o.FunctionId) {
 		return true
 	}
@@ -164,12 +164,12 @@ func (o *CreateFunctionRevisionPayload) HasFunctionId() bool {
 }
 
 // SetFunctionId gets a reference to the given string and assigns it to the FunctionId field.
-func (o *CreateFunctionRevisionPayload) SetFunctionId(v string) {
+func (o *CreateRevisionPayload) SetFunctionId(v string) {
 	o.FunctionId = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetId() string {
+func (o *CreateRevisionPayload) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -179,7 +179,7 @@ func (o *CreateFunctionRevisionPayload) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetIdOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -187,7 +187,7 @@ func (o *CreateFunctionRevisionPayload) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasId() bool {
+func (o *CreateRevisionPayload) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -196,12 +196,12 @@ func (o *CreateFunctionRevisionPayload) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateFunctionRevisionPayload) SetId(v string) {
+func (o *CreateRevisionPayload) SetId(v string) {
 	o.Id = &v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetLabels() map[string]string {
+func (o *CreateRevisionPayload) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
 		var ret map[string]string
 		return ret
@@ -211,7 +211,7 @@ func (o *CreateFunctionRevisionPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *CreateRevisionPayload) GetLabelsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -219,7 +219,7 @@ func (o *CreateFunctionRevisionPayload) GetLabelsOk() (*map[string]string, bool)
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasLabels() bool {
+func (o *CreateRevisionPayload) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -228,12 +228,12 @@ func (o *CreateFunctionRevisionPayload) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *CreateFunctionRevisionPayload) SetLabels(v map[string]string) {
+func (o *CreateRevisionPayload) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
 // GetLimits returns the Limits field value
-func (o *CreateFunctionRevisionPayload) GetLimits() ResourceLimits {
+func (o *CreateRevisionPayload) GetLimits() ResourceLimits {
 	if o == nil {
 		var ret ResourceLimits
 		return ret
@@ -244,7 +244,7 @@ func (o *CreateFunctionRevisionPayload) GetLimits() ResourceLimits {
 
 // GetLimitsOk returns a tuple with the Limits field value
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetLimitsOk() (*ResourceLimits, bool) {
+func (o *CreateRevisionPayload) GetLimitsOk() (*ResourceLimits, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -252,12 +252,12 @@ func (o *CreateFunctionRevisionPayload) GetLimitsOk() (*ResourceLimits, bool) {
 }
 
 // SetLimits sets field value
-func (o *CreateFunctionRevisionPayload) SetLimits(v ResourceLimits) {
+func (o *CreateRevisionPayload) SetLimits(v ResourceLimits) {
 	o.Limits = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetMessage() string {
+func (o *CreateRevisionPayload) GetMessage() string {
 	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
@@ -267,7 +267,7 @@ func (o *CreateFunctionRevisionPayload) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetMessageOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
@@ -275,7 +275,7 @@ func (o *CreateFunctionRevisionPayload) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasMessage() bool {
+func (o *CreateRevisionPayload) HasMessage() bool {
 	if o != nil && !IsNil(o.Message) {
 		return true
 	}
@@ -284,12 +284,12 @@ func (o *CreateFunctionRevisionPayload) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *CreateFunctionRevisionPayload) SetMessage(v string) {
+func (o *CreateRevisionPayload) SetMessage(v string) {
 	o.Message = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetName() string {
+func (o *CreateRevisionPayload) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -299,7 +299,7 @@ func (o *CreateFunctionRevisionPayload) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetNameOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -307,7 +307,7 @@ func (o *CreateFunctionRevisionPayload) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasName() bool {
+func (o *CreateRevisionPayload) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -316,12 +316,12 @@ func (o *CreateFunctionRevisionPayload) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CreateFunctionRevisionPayload) SetName(v string) {
+func (o *CreateRevisionPayload) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOciPullCredentialId returns the OciPullCredentialId field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetOciPullCredentialId() string {
+func (o *CreateRevisionPayload) GetOciPullCredentialId() string {
 	if o == nil || IsNil(o.OciPullCredentialId) {
 		var ret string
 		return ret
@@ -331,7 +331,7 @@ func (o *CreateFunctionRevisionPayload) GetOciPullCredentialId() string {
 
 // GetOciPullCredentialIdOk returns a tuple with the OciPullCredentialId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetOciPullCredentialIdOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetOciPullCredentialIdOk() (*string, bool) {
 	if o == nil || IsNil(o.OciPullCredentialId) {
 		return nil, false
 	}
@@ -339,7 +339,7 @@ func (o *CreateFunctionRevisionPayload) GetOciPullCredentialIdOk() (*string, boo
 }
 
 // HasOciPullCredentialId returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasOciPullCredentialId() bool {
+func (o *CreateRevisionPayload) HasOciPullCredentialId() bool {
 	if o != nil && !IsNil(o.OciPullCredentialId) {
 		return true
 	}
@@ -348,12 +348,12 @@ func (o *CreateFunctionRevisionPayload) HasOciPullCredentialId() bool {
 }
 
 // SetOciPullCredentialId gets a reference to the given string and assigns it to the OciPullCredentialId field.
-func (o *CreateFunctionRevisionPayload) SetOciPullCredentialId(v string) {
+func (o *CreateRevisionPayload) SetOciPullCredentialId(v string) {
 	o.OciPullCredentialId = &v
 }
 
 // GetOciReference returns the OciReference field value
-func (o *CreateFunctionRevisionPayload) GetOciReference() string {
+func (o *CreateRevisionPayload) GetOciReference() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -364,7 +364,7 @@ func (o *CreateFunctionRevisionPayload) GetOciReference() string {
 
 // GetOciReferenceOk returns a tuple with the OciReference field value
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetOciReferenceOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetOciReferenceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -372,14 +372,14 @@ func (o *CreateFunctionRevisionPayload) GetOciReferenceOk() (*string, bool) {
 }
 
 // SetOciReference sets field value
-func (o *CreateFunctionRevisionPayload) SetOciReference(v string) {
+func (o *CreateRevisionPayload) SetOciReference(v string) {
 	o.OciReference = v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetState() CreateFunctionRevisionPayloadState {
+func (o *CreateRevisionPayload) GetState() CreateRevisionPayloadState {
 	if o == nil || IsNil(o.State) {
-		var ret CreateFunctionRevisionPayloadState
+		var ret CreateRevisionPayloadState
 		return ret
 	}
 	return *o.State
@@ -387,7 +387,7 @@ func (o *CreateFunctionRevisionPayload) GetState() CreateFunctionRevisionPayload
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetStateOk() (*CreateFunctionRevisionPayloadState, bool) {
+func (o *CreateRevisionPayload) GetStateOk() (*CreateRevisionPayloadState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -395,7 +395,7 @@ func (o *CreateFunctionRevisionPayload) GetStateOk() (*CreateFunctionRevisionPay
 }
 
 // HasState returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasState() bool {
+func (o *CreateRevisionPayload) HasState() bool {
 	if o != nil && !IsNil(o.State) {
 		return true
 	}
@@ -403,13 +403,13 @@ func (o *CreateFunctionRevisionPayload) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given CreateFunctionRevisionPayloadState and assigns it to the State field.
-func (o *CreateFunctionRevisionPayload) SetState(v CreateFunctionRevisionPayloadState) {
+// SetState gets a reference to the given CreateRevisionPayloadState and assigns it to the State field.
+func (o *CreateRevisionPayload) SetState(v CreateRevisionPayloadState) {
 	o.State = &v
 }
 
 // GetStateError returns the StateError field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetStateError() string {
+func (o *CreateRevisionPayload) GetStateError() string {
 	if o == nil || IsNil(o.StateError) {
 		var ret string
 		return ret
@@ -419,7 +419,7 @@ func (o *CreateFunctionRevisionPayload) GetStateError() string {
 
 // GetStateErrorOk returns a tuple with the StateError field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetStateErrorOk() (*string, bool) {
+func (o *CreateRevisionPayload) GetStateErrorOk() (*string, bool) {
 	if o == nil || IsNil(o.StateError) {
 		return nil, false
 	}
@@ -427,7 +427,7 @@ func (o *CreateFunctionRevisionPayload) GetStateErrorOk() (*string, bool) {
 }
 
 // HasStateError returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasStateError() bool {
+func (o *CreateRevisionPayload) HasStateError() bool {
 	if o != nil && !IsNil(o.StateError) {
 		return true
 	}
@@ -436,12 +436,12 @@ func (o *CreateFunctionRevisionPayload) HasStateError() bool {
 }
 
 // SetStateError gets a reference to the given string and assigns it to the StateError field.
-func (o *CreateFunctionRevisionPayload) SetStateError(v string) {
+func (o *CreateRevisionPayload) SetStateError(v string) {
 	o.StateError = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetUpdatedAt() time.Time {
+func (o *CreateRevisionPayload) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
@@ -451,7 +451,7 @@ func (o *CreateFunctionRevisionPayload) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *CreateRevisionPayload) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
@@ -459,7 +459,7 @@ func (o *CreateFunctionRevisionPayload) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasUpdatedAt() bool {
+func (o *CreateRevisionPayload) HasUpdatedAt() bool {
 	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
@@ -468,12 +468,12 @@ func (o *CreateFunctionRevisionPayload) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *CreateFunctionRevisionPayload) SetUpdatedAt(v time.Time) {
+func (o *CreateRevisionPayload) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetVariables() []RevisionVariable {
+func (o *CreateRevisionPayload) GetVariables() []RevisionVariable {
 	if o == nil || IsNil(o.Variables) {
 		var ret []RevisionVariable
 		return ret
@@ -483,7 +483,7 @@ func (o *CreateFunctionRevisionPayload) GetVariables() []RevisionVariable {
 
 // GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetVariablesOk() ([]RevisionVariable, bool) {
+func (o *CreateRevisionPayload) GetVariablesOk() ([]RevisionVariable, bool) {
 	if o == nil || IsNil(o.Variables) {
 		return nil, false
 	}
@@ -491,7 +491,7 @@ func (o *CreateFunctionRevisionPayload) GetVariablesOk() ([]RevisionVariable, bo
 }
 
 // HasVariables returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasVariables() bool {
+func (o *CreateRevisionPayload) HasVariables() bool {
 	if o != nil && !IsNil(o.Variables) {
 		return true
 	}
@@ -500,12 +500,12 @@ func (o *CreateFunctionRevisionPayload) HasVariables() bool {
 }
 
 // SetVariables gets a reference to the given []RevisionVariable and assigns it to the Variables field.
-func (o *CreateFunctionRevisionPayload) SetVariables(v []RevisionVariable) {
+func (o *CreateRevisionPayload) SetVariables(v []RevisionVariable) {
 	o.Variables = v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *CreateFunctionRevisionPayload) GetVersion() int64 {
+func (o *CreateRevisionPayload) GetVersion() int64 {
 	if o == nil || IsNil(o.Version) {
 		var ret int64
 		return ret
@@ -515,7 +515,7 @@ func (o *CreateFunctionRevisionPayload) GetVersion() int64 {
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFunctionRevisionPayload) GetVersionOk() (*int64, bool) {
+func (o *CreateRevisionPayload) GetVersionOk() (*int64, bool) {
 	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
@@ -523,7 +523,7 @@ func (o *CreateFunctionRevisionPayload) GetVersionOk() (*int64, bool) {
 }
 
 // HasVersion returns a boolean if a field has been set.
-func (o *CreateFunctionRevisionPayload) HasVersion() bool {
+func (o *CreateRevisionPayload) HasVersion() bool {
 	if o != nil && !IsNil(o.Version) {
 		return true
 	}
@@ -532,11 +532,11 @@ func (o *CreateFunctionRevisionPayload) HasVersion() bool {
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.
-func (o *CreateFunctionRevisionPayload) SetVersion(v int64) {
+func (o *CreateRevisionPayload) SetVersion(v int64) {
 	o.Version = &v
 }
 
-func (o CreateFunctionRevisionPayload) MarshalJSON() ([]byte, error) {
+func (o CreateRevisionPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -544,7 +544,7 @@ func (o CreateFunctionRevisionPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateFunctionRevisionPayload) ToMap() (map[string]interface{}, error) {
+func (o CreateRevisionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -595,7 +595,7 @@ func (o CreateFunctionRevisionPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateFunctionRevisionPayload) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateRevisionPayload) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -618,15 +618,15 @@ func (o *CreateFunctionRevisionPayload) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateFunctionRevisionPayload := _CreateFunctionRevisionPayload{}
+	varCreateRevisionPayload := _CreateRevisionPayload{}
 
-	err = json.Unmarshal(data, &varCreateFunctionRevisionPayload)
+	err = json.Unmarshal(data, &varCreateRevisionPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateFunctionRevisionPayload(varCreateFunctionRevisionPayload)
+	*o = CreateRevisionPayload(varCreateRevisionPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -652,38 +652,38 @@ func (o *CreateFunctionRevisionPayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateFunctionRevisionPayload struct {
-	value *CreateFunctionRevisionPayload
+type NullableCreateRevisionPayload struct {
+	value *CreateRevisionPayload
 	isSet bool
 }
 
-func (v NullableCreateFunctionRevisionPayload) Get() *CreateFunctionRevisionPayload {
+func (v NullableCreateRevisionPayload) Get() *CreateRevisionPayload {
 	return v.value
 }
 
-func (v *NullableCreateFunctionRevisionPayload) Set(val *CreateFunctionRevisionPayload) {
+func (v *NullableCreateRevisionPayload) Set(val *CreateRevisionPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateFunctionRevisionPayload) IsSet() bool {
+func (v NullableCreateRevisionPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateFunctionRevisionPayload) Unset() {
+func (v *NullableCreateRevisionPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateFunctionRevisionPayload(val *CreateFunctionRevisionPayload) *NullableCreateFunctionRevisionPayload {
-	return &NullableCreateFunctionRevisionPayload{value: val, isSet: true}
+func NewNullableCreateRevisionPayload(val *CreateRevisionPayload) *NullableCreateRevisionPayload {
+	return &NullableCreateRevisionPayload{value: val, isSet: true}
 }
 
-func (v NullableCreateFunctionRevisionPayload) MarshalJSON() ([]byte, error) {
+func (v NullableCreateRevisionPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateFunctionRevisionPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateRevisionPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
