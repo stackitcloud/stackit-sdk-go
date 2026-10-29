@@ -55,6 +55,9 @@ else
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
         for example_dir in ${EXAMPLES_PATH}/*; do
             example=$(basename ${example_dir})
+    
+            [ -d "${example}" ] || continue # skip if it's not a directory
+            
             echo ">> Linting example ${example}"
             cd ${example_dir}
             ${ROOT_DIR}/custom-gcl run ${GOLANG_CI_ARGS}
