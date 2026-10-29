@@ -60,6 +60,10 @@
   - [v0.14.0](services/edge/CHANGELOG.md#v0140)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `functions`:
+  - [v0.2.0](services/functions/CHANGELOG.md#v020)
+    - `v1alphaapi`:
+      - **Feature**: New `MaxScale` field in `ResourceLimits` model
+      - **Breaking Change**: Renamed API method `CreateFunctionRevision` to `CreateRevision` and models `CreateFunctionRevisionPayload`/`CreateFunctionRevisionPayloadState` to `CreateRevisionPayload`/`CreateRevisionPayloadState`
   - [v0.1.0](services/functions/CHANGELOG.md#v010)
     - `v1alphaapi`:
       - **Feature**: initial release

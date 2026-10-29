@@ -82,8 +82,8 @@ func main() {
 	}
 
 	// Create function revision deployment
-	revisionData := *functions.NewCreateFunctionRevisionPayload(*functions.NewResourceLimits(100, "f2"), "ghcr.io/stackitcloud/example-image:0.1.0")
-	functionRevision, err := functionsClient.DefaultAPI.CreateFunctionRevision(context.Background(), projectId, *function.Id).CreateFunctionRevisionPayload(revisionData).Execute()
+	revisionData := *functions.NewCreateRevisionPayload(*functions.NewResourceLimits(100, "f2"), "ghcr.io/stackitcloud/example-image:0.1.0")
+	functionRevision, err := functionsClient.DefaultAPI.CreateRevision(context.Background(), projectId, *function.Id).CreateRevisionPayload(revisionData).Execute()
 	if err != nil || functionRevision.Id == nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateFunctionRevision`: %v\n", err)
 		os.Exit(1)
