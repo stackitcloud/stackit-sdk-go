@@ -3,52 +3,13 @@ go 1.25.9
 use (
 	./core
 	./examples/authentication
-	./examples/authorization
-	./examples/automation
 	./examples/backgroundrefresh
 	./examples/configuration
-	./examples/cost
-	./examples/dns
-	./examples/dremio
-	./examples/edge
 	./examples/errorhandling
 	./examples/experimental
-	./examples/functions
-	./examples/git
-	./examples/iaas
-	./examples/intake
-	./examples/kms
-	./examples/lbiplists
-	./examples/loadbalancer
-	./examples/logme
-	./examples/logs
-	./examples/mariadb
 	./examples/middleware
-	./examples/modelexperiments
-	./examples/mongodbflex
-	./examples/objectstorage
-	./examples/observability
-	./examples/opensearch
-	./examples/postgresflex
-	./examples/rabbitmq
-	./examples/redis
-	./examples/registry
-	./examples/resourcemanager
 	./examples/retries
-	./examples/runcommand
-	./examples/runtime
-	./examples/sca
-	./examples/secretsmanager
-	./examples/serviceaccount
-	./examples/serviceenablement
-	./examples/sfs
-	./examples/ske
-	./examples/sqlserverflex
-	./examples/telemetrylink
-	./examples/telemetryrouter
-	./examples/ufw
-	./examples/valkey
-	./examples/vpn
+	./examples/services
 	./examples/waiter
 	./services/alb
 	./services/albwaf
