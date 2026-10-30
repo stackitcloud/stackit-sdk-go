@@ -6,8 +6,8 @@ use (
 	./examples/backgroundrefresh
 	./examples/configuration
 	./examples/errorhandling
+	./examples/experimental
 	./examples/middleware
-	./examples/preview
 	./examples/retries
 	./examples/services
 	./examples/waiter

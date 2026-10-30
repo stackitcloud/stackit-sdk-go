@@ -9,9 +9,12 @@ replace (
 	github.com/stackitcloud/stackit-sdk-go/services/automation v0.2.1 => ../../services/automation
 	github.com/stackitcloud/stackit-sdk-go/services/cost v0.5.3 => ../../services/cost
 	github.com/stackitcloud/stackit-sdk-go/services/dns v0.25.0 => ../../services/dns
+	github.com/stackitcloud/stackit-sdk-go/services/dremio v0.7.0 => ../../services/dremio
+	github.com/stackitcloud/stackit-sdk-go/services/edge v0.14.0 => ../../services/edge
 	github.com/stackitcloud/stackit-sdk-go/services/functions v0.1.0 => ../../services/functions
 	github.com/stackitcloud/stackit-sdk-go/services/git v0.15.0 => ../../services/git
 	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.15.1 => ../../services/iaas
+	github.com/stackitcloud/stackit-sdk-go/services/intake v0.12.0 => ../../services/intake
 	github.com/stackitcloud/stackit-sdk-go/services/kms v1.14.0 => ../../services/kms
 	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.17.0 => ../../services/loadbalancer
 	github.com/stackitcloud/stackit-sdk-go/services/logme v1.6.0 => ../../services/logme
@@ -46,7 +49,12 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/services/automation v0.2.1
 	github.com/stackitcloud/stackit-sdk-go/services/cost v0.5.3
 	github.com/stackitcloud/stackit-sdk-go/services/dns v0.25.0
+	github.com/stackitcloud/stackit-sdk-go/services/dremio v0.7.0
+	github.com/stackitcloud/stackit-sdk-go/services/edge v0.14.0
+	github.com/stackitcloud/stackit-sdk-go/services/functions v0.1.0
+	github.com/stackitcloud/stackit-sdk-go/services/git v0.15.0
 	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.15.1
+	github.com/stackitcloud/stackit-sdk-go/services/intake v0.12.0
 	github.com/stackitcloud/stackit-sdk-go/services/kms v1.14.0
 	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.17.0
 	github.com/stackitcloud/stackit-sdk-go/services/logme v1.6.0
@@ -73,6 +81,7 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/services/ufw v0.2.0
 	github.com/stackitcloud/stackit-sdk-go/services/valkey v0.4.0
 	github.com/stackitcloud/stackit-sdk-go/services/vpn v0.15.3
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
