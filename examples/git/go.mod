@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/git => ../../services/gi
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
-	github.com/stackitcloud/stackit-sdk-go/services/git v0.14.1
+	github.com/stackitcloud/stackit-sdk-go/services/git v0.15.0
 )
 
 require (
