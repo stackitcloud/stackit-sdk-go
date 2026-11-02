@@ -22,6 +22,8 @@ for service_dir in ${SERVICES_PATH}/*; do
 done
 
 for example_dir in ${EXAMPLES_PATH}/*; do
+    [ -d "${example_dir}" ] || continue # skip if it's not a directory
+      
     echo ">> Syncing ${example_dir} module"
     cd ${example_dir}
     go mod tidy

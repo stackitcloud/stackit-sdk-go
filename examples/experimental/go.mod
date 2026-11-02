@@ -3,11 +3,11 @@ module github.com/stackitcloud/stackit-sdk-go/examples/experimental
 go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
-replace github.com/stackitcloud/stackit-sdk-go/services/automation => ../../services/automation
-
-replace github.com/stackitcloud/stackit-sdk-go/services/albwaf => ../../services/albwaf
-
-replace github.com/stackitcloud/stackit-sdk-go/core => ../../core
+replace (
+	github.com/stackitcloud/stackit-sdk-go/core v0.27.1 => ../../core
+	github.com/stackitcloud/stackit-sdk-go/services/albwaf v0.13.4 => ../../services/albwaf
+	github.com/stackitcloud/stackit-sdk-go/services/automation v0.1.1 => ../../services/automation
+)
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
