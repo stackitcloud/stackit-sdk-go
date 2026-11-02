@@ -9,6 +9,7 @@ use (
 	./examples/experimental
 	./examples/middleware
 	./examples/retries
+	./examples/runtime
 	./examples/services
 	./examples/waiter
 	./services/alb
@@ -38,6 +39,7 @@ use (
 	./services/observability
 	./services/opensearch
 	./services/postgresflex
+	./services/pubsub
 	./services/rabbitmq
 	./services/redis
 	./services/registry
