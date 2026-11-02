@@ -1298,7 +1298,7 @@ func (r ApiListRulesRequest) InstanceId(instanceId string) ApiListRulesRequest {
 	return r
 }
 
-// The type of the rule (e.g., \&quot;ACL\&quot;, \&quot;PublicIP\&quot;, \&quot;SecurityRule\&quot;).
+// The type of the rule (e.g., \&quot;ACL\&quot;, \&quot;SecurityRule\&quot;).
 func (r ApiListRulesRequest) Type_(type_ string) ApiListRulesRequest {
 	r.type_ = &type_
 	return r
