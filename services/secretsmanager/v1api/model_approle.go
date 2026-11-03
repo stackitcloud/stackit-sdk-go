@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -24,7 +24,7 @@ type Approle struct {
 	Description string `json:"description"`
 	// Identifier used for authentication
 	RoleId          string `json:"role_id"`
-	SecretIdNumUses int32  `json:"secret_id_num_uses"`
+	SecretIdNumUses int64  `json:"secret_id_num_uses"`
 	// Token TTL in time.Duration format (eg 15m for 15 minutes, 1h for 1 hour).
 	SecretIdTtl string `json:"secret_id_ttl" validate:"regexp=^[0-9]+[smh]$"`
 	// Is true if the approle has write access to the secrets engine. Is false for a read-only approle.
@@ -38,7 +38,7 @@ type _Approle Approle
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApprole(description string, roleId string, secretIdNumUses int32, secretIdTtl string, write bool) *Approle {
+func NewApprole(description string, roleId string, secretIdNumUses int64, secretIdTtl string, write bool) *Approle {
 	this := Approle{}
 	this.Description = description
 	this.RoleId = roleId
@@ -105,9 +105,9 @@ func (o *Approle) SetRoleId(v string) {
 }
 
 // GetSecretIdNumUses returns the SecretIdNumUses field value
-func (o *Approle) GetSecretIdNumUses() int32 {
+func (o *Approle) GetSecretIdNumUses() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *Approle) GetSecretIdNumUses() int32 {
 
 // GetSecretIdNumUsesOk returns a tuple with the SecretIdNumUses field value
 // and a boolean to check if the value has been set.
-func (o *Approle) GetSecretIdNumUsesOk() (*int32, bool) {
+func (o *Approle) GetSecretIdNumUsesOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *Approle) GetSecretIdNumUsesOk() (*int32, bool) {
 }
 
 // SetSecretIdNumUses sets field value
-func (o *Approle) SetSecretIdNumUses(v int32) {
+func (o *Approle) SetSecretIdNumUses(v int64) {
 	o.SecretIdNumUses = v
 }
 
