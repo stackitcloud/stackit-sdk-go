@@ -15,13 +15,12 @@ import (
 	"fmt"
 )
 
-// RuleResponseType The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
+// RuleResponseType The type of the rule (e.g., \"ACL\", \"SecurityRule\").
 type RuleResponseType string
 
 // List of RuleResponse_type
 const (
 	RULERESPONSETYPE_ACL                      RuleResponseType = "ACL"
-	RULERESPONSETYPE_PUBLIC_IP                RuleResponseType = "PublicIP"
 	RULERESPONSETYPE_SECURITY_RULE            RuleResponseType = "SecurityRule"
 	RULERESPONSETYPE_SECURITY_GROUP           RuleResponseType = "SecurityGroup"
 	RULERESPONSETYPE_UNKNOWN_DEFAULT_OPEN_API RuleResponseType = "unknown_default_open_api"
@@ -30,7 +29,6 @@ const (
 // All allowed values of RuleResponseType enum
 var AllowedRuleResponseTypeEnumValues = []RuleResponseType{
 	"ACL",
-	"PublicIP",
 	"SecurityRule",
 	"SecurityGroup",
 	"unknown_default_open_api",

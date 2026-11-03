@@ -44,7 +44,7 @@ type CreateRulePayload struct {
 	SourceIP string `json:"sourceIP"`
 	// Indicates whether the security group rule is stateful or stateless (used only for security groups, default value for them will be true).
 	Stateful *bool `json:"stateful,omitempty"`
-	// The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
+	// The type of the rule (e.g., \"ACL\", \"SecurityRule\").
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
