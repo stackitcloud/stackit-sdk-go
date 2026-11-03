@@ -38,6 +38,10 @@
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `dns`:
+  - [v0.26.0](services/dns/CHANGELOG.md#v0260)
+    - `v1api`:
+      - **Feature:** New `LookupDomain` operation to look up a domain on the STACKIT DNS resolvers, with new models `LookupDomainPayload`, `LookupDomainResponse`, `LookupResult` and `LookupRecord` and enums `LookupDomainPayloadType`, `LookupDomainPayloadRecordType` and `LookupRecordType`
+      - **Feature:** New `FlushDomain` operation to flush the cache for a domain on the STACKIT DNS resolvers, with new models `FlushDomainPayload` and `FlushDomainResponse` and enum `FlushDomainPayloadType`
   - [v0.25.0](services/dns/CHANGELOG.md#v0250)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.24.0](services/dns/CHANGELOG.md#v0240)
