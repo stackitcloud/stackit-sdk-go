@@ -22,7 +22,7 @@ var _ MappedNullable = &InstanceNetwork{}
 // InstanceNetwork The access configuration of the instance
 type InstanceNetwork struct {
 	AccessScope *InstanceNetworkAccessScope `json:"accessScope,omitempty"`
-	// List of IPV4 cidr.
+	// List of IPv4 CIDR addresses.
 	Acl                  []string `json:"acl"`
 	InstanceAddress      *string  `json:"instanceAddress,omitempty"`
 	RouterAddress        *string  `json:"routerAddress,omitempty"`
