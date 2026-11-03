@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -147,7 +147,7 @@ type DefaultAPI interface {
 		@param secretIdVersion The version of the secret id.
 		@return ApiDeleteApproleSecretIdRequest
 	*/
-	DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiDeleteApproleSecretIdRequest
+	DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiDeleteApproleSecretIdRequest
 
 	// DeleteApproleSecretIdExecute executes the request
 	DeleteApproleSecretIdExecute(r ApiDeleteApproleSecretIdRequest) error
@@ -229,7 +229,7 @@ type DefaultAPI interface {
 		@param secretIdVersion The version of the secret id.
 		@return ApiGetApproleSecretIdRequest
 	*/
-	GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiGetApproleSecretIdRequest
+	GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiGetApproleSecretIdRequest
 
 	// GetApproleSecretIdExecute executes the request
 	//  @return ApproleSecret
@@ -408,7 +408,7 @@ type DefaultAPI interface {
 		@param secretIdVersion The version of the secret id.
 		@return ApiUpdateApproleSecretIdRequest
 	*/
-	UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiUpdateApproleSecretIdRequest
+	UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiUpdateApproleSecretIdRequest
 
 	// UpdateApproleSecretIdExecute executes the request
 	//  @return ApproleSecret
@@ -1578,7 +1578,7 @@ type ApiDeleteApproleSecretIdRequest struct {
 	projectId       string
 	instanceId      string
 	roleId          string
-	secretIdVersion int32
+	secretIdVersion int64
 }
 
 func (r ApiDeleteApproleSecretIdRequest) Execute() error {
@@ -1597,7 +1597,7 @@ Deletes the secret id by its given version.
 	@param secretIdVersion The version of the secret id.
 	@return ApiDeleteApproleSecretIdRequest
 */
-func (a *DefaultAPIService) DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiDeleteApproleSecretIdRequest {
+func (a *DefaultAPIService) DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiDeleteApproleSecretIdRequest {
 	return ApiDeleteApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
@@ -2319,7 +2319,7 @@ type ApiGetApproleSecretIdRequest struct {
 	projectId       string
 	instanceId      string
 	roleId          string
-	secretIdVersion int32
+	secretIdVersion int64
 }
 
 func (r ApiGetApproleSecretIdRequest) Execute() (*ApproleSecret, error) {
@@ -2338,7 +2338,7 @@ Read the properties of a given secret id by its given version.
 	@param secretIdVersion The version of the secret id.
 	@return ApiGetApproleSecretIdRequest
 */
-func (a *DefaultAPIService) GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiGetApproleSecretIdRequest {
+func (a *DefaultAPIService) GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiGetApproleSecretIdRequest {
 	return ApiGetApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
@@ -4018,7 +4018,7 @@ type ApiUpdateApproleSecretIdRequest struct {
 	projectId                    string
 	instanceId                   string
 	roleId                       string
-	secretIdVersion              int32
+	secretIdVersion              int64
 	updateApproleSecretIdPayload *UpdateApproleSecretIdPayload
 }
 
@@ -4043,7 +4043,7 @@ Update the description of a secret id by its given version.
 	@param secretIdVersion The version of the secret id.
 	@return ApiUpdateApproleSecretIdRequest
 */
-func (a *DefaultAPIService) UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiUpdateApproleSecretIdRequest {
+func (a *DefaultAPIService) UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiUpdateApproleSecretIdRequest {
 	return ApiUpdateApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
