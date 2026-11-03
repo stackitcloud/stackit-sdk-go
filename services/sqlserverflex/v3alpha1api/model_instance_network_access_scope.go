@@ -1,7 +1,7 @@
 /*
 [DEPRECATED] STACKIT MSSQL Service API
 
-## ⚠️ WARNING: THIS API IS DEPRECATED  Use V3beta2
+> **⚠️ DEPRECATION NOTICE** >  > **Version 3alpha1 of this API is deprecated** > We strongly recommend migrating to [Version 3 (v3)](https://docs.api.stackit.cloud/documentation/mssql-flex-service/version/v3) for all new integrations to take advantage of the latest features. >
 
 API version: 3alpha1
 Contact: support@stackit.cloud
