@@ -22,8 +22,9 @@ type UpdateTelemetryRouterPayload struct {
 	// The description is a longer text chosen by the user to provide more context for the resource.
 	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
 	// The display name is a short name chosen by the user to identify the resource.
-	DisplayName          *string       `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
-	Filter               *ConfigFilter `json:"filter,omitempty"`
+	DisplayName          *string            `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
+	Filter               *ConfigFilter      `json:"filter,omitempty"`
+	ResourceLabels       *map[string]string `json:"resourceLabels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,6 +143,38 @@ func (o *UpdateTelemetryRouterPayload) SetFilter(v ConfigFilter) {
 	o.Filter = &v
 }
 
+// GetResourceLabels returns the ResourceLabels field value if set, zero value otherwise.
+func (o *UpdateTelemetryRouterPayload) GetResourceLabels() map[string]string {
+	if o == nil || IsNil(o.ResourceLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.ResourceLabels
+}
+
+// GetResourceLabelsOk returns a tuple with the ResourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateTelemetryRouterPayload) GetResourceLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.ResourceLabels) {
+		return nil, false
+	}
+	return o.ResourceLabels, true
+}
+
+// HasResourceLabels returns a boolean if a field has been set.
+func (o *UpdateTelemetryRouterPayload) HasResourceLabels() bool {
+	if o != nil && !IsNil(o.ResourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceLabels gets a reference to the given map[string]string and assigns it to the ResourceLabels field.
+func (o *UpdateTelemetryRouterPayload) SetResourceLabels(v map[string]string) {
+	o.ResourceLabels = &v
+}
+
 func (o UpdateTelemetryRouterPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -160,6 +193,9 @@ func (o UpdateTelemetryRouterPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Filter) {
 		toSerialize["filter"] = o.Filter
+	}
+	if !IsNil(o.ResourceLabels) {
+		toSerialize["resourceLabels"] = o.ResourceLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -186,6 +222,7 @@ func (o *UpdateTelemetryRouterPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "filter")
+		delete(additionalProperties, "resourceLabels")
 		o.AdditionalProperties = additionalProperties
 	}
 
