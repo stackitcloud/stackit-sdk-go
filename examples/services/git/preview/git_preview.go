@@ -59,6 +59,25 @@ func main() {
 	}
 	fmt.Printf("Git instance %q has been successfully created.\n", instance.Id)
 
+	// Update the ACL of a Git instance
+	patchInstancePayload := git.PatchInstancePayload{
+		Acl: []string{"1.2.3.4/32", "5.6.7.8/32"},
+	}
+	_, err = gitClient.DefaultAPI.PatchInstance(ctx, projectId, instance.Id).PatchInstancePayload(patchInstancePayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PatchInstance`: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Triggered update of instance with instance id %q.\n", instance.Id)
+
+	// Wait for update of Git instance
+	instance, err = wait.UpdateGitInstanceWaitHandler(ctx, gitClient.DefaultAPI, projectId, instance.Id).WaitWithContext(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when waiting for update: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Git instance %q has been successfully updated. ACL: %v\n", instance.Id, instance.Acl)
+
 	// Delete a Git instance
 	err = gitClient.DefaultAPI.DeleteInstance(ctx, projectId, instance.Id).Execute()
 	if err != nil {

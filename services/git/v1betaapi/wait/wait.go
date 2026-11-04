@@ -31,7 +31,7 @@ const (
 	INSTANCESTATE_ERROR = git.INSTANCESTATE_ERROR
 )
 
-func CreateGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
+func createOrUpdateGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	waitConfig := wait.WaiterHelper[git.Instance, git.InstanceState]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
 		GetState: func(instance *git.Instance) (git.InstanceState, error) {
@@ -48,6 +48,17 @@ func CreateGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, pr
 	return handler
 }
 
+// CreateGitInstanceWaitHandler will wait for instance creation
+func CreateGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
+	return createOrUpdateGitInstanceWaitHandler(ctx, client, projectId, instanceId)
+}
+
+// UpdateGitInstanceWaitHandler will wait for instance update
+func UpdateGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
+	return createOrUpdateGitInstanceWaitHandler(ctx, client, projectId, instanceId)
+}
+
+// DeleteGitInstanceWaitHandler will wait for instance deletion
 func DeleteGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	waitConfig := wait.WaiterHelper[git.Instance, git.InstanceState]{
 		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
