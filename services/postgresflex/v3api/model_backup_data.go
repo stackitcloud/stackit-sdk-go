@@ -31,7 +31,7 @@ type BackupData struct {
 	RetainedUntil string `json:"retainedUntil"`
 	// The size of the backup in bytes.
 	Size int64 `json:"size"`
-	// The type of the backup, which can be automated or manual triggered.
+	// The type of the backup, which can be automated or manually triggered.
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
