@@ -9,6 +9,7 @@ use (
 	./examples/experimental
 	./examples/middleware
 	./examples/retries
+	./examples/runtime
 	./examples/services
 	./examples/waiter
 	./services/alb
@@ -24,6 +25,7 @@ use (
 	./services/functions
 	./services/git
 	./services/iaas
+	./services/identity
 	./services/intake
 	./services/kms
 	./services/lbiplists
