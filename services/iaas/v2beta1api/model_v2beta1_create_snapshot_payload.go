@@ -28,6 +28,8 @@ type V2beta1CreateSnapshotPayload struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description *string `json:"description,omitempty"`
+	// Indicates if a volume is encrypted.
+	Encrypted *bool `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.
@@ -159,6 +161,38 @@ func (o *V2beta1CreateSnapshotPayload) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *V2beta1CreateSnapshotPayload) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+func (o *V2beta1CreateSnapshotPayload) GetEncrypted() bool {
+	if o == nil || IsNil(o.Encrypted) {
+		var ret bool
+		return ret
+	}
+	return *o.Encrypted
+}
+
+// GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *V2beta1CreateSnapshotPayload) GetEncryptedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Encrypted) {
+		return nil, false
+	}
+	return o.Encrypted, true
+}
+
+// HasEncrypted returns a boolean if a field has been set.
+func (o *V2beta1CreateSnapshotPayload) HasEncrypted() bool {
+	if o != nil && !IsNil(o.Encrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+func (o *V2beta1CreateSnapshotPayload) SetEncrypted(v bool) {
+	o.Encrypted = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -396,6 +430,9 @@ func (o V2beta1CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.Encrypted) {
+		toSerialize["encrypted"] = o.Encrypted
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -461,6 +498,7 @@ func (o *V2beta1CreateSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "availabilityZone")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "encrypted")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
