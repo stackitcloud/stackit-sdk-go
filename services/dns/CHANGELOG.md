@@ -1,3 +1,8 @@
+## v0.26.0
+- `v1api`:
+  - **Feature:** New `LookupDomain` operation to look up a domain on the STACKIT DNS resolvers, with new models `LookupDomainPayload`, `LookupDomainResponse`, `LookupResult` and `LookupRecord` and enums `LookupDomainPayloadType`, `LookupDomainPayloadRecordType` and `LookupRecordType`
+  - **Feature:** New `FlushDomain` operation to flush the cache for a domain on the STACKIT DNS resolvers, with new models `FlushDomainPayload` and `FlushDomainResponse` and enum `FlushDomainPayloadType`
+
 ## v0.25.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 
