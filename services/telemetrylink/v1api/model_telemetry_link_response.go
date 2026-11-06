@@ -32,9 +32,11 @@ type TelemetryLinkResponse struct {
 	// Indicates whether routing through the link to a telemetry-router is active.
 	Enabled bool `json:"enabled"`
 	// A auto generated unique id which identifies the resource.
-	Id       string                      `json:"id"`
-	RegionId string                      `json:"regionId"`
-	Status   TelemetryLinkResponseStatus `json:"status"`
+	Id       string `json:"id"`
+	RegionId string `json:"regionId"`
+	// Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)
+	ResourceLabels *map[string]string          `json:"resourceLabels,omitempty"`
+	Status         TelemetryLinkResponseStatus `json:"status"`
 	// The ID of the telemetry-router to route the telemetry data.
 	TelemetryRouterId    string `json:"telemetryRouterId"`
 	AdditionalProperties map[string]interface{}
@@ -250,6 +252,38 @@ func (o *TelemetryLinkResponse) SetRegionId(v string) {
 	o.RegionId = v
 }
 
+// GetResourceLabels returns the ResourceLabels field value if set, zero value otherwise.
+func (o *TelemetryLinkResponse) GetResourceLabels() map[string]string {
+	if o == nil || IsNil(o.ResourceLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.ResourceLabels
+}
+
+// GetResourceLabelsOk returns a tuple with the ResourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TelemetryLinkResponse) GetResourceLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.ResourceLabels) {
+		return nil, false
+	}
+	return o.ResourceLabels, true
+}
+
+// HasResourceLabels returns a boolean if a field has been set.
+func (o *TelemetryLinkResponse) HasResourceLabels() bool {
+	if o != nil && !IsNil(o.ResourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceLabels gets a reference to the given map[string]string and assigns it to the ResourceLabels field.
+func (o *TelemetryLinkResponse) SetResourceLabels(v map[string]string) {
+	o.ResourceLabels = &v
+}
+
 // GetStatus returns the Status field value
 func (o *TelemetryLinkResponse) GetStatus() TelemetryLinkResponseStatus {
 	if o == nil {
@@ -319,6 +353,9 @@ func (o TelemetryLinkResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
 	toSerialize["regionId"] = o.RegionId
+	if !IsNil(o.ResourceLabels) {
+		toSerialize["resourceLabels"] = o.ResourceLabels
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["telemetryRouterId"] = o.TelemetryRouterId
 
@@ -377,6 +414,7 @@ func (o *TelemetryLinkResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "regionId")
+		delete(additionalProperties, "resourceLabels")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "telemetryRouterId")
 		o.AdditionalProperties = additionalProperties
