@@ -328,6 +328,17 @@
       - **Feature:** Add fields `PodAddressRanges` and `ServiceAddressRanges` to `Network` to configure pod and service CIDRs at cluster creation
       - **Feature:** Add fields `NodeAddressRanges` and `ServiceAddressRanges` to `ClusterStatus`
 - `sqlserverflex`:
+  - [v1.20.0](services/sqlserverflex/CHANGELOG.md#v1200)
+    - `v1api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v1 API is planned for 2027-09-20, migrate to `v3api`
+    - `v2api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v2 API is planned for 2027-09-20, migrate to `v3api`
+    - `v3alpha1api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
+    - `v3beta1api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
+    - `v3beta2api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
   - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
