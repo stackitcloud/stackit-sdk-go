@@ -29,7 +29,9 @@ type CreateOrUpdateOrganizationTelemetryLinkPayload struct {
 	// Indicates whether routing through the link to a telemetry-router is active.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The ID of the telemetry-router to route the telemetry data.
-	TelemetryRouterId    string `json:"telemetryRouterId"`
+	TelemetryRouterId string `json:"telemetryRouterId"`
+	// Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)
+	ResourceLabels       *map[string]string `json:"resourceLabels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -195,6 +197,38 @@ func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) SetTelemetryRouterId(v 
 	o.TelemetryRouterId = v
 }
 
+// GetResourceLabels returns the ResourceLabels field value if set, zero value otherwise.
+func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) GetResourceLabels() map[string]string {
+	if o == nil || IsNil(o.ResourceLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.ResourceLabels
+}
+
+// GetResourceLabelsOk returns a tuple with the ResourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) GetResourceLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.ResourceLabels) {
+		return nil, false
+	}
+	return o.ResourceLabels, true
+}
+
+// HasResourceLabels returns a boolean if a field has been set.
+func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) HasResourceLabels() bool {
+	if o != nil && !IsNil(o.ResourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceLabels gets a reference to the given map[string]string and assigns it to the ResourceLabels field.
+func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) SetResourceLabels(v map[string]string) {
+	o.ResourceLabels = &v
+}
+
 func (o CreateOrUpdateOrganizationTelemetryLinkPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -214,6 +248,9 @@ func (o CreateOrUpdateOrganizationTelemetryLinkPayload) ToMap() (map[string]inte
 		toSerialize["enabled"] = o.Enabled
 	}
 	toSerialize["telemetryRouterId"] = o.TelemetryRouterId
+	if !IsNil(o.ResourceLabels) {
+		toSerialize["resourceLabels"] = o.ResourceLabels
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -264,6 +301,7 @@ func (o *CreateOrUpdateOrganizationTelemetryLinkPayload) UnmarshalJSON(data []by
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "telemetryRouterId")
+		delete(additionalProperties, "resourceLabels")
 		o.AdditionalProperties = additionalProperties
 	}
 
