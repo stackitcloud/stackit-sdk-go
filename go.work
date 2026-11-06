@@ -9,6 +9,7 @@ use (
 	./examples/experimental
 	./examples/middleware
 	./examples/retries
+	./examples/runtime
 	./examples/services
 	./examples/waiter
 	./services/alb
@@ -30,6 +31,7 @@ use (
 	./services/loadbalancer
 	./services/logme
 	./services/logs
+	./services/mailout
 	./services/mariadb
 	./services/modelexperiments
 	./services/modelserving
