@@ -28,7 +28,7 @@ type PartialUpdateInstancePayload struct {
 	Name                 *string            `json:"name,omitempty" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1\\,61}[A-Za-z0-9_]$"`
 	Options              *map[string]string `json:"options,omitempty"`
 	Replicas             *int32             `json:"replicas,omitempty"`
-	Storage              *Storage           `json:"storage,omitempty"`
+	Storage              *StorageUpdate     `json:"storage,omitempty"`
 	Version              *string            `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -277,9 +277,9 @@ func (o *PartialUpdateInstancePayload) SetReplicas(v int32) {
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetStorage() Storage {
+func (o *PartialUpdateInstancePayload) GetStorage() StorageUpdate {
 	if o == nil || IsNil(o.Storage) {
-		var ret Storage
+		var ret StorageUpdate
 		return ret
 	}
 	return *o.Storage
@@ -287,7 +287,7 @@ func (o *PartialUpdateInstancePayload) GetStorage() Storage {
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetStorageOk() (*Storage, bool) {
+func (o *PartialUpdateInstancePayload) GetStorageOk() (*StorageUpdate, bool) {
 	if o == nil || IsNil(o.Storage) {
 		return nil, false
 	}
@@ -303,8 +303,8 @@ func (o *PartialUpdateInstancePayload) HasStorage() bool {
 	return false
 }
 
-// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
-func (o *PartialUpdateInstancePayload) SetStorage(v Storage) {
+// SetStorage gets a reference to the given StorageUpdate and assigns it to the Storage field.
+func (o *PartialUpdateInstancePayload) SetStorage(v StorageUpdate) {
 	o.Storage = &v
 }
 
