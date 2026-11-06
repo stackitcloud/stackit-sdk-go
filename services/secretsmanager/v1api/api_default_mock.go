@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -207,7 +207,7 @@ func (a DefaultAPIServiceMock) DeleteApproleExecute(r ApiDeleteApproleRequest) e
 	return (*a.DeleteApproleExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiDeleteApproleSecretIdRequest {
+func (a DefaultAPIServiceMock) DeleteApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiDeleteApproleSecretIdRequest {
 	return ApiDeleteApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
@@ -304,7 +304,7 @@ func (a DefaultAPIServiceMock) GetApproleExecute(r ApiGetApproleRequest) (*Appro
 	return (*a.GetApproleExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiGetApproleSecretIdRequest {
+func (a DefaultAPIServiceMock) GetApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiGetApproleSecretIdRequest {
 	return ApiGetApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
@@ -516,7 +516,7 @@ func (a DefaultAPIServiceMock) UpdateApproleExecute(r ApiUpdateApproleRequest) (
 	return (*a.UpdateApproleExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int32) ApiUpdateApproleSecretIdRequest {
+func (a DefaultAPIServiceMock) UpdateApproleSecretId(ctx context.Context, projectId string, instanceId string, roleId string, secretIdVersion int64) ApiUpdateApproleSecretIdRequest {
 	return ApiUpdateApproleSecretIdRequest{
 		ApiService:      a,
 		ctx:             ctx,
