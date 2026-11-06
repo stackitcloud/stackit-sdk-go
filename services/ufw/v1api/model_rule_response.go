@@ -20,27 +20,28 @@ var _ MappedNullable = &RuleResponse{}
 
 // RuleResponse struct for RuleResponse
 type RuleResponse struct {
-	Description           *string            `json:"description,omitempty"`
-	Destination           string             `json:"destination"`
-	Direction             *string            `json:"direction,omitempty"`
-	ErrorMessage          *string            `json:"errorMessage,omitempty"`
-	EtherType             *string            `json:"etherType,omitempty"`
-	InstanceId            string             `json:"instanceId"`
-	InstanceName          *string            `json:"instanceName,omitempty"`
-	IpRange               *string            `json:"ipRange,omitempty"`
-	Offset                *int32             `json:"offset,omitempty"`
-	PortRange             *string            `json:"portRange,omitempty"`
-	Product               string             `json:"product"`
-	Protocol              *string            `json:"protocol,omitempty"`
-	RefId                 *string            `json:"refId,omitempty"`
-	Region                *string            `json:"region,omitempty"`
-	RemoteSecurityGroupId *string            `json:"remoteSecurityGroupId,omitempty"`
-	SecurityGroupId       *string            `json:"securityGroupId,omitempty"`
-	SourceIP              string             `json:"sourceIP"`
-	Stateful              *bool              `json:"stateful,omitempty"`
-	Status                RuleResponseStatus `json:"status"`
-	Type                  RuleResponseType   `json:"type"`
-	AdditionalProperties  map[string]interface{}
+	Description             *string            `json:"description,omitempty"`
+	Destination             string             `json:"destination"`
+	Direction               *string            `json:"direction,omitempty"`
+	ErrorMessage            *string            `json:"errorMessage,omitempty"`
+	EtherType               *string            `json:"etherType,omitempty"`
+	InstanceId              string             `json:"instanceId"`
+	InstanceName            *string            `json:"instanceName,omitempty"`
+	IpRange                 *string            `json:"ipRange,omitempty"`
+	Offset                  *int32             `json:"offset,omitempty"`
+	PortRange               *string            `json:"portRange,omitempty"`
+	Product                 string             `json:"product"`
+	Protocol                *string            `json:"protocol,omitempty"`
+	RefId                   *string            `json:"refId,omitempty"`
+	Region                  *string            `json:"region,omitempty"`
+	RemoteSecurityGroupId   *string            `json:"remoteSecurityGroupId,omitempty"`
+	RemoteSecurityGroupName *string            `json:"remoteSecurityGroupName,omitempty"`
+	SecurityGroupId         *string            `json:"securityGroupId,omitempty"`
+	SourceIP                string             `json:"sourceIP"`
+	Stateful                *bool              `json:"stateful,omitempty"`
+	Status                  RuleResponseStatus `json:"status"`
+	Type                    RuleResponseType   `json:"type"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _RuleResponse RuleResponse
@@ -524,6 +525,38 @@ func (o *RuleResponse) SetRemoteSecurityGroupId(v string) {
 	o.RemoteSecurityGroupId = &v
 }
 
+// GetRemoteSecurityGroupName returns the RemoteSecurityGroupName field value if set, zero value otherwise.
+func (o *RuleResponse) GetRemoteSecurityGroupName() string {
+	if o == nil || IsNil(o.RemoteSecurityGroupName) {
+		var ret string
+		return ret
+	}
+	return *o.RemoteSecurityGroupName
+}
+
+// GetRemoteSecurityGroupNameOk returns a tuple with the RemoteSecurityGroupName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleResponse) GetRemoteSecurityGroupNameOk() (*string, bool) {
+	if o == nil || IsNil(o.RemoteSecurityGroupName) {
+		return nil, false
+	}
+	return o.RemoteSecurityGroupName, true
+}
+
+// HasRemoteSecurityGroupName returns a boolean if a field has been set.
+func (o *RuleResponse) HasRemoteSecurityGroupName() bool {
+	if o != nil && !IsNil(o.RemoteSecurityGroupName) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteSecurityGroupName gets a reference to the given string and assigns it to the RemoteSecurityGroupName field.
+func (o *RuleResponse) SetRemoteSecurityGroupName(v string) {
+	o.RemoteSecurityGroupName = &v
+}
+
 // GetSecurityGroupId returns the SecurityGroupId field value if set, zero value otherwise.
 func (o *RuleResponse) GetSecurityGroupId() string {
 	if o == nil || IsNil(o.SecurityGroupId) {
@@ -709,6 +742,9 @@ func (o RuleResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RemoteSecurityGroupId) {
 		toSerialize["remoteSecurityGroupId"] = o.RemoteSecurityGroupId
 	}
+	if !IsNil(o.RemoteSecurityGroupName) {
+		toSerialize["remoteSecurityGroupName"] = o.RemoteSecurityGroupName
+	}
 	if !IsNil(o.SecurityGroupId) {
 		toSerialize["securityGroupId"] = o.SecurityGroupId
 	}
@@ -781,6 +817,7 @@ func (o *RuleResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "refId")
 		delete(additionalProperties, "region")
 		delete(additionalProperties, "remoteSecurityGroupId")
+		delete(additionalProperties, "remoteSecurityGroupName")
 		delete(additionalProperties, "securityGroupId")
 		delete(additionalProperties, "sourceIP")
 		delete(additionalProperties, "stateful")
