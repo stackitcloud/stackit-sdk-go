@@ -5,8 +5,10 @@ go 1.25
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/dns => ../../services/dns
 
+replace github.com/stackitcloud/stackit-sdk-go/core => ../../core
+
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.28.0
 	github.com/stackitcloud/stackit-sdk-go/services/dns v0.23.1
 )
 

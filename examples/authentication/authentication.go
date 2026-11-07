@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
+	"github.com/stackitcloud/stackit-sdk-go/core/credentials"
 	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 )
 
@@ -36,6 +37,19 @@ func main() {
 	// Create a new API client, that will authenticate using the provided bearer token
 	token := "TOKEN"
 	_, err = dns.NewAPIClient(config.WithToken(token))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Create a new API client that authenticates with a token provider from the credentials package.
+	// NewDefaultProvider chains the supported flows (workload identity federation, service account key, token, ...).
+	tokenProvider, err := credentials.NewDefaultProvider(&credentials.DefaultProviderConfig{})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Creating token provider: %v\n", err)
+		os.Exit(1)
+	}
+	_, err = dns.NewAPIClient(config.WithTokenProvider(tokenProvider))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
 		os.Exit(1)

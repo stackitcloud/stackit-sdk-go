@@ -1,5 +1,7 @@
 ## Release (2026-MM-DD)
 
+- `core`: [v0.28.0](core/CHANGELOG.md#v0280)
+  - **Feature:** Added the `credentials` package with modular token providers, and `config.WithTokenProvider` to make `auth.DefaultAuth` authenticate through them.
 - `alb`:
   - [v0.20.0](services/alb/CHANGELOG.md#v0200)
     - `v2api`:

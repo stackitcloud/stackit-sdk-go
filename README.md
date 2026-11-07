@@ -119,6 +119,20 @@ The SDK supports three authentication methods:
    - Uses long-lived service account tokens
    - Simpler but less secure
 
+### Using a token provider
+
+The [`core/credentials`](core/credentials/README.md) package offers modular token providers (workload identity federation, service account key, static token, instance metadata and the STACKIT CLI session), a way to combine them, and a default chain. To use one with any service client, pass it with `config.WithTokenProvider`:
+
+```go
+tokenProvider, err := credentials.NewDefaultProvider(&credentials.DefaultProviderConfig{})
+if err != nil { /* handle */ }
+client, err := dns.NewAPIClient(config.WithTokenProvider(tokenProvider))
+```
+
+When a token provider is set, it is used instead of the flows described below, which remain unchanged. Options that explicitly choose another way to authenticate (`config.WithToken`, `config.WithServiceAccountKey`, ...) still take precedence over it.
+
+See the [package documentation](core/credentials/README.md) for the providers, the order of the default chain, how to get the raw access token and the configuration it reads.
+
 ### Configuration Priority
 
 The SDK searches for credentials in the following order:

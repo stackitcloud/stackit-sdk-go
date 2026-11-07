@@ -83,11 +83,21 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 // $HOME/.stackit/credentials.json as a fallback. If the key are found and are valid, the KeyAuth flow is used.
 // If the key flow cannot be used, it will try to find a token in the STACKIT_SERVICE_ACCOUNT_TOKEN. If not present, it will
 // search in the credentials file. If the token is found, the TokenAuth flow is used.
+// If cfg.TokenProvider is set (see config.WithTokenProvider), it is used and the legacy flows are skipped.
 // DefaultAuth returns an http.RoundTripper that can be used to make authenticated requests.
 // In case the token is not found, DefaultAuth fails.
 func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
+	}
+
+	// Token provider from the credentials package takes precedence over the legacy flows
+	if cfg.TokenProvider != nil {
+		var base http.RoundTripper
+		if cfg.HTTPClient != nil {
+			base = cfg.HTTPClient.Transport
+		}
+		return newTokenProviderRoundTripper(cfg.TokenProvider, base), nil
 	}
 
 	// WIF flow
