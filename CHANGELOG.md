@@ -175,6 +175,14 @@
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `mongodbflex`:
+  - [v1.14.0](services/mongodbflex/CHANGELOG.md#v1140)
+    - `v1api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v1 API is planned for 2027-09-20, migrate to `v2api`
+      - **Breaking change:** `Storage` field of `UpdateInstancePayload` and `PartialUpdateInstancePayload` changed from type `Storage` to the new type `StorageUpdate`, `NewUpdateInstancePayload` now expects a `StorageUpdate` parameter
+      - **Deprecation:** `Class` field of `StorageUpdate` is deprecated. Since November 2026, the API rejects requests that attempt to modify the storage class.
+    - `v2api`:
+      - **Breaking change:** `Storage` field of `UpdateInstancePayload` and `PartialUpdateInstancePayload` changed from type `Storage` to the new type `StorageUpdate`, `NewUpdateInstancePayload` now expects a `StorageUpdate` parameter. Note that the `Size` field of `StorageUpdate` is of type `*int32` (`Storage.Size` is `*int64`)
+      - **Deprecation:** `Class` field of `StorageUpdate` is deprecated. Since November 2026, the API rejects requests that attempt to modify the storage class.
   - [v1.13.0](services/mongodbflex/CHANGELOG.md#v1130)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
