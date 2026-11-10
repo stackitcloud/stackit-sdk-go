@@ -248,6 +248,9 @@
     - `v2api`:
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `registry`:
+  - [v0.2.0](services/registry/CHANGELOG.md#v020)
+    - `v1api`:
+      - **Feature:** Add `ErrorDescription` field to `Artifactory` which describes the reason for the error state
   - [v0.1.0](services/registry/CHANGELOG.md#v010)
     - **New**: New package which can be used for communication with the registry v1 API
 - `resourcemanager`:
