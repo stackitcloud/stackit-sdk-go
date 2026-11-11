@@ -1,6 +1,6 @@
 
 ## v0.2.1
-- **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` to allow hard delete on ERROR state
+- **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
 
 ## v0.2.0
 - `v1api`:

@@ -249,8 +249,7 @@
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `registry`:
   - [v0.2.1](services/registry/CHANGELOG.md#v021)
-    - `v1api`:
-      - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` to allow hard delete on ERROR state
+    - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
   - [v0.2.0](services/registry/CHANGELOG.md#v020)
     - `v1api`:
       - **Feature:** Add `ErrorDescription` field to `Artifactory` which describes the reason for the error state
