@@ -46,12 +46,16 @@ func UpdateArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, pr
 }
 
 // DeleteArtifactoryWaitHandler will wait for the artifactory to be deleted.
+// It will wait when the current state either is
+// 1. ARTIFACTORYSTATE_ACTIVE -> Performing a soft delete
+// 2. ARTIFACTORYSTATE_ERROR -> Performing a hard delete
+// It will wait until a 404 is returned.
 func DeleteArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, projectId, regionId, artifactoryId string) *wait.AsyncActionHandler[registry.Artifactory] {
 	waitConfig := wait.WaiterHelper[registry.Artifactory, registry.ArtifactoryState]{
 		FetchInstance:              a.GetArtifactory(ctx, projectId, regionId, artifactoryId).Execute,
 		GetState:                   getStateArtifactory,
-		ActiveState:                nil,
-		ErrorState:                 []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
+		ActiveState:                []registry.ArtifactoryState{},
+		ErrorState:                 nil,
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 
