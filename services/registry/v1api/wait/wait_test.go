@@ -186,26 +186,45 @@ func TestDeleteArtifactoryWaitHandler(t *testing.T) {
 		wantErr   bool
 	}{
 		{
-			name: "success immediately on 404",
+			name: "soft delete: success delayed after active and reconciling",
+			responses: []response{
+				{state: ArtifactoryActive},
+				{state: ArtifactoryReconciling},
+				{state: ArtifactoryDeleted},
+			},
+			wantErr: false,
+		},
+		{
+			name: "soft delete: success immediately when already deleted",
+			responses: []response{
+				{state: ArtifactoryDeleted},
+			},
+			wantErr: false,
+		},
+		{
+			name: "soft delete: failure when transitioning to error",
+			responses: []response{
+				{state: ArtifactoryActive},
+				{state: ArtifactoryReconciling},
+				{state: ArtifactoryError},
+			},
+			wantErr: true,
+		},
+		{
+			name: "hard delete: success immediately on 404",
 			responses: []response{
 				{status: http.StatusNotFound},
 			},
 			wantErr: false,
 		},
 		{
-			name: "success delayed after reconciling",
+			name: "hard delete: success delayed from error to 404",
 			responses: []response{
+				{state: ArtifactoryError},
 				{state: ArtifactoryReconciling},
 				{status: http.StatusNotFound},
 			},
 			wantErr: false,
-		},
-		{
-			name: "error state",
-			responses: []response{
-				{state: ArtifactoryError},
-			},
-			wantErr: true,
 		},
 		{
 			name: "api error",
