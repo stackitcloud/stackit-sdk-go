@@ -1,3 +1,7 @@
+
+## v0.2.1
+- **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` to allow hard delete on ERROR state
+
 ## v0.2.0
 - `v1api`:
   - **Feature:** Add `ErrorDescription` field to `Artifactory` which describes the reason for the error state
