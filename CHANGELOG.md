@@ -328,6 +328,12 @@
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `ske`:
+  - [v1.23.0](services/ske/CHANGELOG.md#v1230)
+    - `v2api`:
+      - **Feature:** Add model structs `CiliumConfig` and `CiliumHubble` (private preview)
+      - **Feature:** Add model struct `MachineImageVersionCRI`
+      - **Feature:** Add field `Cilium` to model struct `CNI`
+      - **Breaking change:** Changed type of field `Cri` in model struct `MachineImageVersion` from `[]CRI` to `[]MachineImageVersionCRI`
   - [v1.22.0](services/ske/CHANGELOG.md#v1220)
     - **Breaking change:** Removal of deprecated SDK layer in the root of the module.
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
