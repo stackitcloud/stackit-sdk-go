@@ -24,6 +24,22 @@ import (
 type DefaultAPI interface {
 
 	/*
+		CreateFolderBackflushJob Method for CreateFolderBackflushJob
+
+		Creates a new Backflush Job for the folder.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param folderId The STACKIT portal folder UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiCreateFolderBackflushJobRequest
+	*/
+	CreateFolderBackflushJob(ctx context.Context, folderId string, regionId string) ApiCreateFolderBackflushJobRequest
+
+	// CreateFolderBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	CreateFolderBackflushJobExecute(r ApiCreateFolderBackflushJobRequest) (*BackflushJobResponse, error)
+
+	/*
 		CreateOrUpdateFolderTelemetryLink Method for CreateOrUpdateFolderTelemetryLink
 
 		Creates or updates the given Telemetry Link within the folder.
@@ -72,6 +88,38 @@ type DefaultAPI interface {
 	CreateOrUpdateProjectTelemetryLinkExecute(r ApiCreateOrUpdateProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 
 	/*
+		CreateOrganizationBackflushJob Method for CreateOrganizationBackflushJob
+
+		Creates a new Backflush Job for the organization.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param organizationId The STACKIT portal organization UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiCreateOrganizationBackflushJobRequest
+	*/
+	CreateOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string) ApiCreateOrganizationBackflushJobRequest
+
+	// CreateOrganizationBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	CreateOrganizationBackflushJobExecute(r ApiCreateOrganizationBackflushJobRequest) (*BackflushJobResponse, error)
+
+	/*
+		CreateProjectBackflushJob Method for CreateProjectBackflushJob
+
+		Creates a new Backflush Job for the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiCreateProjectBackflushJobRequest
+	*/
+	CreateProjectBackflushJob(ctx context.Context, projectId string, regionId string) ApiCreateProjectBackflushJobRequest
+
+	// CreateProjectBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	CreateProjectBackflushJobExecute(r ApiCreateProjectBackflushJobRequest) (*BackflushJobResponse, error)
+
+	/*
 		DeleteFolderTelemetryLink Method for DeleteFolderTelemetryLink
 
 		Deletes the given Telemetry Link within the folder.
@@ -117,6 +165,23 @@ type DefaultAPI interface {
 	DeleteProjectTelemetryLinkExecute(r ApiDeleteProjectTelemetryLinkRequest) error
 
 	/*
+		GetFolderBackflushJob Method for GetFolderBackflushJob
+
+		Returns the details for the given Backflush Job in a folder.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param folderId The STACKIT portal folder UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param backflushJobId The Backflush Job UUID.
+		@return ApiGetFolderBackflushJobRequest
+	*/
+	GetFolderBackflushJob(ctx context.Context, folderId string, regionId string, backflushJobId string) ApiGetFolderBackflushJobRequest
+
+	// GetFolderBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	GetFolderBackflushJobExecute(r ApiGetFolderBackflushJobRequest) (*BackflushJobResponse, error)
+
+	/*
 		GetFolderTelemetryLink Method for GetFolderTelemetryLink
 
 		Returns the details for the given Telemetry Link within the folder.
@@ -131,6 +196,23 @@ type DefaultAPI interface {
 	// GetFolderTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
 	GetFolderTelemetryLinkExecute(r ApiGetFolderTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+
+	/*
+		GetOrganizationBackflushJob Method for GetOrganizationBackflushJob
+
+		Returns the details for the given Backflush Job in a organization.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param organizationId The STACKIT portal organization UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param backflushJobId The Backflush Job UUID.
+		@return ApiGetOrganizationBackflushJobRequest
+	*/
+	GetOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string, backflushJobId string) ApiGetOrganizationBackflushJobRequest
+
+	// GetOrganizationBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	GetOrganizationBackflushJobExecute(r ApiGetOrganizationBackflushJobRequest) (*BackflushJobResponse, error)
 
 	/*
 		GetOrganizationTelemetryLink Method for GetOrganizationTelemetryLink
@@ -149,6 +231,23 @@ type DefaultAPI interface {
 	GetOrganizationTelemetryLinkExecute(r ApiGetOrganizationTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 
 	/*
+		GetProjectBackflushJob Method for GetProjectBackflushJob
+
+		Returns the details for the given Backflush Job in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param backflushJobId The Backflush Job UUID.
+		@return ApiGetProjectBackflushJobRequest
+	*/
+	GetProjectBackflushJob(ctx context.Context, projectId string, regionId string, backflushJobId string) ApiGetProjectBackflushJobRequest
+
+	// GetProjectBackflushJobExecute executes the request
+	//  @return BackflushJobResponse
+	GetProjectBackflushJobExecute(r ApiGetProjectBackflushJobRequest) (*BackflushJobResponse, error)
+
+	/*
 		GetProjectTelemetryLink Method for GetProjectTelemetryLink
 
 		Returns the details for the given Telemetry Link within the project.
@@ -163,6 +262,54 @@ type DefaultAPI interface {
 	// GetProjectTelemetryLinkExecute executes the request
 	//  @return TelemetryLinkResponse
 	GetProjectTelemetryLinkExecute(r ApiGetProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+
+	/*
+		ListFolderBackflushJobs Method for ListFolderBackflushJobs
+
+		Returns a list of all Backflush Jobs for the folder.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param folderId The STACKIT portal folder UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiListFolderBackflushJobsRequest
+	*/
+	ListFolderBackflushJobs(ctx context.Context, folderId string, regionId string) ApiListFolderBackflushJobsRequest
+
+	// ListFolderBackflushJobsExecute executes the request
+	//  @return ListBackflushJobsResponse
+	ListFolderBackflushJobsExecute(r ApiListFolderBackflushJobsRequest) (*ListBackflushJobsResponse, error)
+
+	/*
+		ListOrganizationBackflushJobs Method for ListOrganizationBackflushJobs
+
+		Returns a list of all Backflush Jobs for the organization.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param organizationId The STACKIT portal organization UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiListOrganizationBackflushJobsRequest
+	*/
+	ListOrganizationBackflushJobs(ctx context.Context, organizationId string, regionId string) ApiListOrganizationBackflushJobsRequest
+
+	// ListOrganizationBackflushJobsExecute executes the request
+	//  @return ListBackflushJobsResponse
+	ListOrganizationBackflushJobsExecute(r ApiListOrganizationBackflushJobsRequest) (*ListBackflushJobsResponse, error)
+
+	/*
+		ListProjectBackflushJobs Method for ListProjectBackflushJobs
+
+		Returns a list of all Backflush Jobs for the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@return ApiListProjectBackflushJobsRequest
+	*/
+	ListProjectBackflushJobs(ctx context.Context, projectId string, regionId string) ApiListProjectBackflushJobsRequest
+
+	// ListProjectBackflushJobsExecute executes the request
+	//  @return ListBackflushJobsResponse
+	ListProjectBackflushJobsExecute(r ApiListProjectBackflushJobsRequest) (*ListBackflushJobsResponse, error)
 
 	/*
 		PartialUpdateFolderTelemetryLink Method for PartialUpdateFolderTelemetryLink
@@ -215,6 +362,169 @@ type DefaultAPI interface {
 
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
+
+type ApiCreateFolderBackflushJobRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	folderId                        string
+	regionId                        string
+	createFolderBackflushJobPayload *CreateFolderBackflushJobPayload
+}
+
+func (r ApiCreateFolderBackflushJobRequest) CreateFolderBackflushJobPayload(createFolderBackflushJobPayload CreateFolderBackflushJobPayload) ApiCreateFolderBackflushJobRequest {
+	r.createFolderBackflushJobPayload = &createFolderBackflushJobPayload
+	return r
+}
+
+func (r ApiCreateFolderBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.CreateFolderBackflushJobExecute(r)
+}
+
+/*
+CreateFolderBackflushJob Method for CreateFolderBackflushJob
+
+Creates a new Backflush Job for the folder.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param folderId The STACKIT portal folder UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiCreateFolderBackflushJobRequest
+*/
+func (a *DefaultAPIService) CreateFolderBackflushJob(ctx context.Context, folderId string, regionId string) ApiCreateFolderBackflushJobRequest {
+	return ApiCreateFolderBackflushJobRequest{
+		ApiService: a,
+		ctx:        ctx,
+		folderId:   folderId,
+		regionId:   regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) CreateFolderBackflushJobExecute(r ApiCreateFolderBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateFolderBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"folderId"+"}", url.PathEscape(parameterValueToString(r.folderId, "folderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createFolderBackflushJobPayload == nil {
+		return localVarReturnValue, reportError("createFolderBackflushJobPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createFolderBackflushJobPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
 
 type ApiCreateOrUpdateFolderTelemetryLinkRequest struct {
 	ctx                                      context.Context
@@ -768,6 +1078,332 @@ func (a *DefaultAPIService) CreateOrUpdateProjectTelemetryLinkExecute(r ApiCreat
 	return localVarReturnValue, nil
 }
 
+type ApiCreateOrganizationBackflushJobRequest struct {
+	ctx                                   context.Context
+	ApiService                            DefaultAPI
+	organizationId                        string
+	regionId                              string
+	createOrganizationBackflushJobPayload *CreateOrganizationBackflushJobPayload
+}
+
+func (r ApiCreateOrganizationBackflushJobRequest) CreateOrganizationBackflushJobPayload(createOrganizationBackflushJobPayload CreateOrganizationBackflushJobPayload) ApiCreateOrganizationBackflushJobRequest {
+	r.createOrganizationBackflushJobPayload = &createOrganizationBackflushJobPayload
+	return r
+}
+
+func (r ApiCreateOrganizationBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.CreateOrganizationBackflushJobExecute(r)
+}
+
+/*
+CreateOrganizationBackflushJob Method for CreateOrganizationBackflushJob
+
+Creates a new Backflush Job for the organization.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId The STACKIT portal organization UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiCreateOrganizationBackflushJobRequest
+*/
+func (a *DefaultAPIService) CreateOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string) ApiCreateOrganizationBackflushJobRequest {
+	return ApiCreateOrganizationBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) CreateOrganizationBackflushJobExecute(r ApiCreateOrganizationBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateOrganizationBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createOrganizationBackflushJobPayload == nil {
+		return localVarReturnValue, reportError("createOrganizationBackflushJobPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createOrganizationBackflushJobPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiCreateProjectBackflushJobRequest struct {
+	ctx                              context.Context
+	ApiService                       DefaultAPI
+	projectId                        string
+	regionId                         string
+	createProjectBackflushJobPayload *CreateProjectBackflushJobPayload
+}
+
+func (r ApiCreateProjectBackflushJobRequest) CreateProjectBackflushJobPayload(createProjectBackflushJobPayload CreateProjectBackflushJobPayload) ApiCreateProjectBackflushJobRequest {
+	r.createProjectBackflushJobPayload = &createProjectBackflushJobPayload
+	return r
+}
+
+func (r ApiCreateProjectBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.CreateProjectBackflushJobExecute(r)
+}
+
+/*
+CreateProjectBackflushJob Method for CreateProjectBackflushJob
+
+Creates a new Backflush Job for the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiCreateProjectBackflushJobRequest
+*/
+func (a *DefaultAPIService) CreateProjectBackflushJob(ctx context.Context, projectId string, regionId string) ApiCreateProjectBackflushJobRequest {
+	return ApiCreateProjectBackflushJobRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) CreateProjectBackflushJobExecute(r ApiCreateProjectBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateProjectBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createProjectBackflushJobPayload == nil {
+		return localVarReturnValue, reportError("createProjectBackflushJobPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createProjectBackflushJobPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiDeleteFolderTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1185,6 +1821,151 @@ func (a *DefaultAPIService) DeleteProjectTelemetryLinkExecute(r ApiDeleteProject
 	return nil
 }
 
+type ApiGetFolderBackflushJobRequest struct {
+	ctx            context.Context
+	ApiService     DefaultAPI
+	folderId       string
+	regionId       string
+	backflushJobId string
+}
+
+func (r ApiGetFolderBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.GetFolderBackflushJobExecute(r)
+}
+
+/*
+GetFolderBackflushJob Method for GetFolderBackflushJob
+
+Returns the details for the given Backflush Job in a folder.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param folderId The STACKIT portal folder UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param backflushJobId The Backflush Job UUID.
+	@return ApiGetFolderBackflushJobRequest
+*/
+func (a *DefaultAPIService) GetFolderBackflushJob(ctx context.Context, folderId string, regionId string, backflushJobId string) ApiGetFolderBackflushJobRequest {
+	return ApiGetFolderBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		folderId:       folderId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) GetFolderBackflushJobExecute(r ApiGetFolderBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFolderBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"folderId"+"}", url.PathEscape(parameterValueToString(r.folderId, "folderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"backflushJobId"+"}", url.PathEscape(parameterValueToString(r.backflushJobId, "backflushJobId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetFolderTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1234,6 +2015,151 @@ func (a *DefaultAPIService) GetFolderTelemetryLinkExecute(r ApiGetFolderTelemetr
 	localVarPath := localBasePath + "/v1/folders/{folderId}/regions/{regionId}/telemetry-link"
 	localVarPath = strings.Replace(localVarPath, "{"+"folderId"+"}", url.PathEscape(parameterValueToString(r.folderId, "folderId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetOrganizationBackflushJobRequest struct {
+	ctx            context.Context
+	ApiService     DefaultAPI
+	organizationId string
+	regionId       string
+	backflushJobId string
+}
+
+func (r ApiGetOrganizationBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.GetOrganizationBackflushJobExecute(r)
+}
+
+/*
+GetOrganizationBackflushJob Method for GetOrganizationBackflushJob
+
+Returns the details for the given Backflush Job in a organization.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId The STACKIT portal organization UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param backflushJobId The Backflush Job UUID.
+	@return ApiGetOrganizationBackflushJobRequest
+*/
+func (a *DefaultAPIService) GetOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string, backflushJobId string) ApiGetOrganizationBackflushJobRequest {
+	return ApiGetOrganizationBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) GetOrganizationBackflushJobExecute(r ApiGetOrganizationBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrganizationBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"backflushJobId"+"}", url.PathEscape(parameterValueToString(r.backflushJobId, "backflushJobId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1467,6 +2393,151 @@ func (a *DefaultAPIService) GetOrganizationTelemetryLinkExecute(r ApiGetOrganiza
 	return localVarReturnValue, nil
 }
 
+type ApiGetProjectBackflushJobRequest struct {
+	ctx            context.Context
+	ApiService     DefaultAPI
+	projectId      string
+	regionId       string
+	backflushJobId string
+}
+
+func (r ApiGetProjectBackflushJobRequest) Execute() (*BackflushJobResponse, error) {
+	return r.ApiService.GetProjectBackflushJobExecute(r)
+}
+
+/*
+GetProjectBackflushJob Method for GetProjectBackflushJob
+
+Returns the details for the given Backflush Job in a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param backflushJobId The Backflush Job UUID.
+	@return ApiGetProjectBackflushJobRequest
+*/
+func (a *DefaultAPIService) GetProjectBackflushJob(ctx context.Context, projectId string, regionId string, backflushJobId string) ApiGetProjectBackflushJobRequest {
+	return ApiGetProjectBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BackflushJobResponse
+func (a *DefaultAPIService) GetProjectBackflushJobExecute(r ApiGetProjectBackflushJobRequest) (*BackflushJobResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BackflushJobResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetProjectBackflushJob")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"backflushJobId"+"}", url.PathEscape(parameterValueToString(r.backflushJobId, "backflushJobId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetProjectTelemetryLinkRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1521,6 +2592,501 @@ func (a *DefaultAPIService) GetProjectTelemetryLinkExecute(r ApiGetProjectTeleme
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListFolderBackflushJobsRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	folderId   string
+	regionId   string
+	pageToken  *string
+	pageSize   *int32
+}
+
+// A token to retrieve the next page of results.
+func (r ApiListFolderBackflushJobsRequest) PageToken(pageToken string) ApiListFolderBackflushJobsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+
+// Maximum number of items to return
+func (r ApiListFolderBackflushJobsRequest) PageSize(pageSize int32) ApiListFolderBackflushJobsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListFolderBackflushJobsRequest) Execute() (*ListBackflushJobsResponse, error) {
+	return r.ApiService.ListFolderBackflushJobsExecute(r)
+}
+
+/*
+ListFolderBackflushJobs Method for ListFolderBackflushJobs
+
+Returns a list of all Backflush Jobs for the folder.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param folderId The STACKIT portal folder UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiListFolderBackflushJobsRequest
+*/
+func (a *DefaultAPIService) ListFolderBackflushJobs(ctx context.Context, folderId string, regionId string) ApiListFolderBackflushJobsRequest {
+	return ApiListFolderBackflushJobsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		folderId:   folderId,
+		regionId:   regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListBackflushJobsResponse
+func (a *DefaultAPIService) ListFolderBackflushJobsExecute(r ApiListFolderBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListBackflushJobsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListFolderBackflushJobs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"folderId"+"}", url.PathEscape(parameterValueToString(r.folderId, "folderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageToken", r.pageToken, "form", "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
+	} else {
+		var defaultValue int32 = 10
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", defaultValue, "form", "")
+		r.pageSize = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListOrganizationBackflushJobsRequest struct {
+	ctx            context.Context
+	ApiService     DefaultAPI
+	organizationId string
+	regionId       string
+	pageToken      *string
+	pageSize       *int32
+}
+
+// A token to retrieve the next page of results.
+func (r ApiListOrganizationBackflushJobsRequest) PageToken(pageToken string) ApiListOrganizationBackflushJobsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+
+// Maximum number of items to return
+func (r ApiListOrganizationBackflushJobsRequest) PageSize(pageSize int32) ApiListOrganizationBackflushJobsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListOrganizationBackflushJobsRequest) Execute() (*ListBackflushJobsResponse, error) {
+	return r.ApiService.ListOrganizationBackflushJobsExecute(r)
+}
+
+/*
+ListOrganizationBackflushJobs Method for ListOrganizationBackflushJobs
+
+Returns a list of all Backflush Jobs for the organization.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId The STACKIT portal organization UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiListOrganizationBackflushJobsRequest
+*/
+func (a *DefaultAPIService) ListOrganizationBackflushJobs(ctx context.Context, organizationId string, regionId string) ApiListOrganizationBackflushJobsRequest {
+	return ApiListOrganizationBackflushJobsRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListBackflushJobsResponse
+func (a *DefaultAPIService) ListOrganizationBackflushJobsExecute(r ApiListOrganizationBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListBackflushJobsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListOrganizationBackflushJobs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageToken", r.pageToken, "form", "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
+	} else {
+		var defaultValue int32 = 10
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", defaultValue, "form", "")
+		r.pageSize = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListProjectBackflushJobsRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	regionId   string
+	pageToken  *string
+	pageSize   *int32
+}
+
+// A token to retrieve the next page of results.
+func (r ApiListProjectBackflushJobsRequest) PageToken(pageToken string) ApiListProjectBackflushJobsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+
+// Maximum number of items to return
+func (r ApiListProjectBackflushJobsRequest) PageSize(pageSize int32) ApiListProjectBackflushJobsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListProjectBackflushJobsRequest) Execute() (*ListBackflushJobsResponse, error) {
+	return r.ApiService.ListProjectBackflushJobsExecute(r)
+}
+
+/*
+ListProjectBackflushJobs Method for ListProjectBackflushJobs
+
+Returns a list of all Backflush Jobs for the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@return ApiListProjectBackflushJobsRequest
+*/
+func (a *DefaultAPIService) ListProjectBackflushJobs(ctx context.Context, projectId string, regionId string) ApiListProjectBackflushJobsRequest {
+	return ApiListProjectBackflushJobsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListBackflushJobsResponse
+func (a *DefaultAPIService) ListProjectBackflushJobsExecute(r ApiListProjectBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListBackflushJobsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListProjectBackflushJobs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageToken", r.pageToken, "form", "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
+	} else {
+		var defaultValue int32 = 10
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", defaultValue, "form", "")
+		r.pageSize = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
