@@ -1,3 +1,4 @@
+
 ## Release (2026-MM-DD)
 
 - `sca`:
@@ -7,6 +8,12 @@
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
     - **Feature:** Add `RemoteSecurityGroupName` field to `RuleResponse`
+- `vpn`:
+  - [v0.16.0](services/vpn/CHANGELOG.md#v0160)
+    - `v1api`:
+      - **Feature:** Add `LocalTS` and `RemoteTS` field of type `[]string` to `Phase2Status`
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-11-11)
 
