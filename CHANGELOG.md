@@ -1,3 +1,11 @@
+## Release (YYYY-MM-DD)
+- `vpn`:
+  - [v0.16.0](services/vpn/CHANGELOG.md#v0160)
+    - `v1api`:
+      - **Feature:** Add `LocalTS` and `RemoteTS` field of type `[]string` to `Phase2Status`
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+
 ## Release (2026-11-11)
 
 - `alb`:
