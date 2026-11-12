@@ -35,8 +35,8 @@ func CreateArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, pr
 			}
 			return state, nil
 		},
-		ActiveState:   []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ACTIVE},
-		ErrorState:    []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
+		ActiveState: []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ACTIVE},
+		ErrorState:  []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())
