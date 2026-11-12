@@ -1,3 +1,10 @@
+## Release (2026-MM-DD)
+
+- `ufw`:
+  - [v0.3.0](services/ufw/CHANGELOG.md#v030)
+    - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
+    - **Feature:** Add `RemoteSecurityGroupName` field to `RuleResponse`
+
 ## Release (2026-11-11)
 
 - `alb`:
