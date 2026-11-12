@@ -23,7 +23,18 @@ const (
 func CreateArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, projectId, regionId, artifactoryId string) *wait.AsyncActionHandler[registry.Artifactory] {
 	waitConfig := wait.WaiterHelper[registry.Artifactory, registry.ArtifactoryState]{
 		FetchInstance: a.GetArtifactory(ctx, projectId, regionId, artifactoryId).Execute,
-		GetState:      getStateArtifactory,
+		GetState: func(artifactory *registry.Artifactory) (registry.ArtifactoryState, error) {
+			state, err := getStateArtifactory(artifactory)
+			if err != nil {
+				return "", err
+			}
+			if state == registry.ARTIFACTORYSTATE_ERROR {
+				if artifactory.ErrorDescription != nil && *artifactory.ErrorDescription != "" {
+					return state, fmt.Errorf("artifactory creation failed: %s", *artifactory.ErrorDescription)
+				}
+			}
+			return state, nil
+		},
 		ActiveState:   []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ACTIVE},
 		ErrorState:    []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
 	}
