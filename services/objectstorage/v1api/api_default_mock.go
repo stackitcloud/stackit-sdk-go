@@ -20,51 +20,50 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// Deprecated: CreateAccessKeyExecuteMock can be populated to implement the behavior of the CreateAccessKeyExecute function of this mock
+	// CreateAccessKeyExecuteMock can be populated to implement the behavior of the CreateAccessKeyExecute function of this mock
 	CreateAccessKeyExecuteMock *func(r ApiCreateAccessKeyRequest) (*CreateAccessKeyResponse, error)
-	// Deprecated: CreateBucketExecuteMock can be populated to implement the behavior of the CreateBucketExecute function of this mock
+	// CreateBucketExecuteMock can be populated to implement the behavior of the CreateBucketExecute function of this mock
 	CreateBucketExecuteMock *func(r ApiCreateBucketRequest) (*CreateBucketResponse, error)
-	// Deprecated: CreateComplianceLockExecuteMock can be populated to implement the behavior of the CreateComplianceLockExecute function of this mock
+	// CreateComplianceLockExecuteMock can be populated to implement the behavior of the CreateComplianceLockExecute function of this mock
 	CreateComplianceLockExecuteMock *func(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error)
-	// Deprecated: CreateCredentialsGroupExecuteMock can be populated to implement the behavior of the CreateCredentialsGroupExecute function of this mock
+	// CreateCredentialsGroupExecuteMock can be populated to implement the behavior of the CreateCredentialsGroupExecute function of this mock
 	CreateCredentialsGroupExecuteMock *func(r ApiCreateCredentialsGroupRequest) (*CreateCredentialsGroupResponse, error)
-	// Deprecated: DeleteAccessKeyExecuteMock can be populated to implement the behavior of the DeleteAccessKeyExecute function of this mock
+	// DeleteAccessKeyExecuteMock can be populated to implement the behavior of the DeleteAccessKeyExecute function of this mock
 	DeleteAccessKeyExecuteMock *func(r ApiDeleteAccessKeyRequest) (*DeleteAccessKeyResponse, error)
-	// Deprecated: DeleteBucketExecuteMock can be populated to implement the behavior of the DeleteBucketExecute function of this mock
+	// DeleteBucketExecuteMock can be populated to implement the behavior of the DeleteBucketExecute function of this mock
 	DeleteBucketExecuteMock *func(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error)
-	// Deprecated: DeleteComplianceLockExecuteMock can be populated to implement the behavior of the DeleteComplianceLockExecute function of this mock
+	// DeleteComplianceLockExecuteMock can be populated to implement the behavior of the DeleteComplianceLockExecute function of this mock
 	DeleteComplianceLockExecuteMock *func(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error)
-	// Deprecated: DeleteCredentialsGroupExecuteMock can be populated to implement the behavior of the DeleteCredentialsGroupExecute function of this mock
+	// DeleteCredentialsGroupExecuteMock can be populated to implement the behavior of the DeleteCredentialsGroupExecute function of this mock
 	DeleteCredentialsGroupExecuteMock *func(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error)
-	// Deprecated: DeleteDefaultRetentionExecuteMock can be populated to implement the behavior of the DeleteDefaultRetentionExecute function of this mock
+	// DeleteDefaultRetentionExecuteMock can be populated to implement the behavior of the DeleteDefaultRetentionExecute function of this mock
 	DeleteDefaultRetentionExecuteMock *func(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error)
-	// Deprecated: DisableServiceExecuteMock can be populated to implement the behavior of the DisableServiceExecute function of this mock
+	// DisableServiceExecuteMock can be populated to implement the behavior of the DisableServiceExecute function of this mock
 	DisableServiceExecuteMock *func(r ApiDisableServiceRequest) (*ProjectStatus, error)
-	// Deprecated: EnableServiceExecuteMock can be populated to implement the behavior of the EnableServiceExecute function of this mock
+	// EnableServiceExecuteMock can be populated to implement the behavior of the EnableServiceExecute function of this mock
 	EnableServiceExecuteMock *func(r ApiEnableServiceRequest) (*ProjectStatus, error)
-	// Deprecated: GetBucketExecuteMock can be populated to implement the behavior of the GetBucketExecute function of this mock
+	// GetBucketExecuteMock can be populated to implement the behavior of the GetBucketExecute function of this mock
 	GetBucketExecuteMock *func(r ApiGetBucketRequest) (*GetBucketResponse, error)
-	// Deprecated: GetComplianceLockExecuteMock can be populated to implement the behavior of the GetComplianceLockExecute function of this mock
+	// GetComplianceLockExecuteMock can be populated to implement the behavior of the GetComplianceLockExecute function of this mock
 	GetComplianceLockExecuteMock *func(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error)
-	// Deprecated: GetCredentialsGroupExecuteMock can be populated to implement the behavior of the GetCredentialsGroupExecute function of this mock
+	// GetCredentialsGroupExecuteMock can be populated to implement the behavior of the GetCredentialsGroupExecute function of this mock
 	GetCredentialsGroupExecuteMock *func(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error)
-	// Deprecated: GetDefaultRetentionExecuteMock can be populated to implement the behavior of the GetDefaultRetentionExecute function of this mock
+	// GetDefaultRetentionExecuteMock can be populated to implement the behavior of the GetDefaultRetentionExecute function of this mock
 	GetDefaultRetentionExecuteMock *func(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
-	// Deprecated: GetServiceStatusExecuteMock can be populated to implement the behavior of the GetServiceStatusExecute function of this mock
+	// GetServiceStatusExecuteMock can be populated to implement the behavior of the GetServiceStatusExecute function of this mock
 	GetServiceStatusExecuteMock *func(r ApiGetServiceStatusRequest) (*ProjectStatus, error)
-	// Deprecated: ListAccessKeysExecuteMock can be populated to implement the behavior of the ListAccessKeysExecute function of this mock
+	// ListAccessKeysExecuteMock can be populated to implement the behavior of the ListAccessKeysExecute function of this mock
 	ListAccessKeysExecuteMock *func(r ApiListAccessKeysRequest) (*ListAccessKeysResponse, error)
-	// Deprecated: ListBucketsExecuteMock can be populated to implement the behavior of the ListBucketsExecute function of this mock
+	// ListBucketsExecuteMock can be populated to implement the behavior of the ListBucketsExecute function of this mock
 	ListBucketsExecuteMock *func(r ApiListBucketsRequest) (*ListBucketsResponse, error)
-	// Deprecated: ListCredentialsGroupsExecuteMock can be populated to implement the behavior of the ListCredentialsGroupsExecute function of this mock
+	// ListCredentialsGroupsExecuteMock can be populated to implement the behavior of the ListCredentialsGroupsExecute function of this mock
 	ListCredentialsGroupsExecuteMock *func(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error)
-	// Deprecated: SetDefaultRetentionExecuteMock can be populated to implement the behavior of the SetDefaultRetentionExecute function of this mock
+	// SetDefaultRetentionExecuteMock can be populated to implement the behavior of the SetDefaultRetentionExecute function of this mock
 	SetDefaultRetentionExecuteMock *func(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
-	// Deprecated: UpdateServiceExecuteMock can be populated to implement the behavior of the UpdateServiceExecute function of this mock
+	// UpdateServiceExecuteMock can be populated to implement the behavior of the UpdateServiceExecute function of this mock
 	UpdateServiceExecuteMock *func(r ApiUpdateServiceRequest) (*ProjectStatus, error)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) CreateAccessKey(ctx context.Context, projectId string) ApiCreateAccessKeyRequest {
 	return ApiCreateAccessKeyRequest{
 		ApiService: a,
@@ -73,7 +72,7 @@ func (a DefaultAPIServiceMock) CreateAccessKey(ctx context.Context, projectId st
 	}
 }
 
-// Deprecated: CreateAccessKeyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessKeyExecuteMock field in the DefaultAPIServiceMock struct.
+// CreateAccessKeyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateAccessKeyExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateAccessKeyExecute(r ApiCreateAccessKeyRequest) (*CreateAccessKeyResponse, error) {
 	if a.CreateAccessKeyExecuteMock == nil {
 		var localVarReturnValue *CreateAccessKeyResponse
@@ -83,7 +82,6 @@ func (a DefaultAPIServiceMock) CreateAccessKeyExecute(r ApiCreateAccessKeyReques
 	return (*a.CreateAccessKeyExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) CreateBucket(ctx context.Context, projectId string, bucketName string) ApiCreateBucketRequest {
 	return ApiCreateBucketRequest{
 		ApiService: a,
@@ -93,7 +91,7 @@ func (a DefaultAPIServiceMock) CreateBucket(ctx context.Context, projectId strin
 	}
 }
 
-// Deprecated: CreateBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateBucketExecuteMock field in the DefaultAPIServiceMock struct.
+// CreateBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateBucketExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateBucketExecute(r ApiCreateBucketRequest) (*CreateBucketResponse, error) {
 	if a.CreateBucketExecuteMock == nil {
 		var localVarReturnValue *CreateBucketResponse
@@ -103,7 +101,6 @@ func (a DefaultAPIServiceMock) CreateBucketExecute(r ApiCreateBucketRequest) (*C
 	return (*a.CreateBucketExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) CreateComplianceLock(ctx context.Context, projectId string) ApiCreateComplianceLockRequest {
 	return ApiCreateComplianceLockRequest{
 		ApiService: a,
@@ -112,7 +109,7 @@ func (a DefaultAPIServiceMock) CreateComplianceLock(ctx context.Context, project
 	}
 }
 
-// Deprecated: CreateComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+// CreateComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error) {
 	if a.CreateComplianceLockExecuteMock == nil {
 		var localVarReturnValue *ComplianceLockResponse
@@ -122,7 +119,6 @@ func (a DefaultAPIServiceMock) CreateComplianceLockExecute(r ApiCreateCompliance
 	return (*a.CreateComplianceLockExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) CreateCredentialsGroup(ctx context.Context, projectId string) ApiCreateCredentialsGroupRequest {
 	return ApiCreateCredentialsGroupRequest{
 		ApiService: a,
@@ -131,7 +127,7 @@ func (a DefaultAPIServiceMock) CreateCredentialsGroup(ctx context.Context, proje
 	}
 }
 
-// Deprecated: CreateCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
+// CreateCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateCredentialsGroupExecute(r ApiCreateCredentialsGroupRequest) (*CreateCredentialsGroupResponse, error) {
 	if a.CreateCredentialsGroupExecuteMock == nil {
 		var localVarReturnValue *CreateCredentialsGroupResponse
@@ -141,7 +137,6 @@ func (a DefaultAPIServiceMock) CreateCredentialsGroupExecute(r ApiCreateCredenti
 	return (*a.CreateCredentialsGroupExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DeleteAccessKey(ctx context.Context, projectId string, keyId string) ApiDeleteAccessKeyRequest {
 	return ApiDeleteAccessKeyRequest{
 		ApiService: a,
@@ -151,7 +146,7 @@ func (a DefaultAPIServiceMock) DeleteAccessKey(ctx context.Context, projectId st
 	}
 }
 
-// Deprecated: DeleteAccessKeyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessKeyExecuteMock field in the DefaultAPIServiceMock struct.
+// DeleteAccessKeyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteAccessKeyExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteAccessKeyExecute(r ApiDeleteAccessKeyRequest) (*DeleteAccessKeyResponse, error) {
 	if a.DeleteAccessKeyExecuteMock == nil {
 		var localVarReturnValue *DeleteAccessKeyResponse
@@ -161,7 +156,6 @@ func (a DefaultAPIServiceMock) DeleteAccessKeyExecute(r ApiDeleteAccessKeyReques
 	return (*a.DeleteAccessKeyExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DeleteBucket(ctx context.Context, projectId string, bucketName string) ApiDeleteBucketRequest {
 	return ApiDeleteBucketRequest{
 		ApiService: a,
@@ -171,7 +165,7 @@ func (a DefaultAPIServiceMock) DeleteBucket(ctx context.Context, projectId strin
 	}
 }
 
-// Deprecated: DeleteBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteBucketExecuteMock field in the DefaultAPIServiceMock struct.
+// DeleteBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteBucketExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteBucketExecute(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error) {
 	if a.DeleteBucketExecuteMock == nil {
 		var localVarReturnValue *DeleteBucketResponse
@@ -181,7 +175,6 @@ func (a DefaultAPIServiceMock) DeleteBucketExecute(r ApiDeleteBucketRequest) (*D
 	return (*a.DeleteBucketExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DeleteComplianceLock(ctx context.Context, projectId string) ApiDeleteComplianceLockRequest {
 	return ApiDeleteComplianceLockRequest{
 		ApiService: a,
@@ -190,7 +183,7 @@ func (a DefaultAPIServiceMock) DeleteComplianceLock(ctx context.Context, project
 	}
 }
 
-// Deprecated: DeleteComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+// DeleteComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error) {
 	if a.DeleteComplianceLockExecuteMock == nil {
 		var localVarReturnValue *ComplianceLockResponse
@@ -200,7 +193,6 @@ func (a DefaultAPIServiceMock) DeleteComplianceLockExecute(r ApiDeleteCompliance
 	return (*a.DeleteComplianceLockExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DeleteCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiDeleteCredentialsGroupRequest {
 	return ApiDeleteCredentialsGroupRequest{
 		ApiService: a,
@@ -210,7 +202,7 @@ func (a DefaultAPIServiceMock) DeleteCredentialsGroup(ctx context.Context, proje
 	}
 }
 
-// Deprecated: DeleteCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
+// DeleteCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteCredentialsGroupExecute(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error) {
 	if a.DeleteCredentialsGroupExecuteMock == nil {
 		var localVarReturnValue *DeleteCredentialsGroupResponse
@@ -220,7 +212,6 @@ func (a DefaultAPIServiceMock) DeleteCredentialsGroupExecute(r ApiDeleteCredenti
 	return (*a.DeleteCredentialsGroupExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DeleteDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiDeleteDefaultRetentionRequest {
 	return ApiDeleteDefaultRetentionRequest{
 		ApiService: a,
@@ -230,7 +221,7 @@ func (a DefaultAPIServiceMock) DeleteDefaultRetention(ctx context.Context, proje
 	}
 }
 
-// Deprecated: DeleteDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+// DeleteDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error) {
 	if a.DeleteDefaultRetentionExecuteMock == nil {
 		var localVarReturnValue *DeleteDefaultRetentionResponse
@@ -240,7 +231,6 @@ func (a DefaultAPIServiceMock) DeleteDefaultRetentionExecute(r ApiDeleteDefaultR
 	return (*a.DeleteDefaultRetentionExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
 	return ApiDisableServiceRequest{
 		ApiService: a,
@@ -249,7 +239,7 @@ func (a DefaultAPIServiceMock) DisableService(ctx context.Context, projectId str
 	}
 }
 
-// Deprecated: DisableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DisableServiceExecuteMock field in the DefaultAPIServiceMock struct.
+// DisableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DisableServiceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DisableServiceExecute(r ApiDisableServiceRequest) (*ProjectStatus, error) {
 	if a.DisableServiceExecuteMock == nil {
 		var localVarReturnValue *ProjectStatus
@@ -259,7 +249,6 @@ func (a DefaultAPIServiceMock) DisableServiceExecute(r ApiDisableServiceRequest)
 	return (*a.DisableServiceExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
 	return ApiEnableServiceRequest{
 		ApiService: a,
@@ -268,7 +257,7 @@ func (a DefaultAPIServiceMock) EnableService(ctx context.Context, projectId stri
 	}
 }
 
-// Deprecated: EnableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the EnableServiceExecuteMock field in the DefaultAPIServiceMock struct.
+// EnableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the EnableServiceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) EnableServiceExecute(r ApiEnableServiceRequest) (*ProjectStatus, error) {
 	if a.EnableServiceExecuteMock == nil {
 		var localVarReturnValue *ProjectStatus
@@ -278,7 +267,6 @@ func (a DefaultAPIServiceMock) EnableServiceExecute(r ApiEnableServiceRequest) (
 	return (*a.EnableServiceExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) GetBucket(ctx context.Context, projectId string, bucketName string) ApiGetBucketRequest {
 	return ApiGetBucketRequest{
 		ApiService: a,
@@ -288,7 +276,7 @@ func (a DefaultAPIServiceMock) GetBucket(ctx context.Context, projectId string, 
 	}
 }
 
-// Deprecated: GetBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetBucketExecuteMock field in the DefaultAPIServiceMock struct.
+// GetBucketExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetBucketExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetBucketExecute(r ApiGetBucketRequest) (*GetBucketResponse, error) {
 	if a.GetBucketExecuteMock == nil {
 		var localVarReturnValue *GetBucketResponse
@@ -298,7 +286,6 @@ func (a DefaultAPIServiceMock) GetBucketExecute(r ApiGetBucketRequest) (*GetBuck
 	return (*a.GetBucketExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) GetComplianceLock(ctx context.Context, projectId string) ApiGetComplianceLockRequest {
 	return ApiGetComplianceLockRequest{
 		ApiService: a,
@@ -307,7 +294,7 @@ func (a DefaultAPIServiceMock) GetComplianceLock(ctx context.Context, projectId 
 	}
 }
 
-// Deprecated: GetComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+// GetComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error) {
 	if a.GetComplianceLockExecuteMock == nil {
 		var localVarReturnValue *ComplianceLockResponse
@@ -317,7 +304,6 @@ func (a DefaultAPIServiceMock) GetComplianceLockExecute(r ApiGetComplianceLockRe
 	return (*a.GetComplianceLockExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) GetCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiGetCredentialsGroupRequest {
 	return ApiGetCredentialsGroupRequest{
 		ApiService: a,
@@ -327,7 +313,7 @@ func (a DefaultAPIServiceMock) GetCredentialsGroup(ctx context.Context, projectI
 	}
 }
 
-// Deprecated: GetCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
+// GetCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error) {
 	if a.GetCredentialsGroupExecuteMock == nil {
 		var localVarReturnValue *GetCredentialsGroupResponse
@@ -337,7 +323,6 @@ func (a DefaultAPIServiceMock) GetCredentialsGroupExecute(r ApiGetCredentialsGro
 	return (*a.GetCredentialsGroupExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) GetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiGetDefaultRetentionRequest {
 	return ApiGetDefaultRetentionRequest{
 		ApiService: a,
@@ -347,7 +332,7 @@ func (a DefaultAPIServiceMock) GetDefaultRetention(ctx context.Context, projectI
 	}
 }
 
-// Deprecated: GetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+// GetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
 	if a.GetDefaultRetentionExecuteMock == nil {
 		var localVarReturnValue *DefaultRetentionResponse
@@ -357,7 +342,6 @@ func (a DefaultAPIServiceMock) GetDefaultRetentionExecute(r ApiGetDefaultRetenti
 	return (*a.GetDefaultRetentionExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
 	return ApiGetServiceStatusRequest{
 		ApiService: a,
@@ -366,7 +350,7 @@ func (a DefaultAPIServiceMock) GetServiceStatus(ctx context.Context, projectId s
 	}
 }
 
-// Deprecated: GetServiceStatusExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetServiceStatusExecuteMock field in the DefaultAPIServiceMock struct.
+// GetServiceStatusExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetServiceStatusExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetServiceStatusExecute(r ApiGetServiceStatusRequest) (*ProjectStatus, error) {
 	if a.GetServiceStatusExecuteMock == nil {
 		var localVarReturnValue *ProjectStatus
@@ -376,7 +360,6 @@ func (a DefaultAPIServiceMock) GetServiceStatusExecute(r ApiGetServiceStatusRequ
 	return (*a.GetServiceStatusExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) ListAccessKeys(ctx context.Context, projectId string) ApiListAccessKeysRequest {
 	return ApiListAccessKeysRequest{
 		ApiService: a,
@@ -385,7 +368,7 @@ func (a DefaultAPIServiceMock) ListAccessKeys(ctx context.Context, projectId str
 	}
 }
 
-// Deprecated: ListAccessKeysExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessKeysExecuteMock field in the DefaultAPIServiceMock struct.
+// ListAccessKeysExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListAccessKeysExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListAccessKeysExecute(r ApiListAccessKeysRequest) (*ListAccessKeysResponse, error) {
 	if a.ListAccessKeysExecuteMock == nil {
 		var localVarReturnValue *ListAccessKeysResponse
@@ -395,7 +378,6 @@ func (a DefaultAPIServiceMock) ListAccessKeysExecute(r ApiListAccessKeysRequest)
 	return (*a.ListAccessKeysExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) ListBuckets(ctx context.Context, projectId string) ApiListBucketsRequest {
 	return ApiListBucketsRequest{
 		ApiService: a,
@@ -404,7 +386,7 @@ func (a DefaultAPIServiceMock) ListBuckets(ctx context.Context, projectId string
 	}
 }
 
-// Deprecated: ListBucketsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBucketsExecuteMock field in the DefaultAPIServiceMock struct.
+// ListBucketsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBucketsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListBucketsExecute(r ApiListBucketsRequest) (*ListBucketsResponse, error) {
 	if a.ListBucketsExecuteMock == nil {
 		var localVarReturnValue *ListBucketsResponse
@@ -414,7 +396,6 @@ func (a DefaultAPIServiceMock) ListBucketsExecute(r ApiListBucketsRequest) (*Lis
 	return (*a.ListBucketsExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) ListCredentialsGroups(ctx context.Context, projectId string) ApiListCredentialsGroupsRequest {
 	return ApiListCredentialsGroupsRequest{
 		ApiService: a,
@@ -423,7 +404,7 @@ func (a DefaultAPIServiceMock) ListCredentialsGroups(ctx context.Context, projec
 	}
 }
 
-// Deprecated: ListCredentialsGroupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCredentialsGroupsExecuteMock field in the DefaultAPIServiceMock struct.
+// ListCredentialsGroupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCredentialsGroupsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListCredentialsGroupsExecute(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error) {
 	if a.ListCredentialsGroupsExecuteMock == nil {
 		var localVarReturnValue *ListCredentialsGroupsResponse
@@ -433,7 +414,6 @@ func (a DefaultAPIServiceMock) ListCredentialsGroupsExecute(r ApiListCredentials
 	return (*a.ListCredentialsGroupsExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) SetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiSetDefaultRetentionRequest {
 	return ApiSetDefaultRetentionRequest{
 		ApiService: a,
@@ -443,7 +423,7 @@ func (a DefaultAPIServiceMock) SetDefaultRetention(ctx context.Context, projectI
 	}
 }
 
-// Deprecated: SetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the SetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+// SetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the SetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
 	if a.SetDefaultRetentionExecuteMock == nil {
 		var localVarReturnValue *DefaultRetentionResponse
@@ -453,7 +433,6 @@ func (a DefaultAPIServiceMock) SetDefaultRetentionExecute(r ApiSetDefaultRetenti
 	return (*a.SetDefaultRetentionExecuteMock)(r)
 }
 
-// Deprecated
 func (a DefaultAPIServiceMock) UpdateService(ctx context.Context, projectId string) ApiUpdateServiceRequest {
 	return ApiUpdateServiceRequest{
 		ApiService: a,
@@ -462,7 +441,7 @@ func (a DefaultAPIServiceMock) UpdateService(ctx context.Context, projectId stri
 	}
 }
 
-// Deprecated: UpdateServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateServiceExecuteMock field in the DefaultAPIServiceMock struct.
+// UpdateServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateServiceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateServiceExecute(r ApiUpdateServiceRequest) (*ProjectStatus, error) {
 	if a.UpdateServiceExecuteMock == nil {
 		var localVarReturnValue *ProjectStatus
