@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `sca`:
+  - [v0.3.0](services/sca/CHANGELOG.md#v030)
+    - `v1alphaapi`: Align package to latest API specification
 - `ufw`:
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
