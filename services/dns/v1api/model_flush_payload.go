@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the FlushDomainPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FlushDomainPayload{}
+// checks if the FlushPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FlushPayload{}
 
-// FlushDomainPayload struct for FlushDomainPayload
-type FlushDomainPayload struct {
-	Domain               string                  `json:"domain"`
-	Type                 *FlushDomainPayloadType `json:"type,omitempty"`
+// FlushPayload struct for FlushPayload
+type FlushPayload struct {
+	Domain               string            `json:"domain"`
+	Type                 *FlushPayloadType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _FlushDomainPayload FlushDomainPayload
+type _FlushPayload FlushPayload
 
-// NewFlushDomainPayload instantiates a new FlushDomainPayload object
+// NewFlushPayload instantiates a new FlushPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFlushDomainPayload(domain string) *FlushDomainPayload {
-	this := FlushDomainPayload{}
+func NewFlushPayload(domain string) *FlushPayload {
+	this := FlushPayload{}
 	this.Domain = domain
 	return &this
 }
 
-// NewFlushDomainPayloadWithDefaults instantiates a new FlushDomainPayload object
+// NewFlushPayloadWithDefaults instantiates a new FlushPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFlushDomainPayloadWithDefaults() *FlushDomainPayload {
-	this := FlushDomainPayload{}
+func NewFlushPayloadWithDefaults() *FlushPayload {
+	this := FlushPayload{}
 	return &this
 }
 
 // GetDomain returns the Domain field value
-func (o *FlushDomainPayload) GetDomain() string {
+func (o *FlushPayload) GetDomain() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *FlushDomainPayload) GetDomain() string {
 
 // GetDomainOk returns a tuple with the Domain field value
 // and a boolean to check if the value has been set.
-func (o *FlushDomainPayload) GetDomainOk() (*string, bool) {
+func (o *FlushPayload) GetDomainOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,14 +66,14 @@ func (o *FlushDomainPayload) GetDomainOk() (*string, bool) {
 }
 
 // SetDomain sets field value
-func (o *FlushDomainPayload) SetDomain(v string) {
+func (o *FlushPayload) SetDomain(v string) {
 	o.Domain = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *FlushDomainPayload) GetType() FlushDomainPayloadType {
+func (o *FlushPayload) GetType() FlushPayloadType {
 	if o == nil || IsNil(o.Type) {
-		var ret FlushDomainPayloadType
+		var ret FlushPayloadType
 		return ret
 	}
 	return *o.Type
@@ -81,7 +81,7 @@ func (o *FlushDomainPayload) GetType() FlushDomainPayloadType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FlushDomainPayload) GetTypeOk() (*FlushDomainPayloadType, bool) {
+func (o *FlushPayload) GetTypeOk() (*FlushPayloadType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *FlushDomainPayload) GetTypeOk() (*FlushDomainPayloadType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *FlushDomainPayload) HasType() bool {
+func (o *FlushPayload) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -97,12 +97,12 @@ func (o *FlushDomainPayload) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given FlushDomainPayloadType and assigns it to the Type field.
-func (o *FlushDomainPayload) SetType(v FlushDomainPayloadType) {
+// SetType gets a reference to the given FlushPayloadType and assigns it to the Type field.
+func (o *FlushPayload) SetType(v FlushPayloadType) {
 	o.Type = &v
 }
 
-func (o FlushDomainPayload) MarshalJSON() ([]byte, error) {
+func (o FlushPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -110,7 +110,7 @@ func (o FlushDomainPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FlushDomainPayload) ToMap() (map[string]interface{}, error) {
+func (o FlushPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["domain"] = o.Domain
 	if !IsNil(o.Type) {
@@ -124,7 +124,7 @@ func (o FlushDomainPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FlushDomainPayload) UnmarshalJSON(data []byte) (err error) {
+func (o *FlushPayload) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -146,15 +146,15 @@ func (o *FlushDomainPayload) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFlushDomainPayload := _FlushDomainPayload{}
+	varFlushPayload := _FlushPayload{}
 
-	err = json.Unmarshal(data, &varFlushDomainPayload)
+	err = json.Unmarshal(data, &varFlushPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FlushDomainPayload(varFlushDomainPayload)
+	*o = FlushPayload(varFlushPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -167,38 +167,38 @@ func (o *FlushDomainPayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableFlushDomainPayload struct {
-	value *FlushDomainPayload
+type NullableFlushPayload struct {
+	value *FlushPayload
 	isSet bool
 }
 
-func (v NullableFlushDomainPayload) Get() *FlushDomainPayload {
+func (v NullableFlushPayload) Get() *FlushPayload {
 	return v.value
 }
 
-func (v *NullableFlushDomainPayload) Set(val *FlushDomainPayload) {
+func (v *NullableFlushPayload) Set(val *FlushPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFlushDomainPayload) IsSet() bool {
+func (v NullableFlushPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFlushDomainPayload) Unset() {
+func (v *NullableFlushPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFlushDomainPayload(val *FlushDomainPayload) *NullableFlushDomainPayload {
-	return &NullableFlushDomainPayload{value: val, isSet: true}
+func NewNullableFlushPayload(val *FlushPayload) *NullableFlushPayload {
+	return &NullableFlushPayload{value: val, isSet: true}
 }
 
-func (v NullableFlushDomainPayload) MarshalJSON() ([]byte, error) {
+func (v NullableFlushPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFlushDomainPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableFlushPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
