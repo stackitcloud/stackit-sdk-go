@@ -21,9 +21,9 @@ var _ MappedNullable = &DestinationConfigS3{}
 // DestinationConfigS3 struct for DestinationConfigS3
 type DestinationConfigS3 struct {
 	AccessKey *DestinationConfigS3AccessKey `json:"accessKey,omitempty"`
-	Bucket    string                        `json:"bucket"`
+	Bucket    string                        `json:"bucket" validate:"regexp=^[a-z0-9\\-]+$"`
 	// The URI for reaching the resource.
-	Endpoint             string `json:"endpoint"`
+	Endpoint             string `json:"endpoint" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
