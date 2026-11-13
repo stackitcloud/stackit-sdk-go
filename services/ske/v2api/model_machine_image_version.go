@@ -20,10 +20,10 @@ var _ MappedNullable = &MachineImageVersion{}
 
 // MachineImageVersion struct for MachineImageVersion
 type MachineImageVersion struct {
-	Cri                  []MachineImageVersionCRI `json:"cri,omitempty"`
-	ExpirationDate       *time.Time               `json:"expirationDate,omitempty"`
-	State                *string                  `json:"state,omitempty"`
-	Version              *string                  `json:"version,omitempty" validate:"regexp=^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"`
+	Cri                  []CRI      `json:"cri,omitempty"`
+	ExpirationDate       *time.Time `json:"expirationDate,omitempty"`
+	State                *string    `json:"state,omitempty"`
+	Version              *string    `json:"version,omitempty" validate:"regexp=^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,9 +47,9 @@ func NewMachineImageVersionWithDefaults() *MachineImageVersion {
 }
 
 // GetCri returns the Cri field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetCri() []MachineImageVersionCRI {
+func (o *MachineImageVersion) GetCri() []CRI {
 	if o == nil || IsNil(o.Cri) {
-		var ret []MachineImageVersionCRI
+		var ret []CRI
 		return ret
 	}
 	return o.Cri
@@ -57,7 +57,7 @@ func (o *MachineImageVersion) GetCri() []MachineImageVersionCRI {
 
 // GetCriOk returns a tuple with the Cri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetCriOk() ([]MachineImageVersionCRI, bool) {
+func (o *MachineImageVersion) GetCriOk() ([]CRI, bool) {
 	if o == nil || IsNil(o.Cri) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *MachineImageVersion) HasCri() bool {
 	return false
 }
 
-// SetCri gets a reference to the given []MachineImageVersionCRI and assigns it to the Cri field.
-func (o *MachineImageVersion) SetCri(v []MachineImageVersionCRI) {
+// SetCri gets a reference to the given []CRI and assigns it to the Cri field.
+func (o *MachineImageVersion) SetCri(v []CRI) {
 	o.Cri = v
 }
 
