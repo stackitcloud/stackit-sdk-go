@@ -5,19 +5,19 @@ on:
     branches:
       - main
 
+permissions: {}
+
 jobs:
   check-version:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
-      contents: write
+      contents: write # Required to push service release tags.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: true # update-service-tags.sh needs checkout credentials to push tags.
       - name: Push tag for each updated package
-        env:
-          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
         run: |
           git config --global user.name "SDK Releaser Bot"
           git config --global user.email "noreply@stackit.de"
