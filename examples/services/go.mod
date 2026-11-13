@@ -48,11 +48,11 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.16.0
 	github.com/stackitcloud/stackit-sdk-go/services/automation v0.2.1
 	github.com/stackitcloud/stackit-sdk-go/services/cost v0.5.3
-	github.com/stackitcloud/stackit-sdk-go/services/dns v0.25.0
+	github.com/stackitcloud/stackit-sdk-go/services/dns v0.26.0
 	github.com/stackitcloud/stackit-sdk-go/services/dremio v0.7.0
 	github.com/stackitcloud/stackit-sdk-go/services/edge v0.14.0
-	github.com/stackitcloud/stackit-sdk-go/services/functions v0.1.0
-	github.com/stackitcloud/stackit-sdk-go/services/git v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/services/functions v0.2.0
+	github.com/stackitcloud/stackit-sdk-go/services/git v0.16.0
 	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.15.1
 	github.com/stackitcloud/stackit-sdk-go/services/intake v0.12.0
 	github.com/stackitcloud/stackit-sdk-go/services/kms v1.14.0
@@ -60,27 +60,27 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/services/logme v1.6.0
 	github.com/stackitcloud/stackit-sdk-go/services/mariadb v1.4.0
 	github.com/stackitcloud/stackit-sdk-go/services/modelexperiments v0.3.2
-	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.12.0
+	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.13.0
 	github.com/stackitcloud/stackit-sdk-go/services/observability v0.26.0
 	github.com/stackitcloud/stackit-sdk-go/services/opensearch v1.5.0
 	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.16.0
 	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v1.5.0
 	github.com/stackitcloud/stackit-sdk-go/services/redis v1.6.0
-	github.com/stackitcloud/stackit-sdk-go/services/registry v0.1.0
+	github.com/stackitcloud/stackit-sdk-go/services/registry v0.2.0
 	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.28.0
 	github.com/stackitcloud/stackit-sdk-go/services/runcommand v1.11.0
-	github.com/stackitcloud/stackit-sdk-go/services/sca v0.2.1
+	github.com/stackitcloud/stackit-sdk-go/services/sca v0.3.0
 	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.20.0
 	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.22.0
 	github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v1.8.0
 	github.com/stackitcloud/stackit-sdk-go/services/sfs v0.13.1
-	github.com/stackitcloud/stackit-sdk-go/services/ske v1.22.0
-	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.19.0
+	github.com/stackitcloud/stackit-sdk-go/services/ske v1.23.0
+	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.20.0
 	github.com/stackitcloud/stackit-sdk-go/services/telemetrylink v0.6.0
 	github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter v0.6.1
-	github.com/stackitcloud/stackit-sdk-go/services/ufw v0.2.0
+	github.com/stackitcloud/stackit-sdk-go/services/ufw v0.3.0
 	github.com/stackitcloud/stackit-sdk-go/services/valkey v0.4.0
-	github.com/stackitcloud/stackit-sdk-go/services/vpn v0.15.3
+	github.com/stackitcloud/stackit-sdk-go/services/vpn v0.16.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
