@@ -26,8 +26,6 @@ type Artifactory struct {
 	ConsumedQuotaBytes int64 `json:"consumed_quota_bytes"`
 	// The date and time the creation of the STACKIT Artifactory was triggered.
 	CreateTime time.Time `json:"create_time"`
-	// Describes the reason for the error state.
-	ErrorDescription *string `json:"error_description,omitempty"`
 	// A auto generated unique id which identifies the STACKIT Artifactory.
 	Id string `json:"id"`
 	// A user chosen name to distinguish multiple STACKIT Artifactories.
@@ -110,38 +108,6 @@ func (o *Artifactory) GetCreateTimeOk() (*time.Time, bool) {
 // SetCreateTime sets field value
 func (o *Artifactory) SetCreateTime(v time.Time) {
 	o.CreateTime = v
-}
-
-// GetErrorDescription returns the ErrorDescription field value if set, zero value otherwise.
-func (o *Artifactory) GetErrorDescription() string {
-	if o == nil || IsNil(o.ErrorDescription) {
-		var ret string
-		return ret
-	}
-	return *o.ErrorDescription
-}
-
-// GetErrorDescriptionOk returns a tuple with the ErrorDescription field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Artifactory) GetErrorDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.ErrorDescription) {
-		return nil, false
-	}
-	return o.ErrorDescription, true
-}
-
-// HasErrorDescription returns a boolean if a field has been set.
-func (o *Artifactory) HasErrorDescription() bool {
-	if o != nil && !IsNil(o.ErrorDescription) {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorDescription gets a reference to the given string and assigns it to the ErrorDescription field.
-func (o *Artifactory) SetErrorDescription(v string) {
-	o.ErrorDescription = &v
 }
 
 // GetId returns the Id field value
@@ -284,9 +250,6 @@ func (o Artifactory) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["consumed_quota_bytes"] = o.ConsumedQuotaBytes
 	toSerialize["create_time"] = o.CreateTime
-	if !IsNil(o.ErrorDescription) {
-		toSerialize["error_description"] = o.ErrorDescription
-	}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Proxy) {
@@ -344,7 +307,6 @@ func (o *Artifactory) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "consumed_quota_bytes")
 		delete(additionalProperties, "create_time")
-		delete(additionalProperties, "error_description")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "proxy")
