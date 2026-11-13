@@ -9,6 +9,7 @@ use (
 	./examples/experimental
 	./examples/middleware
 	./examples/retries
+	./examples/runtime
 	./examples/services
 	./examples/waiter
 	./services/alb
@@ -59,5 +60,6 @@ use (
 	./services/ufw
 	./services/valkey
 	./services/vpn
+	./services/workflows
 	./tools
 )
