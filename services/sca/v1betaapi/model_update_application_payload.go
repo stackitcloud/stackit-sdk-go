@@ -12,36 +12,19 @@ package v1betaapi
 
 import (
 	"encoding/json"
-	"fmt"
-	"time"
 )
 
 // checks if the UpdateApplicationPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateApplicationPayload{}
 
-// UpdateApplicationPayload Application describes a deployable multi-container workload instance.
+// UpdateApplicationPayload ApplicationPatch describes the fields to update in an existing application.
 type UpdateApplicationPayload struct {
 	// Containers to deploy for the application.
-	Containers []Container `json:"containers"`
-	// Creation date in RFC3339 format.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	// Human-readable display name.
-	DisplayName string `json:"displayName"`
-	// Environment identifier where the application belongs.
-	EnvironmentId *string `json:"environmentId,omitempty"`
-	// Environment human-readable display name.
-	EnvironmentName *string `json:"environmentName,omitempty"`
-	// Application identifier.
-	Id      *string             `json:"id,omitempty"`
-	Network *ApplicationNetwork `json:"network,omitempty"`
-	// Region of the environment.
-	Region  *string            `json:"region,omitempty"`
-	Scaling ApplicationScaling `json:"scaling"`
-	Status  *ApplicationStatus `json:"status,omitempty"`
+	Containers []Container         `json:"containers,omitempty"`
+	Network    *ApplicationNetwork `json:"network,omitempty"`
+	Scaling    *ApplicationScaling `json:"scaling,omitempty"`
 	// Indicates if the application resources are stopped.
-	Stopped *bool `json:"stopped,omitempty"`
-	// Last update date in RFC3339 format.
-	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	Stopped              *bool `json:"stopped,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,11 +34,8 @@ type _UpdateApplicationPayload UpdateApplicationPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateApplicationPayload(containers []Container, displayName string, scaling ApplicationScaling) *UpdateApplicationPayload {
+func NewUpdateApplicationPayload() *UpdateApplicationPayload {
 	this := UpdateApplicationPayload{}
-	this.Containers = containers
-	this.DisplayName = displayName
-	this.Scaling = scaling
 	return &this
 }
 
@@ -67,180 +47,36 @@ func NewUpdateApplicationPayloadWithDefaults() *UpdateApplicationPayload {
 	return &this
 }
 
-// GetContainers returns the Containers field value
+// GetContainers returns the Containers field value if set, zero value otherwise.
 func (o *UpdateApplicationPayload) GetContainers() []Container {
-	if o == nil {
+	if o == nil || IsNil(o.Containers) {
 		var ret []Container
 		return ret
 	}
-
 	return o.Containers
 }
 
-// GetContainersOk returns a tuple with the Containers field value
+// GetContainersOk returns a tuple with the Containers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateApplicationPayload) GetContainersOk() ([]Container, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Containers) {
 		return nil, false
 	}
 	return o.Containers, true
 }
 
-// SetContainers sets field value
+// HasContainers returns a boolean if a field has been set.
+func (o *UpdateApplicationPayload) HasContainers() bool {
+	if o != nil && !IsNil(o.Containers) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainers gets a reference to the given []Container and assigns it to the Containers field.
 func (o *UpdateApplicationPayload) SetContainers(v []Container) {
 	o.Containers = v
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *UpdateApplicationPayload) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
-// GetDisplayName returns the DisplayName field value
-func (o *UpdateApplicationPayload) GetDisplayName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DisplayName, true
-}
-
-// SetDisplayName sets field value
-func (o *UpdateApplicationPayload) SetDisplayName(v string) {
-	o.DisplayName = v
-}
-
-// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetEnvironmentId() string {
-	if o == nil || IsNil(o.EnvironmentId) {
-		var ret string
-		return ret
-	}
-	return *o.EnvironmentId
-}
-
-// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetEnvironmentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.EnvironmentId) {
-		return nil, false
-	}
-	return o.EnvironmentId, true
-}
-
-// HasEnvironmentId returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasEnvironmentId() bool {
-	if o != nil && !IsNil(o.EnvironmentId) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
-func (o *UpdateApplicationPayload) SetEnvironmentId(v string) {
-	o.EnvironmentId = &v
-}
-
-// GetEnvironmentName returns the EnvironmentName field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetEnvironmentName() string {
-	if o == nil || IsNil(o.EnvironmentName) {
-		var ret string
-		return ret
-	}
-	return *o.EnvironmentName
-}
-
-// GetEnvironmentNameOk returns a tuple with the EnvironmentName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetEnvironmentNameOk() (*string, bool) {
-	if o == nil || IsNil(o.EnvironmentName) {
-		return nil, false
-	}
-	return o.EnvironmentName, true
-}
-
-// HasEnvironmentName returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasEnvironmentName() bool {
-	if o != nil && !IsNil(o.EnvironmentName) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnvironmentName gets a reference to the given string and assigns it to the EnvironmentName field.
-func (o *UpdateApplicationPayload) SetEnvironmentName(v string) {
-	o.EnvironmentName = &v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *UpdateApplicationPayload) SetId(v string) {
-	o.Id = &v
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
@@ -275,92 +111,36 @@ func (o *UpdateApplicationPayload) SetNetwork(v ApplicationNetwork) {
 	o.Network = &v
 }
 
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetRegion() string {
-	if o == nil || IsNil(o.Region) {
-		var ret string
-		return ret
-	}
-	return *o.Region
-}
-
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
-}
-
-// HasRegion returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
-}
-
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *UpdateApplicationPayload) SetRegion(v string) {
-	o.Region = &v
-}
-
-// GetScaling returns the Scaling field value
+// GetScaling returns the Scaling field value if set, zero value otherwise.
 func (o *UpdateApplicationPayload) GetScaling() ApplicationScaling {
-	if o == nil {
+	if o == nil || IsNil(o.Scaling) {
 		var ret ApplicationScaling
 		return ret
 	}
-
-	return o.Scaling
+	return *o.Scaling
 }
 
-// GetScalingOk returns a tuple with the Scaling field value
+// GetScalingOk returns a tuple with the Scaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateApplicationPayload) GetScalingOk() (*ApplicationScaling, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Scaling) {
 		return nil, false
 	}
-	return &o.Scaling, true
+	return o.Scaling, true
 }
 
-// SetScaling sets field value
-func (o *UpdateApplicationPayload) SetScaling(v ApplicationScaling) {
-	o.Scaling = v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetStatus() ApplicationStatus {
-	if o == nil || IsNil(o.Status) {
-		var ret ApplicationStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetStatusOk() (*ApplicationStatus, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+// HasScaling returns a boolean if a field has been set.
+func (o *UpdateApplicationPayload) HasScaling() bool {
+	if o != nil && !IsNil(o.Scaling) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given ApplicationStatus and assigns it to the Status field.
-func (o *UpdateApplicationPayload) SetStatus(v ApplicationStatus) {
-	o.Status = &v
+// SetScaling gets a reference to the given ApplicationScaling and assigns it to the Scaling field.
+func (o *UpdateApplicationPayload) SetScaling(v ApplicationScaling) {
+	o.Scaling = &v
 }
 
 // GetStopped returns the Stopped field value if set, zero value otherwise.
@@ -395,38 +175,6 @@ func (o *UpdateApplicationPayload) SetStopped(v bool) {
 	o.Stopped = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *UpdateApplicationPayload) GetUpdatedAt() time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateApplicationPayload) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *UpdateApplicationPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *UpdateApplicationPayload) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
 func (o UpdateApplicationPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -437,35 +185,17 @@ func (o UpdateApplicationPayload) MarshalJSON() ([]byte, error) {
 
 func (o UpdateApplicationPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containers"] = o.Containers
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	toSerialize["displayName"] = o.DisplayName
-	if !IsNil(o.EnvironmentId) {
-		toSerialize["environmentId"] = o.EnvironmentId
-	}
-	if !IsNil(o.EnvironmentName) {
-		toSerialize["environmentName"] = o.EnvironmentName
-	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !IsNil(o.Containers) {
+		toSerialize["containers"] = o.Containers
 	}
 	if !IsNil(o.Network) {
 		toSerialize["network"] = o.Network
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
-	toSerialize["scaling"] = o.Scaling
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if !IsNil(o.Scaling) {
+		toSerialize["scaling"] = o.Scaling
 	}
 	if !IsNil(o.Stopped) {
 		toSerialize["stopped"] = o.Stopped
-	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -476,29 +206,6 @@ func (o UpdateApplicationPayload) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateApplicationPayload) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"containers",
-		"displayName",
-		"scaling",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUpdateApplicationPayload := _UpdateApplicationPayload{}
 
 	err = json.Unmarshal(data, &varUpdateApplicationPayload)
@@ -513,17 +220,9 @@ func (o *UpdateApplicationPayload) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "containers")
-		delete(additionalProperties, "createdAt")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "environmentId")
-		delete(additionalProperties, "environmentName")
-		delete(additionalProperties, "id")
 		delete(additionalProperties, "network")
-		delete(additionalProperties, "region")
 		delete(additionalProperties, "scaling")
-		delete(additionalProperties, "status")
 		delete(additionalProperties, "stopped")
-		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties
 	}
 
