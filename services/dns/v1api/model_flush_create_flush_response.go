@@ -15,36 +15,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the FlushDomainResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FlushDomainResponse{}
+// checks if the FlushCreateFlushResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FlushCreateFlushResponse{}
 
-// FlushDomainResponse struct for FlushDomainResponse
-type FlushDomainResponse struct {
+// FlushCreateFlushResponse struct for FlushCreateFlushResponse
+type FlushCreateFlushResponse struct {
 	Message              *string `json:"message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _FlushDomainResponse FlushDomainResponse
+type _FlushCreateFlushResponse FlushCreateFlushResponse
 
-// NewFlushDomainResponse instantiates a new FlushDomainResponse object
+// NewFlushCreateFlushResponse instantiates a new FlushCreateFlushResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFlushDomainResponse() *FlushDomainResponse {
-	this := FlushDomainResponse{}
+func NewFlushCreateFlushResponse() *FlushCreateFlushResponse {
+	this := FlushCreateFlushResponse{}
 	return &this
 }
 
-// NewFlushDomainResponseWithDefaults instantiates a new FlushDomainResponse object
+// NewFlushCreateFlushResponseWithDefaults instantiates a new FlushCreateFlushResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFlushDomainResponseWithDefaults() *FlushDomainResponse {
-	this := FlushDomainResponse{}
+func NewFlushCreateFlushResponseWithDefaults() *FlushCreateFlushResponse {
+	this := FlushCreateFlushResponse{}
 	return &this
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *FlushDomainResponse) GetMessage() string {
+func (o *FlushCreateFlushResponse) GetMessage() string {
 	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *FlushDomainResponse) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FlushDomainResponse) GetMessageOk() (*string, bool) {
+func (o *FlushCreateFlushResponse) GetMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *FlushDomainResponse) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *FlushDomainResponse) HasMessage() bool {
+func (o *FlushCreateFlushResponse) HasMessage() bool {
 	if o != nil && !IsNil(o.Message) {
 		return true
 	}
@@ -71,11 +71,11 @@ func (o *FlushDomainResponse) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *FlushDomainResponse) SetMessage(v string) {
+func (o *FlushCreateFlushResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
-func (o FlushDomainResponse) MarshalJSON() ([]byte, error) {
+func (o FlushCreateFlushResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -83,7 +83,7 @@ func (o FlushDomainResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FlushDomainResponse) ToMap() (map[string]interface{}, error) {
+func (o FlushCreateFlushResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
@@ -96,16 +96,16 @@ func (o FlushDomainResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FlushDomainResponse) UnmarshalJSON(data []byte) (err error) {
-	varFlushDomainResponse := _FlushDomainResponse{}
+func (o *FlushCreateFlushResponse) UnmarshalJSON(data []byte) (err error) {
+	varFlushCreateFlushResponse := _FlushCreateFlushResponse{}
 
-	err = json.Unmarshal(data, &varFlushDomainResponse)
+	err = json.Unmarshal(data, &varFlushCreateFlushResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FlushDomainResponse(varFlushDomainResponse)
+	*o = FlushCreateFlushResponse(varFlushCreateFlushResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -117,38 +117,38 @@ func (o *FlushDomainResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableFlushDomainResponse struct {
-	value *FlushDomainResponse
+type NullableFlushCreateFlushResponse struct {
+	value *FlushCreateFlushResponse
 	isSet bool
 }
 
-func (v NullableFlushDomainResponse) Get() *FlushDomainResponse {
+func (v NullableFlushCreateFlushResponse) Get() *FlushCreateFlushResponse {
 	return v.value
 }
 
-func (v *NullableFlushDomainResponse) Set(val *FlushDomainResponse) {
+func (v *NullableFlushCreateFlushResponse) Set(val *FlushCreateFlushResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFlushDomainResponse) IsSet() bool {
+func (v NullableFlushCreateFlushResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFlushDomainResponse) Unset() {
+func (v *NullableFlushCreateFlushResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFlushDomainResponse(val *FlushDomainResponse) *NullableFlushDomainResponse {
-	return &NullableFlushDomainResponse{value: val, isSet: true}
+func NewNullableFlushCreateFlushResponse(val *FlushCreateFlushResponse) *NullableFlushCreateFlushResponse {
+	return &NullableFlushCreateFlushResponse{value: val, isSet: true}
 }
 
-func (v NullableFlushDomainResponse) MarshalJSON() ([]byte, error) {
+func (v NullableFlushCreateFlushResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFlushDomainResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableFlushCreateFlushResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

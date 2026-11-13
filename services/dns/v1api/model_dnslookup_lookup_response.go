@@ -15,37 +15,37 @@ import (
 	"encoding/json"
 )
 
-// checks if the LookupDomainResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &LookupDomainResponse{}
+// checks if the DnslookupLookupResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DnslookupLookupResponse{}
 
-// LookupDomainResponse struct for LookupDomainResponse
-type LookupDomainResponse struct {
-	Message              *string        `json:"message,omitempty"`
-	State                []LookupResult `json:"state,omitempty"`
+// DnslookupLookupResponse struct for DnslookupLookupResponse
+type DnslookupLookupResponse struct {
+	Message              *string                       `json:"message,omitempty"`
+	State                []DnslookupModelsLookupResult `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _LookupDomainResponse LookupDomainResponse
+type _DnslookupLookupResponse DnslookupLookupResponse
 
-// NewLookupDomainResponse instantiates a new LookupDomainResponse object
+// NewDnslookupLookupResponse instantiates a new DnslookupLookupResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLookupDomainResponse() *LookupDomainResponse {
-	this := LookupDomainResponse{}
+func NewDnslookupLookupResponse() *DnslookupLookupResponse {
+	this := DnslookupLookupResponse{}
 	return &this
 }
 
-// NewLookupDomainResponseWithDefaults instantiates a new LookupDomainResponse object
+// NewDnslookupLookupResponseWithDefaults instantiates a new DnslookupLookupResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLookupDomainResponseWithDefaults() *LookupDomainResponse {
-	this := LookupDomainResponse{}
+func NewDnslookupLookupResponseWithDefaults() *DnslookupLookupResponse {
+	this := DnslookupLookupResponse{}
 	return &this
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *LookupDomainResponse) GetMessage() string {
+func (o *DnslookupLookupResponse) GetMessage() string {
 	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *LookupDomainResponse) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainResponse) GetMessageOk() (*string, bool) {
+func (o *DnslookupLookupResponse) GetMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *LookupDomainResponse) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *LookupDomainResponse) HasMessage() bool {
+func (o *DnslookupLookupResponse) HasMessage() bool {
 	if o != nil && !IsNil(o.Message) {
 		return true
 	}
@@ -72,14 +72,14 @@ func (o *LookupDomainResponse) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *LookupDomainResponse) SetMessage(v string) {
+func (o *DnslookupLookupResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *LookupDomainResponse) GetState() []LookupResult {
+func (o *DnslookupLookupResponse) GetState() []DnslookupModelsLookupResult {
 	if o == nil || IsNil(o.State) {
-		var ret []LookupResult
+		var ret []DnslookupModelsLookupResult
 		return ret
 	}
 	return o.State
@@ -87,7 +87,7 @@ func (o *LookupDomainResponse) GetState() []LookupResult {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainResponse) GetStateOk() ([]LookupResult, bool) {
+func (o *DnslookupLookupResponse) GetStateOk() ([]DnslookupModelsLookupResult, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *LookupDomainResponse) GetStateOk() ([]LookupResult, bool) {
 }
 
 // HasState returns a boolean if a field has been set.
-func (o *LookupDomainResponse) HasState() bool {
+func (o *DnslookupLookupResponse) HasState() bool {
 	if o != nil && !IsNil(o.State) {
 		return true
 	}
@@ -103,12 +103,12 @@ func (o *LookupDomainResponse) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given []LookupResult and assigns it to the State field.
-func (o *LookupDomainResponse) SetState(v []LookupResult) {
+// SetState gets a reference to the given []DnslookupModelsLookupResult and assigns it to the State field.
+func (o *DnslookupLookupResponse) SetState(v []DnslookupModelsLookupResult) {
 	o.State = v
 }
 
-func (o LookupDomainResponse) MarshalJSON() ([]byte, error) {
+func (o DnslookupLookupResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -116,7 +116,7 @@ func (o LookupDomainResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o LookupDomainResponse) ToMap() (map[string]interface{}, error) {
+func (o DnslookupLookupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
@@ -132,16 +132,16 @@ func (o LookupDomainResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *LookupDomainResponse) UnmarshalJSON(data []byte) (err error) {
-	varLookupDomainResponse := _LookupDomainResponse{}
+func (o *DnslookupLookupResponse) UnmarshalJSON(data []byte) (err error) {
+	varDnslookupLookupResponse := _DnslookupLookupResponse{}
 
-	err = json.Unmarshal(data, &varLookupDomainResponse)
+	err = json.Unmarshal(data, &varDnslookupLookupResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = LookupDomainResponse(varLookupDomainResponse)
+	*o = DnslookupLookupResponse(varDnslookupLookupResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -154,38 +154,38 @@ func (o *LookupDomainResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableLookupDomainResponse struct {
-	value *LookupDomainResponse
+type NullableDnslookupLookupResponse struct {
+	value *DnslookupLookupResponse
 	isSet bool
 }
 
-func (v NullableLookupDomainResponse) Get() *LookupDomainResponse {
+func (v NullableDnslookupLookupResponse) Get() *DnslookupLookupResponse {
 	return v.value
 }
 
-func (v *NullableLookupDomainResponse) Set(val *LookupDomainResponse) {
+func (v *NullableDnslookupLookupResponse) Set(val *DnslookupLookupResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLookupDomainResponse) IsSet() bool {
+func (v NullableDnslookupLookupResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLookupDomainResponse) Unset() {
+func (v *NullableDnslookupLookupResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLookupDomainResponse(val *LookupDomainResponse) *NullableLookupDomainResponse {
-	return &NullableLookupDomainResponse{value: val, isSet: true}
+func NewNullableDnslookupLookupResponse(val *DnslookupLookupResponse) *NullableDnslookupLookupResponse {
+	return &NullableDnslookupLookupResponse{value: val, isSet: true}
 }
 
-func (v NullableLookupDomainResponse) MarshalJSON() ([]byte, error) {
+func (v NullableDnslookupLookupResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLookupDomainResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableDnslookupLookupResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

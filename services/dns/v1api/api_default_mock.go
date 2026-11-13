@@ -39,10 +39,12 @@ type DefaultAPIServiceMock struct {
 	DeleteRecordSetExecuteMock *func(r ApiDeleteRecordSetRequest) (*Message, error)
 	// DeleteZoneExecuteMock can be populated to implement the behavior of the DeleteZoneExecute function of this mock
 	DeleteZoneExecuteMock *func(r ApiDeleteZoneRequest) (*Message, error)
+	// DnslookupExecuteMock can be populated to implement the behavior of the DnslookupExecute function of this mock
+	DnslookupExecuteMock *func(r ApiDnslookupRequest) (*DnslookupLookupResponse, error)
 	// ExportRecordSetsExecuteMock can be populated to implement the behavior of the ExportRecordSetsExecute function of this mock
 	ExportRecordSetsExecuteMock *func(r ApiExportRecordSetsRequest) (*ZoneDataExchange, error)
-	// FlushDomainExecuteMock can be populated to implement the behavior of the FlushDomainExecute function of this mock
-	FlushDomainExecuteMock *func(r ApiFlushDomainRequest) (*FlushDomainResponse, error)
+	// FlushExecuteMock can be populated to implement the behavior of the FlushExecute function of this mock
+	FlushExecuteMock *func(r ApiFlushRequest) (*FlushCreateFlushResponse, error)
 	// GetRecordSetExecuteMock can be populated to implement the behavior of the GetRecordSetExecute function of this mock
 	GetRecordSetExecuteMock *func(r ApiGetRecordSetRequest) (*RecordSetResponse, error)
 	// GetZoneExecuteMock can be populated to implement the behavior of the GetZoneExecute function of this mock
@@ -55,8 +57,6 @@ type DefaultAPIServiceMock struct {
 	ListRecordSetsExecuteMock *func(r ApiListRecordSetsRequest) (*ListRecordSetsResponse, error)
 	// ListZonesExecuteMock can be populated to implement the behavior of the ListZonesExecute function of this mock
 	ListZonesExecuteMock *func(r ApiListZonesRequest) (*ListZonesResponse, error)
-	// LookupDomainExecuteMock can be populated to implement the behavior of the LookupDomainExecute function of this mock
-	LookupDomainExecuteMock *func(r ApiLookupDomainRequest) (*LookupDomainResponse, error)
 	// MoveZoneExecuteMock can be populated to implement the behavior of the MoveZoneExecute function of this mock
 	MoveZoneExecuteMock *func(r ApiMoveZoneRequest) (*Message, error)
 	// PartialUpdateRecordExecuteMock can be populated to implement the behavior of the PartialUpdateRecordExecute function of this mock
@@ -249,6 +249,23 @@ func (a DefaultAPIServiceMock) DeleteZoneExecute(r ApiDeleteZoneRequest) (*Messa
 	return (*a.DeleteZoneExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) Dnslookup(ctx context.Context) ApiDnslookupRequest {
+	return ApiDnslookupRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// DnslookupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DnslookupExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DnslookupExecute(r ApiDnslookupRequest) (*DnslookupLookupResponse, error) {
+	if a.DnslookupExecuteMock == nil {
+		var localVarReturnValue *DnslookupLookupResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.DnslookupExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) ExportRecordSets(ctx context.Context, projectId string, zoneId string) ApiExportRecordSetsRequest {
 	return ApiExportRecordSetsRequest{
 		ApiService: a,
@@ -268,21 +285,21 @@ func (a DefaultAPIServiceMock) ExportRecordSetsExecute(r ApiExportRecordSetsRequ
 	return (*a.ExportRecordSetsExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) FlushDomain(ctx context.Context) ApiFlushDomainRequest {
-	return ApiFlushDomainRequest{
+func (a DefaultAPIServiceMock) Flush(ctx context.Context) ApiFlushRequest {
+	return ApiFlushRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 }
 
-// FlushDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the FlushDomainExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) FlushDomainExecute(r ApiFlushDomainRequest) (*FlushDomainResponse, error) {
-	if a.FlushDomainExecuteMock == nil {
-		var localVarReturnValue *FlushDomainResponse
+// FlushExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the FlushExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) FlushExecute(r ApiFlushRequest) (*FlushCreateFlushResponse, error) {
+	if a.FlushExecuteMock == nil {
+		var localVarReturnValue *FlushCreateFlushResponse
 		return localVarReturnValue, nil
 	}
 
-	return (*a.FlushDomainExecuteMock)(r)
+	return (*a.FlushExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiGetRecordSetRequest {
@@ -398,23 +415,6 @@ func (a DefaultAPIServiceMock) ListZonesExecute(r ApiListZonesRequest) (*ListZon
 	}
 
 	return (*a.ListZonesExecuteMock)(r)
-}
-
-func (a DefaultAPIServiceMock) LookupDomain(ctx context.Context) ApiLookupDomainRequest {
-	return ApiLookupDomainRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// LookupDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the LookupDomainExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) LookupDomainExecute(r ApiLookupDomainRequest) (*LookupDomainResponse, error) {
-	if a.LookupDomainExecuteMock == nil {
-		var localVarReturnValue *LookupDomainResponse
-		return localVarReturnValue, nil
-	}
-
-	return (*a.LookupDomainExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) MoveZone(ctx context.Context, projectId string) ApiMoveZoneRequest {

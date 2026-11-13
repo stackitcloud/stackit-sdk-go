@@ -15,41 +15,41 @@ import (
 	"encoding/json"
 )
 
-// checks if the LookupResult type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &LookupResult{}
+// checks if the DnslookupModelsLookupResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DnslookupModelsLookupResult{}
 
-// LookupResult struct for LookupResult
-type LookupResult struct {
+// DnslookupModelsLookupResult struct for DnslookupModelsLookupResult
+type DnslookupModelsLookupResult struct {
 	// RawResponse contains the raw DNS response in a human-readable format (only included when requested)
 	RawResponse *string `json:"rawResponse,omitempty"`
 	// Records contains the DNS records returned by the lookup
-	Records []LookupRecord `json:"records,omitempty"`
+	Records []DnslookupModelsLookupRecord `json:"records,omitempty"`
 	// ResolverIP is the IP address of the DNS resolver used for the query
 	ResolverIP           *string `json:"resolverIP,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _LookupResult LookupResult
+type _DnslookupModelsLookupResult DnslookupModelsLookupResult
 
-// NewLookupResult instantiates a new LookupResult object
+// NewDnslookupModelsLookupResult instantiates a new DnslookupModelsLookupResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLookupResult() *LookupResult {
-	this := LookupResult{}
+func NewDnslookupModelsLookupResult() *DnslookupModelsLookupResult {
+	this := DnslookupModelsLookupResult{}
 	return &this
 }
 
-// NewLookupResultWithDefaults instantiates a new LookupResult object
+// NewDnslookupModelsLookupResultWithDefaults instantiates a new DnslookupModelsLookupResult object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLookupResultWithDefaults() *LookupResult {
-	this := LookupResult{}
+func NewDnslookupModelsLookupResultWithDefaults() *DnslookupModelsLookupResult {
+	this := DnslookupModelsLookupResult{}
 	return &this
 }
 
 // GetRawResponse returns the RawResponse field value if set, zero value otherwise.
-func (o *LookupResult) GetRawResponse() string {
+func (o *DnslookupModelsLookupResult) GetRawResponse() string {
 	if o == nil || IsNil(o.RawResponse) {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *LookupResult) GetRawResponse() string {
 
 // GetRawResponseOk returns a tuple with the RawResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupResult) GetRawResponseOk() (*string, bool) {
+func (o *DnslookupModelsLookupResult) GetRawResponseOk() (*string, bool) {
 	if o == nil || IsNil(o.RawResponse) {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *LookupResult) GetRawResponseOk() (*string, bool) {
 }
 
 // HasRawResponse returns a boolean if a field has been set.
-func (o *LookupResult) HasRawResponse() bool {
+func (o *DnslookupModelsLookupResult) HasRawResponse() bool {
 	if o != nil && !IsNil(o.RawResponse) {
 		return true
 	}
@@ -76,14 +76,14 @@ func (o *LookupResult) HasRawResponse() bool {
 }
 
 // SetRawResponse gets a reference to the given string and assigns it to the RawResponse field.
-func (o *LookupResult) SetRawResponse(v string) {
+func (o *DnslookupModelsLookupResult) SetRawResponse(v string) {
 	o.RawResponse = &v
 }
 
 // GetRecords returns the Records field value if set, zero value otherwise.
-func (o *LookupResult) GetRecords() []LookupRecord {
+func (o *DnslookupModelsLookupResult) GetRecords() []DnslookupModelsLookupRecord {
 	if o == nil || IsNil(o.Records) {
-		var ret []LookupRecord
+		var ret []DnslookupModelsLookupRecord
 		return ret
 	}
 	return o.Records
@@ -91,7 +91,7 @@ func (o *LookupResult) GetRecords() []LookupRecord {
 
 // GetRecordsOk returns a tuple with the Records field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupResult) GetRecordsOk() ([]LookupRecord, bool) {
+func (o *DnslookupModelsLookupResult) GetRecordsOk() ([]DnslookupModelsLookupRecord, bool) {
 	if o == nil || IsNil(o.Records) {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *LookupResult) GetRecordsOk() ([]LookupRecord, bool) {
 }
 
 // HasRecords returns a boolean if a field has been set.
-func (o *LookupResult) HasRecords() bool {
+func (o *DnslookupModelsLookupResult) HasRecords() bool {
 	if o != nil && !IsNil(o.Records) {
 		return true
 	}
@@ -107,13 +107,13 @@ func (o *LookupResult) HasRecords() bool {
 	return false
 }
 
-// SetRecords gets a reference to the given []LookupRecord and assigns it to the Records field.
-func (o *LookupResult) SetRecords(v []LookupRecord) {
+// SetRecords gets a reference to the given []DnslookupModelsLookupRecord and assigns it to the Records field.
+func (o *DnslookupModelsLookupResult) SetRecords(v []DnslookupModelsLookupRecord) {
 	o.Records = v
 }
 
 // GetResolverIP returns the ResolverIP field value if set, zero value otherwise.
-func (o *LookupResult) GetResolverIP() string {
+func (o *DnslookupModelsLookupResult) GetResolverIP() string {
 	if o == nil || IsNil(o.ResolverIP) {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *LookupResult) GetResolverIP() string {
 
 // GetResolverIPOk returns a tuple with the ResolverIP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupResult) GetResolverIPOk() (*string, bool) {
+func (o *DnslookupModelsLookupResult) GetResolverIPOk() (*string, bool) {
 	if o == nil || IsNil(o.ResolverIP) {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *LookupResult) GetResolverIPOk() (*string, bool) {
 }
 
 // HasResolverIP returns a boolean if a field has been set.
-func (o *LookupResult) HasResolverIP() bool {
+func (o *DnslookupModelsLookupResult) HasResolverIP() bool {
 	if o != nil && !IsNil(o.ResolverIP) {
 		return true
 	}
@@ -140,11 +140,11 @@ func (o *LookupResult) HasResolverIP() bool {
 }
 
 // SetResolverIP gets a reference to the given string and assigns it to the ResolverIP field.
-func (o *LookupResult) SetResolverIP(v string) {
+func (o *DnslookupModelsLookupResult) SetResolverIP(v string) {
 	o.ResolverIP = &v
 }
 
-func (o LookupResult) MarshalJSON() ([]byte, error) {
+func (o DnslookupModelsLookupResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -152,7 +152,7 @@ func (o LookupResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o LookupResult) ToMap() (map[string]interface{}, error) {
+func (o DnslookupModelsLookupResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.RawResponse) {
 		toSerialize["rawResponse"] = o.RawResponse
@@ -171,16 +171,16 @@ func (o LookupResult) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *LookupResult) UnmarshalJSON(data []byte) (err error) {
-	varLookupResult := _LookupResult{}
+func (o *DnslookupModelsLookupResult) UnmarshalJSON(data []byte) (err error) {
+	varDnslookupModelsLookupResult := _DnslookupModelsLookupResult{}
 
-	err = json.Unmarshal(data, &varLookupResult)
+	err = json.Unmarshal(data, &varDnslookupModelsLookupResult)
 
 	if err != nil {
 		return err
 	}
 
-	*o = LookupResult(varLookupResult)
+	*o = DnslookupModelsLookupResult(varDnslookupModelsLookupResult)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -194,38 +194,38 @@ func (o *LookupResult) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableLookupResult struct {
-	value *LookupResult
+type NullableDnslookupModelsLookupResult struct {
+	value *DnslookupModelsLookupResult
 	isSet bool
 }
 
-func (v NullableLookupResult) Get() *LookupResult {
+func (v NullableDnslookupModelsLookupResult) Get() *DnslookupModelsLookupResult {
 	return v.value
 }
 
-func (v *NullableLookupResult) Set(val *LookupResult) {
+func (v *NullableDnslookupModelsLookupResult) Set(val *DnslookupModelsLookupResult) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLookupResult) IsSet() bool {
+func (v NullableDnslookupModelsLookupResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLookupResult) Unset() {
+func (v *NullableDnslookupModelsLookupResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLookupResult(val *LookupResult) *NullableLookupResult {
-	return &NullableLookupResult{value: val, isSet: true}
+func NewNullableDnslookupModelsLookupResult(val *DnslookupModelsLookupResult) *NullableDnslookupModelsLookupResult {
+	return &NullableDnslookupModelsLookupResult{value: val, isSet: true}
 }
 
-func (v NullableLookupResult) MarshalJSON() ([]byte, error) {
+func (v NullableDnslookupModelsLookupResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLookupResult) UnmarshalJSON(src []byte) error {
+func (v *NullableDnslookupModelsLookupResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
