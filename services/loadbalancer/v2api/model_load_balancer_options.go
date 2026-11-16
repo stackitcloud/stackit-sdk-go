@@ -20,7 +20,7 @@ var _ MappedNullable = &LoadBalancerOptions{}
 // LoadBalancerOptions Defines any optional functionality you want to have enabled on your load balancer.
 type LoadBalancerOptions struct {
 	AccessControl *LoadbalancerOptionAccessControl `json:"accessControl,omitempty"`
-	// Enable per-request access logs on the Load Balancer. Defaults to false. Enable only when the Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires STACKIT Telemetry Hub or STACKIT Observability to be set up for the logs to be viewable.
+	// Enable per-request access logs on the Load Balancer. Defaults to false. Enable only when the Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires a STACKIT Telemetry Router to be set up for the logs to be viewable.
 	AccessLogs       *bool                            `json:"accessLogs,omitempty"`
 	EphemeralAddress *bool                            `json:"ephemeralAddress,omitempty"`
 	Observability    *LoadbalancerOptionObservability `json:"observability,omitempty"`
