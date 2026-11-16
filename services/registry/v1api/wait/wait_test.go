@@ -186,42 +186,25 @@ func TestDeleteArtifactoryWaitHandler(t *testing.T) {
 		wantErr   bool
 	}{
 		{
-			name: "soft delete: success delayed after active and reconciling",
-			responses: []response{
-				{state: ArtifactoryActive},
-				{state: ArtifactoryReconciling},
-				{state: ArtifactoryDeleted},
-			},
-			wantErr: false,
-		},
-		{
-			name: "soft delete: success immediately when already deleted",
-			responses: []response{
-				{state: ArtifactoryDeleted},
-			},
-			wantErr: false,
-		},
-		{
-			name: "soft delete: failure when transitioning to error",
-			responses: []response{
-				{state: ArtifactoryActive},
-				{state: ArtifactoryReconciling},
-				{state: ArtifactoryError},
-			},
-			wantErr: true,
-		},
-		{
-			name: "hard delete: success immediately on 404",
+			name: "success immediately on 404",
 			responses: []response{
 				{status: http.StatusNotFound},
 			},
 			wantErr: false,
 		},
 		{
-			name: "hard delete: success delayed from error to 404",
+			name: "soft delete: success delayed after active and reconciling",
+			responses: []response{
+				{state: ArtifactoryActive},
+				{state: ArtifactoryReconciling},
+				{status: http.StatusNotFound},
+			},
+			wantErr: false,
+		},
+		{
+			name: "hard delete: success delayed after error",
 			responses: []response{
 				{state: ArtifactoryError},
-				{state: ArtifactoryReconciling},
 				{status: http.StatusNotFound},
 			},
 			wantErr: false,
@@ -272,6 +255,32 @@ func TestGetStateArtifactory(t *testing.T) {
 			want:    ArtifactoryActive,
 			wantErr: false,
 		},
+		{
+			name: "error state with description",
+			resp: &registry.Artifactory{
+				State:            ArtifactoryError,
+				ErrorDescription: utils.Ptr("provisioning failed"),
+			},
+			want:    ArtifactoryError,
+			wantErr: true,
+		},
+		{
+			name: "error state with empty description",
+			resp: &registry.Artifactory{
+				State:            ArtifactoryError,
+				ErrorDescription: utils.Ptr(""),
+			},
+			want:    ArtifactoryError,
+			wantErr: false,
+		},
+		{
+			name: "error state without description",
+			resp: &registry.Artifactory{
+				State: ArtifactoryError,
+			},
+			want:    ArtifactoryError,
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {
@@ -282,6 +291,49 @@ func TestGetStateArtifactory(t *testing.T) {
 			}
 			if got != tt.want {
 				t.Fatalf("getStateArtifactory() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestGetStateArtifactoryDelete(t *testing.T) {
+	tests := []struct {
+		name    string
+		resp    *registry.Artifactory
+		want    registry.ArtifactoryState
+		wantErr bool
+	}{
+		{
+			name:    "nil response",
+			resp:    nil,
+			wantErr: true,
+		},
+		{
+			name: "valid state",
+			resp: &registry.Artifactory{
+				State: ArtifactoryActive,
+			},
+			want:    ArtifactoryActive,
+			wantErr: false,
+		},
+		{
+			name: "error state",
+			resp: &registry.Artifactory{
+				State: ArtifactoryError,
+			},
+			want:    ArtifactoryError,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := getStateArtifactoryDelete(tt.resp)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("getStateArtifactoryDelete() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if got != tt.want {
+				t.Fatalf("getStateArtifactoryDelete() = %v, want %v", got, tt.want)
 			}
 		})
 	}

@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	registry "github.com/stackitcloud/stackit-sdk-go/services/registry/v1api"
 )
@@ -15,28 +14,17 @@ import (
 const (
 	ArtifactoryReconciling = registry.ARTIFACTORYSTATE_RECONCILING
 	ArtifactoryActive      = registry.ARTIFACTORYSTATE_ACTIVE
-	ArtifactoryDeleted     = registry.ARTIFACTORYSTATE_DELETED
 	ArtifactoryError       = registry.ARTIFACTORYSTATE_ERROR
 )
 
 // CreateArtifactoryWaitHandler will wait for the artifactory to be created/ready.
+// If there is an error state, it will return the error immediately.
 func CreateArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, projectId, regionId, artifactoryId string) *wait.AsyncActionHandler[registry.Artifactory] {
 	waitConfig := wait.WaiterHelper[registry.Artifactory, registry.ArtifactoryState]{
 		FetchInstance: a.GetArtifactory(ctx, projectId, regionId, artifactoryId).Execute,
-		GetState: func(artifactory *registry.Artifactory) (registry.ArtifactoryState, error) {
-			state, err := getStateArtifactory(artifactory)
-			if err != nil {
-				return "", err
-			}
-			if state == registry.ARTIFACTORYSTATE_ERROR {
-				if artifactory.ErrorDescription != nil && *artifactory.ErrorDescription != "" {
-					return state, fmt.Errorf("artifactory creation failed: %s", *artifactory.ErrorDescription)
-				}
-			}
-			return state, nil
-		},
-		ActiveState: []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ACTIVE},
-		ErrorState:  []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
+		GetState:      getStateArtifactory,
+		ActiveState:   []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ACTIVE},
+		ErrorState:    []registry.ArtifactoryState{registry.ARTIFACTORYSTATE_ERROR},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -59,65 +47,54 @@ func UpdateArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, pr
 }
 
 // DeleteArtifactoryWaitHandler will wait for the artifactory to be deleted.
-// It supports two deletion flows based on the initial state:
-// 1. Soft delete (initial status is Active): waits through Active/Reconciling until state is Deleted.
-// 2. Hard delete (initial status is Error): waits through Error/Reconciling until the resource is removed (HTTP 404).
+//
+// The API provides a single delete call, but the internal deletion behavior
+// depends on the status of the backend custom resource (CR) when delete is called:
+//  1. Soft delete (CR is in Active state):
+//     Active -> Reconciling -> HTTP 404 (Not Found).
+//     The artifactory is soft-deleted; the API returns HTTP 404 (Not Found),
+//     even though the underlying custom resource still remains internally.
+//  2. Hard delete (CR is in Error state):
+//     Error -> HTTP 404 (Not Found).
+//     The custom resource is permanently purged without transitioning through Reconciling.
+//
+// In both flows, the wait handler polls until GetArtifactory returns HTTP 404 (Not Found).
 func DeleteArtifactoryWaitHandler(ctx context.Context, a registry.DefaultAPI, projectId, regionId, artifactoryId string) *wait.AsyncActionHandler[registry.Artifactory] {
-	var initialChecked bool
-	var isHardDelete bool
+	waitConfig := wait.WaiterHelper[registry.Artifactory, registry.ArtifactoryState]{
+		FetchInstance:              a.GetArtifactory(ctx, projectId, regionId, artifactoryId).Execute,
+		GetState:                   getStateArtifactoryDelete,
+		ActiveState:                []registry.ArtifactoryState{},
+		ErrorState:                 nil,
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	}
 
-	handler := wait.New(func() (waitFinished bool, response *registry.Artifactory, err error) {
-		instance, err := a.GetArtifactory(ctx, projectId, regionId, artifactoryId).Execute()
-		if err != nil {
-			var oapiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-				return true, nil, nil
-			}
-			return false, nil, err
-		}
-
-		state, err := getStateArtifactory(instance)
-		if err != nil {
-			return false, nil, err
-		}
-
-		if !initialChecked {
-			initialChecked = true
-			switch state {
-			case registry.ARTIFACTORYSTATE_ERROR:
-				isHardDelete = true
-			case registry.ARTIFACTORYSTATE_ACTIVE, registry.ARTIFACTORYSTATE_RECONCILING:
-				isHardDelete = false
-			case registry.ARTIFACTORYSTATE_DELETED:
-				return true, instance, nil
-			default:
-				return true, instance, fmt.Errorf("cannot wait for delete: artifactory is in invalid initial state %v", state)
-			}
-		}
-
-		if isHardDelete {
-			return false, nil, nil
-		}
-
-		switch state {
-		case registry.ARTIFACTORYSTATE_DELETED:
-			return true, instance, nil
-		case registry.ARTIFACTORYSTATE_ACTIVE, registry.ARTIFACTORYSTATE_RECONCILING:
-			return false, nil, nil
-		case registry.ARTIFACTORYSTATE_ERROR:
-			return true, instance, fmt.Errorf("artifactory soft deletion failed: state is %v", state)
-		default:
-			return false, nil, nil
-		}
-	})
-
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
 
+// For insert and update the error state is an error and the error is enriched with the information got from the container registry API.
 func getStateArtifactory(response *registry.Artifactory) (registry.ArtifactoryState, error) {
 	if response == nil {
 		return "", errors.New("empty response")
 	}
-	return response.GetState(), nil
+
+	state := response.GetState()
+	// If the state is error, enrich the description with the information got from the container registry API
+	if state == registry.ARTIFACTORYSTATE_ERROR {
+		if response.ErrorDescription != nil && *response.ErrorDescription != "" {
+			return state, fmt.Errorf("%s", *response.ErrorDescription)
+		}
+	}
+	return state, nil
+}
+
+// Special case of getState, in delete action the error state is not an error itself but a normal state.
+func getStateArtifactoryDelete(response *registry.Artifactory) (registry.ArtifactoryState, error) {
+	if response == nil {
+		return "", errors.New("empty response")
+	}
+
+	state := response.GetState()
+	return state, nil
 }
