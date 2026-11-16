@@ -20,7 +20,7 @@ var _ MappedNullable = &InstanceNetworkOpt{}
 
 // InstanceNetworkOpt The access configuration of the instance
 type InstanceNetworkOpt struct {
-	// List of IPV4 cidr.
+	// List of IPv4 CIDR addresses.
 	Acl                  []string `json:"acl,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
