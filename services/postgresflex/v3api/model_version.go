@@ -21,11 +21,11 @@ var _ MappedNullable = &Version{}
 
 // Version The version of the postgres instance and more details.
 type Version struct {
-	// Flag if the version is a beta version. If set the version may contain bugs and is not fully tested.
+	// Flag indicating whether the version is a beta version. Beta versions may contain bugs and are not fully tested.
 	Beta bool `json:"beta"`
-	// Timestamp in RFC3339 format which says when the version will no longer be supported by STACKIT.
+	// Timestamp in RFC3339 format indicating when the version will no longer be supported by STACKIT.
 	Deprecated string `json:"deprecated"`
-	// Flag if the version is recommend by the STACKIT Team.
+	// Flag indicating whether the version is recommended by the STACKIT Team.
 	Recommend bool `json:"recommend"`
 	// The postgres version used for the instance.
 	Version              string `json:"version"`
