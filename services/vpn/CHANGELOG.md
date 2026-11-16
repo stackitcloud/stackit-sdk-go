@@ -1,3 +1,9 @@
+## v0.16.0
+  - `v1api`:
+    - **Feature:** Add `LocalTS` and `RemoteTS` field of type `[]string` to `Phase2Status`
+  - `v1beta1api`:  Align package to latest API specification
+  - `v1alpha1api`: Align package to latest API specification
+
 ## v0.15.3
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 

@@ -1,3 +1,6 @@
+## v0.3.0
+- `v1alphaapi`: Align package to latest API specification
+
 ## v0.2.1
 - `v1alphaapi`:
   - **Bugfix:** Handle application failed status in create and update waiters.

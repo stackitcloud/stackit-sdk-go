@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) or VPC and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -23,6 +23,7 @@ type NetworkConfig struct {
 	PredefinedNetworkPrefix *string `json:"predefinedNetworkPrefix,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}(/([0-9]|[1-2][0-9]|3[0-2]))?$"`
 	// Custom routing table ID for the VPN gateway
 	RoutingTableId       *string `json:"routingTableId,omitempty"`
+	Vpc                  *VPC    `json:"vpc,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,6 +110,38 @@ func (o *NetworkConfig) SetRoutingTableId(v string) {
 	o.RoutingTableId = &v
 }
 
+// GetVpc returns the Vpc field value if set, zero value otherwise.
+func (o *NetworkConfig) GetVpc() VPC {
+	if o == nil || IsNil(o.Vpc) {
+		var ret VPC
+		return ret
+	}
+	return *o.Vpc
+}
+
+// GetVpcOk returns a tuple with the Vpc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkConfig) GetVpcOk() (*VPC, bool) {
+	if o == nil || IsNil(o.Vpc) {
+		return nil, false
+	}
+	return o.Vpc, true
+}
+
+// HasVpc returns a boolean if a field has been set.
+func (o *NetworkConfig) HasVpc() bool {
+	if o != nil && !IsNil(o.Vpc) {
+		return true
+	}
+
+	return false
+}
+
+// SetVpc gets a reference to the given VPC and assigns it to the Vpc field.
+func (o *NetworkConfig) SetVpc(v VPC) {
+	o.Vpc = &v
+}
+
 func (o NetworkConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -124,6 +157,9 @@ func (o NetworkConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RoutingTableId) {
 		toSerialize["routingTableId"] = o.RoutingTableId
+	}
+	if !IsNil(o.Vpc) {
+		toSerialize["vpc"] = o.Vpc
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,6 +185,7 @@ func (o *NetworkConfig) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "predefinedNetworkPrefix")
 		delete(additionalProperties, "routingTableId")
+		delete(additionalProperties, "vpc")
 		o.AdditionalProperties = additionalProperties
 	}
 
