@@ -28,7 +28,9 @@ type PartialUpdateFolderTelemetryLinkPayload struct {
 	// Indicates whether routing through the link to a telemetry-router is active.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The ID of the telemetry-router to route the telemetry data.
-	TelemetryRouterId    *string `json:"telemetryRouterId,omitempty"`
+	TelemetryRouterId *string `json:"telemetryRouterId,omitempty"`
+	// Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)
+	ResourceLabels       *map[string]*string `json:"resourceLabels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -215,6 +217,38 @@ func (o *PartialUpdateFolderTelemetryLinkPayload) SetTelemetryRouterId(v string)
 	o.TelemetryRouterId = &v
 }
 
+// GetResourceLabels returns the ResourceLabels field value if set, zero value otherwise.
+func (o *PartialUpdateFolderTelemetryLinkPayload) GetResourceLabels() map[string]*string {
+	if o == nil || IsNil(o.ResourceLabels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.ResourceLabels
+}
+
+// GetResourceLabelsOk returns a tuple with the ResourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateFolderTelemetryLinkPayload) GetResourceLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.ResourceLabels) {
+		return nil, false
+	}
+	return o.ResourceLabels, true
+}
+
+// HasResourceLabels returns a boolean if a field has been set.
+func (o *PartialUpdateFolderTelemetryLinkPayload) HasResourceLabels() bool {
+	if o != nil && !IsNil(o.ResourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceLabels gets a reference to the given map[string]*string and assigns it to the ResourceLabels field.
+func (o *PartialUpdateFolderTelemetryLinkPayload) SetResourceLabels(v map[string]*string) {
+	o.ResourceLabels = &v
+}
+
 func (o PartialUpdateFolderTelemetryLinkPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -239,6 +273,9 @@ func (o PartialUpdateFolderTelemetryLinkPayload) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.TelemetryRouterId) {
 		toSerialize["telemetryRouterId"] = o.TelemetryRouterId
+	}
+	if !IsNil(o.ResourceLabels) {
+		toSerialize["resourceLabels"] = o.ResourceLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -267,6 +304,7 @@ func (o *PartialUpdateFolderTelemetryLinkPayload) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "telemetryRouterId")
+		delete(additionalProperties, "resourceLabels")
 		o.AdditionalProperties = additionalProperties
 	}
 
