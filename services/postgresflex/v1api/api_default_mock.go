@@ -1,7 +1,7 @@
 /*
 STACKIT PostgreSQL Flex API (deprecated)
 
-⚠️ This API is deprecated. It will be retired on 01.07.2027. Please use the STACKIT PostgreSQL Flex API v2 instead.
+> This is the documentation for the STACKIT postgres service > **DEPRECATED & EOL NOTICE** > This api is deprecated as of **30-09-2026** and will reach End of Life (EOL) on **30-09-2027** > Please migrate to [`{api_url}/v3/`].
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -21,60 +21,63 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CloneInstanceExecuteMock can be populated to implement the behavior of the CloneInstanceExecute function of this mock
+	// Deprecated: CloneInstanceExecuteMock can be populated to implement the behavior of the CloneInstanceExecute function of this mock
 	CloneInstanceExecuteMock *func(r ApiCloneInstanceRequest) (*CloneInstanceResponse, error)
-	// CreateDatabaseExecuteMock can be populated to implement the behavior of the CreateDatabaseExecute function of this mock
+	// Deprecated: CreateDatabaseExecuteMock can be populated to implement the behavior of the CreateDatabaseExecute function of this mock
 	CreateDatabaseExecuteMock *func(r ApiCreateDatabaseRequest) (*InstanceCreateDatabaseResponse, error)
-	// CreateInstanceExecuteMock can be populated to implement the behavior of the CreateInstanceExecute function of this mock
+	// Deprecated: CreateInstanceExecuteMock can be populated to implement the behavior of the CreateInstanceExecute function of this mock
 	CreateInstanceExecuteMock *func(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error)
-	// CreateUserExecuteMock can be populated to implement the behavior of the CreateUserExecute function of this mock
+	// Deprecated: CreateUserExecuteMock can be populated to implement the behavior of the CreateUserExecute function of this mock
 	CreateUserExecuteMock *func(r ApiCreateUserRequest) (*CreateUserResponse, error)
-	// DeleteDatabaseExecuteMock can be populated to implement the behavior of the DeleteDatabaseExecute function of this mock
+	// Deprecated: DeleteDatabaseExecuteMock can be populated to implement the behavior of the DeleteDatabaseExecute function of this mock
 	DeleteDatabaseExecuteMock *func(r ApiDeleteDatabaseRequest) error
-	// DeleteInstanceExecuteMock can be populated to implement the behavior of the DeleteInstanceExecute function of this mock
+	// Deprecated: DeleteInstanceExecuteMock can be populated to implement the behavior of the DeleteInstanceExecute function of this mock
 	DeleteInstanceExecuteMock *func(r ApiDeleteInstanceRequest) error
-	// DeleteUserExecuteMock can be populated to implement the behavior of the DeleteUserExecute function of this mock
+	// Deprecated: DeleteUserExecuteMock can be populated to implement the behavior of the DeleteUserExecute function of this mock
 	DeleteUserExecuteMock *func(r ApiDeleteUserRequest) error
-	// ForceDeleteInstanceExecuteMock can be populated to implement the behavior of the ForceDeleteInstanceExecute function of this mock
+	// Deprecated: DisableServiceExecuteMock can be populated to implement the behavior of the DisableServiceExecute function of this mock
+	DisableServiceExecuteMock *func(r ApiDisableServiceRequest) error
+	// Deprecated: ForceDeleteInstanceExecuteMock can be populated to implement the behavior of the ForceDeleteInstanceExecute function of this mock
 	ForceDeleteInstanceExecuteMock *func(r ApiForceDeleteInstanceRequest) error
-	// GetBackupExecuteMock can be populated to implement the behavior of the GetBackupExecute function of this mock
+	// Deprecated: GetBackupExecuteMock can be populated to implement the behavior of the GetBackupExecute function of this mock
 	GetBackupExecuteMock *func(r ApiGetBackupRequest) (*GetBackupResponse, error)
-	// GetInstanceExecuteMock can be populated to implement the behavior of the GetInstanceExecute function of this mock
+	// Deprecated: GetInstanceExecuteMock can be populated to implement the behavior of the GetInstanceExecute function of this mock
 	GetInstanceExecuteMock *func(r ApiGetInstanceRequest) (*InstanceResponse, error)
-	// GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
+	// Deprecated: GetUserExecuteMock can be populated to implement the behavior of the GetUserExecute function of this mock
 	GetUserExecuteMock *func(r ApiGetUserRequest) (*GetUserResponse, error)
-	// ListBackupsExecuteMock can be populated to implement the behavior of the ListBackupsExecute function of this mock
+	// Deprecated: ListBackupsExecuteMock can be populated to implement the behavior of the ListBackupsExecute function of this mock
 	ListBackupsExecuteMock *func(r ApiListBackupsRequest) (*ListBackupsResponse, error)
-	// ListDatabaseParametersExecuteMock can be populated to implement the behavior of the ListDatabaseParametersExecute function of this mock
+	// Deprecated: ListDatabaseParametersExecuteMock can be populated to implement the behavior of the ListDatabaseParametersExecute function of this mock
 	ListDatabaseParametersExecuteMock *func(r ApiListDatabaseParametersRequest) (*PostgresDatabaseParameterResponse, error)
-	// ListDatabasesExecuteMock can be populated to implement the behavior of the ListDatabasesExecute function of this mock
+	// Deprecated: ListDatabasesExecuteMock can be populated to implement the behavior of the ListDatabasesExecute function of this mock
 	ListDatabasesExecuteMock *func(r ApiListDatabasesRequest) (*InstanceListDatabasesResponse, error)
-	// ListFlavorsExecuteMock can be populated to implement the behavior of the ListFlavorsExecute function of this mock
+	// Deprecated: ListFlavorsExecuteMock can be populated to implement the behavior of the ListFlavorsExecute function of this mock
 	ListFlavorsExecuteMock *func(r ApiListFlavorsRequest) (*ListFlavorsResponse, error)
-	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
+	// Deprecated: ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
 	ListInstancesExecuteMock *func(r ApiListInstancesRequest) (*ListInstancesResponse, error)
-	// ListMetricsExecuteMock can be populated to implement the behavior of the ListMetricsExecute function of this mock
+	// Deprecated: ListMetricsExecuteMock can be populated to implement the behavior of the ListMetricsExecute function of this mock
 	ListMetricsExecuteMock *func(r ApiListMetricsRequest) (*InstanceMetricsResponse, error)
-	// ListStoragesExecuteMock can be populated to implement the behavior of the ListStoragesExecute function of this mock
+	// Deprecated: ListStoragesExecuteMock can be populated to implement the behavior of the ListStoragesExecute function of this mock
 	ListStoragesExecuteMock *func(r ApiListStoragesRequest) (*ListStoragesResponse, error)
-	// ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
+	// Deprecated: ListUsersExecuteMock can be populated to implement the behavior of the ListUsersExecute function of this mock
 	ListUsersExecuteMock *func(r ApiListUsersRequest) (*ListUsersResponse, error)
-	// ListVersionsExecuteMock can be populated to implement the behavior of the ListVersionsExecute function of this mock
+	// Deprecated: ListVersionsExecuteMock can be populated to implement the behavior of the ListVersionsExecute function of this mock
 	ListVersionsExecuteMock *func(r ApiListVersionsRequest) (*ListVersionsResponse, error)
-	// PartialUpdateInstanceExecuteMock can be populated to implement the behavior of the PartialUpdateInstanceExecute function of this mock
+	// Deprecated: PartialUpdateInstanceExecuteMock can be populated to implement the behavior of the PartialUpdateInstanceExecute function of this mock
 	PartialUpdateInstanceExecuteMock *func(r ApiPartialUpdateInstanceRequest) (*PartialUpdateInstanceResponse, error)
-	// PartialUpdateUserExecuteMock can be populated to implement the behavior of the PartialUpdateUserExecute function of this mock
+	// Deprecated: PartialUpdateUserExecuteMock can be populated to implement the behavior of the PartialUpdateUserExecute function of this mock
 	PartialUpdateUserExecuteMock *func(r ApiPartialUpdateUserRequest) error
-	// ResetUserExecuteMock can be populated to implement the behavior of the ResetUserExecute function of this mock
+	// Deprecated: ResetUserExecuteMock can be populated to implement the behavior of the ResetUserExecute function of this mock
 	ResetUserExecuteMock *func(r ApiResetUserRequest) (*ResetUserResponse, error)
-	// UpdateBackupScheduleExecuteMock can be populated to implement the behavior of the UpdateBackupScheduleExecute function of this mock
+	// Deprecated: UpdateBackupScheduleExecuteMock can be populated to implement the behavior of the UpdateBackupScheduleExecute function of this mock
 	UpdateBackupScheduleExecuteMock *func(r ApiUpdateBackupScheduleRequest) error
-	// UpdateInstanceExecuteMock can be populated to implement the behavior of the UpdateInstanceExecute function of this mock
+	// Deprecated: UpdateInstanceExecuteMock can be populated to implement the behavior of the UpdateInstanceExecute function of this mock
 	UpdateInstanceExecuteMock *func(r ApiUpdateInstanceRequest) (*PartialUpdateInstanceResponse, error)
-	// UpdateUserExecuteMock can be populated to implement the behavior of the UpdateUserExecute function of this mock
+	// Deprecated: UpdateUserExecuteMock can be populated to implement the behavior of the UpdateUserExecute function of this mock
 	UpdateUserExecuteMock *func(r ApiUpdateUserRequest) error
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CloneInstance(ctx context.Context, projectId string, instanceId string) ApiCloneInstanceRequest {
 	return ApiCloneInstanceRequest{
 		ApiService: a,
@@ -84,7 +87,7 @@ func (a DefaultAPIServiceMock) CloneInstance(ctx context.Context, projectId stri
 	}
 }
 
-// CloneInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CloneInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CloneInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CloneInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CloneInstanceExecute(r ApiCloneInstanceRequest) (*CloneInstanceResponse, error) {
 	if a.CloneInstanceExecuteMock == nil {
 		var localVarReturnValue *CloneInstanceResponse
@@ -94,6 +97,7 @@ func (a DefaultAPIServiceMock) CloneInstanceExecute(r ApiCloneInstanceRequest) (
 	return (*a.CloneInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateDatabase(ctx context.Context, projectId string, instanceId string) ApiCreateDatabaseRequest {
 	return ApiCreateDatabaseRequest{
 		ApiService: a,
@@ -103,7 +107,7 @@ func (a DefaultAPIServiceMock) CreateDatabase(ctx context.Context, projectId str
 	}
 }
 
-// CreateDatabaseExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateDatabaseExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateDatabaseExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateDatabaseExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*InstanceCreateDatabaseResponse, error) {
 	if a.CreateDatabaseExecuteMock == nil {
 		var localVarReturnValue *InstanceCreateDatabaseResponse
@@ -113,6 +117,7 @@ func (a DefaultAPIServiceMock) CreateDatabaseExecute(r ApiCreateDatabaseRequest)
 	return (*a.CreateDatabaseExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
 		ApiService: a,
@@ -121,7 +126,7 @@ func (a DefaultAPIServiceMock) CreateInstance(ctx context.Context, projectId str
 	}
 }
 
-// CreateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error) {
 	if a.CreateInstanceExecuteMock == nil {
 		var localVarReturnValue *CreateInstanceResponse
@@ -131,6 +136,7 @@ func (a DefaultAPIServiceMock) CreateInstanceExecute(r ApiCreateInstanceRequest)
 	return (*a.CreateInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
 		ApiService: a,
@@ -140,7 +146,7 @@ func (a DefaultAPIServiceMock) CreateUser(ctx context.Context, projectId string,
 	}
 }
 
-// CreateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateUserExecute(r ApiCreateUserRequest) (*CreateUserResponse, error) {
 	if a.CreateUserExecuteMock == nil {
 		var localVarReturnValue *CreateUserResponse
@@ -150,6 +156,7 @@ func (a DefaultAPIServiceMock) CreateUserExecute(r ApiCreateUserRequest) (*Creat
 	return (*a.CreateUserExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteDatabase(ctx context.Context, projectId string, instanceId string, databaseId string) ApiDeleteDatabaseRequest {
 	return ApiDeleteDatabaseRequest{
 		ApiService: a,
@@ -160,7 +167,7 @@ func (a DefaultAPIServiceMock) DeleteDatabase(ctx context.Context, projectId str
 	}
 }
 
-// DeleteDatabaseExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDatabaseExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteDatabaseExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDatabaseExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) error {
 	if a.DeleteDatabaseExecuteMock == nil {
 		return nil
@@ -169,6 +176,7 @@ func (a DefaultAPIServiceMock) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest)
 	return (*a.DeleteDatabaseExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
 		ApiService: a,
@@ -178,7 +186,7 @@ func (a DefaultAPIServiceMock) DeleteInstance(ctx context.Context, projectId str
 	}
 }
 
-// DeleteInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteInstanceExecute(r ApiDeleteInstanceRequest) error {
 	if a.DeleteInstanceExecuteMock == nil {
 		return nil
@@ -187,6 +195,7 @@ func (a DefaultAPIServiceMock) DeleteInstanceExecute(r ApiDeleteInstanceRequest)
 	return (*a.DeleteInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteUser(ctx context.Context, projectId string, instanceId string, userId string) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
@@ -197,7 +206,7 @@ func (a DefaultAPIServiceMock) DeleteUser(ctx context.Context, projectId string,
 	}
 }
 
-// DeleteUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteUserExecute(r ApiDeleteUserRequest) error {
 	if a.DeleteUserExecuteMock == nil {
 		return nil
@@ -206,6 +215,25 @@ func (a DefaultAPIServiceMock) DeleteUserExecute(r ApiDeleteUserRequest) error {
 	return (*a.DeleteUserExecuteMock)(r)
 }
 
+// Deprecated
+func (a DefaultAPIServiceMock) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
+	return ApiDisableServiceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// Deprecated: DisableServiceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DisableServiceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DisableServiceExecute(r ApiDisableServiceRequest) error {
+	if a.DisableServiceExecuteMock == nil {
+		return nil
+	}
+
+	return (*a.DisableServiceExecuteMock)(r)
+}
+
+// Deprecated
 func (a DefaultAPIServiceMock) ForceDeleteInstance(ctx context.Context, projectId string, instanceId string) ApiForceDeleteInstanceRequest {
 	return ApiForceDeleteInstanceRequest{
 		ApiService: a,
@@ -215,7 +243,7 @@ func (a DefaultAPIServiceMock) ForceDeleteInstance(ctx context.Context, projectI
 	}
 }
 
-// ForceDeleteInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ForceDeleteInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ForceDeleteInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ForceDeleteInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ForceDeleteInstanceExecute(r ApiForceDeleteInstanceRequest) error {
 	if a.ForceDeleteInstanceExecuteMock == nil {
 		return nil
@@ -224,6 +252,7 @@ func (a DefaultAPIServiceMock) ForceDeleteInstanceExecute(r ApiForceDeleteInstan
 	return (*a.ForceDeleteInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetBackup(ctx context.Context, projectId string, instanceId string, backupId string) ApiGetBackupRequest {
 	return ApiGetBackupRequest{
 		ApiService: a,
@@ -234,7 +263,7 @@ func (a DefaultAPIServiceMock) GetBackup(ctx context.Context, projectId string, 
 	}
 }
 
-// GetBackupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetBackupExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetBackupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetBackupExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error) {
 	if a.GetBackupExecuteMock == nil {
 		var localVarReturnValue *GetBackupResponse
@@ -244,6 +273,7 @@ func (a DefaultAPIServiceMock) GetBackupExecute(r ApiGetBackupRequest) (*GetBack
 	return (*a.GetBackupExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
 		ApiService: a,
@@ -253,7 +283,7 @@ func (a DefaultAPIServiceMock) GetInstance(ctx context.Context, projectId string
 	}
 }
 
-// GetInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetInstanceExecute(r ApiGetInstanceRequest) (*InstanceResponse, error) {
 	if a.GetInstanceExecuteMock == nil {
 		var localVarReturnValue *InstanceResponse
@@ -263,6 +293,7 @@ func (a DefaultAPIServiceMock) GetInstanceExecute(r ApiGetInstanceRequest) (*Ins
 	return (*a.GetInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
@@ -273,7 +304,7 @@ func (a DefaultAPIServiceMock) GetUser(ctx context.Context, projectId string, in
 	}
 }
 
-// GetUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error) {
 	if a.GetUserExecuteMock == nil {
 		var localVarReturnValue *GetUserResponse
@@ -283,6 +314,7 @@ func (a DefaultAPIServiceMock) GetUserExecute(r ApiGetUserRequest) (*GetUserResp
 	return (*a.GetUserExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListBackups(ctx context.Context, projectId string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
 		ApiService: a,
@@ -292,7 +324,7 @@ func (a DefaultAPIServiceMock) ListBackups(ctx context.Context, projectId string
 	}
 }
 
-// ListBackupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBackupsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListBackupsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListBackupsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
 	if a.ListBackupsExecuteMock == nil {
 		var localVarReturnValue *ListBackupsResponse
@@ -302,6 +334,7 @@ func (a DefaultAPIServiceMock) ListBackupsExecute(r ApiListBackupsRequest) (*Lis
 	return (*a.ListBackupsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListDatabaseParameters(ctx context.Context, projectId string, instanceId string) ApiListDatabaseParametersRequest {
 	return ApiListDatabaseParametersRequest{
 		ApiService: a,
@@ -311,7 +344,7 @@ func (a DefaultAPIServiceMock) ListDatabaseParameters(ctx context.Context, proje
 	}
 }
 
-// ListDatabaseParametersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDatabaseParametersExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListDatabaseParametersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDatabaseParametersExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListDatabaseParametersExecute(r ApiListDatabaseParametersRequest) (*PostgresDatabaseParameterResponse, error) {
 	if a.ListDatabaseParametersExecuteMock == nil {
 		var localVarReturnValue *PostgresDatabaseParameterResponse
@@ -321,6 +354,7 @@ func (a DefaultAPIServiceMock) ListDatabaseParametersExecute(r ApiListDatabasePa
 	return (*a.ListDatabaseParametersExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListDatabases(ctx context.Context, projectId string, instanceId string) ApiListDatabasesRequest {
 	return ApiListDatabasesRequest{
 		ApiService: a,
@@ -330,7 +364,7 @@ func (a DefaultAPIServiceMock) ListDatabases(ctx context.Context, projectId stri
 	}
 }
 
-// ListDatabasesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDatabasesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListDatabasesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDatabasesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListDatabasesExecute(r ApiListDatabasesRequest) (*InstanceListDatabasesResponse, error) {
 	if a.ListDatabasesExecuteMock == nil {
 		var localVarReturnValue *InstanceListDatabasesResponse
@@ -340,6 +374,7 @@ func (a DefaultAPIServiceMock) ListDatabasesExecute(r ApiListDatabasesRequest) (
 	return (*a.ListDatabasesExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListFlavors(ctx context.Context, projectId string) ApiListFlavorsRequest {
 	return ApiListFlavorsRequest{
 		ApiService: a,
@@ -348,7 +383,7 @@ func (a DefaultAPIServiceMock) ListFlavors(ctx context.Context, projectId string
 	}
 }
 
-// ListFlavorsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFlavorsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListFlavorsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFlavorsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error) {
 	if a.ListFlavorsExecuteMock == nil {
 		var localVarReturnValue *ListFlavorsResponse
@@ -358,6 +393,7 @@ func (a DefaultAPIServiceMock) ListFlavorsExecute(r ApiListFlavorsRequest) (*Lis
 	return (*a.ListFlavorsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
 		ApiService: a,
@@ -366,7 +402,7 @@ func (a DefaultAPIServiceMock) ListInstances(ctx context.Context, projectId stri
 	}
 }
 
-// ListInstancesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListInstancesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListInstancesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListInstancesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error) {
 	if a.ListInstancesExecuteMock == nil {
 		var localVarReturnValue *ListInstancesResponse
@@ -376,6 +412,7 @@ func (a DefaultAPIServiceMock) ListInstancesExecute(r ApiListInstancesRequest) (
 	return (*a.ListInstancesExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest {
 	return ApiListMetricsRequest{
 		ApiService: a,
@@ -386,7 +423,7 @@ func (a DefaultAPIServiceMock) ListMetrics(ctx context.Context, projectId string
 	}
 }
 
-// ListMetricsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListMetricsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListMetricsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListMetricsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListMetricsExecute(r ApiListMetricsRequest) (*InstanceMetricsResponse, error) {
 	if a.ListMetricsExecuteMock == nil {
 		var localVarReturnValue *InstanceMetricsResponse
@@ -396,6 +433,7 @@ func (a DefaultAPIServiceMock) ListMetricsExecute(r ApiListMetricsRequest) (*Ins
 	return (*a.ListMetricsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListStorages(ctx context.Context, projectId string, flavorId string) ApiListStoragesRequest {
 	return ApiListStoragesRequest{
 		ApiService: a,
@@ -405,7 +443,7 @@ func (a DefaultAPIServiceMock) ListStorages(ctx context.Context, projectId strin
 	}
 }
 
-// ListStoragesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListStoragesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListStoragesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListStoragesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error) {
 	if a.ListStoragesExecuteMock == nil {
 		var localVarReturnValue *ListStoragesResponse
@@ -415,6 +453,7 @@ func (a DefaultAPIServiceMock) ListStoragesExecute(r ApiListStoragesRequest) (*L
 	return (*a.ListStoragesExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
@@ -424,7 +463,7 @@ func (a DefaultAPIServiceMock) ListUsers(ctx context.Context, projectId string, 
 	}
 }
 
-// ListUsersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListUsersExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListUsersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListUsersExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error) {
 	if a.ListUsersExecuteMock == nil {
 		var localVarReturnValue *ListUsersResponse
@@ -434,6 +473,7 @@ func (a DefaultAPIServiceMock) ListUsersExecute(r ApiListUsersRequest) (*ListUse
 	return (*a.ListUsersExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
 		ApiService: a,
@@ -442,7 +482,7 @@ func (a DefaultAPIServiceMock) ListVersions(ctx context.Context, projectId strin
 	}
 }
 
-// ListVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVersionsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListVersionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListVersionsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	if a.ListVersionsExecuteMock == nil {
 		var localVarReturnValue *ListVersionsResponse
@@ -452,6 +492,7 @@ func (a DefaultAPIServiceMock) ListVersionsExecute(r ApiListVersionsRequest) (*L
 	return (*a.ListVersionsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) PartialUpdateInstance(ctx context.Context, projectId string, instanceId string) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
 		ApiService: a,
@@ -461,7 +502,7 @@ func (a DefaultAPIServiceMock) PartialUpdateInstance(ctx context.Context, projec
 	}
 }
 
-// PartialUpdateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: PartialUpdateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) (*PartialUpdateInstanceResponse, error) {
 	if a.PartialUpdateInstanceExecuteMock == nil {
 		var localVarReturnValue *PartialUpdateInstanceResponse
@@ -471,6 +512,7 @@ func (a DefaultAPIServiceMock) PartialUpdateInstanceExecute(r ApiPartialUpdateIn
 	return (*a.PartialUpdateInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiPartialUpdateUserRequest {
 	return ApiPartialUpdateUserRequest{
 		ApiService: a,
@@ -481,7 +523,7 @@ func (a DefaultAPIServiceMock) PartialUpdateUser(ctx context.Context, projectId 
 	}
 }
 
-// PartialUpdateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: PartialUpdateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) error {
 	if a.PartialUpdateUserExecuteMock == nil {
 		return nil
@@ -490,6 +532,7 @@ func (a DefaultAPIServiceMock) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 	return (*a.PartialUpdateUserExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ResetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiResetUserRequest {
 	return ApiResetUserRequest{
 		ApiService: a,
@@ -500,7 +543,7 @@ func (a DefaultAPIServiceMock) ResetUser(ctx context.Context, projectId string, 
 	}
 }
 
-// ResetUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ResetUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ResetUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ResetUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ResetUserExecute(r ApiResetUserRequest) (*ResetUserResponse, error) {
 	if a.ResetUserExecuteMock == nil {
 		var localVarReturnValue *ResetUserResponse
@@ -510,6 +553,7 @@ func (a DefaultAPIServiceMock) ResetUserExecute(r ApiResetUserRequest) (*ResetUs
 	return (*a.ResetUserExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string) ApiUpdateBackupScheduleRequest {
 	return ApiUpdateBackupScheduleRequest{
 		ApiService: a,
@@ -519,7 +563,7 @@ func (a DefaultAPIServiceMock) UpdateBackupSchedule(ctx context.Context, project
 	}
 }
 
-// UpdateBackupScheduleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateBackupScheduleExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateBackupScheduleExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateBackupScheduleExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateBackupScheduleExecute(r ApiUpdateBackupScheduleRequest) error {
 	if a.UpdateBackupScheduleExecuteMock == nil {
 		return nil
@@ -528,6 +572,7 @@ func (a DefaultAPIServiceMock) UpdateBackupScheduleExecute(r ApiUpdateBackupSche
 	return (*a.UpdateBackupScheduleExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
 		ApiService: a,
@@ -537,7 +582,7 @@ func (a DefaultAPIServiceMock) UpdateInstance(ctx context.Context, projectId str
 	}
 }
 
-// UpdateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateInstanceExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*PartialUpdateInstanceResponse, error) {
 	if a.UpdateInstanceExecuteMock == nil {
 		var localVarReturnValue *PartialUpdateInstanceResponse
@@ -547,6 +592,7 @@ func (a DefaultAPIServiceMock) UpdateInstanceExecute(r ApiUpdateInstanceRequest)
 	return (*a.UpdateInstanceExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
@@ -557,7 +603,7 @@ func (a DefaultAPIServiceMock) UpdateUser(ctx context.Context, projectId string,
 	}
 }
 
-// UpdateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateUserExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateUserExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateUserExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateUserExecute(r ApiUpdateUserRequest) error {
 	if a.UpdateUserExecuteMock == nil {
 		return nil
