@@ -21,7 +21,7 @@ var _ MappedNullable = &InstanceNetworkUpdate{}
 
 // InstanceNetworkUpdate The access configuration of the instance
 type InstanceNetworkUpdate struct {
-	// List of IPV4 cidr.
+	// List of IPv4 CIDR addresses.
 	Acl                  []string `json:"acl"`
 	AdditionalProperties map[string]interface{}
 }
