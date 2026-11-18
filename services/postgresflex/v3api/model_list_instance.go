@@ -14,6 +14,7 @@ package v3api
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ListInstance type satisfies the MappedNullable interface at compile time
@@ -21,13 +22,20 @@ var _ MappedNullable = &ListInstance{}
 
 // ListInstance struct for ListInstance
 type ListInstance struct {
+	// The timestamp at which this instance was created.
+	Created *time.Time `json:"created,omitempty"`
+	// The id of the instance flavor.
+	FlavorId *string `json:"flavorId,omitempty"`
 	// The ID of the instance.
 	Id string `json:"id"`
 	// Whether the instance can be deleted or not.
 	IsDeletable bool `json:"isDeletable"`
 	// The name of the instance.
-	Name                 string `json:"name"`
-	State                State  `json:"state"`
+	Name    string   `json:"name"`
+	State   State    `json:"state"`
+	Storage *Storage `json:"storage,omitempty"`
+	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3#tag/Version) for supported version parameters.
+	Version              *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,6 +60,70 @@ func NewListInstance(id string, isDeletable bool, name string, state State) *Lis
 func NewListInstanceWithDefaults() *ListInstance {
 	this := ListInstance{}
 	return &this
+}
+
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *ListInstance) GetCreated() time.Time {
+	if o == nil || IsNil(o.Created) {
+		var ret time.Time
+		return ret
+	}
+	return *o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInstance) GetCreatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.Created) {
+		return nil, false
+	}
+	return o.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (o *ListInstance) HasCreated() bool {
+	if o != nil && !IsNil(o.Created) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *ListInstance) SetCreated(v time.Time) {
+	o.Created = &v
+}
+
+// GetFlavorId returns the FlavorId field value if set, zero value otherwise.
+func (o *ListInstance) GetFlavorId() string {
+	if o == nil || IsNil(o.FlavorId) {
+		var ret string
+		return ret
+	}
+	return *o.FlavorId
+}
+
+// GetFlavorIdOk returns a tuple with the FlavorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInstance) GetFlavorIdOk() (*string, bool) {
+	if o == nil || IsNil(o.FlavorId) {
+		return nil, false
+	}
+	return o.FlavorId, true
+}
+
+// HasFlavorId returns a boolean if a field has been set.
+func (o *ListInstance) HasFlavorId() bool {
+	if o != nil && !IsNil(o.FlavorId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFlavorId gets a reference to the given string and assigns it to the FlavorId field.
+func (o *ListInstance) SetFlavorId(v string) {
+	o.FlavorId = &v
 }
 
 // GetId returns the Id field value
@@ -150,6 +222,70 @@ func (o *ListInstance) SetState(v State) {
 	o.State = v
 }
 
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *ListInstance) GetStorage() Storage {
+	if o == nil || IsNil(o.Storage) {
+		var ret Storage
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInstance) GetStorageOk() (*Storage, bool) {
+	if o == nil || IsNil(o.Storage) {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *ListInstance) HasStorage() bool {
+	if o != nil && !IsNil(o.Storage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
+func (o *ListInstance) SetStorage(v Storage) {
+	o.Storage = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *ListInstance) GetVersion() string {
+	if o == nil || IsNil(o.Version) {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInstance) GetVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.Version) {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *ListInstance) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *ListInstance) SetVersion(v string) {
+	o.Version = &v
+}
+
 func (o ListInstance) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -160,10 +296,22 @@ func (o ListInstance) MarshalJSON() ([]byte, error) {
 
 func (o ListInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
+	if !IsNil(o.FlavorId) {
+		toSerialize["flavorId"] = o.FlavorId
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["isDeletable"] = o.IsDeletable
 	toSerialize["name"] = o.Name
 	toSerialize["state"] = o.State
+	if !IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -210,10 +358,14 @@ func (o *ListInstance) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created")
+		delete(additionalProperties, "flavorId")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "isDeletable")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}
 
