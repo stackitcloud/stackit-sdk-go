@@ -21,6 +21,8 @@ var _ MappedNullable = &CreateRunnerPayload{}
 
 // CreateRunnerPayload Request a runner to be created supporting the requested list of runtime labels.
 type CreateRunnerPayload struct {
+	// The runner's job family name.
+	FamilyName           *string  `json:"familyName,omitempty"`
 	Labels               []string `json:"labels"`
 	AdditionalProperties map[string]interface{}
 }
@@ -43,6 +45,38 @@ func NewCreateRunnerPayload(labels []string) *CreateRunnerPayload {
 func NewCreateRunnerPayloadWithDefaults() *CreateRunnerPayload {
 	this := CreateRunnerPayload{}
 	return &this
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise.
+func (o *CreateRunnerPayload) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName) {
+		var ret string
+		return ret
+	}
+	return *o.FamilyName
+}
+
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRunnerPayload) GetFamilyNameOk() (*string, bool) {
+	if o == nil || IsNil(o.FamilyName) {
+		return nil, false
+	}
+	return o.FamilyName, true
+}
+
+// HasFamilyName returns a boolean if a field has been set.
+func (o *CreateRunnerPayload) HasFamilyName() bool {
+	if o != nil && !IsNil(o.FamilyName) {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given string and assigns it to the FamilyName field.
+func (o *CreateRunnerPayload) SetFamilyName(v string) {
+	o.FamilyName = &v
 }
 
 // GetLabels returns the Labels field value
@@ -79,6 +113,9 @@ func (o CreateRunnerPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateRunnerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FamilyName) {
+		toSerialize["familyName"] = o.FamilyName
+	}
 	toSerialize["labels"] = o.Labels
 
 	for key, value := range o.AdditionalProperties {
@@ -123,6 +160,7 @@ func (o *CreateRunnerPayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "familyName")
 		delete(additionalProperties, "labels")
 		o.AdditionalProperties = additionalProperties
 	}

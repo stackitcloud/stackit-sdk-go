@@ -23,8 +23,10 @@ var _ MappedNullable = &Runner{}
 // Runner Describes a runner associated to a STACKIT Git instance.
 type Runner struct {
 	CreatedAt time.Time `json:"created_at"`
-	Id        string    `json:"id"`
-	Labels    []string  `json:"labels"`
+	// The runner's job family name.
+	FamilyName *string  `json:"familyName,omitempty"`
+	Id         string   `json:"id"`
+	Labels     []string `json:"labels"`
 	// The current status of the runner.
 	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
@@ -75,6 +77,38 @@ func (o *Runner) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value
 func (o *Runner) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetFamilyName returns the FamilyName field value if set, zero value otherwise.
+func (o *Runner) GetFamilyName() string {
+	if o == nil || IsNil(o.FamilyName) {
+		var ret string
+		return ret
+	}
+	return *o.FamilyName
+}
+
+// GetFamilyNameOk returns a tuple with the FamilyName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Runner) GetFamilyNameOk() (*string, bool) {
+	if o == nil || IsNil(o.FamilyName) {
+		return nil, false
+	}
+	return o.FamilyName, true
+}
+
+// HasFamilyName returns a boolean if a field has been set.
+func (o *Runner) HasFamilyName() bool {
+	if o != nil && !IsNil(o.FamilyName) {
+		return true
+	}
+
+	return false
+}
+
+// SetFamilyName gets a reference to the given string and assigns it to the FamilyName field.
+func (o *Runner) SetFamilyName(v string) {
+	o.FamilyName = &v
 }
 
 // GetId returns the Id field value
@@ -160,6 +194,9 @@ func (o Runner) MarshalJSON() ([]byte, error) {
 func (o Runner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.FamilyName) {
+		toSerialize["familyName"] = o.FamilyName
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["labels"] = o.Labels
 	toSerialize["status"] = o.Status
@@ -210,6 +247,7 @@ func (o *Runner) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "familyName")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "status")
