@@ -107,6 +107,15 @@ func CreateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // UpdateDestinationWaitHandler will wait for Destination update
 func UpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
+	return updateDestinationWaitHandler(ctx, a, projectId, regionId, instanceId, destinationId)
+}
+
+// PartialUpdateDestinationWaitHandler will wait for Destination partial update
+func PartialUpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
+	return updateDestinationWaitHandler(ctx, a, projectId, regionId, instanceId, destinationId)
+}
+
+func updateDestinationWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, destinationId string) *wait.AsyncActionHandler[telemetryrouter.DestinationResponse] {
 	waitConfig := wait.WaiterHelper[telemetryrouter.DestinationResponse, telemetryrouter.DestinationResponseStatus]{
 		FetchInstance: a.GetDestination(ctx, projectId, regionId, instanceId, destinationId).Execute,
 		GetState: func(d *telemetryrouter.DestinationResponse) (telemetryrouter.DestinationResponseStatus, error) {
@@ -173,6 +182,15 @@ func CreateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 
 // UpdateAccessTokenWaitHandler will wait for AccessToken update
 func UpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
+	return updateAccessTokenWaitHandler(ctx, a, projectId, regionId, instanceId, accessTokenId)
+}
+
+// PartialUpdateAccessTokenWaitHandler will wait for AccessToken partial update
+func PartialUpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
+	return updateAccessTokenWaitHandler(ctx, a, projectId, regionId, instanceId, accessTokenId)
+}
+
+func updateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.DefaultAPI, projectId, regionId, instanceId, accessTokenId string) *wait.AsyncActionHandler[telemetryrouter.GetAccessTokenResponse] {
 	waitConfig := wait.WaiterHelper[telemetryrouter.GetAccessTokenResponse, telemetryrouter.AccessTokenBaseResponseStatus]{
 		FetchInstance: a.GetAccessToken(ctx, projectId, regionId, instanceId, accessTokenId).Execute,
 		GetState: func(d *telemetryrouter.GetAccessTokenResponse) (telemetryrouter.AccessTokenBaseResponseStatus, error) {

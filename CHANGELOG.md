@@ -393,7 +393,8 @@
 - `telemetryrouter`:
   - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
     - `v1api`:
-      - **Feature:** New `PartialUpdateTelemetryRouter` operation
+      - **Feature:** New `PartialUpdateTelemetryRouter`, `PartialUpdateDestination`, and `PartialUpdateAccessToken` operations
+      - **Feature:** New waiters `PartialUpdateTelemetryRouterWaitHandler`, `PartialUpdateDestinationWaitHandler`, and `PartialUpdateAccessTokenWaitHandler`
       - **Feature:** Add `DestinationCount` field to `TelemetryRouterResponse` to get the number of destinations TelemetryRouter has
       - **Feature:** Add `ResourceLabels` field to `UpdateTelemetryRouterPayload`
       - **Breaking change:** Add regex validation to the `Key` field of `ConfigFilterAttributes`, which now must be non-empty and must not contain control characters
