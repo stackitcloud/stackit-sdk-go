@@ -227,6 +227,59 @@ type DefaultAPI interface {
 	ListTelemetryRoutersExecute(r ApiListTelemetryRoutersRequest) (*ListTelemetryRoutersResponse, error)
 
 	/*
+		PartialUpdateAccessToken Method for PartialUpdateAccessToken
+
+		Patch an existing access token for the given Telemetry Router by its ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param telemetryRouterId The Telemetry Router UUID.
+		@param accessTokenId The Access Token UUID.
+		@return ApiPartialUpdateAccessTokenRequest
+	*/
+	PartialUpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiPartialUpdateAccessTokenRequest
+
+	// PartialUpdateAccessTokenExecute executes the request
+	//  @return UpdateAccessTokenResponse
+	PartialUpdateAccessTokenExecute(r ApiPartialUpdateAccessTokenRequest) (*UpdateAccessTokenResponse, error)
+
+	/*
+		PartialUpdateDestination Method for PartialUpdateDestination
+
+		Patches the given destination.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param telemetryRouterId The Telemetry Router UUID.
+		@param destinationId The Destination UUID.
+		@return ApiPartialUpdateDestinationRequest
+	*/
+	PartialUpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiPartialUpdateDestinationRequest
+
+	// PartialUpdateDestinationExecute executes the request
+	//  @return DestinationResponse
+	PartialUpdateDestinationExecute(r ApiPartialUpdateDestinationRequest) (*DestinationResponse, error)
+
+	/*
+		PartialUpdateTelemetryRouter Method for PartialUpdateTelemetryRouter
+
+		Patches the given Telemetry Router.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param regionId The STACKIT region name the resource is located in.
+		@param telemetryRouterId The Telemetry Router UUID.
+		@return ApiPartialUpdateTelemetryRouterRequest
+	*/
+	PartialUpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiPartialUpdateTelemetryRouterRequest
+
+	// PartialUpdateTelemetryRouterExecute executes the request
+	//  @return TelemetryRouterResponse
+	PartialUpdateTelemetryRouterExecute(r ApiPartialUpdateTelemetryRouterRequest) (*TelemetryRouterResponse, error)
+
+	/*
 		UpdateAccessToken Method for UpdateAccessToken
 
 		Update an existing access token for the given Telemetry Router by its ID.
@@ -2184,6 +2237,515 @@ func (a *DefaultAPIService) ListTelemetryRoutersExecute(r ApiListTelemetryRouter
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiPartialUpdateAccessTokenRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	projectId                       string
+	regionId                        string
+	telemetryRouterId               string
+	accessTokenId                   string
+	partialUpdateAccessTokenPayload *PartialUpdateAccessTokenPayload
+}
+
+func (r ApiPartialUpdateAccessTokenRequest) PartialUpdateAccessTokenPayload(partialUpdateAccessTokenPayload PartialUpdateAccessTokenPayload) ApiPartialUpdateAccessTokenRequest {
+	r.partialUpdateAccessTokenPayload = &partialUpdateAccessTokenPayload
+	return r
+}
+
+func (r ApiPartialUpdateAccessTokenRequest) Execute() (*UpdateAccessTokenResponse, error) {
+	return r.ApiService.PartialUpdateAccessTokenExecute(r)
+}
+
+/*
+PartialUpdateAccessToken Method for PartialUpdateAccessToken
+
+Patch an existing access token for the given Telemetry Router by its ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param telemetryRouterId The Telemetry Router UUID.
+	@param accessTokenId The Access Token UUID.
+	@return ApiPartialUpdateAccessTokenRequest
+*/
+func (a *DefaultAPIService) PartialUpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiPartialUpdateAccessTokenRequest {
+	return ApiPartialUpdateAccessTokenRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+		accessTokenId:     accessTokenId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return UpdateAccessTokenResponse
+func (a *DefaultAPIService) PartialUpdateAccessTokenExecute(r ApiPartialUpdateAccessTokenRequest) (*UpdateAccessTokenResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateAccessTokenResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateAccessToken")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-routers/{telemetryRouterId}/access-tokens/{accessTokenId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"telemetryRouterId"+"}", url.PathEscape(parameterValueToString(r.telemetryRouterId, "telemetryRouterId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"accessTokenId"+"}", url.PathEscape(parameterValueToString(r.accessTokenId, "accessTokenId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.partialUpdateAccessTokenPayload == nil {
+		return localVarReturnValue, reportError("partialUpdateAccessTokenPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateAccessTokenPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiPartialUpdateDestinationRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	projectId                       string
+	regionId                        string
+	telemetryRouterId               string
+	destinationId                   string
+	partialUpdateDestinationPayload *PartialUpdateDestinationPayload
+}
+
+func (r ApiPartialUpdateDestinationRequest) PartialUpdateDestinationPayload(partialUpdateDestinationPayload PartialUpdateDestinationPayload) ApiPartialUpdateDestinationRequest {
+	r.partialUpdateDestinationPayload = &partialUpdateDestinationPayload
+	return r
+}
+
+func (r ApiPartialUpdateDestinationRequest) Execute() (*DestinationResponse, error) {
+	return r.ApiService.PartialUpdateDestinationExecute(r)
+}
+
+/*
+PartialUpdateDestination Method for PartialUpdateDestination
+
+Patches the given destination.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param telemetryRouterId The Telemetry Router UUID.
+	@param destinationId The Destination UUID.
+	@return ApiPartialUpdateDestinationRequest
+*/
+func (a *DefaultAPIService) PartialUpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiPartialUpdateDestinationRequest {
+	return ApiPartialUpdateDestinationRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+		destinationId:     destinationId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DestinationResponse
+func (a *DefaultAPIService) PartialUpdateDestinationExecute(r ApiPartialUpdateDestinationRequest) (*DestinationResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DestinationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateDestination")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-routers/{telemetryRouterId}/destinations/{destinationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"telemetryRouterId"+"}", url.PathEscape(parameterValueToString(r.telemetryRouterId, "telemetryRouterId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"destinationId"+"}", url.PathEscape(parameterValueToString(r.destinationId, "destinationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.partialUpdateDestinationPayload == nil {
+		return localVarReturnValue, reportError("partialUpdateDestinationPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateDestinationPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiPartialUpdateTelemetryRouterRequest struct {
+	ctx                                 context.Context
+	ApiService                          DefaultAPI
+	projectId                           string
+	regionId                            string
+	telemetryRouterId                   string
+	partialUpdateTelemetryRouterPayload *PartialUpdateTelemetryRouterPayload
+}
+
+func (r ApiPartialUpdateTelemetryRouterRequest) PartialUpdateTelemetryRouterPayload(partialUpdateTelemetryRouterPayload PartialUpdateTelemetryRouterPayload) ApiPartialUpdateTelemetryRouterRequest {
+	r.partialUpdateTelemetryRouterPayload = &partialUpdateTelemetryRouterPayload
+	return r
+}
+
+func (r ApiPartialUpdateTelemetryRouterRequest) Execute() (*TelemetryRouterResponse, error) {
+	return r.ApiService.PartialUpdateTelemetryRouterExecute(r)
+}
+
+/*
+PartialUpdateTelemetryRouter Method for PartialUpdateTelemetryRouter
+
+Patches the given Telemetry Router.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the resource is located in.
+	@param regionId The STACKIT region name the resource is located in.
+	@param telemetryRouterId The Telemetry Router UUID.
+	@return ApiPartialUpdateTelemetryRouterRequest
+*/
+func (a *DefaultAPIService) PartialUpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiPartialUpdateTelemetryRouterRequest {
+	return ApiPartialUpdateTelemetryRouterRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return TelemetryRouterResponse
+func (a *DefaultAPIService) PartialUpdateTelemetryRouterExecute(r ApiPartialUpdateTelemetryRouterRequest) (*TelemetryRouterResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TelemetryRouterResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateTelemetryRouter")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{regionId}/telemetry-routers/{telemetryRouterId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"telemetryRouterId"+"}", url.PathEscape(parameterValueToString(r.telemetryRouterId, "telemetryRouterId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.partialUpdateTelemetryRouterPayload == nil {
+		return localVarReturnValue, reportError("partialUpdateTelemetryRouterPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateTelemetryRouterPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Response4xx
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
