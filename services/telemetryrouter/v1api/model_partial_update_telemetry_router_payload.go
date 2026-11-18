@@ -20,10 +20,10 @@ var _ MappedNullable = &PartialUpdateTelemetryRouterPayload{}
 // PartialUpdateTelemetryRouterPayload struct for PartialUpdateTelemetryRouterPayload
 type PartialUpdateTelemetryRouterPayload struct {
 	// The description is a longer text chosen by the user to provide more context for the resource.
-	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-.]*)?$"`
 	// The display name is a short name chosen by the user to identify the resource.
 	DisplayName          *string            `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9 \\-]*$"`
-	Filter               *ConfigFilter      `json:"filter,omitempty"`
+	Filter               *ConfigFilterPatch `json:"filter,omitempty"`
 	ResourceLabels       *map[string]string `json:"resourceLabels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -112,9 +112,9 @@ func (o *PartialUpdateTelemetryRouterPayload) SetDisplayName(v string) {
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *PartialUpdateTelemetryRouterPayload) GetFilter() ConfigFilter {
+func (o *PartialUpdateTelemetryRouterPayload) GetFilter() ConfigFilterPatch {
 	if o == nil || IsNil(o.Filter) {
-		var ret ConfigFilter
+		var ret ConfigFilterPatch
 		return ret
 	}
 	return *o.Filter
@@ -122,7 +122,7 @@ func (o *PartialUpdateTelemetryRouterPayload) GetFilter() ConfigFilter {
 
 // GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateTelemetryRouterPayload) GetFilterOk() (*ConfigFilter, bool) {
+func (o *PartialUpdateTelemetryRouterPayload) GetFilterOk() (*ConfigFilterPatch, bool) {
 	if o == nil || IsNil(o.Filter) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *PartialUpdateTelemetryRouterPayload) HasFilter() bool {
 	return false
 }
 
-// SetFilter gets a reference to the given ConfigFilter and assigns it to the Filter field.
-func (o *PartialUpdateTelemetryRouterPayload) SetFilter(v ConfigFilter) {
+// SetFilter gets a reference to the given ConfigFilterPatch and assigns it to the Filter field.
+func (o *PartialUpdateTelemetryRouterPayload) SetFilter(v ConfigFilterPatch) {
 	o.Filter = &v
 }
 

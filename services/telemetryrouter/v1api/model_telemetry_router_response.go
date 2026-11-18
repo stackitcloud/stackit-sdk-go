@@ -24,7 +24,7 @@ type TelemetryRouterResponse struct {
 	// The point in time the resource was created.
 	CreationTime time.Time `json:"creationTime"`
 	// The description is a longer text chosen by the user to provide more context for the resource.
-	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-]*)?$"`
+	Description *string `json:"description,omitempty" validate:"regexp=^([a-zA-Z0-9][a-zA-Z0-9 \\-.]*)?$"`
 	// The number of destinations configured for the telemetry router.
 	DestinationCount *int32 `json:"destinationCount,omitempty"`
 	// The display name is a short name chosen by the user to identify the resource.
