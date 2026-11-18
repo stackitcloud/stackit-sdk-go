@@ -1,7 +1,7 @@
 /*
-STACKIT Object Storage API
+[DEPRECATED] STACKIT Object Storage API
 
-STACKIT API to manage the Object Storage
+## ⚠️ WARNING: THIS API IS DEPRECATED Use V2
 
 API version: 1.1.0
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT Object Storage API API v1.1.0
+// APIClient manages communication with the [DEPRECATED] STACKIT Object Storage API API v1.1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *config.Configuration

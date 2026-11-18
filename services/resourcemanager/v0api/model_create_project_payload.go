@@ -25,9 +25,9 @@ type CreateProjectPayload struct {
 	// Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). * Either a `\"scope\": \"PUBLIC\"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `\"networkArea\": \"<networkAreaID>\"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
-	Members []Member `json:"members"`
-	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0\\,39}$"`
+	Members []Member `json:"members,omitempty"`
+	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`.
+	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1\\,40}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,10 +37,9 @@ type _CreateProjectPayload CreateProjectPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProjectPayload(containerParentId string, members []Member, name string) *CreateProjectPayload {
+func NewCreateProjectPayload(containerParentId string, name string) *CreateProjectPayload {
 	this := CreateProjectPayload{}
 	this.ContainerParentId = containerParentId
-	this.Members = members
 	this.Name = name
 	return &this
 }
@@ -109,26 +108,34 @@ func (o *CreateProjectPayload) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
-// GetMembers returns the Members field value
+// GetMembers returns the Members field value if set, zero value otherwise.
 func (o *CreateProjectPayload) GetMembers() []Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret []Member
 		return ret
 	}
-
 	return o.Members
 }
 
-// GetMembersOk returns a tuple with the Members field value
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateProjectPayload) GetMembersOk() ([]Member, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		return nil, false
 	}
 	return o.Members, true
 }
 
-// SetMembers sets field value
+// HasMembers returns a boolean if a field has been set.
+func (o *CreateProjectPayload) HasMembers() bool {
+	if o != nil && !IsNil(o.Members) {
+		return true
+	}
+
+	return false
+}
+
+// SetMembers gets a reference to the given []Member and assigns it to the Members field.
 func (o *CreateProjectPayload) SetMembers(v []Member) {
 	o.Members = v
 }
@@ -171,7 +178,9 @@ func (o CreateProjectPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	toSerialize["members"] = o.Members
+	if !IsNil(o.Members) {
+		toSerialize["members"] = o.Members
+	}
 	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
@@ -187,7 +196,6 @@ func (o *CreateProjectPayload) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"containerParentId",
-		"members",
 		"name",
 	}
 

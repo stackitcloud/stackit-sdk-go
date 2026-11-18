@@ -1,3 +1,6 @@
+## v0.16.0
+- `v1betaapi`: **Feature:** Add wait handler `UpdateGitInstanceWaitHandler`
+
 ## v0.15.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`

@@ -1,3 +1,7 @@
+## v1.13.0
+- `v1api`:
+  - **Deprecation:** The `v1api` is deprecated and is planned to retire in one year. Use the regional v2 api.
+
 ## v1.12.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 

@@ -1,3 +1,8 @@
+## v0.28.0
+- `v0api`:
+  - Update regex of the `Name` field in the model structs `CreateFolderPayload`, `CreateProjectPayload`, `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload`, `PartialUpdateProjectPayload`
+  - **Feature:** The `Members` field is now optional (previously required) in the `CreateProjectPayload` model struct
+
 ## v0.27.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 

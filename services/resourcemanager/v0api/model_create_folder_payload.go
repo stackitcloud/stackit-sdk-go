@@ -20,14 +20,14 @@ var _ MappedNullable = &CreateFolderPayload{}
 
 // CreateFolderPayload struct for CreateFolderPayload
 type CreateFolderPayload struct {
-	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+	// Identifier of the parent resource container
 	ContainerParentId string `json:"containerParentId"`
 	// Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (\"\"). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). * Either a `\"scope\": \"PUBLIC\"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `\"networkArea\": \"<networkAreaID>\"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.
 	Labels *map[string]string `json:"labels,omitempty"`
-	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
+	// The initial members assigned to the folder.
 	Members []Member `json:"members,omitempty"`
-	// The name of the folder matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0\\,39}$"`
+	// Folder name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`.
+	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1\\,40}$"`
 	AdditionalProperties map[string]interface{}
 }
 

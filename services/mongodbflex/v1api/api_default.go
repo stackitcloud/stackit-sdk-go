@@ -1,7 +1,7 @@
 /*
 [DEPRECATED] STACKIT MongoDB Service API
 
-## ⚠️ WARNING: THIS API IS DEPRECATED  Use V2
+> **⚠️ DEPRECATION NOTICE** >  > **Version 1 of this API is deprecated but remains fully supported.** > We strongly recommend migrating to [Version 2 (v2)](https://docs.api.stackit.cloud/documentation/mongodb-flex-service/version/v2) for all new integrations to take advantage of the latest features. >  > End-of-life (EOL) for v2 is planned for 2027-09-20.
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -34,11 +34,14 @@ type DefaultAPI interface {
 			@param projectId project id
 			@param instanceId instance id
 			@return ApiCloneInstanceRequest
+
+			Deprecated
 	*/
 	CloneInstance(ctx context.Context, projectId string, instanceId string) ApiCloneInstanceRequest
 
 	// CloneInstanceExecute executes the request
 	//  @return CloneInstanceResponse
+	// Deprecated
 	CloneInstanceExecute(r ApiCloneInstanceRequest) (*CloneInstanceResponse, error)
 
 	/*
@@ -49,11 +52,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@return ApiCreateInstanceRequest
+
+		Deprecated
 	*/
 	CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return CreateInstanceResponse
+	// Deprecated
 	CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error)
 
 	/*
@@ -65,11 +71,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiCreateUserRequest
+
+		Deprecated
 	*/
 	CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest
 
 	// CreateUserExecute executes the request
 	//  @return CreateUserResponse
+	// Deprecated
 	CreateUserExecute(r ApiCreateUserRequest) (*CreateUserResponse, error)
 
 	/*
@@ -81,10 +90,13 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiDeleteInstanceRequest
+
+		Deprecated
 	*/
 	DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
+	// Deprecated
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
 
 	/*
@@ -97,10 +109,13 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param userId user id
 		@return ApiDeleteUserRequest
+
+		Deprecated
 	*/
 	DeleteUser(ctx context.Context, projectId string, instanceId string, userId string) ApiDeleteUserRequest
 
 	// DeleteUserExecute executes the request
+	// Deprecated
 	DeleteUserExecute(r ApiDeleteUserRequest) error
 
 	/*
@@ -113,11 +128,14 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param backupId backup id
 		@return ApiGetBackupRequest
+
+		Deprecated
 	*/
 	GetBackup(ctx context.Context, projectId string, instanceId string, backupId string) ApiGetBackupRequest
 
 	// GetBackupExecute executes the request
 	//  @return GetBackupResponse
+	// Deprecated
 	GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error)
 
 	/*
@@ -129,11 +147,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiGetInstanceRequest
+
+		Deprecated
 	*/
 	GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return GetInstanceResponse
+	// Deprecated
 	GetInstanceExecute(r ApiGetInstanceRequest) (*GetInstanceResponse, error)
 
 	/*
@@ -146,11 +167,14 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param userId user id
 		@return ApiGetUserRequest
+
+		Deprecated
 	*/
 	GetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiGetUserRequest
 
 	// GetUserExecute executes the request
 	//  @return GetUserResponse
+	// Deprecated
 	GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error)
 
 	/*
@@ -162,11 +186,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiListAdvisorSlowQueriesRequest
+
+		Deprecated
 	*/
 	ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string) ApiListAdvisorSlowQueriesRequest
 
 	// ListAdvisorSlowQueriesExecute executes the request
 	//  @return HandlersInstancesSlowQueriesResponse
+	// Deprecated
 	ListAdvisorSlowQueriesExecute(r ApiListAdvisorSlowQueriesRequest) (*HandlersInstancesSlowQueriesResponse, error)
 
 	/*
@@ -178,11 +205,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiListBackupsRequest
+
+		Deprecated
 	*/
 	ListBackups(ctx context.Context, projectId string, instanceId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
 	//  @return ListBackupsResponse
+	// Deprecated
 	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error)
 
 	/*
@@ -193,11 +223,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@return ApiListFlavorsRequest
+
+		Deprecated
 	*/
 	ListFlavors(ctx context.Context, projectId string) ApiListFlavorsRequest
 
 	// ListFlavorsExecute executes the request
 	//  @return ListFlavorsResponse
+	// Deprecated
 	ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error)
 
 	/*
@@ -208,11 +241,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@return ApiListInstancesRequest
+
+		Deprecated
 	*/
 	ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return ListInstancesResponse
+	// Deprecated
 	ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error)
 
 	/*
@@ -225,11 +261,14 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param metric metric type
 		@return ApiListMetricsRequest
+
+		Deprecated
 	*/
 	ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest
 
 	// ListMetricsExecute executes the request
 	//  @return ListMetricsResponse
+	// Deprecated
 	ListMetricsExecute(r ApiListMetricsRequest) (*ListMetricsResponse, error)
 
 	/*
@@ -241,11 +280,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiListRestoreJobsRequest
+
+		Deprecated
 	*/
 	ListRestoreJobs(ctx context.Context, projectId string, instanceId string) ApiListRestoreJobsRequest
 
 	// ListRestoreJobsExecute executes the request
 	//  @return ListRestoreJobsResponse
+	// Deprecated
 	ListRestoreJobsExecute(r ApiListRestoreJobsRequest) (*ListRestoreJobsResponse, error)
 
 	/*
@@ -257,11 +299,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param flavor flavor id
 		@return ApiListStoragesRequest
+
+		Deprecated
 	*/
 	ListStorages(ctx context.Context, projectId string, flavor string) ApiListStoragesRequest
 
 	// ListStoragesExecute executes the request
 	//  @return ListStoragesResponse
+	// Deprecated
 	ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error)
 
 	/*
@@ -273,11 +318,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiListSuggestedIndexesRequest
+
+		Deprecated
 	*/
 	ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string) ApiListSuggestedIndexesRequest
 
 	// ListSuggestedIndexesExecute executes the request
 	//  @return HandlersInstancesSuggestedIndexesResponse
+	// Deprecated
 	ListSuggestedIndexesExecute(r ApiListSuggestedIndexesRequest) (*HandlersInstancesSuggestedIndexesResponse, error)
 
 	/*
@@ -289,11 +337,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiListUsersRequest
+
+		Deprecated
 	*/
 	ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest
 
 	// ListUsersExecute executes the request
 	//  @return ListUsersResponse
+	// Deprecated
 	ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error)
 
 	/*
@@ -304,11 +355,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId project id
 		@return ApiListVersionsRequest
+
+		Deprecated
 	*/
 	ListVersions(ctx context.Context, projectId string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
 	//  @return ListVersionsResponse
+	// Deprecated
 	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error)
 
 	/*
@@ -320,11 +374,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiPartialUpdateInstanceRequest
+
+		Deprecated
 	*/
 	PartialUpdateInstance(ctx context.Context, projectId string, instanceId string) ApiPartialUpdateInstanceRequest
 
 	// PartialUpdateInstanceExecute executes the request
 	//  @return UpdateInstanceResponse
+	// Deprecated
 	PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) (*UpdateInstanceResponse, error)
 
 	/*
@@ -337,10 +394,13 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param userId user id
 		@return ApiPartialUpdateUserRequest
+
+		Deprecated
 	*/
 	PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiPartialUpdateUserRequest
 
 	// PartialUpdateUserExecute executes the request
+	// Deprecated
 	PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) error
 
 	/*
@@ -353,11 +413,14 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param userId user id
 		@return ApiResetUserRequest
+
+		Deprecated
 	*/
 	ResetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiResetUserRequest
 
 	// ResetUserExecute executes the request
 	//  @return User
+	// Deprecated
 	ResetUserExecute(r ApiResetUserRequest) (*User, error)
 
 	/*
@@ -369,11 +432,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiRestoreInstanceRequest
+
+		Deprecated
 	*/
 	RestoreInstance(ctx context.Context, projectId string, instanceId string) ApiRestoreInstanceRequest
 
 	// RestoreInstanceExecute executes the request
 	//  @return RestoreInstanceResponse
+	// Deprecated
 	RestoreInstanceExecute(r ApiRestoreInstanceRequest) (*RestoreInstanceResponse, error)
 
 	/*
@@ -385,11 +451,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiUpdateBackupScheduleRequest
+
+		Deprecated
 	*/
 	UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string) ApiUpdateBackupScheduleRequest
 
 	// UpdateBackupScheduleExecute executes the request
 	//  @return BackupSchedule
+	// Deprecated
 	UpdateBackupScheduleExecute(r ApiUpdateBackupScheduleRequest) (*BackupSchedule, error)
 
 	/*
@@ -401,11 +470,14 @@ type DefaultAPI interface {
 		@param projectId project id
 		@param instanceId instance id
 		@return ApiUpdateInstanceRequest
+
+		Deprecated
 	*/
 	UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest
 
 	// UpdateInstanceExecute executes the request
 	//  @return UpdateInstanceResponse
+	// Deprecated
 	UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*UpdateInstanceResponse, error)
 
 	/*
@@ -418,10 +490,13 @@ type DefaultAPI interface {
 		@param instanceId instance id
 		@param userId user id
 		@return ApiUpdateUserRequest
+
+		Deprecated
 	*/
 	UpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiUpdateUserRequest
 
 	// UpdateUserExecute executes the request
+	// Deprecated
 	UpdateUserExecute(r ApiUpdateUserRequest) error
 }
 
@@ -456,6 +531,8 @@ As an example a valid timestamp look like "2023-04-20T15:05:15Z"
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiCloneInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string, instanceId string) ApiCloneInstanceRequest {
 	return ApiCloneInstanceRequest{
@@ -469,6 +546,8 @@ func (a *DefaultAPIService) CloneInstance(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return CloneInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CloneInstanceExecute(r ApiCloneInstanceRequest) (*CloneInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -606,6 +685,8 @@ Create and deploys an instance<br/> Note that the time format for the backupSche
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@return ApiCreateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
@@ -618,6 +699,8 @@ func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CreateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -767,6 +850,8 @@ create a new user for a mongodb instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiCreateUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
@@ -780,6 +865,8 @@ func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, in
 // Execute executes the request
 //
 //	@return CreateUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateUserExecute(r ApiCreateUserRequest) (*CreateUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -934,6 +1021,8 @@ removes an instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiDeleteInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
@@ -945,6 +1034,7 @@ func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1074,6 +1164,8 @@ delete mongodb user
 	@param instanceId instance id
 	@param userId user id
 	@return ApiDeleteUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, instanceId string, userId string) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
@@ -1086,6 +1178,7 @@ func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, in
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteUserExecute(r ApiDeleteUserRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1205,6 +1298,8 @@ Get details about a specific backup
 	@param instanceId instance id
 	@param backupId backup id
 	@return ApiGetBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, instanceId string, backupId string) ApiGetBackupRequest {
 	return ApiGetBackupRequest{
@@ -1219,6 +1314,8 @@ func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, ins
 // Execute executes the request
 //
 //	@return GetBackupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1347,6 +1444,8 @@ gets information of an instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiGetInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
@@ -1360,6 +1459,8 @@ func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, i
 // Execute executes the request
 //
 //	@return GetInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1489,6 +1590,8 @@ get detailed information of a user of a mongodb instance
 	@param instanceId instance id
 	@param userId user id
 	@return ApiGetUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiGetUserRequest {
 	return ApiGetUserRequest{
@@ -1503,6 +1606,8 @@ func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, insta
 // Execute executes the request
 //
 //	@return GetUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1631,6 +1736,8 @@ gets slow queries from the Opsmanager performance advisor
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiListAdvisorSlowQueriesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListAdvisorSlowQueries(ctx context.Context, projectId string, instanceId string) ApiListAdvisorSlowQueriesRequest {
 	return ApiListAdvisorSlowQueriesRequest{
@@ -1644,6 +1751,8 @@ func (a *DefaultAPIService) ListAdvisorSlowQueries(ctx context.Context, projectI
 // Execute executes the request
 //
 //	@return HandlersInstancesSlowQueriesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListAdvisorSlowQueriesExecute(r ApiListAdvisorSlowQueriesRequest) (*HandlersInstancesSlowQueriesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1782,6 +1891,8 @@ List backups of an instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiListBackupsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
@@ -1795,6 +1906,8 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, i
 // Execute executes the request
 //
 //	@return ListBackupsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1920,6 +2033,8 @@ returns all possible flavors
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@return ApiListFlavorsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string) ApiListFlavorsRequest {
 	return ApiListFlavorsRequest{
@@ -1932,6 +2047,8 @@ func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string) A
 // Execute executes the request
 //
 //	@return ListFlavorsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2063,6 +2180,8 @@ list all instances for a projectID
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@return ApiListInstancesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
@@ -2075,6 +2194,8 @@ func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string)
 // Execute executes the request
 //
 //	@return ListInstancesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2235,6 +2356,8 @@ returns metrics for an instance
 	@param instanceId instance id
 	@param metric metric type
 	@return ApiListMetricsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest {
 	return ApiListMetricsRequest{
@@ -2249,6 +2372,8 @@ func (a *DefaultAPIService) ListMetrics(ctx context.Context, projectId string, i
 // Execute executes the request
 //
 //	@return ListMetricsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListMetricsExecute(r ApiListMetricsRequest) (*ListMetricsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2401,6 +2526,8 @@ List restore jobs of an instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiListRestoreJobsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListRestoreJobs(ctx context.Context, projectId string, instanceId string) ApiListRestoreJobsRequest {
 	return ApiListRestoreJobsRequest{
@@ -2414,6 +2541,8 @@ func (a *DefaultAPIService) ListRestoreJobs(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return ListRestoreJobsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListRestoreJobsExecute(r ApiListRestoreJobsRequest) (*ListRestoreJobsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2541,6 +2670,8 @@ returns the storage for a certain flavor
 	@param projectId project id
 	@param flavor flavor id
 	@return ApiListStoragesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, flavor string) ApiListStoragesRequest {
 	return ApiListStoragesRequest{
@@ -2554,6 +2685,8 @@ func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return ListStoragesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2681,6 +2814,8 @@ gets suggested indexes from the Opsmanager performance advisor
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiListSuggestedIndexesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListSuggestedIndexes(ctx context.Context, projectId string, instanceId string) ApiListSuggestedIndexesRequest {
 	return ApiListSuggestedIndexesRequest{
@@ -2694,6 +2829,8 @@ func (a *DefaultAPIService) ListSuggestedIndexes(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return HandlersInstancesSuggestedIndexesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListSuggestedIndexesExecute(r ApiListSuggestedIndexesRequest) (*HandlersInstancesSuggestedIndexesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2832,6 +2969,8 @@ list all users for a mongodb instance
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiListUsersRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest {
 	return ApiListUsersRequest{
@@ -2845,6 +2984,8 @@ func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, ins
 // Execute executes the request
 //
 //	@return ListUsersResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUsersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2970,6 +3111,8 @@ returns all available versions for creating endpoint
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@return ApiListVersionsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
@@ -2982,6 +3125,8 @@ func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string) 
 // Execute executes the request
 //
 //	@return ListVersionsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3104,6 +3249,8 @@ Updates a deployment plan<br/> Note that the time format for the backupSchedule 
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiPartialUpdateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, instanceId string) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
@@ -3117,6 +3264,8 @@ func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId
 // Execute executes the request
 //
 //	@return UpdateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) (*UpdateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -3280,6 +3429,8 @@ updates user for a mongodb instance
 	@param instanceId instance id
 	@param userId user id
 	@return ApiPartialUpdateUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiPartialUpdateUserRequest {
 	return ApiPartialUpdateUserRequest{
@@ -3292,6 +3443,7 @@ func (a *DefaultAPIService) PartialUpdateUser(ctx context.Context, projectId str
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPatch
@@ -3427,6 +3579,8 @@ resets mongodb user's password
 	@param instanceId instance id
 	@param userId user id
 	@return ApiResetUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiResetUserRequest {
 	return ApiResetUserRequest{
@@ -3441,6 +3595,8 @@ func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, ins
 // Execute executes the request
 //
 //	@return User
+//
+// Deprecated
 func (a *DefaultAPIService) ResetUserExecute(r ApiResetUserRequest) (*User, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -3576,6 +3732,8 @@ Restore an instance based on snapshot
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiRestoreInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) RestoreInstance(ctx context.Context, projectId string, instanceId string) ApiRestoreInstanceRequest {
 	return ApiRestoreInstanceRequest{
@@ -3589,6 +3747,8 @@ func (a *DefaultAPIService) RestoreInstance(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return RestoreInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) RestoreInstanceExecute(r ApiRestoreInstanceRequest) (*RestoreInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -3728,6 +3888,8 @@ Updates a backup schedule<br/> Note that the time format is in UTC
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiUpdateBackupScheduleRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId string, instanceId string) ApiUpdateBackupScheduleRequest {
 	return ApiUpdateBackupScheduleRequest{
@@ -3741,6 +3903,8 @@ func (a *DefaultAPIService) UpdateBackupSchedule(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return BackupSchedule
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateBackupScheduleExecute(r ApiUpdateBackupScheduleRequest) (*BackupSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -3880,6 +4044,8 @@ Updates a deployment plan<br/> Note that the time format for the backupSchedule 
 	@param projectId project id
 	@param instanceId instance id
 	@return ApiUpdateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
@@ -3893,6 +4059,8 @@ func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return UpdateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*UpdateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -4056,6 +4224,8 @@ updates user for a mongodb instance
 	@param instanceId instance id
 	@param userId user id
 	@return ApiUpdateUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
@@ -4068,6 +4238,7 @@ func (a *DefaultAPIService) UpdateUser(ctx context.Context, projectId string, in
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) UpdateUserExecute(r ApiUpdateUserRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPut

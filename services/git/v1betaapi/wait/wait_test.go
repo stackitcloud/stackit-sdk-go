@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"testing"
 	"testing/synctest"
@@ -13,6 +14,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	git "github.com/stackitcloud/stackit-sdk-go/services/git/v1betaapi"
 )
 
@@ -46,7 +48,7 @@ func newAPIMock(settings *mockSettings) git.DefaultAPI {
 var PROJECT_ID = uuid.New().String()
 var INSTANCE_ID = uuid.New().String()
 
-func TestCreateGitInstanceWaitHandler(t *testing.T) {
+func TestCreateOrUpdateGitInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc           string
 		getFails       bool
@@ -58,7 +60,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 		getGitResponse *git.Instance
 	}{
 		{
-			desc:           "Creation of an instance succeeded",
+			desc:           "create_or_update_succeeded",
 			getFails:       false,
 			wantErr:        false,
 			wantResp:       true,
@@ -75,7 +77,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:           "Creation of an instance failed with error",
+			desc:           "get_fails",
 			getFails:       true,
 			wantErr:        true,
 			wantResp:       false,
@@ -92,7 +94,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:           "Creation of an instance with response failed and without error",
+			desc:           "create_or_update_failed",
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       true,
@@ -109,7 +111,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:           "Creation of an instance failed without id on the response",
+			desc:           "empty response",
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
@@ -119,7 +121,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			getGitResponse: nil,
 		},
 		{
-			desc:           "Creation of an instance with a wrong state on the response",
+			desc:           "wrong state in response",
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
@@ -136,7 +138,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:           "Creation of an instance without state on the response",
+			desc:           "missing state in response",
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
@@ -151,36 +153,62 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				Version: "v1.6.0",
 			},
 		},
+		{
+			desc:           "timeout while updating",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: time.Now(),
+				Id:      INSTANCE_ID,
+				Name:    "instance-test",
+				State:   git.INSTANCESTATE_UPDATING,
+				Url:     "https://testing.git.onstackit.cloud",
+				Version: "v1.6.0",
+			},
+		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			synctest.Test(t, func(t *testing.T) {
-				apiClient := newAPIMock(&mockSettings{
-					getFails:       tt.getFails,
-					projectId:      tt.projectId,
-					instanceId:     tt.instanceId,
-					getGitResponse: tt.getGitResponse,
-					returnInstance: tt.returnInstance,
+
+	handlers := map[string]func(context.Context, git.DefaultAPI, string, string) *wait.AsyncActionHandler[git.Instance]{
+		"common logic": createOrUpdateGitInstanceWaitHandler,
+		"create":       CreateGitInstanceWaitHandler,
+		"update":       UpdateGitInstanceWaitHandler,
+	}
+
+	for handlerDesc, handlerFn := range handlers {
+		for _, tt := range tests {
+			t.Run(fmt.Sprintf("%s - %s", handlerDesc, tt.desc), func(t *testing.T) {
+				synctest.Test(t, func(t *testing.T) {
+					apiClient := newAPIMock(&mockSettings{
+						getFails:       tt.getFails,
+						projectId:      tt.projectId,
+						instanceId:     tt.instanceId,
+						getGitResponse: tt.getGitResponse,
+						returnInstance: tt.returnInstance,
+					})
+
+					var instanceWanted *git.Instance
+					if tt.wantResp {
+						instanceWanted = tt.getGitResponse
+					}
+
+					handler := handlerFn(context.Background(), apiClient, tt.projectId, tt.instanceId)
+
+					response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+					if (err != nil) != tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+
+					if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{}), cmpopts.EquateComparable(git.NullableFeatureToggleDefaultEmailNotifications{})) {
+						t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
+					}
 				})
-
-				var instanceWanted *git.Instance
-				if tt.wantResp {
-					instanceWanted = tt.getGitResponse
-				}
-
-				handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, tt.projectId, tt.instanceId)
-
-				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-				if (err != nil) != tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-				}
-
-				if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{}), cmpopts.EquateComparable(git.NullableFeatureToggleDefaultEmailNotifications{})) {
-					t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
-				}
 			})
-		})
+		}
 	}
 }
 

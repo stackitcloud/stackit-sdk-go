@@ -39,22 +39,6 @@ type DefaultAPI interface {
 	CreateFunctionExecute(r ApiCreateFunctionRequest) (*Function, error)
 
 	/*
-		CreateFunctionRevision Method for CreateFunctionRevision
-
-		Create a new function revision
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the resource is located in.
-		@param functionId The STACKIT Functions functionId
-		@return ApiCreateFunctionRevisionRequest
-	*/
-	CreateFunctionRevision(ctx context.Context, projectId string, functionId string) ApiCreateFunctionRevisionRequest
-
-	// CreateFunctionRevisionExecute executes the request
-	//  @return Revision
-	CreateFunctionRevisionExecute(r ApiCreateFunctionRevisionRequest) (*Revision, error)
-
-	/*
 		CreatePullCredential Create OCI image registry pull credential definition
 
 		Create a new OCI image registry pull credential configuration.
@@ -68,6 +52,22 @@ type DefaultAPI interface {
 	// CreatePullCredentialExecute executes the request
 	//  @return PullCredential
 	CreatePullCredentialExecute(r ApiCreatePullCredentialRequest) (*PullCredential, error)
+
+	/*
+		CreateRevision Method for CreateRevision
+
+		Create a new function revision
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the resource is located in.
+		@param functionId The STACKIT Functions functionId
+		@return ApiCreateRevisionRequest
+	*/
+	CreateRevision(ctx context.Context, projectId string, functionId string) ApiCreateRevisionRequest
+
+	// CreateRevisionExecute executes the request
+	//  @return Revision
+	CreateRevisionExecute(r ApiCreateRevisionRequest) (*Revision, error)
 
 	/*
 		DeleteFunction Method for DeleteFunction
@@ -421,67 +421,63 @@ func (a *DefaultAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (*
 	return localVarReturnValue, nil
 }
 
-type ApiCreateFunctionRevisionRequest struct {
-	ctx                           context.Context
-	ApiService                    DefaultAPI
-	projectId                     string
-	functionId                    string
-	createFunctionRevisionPayload *CreateFunctionRevisionPayload
+type ApiCreatePullCredentialRequest struct {
+	ctx                         context.Context
+	ApiService                  DefaultAPI
+	projectId                   string
+	createPullCredentialPayload *CreatePullCredentialPayload
 }
 
-func (r ApiCreateFunctionRevisionRequest) CreateFunctionRevisionPayload(createFunctionRevisionPayload CreateFunctionRevisionPayload) ApiCreateFunctionRevisionRequest {
-	r.createFunctionRevisionPayload = &createFunctionRevisionPayload
+func (r ApiCreatePullCredentialRequest) CreatePullCredentialPayload(createPullCredentialPayload CreatePullCredentialPayload) ApiCreatePullCredentialRequest {
+	r.createPullCredentialPayload = &createPullCredentialPayload
 	return r
 }
 
-func (r ApiCreateFunctionRevisionRequest) Execute() (*Revision, error) {
-	return r.ApiService.CreateFunctionRevisionExecute(r)
+func (r ApiCreatePullCredentialRequest) Execute() (*PullCredential, error) {
+	return r.ApiService.CreatePullCredentialExecute(r)
 }
 
 /*
-CreateFunctionRevision Method for CreateFunctionRevision
+CreatePullCredential Create OCI image registry pull credential definition
 
-Create a new function revision
+Create a new OCI image registry pull credential configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the resource is located in.
-	@param functionId The STACKIT Functions functionId
-	@return ApiCreateFunctionRevisionRequest
+	@return ApiCreatePullCredentialRequest
 */
-func (a *DefaultAPIService) CreateFunctionRevision(ctx context.Context, projectId string, functionId string) ApiCreateFunctionRevisionRequest {
-	return ApiCreateFunctionRevisionRequest{
+func (a *DefaultAPIService) CreatePullCredential(ctx context.Context, projectId string) ApiCreatePullCredentialRequest {
+	return ApiCreatePullCredentialRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
-		functionId: functionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return Revision
-func (a *DefaultAPIService) CreateFunctionRevisionExecute(r ApiCreateFunctionRevisionRequest) (*Revision, error) {
+//	@return PullCredential
+func (a *DefaultAPIService) CreatePullCredentialExecute(r ApiCreatePullCredentialRequest) (*PullCredential, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Revision
+		localVarReturnValue *PullCredential
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateFunctionRevision")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreatePullCredential")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/functions/{functionId}/revisions"
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/pull-credentials"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"functionId"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createFunctionRevisionPayload == nil {
-		return localVarReturnValue, reportError("createFunctionRevisionPayload is required and must be specified")
+	if r.createPullCredentialPayload == nil {
+		return localVarReturnValue, reportError("createPullCredentialPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -502,7 +498,7 @@ func (a *DefaultAPIService) CreateFunctionRevisionExecute(r ApiCreateFunctionRev
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createFunctionRevisionPayload
+	localVarPostBody = r.createPullCredentialPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -583,63 +579,67 @@ func (a *DefaultAPIService) CreateFunctionRevisionExecute(r ApiCreateFunctionRev
 	return localVarReturnValue, nil
 }
 
-type ApiCreatePullCredentialRequest struct {
-	ctx                         context.Context
-	ApiService                  DefaultAPI
-	projectId                   string
-	createPullCredentialPayload *CreatePullCredentialPayload
+type ApiCreateRevisionRequest struct {
+	ctx                   context.Context
+	ApiService            DefaultAPI
+	projectId             string
+	functionId            string
+	createRevisionPayload *CreateRevisionPayload
 }
 
-func (r ApiCreatePullCredentialRequest) CreatePullCredentialPayload(createPullCredentialPayload CreatePullCredentialPayload) ApiCreatePullCredentialRequest {
-	r.createPullCredentialPayload = &createPullCredentialPayload
+func (r ApiCreateRevisionRequest) CreateRevisionPayload(createRevisionPayload CreateRevisionPayload) ApiCreateRevisionRequest {
+	r.createRevisionPayload = &createRevisionPayload
 	return r
 }
 
-func (r ApiCreatePullCredentialRequest) Execute() (*PullCredential, error) {
-	return r.ApiService.CreatePullCredentialExecute(r)
+func (r ApiCreateRevisionRequest) Execute() (*Revision, error) {
+	return r.ApiService.CreateRevisionExecute(r)
 }
 
 /*
-CreatePullCredential Create OCI image registry pull credential definition
+CreateRevision Method for CreateRevision
 
-Create a new OCI image registry pull credential configuration.
+Create a new function revision
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the resource is located in.
-	@return ApiCreatePullCredentialRequest
+	@param functionId The STACKIT Functions functionId
+	@return ApiCreateRevisionRequest
 */
-func (a *DefaultAPIService) CreatePullCredential(ctx context.Context, projectId string) ApiCreatePullCredentialRequest {
-	return ApiCreatePullCredentialRequest{
+func (a *DefaultAPIService) CreateRevision(ctx context.Context, projectId string, functionId string) ApiCreateRevisionRequest {
+	return ApiCreateRevisionRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
+		functionId: functionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return PullCredential
-func (a *DefaultAPIService) CreatePullCredentialExecute(r ApiCreatePullCredentialRequest) (*PullCredential, error) {
+//	@return Revision
+func (a *DefaultAPIService) CreateRevisionExecute(r ApiCreateRevisionRequest) (*Revision, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PullCredential
+		localVarReturnValue *Revision
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreatePullCredential")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateRevision")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/pull-credentials"
+	localVarPath := localBasePath + "/v1alpha/projects/{projectId}/functions/{functionId}/revisions"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"functionId"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createPullCredentialPayload == nil {
-		return localVarReturnValue, reportError("createPullCredentialPayload is required and must be specified")
+	if r.createRevisionPayload == nil {
+		return localVarReturnValue, reportError("createRevisionPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -660,7 +660,7 @@ func (a *DefaultAPIService) CreatePullCredentialExecute(r ApiCreatePullCredentia
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createPullCredentialPayload
+	localVarPostBody = r.createRevisionPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err

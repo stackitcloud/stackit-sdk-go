@@ -1,7 +1,7 @@
 /*
-STACKIT Object Storage API
+[DEPRECATED] STACKIT Object Storage API
 
-STACKIT API to manage the Object Storage
+## ⚠️ WARNING: THIS API IS DEPRECATED Use V2
 
 API version: 1.1.0
 */

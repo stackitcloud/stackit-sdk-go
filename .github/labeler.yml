@@ -52,6 +52,7 @@
     - "services/valkey/*"
     - "services/pubsub/*"
     - "services/registry/*"
+    - "services/mailout/*"
 # databases
 "domain:Databases":
 - changed-files:

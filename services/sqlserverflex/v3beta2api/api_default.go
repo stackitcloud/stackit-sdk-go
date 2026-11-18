@@ -1,7 +1,7 @@
 /*
 STACKIT MSSQL Service API
 
-## ⚠️ WARNING: THIS API IS DEPRECATED  Use V3
+> **⚠️ DEPRECATION NOTICE** >  > **Version 3beta2 of this API is deprecated** > We strongly recommend migrating to [Version 3 (v3)](https://docs.api.stackit.cloud/documentation/mssql-flex-service/version/v3) for all new integrations to take advantage of the latest features. >
 
 API version: 3beta2
 Contact: support@stackit.cloud
@@ -34,11 +34,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiCreateDatabaseRequest
+
+		Deprecated
 	*/
 	CreateDatabase(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequest
 
 	// CreateDatabaseExecute executes the request
 	//  @return CreateDatabaseResponse
+	// Deprecated
 	CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*CreateDatabaseResponse, error)
 
 	/*
@@ -50,11 +53,14 @@ type DefaultAPI interface {
 		@param projectId The STACKIT project ID.
 		@param region The region which should be addressed
 		@return ApiCreateInstanceRequest
+
+		Deprecated
 	*/
 	CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest
 
 	// CreateInstanceExecute executes the request
 	//  @return CreateInstanceResponse
+	// Deprecated
 	CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error)
 
 	/*
@@ -67,11 +73,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiCreateUserRequest
+
+		Deprecated
 	*/
 	CreateUser(ctx context.Context, projectId string, region string, instanceId string) ApiCreateUserRequest
 
 	// CreateUserExecute executes the request
 	//  @return CreateUserResponse
+	// Deprecated
 	CreateUserExecute(r ApiCreateUserRequest) (*CreateUserResponse, error)
 
 	/*
@@ -85,10 +94,13 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param databaseName The name of the database.
 		@return ApiDeleteDatabaseRequest
+
+		Deprecated
 	*/
 	DeleteDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiDeleteDatabaseRequest
 
 	// DeleteDatabaseExecute executes the request
+	// Deprecated
 	DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) error
 
 	/*
@@ -101,10 +113,13 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiDeleteInstanceRequest
+
+		Deprecated
 	*/
 	DeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiDeleteInstanceRequest
 
 	// DeleteInstanceExecute executes the request
+	// Deprecated
 	DeleteInstanceExecute(r ApiDeleteInstanceRequest) error
 
 	/*
@@ -118,10 +133,13 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param userId The ID of the user.
 		@return ApiDeleteUserRequest
+
+		Deprecated
 	*/
 	DeleteUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiDeleteUserRequest
 
 	// DeleteUserExecute executes the request
+	// Deprecated
 	DeleteUserExecute(r ApiDeleteUserRequest) error
 
 	/*
@@ -135,11 +153,14 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param backupId The ID of the backup.
 		@return ApiGetBackupRequest
+
+		Deprecated
 	*/
 	GetBackup(ctx context.Context, projectId string, region string, instanceId string, backupId int64) ApiGetBackupRequest
 
 	// GetBackupExecute executes the request
 	//  @return GetBackupResponse
+	// Deprecated
 	GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error)
 
 	/*
@@ -153,11 +174,14 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param databaseName The name of the database.
 		@return ApiGetDatabaseRequest
+
+		Deprecated
 	*/
 	GetDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiGetDatabaseRequest
 
 	// GetDatabaseExecute executes the request
 	//  @return GetDatabaseResponse
+	// Deprecated
 	GetDatabaseExecute(r ApiGetDatabaseRequest) (*GetDatabaseResponse, error)
 
 	/*
@@ -170,11 +194,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiGetInstanceRequest
+
+		Deprecated
 	*/
 	GetInstance(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequest
 
 	// GetInstanceExecute executes the request
 	//  @return GetInstanceResponse
+	// Deprecated
 	GetInstanceExecute(r ApiGetInstanceRequest) (*GetInstanceResponse, error)
 
 	/*
@@ -188,11 +215,14 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param userId The ID of the user.
 		@return ApiGetUserRequest
+
+		Deprecated
 	*/
 	GetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiGetUserRequest
 
 	// GetUserExecute executes the request
 	//  @return GetUserResponse
+	// Deprecated
 	GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error)
 
 	/*
@@ -205,11 +235,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListBackupsRequest
+
+		Deprecated
 	*/
 	ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest
 
 	// ListBackupsExecute executes the request
 	//  @return ListBackupResponse
+	// Deprecated
 	ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error)
 
 	/*
@@ -222,11 +255,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListCollationsRequest
+
+		Deprecated
 	*/
 	ListCollations(ctx context.Context, projectId string, region string, instanceId string) ApiListCollationsRequest
 
 	// ListCollationsExecute executes the request
 	//  @return ListCollationsResponse
+	// Deprecated
 	ListCollationsExecute(r ApiListCollationsRequest) (*ListCollationsResponse, error)
 
 	/*
@@ -239,11 +275,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListCompatibilitiesRequest
+
+		Deprecated
 	*/
 	ListCompatibilities(ctx context.Context, projectId string, region string, instanceId string) ApiListCompatibilitiesRequest
 
 	// ListCompatibilitiesExecute executes the request
 	//  @return ListCompatibilityResponse
+	// Deprecated
 	ListCompatibilitiesExecute(r ApiListCompatibilitiesRequest) (*ListCompatibilityResponse, error)
 
 	/*
@@ -256,11 +295,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListCurrentRunningRestoreJobsRequest
+
+		Deprecated
 	*/
 	ListCurrentRunningRestoreJobs(ctx context.Context, projectId string, region string, instanceId string) ApiListCurrentRunningRestoreJobsRequest
 
 	// ListCurrentRunningRestoreJobsExecute executes the request
 	//  @return ListCurrentRunningRestoreJobs
+	// Deprecated
 	ListCurrentRunningRestoreJobsExecute(r ApiListCurrentRunningRestoreJobsRequest) (*ListCurrentRunningRestoreJobs, error)
 
 	/*
@@ -273,11 +315,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListDatabasesRequest
+
+		Deprecated
 	*/
 	ListDatabases(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabasesRequest
 
 	// ListDatabasesExecute executes the request
 	//  @return ListDatabasesResponse
+	// Deprecated
 	ListDatabasesExecute(r ApiListDatabasesRequest) (*ListDatabasesResponse, error)
 
 	/*
@@ -289,11 +334,14 @@ type DefaultAPI interface {
 		@param projectId The STACKIT project ID.
 		@param region The region which should be addressed
 		@return ApiListFlavorsRequest
+
+		Deprecated
 	*/
 	ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest
 
 	// ListFlavorsExecute executes the request
 	//  @return ListFlavorsResponse
+	// Deprecated
 	ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error)
 
 	/*
@@ -305,11 +353,14 @@ type DefaultAPI interface {
 		@param projectId The STACKIT project ID.
 		@param region The region which should be addressed
 		@return ApiListInstancesRequest
+
+		Deprecated
 	*/
 	ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest
 
 	// ListInstancesExecute executes the request
 	//  @return ListInstancesResponse
+	// Deprecated
 	ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error)
 
 	/*
@@ -322,11 +373,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListRolesRequest
+
+		Deprecated
 	*/
 	ListRoles(ctx context.Context, projectId string, region string, instanceId string) ApiListRolesRequest
 
 	// ListRolesExecute executes the request
 	//  @return ListRolesResponse
+	// Deprecated
 	ListRolesExecute(r ApiListRolesRequest) (*ListRolesResponse, error)
 
 	/*
@@ -339,11 +393,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param flavorId The id of an instance flavor.
 		@return ApiListStoragesRequest
+
+		Deprecated
 	*/
 	ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest
 
 	// ListStoragesExecute executes the request
 	//  @return ListStoragesResponse
+	// Deprecated
 	ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error)
 
 	/*
@@ -356,11 +413,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiListUsersRequest
+
+		Deprecated
 	*/
 	ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest
 
 	// ListUsersExecute executes the request
 	//  @return ListUserResponse
+	// Deprecated
 	ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error)
 
 	/*
@@ -372,11 +432,14 @@ type DefaultAPI interface {
 		@param projectId The STACKIT project ID.
 		@param region The region which should be addressed
 		@return ApiListVersionsRequest
+
+		Deprecated
 	*/
 	ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest
 
 	// ListVersionsExecute executes the request
 	//  @return ListVersionsResponse
+	// Deprecated
 	ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error)
 
 	/*
@@ -392,10 +455,13 @@ type DefaultAPI interface {
 			@param region The region which should be addressed
 			@param instanceId The ID of the instance.
 			@return ApiPartialUpdateInstanceRequest
+
+			Deprecated
 	*/
 	PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest
 
 	// PartialUpdateInstanceExecute executes the request
+	// Deprecated
 	PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error
 
 	/*
@@ -409,11 +475,14 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param userId The ID of the user.
 		@return ApiResetUserRequest
+
+		Deprecated
 	*/
 	ResetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiResetUserRequest
 
 	// ResetUserExecute executes the request
 	//  @return ResetUserResponse
+	// Deprecated
 	ResetUserExecute(r ApiResetUserRequest) (*ResetUserResponse, error)
 
 	/*
@@ -429,10 +498,13 @@ type DefaultAPI interface {
 			@param region The region which should be addressed
 			@param instanceId The ID of the instance.
 			@return ApiRestoreDatabaseFromBackupRequest
+
+			Deprecated
 	*/
 	RestoreDatabaseFromBackup(ctx context.Context, projectId string, region string, instanceId string) ApiRestoreDatabaseFromBackupRequest
 
 	// RestoreDatabaseFromBackupExecute executes the request
+	// Deprecated
 	RestoreDatabaseFromBackupExecute(r ApiRestoreDatabaseFromBackupRequest) error
 
 	/*
@@ -446,10 +518,13 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param databaseName The name of the database.
 		@return ApiTriggerBackupRequest
+
+		Deprecated
 	*/
 	TriggerBackup(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiTriggerBackupRequest
 
 	// TriggerBackupExecute executes the request
+	// Deprecated
 	TriggerBackupExecute(r ApiTriggerBackupRequest) error
 
 	/*
@@ -463,10 +538,13 @@ type DefaultAPI interface {
 		@param instanceId The ID of the instance.
 		@param databaseName The name of the database.
 		@return ApiTriggerRestoreRequest
+
+		Deprecated
 	*/
 	TriggerRestore(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiTriggerRestoreRequest
 
 	// TriggerRestoreExecute executes the request
+	// Deprecated
 	TriggerRestoreExecute(r ApiTriggerRestoreRequest) error
 
 	/*
@@ -482,10 +560,13 @@ type DefaultAPI interface {
 			@param region The region which should be addressed
 			@param instanceId The ID of the instance.
 			@return ApiUpdateInstanceRequest
+
+			Deprecated
 	*/
 	UpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceRequest
 
 	// UpdateInstanceExecute executes the request
+	// Deprecated
 	UpdateInstanceExecute(r ApiUpdateInstanceRequest) error
 
 	/*
@@ -498,11 +579,14 @@ type DefaultAPI interface {
 		@param region The region which should be addressed
 		@param instanceId The ID of the instance.
 		@return ApiUpdateInstanceProtectionRequest
+
+		Deprecated
 	*/
 	UpdateInstanceProtection(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceProtectionRequest
 
 	// UpdateInstanceProtectionExecute executes the request
 	//  @return UpdateInstanceProtectionResponse
+	// Deprecated
 	UpdateInstanceProtectionExecute(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error)
 }
 
@@ -538,6 +622,8 @@ Create database for a user. Note: The name of a valid user must be provided in t
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiCreateDatabaseRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateDatabase(ctx context.Context, projectId string, region string, instanceId string) ApiCreateDatabaseRequest {
 	return ApiCreateDatabaseRequest{
@@ -552,6 +638,8 @@ func (a *DefaultAPIService) CreateDatabase(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CreateDatabaseResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*CreateDatabaseResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -736,6 +824,8 @@ Create a new instance of a sqlserver database instance.
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@return ApiCreateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string, region string) ApiCreateInstanceRequest {
 	return ApiCreateInstanceRequest{
@@ -749,6 +839,8 @@ func (a *DefaultAPIService) CreateInstance(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return CreateInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -934,6 +1026,8 @@ Create user for an instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiCreateUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, region string, instanceId string) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
@@ -948,6 +1042,8 @@ func (a *DefaultAPIService) CreateUser(ctx context.Context, projectId string, re
 // Execute executes the request
 //
 //	@return CreateUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateUserExecute(r ApiCreateUserRequest) (*CreateUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1129,6 +1225,8 @@ Delete database for an instance.
 	@param instanceId The ID of the instance.
 	@param databaseName The name of the database.
 	@return ApiDeleteDatabaseRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiDeleteDatabaseRequest {
 	return ApiDeleteDatabaseRequest{
@@ -1142,6 +1240,7 @@ func (a *DefaultAPIService) DeleteDatabase(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1295,6 +1394,8 @@ Delete an available sqlserver instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiDeleteInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string, region string, instanceId string) ApiDeleteInstanceRequest {
 	return ApiDeleteInstanceRequest{
@@ -1307,6 +1408,7 @@ func (a *DefaultAPIService) DeleteInstance(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1461,6 +1563,8 @@ Delete an user from a specific instance.
 	@param instanceId The ID of the instance.
 	@param userId The ID of the user.
 	@return ApiDeleteUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
@@ -1474,6 +1578,7 @@ func (a *DefaultAPIService) DeleteUser(ctx context.Context, projectId string, re
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) DeleteUserExecute(r ApiDeleteUserRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -1629,6 +1734,8 @@ Get information about a specific backup for an instance.
 	@param instanceId The ID of the instance.
 	@param backupId The ID of the backup.
 	@return ApiGetBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, region string, instanceId string, backupId int64) ApiGetBackupRequest {
 	return ApiGetBackupRequest{
@@ -1644,6 +1751,8 @@ func (a *DefaultAPIService) GetBackup(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return GetBackupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetBackupExecute(r ApiGetBackupRequest) (*GetBackupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1821,6 +1930,8 @@ Get specific available database
 	@param instanceId The ID of the instance.
 	@param databaseName The name of the database.
 	@return ApiGetDatabaseRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetDatabase(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiGetDatabaseRequest {
 	return ApiGetDatabaseRequest{
@@ -1836,6 +1947,8 @@ func (a *DefaultAPIService) GetDatabase(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return GetDatabaseResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetDatabaseExecute(r ApiGetDatabaseRequest) (*GetDatabaseResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2011,6 +2124,8 @@ Get information about a specific available instance
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiGetInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, region string, instanceId string) ApiGetInstanceRequest {
 	return ApiGetInstanceRequest{
@@ -2025,6 +2140,8 @@ func (a *DefaultAPIService) GetInstance(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return GetInstanceResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2190,6 +2307,8 @@ Get a specific available user for an instance.
 	@param instanceId The ID of the instance.
 	@param userId The ID of the user.
 	@return ApiGetUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiGetUserRequest {
 	return ApiGetUserRequest{
@@ -2205,6 +2324,8 @@ func (a *DefaultAPIService) GetUser(ctx context.Context, projectId string, regio
 // Execute executes the request
 //
 //	@return GetUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2390,6 +2511,8 @@ List all backups which are available for a specific instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListBackupsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, region string, instanceId string) ApiListBackupsRequest {
 	return ApiListBackupsRequest{
@@ -2404,6 +2527,8 @@ func (a *DefaultAPIService) ListBackups(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return ListBackupResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBackupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2595,6 +2720,8 @@ Returns a list of collations for an instance
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListCollationsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCollations(ctx context.Context, projectId string, region string, instanceId string) ApiListCollationsRequest {
 	return ApiListCollationsRequest{
@@ -2609,6 +2736,8 @@ func (a *DefaultAPIService) ListCollations(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return ListCollationsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCollationsExecute(r ApiListCollationsRequest) (*ListCollationsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2783,6 +2912,8 @@ Returns a list of compatibility levels for creating a new database
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListCompatibilitiesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCompatibilities(ctx context.Context, projectId string, region string, instanceId string) ApiListCompatibilitiesRequest {
 	return ApiListCompatibilitiesRequest{
@@ -2797,6 +2928,8 @@ func (a *DefaultAPIService) ListCompatibilities(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return ListCompatibilityResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCompatibilitiesExecute(r ApiListCompatibilitiesRequest) (*ListCompatibilityResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2971,6 +3104,8 @@ List all currently running restore jobs which are available for a specific insta
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListCurrentRunningRestoreJobsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCurrentRunningRestoreJobs(ctx context.Context, projectId string, region string, instanceId string) ApiListCurrentRunningRestoreJobsRequest {
 	return ApiListCurrentRunningRestoreJobsRequest{
@@ -2985,6 +3120,8 @@ func (a *DefaultAPIService) ListCurrentRunningRestoreJobs(ctx context.Context, p
 // Execute executes the request
 //
 //	@return ListCurrentRunningRestoreJobs
+//
+// Deprecated
 func (a *DefaultAPIService) ListCurrentRunningRestoreJobsExecute(r ApiListCurrentRunningRestoreJobsRequest) (*ListCurrentRunningRestoreJobs, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3180,6 +3317,8 @@ List available databases for an instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListDatabasesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListDatabases(ctx context.Context, projectId string, region string, instanceId string) ApiListDatabasesRequest {
 	return ApiListDatabasesRequest{
@@ -3194,6 +3333,8 @@ func (a *DefaultAPIService) ListDatabases(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return ListDatabasesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*ListDatabasesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3393,6 +3534,8 @@ Get all available flavors for a project.
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@return ApiListFlavorsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, region string) ApiListFlavorsRequest {
 	return ApiListFlavorsRequest{
@@ -3406,6 +3549,8 @@ func (a *DefaultAPIService) ListFlavors(ctx context.Context, projectId string, r
 // Execute executes the request
 //
 //	@return ListFlavorsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFlavorsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3615,6 +3760,8 @@ List all available instances for your project.
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@return ApiListInstancesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string, region string) ApiListInstancesRequest {
 	return ApiListInstancesRequest{
@@ -3628,6 +3775,8 @@ func (a *DefaultAPIService) ListInstances(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return ListInstancesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3807,6 +3956,8 @@ List available roles for an instance that can be assigned to a user
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListRolesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListRoles(ctx context.Context, projectId string, region string, instanceId string) ApiListRolesRequest {
 	return ApiListRolesRequest{
@@ -3821,6 +3972,8 @@ func (a *DefaultAPIService) ListRoles(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return ListRolesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*ListRolesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -3995,6 +4148,8 @@ Get available storages for a specific flavor
 	@param region The region which should be addressed
 	@param flavorId The id of an instance flavor.
 	@return ApiListStoragesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, region string, flavorId string) ApiListStoragesRequest {
 	return ApiListStoragesRequest{
@@ -4009,6 +4164,8 @@ func (a *DefaultAPIService) ListStorages(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return ListStoragesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListStoragesExecute(r ApiListStoragesRequest) (*ListStoragesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -4193,6 +4350,8 @@ List available users for an instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiListUsersRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, region string, instanceId string) ApiListUsersRequest {
 	return ApiListUsersRequest{
@@ -4207,6 +4366,8 @@ func (a *DefaultAPIService) ListUsers(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return ListUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -4385,6 +4546,8 @@ Get the sqlserver available versions for the project.
 	@param projectId The STACKIT project ID.
 	@param region The region which should be addressed
 	@return ApiListVersionsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, region string) ApiListVersionsRequest {
 	return ApiListVersionsRequest{
@@ -4398,6 +4561,8 @@ func (a *DefaultAPIService) ListVersions(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return ListVersionsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*ListVersionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -4580,6 +4745,8 @@ Update an available instance of a mssql database. No fields are required.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiPartialUpdateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiPartialUpdateInstanceRequest {
 	return ApiPartialUpdateInstanceRequest{
@@ -4592,6 +4759,7 @@ func (a *DefaultAPIService) PartialUpdateInstance(ctx context.Context, projectId
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) PartialUpdateInstanceExecute(r ApiPartialUpdateInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPatch
@@ -4762,6 +4930,8 @@ Reset an user from an specific instance.
 	@param instanceId The ID of the instance.
 	@param userId The ID of the user.
 	@return ApiResetUserRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, region string, instanceId string, userId int64) ApiResetUserRequest {
 	return ApiResetUserRequest{
@@ -4777,6 +4947,8 @@ func (a *DefaultAPIService) ResetUser(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return ResetUserResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ResetUserExecute(r ApiResetUserRequest) (*ResetUserResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -4961,6 +5133,8 @@ The request body defines the source
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiRestoreDatabaseFromBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) RestoreDatabaseFromBackup(ctx context.Context, projectId string, region string, instanceId string) ApiRestoreDatabaseFromBackupRequest {
 	return ApiRestoreDatabaseFromBackupRequest{
@@ -4973,6 +5147,7 @@ func (a *DefaultAPIService) RestoreDatabaseFromBackup(ctx context.Context, proje
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) RestoreDatabaseFromBackupExecute(r ApiRestoreDatabaseFromBackupRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPost
@@ -5143,6 +5318,8 @@ Trigger backup for a specific database
 	@param instanceId The ID of the instance.
 	@param databaseName The name of the database.
 	@return ApiTriggerBackupRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) TriggerBackup(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiTriggerBackupRequest {
 	return ApiTriggerBackupRequest{
@@ -5156,6 +5333,7 @@ func (a *DefaultAPIService) TriggerBackup(ctx context.Context, projectId string,
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) TriggerBackupExecute(r ApiTriggerBackupRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPost
@@ -5340,6 +5518,8 @@ Trigger restore for a specific Database
 	@param instanceId The ID of the instance.
 	@param databaseName The name of the database.
 	@return ApiTriggerRestoreRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) TriggerRestore(ctx context.Context, projectId string, region string, instanceId string, databaseName string) ApiTriggerRestoreRequest {
 	return ApiTriggerRestoreRequest{
@@ -5353,6 +5533,7 @@ func (a *DefaultAPIService) TriggerRestore(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) TriggerRestoreExecute(r ApiTriggerRestoreRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPost
@@ -5539,6 +5720,8 @@ UpdateInstance Update Instance
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiUpdateInstanceRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceRequest {
 	return ApiUpdateInstanceRequest{
@@ -5551,6 +5734,7 @@ func (a *DefaultAPIService) UpdateInstance(ctx context.Context, projectId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) error {
 	var (
 		localVarHTTPMethod = http.MethodPut
@@ -5726,6 +5910,8 @@ Toggle the deletion protection for an instance.
 	@param region The region which should be addressed
 	@param instanceId The ID of the instance.
 	@return ApiUpdateInstanceProtectionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateInstanceProtection(ctx context.Context, projectId string, region string, instanceId string) ApiUpdateInstanceProtectionRequest {
 	return ApiUpdateInstanceProtectionRequest{
@@ -5740,6 +5926,8 @@ func (a *DefaultAPIService) UpdateInstanceProtection(ctx context.Context, projec
 // Execute executes the request
 //
 //	@return UpdateInstanceProtectionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateInstanceProtectionExecute(r ApiUpdateInstanceProtectionRequest) (*UpdateInstanceProtectionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

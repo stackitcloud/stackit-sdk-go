@@ -1,5 +1,25 @@
 ## Release (2026-MM-DD)
 
+- `registry`:
+  - [v0.3.0](services/registry/CHANGELOG.md#v030)
+    - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
+    - **Feature:** Add `ErrorDescription` information to `CreateArtifactoryWaitHandler` and `UpdateArtifactoryWaitHandler`
+- `sca`:
+  - [v0.3.0](services/sca/CHANGELOG.md#v030)
+    - `v1alphaapi`: Align package to latest API specification
+- `ufw`:
+  - [v0.3.0](services/ufw/CHANGELOG.md#v030)
+    - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
+    - **Feature:** Add `RemoteSecurityGroupName` field to `RuleResponse`
+- `vpn`:
+  - [v0.16.0](services/vpn/CHANGELOG.md#v0160)
+    - `v1api`:
+      - **Feature:** Add `LocalTS` and `RemoteTS` field of type `[]string` to `Phase2Status`
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
+
+## Release (2026-11-11)
+
 - `alb`:
   - [v0.20.0](services/alb/CHANGELOG.md#v0200)
     - `v2api`:
@@ -38,6 +58,10 @@
   - [v0.5.3](services/cost/CHANGELOG.md#v053)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `dns`:
+  - [v0.26.0](services/dns/CHANGELOG.md#v0260)
+    - `v1api`:
+      - **Feature:** New `LookupDomain` operation to look up a domain on the STACKIT DNS resolvers, with new models `LookupDomainPayload`, `LookupDomainResponse`, `LookupResult` and `LookupRecord` and enums `LookupDomainPayloadType`, `LookupDomainPayloadRecordType` and `LookupRecordType`
+      - **Feature:** New `FlushDomain` operation to flush the cache for a domain on the STACKIT DNS resolvers, with new models `FlushDomainPayload` and `FlushDomainResponse` and enum `FlushDomainPayloadType`
   - [v0.25.0](services/dns/CHANGELOG.md#v0250)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.24.0](services/dns/CHANGELOG.md#v0240)
@@ -60,10 +84,17 @@
   - [v0.14.0](services/edge/CHANGELOG.md#v0140)
     - **Breaking change**: Removal of deprecated compatibility layer previously found in the root of the SDK module
 - `functions`:
+  - [v0.2.0](services/functions/CHANGELOG.md#v020)
+    - `v1alphaapi`:
+      - **Feature**: New `MaxScale` field in `ResourceLimits` model
+      - **Breaking Change**: Renamed API method `CreateFunctionRevision` to `CreateRevision` and models `CreateFunctionRevisionPayload`/`CreateFunctionRevisionPayloadState` to `CreateRevisionPayload`/`CreateRevisionPayloadState`
   - [v0.1.0](services/functions/CHANGELOG.md#v010)
     - `v1alphaapi`:
       - **Feature**: initial release
 - `git`:
+  - [v0.16.0](services/git/CHANGELOG.md#v0160)
+    - `v1betaapi`:
+      - **Feature:** Add wait handler `UpdateGitInstanceWaitHandler`
   - [v0.15.0](services/git/CHANGELOG.md#v0150)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -164,10 +195,21 @@
   - [v0.13.2](services/modelserving/CHANGELOG.md#v0132)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `mongodbflex`:
+  - [v1.14.0](services/mongodbflex/CHANGELOG.md#v1140)
+    - `v1api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v1 API is planned for 2027-09-20, migrate to `v2api`
+      - **Breaking change:** `Storage` field of `UpdateInstancePayload` and `PartialUpdateInstancePayload` changed from type `Storage` to the new type `StorageUpdate`, `NewUpdateInstancePayload` now expects a `StorageUpdate` parameter
+      - **Deprecation:** `Class` field of `StorageUpdate` is deprecated. Since November 2026, the API rejects requests that attempt to modify the storage class.
+    - `v2api`:
+      - **Breaking change:** `Storage` field of `UpdateInstancePayload` and `PartialUpdateInstancePayload` changed from type `Storage` to the new type `StorageUpdate`, `NewUpdateInstancePayload` now expects a `StorageUpdate` parameter. Note that the `Size` field of `StorageUpdate` is of type `*int32` (`Storage.Size` is `*int64`)
+      - **Deprecation:** `Class` field of `StorageUpdate` is deprecated. Since November 2026, the API rejects requests that attempt to modify the storage class.
   - [v1.13.0](services/mongodbflex/CHANGELOG.md#v1130)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `objectstorage`:
+  - [v1.13.0](services/objectstorage/CHANGELOG.md#v1130)
+    - `v1api`:
+      - **Deprecation:** The `v1api` is deprecated and is planned to retire in one year. Use the regional v2 api.
   - [v1.12.0](services/objectstorage/CHANGELOG.md#v1120)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v1.11.0](services/objectstorage/CHANGELOG.md#v1110)
@@ -226,9 +268,16 @@
     - `v2api`:
       - **Breaking Change:** Removed `rabbitmq_tracing` enum value from `InstanceParametersPluginsInner`
 - `registry`:
+  - [v0.2.0](services/registry/CHANGELOG.md#v020)
+    - `v1api`:
+      - **Feature:** Add `ErrorDescription` field to `Artifactory` which describes the reason for the error state
   - [v0.1.0](services/registry/CHANGELOG.md#v010)
     - **New**: New package which can be used for communication with the registry v1 API
 - `resourcemanager`:
+  - [v0.28.0](services/resourcemanager/CHANGELOG.md#v0280)
+    - `v0api`:
+      - Update regex of the `Name` field in the model structs `CreateFolderPayload`, `CreateProjectPayload`, `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload`, `PartialUpdateProjectPayload`
+      - **Feature:** The `Members` field is now optional (previously required) in the `CreateProjectPayload` model struct
   - [v0.27.0](services/resourcemanager/CHANGELOG.md#v0270)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
   - [v0.26.1](services/resourcemanager/CHANGELOG.md#v0261)
@@ -299,6 +348,12 @@
   - [v0.11.3](services/sfs/CHANGELOG.md#v0113)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `ske`:
+  - [v1.23.0](services/ske/CHANGELOG.md#v1230)
+    - `v2api`:
+      - **Feature:** Add model structs `CiliumConfig` and `CiliumHubble` (private preview)
+      - **Feature:** Add model struct `MachineImageVersionCRI`
+      - **Feature:** Add field `Cilium` to model struct `CNI`
+      - **Breaking change:** Changed type of field `Cri` in model struct `MachineImageVersion` from `[]CRI` to `[]MachineImageVersionCRI`
   - [v1.22.0](services/ske/CHANGELOG.md#v1220)
     - **Breaking change:** Removal of deprecated SDK layer in the root of the module.
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
@@ -310,6 +365,17 @@
       - **Feature:** Add fields `PodAddressRanges` and `ServiceAddressRanges` to `Network` to configure pod and service CIDRs at cluster creation
       - **Feature:** Add fields `NodeAddressRanges` and `ServiceAddressRanges` to `ClusterStatus`
 - `sqlserverflex`:
+  - [v1.20.0](services/sqlserverflex/CHANGELOG.md#v1200)
+    - `v1api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v1 API is planned for 2027-09-20, migrate to `v3api`
+    - `v2api`:
+      - **Deprecation:** All operations are now marked as deprecated. End-of-life of the v2 API is planned for 2027-09-20, migrate to `v3api`
+    - `v3alpha1api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
+    - `v3beta1api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
+    - `v3beta2api`:
+      - **Deprecation:** All operations are now marked as deprecated, migrate to `v3api`
   - [v1.19.0](services/sqlserverflex/CHANGELOG.md#v1190)
     - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
     - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`

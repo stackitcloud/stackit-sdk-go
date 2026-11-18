@@ -1,7 +1,7 @@
 /*
 [DEPRECATED] STACKIT MongoDB Service API
 
-## ⚠️ WARNING: THIS API IS DEPRECATED  Use V2
+> **⚠️ DEPRECATION NOTICE** >  > **Version 1 of this API is deprecated but remains fully supported.** > We strongly recommend migrating to [Version 2 (v2)](https://docs.api.stackit.cloud/documentation/mongodb-flex-service/version/v2) for all new integrations to take advantage of the latest features. >  > End-of-life (EOL) for v2 is planned for 2027-09-20.
 
 API version: 1.0.0
 Contact: support@stackit.cloud
@@ -29,7 +29,7 @@ type UpdateInstancePayload struct {
 	Name                 string             `json:"name" validate:"regexp=^[A-Za-z_][A-Za-z0-9-_]{1\\,61}[A-Za-z0-9_]$"`
 	Options              map[string]string  `json:"options"`
 	Replicas             int32              `json:"replicas"`
-	Storage              Storage            `json:"storage"`
+	Storage              StorageUpdate      `json:"storage"`
 	Version              string             `json:"version"`
 	AdditionalProperties map[string]interface{}
 }
@@ -40,7 +40,7 @@ type _UpdateInstancePayload UpdateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstancePayload(acl ACL, backupSchedule string, flavorId string, name string, options map[string]string, replicas int32, storage Storage, version string) *UpdateInstancePayload {
+func NewUpdateInstancePayload(acl ACL, backupSchedule string, flavorId string, name string, options map[string]string, replicas int32, storage StorageUpdate, version string) *UpdateInstancePayload {
 	this := UpdateInstancePayload{}
 	this.Acl = acl
 	this.BackupSchedule = backupSchedule
@@ -238,9 +238,9 @@ func (o *UpdateInstancePayload) SetReplicas(v int32) {
 }
 
 // GetStorage returns the Storage field value
-func (o *UpdateInstancePayload) GetStorage() Storage {
+func (o *UpdateInstancePayload) GetStorage() StorageUpdate {
 	if o == nil {
-		var ret Storage
+		var ret StorageUpdate
 		return ret
 	}
 
@@ -249,7 +249,7 @@ func (o *UpdateInstancePayload) GetStorage() Storage {
 
 // GetStorageOk returns a tuple with the Storage field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePayload) GetStorageOk() (*Storage, bool) {
+func (o *UpdateInstancePayload) GetStorageOk() (*StorageUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -257,7 +257,7 @@ func (o *UpdateInstancePayload) GetStorageOk() (*Storage, bool) {
 }
 
 // SetStorage sets field value
-func (o *UpdateInstancePayload) SetStorage(v Storage) {
+func (o *UpdateInstancePayload) SetStorage(v StorageUpdate) {
 	o.Storage = v
 }
 

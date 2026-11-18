@@ -22,10 +22,10 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 type DefaultAPIServiceMock struct {
 	// CreateFunctionExecuteMock can be populated to implement the behavior of the CreateFunctionExecute function of this mock
 	CreateFunctionExecuteMock *func(r ApiCreateFunctionRequest) (*Function, error)
-	// CreateFunctionRevisionExecuteMock can be populated to implement the behavior of the CreateFunctionRevisionExecute function of this mock
-	CreateFunctionRevisionExecuteMock *func(r ApiCreateFunctionRevisionRequest) (*Revision, error)
 	// CreatePullCredentialExecuteMock can be populated to implement the behavior of the CreatePullCredentialExecute function of this mock
 	CreatePullCredentialExecuteMock *func(r ApiCreatePullCredentialRequest) (*PullCredential, error)
+	// CreateRevisionExecuteMock can be populated to implement the behavior of the CreateRevisionExecute function of this mock
+	CreateRevisionExecuteMock *func(r ApiCreateRevisionRequest) (*Revision, error)
 	// DeleteFunctionExecuteMock can be populated to implement the behavior of the DeleteFunctionExecute function of this mock
 	DeleteFunctionExecuteMock *func(r ApiDeleteFunctionRequest) error
 	// DeletePullCredentialExecuteMock can be populated to implement the behavior of the DeletePullCredentialExecute function of this mock
@@ -70,25 +70,6 @@ func (a DefaultAPIServiceMock) CreateFunctionExecute(r ApiCreateFunctionRequest)
 	return (*a.CreateFunctionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateFunctionRevision(ctx context.Context, projectId string, functionId string) ApiCreateFunctionRevisionRequest {
-	return ApiCreateFunctionRevisionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		functionId: functionId,
-	}
-}
-
-// CreateFunctionRevisionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateFunctionRevisionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateFunctionRevisionExecute(r ApiCreateFunctionRevisionRequest) (*Revision, error) {
-	if a.CreateFunctionRevisionExecuteMock == nil {
-		var localVarReturnValue *Revision
-		return localVarReturnValue, nil
-	}
-
-	return (*a.CreateFunctionRevisionExecuteMock)(r)
-}
-
 func (a DefaultAPIServiceMock) CreatePullCredential(ctx context.Context, projectId string) ApiCreatePullCredentialRequest {
 	return ApiCreatePullCredentialRequest{
 		ApiService: a,
@@ -105,6 +86,25 @@ func (a DefaultAPIServiceMock) CreatePullCredentialExecute(r ApiCreatePullCreden
 	}
 
 	return (*a.CreatePullCredentialExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateRevision(ctx context.Context, projectId string, functionId string) ApiCreateRevisionRequest {
+	return ApiCreateRevisionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		functionId: functionId,
+	}
+}
+
+// CreateRevisionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateRevisionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateRevisionExecute(r ApiCreateRevisionRequest) (*Revision, error) {
+	if a.CreateRevisionExecuteMock == nil {
+		var localVarReturnValue *Revision
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateRevisionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) DeleteFunction(ctx context.Context, projectId string, functionId string) ApiDeleteFunctionRequest {
