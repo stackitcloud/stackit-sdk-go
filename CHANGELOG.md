@@ -1,6 +1,9 @@
-
 ## Release (2026-MM-DD)
 
+- `registry`:
+  - [v0.3.0](services/registry/CHANGELOG.md#v030)
+    - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
+    - **Feature:** Add `ErrorDescription` information to `CreateArtifactoryWaitHandler` and `UpdateArtifactoryWaitHandler`
 - `sca`:
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
