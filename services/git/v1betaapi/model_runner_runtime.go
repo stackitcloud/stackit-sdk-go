@@ -21,6 +21,8 @@ var _ MappedNullable = &RunnerRuntime{}
 
 // RunnerRuntime Describes a STACKIT Git Runner runtime.
 type RunnerRuntime struct {
+	// Indicates the runner image architecture.
+	Arch string `json:"arch"`
 	// Indicates the availability of the runner label
 	Availability string `json:"availability"`
 	// Human-friendly description of the runtime and it's capabilities.
@@ -40,8 +42,9 @@ type _RunnerRuntime RunnerRuntime
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRunnerRuntime(availability string, description string, displayName string, id string, label string) *RunnerRuntime {
+func NewRunnerRuntime(arch string, availability string, description string, displayName string, id string, label string) *RunnerRuntime {
 	this := RunnerRuntime{}
+	this.Arch = arch
 	this.Availability = availability
 	this.Description = description
 	this.DisplayName = displayName
@@ -56,6 +59,30 @@ func NewRunnerRuntime(availability string, description string, displayName strin
 func NewRunnerRuntimeWithDefaults() *RunnerRuntime {
 	this := RunnerRuntime{}
 	return &this
+}
+
+// GetArch returns the Arch field value
+func (o *RunnerRuntime) GetArch() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Arch
+}
+
+// GetArchOk returns a tuple with the Arch field value
+// and a boolean to check if the value has been set.
+func (o *RunnerRuntime) GetArchOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Arch, true
+}
+
+// SetArch sets field value
+func (o *RunnerRuntime) SetArch(v string) {
+	o.Arch = v
 }
 
 // GetAvailability returns the Availability field value
@@ -188,6 +215,7 @@ func (o RunnerRuntime) MarshalJSON() ([]byte, error) {
 
 func (o RunnerRuntime) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["arch"] = o.Arch
 	toSerialize["availability"] = o.Availability
 	toSerialize["description"] = o.Description
 	toSerialize["display_name"] = o.DisplayName
@@ -206,6 +234,7 @@ func (o *RunnerRuntime) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"arch",
 		"availability",
 		"description",
 		"display_name",
@@ -240,6 +269,7 @@ func (o *RunnerRuntime) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "arch")
 		delete(additionalProperties, "availability")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "display_name")
