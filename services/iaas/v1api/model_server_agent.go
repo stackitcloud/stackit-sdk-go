@@ -20,8 +20,10 @@ var _ MappedNullable = &ServerAgent{}
 
 // ServerAgent STACKIT server agent options for a server.
 type ServerAgent struct {
-	// Configure the STACKIT server agent provisioning during the first boot of the server. Only works when booting from an images that supports the STACKIT server agent. When `false` the agent IS NOT installed. When `true` the agent IS installed. When its not set the result depend on the used image and its default provisioning setting.
-	Provisioned          *bool `json:"provisioned,omitempty"`
+	// Configure the STACKIT server agent provisioning during the first boot of the server. When `false`, the agent is not installed. When `true`, the agent is installed. Setting it to `true` when booting from an image requires an image that supports the agent; otherwise, the request is rejected. If omitted when booting from an image, the image default (`provisionByDefault`) applies.
+	Provisioned *bool `json:"provisioned,omitempty"`
+	// Configuration property that controls whether active virtual machine monitoring is enabled for a server instance. When `true` it allows the platform to collect metrics, monitor system health, and track guest-level performance on the VM. It operates as a dependent option - meaning `vmMonitoring` cannot be active unless the main server agent is also enabled.
+	VmMonitoring         *bool `json:"vmMonitoring,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,6 +78,38 @@ func (o *ServerAgent) SetProvisioned(v bool) {
 	o.Provisioned = &v
 }
 
+// GetVmMonitoring returns the VmMonitoring field value if set, zero value otherwise.
+func (o *ServerAgent) GetVmMonitoring() bool {
+	if o == nil || IsNil(o.VmMonitoring) {
+		var ret bool
+		return ret
+	}
+	return *o.VmMonitoring
+}
+
+// GetVmMonitoringOk returns a tuple with the VmMonitoring field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerAgent) GetVmMonitoringOk() (*bool, bool) {
+	if o == nil || IsNil(o.VmMonitoring) {
+		return nil, false
+	}
+	return o.VmMonitoring, true
+}
+
+// HasVmMonitoring returns a boolean if a field has been set.
+func (o *ServerAgent) HasVmMonitoring() bool {
+	if o != nil && !IsNil(o.VmMonitoring) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmMonitoring gets a reference to the given bool and assigns it to the VmMonitoring field.
+func (o *ServerAgent) SetVmMonitoring(v bool) {
+	o.VmMonitoring = &v
+}
+
 func (o ServerAgent) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -88,6 +122,9 @@ func (o ServerAgent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Provisioned) {
 		toSerialize["provisioned"] = o.Provisioned
+	}
+	if !IsNil(o.VmMonitoring) {
+		toSerialize["vmMonitoring"] = o.VmMonitoring
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -112,6 +149,7 @@ func (o *ServerAgent) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "provisioned")
+		delete(additionalProperties, "vmMonitoring")
 		o.AdditionalProperties = additionalProperties
 	}
 
