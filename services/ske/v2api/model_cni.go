@@ -17,10 +17,10 @@ import (
 // checks if the CNI type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CNI{}
 
-// CNI CNI to use for the cluster. Only one type of CNI can be used. The type of CNI is immutable after creation.  Defaults to calico.
+// CNI CNI to use for the cluster. Only one type of CNI can be used. The type of CNI is immutable after creation. Defaults to calico
 type CNI struct {
+	// configuration options for the Calico CNI
 	Calico               map[string]interface{} `json:"calico,omitempty"`
-	Cilium               *CiliumConfig          `json:"cilium,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,38 +75,6 @@ func (o *CNI) SetCalico(v map[string]interface{}) {
 	o.Calico = v
 }
 
-// GetCilium returns the Cilium field value if set, zero value otherwise.
-func (o *CNI) GetCilium() CiliumConfig {
-	if o == nil || IsNil(o.Cilium) {
-		var ret CiliumConfig
-		return ret
-	}
-	return *o.Cilium
-}
-
-// GetCiliumOk returns a tuple with the Cilium field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CNI) GetCiliumOk() (*CiliumConfig, bool) {
-	if o == nil || IsNil(o.Cilium) {
-		return nil, false
-	}
-	return o.Cilium, true
-}
-
-// HasCilium returns a boolean if a field has been set.
-func (o *CNI) HasCilium() bool {
-	if o != nil && !IsNil(o.Cilium) {
-		return true
-	}
-
-	return false
-}
-
-// SetCilium gets a reference to the given CiliumConfig and assigns it to the Cilium field.
-func (o *CNI) SetCilium(v CiliumConfig) {
-	o.Cilium = &v
-}
-
 func (o CNI) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -119,9 +87,6 @@ func (o CNI) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Calico) {
 		toSerialize["calico"] = o.Calico
-	}
-	if !IsNil(o.Cilium) {
-		toSerialize["cilium"] = o.Cilium
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -146,7 +111,6 @@ func (o *CNI) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "calico")
-		delete(additionalProperties, "cilium")
 		o.AdditionalProperties = additionalProperties
 	}
 
