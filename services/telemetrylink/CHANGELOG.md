@@ -1,3 +1,9 @@
+## v0.7.0
+- `v1api`:
+  - **Feature:** Add backflush job operations (`CreateOrganizationBackflushJob`, `CreateFolderBackflushJob`, `CreateProjectBackflushJob`, `GetOrganizationBackflushJob`, `GetFolderBackflushJob`, `GetProjectBackflushJob`, `ListOrganizationBackflushJobs`, `ListFolderBackflushJobs`, `ListProjectBackflushJobs`) and related models
+  - **Feature:** Add waiters `CreateOrganizationBackflushJobWaitHandler`, `CreateFolderBackflushJobWaitHandler` and `CreateProjectBackflushJobWaitHandler`
+  - **Feature:** Add optional `ResourceLabels` field to `CreateOrUpdateOrganizationTelemetryLinkPayload`, `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateProjectTelemetryLinkPayload`, `PartialUpdateOrganizationTelemetryLinkPayload`, `PartialUpdateFolderTelemetryLinkPayload`, `PartialUpdateProjectTelemetryLinkPayload` and `TelemetryLinkResponse`
+
 ## v0.6.0
 - `v1api`:
   - **Breaking Change:** `Enabled` field of `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateOrganizationTelemetryLinkPayload` and `CreateOrUpdateProjectTelemetryLinkPayload` changed from `bool` to `*bool` and is no longer required (defaults to `true`). `NewCreateOrUpdate*TelemetryLinkPayload` constructors drop the `enabled` param

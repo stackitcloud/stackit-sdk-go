@@ -9,6 +9,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	telemetrylink "github.com/stackitcloud/stackit-sdk-go/services/telemetrylink/v1api"
 )
 
@@ -813,4 +814,80 @@ func TestDeleteProjectTelemetryLinkWaitHandler(t *testing.T) {
 			})
 		})
 	}
+}
+
+type backflushMockSettings struct {
+	getFails      bool
+	resourceState telemetrylink.BackflushJobResponseStatus
+}
+
+func newBackflushAPIMock(settings backflushMockSettings) telemetrylink.DefaultAPI {
+	get := func() (*telemetrylink.BackflushJobResponse, error) {
+		if settings.getFails {
+			return nil, &oapierror.GenericOpenAPIError{StatusCode: 500}
+		}
+		return &telemetrylink.BackflushJobResponse{Status: settings.resourceState}, nil
+	}
+	return &telemetrylink.DefaultAPIServiceMock{
+		GetOrganizationBackflushJobExecuteMock: utils.Ptr(func(_ telemetrylink.ApiGetOrganizationBackflushJobRequest) (*telemetrylink.BackflushJobResponse, error) {
+			return get()
+		}),
+		GetFolderBackflushJobExecuteMock: utils.Ptr(func(_ telemetrylink.ApiGetFolderBackflushJobRequest) (*telemetrylink.BackflushJobResponse, error) {
+			return get()
+		}),
+		GetProjectBackflushJobExecuteMock: utils.Ptr(func(_ telemetrylink.ApiGetProjectBackflushJobRequest) (*telemetrylink.BackflushJobResponse, error) {
+			return get()
+		}),
+	}
+}
+
+type createBackflushJobHandler func(ctx context.Context, a telemetrylink.DefaultAPI, id, region, backflushJobId string) *wait.AsyncActionHandler[telemetrylink.BackflushJobResponse]
+
+func testCreateBackflushJobWaitHandler(t *testing.T, newHandler createBackflushJobHandler) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetrylink.BackflushJobResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{desc: "active", resourceState: telemetrylink.BACKFLUSHJOBRESPONSESTATUS_ACTIVE, wantResp: true},
+		{desc: "complete", resourceState: telemetrylink.BACKFLUSHJOBRESPONSESTATUS_COMPLETE, wantResp: true},
+		{desc: "failed", resourceState: telemetrylink.BACKFLUSHJOBRESPONSESTATUS_FAILED, wantErr: true, wantResp: true},
+		{desc: "deleting", resourceState: telemetrylink.BACKFLUSHJOBRESPONSESTATUS_DELETING, wantErr: true, wantResp: true},
+		{desc: "get_fails", getFails: true, wantErr: true},
+		{desc: "timeout", resourceState: telemetrylink.BACKFLUSHJOBRESPONSESTATUS_RECONCILING, wantErr: true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newBackflushAPIMock(backflushMockSettings{getFails: tt.getFails, resourceState: tt.resourceState})
+
+				handler := newHandler(context.Background(), apiClient, "id", "eu01", "job-id")
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !tt.wantErr {
+					want := &telemetrylink.BackflushJobResponse{Status: tt.resourceState}
+					if !cmp.Equal(gotRes, want) {
+						t.Fatalf("handler gotRes = %v, want %v", gotRes, want)
+					}
+				}
+			})
+		})
+	}
+}
+
+func TestCreateOrganizationBackflushJobWaitHandler(t *testing.T) {
+	testCreateBackflushJobWaitHandler(t, CreateOrganizationBackflushJobWaitHandler)
+}
+
+func TestCreateFolderBackflushJobWaitHandler(t *testing.T) {
+	testCreateBackflushJobWaitHandler(t, CreateFolderBackflushJobWaitHandler)
+}
+
+func TestCreateProjectBackflushJobWaitHandler(t *testing.T) {
+	testCreateBackflushJobWaitHandler(t, CreateProjectBackflushJobWaitHandler)
 }

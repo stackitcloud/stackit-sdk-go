@@ -7,6 +7,12 @@
 - `sca`:
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
+- `telemetrylink`:
+  - [v0.7.0](services/telemetrylink/CHANGELOG.md#v070)
+    - `v1api`:
+      - **Feature:** Add backflush job operations (`CreateOrganizationBackflushJob`, `CreateFolderBackflushJob`, `CreateProjectBackflushJob`, `GetOrganizationBackflushJob`, `GetFolderBackflushJob`, `GetProjectBackflushJob`, `ListOrganizationBackflushJobs`, `ListFolderBackflushJobs`, `ListProjectBackflushJobs`) and related models
+      - **Feature:** Add waiters `CreateOrganizationBackflushJobWaitHandler`, `CreateFolderBackflushJobWaitHandler` and `CreateProjectBackflushJobWaitHandler`
+      - **Feature:** Add optional `ResourceLabels` field to `CreateOrUpdateOrganizationTelemetryLinkPayload`, `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateProjectTelemetryLinkPayload`, `PartialUpdateOrganizationTelemetryLinkPayload`, `PartialUpdateFolderTelemetryLinkPayload`, `PartialUpdateProjectTelemetryLinkPayload` and `TelemetryLinkResponse`
 - `ufw`:
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
