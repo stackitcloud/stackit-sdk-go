@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -32,7 +32,7 @@ type Instance struct {
 	// A user chosen name to distinguish multiple secrets manager instances.
 	Name string `json:"name"`
 	// The number of secrets currently stored inside of the instance. This value will be updated once per hour.
-	SecretCount int32 `json:"secretCount"`
+	SecretCount int64 `json:"secretCount"`
 	// The name of the secrets engine.
 	SecretsEngine string `json:"secretsEngine"`
 	// The current state of the Secrets Manager instance.
@@ -48,7 +48,7 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(apiUrl string, creationStartDate string, id string, name string, secretCount int32, secretsEngine string, state string) *Instance {
+func NewInstance(apiUrl string, creationStartDate string, id string, name string, secretCount int64, secretsEngine string, state string) *Instance {
 	this := Instance{}
 	this.ApiUrl = apiUrl
 	this.CreationStartDate = creationStartDate
@@ -229,9 +229,9 @@ func (o *Instance) SetName(v string) {
 }
 
 // GetSecretCount returns the SecretCount field value
-func (o *Instance) GetSecretCount() int32 {
+func (o *Instance) GetSecretCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -240,7 +240,7 @@ func (o *Instance) GetSecretCount() int32 {
 
 // GetSecretCountOk returns a tuple with the SecretCount field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetSecretCountOk() (*int32, bool) {
+func (o *Instance) GetSecretCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -248,7 +248,7 @@ func (o *Instance) GetSecretCountOk() (*int32, bool) {
 }
 
 // SetSecretCount sets field value
-func (o *Instance) SetSecretCount(v int32) {
+func (o *Instance) SetSecretCount(v int64) {
 	o.SecretCount = v
 }
 
