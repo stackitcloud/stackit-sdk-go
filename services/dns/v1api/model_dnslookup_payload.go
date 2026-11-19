@@ -15,55 +15,55 @@ import (
 	"encoding/json"
 )
 
-// checks if the LookupDomainPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &LookupDomainPayload{}
+// checks if the DnslookupPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DnslookupPayload{}
 
-// LookupDomainPayload struct for LookupDomainPayload
-type LookupDomainPayload struct {
+// DnslookupPayload struct for DnslookupPayload
+type DnslookupPayload struct {
 	// Address is the domain name to look up
 	Address *string `json:"address,omitempty"`
 	// IncludeRawResponse indicates whether to include the raw DNS response in the result
-	IncludeRawResponse *bool                          `json:"includeRawResponse,omitempty"`
-	RecordType         *LookupDomainPayloadRecordType `json:"recordType,omitempty"`
+	IncludeRawResponse *bool                       `json:"includeRawResponse,omitempty"`
+	RecordType         *DnslookupPayloadRecordType `json:"recordType,omitempty"`
 	// Region optionally specifies a STACKIT region to scope the DNS lookup
-	Region               *string                  `json:"region,omitempty"`
-	Type                 *LookupDomainPayloadType `json:"type,omitempty"`
+	Region               *string               `json:"region,omitempty"`
+	Type                 *DnslookupPayloadType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _LookupDomainPayload LookupDomainPayload
+type _DnslookupPayload DnslookupPayload
 
-// NewLookupDomainPayload instantiates a new LookupDomainPayload object
+// NewDnslookupPayload instantiates a new DnslookupPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLookupDomainPayload() *LookupDomainPayload {
-	this := LookupDomainPayload{}
+func NewDnslookupPayload() *DnslookupPayload {
+	this := DnslookupPayload{}
 	var includeRawResponse bool = false
 	this.IncludeRawResponse = &includeRawResponse
-	var recordType LookupDomainPayloadRecordType = LOOKUPDOMAINPAYLOADRECORDTYPE_A
+	var recordType DnslookupPayloadRecordType = DNSLOOKUPPAYLOADRECORDTYPE_A
 	this.RecordType = &recordType
-	var types LookupDomainPayloadType = LOOKUPDOMAINPAYLOADTYPE_ONE
+	var types DnslookupPayloadType = DNSLOOKUPPAYLOADTYPE_ONE
 	this.Type = &types
 	return &this
 }
 
-// NewLookupDomainPayloadWithDefaults instantiates a new LookupDomainPayload object
+// NewDnslookupPayloadWithDefaults instantiates a new DnslookupPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLookupDomainPayloadWithDefaults() *LookupDomainPayload {
-	this := LookupDomainPayload{}
+func NewDnslookupPayloadWithDefaults() *DnslookupPayload {
+	this := DnslookupPayload{}
 	var includeRawResponse bool = false
 	this.IncludeRawResponse = &includeRawResponse
-	var recordType LookupDomainPayloadRecordType = LOOKUPDOMAINPAYLOADRECORDTYPE_A
+	var recordType DnslookupPayloadRecordType = DNSLOOKUPPAYLOADRECORDTYPE_A
 	this.RecordType = &recordType
-	var types LookupDomainPayloadType = LOOKUPDOMAINPAYLOADTYPE_ONE
+	var types DnslookupPayloadType = DNSLOOKUPPAYLOADTYPE_ONE
 	this.Type = &types
 	return &this
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *LookupDomainPayload) GetAddress() string {
+func (o *DnslookupPayload) GetAddress() string {
 	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
@@ -73,7 +73,7 @@ func (o *LookupDomainPayload) GetAddress() string {
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainPayload) GetAddressOk() (*string, bool) {
+func (o *DnslookupPayload) GetAddressOk() (*string, bool) {
 	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
@@ -81,7 +81,7 @@ func (o *LookupDomainPayload) GetAddressOk() (*string, bool) {
 }
 
 // HasAddress returns a boolean if a field has been set.
-func (o *LookupDomainPayload) HasAddress() bool {
+func (o *DnslookupPayload) HasAddress() bool {
 	if o != nil && !IsNil(o.Address) {
 		return true
 	}
@@ -90,12 +90,12 @@ func (o *LookupDomainPayload) HasAddress() bool {
 }
 
 // SetAddress gets a reference to the given string and assigns it to the Address field.
-func (o *LookupDomainPayload) SetAddress(v string) {
+func (o *DnslookupPayload) SetAddress(v string) {
 	o.Address = &v
 }
 
 // GetIncludeRawResponse returns the IncludeRawResponse field value if set, zero value otherwise.
-func (o *LookupDomainPayload) GetIncludeRawResponse() bool {
+func (o *DnslookupPayload) GetIncludeRawResponse() bool {
 	if o == nil || IsNil(o.IncludeRawResponse) {
 		var ret bool
 		return ret
@@ -105,7 +105,7 @@ func (o *LookupDomainPayload) GetIncludeRawResponse() bool {
 
 // GetIncludeRawResponseOk returns a tuple with the IncludeRawResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainPayload) GetIncludeRawResponseOk() (*bool, bool) {
+func (o *DnslookupPayload) GetIncludeRawResponseOk() (*bool, bool) {
 	if o == nil || IsNil(o.IncludeRawResponse) {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *LookupDomainPayload) GetIncludeRawResponseOk() (*bool, bool) {
 }
 
 // HasIncludeRawResponse returns a boolean if a field has been set.
-func (o *LookupDomainPayload) HasIncludeRawResponse() bool {
+func (o *DnslookupPayload) HasIncludeRawResponse() bool {
 	if o != nil && !IsNil(o.IncludeRawResponse) {
 		return true
 	}
@@ -122,14 +122,14 @@ func (o *LookupDomainPayload) HasIncludeRawResponse() bool {
 }
 
 // SetIncludeRawResponse gets a reference to the given bool and assigns it to the IncludeRawResponse field.
-func (o *LookupDomainPayload) SetIncludeRawResponse(v bool) {
+func (o *DnslookupPayload) SetIncludeRawResponse(v bool) {
 	o.IncludeRawResponse = &v
 }
 
 // GetRecordType returns the RecordType field value if set, zero value otherwise.
-func (o *LookupDomainPayload) GetRecordType() LookupDomainPayloadRecordType {
+func (o *DnslookupPayload) GetRecordType() DnslookupPayloadRecordType {
 	if o == nil || IsNil(o.RecordType) {
-		var ret LookupDomainPayloadRecordType
+		var ret DnslookupPayloadRecordType
 		return ret
 	}
 	return *o.RecordType
@@ -137,7 +137,7 @@ func (o *LookupDomainPayload) GetRecordType() LookupDomainPayloadRecordType {
 
 // GetRecordTypeOk returns a tuple with the RecordType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainPayload) GetRecordTypeOk() (*LookupDomainPayloadRecordType, bool) {
+func (o *DnslookupPayload) GetRecordTypeOk() (*DnslookupPayloadRecordType, bool) {
 	if o == nil || IsNil(o.RecordType) {
 		return nil, false
 	}
@@ -145,7 +145,7 @@ func (o *LookupDomainPayload) GetRecordTypeOk() (*LookupDomainPayloadRecordType,
 }
 
 // HasRecordType returns a boolean if a field has been set.
-func (o *LookupDomainPayload) HasRecordType() bool {
+func (o *DnslookupPayload) HasRecordType() bool {
 	if o != nil && !IsNil(o.RecordType) {
 		return true
 	}
@@ -153,13 +153,13 @@ func (o *LookupDomainPayload) HasRecordType() bool {
 	return false
 }
 
-// SetRecordType gets a reference to the given LookupDomainPayloadRecordType and assigns it to the RecordType field.
-func (o *LookupDomainPayload) SetRecordType(v LookupDomainPayloadRecordType) {
+// SetRecordType gets a reference to the given DnslookupPayloadRecordType and assigns it to the RecordType field.
+func (o *DnslookupPayload) SetRecordType(v DnslookupPayloadRecordType) {
 	o.RecordType = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *LookupDomainPayload) GetRegion() string {
+func (o *DnslookupPayload) GetRegion() string {
 	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
@@ -169,7 +169,7 @@ func (o *LookupDomainPayload) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainPayload) GetRegionOk() (*string, bool) {
+func (o *DnslookupPayload) GetRegionOk() (*string, bool) {
 	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
@@ -177,7 +177,7 @@ func (o *LookupDomainPayload) GetRegionOk() (*string, bool) {
 }
 
 // HasRegion returns a boolean if a field has been set.
-func (o *LookupDomainPayload) HasRegion() bool {
+func (o *DnslookupPayload) HasRegion() bool {
 	if o != nil && !IsNil(o.Region) {
 		return true
 	}
@@ -186,14 +186,14 @@ func (o *LookupDomainPayload) HasRegion() bool {
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *LookupDomainPayload) SetRegion(v string) {
+func (o *DnslookupPayload) SetRegion(v string) {
 	o.Region = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LookupDomainPayload) GetType() LookupDomainPayloadType {
+func (o *DnslookupPayload) GetType() DnslookupPayloadType {
 	if o == nil || IsNil(o.Type) {
-		var ret LookupDomainPayloadType
+		var ret DnslookupPayloadType
 		return ret
 	}
 	return *o.Type
@@ -201,7 +201,7 @@ func (o *LookupDomainPayload) GetType() LookupDomainPayloadType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LookupDomainPayload) GetTypeOk() (*LookupDomainPayloadType, bool) {
+func (o *DnslookupPayload) GetTypeOk() (*DnslookupPayloadType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -209,7 +209,7 @@ func (o *LookupDomainPayload) GetTypeOk() (*LookupDomainPayloadType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *LookupDomainPayload) HasType() bool {
+func (o *DnslookupPayload) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -217,12 +217,12 @@ func (o *LookupDomainPayload) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given LookupDomainPayloadType and assigns it to the Type field.
-func (o *LookupDomainPayload) SetType(v LookupDomainPayloadType) {
+// SetType gets a reference to the given DnslookupPayloadType and assigns it to the Type field.
+func (o *DnslookupPayload) SetType(v DnslookupPayloadType) {
 	o.Type = &v
 }
 
-func (o LookupDomainPayload) MarshalJSON() ([]byte, error) {
+func (o DnslookupPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -230,7 +230,7 @@ func (o LookupDomainPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o LookupDomainPayload) ToMap() (map[string]interface{}, error) {
+func (o DnslookupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -255,16 +255,16 @@ func (o LookupDomainPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *LookupDomainPayload) UnmarshalJSON(data []byte) (err error) {
-	varLookupDomainPayload := _LookupDomainPayload{}
+func (o *DnslookupPayload) UnmarshalJSON(data []byte) (err error) {
+	varDnslookupPayload := _DnslookupPayload{}
 
-	err = json.Unmarshal(data, &varLookupDomainPayload)
+	err = json.Unmarshal(data, &varDnslookupPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = LookupDomainPayload(varLookupDomainPayload)
+	*o = DnslookupPayload(varDnslookupPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -280,38 +280,38 @@ func (o *LookupDomainPayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableLookupDomainPayload struct {
-	value *LookupDomainPayload
+type NullableDnslookupPayload struct {
+	value *DnslookupPayload
 	isSet bool
 }
 
-func (v NullableLookupDomainPayload) Get() *LookupDomainPayload {
+func (v NullableDnslookupPayload) Get() *DnslookupPayload {
 	return v.value
 }
 
-func (v *NullableLookupDomainPayload) Set(val *LookupDomainPayload) {
+func (v *NullableDnslookupPayload) Set(val *DnslookupPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLookupDomainPayload) IsSet() bool {
+func (v NullableDnslookupPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLookupDomainPayload) Unset() {
+func (v *NullableDnslookupPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLookupDomainPayload(val *LookupDomainPayload) *NullableLookupDomainPayload {
-	return &NullableLookupDomainPayload{value: val, isSet: true}
+func NewNullableDnslookupPayload(val *DnslookupPayload) *NullableDnslookupPayload {
+	return &NullableDnslookupPayload{value: val, isSet: true}
 }
 
-func (v NullableLookupDomainPayload) MarshalJSON() ([]byte, error) {
+func (v NullableDnslookupPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLookupDomainPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableDnslookupPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
