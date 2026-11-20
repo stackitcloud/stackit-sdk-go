@@ -22,9 +22,9 @@ var _ MappedNullable = &DestinationConfigOpenTelemetry{}
 type DestinationConfigOpenTelemetry struct {
 	BasicAuth *DestinationConfigOpenTelemetryBasicAuth `json:"basicAuth,omitempty"`
 	// A bearer token to authenticate at the OpenTelemetry URI.
-	BearerToken *string `json:"bearerToken,omitempty"`
+	BearerToken *string `json:"bearerToken,omitempty" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
 	// The URI for reaching the resource.
-	Uri                  string `json:"uri"`
+	Uri                  string `json:"uri" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
