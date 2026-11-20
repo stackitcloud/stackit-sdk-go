@@ -44,6 +44,12 @@ type DefaultAPIServiceMock struct {
 	ListDestinationsExecuteMock *func(r ApiListDestinationsRequest) (*ListDestinationsResponse, error)
 	// ListTelemetryRoutersExecuteMock can be populated to implement the behavior of the ListTelemetryRoutersExecute function of this mock
 	ListTelemetryRoutersExecuteMock *func(r ApiListTelemetryRoutersRequest) (*ListTelemetryRoutersResponse, error)
+	// PartialUpdateAccessTokenExecuteMock can be populated to implement the behavior of the PartialUpdateAccessTokenExecute function of this mock
+	PartialUpdateAccessTokenExecuteMock *func(r ApiPartialUpdateAccessTokenRequest) (*UpdateAccessTokenResponse, error)
+	// PartialUpdateDestinationExecuteMock can be populated to implement the behavior of the PartialUpdateDestinationExecute function of this mock
+	PartialUpdateDestinationExecuteMock *func(r ApiPartialUpdateDestinationRequest) (*DestinationResponse, error)
+	// PartialUpdateTelemetryRouterExecuteMock can be populated to implement the behavior of the PartialUpdateTelemetryRouterExecute function of this mock
+	PartialUpdateTelemetryRouterExecuteMock *func(r ApiPartialUpdateTelemetryRouterRequest) (*TelemetryRouterResponse, error)
 	// UpdateAccessTokenExecuteMock can be populated to implement the behavior of the UpdateAccessTokenExecute function of this mock
 	UpdateAccessTokenExecuteMock *func(r ApiUpdateAccessTokenRequest) (*UpdateAccessTokenResponse, error)
 	// UpdateDestinationExecuteMock can be populated to implement the behavior of the UpdateDestinationExecute function of this mock
@@ -289,6 +295,68 @@ func (a DefaultAPIServiceMock) ListTelemetryRoutersExecute(r ApiListTelemetryRou
 	}
 
 	return (*a.ListTelemetryRoutersExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PartialUpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiPartialUpdateAccessTokenRequest {
+	return ApiPartialUpdateAccessTokenRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+		accessTokenId:     accessTokenId,
+	}
+}
+
+// PartialUpdateAccessTokenExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateAccessTokenExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PartialUpdateAccessTokenExecute(r ApiPartialUpdateAccessTokenRequest) (*UpdateAccessTokenResponse, error) {
+	if a.PartialUpdateAccessTokenExecuteMock == nil {
+		var localVarReturnValue *UpdateAccessTokenResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PartialUpdateAccessTokenExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PartialUpdateDestination(ctx context.Context, projectId string, regionId string, telemetryRouterId string, destinationId string) ApiPartialUpdateDestinationRequest {
+	return ApiPartialUpdateDestinationRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+		destinationId:     destinationId,
+	}
+}
+
+// PartialUpdateDestinationExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateDestinationExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PartialUpdateDestinationExecute(r ApiPartialUpdateDestinationRequest) (*DestinationResponse, error) {
+	if a.PartialUpdateDestinationExecuteMock == nil {
+		var localVarReturnValue *DestinationResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PartialUpdateDestinationExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PartialUpdateTelemetryRouter(ctx context.Context, projectId string, regionId string, telemetryRouterId string) ApiPartialUpdateTelemetryRouterRequest {
+	return ApiPartialUpdateTelemetryRouterRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		projectId:         projectId,
+		regionId:          regionId,
+		telemetryRouterId: telemetryRouterId,
+	}
+}
+
+// PartialUpdateTelemetryRouterExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateTelemetryRouterExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PartialUpdateTelemetryRouterExecute(r ApiPartialUpdateTelemetryRouterRequest) (*TelemetryRouterResponse, error) {
+	if a.PartialUpdateTelemetryRouterExecuteMock == nil {
+		var localVarReturnValue *TelemetryRouterResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PartialUpdateTelemetryRouterExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateAccessToken(ctx context.Context, projectId string, regionId string, telemetryRouterId string, accessTokenId string) ApiUpdateAccessTokenRequest {
