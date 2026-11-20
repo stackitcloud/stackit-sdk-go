@@ -26,8 +26,12 @@ type CreateDistributionPayload struct {
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps  []string           `json:"blockedIps,omitempty"`
 	CacheConfig *CacheConfigCreate `json:"cacheConfig,omitempty"`
+	// Configures a custom origin path to serve when the origin returns a 404 Not Found status (e.g. index.html or /404.html). Must not contain a URL scheme.
+	Custom404ErrorResponse *string `json:"custom404ErrorResponse,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration *string `json:"defaultCacheDuration,omitempty"`
+	// Configures the default root object served when a request targets the root path '/' of the distribution (e.g. index.html or /index.html). Must not contain a URL scheme.
+	DefaultRootObject *string `json:"defaultRootObject,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
 	ForwardHostHeader *bool `json:"forwardHostHeader,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
@@ -189,6 +193,38 @@ func (o *CreateDistributionPayload) SetCacheConfig(v CacheConfigCreate) {
 	o.CacheConfig = &v
 }
 
+// GetCustom404ErrorResponse returns the Custom404ErrorResponse field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetCustom404ErrorResponse() string {
+	if o == nil || IsNil(o.Custom404ErrorResponse) {
+		var ret string
+		return ret
+	}
+	return *o.Custom404ErrorResponse
+}
+
+// GetCustom404ErrorResponseOk returns a tuple with the Custom404ErrorResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetCustom404ErrorResponseOk() (*string, bool) {
+	if o == nil || IsNil(o.Custom404ErrorResponse) {
+		return nil, false
+	}
+	return o.Custom404ErrorResponse, true
+}
+
+// HasCustom404ErrorResponse returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasCustom404ErrorResponse() bool {
+	if o != nil && !IsNil(o.Custom404ErrorResponse) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustom404ErrorResponse gets a reference to the given string and assigns it to the Custom404ErrorResponse field.
+func (o *CreateDistributionPayload) SetCustom404ErrorResponse(v string) {
+	o.Custom404ErrorResponse = &v
+}
+
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise.
 func (o *CreateDistributionPayload) GetDefaultCacheDuration() string {
 	if o == nil || IsNil(o.DefaultCacheDuration) {
@@ -219,6 +255,38 @@ func (o *CreateDistributionPayload) HasDefaultCacheDuration() bool {
 // SetDefaultCacheDuration gets a reference to the given string and assigns it to the DefaultCacheDuration field.
 func (o *CreateDistributionPayload) SetDefaultCacheDuration(v string) {
 	o.DefaultCacheDuration = &v
+}
+
+// GetDefaultRootObject returns the DefaultRootObject field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetDefaultRootObject() string {
+	if o == nil || IsNil(o.DefaultRootObject) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultRootObject
+}
+
+// GetDefaultRootObjectOk returns a tuple with the DefaultRootObject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetDefaultRootObjectOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultRootObject) {
+		return nil, false
+	}
+	return o.DefaultRootObject, true
+}
+
+// HasDefaultRootObject returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasDefaultRootObject() bool {
+	if o != nil && !IsNil(o.DefaultRootObject) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRootObject gets a reference to the given string and assigns it to the DefaultRootObject field.
+func (o *CreateDistributionPayload) SetDefaultRootObject(v string) {
+	o.DefaultRootObject = &v
 }
 
 // GetForwardHostHeader returns the ForwardHostHeader field value if set, zero value otherwise.
@@ -585,8 +653,14 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CacheConfig) {
 		toSerialize["cacheConfig"] = o.CacheConfig
 	}
+	if !IsNil(o.Custom404ErrorResponse) {
+		toSerialize["custom404ErrorResponse"] = o.Custom404ErrorResponse
+	}
 	if !IsNil(o.DefaultCacheDuration) {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration
+	}
+	if !IsNil(o.DefaultRootObject) {
+		toSerialize["defaultRootObject"] = o.DefaultRootObject
 	}
 	if !IsNil(o.ForwardHostHeader) {
 		toSerialize["forwardHostHeader"] = o.ForwardHostHeader
@@ -667,7 +741,9 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "cacheConfig")
+		delete(additionalProperties, "custom404ErrorResponse")
 		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "defaultRootObject")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "intentId")
 		delete(additionalProperties, "labels")
