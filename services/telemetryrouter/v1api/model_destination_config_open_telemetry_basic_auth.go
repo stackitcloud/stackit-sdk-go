@@ -20,8 +20,8 @@ var _ MappedNullable = &DestinationConfigOpenTelemetryBasicAuth{}
 
 // DestinationConfigOpenTelemetryBasicAuth Basic auth to authenticate at the OpenTelemetry URI
 type DestinationConfigOpenTelemetryBasicAuth struct {
-	Password             string `json:"password"`
-	Username             string `json:"username"`
+	Password             string `json:"password" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
+	Username             string `json:"username" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
