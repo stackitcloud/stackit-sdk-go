@@ -20,30 +20,67 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
+	// CreateFolderBackflushJobExecuteMock can be populated to implement the behavior of the CreateFolderBackflushJobExecute function of this mock
+	CreateFolderBackflushJobExecuteMock *func(r ApiCreateFolderBackflushJobRequest) (*BackflushJobResponse, error)
 	// CreateOrUpdateFolderTelemetryLinkExecuteMock can be populated to implement the behavior of the CreateOrUpdateFolderTelemetryLinkExecute function of this mock
 	CreateOrUpdateFolderTelemetryLinkExecuteMock *func(r ApiCreateOrUpdateFolderTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 	// CreateOrUpdateOrganizationTelemetryLinkExecuteMock can be populated to implement the behavior of the CreateOrUpdateOrganizationTelemetryLinkExecute function of this mock
 	CreateOrUpdateOrganizationTelemetryLinkExecuteMock *func(r ApiCreateOrUpdateOrganizationTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 	// CreateOrUpdateProjectTelemetryLinkExecuteMock can be populated to implement the behavior of the CreateOrUpdateProjectTelemetryLinkExecute function of this mock
 	CreateOrUpdateProjectTelemetryLinkExecuteMock *func(r ApiCreateOrUpdateProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+	// CreateOrganizationBackflushJobExecuteMock can be populated to implement the behavior of the CreateOrganizationBackflushJobExecute function of this mock
+	CreateOrganizationBackflushJobExecuteMock *func(r ApiCreateOrganizationBackflushJobRequest) (*BackflushJobResponse, error)
+	// CreateProjectBackflushJobExecuteMock can be populated to implement the behavior of the CreateProjectBackflushJobExecute function of this mock
+	CreateProjectBackflushJobExecuteMock *func(r ApiCreateProjectBackflushJobRequest) (*BackflushJobResponse, error)
 	// DeleteFolderTelemetryLinkExecuteMock can be populated to implement the behavior of the DeleteFolderTelemetryLinkExecute function of this mock
 	DeleteFolderTelemetryLinkExecuteMock *func(r ApiDeleteFolderTelemetryLinkRequest) error
 	// DeleteOrganizationTelemetryLinkExecuteMock can be populated to implement the behavior of the DeleteOrganizationTelemetryLinkExecute function of this mock
 	DeleteOrganizationTelemetryLinkExecuteMock *func(r ApiDeleteOrganizationTelemetryLinkRequest) error
 	// DeleteProjectTelemetryLinkExecuteMock can be populated to implement the behavior of the DeleteProjectTelemetryLinkExecute function of this mock
 	DeleteProjectTelemetryLinkExecuteMock *func(r ApiDeleteProjectTelemetryLinkRequest) error
+	// GetFolderBackflushJobExecuteMock can be populated to implement the behavior of the GetFolderBackflushJobExecute function of this mock
+	GetFolderBackflushJobExecuteMock *func(r ApiGetFolderBackflushJobRequest) (*BackflushJobResponse, error)
 	// GetFolderTelemetryLinkExecuteMock can be populated to implement the behavior of the GetFolderTelemetryLinkExecute function of this mock
 	GetFolderTelemetryLinkExecuteMock *func(r ApiGetFolderTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+	// GetOrganizationBackflushJobExecuteMock can be populated to implement the behavior of the GetOrganizationBackflushJobExecute function of this mock
+	GetOrganizationBackflushJobExecuteMock *func(r ApiGetOrganizationBackflushJobRequest) (*BackflushJobResponse, error)
 	// GetOrganizationTelemetryLinkExecuteMock can be populated to implement the behavior of the GetOrganizationTelemetryLinkExecute function of this mock
 	GetOrganizationTelemetryLinkExecuteMock *func(r ApiGetOrganizationTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+	// GetProjectBackflushJobExecuteMock can be populated to implement the behavior of the GetProjectBackflushJobExecute function of this mock
+	GetProjectBackflushJobExecuteMock *func(r ApiGetProjectBackflushJobRequest) (*BackflushJobResponse, error)
 	// GetProjectTelemetryLinkExecuteMock can be populated to implement the behavior of the GetProjectTelemetryLinkExecute function of this mock
 	GetProjectTelemetryLinkExecuteMock *func(r ApiGetProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+	// ListFolderBackflushJobsExecuteMock can be populated to implement the behavior of the ListFolderBackflushJobsExecute function of this mock
+	ListFolderBackflushJobsExecuteMock *func(r ApiListFolderBackflushJobsRequest) (*ListBackflushJobsResponse, error)
+	// ListOrganizationBackflushJobsExecuteMock can be populated to implement the behavior of the ListOrganizationBackflushJobsExecute function of this mock
+	ListOrganizationBackflushJobsExecuteMock *func(r ApiListOrganizationBackflushJobsRequest) (*ListBackflushJobsResponse, error)
+	// ListProjectBackflushJobsExecuteMock can be populated to implement the behavior of the ListProjectBackflushJobsExecute function of this mock
+	ListProjectBackflushJobsExecuteMock *func(r ApiListProjectBackflushJobsRequest) (*ListBackflushJobsResponse, error)
 	// PartialUpdateFolderTelemetryLinkExecuteMock can be populated to implement the behavior of the PartialUpdateFolderTelemetryLinkExecute function of this mock
 	PartialUpdateFolderTelemetryLinkExecuteMock *func(r ApiPartialUpdateFolderTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 	// PartialUpdateOrganizationTelemetryLinkExecuteMock can be populated to implement the behavior of the PartialUpdateOrganizationTelemetryLinkExecute function of this mock
 	PartialUpdateOrganizationTelemetryLinkExecuteMock *func(r ApiPartialUpdateOrganizationTelemetryLinkRequest) (*TelemetryLinkResponse, error)
 	// PartialUpdateProjectTelemetryLinkExecuteMock can be populated to implement the behavior of the PartialUpdateProjectTelemetryLinkExecute function of this mock
 	PartialUpdateProjectTelemetryLinkExecuteMock *func(r ApiPartialUpdateProjectTelemetryLinkRequest) (*TelemetryLinkResponse, error)
+}
+
+func (a DefaultAPIServiceMock) CreateFolderBackflushJob(ctx context.Context, folderId string, regionId string) ApiCreateFolderBackflushJobRequest {
+	return ApiCreateFolderBackflushJobRequest{
+		ApiService: a,
+		ctx:        ctx,
+		folderId:   folderId,
+		regionId:   regionId,
+	}
+}
+
+// CreateFolderBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateFolderBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateFolderBackflushJobExecute(r ApiCreateFolderBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.CreateFolderBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateFolderBackflushJobExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) CreateOrUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiCreateOrUpdateFolderTelemetryLinkRequest {
@@ -103,6 +140,44 @@ func (a DefaultAPIServiceMock) CreateOrUpdateProjectTelemetryLinkExecute(r ApiCr
 	return (*a.CreateOrUpdateProjectTelemetryLinkExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) CreateOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string) ApiCreateOrganizationBackflushJobRequest {
+	return ApiCreateOrganizationBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+	}
+}
+
+// CreateOrganizationBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateOrganizationBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateOrganizationBackflushJobExecute(r ApiCreateOrganizationBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.CreateOrganizationBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateOrganizationBackflushJobExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateProjectBackflushJob(ctx context.Context, projectId string, regionId string) ApiCreateProjectBackflushJobRequest {
+	return ApiCreateProjectBackflushJobRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+// CreateProjectBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateProjectBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateProjectBackflushJobExecute(r ApiCreateProjectBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.CreateProjectBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateProjectBackflushJobExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) DeleteFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiDeleteFolderTelemetryLinkRequest {
 	return ApiDeleteFolderTelemetryLinkRequest{
 		ApiService: a,
@@ -157,6 +232,26 @@ func (a DefaultAPIServiceMock) DeleteProjectTelemetryLinkExecute(r ApiDeleteProj
 	return (*a.DeleteProjectTelemetryLinkExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) GetFolderBackflushJob(ctx context.Context, folderId string, regionId string, backflushJobId string) ApiGetFolderBackflushJobRequest {
+	return ApiGetFolderBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		folderId:       folderId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// GetFolderBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetFolderBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetFolderBackflushJobExecute(r ApiGetFolderBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.GetFolderBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetFolderBackflushJobExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) GetFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiGetFolderTelemetryLinkRequest {
 	return ApiGetFolderTelemetryLinkRequest{
 		ApiService: a,
@@ -174,6 +269,26 @@ func (a DefaultAPIServiceMock) GetFolderTelemetryLinkExecute(r ApiGetFolderTelem
 	}
 
 	return (*a.GetFolderTelemetryLinkExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetOrganizationBackflushJob(ctx context.Context, organizationId string, regionId string, backflushJobId string) ApiGetOrganizationBackflushJobRequest {
+	return ApiGetOrganizationBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// GetOrganizationBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetOrganizationBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetOrganizationBackflushJobExecute(r ApiGetOrganizationBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.GetOrganizationBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetOrganizationBackflushJobExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetOrganizationTelemetryLink(ctx context.Context, organizationId string, regionId string) ApiGetOrganizationTelemetryLinkRequest {
@@ -195,6 +310,26 @@ func (a DefaultAPIServiceMock) GetOrganizationTelemetryLinkExecute(r ApiGetOrgan
 	return (*a.GetOrganizationTelemetryLinkExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) GetProjectBackflushJob(ctx context.Context, projectId string, regionId string, backflushJobId string) ApiGetProjectBackflushJobRequest {
+	return ApiGetProjectBackflushJobRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		regionId:       regionId,
+		backflushJobId: backflushJobId,
+	}
+}
+
+// GetProjectBackflushJobExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetProjectBackflushJobExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetProjectBackflushJobExecute(r ApiGetProjectBackflushJobRequest) (*BackflushJobResponse, error) {
+	if a.GetProjectBackflushJobExecuteMock == nil {
+		var localVarReturnValue *BackflushJobResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetProjectBackflushJobExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) GetProjectTelemetryLink(ctx context.Context, projectId string, regionId string) ApiGetProjectTelemetryLinkRequest {
 	return ApiGetProjectTelemetryLinkRequest{
 		ApiService: a,
@@ -212,6 +347,63 @@ func (a DefaultAPIServiceMock) GetProjectTelemetryLinkExecute(r ApiGetProjectTel
 	}
 
 	return (*a.GetProjectTelemetryLinkExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListFolderBackflushJobs(ctx context.Context, folderId string, regionId string) ApiListFolderBackflushJobsRequest {
+	return ApiListFolderBackflushJobsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		folderId:   folderId,
+		regionId:   regionId,
+	}
+}
+
+// ListFolderBackflushJobsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListFolderBackflushJobsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListFolderBackflushJobsExecute(r ApiListFolderBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	if a.ListFolderBackflushJobsExecuteMock == nil {
+		var localVarReturnValue *ListBackflushJobsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListFolderBackflushJobsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListOrganizationBackflushJobs(ctx context.Context, organizationId string, regionId string) ApiListOrganizationBackflushJobsRequest {
+	return ApiListOrganizationBackflushJobsRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
+		regionId:       regionId,
+	}
+}
+
+// ListOrganizationBackflushJobsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListOrganizationBackflushJobsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListOrganizationBackflushJobsExecute(r ApiListOrganizationBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	if a.ListOrganizationBackflushJobsExecuteMock == nil {
+		var localVarReturnValue *ListBackflushJobsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListOrganizationBackflushJobsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) ListProjectBackflushJobs(ctx context.Context, projectId string, regionId string) ApiListProjectBackflushJobsRequest {
+	return ApiListProjectBackflushJobsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+// ListProjectBackflushJobsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListProjectBackflushJobsExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListProjectBackflushJobsExecute(r ApiListProjectBackflushJobsRequest) (*ListBackflushJobsResponse, error) {
+	if a.ListProjectBackflushJobsExecuteMock == nil {
+		var localVarReturnValue *ListBackflushJobsResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListProjectBackflushJobsExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) PartialUpdateFolderTelemetryLink(ctx context.Context, folderId string, regionId string) ApiPartialUpdateFolderTelemetryLinkRequest {
