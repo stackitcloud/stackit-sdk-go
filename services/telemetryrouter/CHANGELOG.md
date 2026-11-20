@@ -1,3 +1,15 @@
+## v0.7.0
+  - `v1api`:
+    - **Feature:** New `PartialUpdateTelemetryRouter`, `PartialUpdateDestination`, and `PartialUpdateAccessToken` operations
+    - **Feature:** New waiters `PartialUpdateTelemetryRouterWaitHandler`, `PartialUpdateDestinationWaitHandler`, and `PartialUpdateAccessTokenWaitHandler`
+    - **Feature:** Add `DestinationCount` field to `TelemetryRouterResponse` to get the number of destinations TelemetryRouter has
+    - **Feature:** Add `ResourceLabels` field to `CreateTelemetryRouterPayload`, `UpdateTelemetryRouterPayload`, `PartialUpdateTelemetryRouterPayload` and `TelemetryRouterResponse`
+    - **Breaking change:** Add regex validation to the `Key` field of `ConfigFilterAttributes`, which now must be non-empty and must not contain control characters
+    - **Breaking change:** Add regex validation to the `BearerToken` and `Uri` fields of `DestinationConfigOpenTelemetry`, which now must be non-empty and must not contain control characters
+    - **Breaking change:** Add regex validation to the `Username` and `Password` fields of `DestinationConfigOpenTelemetryBasicAuth`, which now must be non-empty and must not contain control characters
+    - **Breaking change:** Add regex validation to the `Bucket` and `Endpoint` fields of `DestinationConfigS3`: `Bucket` may only contain lowercase letters, digits and hyphens, `Endpoint` must be non-empty and must not contain control characters
+    - **Breaking change:** Add regex validation to the `Id` and `Secret` fields of `DestinationConfigS3AccessKey`, which now must be non-empty and must not contain control characters
+
 ## v0.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 

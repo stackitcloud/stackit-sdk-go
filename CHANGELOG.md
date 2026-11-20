@@ -7,6 +7,18 @@
 - `sca`:
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
+- `telemetryrouter`:
+  - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
+    - `v1api`:
+      - **Feature:** New `PartialUpdateTelemetryRouter`, `PartialUpdateDestination`, and `PartialUpdateAccessToken` operations
+      - **Feature:** New waiters `PartialUpdateTelemetryRouterWaitHandler`, `PartialUpdateDestinationWaitHandler`, and `PartialUpdateAccessTokenWaitHandler`
+      - **Feature:** Add `DestinationCount` field to `TelemetryRouterResponse` to get the number of destinations TelemetryRouter has
+      - **Feature:** Add `ResourceLabels` field to `CreateTelemetryRouterPayload`, `UpdateTelemetryRouterPayload`, `PartialUpdateTelemetryRouterPayload` and `TelemetryRouterResponse`
+      - **Breaking change:** Add regex validation to the `Key` field of `ConfigFilterAttributes`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `BearerToken` and `Uri` fields of `DestinationConfigOpenTelemetry`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Username` and `Password` fields of `DestinationConfigOpenTelemetryBasicAuth`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Bucket` and `Endpoint` fields of `DestinationConfigS3`: `Bucket` may only contain lowercase letters, digits and hyphens, `Endpoint` must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Id` and `Secret` fields of `DestinationConfigS3AccessKey`, which now must be non-empty and must not contain control characters
 - `ufw`:
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
