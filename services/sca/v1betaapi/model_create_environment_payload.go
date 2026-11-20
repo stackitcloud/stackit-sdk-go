@@ -13,25 +13,19 @@ package v1betaapi
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the CreateEnvironmentPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateEnvironmentPayload{}
 
-// CreateEnvironmentPayload Environment describes an isolated container scope within a project.
+// CreateEnvironmentPayload EnvironmentCreate defines the payload to create a new environment.
 type CreateEnvironmentPayload struct {
-	// Creation date in RFC3339 format.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	// Is the default environmet.
-	Default *bool `json:"default,omitempty"`
 	// Human-readable display name.
 	DisplayName string `json:"displayName"`
-	// Environment identifier.
-	Id *string `json:"id,omitempty"`
-	// Region of the environment.
-	Region               *string            `json:"region,omitempty"`
-	Status               *EnvironmentStatus `json:"status,omitempty"`
+	// Image registry configurations to create alongside the environment.
+	Registries []EnvironmentRegistry `json:"registries,omitempty"`
+	// Secrets to create alongside the environment.
+	Secrets              []EnvironmentSecret `json:"secrets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -53,70 +47,6 @@ func NewCreateEnvironmentPayload(displayName string) *CreateEnvironmentPayload {
 func NewCreateEnvironmentPayloadWithDefaults() *CreateEnvironmentPayload {
 	this := CreateEnvironmentPayload{}
 	return &this
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CreateEnvironmentPayload) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateEnvironmentPayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *CreateEnvironmentPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CreateEnvironmentPayload) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
-// GetDefault returns the Default field value if set, zero value otherwise.
-func (o *CreateEnvironmentPayload) GetDefault() bool {
-	if o == nil || IsNil(o.Default) {
-		var ret bool
-		return ret
-	}
-	return *o.Default
-}
-
-// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateEnvironmentPayload) GetDefaultOk() (*bool, bool) {
-	if o == nil || IsNil(o.Default) {
-		return nil, false
-	}
-	return o.Default, true
-}
-
-// HasDefault returns a boolean if a field has been set.
-func (o *CreateEnvironmentPayload) HasDefault() bool {
-	if o != nil && !IsNil(o.Default) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefault gets a reference to the given bool and assigns it to the Default field.
-func (o *CreateEnvironmentPayload) SetDefault(v bool) {
-	o.Default = &v
 }
 
 // GetDisplayName returns the DisplayName field value
@@ -143,100 +73,68 @@ func (o *CreateEnvironmentPayload) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateEnvironmentPayload) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
+// GetRegistries returns the Registries field value if set, zero value otherwise.
+func (o *CreateEnvironmentPayload) GetRegistries() []EnvironmentRegistry {
+	if o == nil || IsNil(o.Registries) {
+		var ret []EnvironmentRegistry
 		return ret
 	}
-	return *o.Id
+	return o.Registries
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetRegistriesOk returns a tuple with the Registries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateEnvironmentPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+func (o *CreateEnvironmentPayload) GetRegistriesOk() ([]EnvironmentRegistry, bool) {
+	if o == nil || IsNil(o.Registries) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Registries, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CreateEnvironmentPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+// HasRegistries returns a boolean if a field has been set.
+func (o *CreateEnvironmentPayload) HasRegistries() bool {
+	if o != nil && !IsNil(o.Registries) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateEnvironmentPayload) SetId(v string) {
-	o.Id = &v
+// SetRegistries gets a reference to the given []EnvironmentRegistry and assigns it to the Registries field.
+func (o *CreateEnvironmentPayload) SetRegistries(v []EnvironmentRegistry) {
+	o.Registries = v
 }
 
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *CreateEnvironmentPayload) GetRegion() string {
-	if o == nil || IsNil(o.Region) {
-		var ret string
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
+func (o *CreateEnvironmentPayload) GetSecrets() []EnvironmentSecret {
+	if o == nil || IsNil(o.Secrets) {
+		var ret []EnvironmentSecret
 		return ret
 	}
-	return *o.Region
+	return o.Secrets
 }
 
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateEnvironmentPayload) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
+func (o *CreateEnvironmentPayload) GetSecretsOk() ([]EnvironmentSecret, bool) {
+	if o == nil || IsNil(o.Secrets) {
 		return nil, false
 	}
-	return o.Region, true
+	return o.Secrets, true
 }
 
-// HasRegion returns a boolean if a field has been set.
-func (o *CreateEnvironmentPayload) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
+// HasSecrets returns a boolean if a field has been set.
+func (o *CreateEnvironmentPayload) HasSecrets() bool {
+	if o != nil && !IsNil(o.Secrets) {
 		return true
 	}
 
 	return false
 }
 
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *CreateEnvironmentPayload) SetRegion(v string) {
-	o.Region = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CreateEnvironmentPayload) GetStatus() EnvironmentStatus {
-	if o == nil || IsNil(o.Status) {
-		var ret EnvironmentStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateEnvironmentPayload) GetStatusOk() (*EnvironmentStatus, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *CreateEnvironmentPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given EnvironmentStatus and assigns it to the Status field.
-func (o *CreateEnvironmentPayload) SetStatus(v EnvironmentStatus) {
-	o.Status = &v
+// SetSecrets gets a reference to the given []EnvironmentSecret and assigns it to the Secrets field.
+func (o *CreateEnvironmentPayload) SetSecrets(v []EnvironmentSecret) {
+	o.Secrets = v
 }
 
 func (o CreateEnvironmentPayload) MarshalJSON() ([]byte, error) {
@@ -249,21 +147,12 @@ func (o CreateEnvironmentPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateEnvironmentPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if !IsNil(o.Default) {
-		toSerialize["default"] = o.Default
-	}
 	toSerialize["displayName"] = o.DisplayName
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !IsNil(o.Registries) {
+		toSerialize["registries"] = o.Registries
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if !IsNil(o.Secrets) {
+		toSerialize["secrets"] = o.Secrets
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -308,12 +197,9 @@ func (o *CreateEnvironmentPayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "createdAt")
-		delete(additionalProperties, "default")
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "region")
-		delete(additionalProperties, "status")
+		delete(additionalProperties, "registries")
+		delete(additionalProperties, "secrets")
 		o.AdditionalProperties = additionalProperties
 	}
 
