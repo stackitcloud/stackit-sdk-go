@@ -20,8 +20,8 @@ var _ MappedNullable = &DestinationConfigS3AccessKey{}
 
 // DestinationConfigS3AccessKey The S3 access key
 type DestinationConfigS3AccessKey struct {
-	Id                   string `json:"id"`
-	Secret               string `json:"secret"`
+	Id                   string `json:"id" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
+	Secret               string `json:"secret" validate:"regexp=^[^\\0-\\x1F\\x7F-\\x9F]+$"`
 	AdditionalProperties map[string]interface{}
 }
 
