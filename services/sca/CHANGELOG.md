@@ -1,3 +1,6 @@
+## v0.3.1
+- `v1betaapi`: New package which can be used for communication with the sca v1 beta API
+
 ## v0.3.0
 - `v1alphaapi`: Align package to latest API specification
 

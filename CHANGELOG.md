@@ -5,6 +5,8 @@
     - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
     - **Feature:** Add `ErrorDescription` information to `CreateArtifactoryWaitHandler` and `UpdateArtifactoryWaitHandler`
 - `sca`:
+  - [v0.3.1](services/sca/CHANGELOG.md#v031)
+    - `v1betaapi`: New package which can be used for communication with the sca v1 beta API
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
 - `ufw`:
