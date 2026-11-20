@@ -1,5 +1,5 @@
 /*
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateApprolePayload{}
 type UpdateApprolePayload struct {
 	// A user chosen description to differentiate between multiple approles.
 	Description     *string `json:"description,omitempty"`
-	SecretIdNumUses *int32  `json:"secret_id_num_uses,omitempty"`
+	SecretIdNumUses *int64  `json:"secret_id_num_uses,omitempty"`
 	// Token TTL in time.Duration format (eg 15m for 15 minutes, 1h for 1 hour).
 	SecretIdTtl *string `json:"secret_id_ttl,omitempty" validate:"regexp=^[0-9]+[smh]$"`
 	// Is true if the approle has write access to the secrets engine. Is false for a read-only approle.
@@ -81,9 +81,9 @@ func (o *UpdateApprolePayload) SetDescription(v string) {
 }
 
 // GetSecretIdNumUses returns the SecretIdNumUses field value if set, zero value otherwise.
-func (o *UpdateApprolePayload) GetSecretIdNumUses() int32 {
+func (o *UpdateApprolePayload) GetSecretIdNumUses() int64 {
 	if o == nil || IsNil(o.SecretIdNumUses) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SecretIdNumUses
@@ -91,7 +91,7 @@ func (o *UpdateApprolePayload) GetSecretIdNumUses() int32 {
 
 // GetSecretIdNumUsesOk returns a tuple with the SecretIdNumUses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateApprolePayload) GetSecretIdNumUsesOk() (*int32, bool) {
+func (o *UpdateApprolePayload) GetSecretIdNumUsesOk() (*int64, bool) {
 	if o == nil || IsNil(o.SecretIdNumUses) {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *UpdateApprolePayload) HasSecretIdNumUses() bool {
 	return false
 }
 
-// SetSecretIdNumUses gets a reference to the given int32 and assigns it to the SecretIdNumUses field.
-func (o *UpdateApprolePayload) SetSecretIdNumUses(v int32) {
+// SetSecretIdNumUses gets a reference to the given int64 and assigns it to the SecretIdNumUses field.
+func (o *UpdateApprolePayload) SetSecretIdNumUses(v int64) {
 	o.SecretIdNumUses = &v
 }
 
