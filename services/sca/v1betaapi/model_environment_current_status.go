@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// EnvironmentCurrentStatus  - CURRENT_STATUS_UNSPECIFIED: Used as zero value.  - CURRENT_STATUS_PROGRESSING: Environment is being created.  - CURRENT_STATUS_CREATED: Environment is successfully created.
+// EnvironmentCurrentStatus  - CURRENT_STATUS_UNSPECIFIED: Used as zero value.  - CURRENT_STATUS_PROGRESSING: Environment is being created.  - CURRENT_STATUS_CREATED: Environment is successfully created.  - CURRENT_STATUS_FAILED: Environment is failed status.
 type EnvironmentCurrentStatus string
 
 // List of EnvironmentCurrentStatus
@@ -23,6 +23,7 @@ const (
 	ENVIRONMENTCURRENTSTATUS_CURRENT_STATUS_UNSPECIFIED EnvironmentCurrentStatus = "CURRENT_STATUS_UNSPECIFIED"
 	ENVIRONMENTCURRENTSTATUS_CURRENT_STATUS_PROGRESSING EnvironmentCurrentStatus = "CURRENT_STATUS_PROGRESSING"
 	ENVIRONMENTCURRENTSTATUS_CURRENT_STATUS_CREATED     EnvironmentCurrentStatus = "CURRENT_STATUS_CREATED"
+	ENVIRONMENTCURRENTSTATUS_CURRENT_STATUS_FAILED      EnvironmentCurrentStatus = "CURRENT_STATUS_FAILED"
 	ENVIRONMENTCURRENTSTATUS_UNKNOWN_DEFAULT_OPEN_API   EnvironmentCurrentStatus = "unknown_default_open_api"
 )
 
@@ -31,6 +32,7 @@ var AllowedEnvironmentCurrentStatusEnumValues = []EnvironmentCurrentStatus{
 	"CURRENT_STATUS_UNSPECIFIED",
 	"CURRENT_STATUS_PROGRESSING",
 	"CURRENT_STATUS_CREATED",
+	"CURRENT_STATUS_FAILED",
 	"unknown_default_open_api",
 }
 
