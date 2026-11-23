@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `logs`:
+  - [v0.13.0](services/logs/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Feature:** Add optional `Labels` field to `AccessPolicy`, `AccessToken`, `CreateAccessPolicyPayload`, `CreateAccessTokenPayload`, `CreateLogsInstancePayload`, `LogsInstance`, `UpdateAccessPolicyPayload`, `UpdateAccessTokenPayload` and `UpdateLogsInstancePayload` models
 - `registry`:
   - [v0.3.0](services/registry/CHANGELOG.md#v030)
     - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
