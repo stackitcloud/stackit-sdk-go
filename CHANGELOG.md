@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `dremio`:
+  - [v0.8.0](services/dremio/CHANGELOG.md#v080)
+    - `v1betaapi`:
+      - **Breaking Change:** Switch from regional to global API server URL
 - `logs`:
   - [v0.13.0](services/logs/CHANGELOG.md#v0130)
     - `v1api`:

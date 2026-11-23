@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1betaapi"
 	"github.com/stackitcloud/stackit-sdk-go/services/dremio/v1betaapi/wait"
@@ -17,9 +16,7 @@ func main() {
 
 	ctx := context.Background()
 
-	dremioClient, err := dremio.NewAPIClient(
-		config.WithRegion(string(region)),
-	)
+	dremioClient, err := dremio.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Creating API client: %v\n", err)
 		os.Exit(1)
