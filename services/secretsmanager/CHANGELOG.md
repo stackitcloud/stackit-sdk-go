@@ -1,3 +1,7 @@
+## v0.21.0
+- `v1api`:
+  - **Breaking Change:** Change type of `SecretIdNumUses` in `Approle`, `CreateApprolePayload` and `UpdateApprolePayload`, `NumUses` and `Version` in `ApproleSecret` and `SecretCount` in `Instance` from `int32` to `int64`; the `secretIdVersion` parameter of `GetApproleSecretId`, `UpdateApproleSecretId` and `DeleteApproleSecretId` is now `int64` as well
+
 ## v0.20.0
 - **Breaking change:** Removal of deprecated compatibility layer previously found in the root of the SDK module
 

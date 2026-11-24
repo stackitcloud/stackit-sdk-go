@@ -1,3 +1,7 @@
+## v0.13.0
+- `v1api`:
+  - **Feature:** Add optional `Labels` field to `AccessPolicy`, `AccessToken`, `CreateAccessPolicyPayload`, `CreateAccessTokenPayload`, `CreateLogsInstancePayload`, `LogsInstance`, `UpdateAccessPolicyPayload`, `UpdateAccessTokenPayload` and `UpdateLogsInstancePayload` models
+
 ## v0.12.0
 - `v1alphaapi`:
   - **Breaking Change:** The `v1alphaapi` package has been removed. The STACKIT Logs alpha API version has been retired; use `v1api` or `v1betaapi` instead.

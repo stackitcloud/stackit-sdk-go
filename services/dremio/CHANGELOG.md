@@ -1,3 +1,7 @@
+## v0.8.0
+- `v1betaapi`:
+  - **Breaking Change:** Switch from regional to global API server URL
+
 ## v0.7.0
 - `v1betaapi`:
   - **Feature:** Add field `Acl` to models `CreateDremioInstancePayload`, `DremioResponse` and `UpdateDremioInstancePayload`

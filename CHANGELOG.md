@@ -1,12 +1,26 @@
 ## Release (2026-MM-DD)
 
+- `dremio`:
+  - [v0.8.0](services/dremio/CHANGELOG.md#v080)
+    - `v1betaapi`:
+      - **Breaking Change:** Switch from regional to global API server URL
+- `logs`:
+  - [v0.13.0](services/logs/CHANGELOG.md#v0130)
+    - `v1api`:
+      - **Feature:** Add optional `Labels` field to `AccessPolicy`, `AccessToken`, `CreateAccessPolicyPayload`, `CreateAccessTokenPayload`, `CreateLogsInstancePayload`, `LogsInstance`, `UpdateAccessPolicyPayload`, `UpdateAccessTokenPayload` and `UpdateLogsInstancePayload` models
 - `registry`:
   - [v0.3.0](services/registry/CHANGELOG.md#v030)
     - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
     - **Feature:** Add `ErrorDescription` information to `CreateArtifactoryWaitHandler` and `UpdateArtifactoryWaitHandler`
 - `sca`:
+  - [v0.4.0](services/sca/CHANGELOG.md#v040)
+    - `v1betaapi`: Align package to latest API specification
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
+- `secretsmanager`:
+  - [v0.21.0](services/secretsmanager/CHANGELOG.md#v0210)
+    - `v1api`:
+      - **Breaking Change:** Change type of `SecretIdNumUses` in `Approle`, `CreateApprolePayload` and `UpdateApprolePayload`, `NumUses` and `Version` in `ApproleSecret` and `SecretCount` in `Instance` from `int32` to `int64`; the `secretIdVersion` parameter of `GetApproleSecretId`, `UpdateApproleSecretId` and `DeleteApproleSecretId` is now `int64` as well
 - `telemetrylink`:
   - [v0.7.0](services/telemetrylink/CHANGELOG.md#v070)
     - `v1api`:
