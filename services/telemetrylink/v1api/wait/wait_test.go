@@ -869,11 +869,12 @@ func testCreateBackflushJobWaitHandler(t *testing.T, newHandler createBackflushJ
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 				}
-				if !tt.wantErr {
-					want := &telemetrylink.BackflushJobResponse{Status: tt.resourceState}
-					if !cmp.Equal(gotRes, want) {
-						t.Fatalf("handler gotRes = %v, want %v", gotRes, want)
-					}
+				var wantRes *telemetrylink.BackflushJobResponse
+				if tt.wantResp {
+					wantRes = &telemetrylink.BackflushJobResponse{Status: tt.resourceState}
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 				}
 			})
 		})
