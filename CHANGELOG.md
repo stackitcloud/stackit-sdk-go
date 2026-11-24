@@ -15,6 +15,10 @@
 - `sca`:
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
+- `secretsmanager`:
+  - [v0.21.0](services/secretsmanager/CHANGELOG.md#v0210)
+    - `v1api`:
+      - **Breaking Change:** Change type of `SecretIdNumUses` in `Approle`, `CreateApprolePayload` and `UpdateApprolePayload`, `NumUses` and `Version` in `ApproleSecret` and `SecretCount` in `Instance` from `int32` to `int64`; the `secretIdVersion` parameter of `GetApproleSecretId`, `UpdateApproleSecretId` and `DeleteApproleSecretId` is now `int64` as well
 - `ufw`:
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum
