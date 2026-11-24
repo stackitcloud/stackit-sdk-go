@@ -13,6 +13,8 @@
     - **Bugfix:** Waiter `DeleteArtifactoryWaitHandler` allow hard delete on ERROR state
     - **Feature:** Add `ErrorDescription` information to `CreateArtifactoryWaitHandler` and `UpdateArtifactoryWaitHandler`
 - `sca`:
+  - [v0.4.0](services/sca/CHANGELOG.md#v040)
+    - `v1betaapi`: Align package to latest API specification
   - [v0.3.0](services/sca/CHANGELOG.md#v030)
     - `v1alphaapi`: Align package to latest API specification
 - `secretsmanager`:
