@@ -426,7 +426,7 @@ func TestUpdateDestinationWaitHandler(t *testing.T) {
 	}
 }
 
-func TestPartialPartialUpdateDestinationWaitHandler(t *testing.T) {
+func TestPartialUpdateDestinationWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -668,7 +668,7 @@ func TestUpdateAccessTokenWaitHandler(t *testing.T) {
 	}
 }
 
-func TestPartialPartialUpdateAccessTokenWaitHandler(t *testing.T) {
+func TestPartialUpdateAccessTokenWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
