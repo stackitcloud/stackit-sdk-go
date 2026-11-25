@@ -1,3 +1,7 @@
+
+## v0.4.0
+- `v1betaapi`: Align package to latest API specification
+
 ## v0.3.0
 - `v1alphaapi`: Align package to latest API specification
 

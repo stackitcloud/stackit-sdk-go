@@ -46,6 +46,10 @@ type DefaultAPIServiceMock struct {
 	ListEnvironmentsExecuteMock *func(r ApiListEnvironmentsRequest) (*ListEnvironmentsResponse, error)
 	// ListProjectApplicationsExecuteMock can be populated to implement the behavior of the ListProjectApplicationsExecute function of this mock
 	ListProjectApplicationsExecuteMock *func(r ApiListProjectApplicationsRequest) (*ListApplicationsResponse, error)
+	// StartApplicationExecuteMock can be populated to implement the behavior of the StartApplicationExecute function of this mock
+	StartApplicationExecuteMock *func(r ApiStartApplicationRequest) (map[string]interface{}, error)
+	// StopApplicationExecuteMock can be populated to implement the behavior of the StopApplicationExecute function of this mock
+	StopApplicationExecuteMock *func(r ApiStopApplicationRequest) (map[string]interface{}, error)
 	// UpdateApplicationExecuteMock can be populated to implement the behavior of the UpdateApplicationExecute function of this mock
 	UpdateApplicationExecuteMock *func(r ApiUpdateApplicationRequest) (*Application, error)
 	// UpdateEnvironmentRegistriesExecuteMock can be populated to implement the behavior of the UpdateEnvironmentRegistriesExecute function of this mock
@@ -312,6 +316,48 @@ func (a DefaultAPIServiceMock) ListProjectApplicationsExecute(r ApiListProjectAp
 	}
 
 	return (*a.ListProjectApplicationsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) StartApplication(ctx context.Context, projectId string, region string, environmentId string, applicationId string) ApiStartApplicationRequest {
+	return ApiStartApplicationRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		projectId:     projectId,
+		region:        region,
+		environmentId: environmentId,
+		applicationId: applicationId,
+	}
+}
+
+// StartApplicationExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the StartApplicationExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) StartApplicationExecute(r ApiStartApplicationRequest) (map[string]interface{}, error) {
+	if a.StartApplicationExecuteMock == nil {
+		var localVarReturnValue map[string]interface{}
+		return localVarReturnValue, nil
+	}
+
+	return (*a.StartApplicationExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) StopApplication(ctx context.Context, projectId string, region string, environmentId string, applicationId string) ApiStopApplicationRequest {
+	return ApiStopApplicationRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		projectId:     projectId,
+		region:        region,
+		environmentId: environmentId,
+		applicationId: applicationId,
+	}
+}
+
+// StopApplicationExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the StopApplicationExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) StopApplicationExecute(r ApiStopApplicationRequest) (map[string]interface{}, error) {
+	if a.StopApplicationExecuteMock == nil {
+		var localVarReturnValue map[string]interface{}
+		return localVarReturnValue, nil
+	}
+
+	return (*a.StopApplicationExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateApplication(ctx context.Context, projectId string, region string, environmentId string, applicationId string) ApiUpdateApplicationRequest {
