@@ -90,6 +90,37 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] TelemetryRouter Instance \"%s\" has been successfully updated.\n", createdInstance)
 
+	// Partially update the created Telemetry Router Instance
+	log.Printf("[TelemetryRouter API] Partially updating TelemetryRouter Instance with ID \"%s\".\n", createResp.Id)
+	partialUpdatePayload := telemetryrouter.PartialUpdateTelemetryRouterPayload{
+		DisplayName: utils.Ptr("my-part-upd-tlmr-instance"),
+		Filter: &telemetryrouter.ConfigFilterPatch{
+			Attributes: []telemetryrouter.ConfigFilterAttributes{
+				{
+					Key:     "service.name",
+					Level:   "logRecord",
+					Matcher: "=",
+					Values:  []string{"service3", "service4"},
+				},
+			},
+		},
+	}
+	partialUpdateResp, err := client.DefaultAPI.PartialUpdateTelemetryRouter(ctx, projectId, regionId, createdInstance).
+		PartialUpdateTelemetryRouterPayload(partialUpdatePayload).
+		Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `PartialUpdateTelemetryRouter`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Partially Updated Telemetry Router Instance with ID \"%s\" to Display Name \"%s\".\n", partialUpdateResp.Id, partialUpdateResp.DisplayName)
+
+	// Wait for the Telemetry Router Instance to be partially updated
+	log.Printf("[TelemetryRouter API] Waiting for TelemetryRouter Instance with ID \"%s\" to be partially updated.\n", createResp.Id)
+	_, err = wait.PartialUpdateTelemetryRouterWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for partial update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] TelemetryRouter Instance \"%s\" has been successfully partially updated.\n", createdInstance)
+
 	// Create an Access Token
 	log.Printf("[TelemetryRouter API] Creating AccessToken for TelemetryRouter Instance with ID \"%s\".\n", createResp.Id)
 	createTokenPayload := telemetryrouter.CreateAccessTokenPayload{
@@ -149,6 +180,29 @@ func main() {
 		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Access Token \"%s\" has been successfully updated.\n", updateTokenResp.Id)
+
+	// Partially update an Access Token
+	log.Printf("[Telemetry Router API] Partially updating the Access Token with ID \"%s\".\n", createTokenResp.Id)
+	partialDescriptionNS := telemetryrouter.NullableString{}
+	partialDescriptionNS.Set(utils.Ptr("partially updated description"))
+	partialUpdateTokenPayload := telemetryrouter.PartialUpdateAccessTokenPayload{
+		Description: partialDescriptionNS,
+	}
+	partialUpdateTokenResp, err := client.DefaultAPI.PartialUpdateAccessToken(ctx, projectId, regionId, createdInstance, createTokenResp.Id).
+		PartialUpdateAccessTokenPayload(partialUpdateTokenPayload).
+		Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `PartialUpdateAccessToken`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Partially updated Access Token with ID \"%s\".\n", partialUpdateTokenResp.Id)
+
+	// Wait for the Access Token to be partially updated
+	log.Printf("[Telemetry Router API] Waiting for the Access Token with ID \"%s\" to be partially updated.\n", createTokenResp.Id)
+	_, err = wait.PartialUpdateAccessTokenWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, partialUpdateTokenResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for partial update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Access Token \"%s\" has been successfully partially updated.\n", partialUpdateTokenResp.Id)
 
 	// Delete Access Token
 	log.Printf("[Telemetry Router API] Deleting for the Access Token with ID \"%s\".\n", createTokenResp.Id)
@@ -253,6 +307,31 @@ func main() {
 		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Destination \"%s\" has been successfully updated.\n", updateS3DestinationResp.Id)
+
+	// Partially update S3 Destination
+	log.Printf("[Telemetry Router API] Partially updating Destination with ID \"%s\".\n", createS3DestinationResp.Id)
+	partialUpdateS3DestinationPayload := telemetryrouter.PartialUpdateDestinationPayload{
+		DisplayName: utils.Ptr("part-upd-s3-destination"),
+		Config: &telemetryrouter.DestinationConfigPatch{
+			S3: &telemetryrouter.DestinationConfigPatchS3{
+				Bucket: utils.Ptr("another-bucket"),
+			},
+		},
+	}
+	partialUpdateS3DestinationResp, err := client.DefaultAPI.PartialUpdateDestination(ctx, projectId, regionId, createdInstance, createS3DestinationResp.Id).
+		PartialUpdateDestinationPayload(partialUpdateS3DestinationPayload).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `PartialUpdateDestination`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Partially updated Destination with ID \"%s\".\n", partialUpdateS3DestinationResp.Id)
+
+	// Wait for the S3 Destination to be partially updated
+	log.Printf("[Telemetry Router API] Waiting for the Destination with ID \"%s\" to be partially updated.\n", createS3DestinationResp.Id)
+	_, err = wait.PartialUpdateDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, partialUpdateS3DestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for partial update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination \"%s\" has been successfully partially updated.\n", partialUpdateS3DestinationResp.Id)
 
 	// Delete S3 Destination
 	log.Printf("[Telemetry Router API] Deleting Destination with ID \"%s\".\n", updateS3DestinationResp.Id)

@@ -21,6 +21,18 @@
   - [v0.21.0](services/secretsmanager/CHANGELOG.md#v0210)
     - `v1api`:
       - **Breaking Change:** Change type of `SecretIdNumUses` in `Approle`, `CreateApprolePayload` and `UpdateApprolePayload`, `NumUses` and `Version` in `ApproleSecret` and `SecretCount` in `Instance` from `int32` to `int64`; the `secretIdVersion` parameter of `GetApproleSecretId`, `UpdateApproleSecretId` and `DeleteApproleSecretId` is now `int64` as well
+- `telemetryrouter`:
+  - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
+    - `v1api`:
+      - **Feature:** New `PartialUpdateTelemetryRouter`, `PartialUpdateDestination`, and `PartialUpdateAccessToken` operations
+      - **Feature:** New waiters `PartialUpdateTelemetryRouterWaitHandler`, `PartialUpdateDestinationWaitHandler`, and `PartialUpdateAccessTokenWaitHandler`
+      - **Feature:** Add `DestinationCount` field to `TelemetryRouterResponse` to get the number of destinations TelemetryRouter has
+      - **Feature:** Add `ResourceLabels` field to `CreateTelemetryRouterPayload`, `UpdateTelemetryRouterPayload`, `PartialUpdateTelemetryRouterPayload` and `TelemetryRouterResponse`
+      - **Breaking change:** Add regex validation to the `Key` field of `ConfigFilterAttributes`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `BearerToken` and `Uri` fields of `DestinationConfigOpenTelemetry`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Username` and `Password` fields of `DestinationConfigOpenTelemetryBasicAuth`, which now must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Bucket` and `Endpoint` fields of `DestinationConfigS3`: `Bucket` may only contain lowercase letters, digits and hyphens, `Endpoint` must be non-empty and must not contain control characters
+      - **Breaking change:** Add regex validation to the `Id` and `Secret` fields of `DestinationConfigS3AccessKey`, which now must be non-empty and must not contain control characters
 - `ufw`:
   - [v0.3.0](services/ufw/CHANGELOG.md#v030)
     - **Breaking Change:** Rule type `PublicIP` is no longer supported: it can no longer be used to create rules (`CreateRulePayload.Type`) or to filter `ListRules`, and the `RULERESPONSETYPE_PUBLIC_IP` value was removed from the `RuleResponseType` enum

@@ -184,6 +184,67 @@ func TestUpdateTelemetryRouterWaitHandler(t *testing.T) {
 	}
 }
 
+func TestPartialUpdateTelemetryRouterWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetryrouter.TelemetryRouterResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			resourceState: telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: telemetryrouter.TELEMETRYROUTERRESPONSESTATUS_UNKNOWN_DEFAULT_OPEN_API,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:                     tt.getFails,
+					resourceStateTelemetryRouter: tt.resourceState,
+				})
+
+				var wantRes *telemetryrouter.TelemetryRouterResponse
+				if tt.wantResp {
+					wantRes = &telemetryrouter.TelemetryRouterResponse{
+						Status: tt.resourceState,
+						Id:     "trid",
+					}
+				}
+
+				handler := PartialUpdateTelemetryRouterWaitHandler(context.Background(), apiClient, "pid", "eu01", "trid")
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
 func TestDeleteTelemetryRouterWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
@@ -365,6 +426,67 @@ func TestUpdateDestinationWaitHandler(t *testing.T) {
 	}
 }
 
+func TestPartialUpdateDestinationWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetryrouter.DestinationResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "partial_update_succeeded",
+			getFails:      false,
+			resourceState: telemetryrouter.DESTINATIONRESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: telemetryrouter.DESTINATIONRESPONSESTATUS_UNKNOWN_DEFAULT_OPEN_API,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:                 tt.getFails,
+					resourceStateDestination: tt.resourceState,
+				})
+
+				var wantRes *telemetryrouter.DestinationResponse
+				if tt.wantResp {
+					wantRes = &telemetryrouter.DestinationResponse{
+						Status: tt.resourceState,
+						Id:     "did",
+					}
+				}
+
+				handler := PartialUpdateDestinationWaitHandler(context.Background(), apiClient, "pid", "eu01", "trid", "did")
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
 func TestDeleteDestinationWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
@@ -532,6 +654,67 @@ func TestUpdateAccessTokenWaitHandler(t *testing.T) {
 				}
 
 				handler := UpdateAccessTokenWaitHandler(context.Background(), apiClient, "pid", "eu01", "trid", "atid")
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmp.Comparer(compareNullableTime)) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestPartialUpdateAccessTokenWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState telemetryrouter.AccessTokenBaseResponseStatus
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "partial_update_succeeded",
+			getFails:      false,
+			resourceState: telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_ACTIVE,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: telemetryrouter.ACCESSTOKENBASERESPONSESTATUS_UNKNOWN_DEFAULT_OPEN_API,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:                 tt.getFails,
+					resourceStateAccessToken: tt.resourceState,
+				})
+
+				var wantRes *telemetryrouter.GetAccessTokenResponse
+				if tt.wantResp {
+					wantRes = &telemetryrouter.GetAccessTokenResponse{
+						Status: tt.resourceState,
+						Id:     "atid",
+					}
+				}
+
+				handler := PartialUpdateAccessTokenWaitHandler(context.Background(), apiClient, "pid", "eu01", "trid", "atid")
 
 				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
