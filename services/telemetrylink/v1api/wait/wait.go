@@ -228,3 +228,81 @@ func DeleteProjectTelemetryLinkWaitHandler(ctx context.Context, a telemetrylink.
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
+
+// CreateOrganizationBackflushJobWaitHandler will wait for organization backflush job creation.
+// The job is considered successful once it is running (active) or finished (complete).
+func CreateOrganizationBackflushJobWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, organizationId, region, backflushJobId string) *wait.AsyncActionHandler[telemetrylink.BackflushJobResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.BackflushJobResponse, telemetrylink.BackflushJobResponseStatus]{
+		FetchInstance: a.GetOrganizationBackflushJob(ctx, organizationId, region, backflushJobId).Execute,
+		GetState: func(d *telemetrylink.BackflushJobResponse) (telemetrylink.BackflushJobResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_ACTIVE,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_COMPLETE,
+		},
+		ErrorState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_FAILED,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateFolderBackflushJobWaitHandler will wait for folder backflush job creation.
+// The job is considered successful once it is running (active) or finished (complete).
+func CreateFolderBackflushJobWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, folderId, region, backflushJobId string) *wait.AsyncActionHandler[telemetrylink.BackflushJobResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.BackflushJobResponse, telemetrylink.BackflushJobResponseStatus]{
+		FetchInstance: a.GetFolderBackflushJob(ctx, folderId, region, backflushJobId).Execute,
+		GetState: func(d *telemetrylink.BackflushJobResponse) (telemetrylink.BackflushJobResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_ACTIVE,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_COMPLETE,
+		},
+		ErrorState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_FAILED,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateProjectBackflushJobWaitHandler will wait for project backflush job creation.
+// The job is considered successful once it is running (active) or finished (complete).
+func CreateProjectBackflushJobWaitHandler(ctx context.Context, a telemetrylink.DefaultAPI, projectId, region, backflushJobId string) *wait.AsyncActionHandler[telemetrylink.BackflushJobResponse] {
+	waitConfig := wait.WaiterHelper[telemetrylink.BackflushJobResponse, telemetrylink.BackflushJobResponseStatus]{
+		FetchInstance: a.GetProjectBackflushJob(ctx, projectId, region, backflushJobId).Execute,
+		GetState: func(d *telemetrylink.BackflushJobResponse) (telemetrylink.BackflushJobResponseStatus, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Status, nil
+		},
+		ActiveState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_ACTIVE,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_COMPLETE,
+		},
+		ErrorState: []telemetrylink.BackflushJobResponseStatus{
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_FAILED,
+			telemetrylink.BACKFLUSHJOBRESPONSESTATUS_DELETING,
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}

@@ -100,6 +100,39 @@ func main() {
 	}
 	log.Printf("[TelemetryLink API] Organization TelemetryLink \"%s\" has been successfully partially updated.\n", partialUpdateResp.Id)
 
+	// Create a organization backflush job
+	log.Printf("[TelemetryLink API] Creating organization backflush job.\n")
+	orgCreateBackflushResp, err := client.DefaultAPI.CreateOrganizationBackflushJob(ctx, organizationId, regionId).
+		CreateOrganizationBackflushJobPayload(telemetrylink.CreateOrganizationBackflushJobPayload{
+			DisplayName: utils.Ptr("my-organization-backflush-job"),
+		}).
+		Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrganizationBackflushJob`: %v\n", err)
+	}
+
+	// Wait for the organization backflush job to be running or complete
+	log.Printf("[TelemetryLink API] Waiting for organization backflush job to be created.\n")
+	_, err = wait.CreateOrganizationBackflushJobWaitHandler(ctx, client.DefaultAPI, organizationId, regionId, orgCreateBackflushResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when waiting for backflush job creation: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Organization backflush job \"%s\" has been successfully created.\n", orgCreateBackflushResp.Id)
+
+	// List the organization backflush jobs
+	orgListBackflushResp, err := client.DefaultAPI.ListOrganizationBackflushJobs(ctx, organizationId, regionId).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `ListOrganizationBackflushJobs`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Found %d organization backflush job(s).\n", len(orgListBackflushResp.BackflushJobs))
+
+	// Get the organization backflush job
+	orgGetBackflushResp, err := client.DefaultAPI.GetOrganizationBackflushJob(ctx, organizationId, regionId, orgCreateBackflushResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `GetOrganizationBackflushJob`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Organization backflush job \"%s\" has status \"%s\".\n", orgGetBackflushResp.Id, orgGetBackflushResp.Status)
+
 	// Delete the organization TelemetryLink
 	log.Printf("[TelemetryLink API] Deleting organization TelemetryLink.\n")
 	err = client.DefaultAPI.DeleteOrganizationTelemetryLink(ctx, organizationId, regionId).Execute()
@@ -191,6 +224,39 @@ func main() {
 	}
 	log.Printf("[TelemetryLink API] Folder TelemetryLink \"%s\" has been successfully partially updated.\n", partialUpdateFolderResp.Id)
 
+	// Create a folder backflush job
+	log.Printf("[TelemetryLink API] Creating folder backflush job.\n")
+	folderCreateBackflushResp, err := client.DefaultAPI.CreateFolderBackflushJob(ctx, folderId, regionId).
+		CreateFolderBackflushJobPayload(telemetrylink.CreateFolderBackflushJobPayload{
+			DisplayName: utils.Ptr("my-folder-backflush-job"),
+		}).
+		Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `CreateFolderBackflushJob`: %v\n", err)
+	}
+
+	// Wait for the folder backflush job to be running or complete
+	log.Printf("[TelemetryLink API] Waiting for folder backflush job to be created.\n")
+	_, err = wait.CreateFolderBackflushJobWaitHandler(ctx, client.DefaultAPI, folderId, regionId, folderCreateBackflushResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when waiting for backflush job creation: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Folder backflush job \"%s\" has been successfully created.\n", folderCreateBackflushResp.Id)
+
+	// List the folder backflush jobs
+	folderListBackflushResp, err := client.DefaultAPI.ListFolderBackflushJobs(ctx, folderId, regionId).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `ListFolderBackflushJobs`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Found %d folder backflush job(s).\n", len(folderListBackflushResp.BackflushJobs))
+
+	// Get the folder backflush job
+	folderGetBackflushResp, err := client.DefaultAPI.GetFolderBackflushJob(ctx, folderId, regionId, folderCreateBackflushResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `GetFolderBackflushJob`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Folder backflush job \"%s\" has status \"%s\".\n", folderGetBackflushResp.Id, folderGetBackflushResp.Status)
+
 	// Delete the folder TelemetryLink
 	log.Printf("[TelemetryLink API] Deleting folder TelemetryLink.\n")
 	err = client.DefaultAPI.DeleteFolderTelemetryLink(ctx, folderId, regionId).Execute()
@@ -281,6 +347,39 @@ func main() {
 		log.Fatalf("[TelemetryLink API] Error when waiting for partial update: %v\n", err)
 	}
 	log.Printf("[TelemetryLink API] Project TelemetryLink \"%s\" has been successfully partially updated.\n", partialUpdateProjectResp.Id)
+
+	// Create a project backflush job
+	log.Printf("[TelemetryLink API] Creating project backflush job.\n")
+	projectCreateBackflushResp, err := client.DefaultAPI.CreateProjectBackflushJob(ctx, projectId, regionId).
+		CreateProjectBackflushJobPayload(telemetrylink.CreateProjectBackflushJobPayload{
+			DisplayName: utils.Ptr("my-project-backflush-job"),
+		}).
+		Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `CreateProjectBackflushJob`: %v\n", err)
+	}
+
+	// Wait for the project backflush job to be running or complete
+	log.Printf("[TelemetryLink API] Waiting for project backflush job to be created.\n")
+	_, err = wait.CreateProjectBackflushJobWaitHandler(ctx, client.DefaultAPI, projectId, regionId, projectCreateBackflushResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when waiting for backflush job creation: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Project backflush job \"%s\" has been successfully created.\n", projectCreateBackflushResp.Id)
+
+	// List the project backflush jobs
+	projectListBackflushResp, err := client.DefaultAPI.ListProjectBackflushJobs(ctx, projectId, regionId).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `ListProjectBackflushJobs`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Found %d project backflush job(s).\n", len(projectListBackflushResp.BackflushJobs))
+
+	// Get the project backflush job
+	projectGetBackflushResp, err := client.DefaultAPI.GetProjectBackflushJob(ctx, projectId, regionId, projectCreateBackflushResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[TelemetryLink API] Error when calling `GetProjectBackflushJob`: %v\n", err)
+	}
+	log.Printf("[TelemetryLink API] Project backflush job \"%s\" has status \"%s\".\n", projectGetBackflushResp.Id, projectGetBackflushResp.Status)
 
 	// Delete the project TelemetryLink
 	log.Printf("[TelemetryLink API] Deleting project TelemetryLink.\n")

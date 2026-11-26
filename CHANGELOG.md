@@ -21,6 +21,13 @@
   - [v0.21.0](services/secretsmanager/CHANGELOG.md#v0210)
     - `v1api`:
       - **Breaking Change:** Change type of `SecretIdNumUses` in `Approle`, `CreateApprolePayload` and `UpdateApprolePayload`, `NumUses` and `Version` in `ApproleSecret` and `SecretCount` in `Instance` from `int32` to `int64`; the `secretIdVersion` parameter of `GetApproleSecretId`, `UpdateApproleSecretId` and `DeleteApproleSecretId` is now `int64` as well
+- `telemetrylink`:
+  - [v0.7.0](services/telemetrylink/CHANGELOG.md#v070)
+    - `v1api`:
+      - **Feature:** Add backflush job operations (`CreateOrganizationBackflushJob`, `CreateFolderBackflushJob`, `CreateProjectBackflushJob`, `GetOrganizationBackflushJob`, `GetFolderBackflushJob`, `GetProjectBackflushJob`, `ListOrganizationBackflushJobs`, `ListFolderBackflushJobs`, `ListProjectBackflushJobs`) and related models
+      - **Feature:** Add waiters `CreateOrganizationBackflushJobWaitHandler`, `CreateFolderBackflushJobWaitHandler` and `CreateProjectBackflushJobWaitHandler`
+      - **Feature:** Add optional `ResourceLabels` field to `CreateOrUpdateOrganizationTelemetryLinkPayload`, `CreateOrUpdateFolderTelemetryLinkPayload`, `CreateOrUpdateProjectTelemetryLinkPayload`, `PartialUpdateOrganizationTelemetryLinkPayload`, `PartialUpdateFolderTelemetryLinkPayload`, `PartialUpdateProjectTelemetryLinkPayload` and `TelemetryLinkResponse`
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.27.0` to `v0.27.1`
 - `telemetryrouter`:
   - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
     - `v1api`:
