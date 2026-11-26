@@ -20,27 +20,28 @@ var _ MappedNullable = &RuleResponse{}
 
 // RuleResponse struct for RuleResponse
 type RuleResponse struct {
-	Description             *string            `json:"description,omitempty"`
-	Destination             string             `json:"destination"`
-	Direction               *string            `json:"direction,omitempty"`
-	ErrorMessage            *string            `json:"errorMessage,omitempty"`
-	EtherType               *string            `json:"etherType,omitempty"`
-	InstanceId              string             `json:"instanceId"`
-	InstanceName            *string            `json:"instanceName,omitempty"`
-	IpRange                 *string            `json:"ipRange,omitempty"`
-	Offset                  *int32             `json:"offset,omitempty"`
-	PortRange               *string            `json:"portRange,omitempty"`
-	Product                 string             `json:"product"`
-	Protocol                *string            `json:"protocol,omitempty"`
-	RefId                   *string            `json:"refId,omitempty"`
-	Region                  *string            `json:"region,omitempty"`
-	RemoteSecurityGroupId   *string            `json:"remoteSecurityGroupId,omitempty"`
-	RemoteSecurityGroupName *string            `json:"remoteSecurityGroupName,omitempty"`
-	SecurityGroupId         *string            `json:"securityGroupId,omitempty"`
-	SourceIP                string             `json:"sourceIP"`
-	Stateful                *bool              `json:"stateful,omitempty"`
-	Status                  RuleResponseStatus `json:"status"`
-	Type                    RuleResponseType   `json:"type"`
+	Description             *string                 `json:"description,omitempty"`
+	Destination             string                  `json:"destination"`
+	Direction               *string                 `json:"direction,omitempty"`
+	ErrorMessage            *string                 `json:"errorMessage,omitempty"`
+	EtherType               *string                 `json:"etherType,omitempty"`
+	InstanceId              string                  `json:"instanceId"`
+	InstanceName            *string                 `json:"instanceName,omitempty"`
+	IpRange                 *string                 `json:"ipRange,omitempty"`
+	Offset                  *int32                  `json:"offset,omitempty"`
+	PortRange               *string                 `json:"portRange,omitempty"`
+	Product                 string                  `json:"product"`
+	Protocol                *string                 `json:"protocol,omitempty"`
+	RefId                   *string                 `json:"refId,omitempty"`
+	Region                  *string                 `json:"region,omitempty"`
+	RemoteSecurityGroupId   *string                 `json:"remoteSecurityGroupId,omitempty"`
+	RemoteSecurityGroupName *string                 `json:"remoteSecurityGroupName,omitempty"`
+	SecurityGroupId         *string                 `json:"securityGroupId,omitempty"`
+	SourceIP                string                  `json:"sourceIP"`
+	Stateful                *bool                   `json:"stateful,omitempty"`
+	Status                  RuleResponseStatus      `json:"status"`
+	SyncStatus              *RuleResponseSyncStatus `json:"syncStatus,omitempty"`
+	Type                    RuleResponseType        `json:"type"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -669,6 +670,38 @@ func (o *RuleResponse) SetStatus(v RuleResponseStatus) {
 	o.Status = v
 }
 
+// GetSyncStatus returns the SyncStatus field value if set, zero value otherwise.
+func (o *RuleResponse) GetSyncStatus() RuleResponseSyncStatus {
+	if o == nil || IsNil(o.SyncStatus) {
+		var ret RuleResponseSyncStatus
+		return ret
+	}
+	return *o.SyncStatus
+}
+
+// GetSyncStatusOk returns a tuple with the SyncStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleResponse) GetSyncStatusOk() (*RuleResponseSyncStatus, bool) {
+	if o == nil || IsNil(o.SyncStatus) {
+		return nil, false
+	}
+	return o.SyncStatus, true
+}
+
+// HasSyncStatus returns a boolean if a field has been set.
+func (o *RuleResponse) HasSyncStatus() bool {
+	if o != nil && !IsNil(o.SyncStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetSyncStatus gets a reference to the given RuleResponseSyncStatus and assigns it to the SyncStatus field.
+func (o *RuleResponse) SetSyncStatus(v RuleResponseSyncStatus) {
+	o.SyncStatus = &v
+}
+
 // GetType returns the Type field value
 func (o *RuleResponse) GetType() RuleResponseType {
 	if o == nil {
@@ -753,6 +786,9 @@ func (o RuleResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["stateful"] = o.Stateful
 	}
 	toSerialize["status"] = o.Status
+	if !IsNil(o.SyncStatus) {
+		toSerialize["syncStatus"] = o.SyncStatus
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -822,6 +858,7 @@ func (o *RuleResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sourceIP")
 		delete(additionalProperties, "stateful")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "syncStatus")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
