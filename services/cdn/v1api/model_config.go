@@ -26,8 +26,12 @@ type Config struct {
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps  []string    `json:"blockedIps"`
 	CacheConfig CacheConfig `json:"cacheConfig"`
+	// Configures a custom origin path to serve when the origin returns a 404 Not Found status (e.g. index.html or /404.html). Must not contain a URL scheme.
+	Custom404ErrorResponse NullableString `json:"custom404ErrorResponse,omitempty"`
 	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
+	// Configures the default root object served when a request targets the root path '/' of the distribution (e.g. index.html or /index.html). Must not contain a URL scheme.
+	DefaultRootObject NullableString `json:"defaultRootObject,omitempty"`
 	// Enabling this allows the 'Host' header to be passed through to the origin.
 	ForwardHostHeader bool `json:"forwardHostHeader"`
 	// Labels are key-value string pairs that can be attached to a distribution.
@@ -169,6 +173,49 @@ func (o *Config) SetCacheConfig(v CacheConfig) {
 	o.CacheConfig = v
 }
 
+// GetCustom404ErrorResponse returns the Custom404ErrorResponse field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Config) GetCustom404ErrorResponse() string {
+	if o == nil || IsNil(o.Custom404ErrorResponse.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Custom404ErrorResponse.Get()
+}
+
+// GetCustom404ErrorResponseOk returns a tuple with the Custom404ErrorResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Config) GetCustom404ErrorResponseOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Custom404ErrorResponse.Get(), o.Custom404ErrorResponse.IsSet()
+}
+
+// HasCustom404ErrorResponse returns a boolean if a field has been set.
+func (o *Config) HasCustom404ErrorResponse() bool {
+	if o != nil && o.Custom404ErrorResponse.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustom404ErrorResponse gets a reference to the given NullableString and assigns it to the Custom404ErrorResponse field.
+func (o *Config) SetCustom404ErrorResponse(v string) {
+	o.Custom404ErrorResponse.Set(&v)
+}
+
+// SetCustom404ErrorResponseNil sets the value for Custom404ErrorResponse to be an explicit nil
+func (o *Config) SetCustom404ErrorResponseNil() {
+	o.Custom404ErrorResponse.Set(nil)
+}
+
+// UnsetCustom404ErrorResponse ensures that no value is present for Custom404ErrorResponse, not even an explicit nil
+func (o *Config) UnsetCustom404ErrorResponse() {
+	o.Custom404ErrorResponse.Unset()
+}
+
 // GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Config) GetDefaultCacheDuration() string {
 	if o == nil || IsNil(o.DefaultCacheDuration.Get()) {
@@ -210,6 +257,49 @@ func (o *Config) SetDefaultCacheDurationNil() {
 // UnsetDefaultCacheDuration ensures that no value is present for DefaultCacheDuration, not even an explicit nil
 func (o *Config) UnsetDefaultCacheDuration() {
 	o.DefaultCacheDuration.Unset()
+}
+
+// GetDefaultRootObject returns the DefaultRootObject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Config) GetDefaultRootObject() string {
+	if o == nil || IsNil(o.DefaultRootObject.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultRootObject.Get()
+}
+
+// GetDefaultRootObjectOk returns a tuple with the DefaultRootObject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Config) GetDefaultRootObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DefaultRootObject.Get(), o.DefaultRootObject.IsSet()
+}
+
+// HasDefaultRootObject returns a boolean if a field has been set.
+func (o *Config) HasDefaultRootObject() bool {
+	if o != nil && o.DefaultRootObject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRootObject gets a reference to the given NullableString and assigns it to the DefaultRootObject field.
+func (o *Config) SetDefaultRootObject(v string) {
+	o.DefaultRootObject.Set(&v)
+}
+
+// SetDefaultRootObjectNil sets the value for DefaultRootObject to be an explicit nil
+func (o *Config) SetDefaultRootObjectNil() {
+	o.DefaultRootObject.Set(nil)
+}
+
+// UnsetDefaultRootObject ensures that no value is present for DefaultRootObject, not even an explicit nil
+func (o *Config) UnsetDefaultRootObject() {
+	o.DefaultRootObject.Unset()
 }
 
 // GetForwardHostHeader returns the ForwardHostHeader field value
@@ -517,8 +607,14 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	toSerialize["blockedCountries"] = o.BlockedCountries
 	toSerialize["blockedIps"] = o.BlockedIps
 	toSerialize["cacheConfig"] = o.CacheConfig
+	if o.Custom404ErrorResponse.IsSet() {
+		toSerialize["custom404ErrorResponse"] = o.Custom404ErrorResponse.Get()
+	}
 	if o.DefaultCacheDuration.IsSet() {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
+	}
+	if o.DefaultRootObject.IsSet() {
+		toSerialize["defaultRootObject"] = o.DefaultRootObject.Get()
 	}
 	toSerialize["forwardHostHeader"] = o.ForwardHostHeader
 	if !IsNil(o.Labels) {
@@ -595,7 +691,9 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "cacheConfig")
+		delete(additionalProperties, "custom404ErrorResponse")
 		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "defaultRootObject")
 		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "logSink")
