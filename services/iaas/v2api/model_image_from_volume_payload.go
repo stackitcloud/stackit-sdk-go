@@ -23,7 +23,7 @@ var _ MappedNullable = &ImageFromVolumePayload{}
 type ImageFromVolumePayload struct {
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	DiskFormat string `json:"diskFormat"`
-	// When true the image is force created from a volume is currently being used.
+	// When true the image is force created from a volume that is currently being used.
 	Force *bool `json:"force,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ /._-]*[A-Za-z0-9]+)*$"`
