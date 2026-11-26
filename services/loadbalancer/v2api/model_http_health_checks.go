@@ -22,7 +22,7 @@ type HttpHealthChecks struct {
 	// List of HTTP status codes that indicate a healthy response
 	OkStatuses []string `json:"okStatuses,omitempty"`
 	// Path to send the health check request to
-	Path                 *string    `json:"path,omitempty"`
+	Path                 *string    `json:"path,omitempty" validate:"regexp=^(?:/[a-zA-Z0-9\\-._]+)*_/?$"`
 	Tls                  *TlsConfig `json:"tls,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
