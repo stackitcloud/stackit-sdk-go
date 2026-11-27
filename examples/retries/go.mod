@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/objectstorage => ../../s
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.27.1
-	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.12.0
+	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.13.0
 )
 
 require (
